@@ -1,0 +1,188 @@
+import { quickNote } from "./quick";
+
+const U = "English Grammar · Class 10";
+
+export const englishNotes10 = [
+  quickNote({
+    id: "note-eng10-1", subject: "english", classLevel: 10, chapterNo: 1, title: "Tenses and Sequence of Tense", unit: U,
+    overview: "Accurate tense choice shows when an action happens, whether it is complete, continuing, habitual or linked to another action.",
+    ideas: [
+      "Simple present expresses habits, general truths and timetables; present continuous describes an action in progress or a temporary arrangement.",
+      "Present perfect links a past action to the present; present perfect continuous emphasises duration continuing up to now.",
+      "Past simple marks a completed past action; past continuous describes background action; past perfect marks the earlier of two past events.",
+      "Future meanings use will, going to, present continuous or simple present depending on prediction, intention, arrangement or timetable.",
+      "In time clauses beginning when, before, after, until or as soon as, use present tense for future meaning: ‘I will call when I arrive.’",
+    ],
+    formulas: ["Present perfect: has/have + V₃", "Past perfect: had + V₃", "Future continuous: will be + V-ing", "Future perfect: will have + V₃"],
+    examples: [
+      "She **has studied** here for two years. (Still relevant/continuing.)",
+      "By the time the bus arrived, we **had waited** for an hour.",
+      "I **will text** you when I **reach** home. (Not: when I will reach.)",
+    ],
+    terms: [["Aspect", "Verb form showing whether an action is simple, continuing or completed."], ["Sequence of tense", "Consistent relationship of tenses in connected clauses."], ["Time clause", "Dependent clause stating when something happens."], ["Future perfect", "Action completed before a specified future time."]],
+    tips: ["Use signal words, but check meaning: ‘since’ often pairs with perfect tense; ‘yesterday’ normally takes past simple.", "Avoid future ‘will’ inside a time clause beginning when, before, after or until."],
+  }),
+  quickNote({
+    id: "note-eng10-2", subject: "english", classLevel: 10, chapterNo: 2, title: "Subject–Verb Agreement and Noun Forms", unit: U,
+    overview: "Correct agreement depends on the real subject, its number and its grammatical structure—not on the nearest noun.",
+    ideas: [
+      "A singular countable subject takes a singular verb; plural subjects take plural verbs. In present simple, third-person singular adds -s/-es.",
+      "Subjects joined by and are usually plural; a single combined idea such as ‘bread and butter’ may be singular.",
+      "With either/or and neither/nor, the verb generally agrees with the nearer subject. ‘A number of’ takes plural; ‘the number of’ takes singular.",
+      "Each, every, everyone, anybody, neither, much and uncountable nouns generally take singular verbs.",
+      "Collective nouns can be singular when the group acts together; use plural meaning when members act individually, depending on context and style.",
+    ],
+    examples: [
+      "The quality of the mangoes **is** excellent. (Subject: quality.)",
+      "A number of students **are** absent; the number of absentees **is** small.",
+      "Neither the players nor the captain **was** ready. (Verb agrees with the nearer singular subject.)",
+    ],
+    terms: [["Concord", "Agreement in number and person between subject and verb."], ["Collective noun", "Noun for a group considered as a whole or individuals."], ["Uncountable noun", "Noun not normally counted separately."], ["Proximity rule", "Agreement with the subject nearest the verb in paired conjunction structures."]],
+    tips: ["Find the head noun of a long subject phrase; ignore intervening phrases.", "Check each, every, neither and either carefully—they are often singular."],
+  }),
+  quickNote({
+    id: "note-eng10-3", subject: "english", classLevel: 10, chapterNo: 3, title: "Modals: Meaning, Strength and Use", unit: U,
+    overview: "Modals communicate degrees of certainty, ability, permission, advice, obligation and willingness. The choice of modal changes the tone and meaning.",
+    ideas: [
+      "Can/could express ability or permission; may/might express permission or possibility; might usually signals weaker possibility.",
+      "Must expresses strong obligation or a logical conclusion; have to expresses an external requirement; should/ought to express advice or expectation.",
+      "Must not means prohibition; need not means something is unnecessary. These meanings are not interchangeable.",
+      "Could, would and may make requests more polite. Shall can offer help or make suggestions with I/we.",
+      "Modal + base verb is the normal pattern. Perfect modal forms (must have gone, might have forgotten) refer to past possibility or deduction.",
+    ],
+    examples: [
+      "You **must not** park here. (Prohibited.) · You **need not** come early. (Not necessary.)",
+      "She **must have left** already. (Strong deduction about the past.)",
+      "**Could you** please explain the answer? (Polite request.)",
+    ],
+    terms: [["Modal auxiliary", "Auxiliary verb expressing attitude, possibility or obligation."], ["Deduction", "Conclusion based on evidence."], ["Obligation", "Duty or requirement."], ["Perfect modal", "Modal followed by have + past participle for past meaning."]],
+    tips: ["Choose a modal by meaning and degree, not by translating word-for-word.", "After a modal, do not add -s or ‘to’: ‘She can speak’, not ‘can speaks’."],
+  }),
+  quickNote({
+    id: "note-eng10-4", subject: "english", classLevel: 10, chapterNo: 4, title: "Determiners, Articles and Quantifiers", unit: U,
+    overview: "Determiners identify or quantify nouns. Correct use depends on whether a noun is specific, countable, uncountable, singular or plural.",
+    ideas: [
+      "Use a/an for one non-specific countable noun; choose by sound: an hour, a uniform, an honest answer, a European city.",
+      "Use the for a specific or already-mentioned noun, unique objects, superlatives, rivers, seas and some groups of mountains.",
+      "Use no article for general plural and uncountable nouns: Books are useful; Water is essential. Use the when referring to specific examples.",
+      "Many/few/fewer go with countables; much/little/less with uncountables. A few/a little are positive (some); few/little suggest almost none.",
+      "Each/every take singular nouns; both takes plural. Either/neither generally refer to one of two choices.",
+    ],
+    examples: [
+      "**A little** patience helps. (Some patience.) · **Little** patience remains. (Almost none.)",
+      "She adopted **a** cat. **The** cat is black. (First mention, then specific.)",
+      "We need **fewer** plastic bags and **less** plastic waste.",
+    ],
+    terms: [["Article", "A, an or the; a type of determiner."], ["Quantifier", "Word indicating amount or number."], ["Specific reference", "Reference to an identifiable noun, often using the."], ["Countable noun", "Noun with singular and plural forms."], ["Uncountable noun", "Noun treated as a whole substance or idea."]],
+    tips: ["Check the noun after the blank before selecting many/much or fewer/less.", "Do not use an article before a general plural or uncountable noun."],
+  }),
+  quickNote({
+    id: "note-eng10-5", subject: "english", classLevel: 10, chapterNo: 5, title: "Reported Speech: Statements, Questions and Commands", unit: U,
+    overview: "Reported speech changes direct words into a statement about what was said. Reporting verbs, tense, pronouns, time expressions and word order must all be checked.",
+    ideas: [
+      "Statements: said/told + (that) + clause. ‘Told’ normally needs an object; say does not: she told me, she said that…",
+      "Questions: asked/wondered + if/whether for yes/no questions; retain wh-words for information questions. Use statement word order and no question mark inside the reported clause.",
+      "Commands/requests: told/asked/advised/warned + object + (not) to + base verb.",
+      "If the reporting verb is past, present often shifts to past, present perfect to past perfect and will to would. Universal truths and still-true facts may stay present.",
+      "Change pronouns and time/place words according to who reports the speech and when: today→that day, here→there, this→that, tomorrow→the next day.",
+    ],
+    examples: [
+      "Ravi said, ‘I have completed it.’ → Ravi said that **he had completed it**.",
+      "She asked, ‘Are you ready?’ → She asked **whether I was ready**.",
+      "The teacher said, ‘Please submit your work.’ → The teacher **asked us to submit our work**.",
+      "He said, ‘Do not touch the switch.’ → He **warned me not to touch** the switch.",
+    ],
+    terms: [["Reporting verb", "Verb introducing a report, e.g. said, asked, advised."], ["Backshift", "Moving tense one step into the past after a past reporting verb."], ["Indirect question", "Reported question using statement word order."], ["Reporting clause", "Clause identifying who spoke."]],
+    tips: ["Remove do/does/did from reported questions and restore statement order.", "Do not shift a scientific fact into a false past tense."],
+  }),
+  quickNote({
+    id: "note-eng10-6", subject: "english", classLevel: 10, chapterNo: 6, title: "Active and Passive Voice", unit: U,
+    overview: "Passive voice changes the focus from the doer to the action or receiver. It is common in formal reports, news and scientific writing.",
+    ideas: [
+      "Active: subject + verb + object. Passive: object + correct form of be + past participle (V₃) + optional by-agent.",
+      "Keep the tense and aspect: is writing→is being written; wrote→was written; has written→has been written; will write→will be written.",
+      "An object is required for normal passive conversion. Intransitive verbs such as arrive, sleep and happen usually cannot form a passive.",
+      "Two objects may allow two passive forms: They gave her a prize → She was given a prize / A prize was given to her.",
+      "Use by + agent only when the doer matters; omit it when unknown, obvious or unimportant.",
+    ],
+    examples: [
+      "Active: The council **will repair** the road. → Passive: The road **will be repaired** by the council.",
+      "Active: Someone **has stolen** my bicycle. → Passive: My bicycle **has been stolen**.",
+      "Active: The chef **is preparing** dinner. → Passive: Dinner **is being prepared**.",
+    ],
+    terms: [["Voice", "Form showing whether the subject performs or receives an action."], ["Past participle", "Third form of a verb used with have or passive be."], ["Agent", "Doer of the action, often introduced by by."], ["Transitive verb", "Verb taking an object."]],
+    tips: ["Identify the tense first, then choose the matching be-form before adding V₃.", "Preserve meaning; do not add an agent if the original sentence does not identify one."],
+  }),
+  quickNote({
+    id: "note-eng10-7", subject: "english", classLevel: 10, chapterNo: 7, title: "Clauses, Conditionals and Sentence Joining", unit: U,
+    overview: "Clauses express complete or dependent ideas. Correct joining creates clear complex sentences and avoids fragments or run-ons.",
+    ideas: [
+      "Noun clauses act as subjects/objects; relative clauses describe nouns; adverb clauses express time, reason, condition, contrast, purpose or result.",
+      "Zero conditional states facts: if + present, present. First conditional describes a real future possibility: if + present, will + base verb.",
+      "Second conditional describes an unreal or unlikely present/future: if + past, would + base verb. Third conditional imagines a different past: if + past perfect, would have + V₃.",
+      "Do not normally use will in the if-clause of a first conditional: ‘If it rains, we will stay inside.’",
+      "Use a semicolon or a conjunction to join independent clauses; use a comma after an introductory dependent clause.",
+    ],
+    examples: [
+      "Noun: I believe **that she is right**. · Relative: The student **who helped me** is kind.",
+      "First conditional: **If you study, you will improve.**",
+      "Third conditional: **If we had left earlier, we would have caught the train.**",
+    ],
+    terms: [["Noun clause", "Dependent clause functioning as a noun."], ["Relative clause", "Clause describing a noun, often beginning who/which/that."], ["Conditional", "Sentence expressing a condition and its result."], ["Independent clause", "Clause that can stand alone as a sentence."], ["Run-on", "Two independent clauses incorrectly joined without punctuation/conjunction."]],
+    tips: ["Check whether the condition is real, unlikely or impossible in the past before choosing a conditional form.", "Avoid comma splices: two full sentences need a full stop, semicolon or conjunction."],
+  }),
+  quickNote({
+    id: "note-eng10-8", subject: "english", classLevel: 10, chapterNo: 8, title: "Editing and Omission: Grammar Checklist", unit: U,
+    overview: "Editing and omission tasks test several grammar rules in connected prose. Read for meaning first, then check one rule at a time.",
+    ideas: [
+      "Check agreement: every subject must match its verb in number and person, even when a phrase separates them.",
+      "Check tense consistency and time markers; use present perfect with unfinished periods and past simple with definite finished times.",
+      "Check articles, quantifiers, pronouns, prepositions, modals, plural forms and comparative structures.",
+      "For omission, ask whether the sentence needs an article, auxiliary, preposition, relative pronoun or conjunction to be grammatically complete.",
+      "For editing tables, write the exact incorrect word and correction; do not change a correct phrase just to make it sound different.",
+    ],
+    examples: [
+      "Incorrect: The list of items **are** ready. → The list of items **is** ready. (Head subject: list.)",
+      "Incorrect: She is **more taller** than I am. → She is **taller** than I am.",
+      "Incorrect: He has lived here **since five years**. → He has lived here **for five years**.",
+    ],
+    terms: [["Proofreading", "Careful checking for language and punctuation errors."], ["Omission", "A missing word that makes a sentence incomplete or incorrect."], ["Redundancy", "Unnecessary repetition of meaning, e.g. return back."], ["Parallelism", "Matching forms in joined ideas."]],
+    tips: ["Read the passage aloud in your head; missing small words often become obvious.", "Check one category at a time: verbs, nouns/pronouns, determiners, prepositions, then punctuation."],
+  }),
+  quickNote({
+    id: "note-eng10-9", subject: "english", classLevel: 10, chapterNo: 9, title: "Gap Filling and Cloze Practice", unit: U,
+    overview: "Gap filling tests grammar in context. The surrounding words usually reveal the tense, agreement, word class or preposition needed.",
+    ideas: [
+      "Read the complete passage before filling blanks to understand its time frame, topic and relationships between sentences.",
+      "Look left and right of each gap: an article may need a noun; a modal needs a base verb; a preposition may be part of a fixed phrase.",
+      "Identify whether the blank needs a noun, verb, adjective, adverb, auxiliary, determiner or connector.",
+      "Use context to choose between similar words: although (contrast), because (reason), unless (negative condition), therefore (result).",
+      "After filling, read the whole passage again for tense consistency, meaning, agreement and natural phrasing.",
+    ],
+    examples: [
+      "She has lived here **for** three years. (Duration.) · She has lived here **since** 2023. (Starting point.)",
+      "The road was wet **because** it had rained. (Reason.)",
+      "You will not succeed **unless** you practise. (= if you do not practise.)",
+    ],
+    terms: [["Cloze passage", "Passage with omitted words completed from grammar and context."], ["Context clue", "Nearby information helping identify the correct word."], ["Connector", "Word linking ideas, e.g. however, because, therefore."], ["Collocation", "Words that naturally occur together, e.g. make a decision."]],
+    tips: ["Do not choose a word based only on meaning; check its grammatical form.", "Keep verb tense consistent with the passage's timeline."],
+  }),
+  quickNote({
+    id: "note-eng10-10", subject: "english", classLevel: 10, chapterNo: 10, title: "Sentence Transformation, Reordering and Punctuation", unit: U,
+    overview: "Sentence transformation changes form without changing meaning. Reordering tests clause structure, connectors and logical sequence.",
+    ideas: [
+      "Transform without changing the original meaning, tense or key information: active/passive, direct/indirect, simple/complex/compound.",
+      "Use connectors accurately: although/despite for contrast, because/due to for reason, so/therefore for result, unless/if for condition.",
+      "For reordering, locate the subject and main verb first, then place modifiers and clauses where they belong.",
+      "A paragraph usually moves from a topic sentence to explanation/example and then conclusion; pronouns refer to nouns already introduced.",
+      "Punctuation: comma after introductory clauses, apostrophe for possession/contraction, quotation marks for exact speech, colon before a list or explanation.",
+    ],
+    examples: [
+      "Although he was tired, he continued. → **Despite being tired, he continued.**",
+      "She was so tired that she slept. → **She was too tired not to sleep.** (Check meaning carefully when using too/enough.)",
+      "Reorder: ‘every day / the library / reads / she in’ → **She reads in the library every day.**",
+    ],
+    terms: [["Transformation", "Changing sentence form while preserving meaning."], ["Simple sentence", "One independent clause."], ["Compound sentence", "Two or more independent clauses joined correctly."], ["Complex sentence", "One main clause with at least one dependent clause."], ["Transition", "Word/phrase linking ideas, e.g. however, consequently."]],
+    tips: ["After transformation, compare the original and new sentence to ensure no meaning was lost.", "In reordering, identify pronoun references and connectors before arranging the rest."],
+  }),
+];

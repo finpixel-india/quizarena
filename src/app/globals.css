@@ -1,0 +1,277 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant light (&:where(.light, .light *));
+
+/* Semantic design tokens — values switch between dark (default), light theme and cream bands. */
+@theme inline {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-card: var(--card);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-line: var(--line);
+  --color-line-2: var(--line-2);
+
+  --color-brand: #f97316;
+  --color-brand-ink: var(--brand-ink);
+  --color-ember: #ea580c;
+  --color-flame: #fb923c;
+  --color-gold: #fbbf24;
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+}
+
+@theme {
+  --animate-fade-up: fade-up 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-fade-in: fade-in 0.3s ease-out both;
+  --animate-pop: pop 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.15) both;
+  --animate-shake: shake 0.4s ease-in-out both;
+  --animate-sheet: sheet-up 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-shimmer: shimmer 1.3s ease-in-out infinite;
+}
+
+/* ------------------------------- Dark (default) ------------------------------ */
+:root {
+  --bg: #0c0a09;
+  --bg-2: #14100e;
+  --surface: #1a1513;
+  --surface-2: #221b17;
+  --card: rgba(26, 21, 19, 0.66);
+  --glass: rgba(12, 10, 9, 0.74);
+  --fg: #ffffff;
+  --muted: #a8a29e;
+  --subtle: #78716c;
+  --line: rgba(255, 255, 255, 0.09);
+  --line-2: rgba(255, 255, 255, 0.18);
+  --grid: rgba(255, 255, 255, 0.045);
+  --brand-ink: #fb8a3c;
+  --success: #34d399;
+  --warning: #facc15;
+  --danger: #f87171;
+  --grad-text: linear-gradient(100deg, #fbbf24 0%, #f97316 55%, #ea580c 100%);
+  --card-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 0 24px 48px -32px rgba(0, 0, 0, 0.9);
+  --glow: 0 0 0 1px rgba(249, 115, 22, 0.55), 0 0 28px -6px rgba(249, 115, 22, 0.45);
+  --glow-soft: 0 12px 40px -12px rgba(249, 115, 22, 0.55);
+  --aurora-1: rgba(249, 115, 22, 0.16);
+  --aurora-2: rgba(234, 88, 12, 0.13);
+  color-scheme: dark;
+}
+
+/* --------------------- Light theme + full-width cream bands ------------------- */
+.light,
+.band-light {
+  --bg: #f7f5f1;
+  --bg-2: #efeae2;
+  --surface: #ffffff;
+  --surface-2: #f4f1ec;
+  --card: rgba(255, 255, 255, 0.88);
+  --glass: rgba(247, 245, 241, 0.82);
+  --fg: #0c0a09;
+  --muted: #57534e;
+  --subtle: #78716c;
+  --line: rgba(12, 10, 9, 0.1);
+  --line-2: rgba(12, 10, 9, 0.2);
+  --grid: rgba(12, 10, 9, 0.05);
+  --brand-ink: #c2410c;
+  --success: #059669;
+  --warning: #b45309;
+  --danger: #dc2626;
+  --grad-text: linear-gradient(100deg, #ea580c 0%, #c2410c 100%);
+  --card-shadow: 0 1px 2px rgba(12, 10, 9, 0.04), 0 16px 40px -28px rgba(12, 10, 9, 0.3);
+  --glow: 0 0 0 1px rgba(234, 88, 12, 0.5), 0 8px 24px -10px rgba(249, 115, 22, 0.45);
+  --glow-soft: 0 12px 32px -14px rgba(249, 115, 22, 0.45);
+  --aurora-1: rgba(249, 115, 22, 0.14);
+  --aurora-2: rgba(234, 88, 12, 0.1);
+  color-scheme: light;
+}
+
+.band-light {
+  background-color: var(--bg);
+  color: var(--fg);
+}
+
+@utility glass {
+  background-color: var(--glass);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
+}
+
+@utility glow {
+  box-shadow: var(--glow);
+}
+
+@utility glow-soft {
+  box-shadow: var(--glow-soft);
+}
+
+@utility card-shadow {
+  box-shadow: var(--card-shadow);
+}
+
+@utility grad-hero {
+  background-image: linear-gradient(135deg, #fbbf24 0%, #f97316 55%, #ea580c 100%);
+}
+
+@utility grad-cta {
+  background-image: linear-gradient(100deg, #fb923c 0%, #f97316 50%, #ea580c 100%);
+}
+
+@utility grad-text {
+  background-image: var(--grad-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility grid-lines {
+  background-image:
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/** Full-bleed helper: escape the page container to run edge-to-edge. */
+@utility full-bleed {
+  margin-inline: calc(50% - 50vw);
+  width: 100vw;
+}
+
+@layer base {
+  html {
+    background-color: var(--bg);
+    -webkit-tap-highlight-color: transparent;
+    text-size-adjust: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    color: var(--fg);
+  }
+
+  ::selection {
+    background: rgb(249 115 22 / 0.3);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--brand-ink);
+    outline-offset: 2px;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--line-2) transparent;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20%,
+  60% {
+    transform: translateX(-5px);
+  }
+  40%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes sheet-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes shimmer {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(320%);
+  }
+}
+
+html:fullscreen {
+  background-color: var(--bg);
+}
+
+html::backdrop {
+  background-color: #0c0a09;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.scrollbar-none {
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

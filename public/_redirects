@@ -1,0 +1,3 @@
+/play / 302
+/play/setup / 302
+/results/:id /results?id=:id 302

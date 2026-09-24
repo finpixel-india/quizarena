@@ -13,7 +13,7 @@ import { listAllTopics } from "@/lib/topics";
 import type { TopicInfo } from "@/lib/types";
 import { useAttempts, useLocalSettings } from "@/lib/use-local-data";
 
-function resolveInitialTopic(sp: Record<string, string | string[] | undefined>, rows: AttemptSummary[], topics: TopicInfo[]): string {
+function resolveExplicitTopic(sp: Record<string, string | string[] | undefined>, topics: TopicInfo[]): string | undefined {
   const ids = new Set(topics.map((t) => t.id));
   if (typeof sp.topic === "string" && ids.has(sp.topic)) return sp.topic;
 
@@ -26,8 +26,7 @@ function resolveInitialTopic(sp: Record<string, string | string[] | undefined>, 
     if (pick) return pick.id;
   }
 
-  const last = rows.find((r) => r.mode === "standard" && ids.has(r.topicId));
-  return last?.topicId ?? "sci10-all";
+  return undefined;
 }
 
 const HOW = [
@@ -43,7 +42,7 @@ export default function HomeClient() {
   const { settings } = useLocalSettings();
   const stats = useMemo(() => computeStats(rows), [rows]);
   const topics = listAllTopics();
-  const initialTopicId = resolveInitialTopic(spObj, rows, topics);
+  const explicitTopicId = resolveExplicitTopic(spObj, topics);
   const last = rows.find((r) => r.mode === "standard");
 
   if (!ready) {
@@ -115,7 +114,7 @@ export default function HomeClient() {
         <Label n="01" className="mb-4 sm:mb-6">
           Build your quiz
         </Label>
-        <QuizBuilder key={initialTopicId} topics={topics} settings={settings} initialTopicId={initialTopicId} />
+        <QuizBuilder topics={topics} settings={settings} initialTopicId={explicitTopicId} />
       </section>
       </Container>
 
@@ -216,7 +215,7 @@ export default function HomeClient() {
               </div>
               <dl className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-4">
                 {[
-                  { v: "748", k: "Curated questions" },
+                  { v: "15,700+", k: "Curated questions" },
                   { v: "67", k: "NCERT chapters" },
                   { v: "∞", k: "Generated math" },
                   { v: "3", k: "Question sources" },

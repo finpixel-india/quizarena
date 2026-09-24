@@ -1,11 +1,13 @@
 "use client";
 
+import { idbClearAttempts, idbDeleteAttempt, idbLoadAttempts, idbSaveAttempt } from "./idb";
 import { pointsFor, maxScoreFor } from "./scoring";
 import { DEFAULT_SETTINGS, normalizeSettings, clampInt, isDifficulty, isSource, normalizeTime } from "./settings";
-import type { AttemptQuestion, Difficulty, QuizMode, SourceId, TimerMode, UserSettings } from "./types";
+import type { AttemptQuestion, Difficulty, QuizMode, SourceId, SubjectId, TimerMode, UserSettings } from "./types";
 
 export const ATTEMPTS_KEY = "ql-attempts-v1";
 export const SETTINGS_KEY = "ql-settings-v1";
+export const BUILDER_PREFS_KEY = "ql-builder-prefs-v1";
 export const STORAGE_EVENT = "ql-storage";
 
 export interface StoredAttempt {
@@ -32,6 +34,23 @@ export interface StoredAttempt {
   localDate: string | null;
   createdAt: string; // ISO
   questions: AttemptQuestion[];
+}
+
+export interface BuilderPreferences {
+  subject?: SubjectId;
+  cls?: 9 | 10 | "general";
+  topicId?: string;
+  topicMemory?: Record<string, string>;
+  classMemory?: Partial<Record<SubjectId, 9 | 10 | "general">>;
+  amount?: number;
+  timerMode?: TimerMode;
+  time?: number;
+  totalTime?: number;
+  difficulty?: Difficulty;
+  hints?: number;
+  fullscreen?: boolean;
+  userSource?: SourceId | null;
+  customTopic?: string;
 }
 
 function canUseStorage(): boolean {
@@ -67,6 +86,47 @@ function writeJson(key: string, value: unknown) {
   }
 }
 
+function compactAttemptForStorage(a: StoredAttempt): StoredAttempt {
+  return {
+    ...a,
+    questions: (a.questions || []).map((q) => ({
+      question: q.question,
+      options: q.options,
+      correctIndex: q.correctIndex,
+      selectedIndex: q.selectedIndex,
+      status: q.status,
+      hintUsed: q.hintUsed,
+      timeTaken: q.timeTaken,
+      points: q.points,
+      difficulty: q.difficulty,
+      type: q.type,
+      origin: q.origin,
+    })),
+  };
+}
+
+function writeAttempts(rows: StoredAttempt[]) {
+  if (!canUseStorage()) return;
+  try {
+    localStorage.setItem(ATTEMPTS_KEY, JSON.stringify(rows));
+    notify();
+  } catch {
+    try {
+      const compacted = rows.map((r, idx) => (idx < 25 ? r : compactAttemptForStorage(r)));
+      localStorage.setItem(ATTEMPTS_KEY, JSON.stringify(compacted));
+      notify();
+    } catch {
+      try {
+        const lean = rows.map((r, idx) => (idx < 5 ? r : compactAttemptForStorage(r)));
+        localStorage.setItem(ATTEMPTS_KEY, JSON.stringify(lean));
+        notify();
+      } catch {
+        /* IndexedDB retains complete data */
+      }
+    }
+  }
+}
+
 export function loadSettings(): UserSettings {
   return normalizeSettings(readJson<Partial<UserSettings>>(SETTINGS_KEY, {}));
 }
@@ -77,11 +137,37 @@ export function saveSettings(settings: UserSettings): UserSettings {
   return next;
 }
 
+export function loadBuilderPrefs(): BuilderPreferences {
+  return readJson<BuilderPreferences>(BUILDER_PREFS_KEY, {});
+}
+
+export function saveBuilderPrefs(patch: Partial<BuilderPreferences>): BuilderPreferences {
+  const current = loadBuilderPrefs();
+  const next: BuilderPreferences = {
+    ...current,
+    ...patch,
+    topicMemory: {
+      ...(current.topicMemory ?? {}),
+      ...(patch.topicMemory ?? {}),
+    },
+    classMemory: {
+      ...(current.classMemory ?? {}),
+      ...(patch.classMemory ?? {}),
+    },
+  };
+  writeJson(BUILDER_PREFS_KEY, next);
+  return next;
+}
+
 export function loadAttempts(): StoredAttempt[] {
   const rows = readJson<StoredAttempt[]>(ATTEMPTS_KEY, []);
   if (!Array.isArray(rows)) return [];
   return rows
-    .filter((r) => r && typeof r.id === "string" && Array.isArray(r.questions))
+    .filter((r) => r && typeof r.id === "string")
+    .map((r) => ({
+      ...r,
+      questions: Array.isArray(r.questions) ? r.questions : [],
+    }))
     .sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt));
 }
 
@@ -90,14 +176,59 @@ export function getAttempt(id: string): StoredAttempt | null {
 }
 
 export function deleteAttempt(id: string): boolean {
-  const next = loadAttempts().filter((a) => a.id !== id);
-  if (next.length === loadAttempts().length) return false;
-  writeJson(ATTEMPTS_KEY, next);
+  const current = loadAttempts();
+  const next = current.filter((a) => a.id !== id);
+  if (next.length === current.length) return false;
+  writeAttempts(next);
+  void idbDeleteAttempt(id);
   return true;
 }
 
 export function clearAttempts(): void {
   writeJson(ATTEMPTS_KEY, []);
+  void idbClearAttempts();
+}
+
+let syncDone = false;
+export async function syncAttemptsWithIdb(): Promise<void> {
+  if (syncDone || !canUseStorage()) return;
+  syncDone = true;
+  try {
+    const idbRows = await idbLoadAttempts();
+    const localRows = loadAttempts();
+
+    const map = new Map<string, StoredAttempt>();
+    for (const r of localRows) {
+      if (r && r.id) map.set(r.id, r);
+    }
+    let changed = false;
+    for (const r of idbRows) {
+      if (!r || !r.id) continue;
+      const existing = map.get(r.id);
+      if (!existing) {
+        map.set(r.id, r);
+        changed = true;
+      } else {
+        const idbHasEx = r.questions?.some((q) => q.explanation);
+        const exHasEx = existing.questions?.some((q) => q.explanation);
+        if (idbHasEx && !exHasEx) {
+          map.set(r.id, r);
+          changed = true;
+        }
+      }
+    }
+
+    for (const r of localRows) {
+      void idbSaveAttempt(r);
+    }
+
+    if (changed) {
+      const merged = Array.from(map.values()).sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt));
+      writeAttempts(merged);
+    }
+  } catch {
+    /* ignore sync errors */
+  }
 }
 
 export interface SaveAttemptInput {
@@ -123,6 +254,7 @@ export interface SaveAttemptInput {
     timeTaken?: number;
     hint?: string;
     explanation?: string;
+    difficulty?: string;
     type?: "multiple" | "boolean";
     origin?: string;
   }>;
@@ -153,6 +285,7 @@ function sanitizeQuestion(raw: SaveAttemptInput["questions"][number], timeLimit:
     points: pointsFor(status === "correct", hintUsed, timeTaken, timeLimit),
     hint: typeof raw.hint === "string" ? raw.hint.slice(0, 1000) : undefined,
     explanation: typeof raw.explanation === "string" ? raw.explanation.slice(0, 1500) : undefined,
+    difficulty: typeof raw.difficulty === "string" ? raw.difficulty : undefined,
     type: raw.type === "boolean" ? "boolean" : "multiple",
     origin: isSource(raw.origin) ? raw.origin : "bank",
   };
@@ -162,7 +295,8 @@ export function saveAttempt(input: SaveAttemptInput): StoredAttempt {
   const timerMode: TimerMode = input.timerMode === "total" ? "total" : "per-question";
   const timePerQuestion = timerMode === "total" ? 0 : normalizeTime(input.timePerQuestion ?? 0, 0);
   const totalTime = timerMode === "total" ? clampInt(input.totalTime ?? 0, 0, 7200, 0) : 0;
-  const questions = (input.questions ?? []).slice(0, 50).map((q) => sanitizeQuestion(q, timePerQuestion)).filter((q): q is AttemptQuestion => q !== null);
+  // Do not truncate questions — save all questions of the attempt
+  const questions = (input.questions ?? []).map((q) => sanitizeQuestion(q, timePerQuestion)).filter((q): q is AttemptQuestion => q !== null);
   if (!questions.length) throw new Error("No answers to save.");
 
   const correctCount = questions.filter((q) => q.status === "correct").length;
@@ -197,7 +331,11 @@ export function saveAttempt(input: SaveAttemptInput): StoredAttempt {
 
   const rows = loadAttempts();
   rows.unshift(attempt);
-  writeJson(ATTEMPTS_KEY, rows.slice(0, 500));
+  // Persist all attempts without arbitrary truncations
+  writeAttempts(rows);
+  // Also persist to IndexedDB for permanent storage
+  void idbSaveAttempt(attempt);
+
   return attempt;
 }
 

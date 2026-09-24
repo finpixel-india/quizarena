@@ -8,6 +8,7 @@ import { useFullscreen } from "@/lib/client-hooks";
 import { cn, pad2 } from "@/lib/format";
 import { quizHref } from "@/lib/links";
 import { MAX_QUESTIONS, MAX_TIME, MAX_TOTAL_TIME, MIN_TIME, MIN_TOTAL_TIME, QUESTION_PRESETS, SOURCE_META, TIME_PRESETS, TOTAL_TIME_PRESETS } from "@/lib/settings";
+import { loadBuilderPrefs, saveBuilderPrefs, type BuilderPreferences } from "@/lib/storage";
 import { SUBJECTS } from "@/lib/subjects";
 import type { Difficulty, SourceId, SubjectId, TimerMode, TopicInfo, UserSettings } from "@/lib/types";
 
@@ -24,7 +25,6 @@ const totalLabel = (t: number) => (t >= 3600 && t % 3600 === 0 ? `${t / 3600} hr
 const hasClassesFor = (s: SubjectId) => SUBJECTS.find((x) => x.id === s)?.hasClasses ?? false;
 const memKey = (s: SubjectId, c: ClassSel) => (hasClassesFor(s) ? `${s}:${c}` : s);
 
-
 function OptionRow({ label, hint, children }: { label: string; hint?: string; children: ReactNode }) {
   return (
     <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
@@ -37,44 +37,114 @@ function OptionRow({ label, hint, children }: { label: string; hint?: string; ch
   );
 }
 
-export default function QuizBuilder({ topics, settings, initialTopicId }: { topics: TopicInfo[]; settings: UserSettings; initialTopicId: string }) {
+export default function QuizBuilder({
+  topics,
+  settings,
+  initialTopicId,
+}: {
+  topics: TopicInfo[];
+  settings: UserSettings;
+  initialTopicId?: string;
+}) {
   const router = useRouter();
   const fs = useFullscreen();
   const byId = useMemo(() => new Map(topics.map((t) => [t.id, t])), [topics]);
-  const init = byId.get(initialTopicId) ?? topics[0];
-  const initCls: ClassSel = init.classLevel ?? (init.kind === "general" ? "general" : 10);
 
-  const [subject, setSubject] = useState<SubjectId>(init.subject);
+  // Load saved builder preferences synchronously once on mount
+  const [prefs] = useState<BuilderPreferences>(() => {
+    try {
+      return loadBuilderPrefs();
+    } catch {
+      return {};
+    }
+  });
+
+  const explicitTopic = initialTopicId ? byId.get(initialTopicId) : undefined;
+  const savedTopic = prefs.topicId ? byId.get(prefs.topicId) : undefined;
+  const savedSubjectMeta = prefs.subject ? SUBJECTS.find((s) => s.id === prefs.subject) : undefined;
+
+  const initTopic =
+    explicitTopic ??
+    savedTopic ??
+    (savedSubjectMeta
+      ? topics.find((t) => t.subject === prefs.subject && (prefs.cls ? t.classLevel === prefs.cls : true))
+      : undefined) ??
+    byId.get("sci10-all") ??
+    topics[0];
+
+  const initSubject = initTopic.subject;
+  const initCls: ClassSel =
+    (explicitTopic ? explicitTopic.classLevel : undefined) ??
+    (prefs.classMemory?.[initSubject]) ??
+    (prefs.cls && hasClassesFor(initSubject) ? prefs.cls : undefined) ??
+    (initTopic.classLevel ?? (initTopic.kind === "general" ? "general" : 10));
+
+  const [subject, setSubject] = useState<SubjectId>(initSubject);
   const [cls, setCls] = useState<ClassSel>(initCls);
-  const [topicId, setTopicId] = useState(init.id);
-  const [memory, setMemory] = useState<Record<string, string>>(() => ({ [memKey(init.subject, initCls)]: init.id }));
+  const [topicId, setTopicId] = useState(initTopic.id);
+  const [memory, setMemory] = useState<Record<string, string>>(() => ({
+    ...(prefs.topicMemory ?? {}),
+    [memKey(initSubject, initCls)]: initTopic.id,
+  }));
+  const [classMemory, setClassMemory] = useState<Partial<Record<SubjectId, ClassSel>>>(() => ({
+    ...(prefs.classMemory ?? {}),
+    [initSubject]: initCls,
+  }));
   const [sheetOpen, setSheetOpen] = useState(false);
 
-  const [userSource, setUserSource] = useState<SourceId | null>(null);
-  const [amount, setAmount] = useState(settings.defaultQuestions);
-  const [amountText, setAmountText] = useState(QUESTION_PRESETS.includes(settings.defaultQuestions) ? "" : String(settings.defaultQuestions));
-  const [timerMode, setTimerMode] = useState<TimerMode>(settings.timerMode);
-  const [time, setTime] = useState(settings.defaultTime);
-  const [timeText, setTimeText] = useState(TIME_PRESETS.includes(settings.defaultTime) ? "" : String(settings.defaultTime));
-  const [totalTime, setTotalTime] = useState(settings.defaultTotalTime);
-  const [totalText, setTotalText] = useState(TOTAL_TIME_PRESETS.includes(settings.defaultTotalTime) ? "" : String(settings.defaultTotalTime / 60));
-  const [difficulty, setDifficulty] = useState<Difficulty>(settings.defaultDifficulty);
-  const [hints, setHints] = useState(settings.hintsPerQuiz);
-  const [fullscreen, setFullscreen] = useState(settings.autoFullscreen);
-  const [customTopic, setCustomTopic] = useState("");
+  // Independent options loaded from saved preferences (with settings as fallback)
+  const initialAmount = typeof prefs.amount === "number" && prefs.amount >= 1 ? prefs.amount : settings.defaultQuestions;
+  const [amount, setAmount] = useState<number>(initialAmount);
+  const [amountText, setAmountText] = useState(QUESTION_PRESETS.includes(initialAmount) ? "" : String(initialAmount));
+
+  const initialTimerMode: TimerMode =
+    prefs.timerMode === "total" || prefs.timerMode === "per-question" ? prefs.timerMode : settings.timerMode;
+  const [timerMode, setTimerMode] = useState<TimerMode>(initialTimerMode);
+
+  const initialTime = typeof prefs.time === "number" ? prefs.time : settings.defaultTime;
+  const [time, setTime] = useState<number>(initialTime);
+  const [timeText, setTimeText] = useState(TIME_PRESETS.includes(initialTime) ? "" : String(initialTime));
+
+  const initialTotalTime =
+    typeof prefs.totalTime === "number" && prefs.totalTime >= MIN_TOTAL_TIME ? prefs.totalTime : settings.defaultTotalTime;
+  const [totalTime, setTotalTime] = useState<number>(initialTotalTime);
+  const [totalText, setTotalText] = useState(TOTAL_TIME_PRESETS.includes(initialTotalTime) ? "" : String(initialTotalTime / 60));
+
+  const initialDifficulty: Difficulty = prefs.difficulty ?? settings.defaultDifficulty;
+  const [difficulty, setDifficulty] = useState<Difficulty>(initialDifficulty);
+
+  const initialHints = typeof prefs.hints === "number" ? prefs.hints : settings.hintsPerQuiz;
+  const [hints, setHints] = useState<number>(initialHints);
+
+  const initialFullscreen = typeof prefs.fullscreen === "boolean" ? prefs.fullscreen : settings.autoFullscreen;
+  const [fullscreen, setFullscreen] = useState<boolean>(initialFullscreen);
+
+  const [userSource, setUserSource] = useState<SourceId | null>(prefs.userSource ?? null);
+  const [customTopic, setCustomTopic] = useState<string>(prefs.customTopic ?? "");
   const [starting, setStarting] = useState(false);
 
-  const subjectMeta = useMemo(() => {
-    const out = {} as Record<SubjectId, string>;
-    for (const s of SUBJECTS) {
-      const list = topics.filter((t) => t.subject === s.id);
-      const chapters = list.filter((t) => t.kind === "chapter").length;
-      out[s.id] = chapters ? `${chapters} chapters` : list.some((t) => t.bankCount === null) ? `${list.length} topics · ∞` : `${list.length} topics`;
-    }
-    return out;
-  }, [topics]);
+  // Sync when initialTopicId is explicitly provided or updated via external navigation
+  useEffect(() => {
+    if (!initialTopicId) return;
+    const target = byId.get(initialTopicId);
+    if (!target || target.id === topicId) return;
+    setSubject(target.subject);
+    const targetCls: ClassSel = target.classLevel ?? (target.kind === "general" ? "general" : 10);
+    setCls(targetCls);
+    setTopicId(target.id);
+    setMemory((m) => {
+      const next = { ...m, [memKey(target.subject, targetCls)]: target.id };
+      saveBuilderPrefs({
+        subject: target.subject,
+        cls: targetCls,
+        topicId: target.id,
+        topicMemory: next,
+      });
+      return next;
+    });
+  }, [initialTopicId, byId, topicId]);
 
-  const topic = byId.get(topicId) ?? init;
+  const topic = byId.get(topicId) ?? initTopic;
   const hasClasses = hasClassesFor(subject);
   const isChapter = topic.kind === "chapter" || topic.kind === "class-all";
 
@@ -92,20 +162,40 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
 
   function selectTopic(id: string) {
     setTopicId(id);
-    setMemory((m) => ({ ...m, [memKey(subject, cls)]: id }));
+    const updatedMemory = { ...memory, [memKey(subject, cls)]: id };
+    setMemory(updatedMemory);
+    saveBuilderPrefs({
+      topicId: id,
+      topicMemory: updatedMemory,
+    });
   }
 
   function selectSubject(s: SubjectId) {
     if (s === subject) return;
     setSubject(s);
-    setTopicId(defaultTopicId(s, cls));
-    setUserSource(null); // allow smart default to match new subject
+    const targetCls = classMemory[s] ?? (hasClassesFor(s) ? 10 : "general");
+    setCls(targetCls);
+    const nextTopicId = defaultTopicId(s, targetCls);
+    setTopicId(nextTopicId);
+    saveBuilderPrefs({
+      subject: s,
+      cls: targetCls,
+      topicId: nextTopicId,
+    });
   }
 
   function selectClass(c: ClassSel) {
     if (c === cls) return;
     setCls(c);
-    setTopicId(defaultTopicId(subject, c));
+    const nextTopicId = defaultTopicId(subject, c);
+    setTopicId(nextTopicId);
+    const updatedClassMemory = { ...classMemory, [subject]: c };
+    setClassMemory(updatedClassMemory);
+    saveBuilderPrefs({
+      cls: c,
+      topicId: nextTopicId,
+      classMemory: updatedClassMemory,
+    });
   }
 
   /* ------------------------------ topic lists ------------------------------ */
@@ -143,7 +233,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
     if (starting) return;
     setStarting(true);
     const wantFs = fullscreen && fs.supported;
-    if (wantFs && !fs.isFullscreen) void fs.enter(); // must run inside the click (user gesture)
+    if (wantFs && !fs.isFullscreen) void fs.enter(); // must run inside user gesture click
     router.push(
       quizHref({
         topicId: topic.id,
@@ -177,7 +267,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
         {/* ------------------------------ What ------------------------------ */}
         <Card className="w-full max-w-full min-w-0 overflow-hidden p-4 sm:p-7">
           <Label n={step()}>Subject</Label>
-          {/* Horizontal scrollable tab strip — smooth momentum scrolling on mobile */}
+          {/* Horizontal scrollable tab strip */}
           <div className="mt-3 -mx-4 flex gap-1.5 overflow-x-auto px-4 pb-1 scrollbar-none sm:mx-0 sm:px-0">
             {SUBJECTS.map((s) => {
               const active = s.id === subject;
@@ -276,14 +366,20 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                         <input
                           type="text"
                           value={customTopic}
-                          onChange={(e) => setCustomTopic(e.target.value)}
+                          onChange={(e) => {
+                            setCustomTopic(e.target.value);
+                            saveBuilderPrefs({ customTopic: e.target.value });
+                          }}
                           placeholder="e.g. Cricket, AI, Space, World History..."
                           className="w-full rounded-lg border border-line bg-fg/[0.03] px-3 py-2 text-sm font-medium text-fg outline-none transition focus:border-brand"
                         />
                         {customTopic ? (
                           <button
                             type="button"
-                            onClick={() => setCustomTopic("")}
+                            onClick={() => {
+                              setCustomTopic("");
+                              saveBuilderPrefs({ customTopic: "" });
+                            }}
                             className="rounded-lg border border-line p-2 text-subtle hover:text-fg"
                             title="Clear"
                           >
@@ -294,14 +390,21 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                     </div>
                     <div className="flex flex-wrap gap-1.5">
                       {[
-                        "Space & Astronomy", "Artificial Intelligence", "World War II", "Cricket",
-                        "World Geography", "Inventions", "Human Body", "Animals & Nature",
+                        "Space & Astronomy",
+                        "Artificial Intelligence",
+                        "World War II",
+                        "Cricket",
+                        "World Geography",
+                        "Inventions",
+                        "Human Body",
+                        "Animals & Nature",
                       ].map((tag) => (
                         <button
                           key={tag}
                           type="button"
                           onClick={() => {
                             setCustomTopic(tag);
+                            saveBuilderPrefs({ customTopic: tag });
                             const match = flatTopics.find((t) => t.title.toLowerCase().includes(tag.toLowerCase().split(" ")[0]));
                             if (match) selectTopic(match.id);
                           }}
@@ -330,6 +433,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                           selectTopic(t.id);
                           if (subject === "custom" && t.id !== "custom-any") {
                             setCustomTopic(t.title);
+                            saveBuilderPrefs({ customTopic: t.title });
                           }
                         }}
                         aria-pressed={active}
@@ -374,7 +478,10 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                   <button
                     key={d.v}
                     type="button"
-                    onClick={() => setDifficulty(d.v)}
+                    onClick={() => {
+                      setDifficulty(d.v);
+                      saveBuilderPrefs({ difficulty: d.v });
+                    }}
                     aria-pressed={active}
                     className={cn(
                       "flex items-center justify-center gap-1 rounded-lg py-1.5 px-0.5 sm:py-2 sm:px-1 text-[11px] sm:text-xs font-semibold transition-all duration-200 ring-1 ring-inset truncate",
@@ -426,7 +533,10 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                   <button
                     key={sItem.id}
                     type="button"
-                    onClick={() => setUserSource(sItem.id)}
+                    onClick={() => {
+                      setUserSource(sItem.id);
+                      saveBuilderPrefs({ userSource: sItem.id });
+                    }}
                     aria-pressed={active}
                     title={sItem.hint}
                     className={cn(
@@ -470,6 +580,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                     onClick={() => {
                       setAmount(n);
                       setAmountText("");
+                      saveBuilderPrefs({ amount: n });
                     }}
                     className={chip(!amountText && count === n)}
                   >
@@ -488,10 +599,17 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                     const v = e.target.value.replace(/\D/g, "").slice(0, 2);
                     setAmountText(v);
                     const n = parseInt(v, 10);
-                    if (n >= 1) setAmount(Math.min(cap, n));
+                    if (n >= 1) {
+                      const clamped = Math.min(cap, n);
+                      setAmount(clamped);
+                      saveBuilderPrefs({ amount: clamped });
+                    }
                   }}
                   onBlur={() => {
-                    if (amountText) setAmountText(String(count));
+                    if (amountText) {
+                      setAmountText(String(count));
+                      saveBuilderPrefs({ amount: count });
+                    }
                   }}
                   className={cn(inputCls(!!amountText), "w-20 sm:w-24 text-xs sm:text-sm py-1.5 sm:py-2")}
                 />
@@ -506,7 +624,10 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
               <div className="mt-3">
                 <Segmented<TimerMode>
                   value={timerMode}
-                  onChange={setTimerMode}
+                  onChange={(m) => {
+                    setTimerMode(m);
+                    saveBuilderPrefs({ timerMode: m });
+                  }}
                   options={[
                     { v: "per-question", label: "Per question" },
                     { v: "total", label: "Whole quiz" },
@@ -524,6 +645,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                         onClick={() => {
                           setTime(t);
                           setTimeText("");
+                          saveBuilderPrefs({ time: t });
                         }}
                         className={chip(!timeText && time === t)}
                       >
@@ -543,13 +665,18 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                           const v = e.target.value.replace(/\D/g, "").slice(0, 3);
                           setTimeText(v);
                           const n = parseInt(v, 10);
-                          if (n >= MIN_TIME) setTime(Math.min(MAX_TIME, n));
+                          if (n >= MIN_TIME) {
+                            const clamped = Math.min(MAX_TIME, n);
+                            setTime(clamped);
+                            saveBuilderPrefs({ time: clamped });
+                          }
                         }}
                         onBlur={() => {
                           if (!timeText) return;
                           const n = Math.min(MAX_TIME, Math.max(MIN_TIME, parseInt(timeText, 10) || MIN_TIME));
                           setTime(n);
                           setTimeText(String(n));
+                          saveBuilderPrefs({ time: n });
                         }}
                         className={cn(inputCls(!!timeText), "w-24 sm:w-28 pr-8 sm:pr-9 text-xs sm:text-sm py-1.5 sm:py-2")}
                       />
@@ -571,6 +698,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                         onClick={() => {
                           setTotalTime(t);
                           setTotalText("");
+                          saveBuilderPrefs({ totalTime: t });
                         }}
                         className={chip(!totalText && totalTime === t)}
                       >
@@ -590,13 +718,18 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                           const v = e.target.value.replace(/\D/g, "").slice(0, 3);
                           setTotalText(v);
                           const n = parseInt(v, 10);
-                          if (n >= 1) setTotalTime(Math.min(MAX_TOTAL_TIME, n * 60));
+                          if (n >= 1) {
+                            const clamped = Math.min(MAX_TOTAL_TIME, n * 60);
+                            setTotalTime(clamped);
+                            saveBuilderPrefs({ totalTime: clamped });
+                          }
                         }}
                         onBlur={() => {
                           if (!totalText) return;
                           const m = Math.min(Math.round(MAX_TOTAL_TIME / 60), Math.max(Math.round(MIN_TOTAL_TIME / 60), parseInt(totalText, 10) || 5));
                           setTotalTime(m * 60);
                           setTotalText(String(m));
+                          saveBuilderPrefs({ totalTime: m * 60 });
                         }}
                         className={cn(inputCls(!!totalText), "w-24 sm:w-28 pr-8 sm:pr-9 text-xs sm:text-sm py-1.5 sm:py-2")}
                       />
@@ -619,7 +752,10 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                       type="text"
                       placeholder="Optional tag…"
                       value={customTopic}
-                      onChange={(e) => setCustomTopic(e.target.value)}
+                      onChange={(e) => {
+                        setCustomTopic(e.target.value);
+                        saveBuilderPrefs({ customTopic: e.target.value });
+                      }}
                       className={cn(inputCls(!!customTopic), "w-full sm:w-44 text-xs sm:text-sm py-1.5 sm:py-2")}
                       maxLength={60}
                     />
@@ -628,7 +764,10 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                 <OptionRow label="Hints" hint="Clue + wrong options removed (−30 pts each)">
                   <Segmented
                     value={hints}
-                    onChange={setHints}
+                    onChange={(h) => {
+                      setHints(h);
+                      saveBuilderPrefs({ hints: h });
+                    }}
                     options={[
                       { v: 0, label: "Off" },
                       { v: 1, label: "1" },
@@ -639,7 +778,10 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                 </OptionRow>
                 <Switch
                   checked={fullscreen && fs.supported}
-                  onChange={setFullscreen}
+                  onChange={(f) => {
+                    setFullscreen(f);
+                    saveBuilderPrefs({ fullscreen: f });
+                  }}
                   disabled={!fs.supported}
                   label="Full screen"
                   description={fs.supported ? "Distraction-free mode when the quiz starts" : "Not supported in this browser"}

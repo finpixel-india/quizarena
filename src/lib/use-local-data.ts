@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useMemo, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useMemo, useSyncExternalStore } from "react";
 import {
   ATTEMPTS_KEY,
   SETTINGS_KEY,
@@ -10,6 +10,7 @@ import {
   loadAttempts,
   loadSettings,
   saveSettings,
+  syncAttemptsWithIdb,
   type StoredAttempt,
 } from "./storage";
 import { computeStats, toSummary, type AttemptSummary } from "./stats";
@@ -60,6 +61,11 @@ export function useAttempts(): {
     () => true,
     () => false,
   );
+
+  useEffect(() => {
+    void syncAttemptsWithIdb();
+  }, []);
+
   const attempts = useMemo(() => {
     try {
       return loadAttempts();

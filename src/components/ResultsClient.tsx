@@ -68,30 +68,30 @@ export default function ResultsClient({ id }: { id: string }) {
 
         <Card className="relative overflow-hidden">
           <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full [background:radial-gradient(closest-side,var(--aurora-1),transparent)]" />
-          <div className="relative flex flex-col items-center gap-8 p-7 text-center sm:flex-row sm:gap-10 sm:p-10 sm:text-left">
-            <ProgressRing value={a.accuracy} size={148} stroke={9} variant="brand">
+          <div className="relative flex flex-col items-center gap-5 p-5 text-center sm:flex-row sm:gap-10 sm:p-10 sm:text-left">
+            <ProgressRing value={a.accuracy} size={128} stroke={8} variant="brand">
               <div className="text-center">
-                <p className="font-mono text-4xl font-semibold tracking-tight text-fg tabular-nums">
+                <p className="font-mono text-3xl sm:text-4xl font-semibold tracking-tight text-fg tabular-nums">
                   {a.accuracy}
-                  <span className="text-xl text-muted">%</span>
+                  <span className="text-lg sm:text-xl text-muted">%</span>
                 </p>
-                <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-subtle">Accuracy</p>
+                <p className="mt-0.5 sm:mt-1 font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-subtle">Accuracy</p>
               </div>
             </ProgressRing>
             <div className="min-w-0 flex-1">
               <Label className="justify-center sm:justify-start">{a.mode === "mistakes" ? "Mistakes review" : "Quiz result"}</Label>
-              <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-fg sm:text-4xl">{grade.label}</h1>
-              <p className="mt-2 truncate text-sm text-muted">
+              <h1 className="mt-2 text-2xl font-extrabold tracking-tight text-fg sm:mt-3 sm:text-4xl">{grade.label}</h1>
+              <p className="mt-1.5 truncate text-xs sm:text-sm text-muted">
                 {title}
                 {context ? <span className="text-subtle"> · {context}</span> : null}
               </p>
-              <p className="mt-5 flex items-baseline justify-center gap-2 sm:justify-start">
-                <span className="grad-text font-mono text-4xl font-bold tabular-nums">{a.score}</span>
-                <span className="font-mono text-sm text-subtle">/ {a.maxScore} pts</span>
+              <p className="mt-4 flex items-baseline justify-center gap-2 sm:justify-start">
+                <span className="grad-text font-mono text-3xl sm:text-4xl font-bold tabular-nums">{a.score}</span>
+                <span className="font-mono text-xs sm:text-sm text-subtle">/ {a.maxScore} pts</span>
               </p>
-              <div className="mt-4 flex flex-wrap justify-center gap-2 sm:justify-start">
+              <div className="mt-3.5 flex flex-wrap justify-center gap-1.5 sm:justify-start sm:gap-2">
                 {isOverallBest ? (
-                  <span className="inline-flex items-center gap-1.5 rounded-full grad-hero px-3 py-1 text-xs font-bold text-white shadow-[0_0_24px_-6px_rgba(249,115,22,0.9)] animate-pop">
+                  <span className="inline-flex items-center gap-1.5 rounded-full grad-hero px-2.5 py-0.5 text-xs font-bold text-white shadow-[0_0_24px_-6px_rgba(249,115,22,0.9)] animate-pop">
                     <Crown className="h-3.5 w-3.5" /> New high score
                   </span>
                 ) : null}
@@ -108,12 +108,12 @@ export default function ResultsClient({ id }: { id: string }) {
           </div>
           <div className="grid grid-cols-2 border-t border-line sm:grid-cols-4">
             {cells.map((s, i) => (
-              <div key={s.label} className={cn("p-5 sm:p-6", i % 2 === 1 && "border-l border-line", i > 1 && "border-t border-line sm:border-t-0", i === 2 && "sm:border-l")}>
-                <p className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-subtle">
+              <div key={s.label} className={cn("p-3.5 sm:p-6", i % 2 === 1 && "border-l border-line", i > 1 && "border-t border-line sm:border-t-0", i === 2 && "sm:border-l")}>
+                <p className="flex items-center gap-1.5 font-mono text-[9.5px] uppercase tracking-[0.16em] text-subtle sm:text-[10px] sm:tracking-[0.18em]">
                   <span className={cn("h-1.5 w-1.5 rounded-full", s.dot)} />
                   {s.label}
                 </p>
-                <p className="mt-2 font-mono text-2xl font-semibold text-fg tabular-nums">{s.value}</p>
+                <p className="mt-1.5 font-mono text-xl sm:text-2xl font-semibold text-fg tabular-nums">{s.value}</p>
               </div>
             ))}
           </div>

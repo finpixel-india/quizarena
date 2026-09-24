@@ -93,19 +93,19 @@ export default function HistoryClient() {
             {rows.map((r) => {
               const { context, title } = splitLabel(r.topicLabel);
               return (
-                <div key={r.id} className="flex items-center gap-1 pr-2 transition hover:bg-fg/[0.03]">
-                  <Link href={`/results?id=${r.id}`} className="flex min-w-0 flex-1 items-center gap-4 p-4 sm:p-5">
+                <div key={r.id} className="flex items-center gap-1 pr-1.5 sm:pr-2 transition hover:bg-fg/[0.03]">
+                  <Link href={`/results?id=${r.id}`} className="flex min-w-0 flex-1 items-center gap-3 p-3 sm:gap-4 sm:p-5">
                     <SubjectIcon subject={r.subject} size="sm" />
                     <div className="min-w-0 flex-1">
                       <p className="truncate text-sm font-medium text-fg">
                         {title}
                         {r.mode === "mistakes" ? <span className="text-subtle"> · mistakes</span> : null}
                       </p>
-                      <p className="mt-0.5 truncate text-xs text-subtle">
+                      <p className="mt-0.5 truncate text-[11px] sm:text-xs text-subtle">
                         {context ? `${context} · ` : ""}
                         <LocalTime value={r.createdAt} />
                       </p>
-                      <p className="mt-1.5 flex flex-wrap gap-x-3 font-mono text-[11px] text-muted">
+                      <p className="mt-1 flex flex-wrap gap-x-2.5 font-mono text-[10.5px] sm:text-[11px] text-muted">
                         <span>
                           <span className="text-fg">{r.correctCount}</span>/{r.totalQuestions}
                         </span>
@@ -122,8 +122,8 @@ export default function HistoryClient() {
                         <span className="hidden sm:inline">{isSource(r.source) ? SOURCE_META[r.source].short : r.source}</span>
                       </p>
                     </div>
-                    <ProgressRing value={r.accuracy} size={46} stroke={3.5}>
-                      <span className="font-mono text-[11px] font-semibold text-fg tabular-nums">{r.accuracy}</span>
+                    <ProgressRing value={r.accuracy} size={40} stroke={3}>
+                      <span className="font-mono text-[10px] sm:text-[11px] font-semibold text-fg tabular-nums">{r.accuracy}</span>
                     </ProgressRing>
                   </Link>
                   <DeleteAttemptButton id={r.id} />

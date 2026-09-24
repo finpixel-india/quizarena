@@ -58,10 +58,10 @@ export default function HomeClient() {
     <div>
       <Container className="pb-0 sm:pb-0">
       {/* ------------------------------- Hero (dark) ------------------------------ */}
-      <section className="flex flex-col gap-10 pb-14 lg:flex-row lg:items-end lg:justify-between lg:pb-20">
+      <section className="flex flex-col gap-6 pb-8 sm:gap-10 sm:pb-16 lg:flex-row lg:items-end lg:justify-between lg:pb-20">
         <div className="max-w-2xl animate-fade-up">
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[11px] uppercase tracking-[0.18em] text-subtle">
-            <span className="flex items-center gap-2.5">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 font-mono text-[10.5px] uppercase tracking-[0.16em] text-subtle sm:text-[11px] sm:tracking-[0.18em]">
+            <span className="flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-brand shadow-[0_0_8px_2px_rgba(249,115,22,0.75)]" />
               NCERT-aligned practice
             </span>
@@ -69,7 +69,7 @@ export default function HomeClient() {
             <span className="hidden sm:inline">Class 9 &amp; 10 — Science · SST · Math · IT</span>
           </div>
 
-          <h1 className="mt-7 text-[2.6rem] font-extrabold uppercase leading-[0.95] tracking-tight text-fg sm:text-6xl lg:text-7xl">
+          <h1 className="mt-5 text-3xl font-extrabold uppercase leading-[1.05] tracking-tight text-fg sm:mt-7 sm:text-6xl lg:text-7xl">
             Practice
             <br />
             <span className="grad-text">with precision,</span>
@@ -77,16 +77,16 @@ export default function HomeClient() {
             not guesswork.
           </h1>
 
-          <p className="mt-7 max-w-lg text-base leading-relaxed text-muted sm:text-lg">
+          <p className="mt-4 max-w-lg text-sm leading-relaxed text-muted sm:mt-7 sm:text-lg">
             Chapter-wise quizzes with timers, hints and instant answer reviews. Set everything up on one screen and start in a single tap.
           </p>
 
           {last ? (
             <Link
               href={quizHref({ topicId: last.topicId, amount: last.totalQuestions, time: last.timePerQuestion, timerMode: last.timerMode, totalTime: last.totalTime, difficulty: last.difficulty, source: last.source })}
-              className="group mt-8 inline-flex max-w-full items-center gap-2.5 rounded-full border border-line-2 px-5 py-2.5 text-sm text-muted transition hover:border-brand hover:text-fg"
+              className="group mt-6 inline-flex max-w-full items-center gap-2 rounded-full border border-line-2 px-4 py-2 text-xs text-muted transition hover:border-brand hover:text-fg sm:mt-8 sm:px-5 sm:py-2.5 sm:text-sm"
             >
-              <RotateCcw className="h-4 w-4 shrink-0 text-brand-ink" />
+              <RotateCcw className="h-3.5 w-3.5 shrink-0 text-brand-ink sm:h-4 sm:w-4" />
               <span className="truncate">
                 Replay last quiz · <span className="font-medium text-fg">{splitLabel(last.topicLabel).title}</span>
               </span>
@@ -101,9 +101,9 @@ export default function HomeClient() {
               { k: "Accuracy", v: `${stats.accuracy}%` },
               { k: "High score", v: stats.highestScore?.score ?? 0 },
             ].map((s, i) => (
-              <div key={s.k} className={cn("px-5 py-4 sm:px-7 sm:py-5", i > 0 && "border-l border-line")}>
-                <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-subtle">{s.k}</p>
-                <p className="mt-1.5 font-mono text-2xl font-semibold text-fg tabular-nums">{s.v}</p>
+              <div key={s.k} className={cn("px-3 py-3 text-center sm:px-7 sm:py-5 sm:text-left", i > 0 && "border-l border-line")}>
+                <p className="font-mono text-[9px] uppercase tracking-[0.14em] text-subtle sm:text-[10px] sm:tracking-[0.18em]">{s.k}</p>
+                <p className="mt-1 font-mono text-lg font-semibold text-fg tabular-nums sm:mt-1.5 sm:text-2xl">{s.v}</p>
               </div>
             ))}
           </div>
@@ -111,8 +111,8 @@ export default function HomeClient() {
       </section>
 
       {/* ------------------------------ Builder (dark) ----------------------------- */}
-      <section id="builder" className="scroll-mt-24 pb-16 sm:pb-20">
-        <Label n="01" className="mb-6">
+      <section id="builder" className="scroll-mt-20 pb-12 sm:pb-20">
+        <Label n="01" className="mb-4 sm:mb-6">
           Build your quiz
         </Label>
         <QuizBuilder key={initialTopicId} topics={topics} settings={settings} initialTopicId={initialTopicId} />

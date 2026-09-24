@@ -8,7 +8,7 @@ type IconType = ComponentType<{ className?: string; strokeWidth?: number }>;
 
 /** Page width + gutters. Sections can opt out to run edge-to-edge. */
 export function Container({ className, children }: { className?: string; children: ReactNode }) {
-  return <div className={cn("mx-auto w-full max-w-6xl px-5 py-10 sm:px-8 sm:py-14", className)}>{children}</div>;
+  return <div className={cn("mx-auto w-full max-w-6xl px-4 py-6 sm:px-8 sm:py-14", className)}>{children}</div>;
 }
 
 export function Card({ className, children }: { className?: string; children: ReactNode }) {
@@ -33,11 +33,11 @@ export function Label({ n, children, className }: { n?: string; children: ReactN
 
 export function PageHeader({ eyebrow, title, description, action }: { eyebrow?: string; title: string; description?: ReactNode; action?: ReactNode }) {
   return (
-    <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+    <div className="mb-6 flex flex-col gap-3 sm:mb-10 sm:gap-4 sm:flex-row sm:items-end sm:justify-between">
       <div>
-        {eyebrow ? <Label className="mb-4">{eyebrow}</Label> : null}
-        <h1 className="text-3xl font-extrabold tracking-tight text-fg sm:text-4xl">{title}</h1>
-        {description ? <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted sm:text-base">{description}</p> : null}
+        {eyebrow ? <Label className="mb-3 sm:mb-4">{eyebrow}</Label> : null}
+        <h1 className="text-2xl font-extrabold tracking-tight text-fg sm:text-4xl">{title}</h1>
+        {description ? <p className="mt-2 sm:mt-3 max-w-xl text-sm leading-relaxed text-muted sm:text-base">{description}</p> : null}
       </div>
       {action}
     </div>
@@ -100,13 +100,13 @@ export function StatCard({
 }) {
   const tones = { brand: "text-brand-ink", success: "text-success", warning: "text-warning", danger: "text-danger" };
   return (
-    <Card className="p-5 sm:p-6">
-      <div className="flex items-center justify-between gap-3">
+    <Card className="p-3.5 sm:p-6">
+      <div className="flex items-center justify-between gap-2">
         <Label>{label}</Label>
-        {Icon ? <Icon className={cn("h-4 w-4", tones[tone])} strokeWidth={1.75} /> : null}
+        {Icon ? <Icon className={cn("h-4 w-4 shrink-0", tones[tone])} strokeWidth={1.75} /> : null}
       </div>
-      <p className="mt-5 font-mono text-2xl font-semibold tracking-tight text-fg tabular-nums sm:text-3xl">{value}</p>
-      {sub ? <p className="mt-1.5 truncate text-xs text-muted">{sub}</p> : null}
+      <p className="mt-3 sm:mt-5 font-mono text-xl sm:text-3xl font-semibold tracking-tight text-fg tabular-nums">{value}</p>
+      {sub ? <p className="mt-1 truncate text-[11px] sm:text-xs text-muted">{sub}</p> : null}
     </Card>
   );
 }
@@ -239,14 +239,14 @@ export function Switch({
 
 export const btn = {
   primary:
-    "inline-flex items-center justify-center gap-2 rounded-full grad-cta px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_28px_-10px_rgba(249,115,22,0.8)] transition hover:brightness-110 hover:shadow-[0_12px_40px_-10px_rgba(249,115,22,0.95)] active:scale-[0.98] disabled:pointer-events-none disabled:opacity-40",
+    "inline-flex items-center justify-center gap-2 rounded-full grad-cta px-4.5 py-2.5 sm:px-6 sm:py-3 text-sm font-semibold text-white shadow-[0_8px_28px_-10px_rgba(249,115,22,0.8)] transition hover:brightness-110 hover:shadow-[0_12px_40px_-10px_rgba(249,115,22,0.95)] active:scale-[0.98] disabled:pointer-events-none disabled:opacity-40",
   secondary:
-    "inline-flex items-center justify-center gap-2 rounded-full border border-line-2 bg-transparent px-6 py-3 text-sm font-semibold text-fg transition hover:border-brand hover:bg-brand/10 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-40",
+    "inline-flex items-center justify-center gap-2 rounded-full border border-line-2 bg-transparent px-4.5 py-2.5 sm:px-6 sm:py-3 text-sm font-semibold text-fg transition hover:border-brand hover:bg-brand/10 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-40",
   subtle:
-    "inline-flex items-center justify-center gap-2 rounded-full border border-line bg-fg/[0.03] px-6 py-3 text-sm font-medium text-fg transition hover:border-line-2 hover:bg-fg/[0.06] active:scale-[0.98] disabled:pointer-events-none disabled:opacity-40",
+    "inline-flex items-center justify-center gap-2 rounded-full border border-line bg-fg/[0.03] px-4.5 py-2.5 sm:px-6 sm:py-3 text-sm font-medium text-fg transition hover:border-line-2 hover:bg-fg/[0.06] active:scale-[0.98] disabled:pointer-events-none disabled:opacity-40",
   ghost:
     "inline-flex items-center justify-center gap-2 rounded-xl px-3 py-2 text-sm font-medium text-muted transition hover:bg-fg/5 hover:text-fg disabled:pointer-events-none disabled:opacity-40",
-  icon: "inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-muted transition hover:bg-fg/[0.06] hover:text-fg",
+  icon: "inline-flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-xl text-muted transition hover:bg-fg/[0.06] hover:text-fg",
 };
 
 export function chip(active: boolean) {

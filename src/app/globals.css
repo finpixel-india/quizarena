@@ -151,11 +151,22 @@
     -webkit-tap-highlight-color: transparent;
     text-size-adjust: 100%;
     overflow-x: hidden;
-    scrollbar-gutter: stable;
+    max-width: 100vw;
+  }
+
+  @media (pointer: fine) {
+    html {
+      scrollbar-gutter: stable;
+    }
   }
 
   body {
     color: var(--fg);
+    overflow-x: hidden;
+    max-width: 100vw;
+    min-height: 100dvh;
+    touch-action: manipulation;
+    -webkit-font-smoothing: antialiased;
   }
 
   ::selection {

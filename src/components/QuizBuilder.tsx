@@ -176,10 +176,10 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
     <div>
       <div className="grid gap-4 lg:grid-cols-[1.15fr_1fr] lg:items-start lg:gap-6">
         {/* ------------------------------ What ------------------------------ */}
-        <Card className="p-5 sm:p-7">
+        <Card className="p-4 sm:p-7">
           <Label n={step()}>Subject</Label>
-          {/* Horizontal scrollable tab strip — no grid, no orphaned tiles */}
-          <div className="mt-3 flex gap-1.5 overflow-x-auto pb-0.5 scrollbar-none">
+          {/* Horizontal scrollable tab strip — smooth momentum scrolling on mobile */}
+          <div className="mt-3 -mx-4 flex gap-1.5 overflow-x-auto px-4 pb-1 scrollbar-none sm:mx-0 sm:px-0">
             {SUBJECTS.map((s) => {
               const active = s.id === subject;
               return (
@@ -189,14 +189,14 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                   onClick={() => selectSubject(s.id)}
                   aria-pressed={active}
                   className={cn(
-                    "flex shrink-0 items-center gap-2 rounded-xl border px-3.5 py-2.5 text-sm font-semibold transition-all duration-200 active:scale-[0.97]",
+                    "flex shrink-0 items-center gap-2 rounded-xl border px-3 py-2 text-xs sm:px-3.5 sm:py-2.5 sm:text-sm font-semibold transition-all duration-200 active:scale-[0.97]",
                     "ring-1 ring-inset",
                     active
                       ? "border-brand/50 bg-brand/10 text-fg ring-brand/60 shadow-[0_0_16px_-4px_rgba(249,115,22,0.3)]"
                       : "border-line bg-fg/[0.02] text-muted ring-transparent hover:border-line-2 hover:bg-fg/[0.04] hover:text-fg",
                   )}
                 >
-                  <SubjectIcon subject={s.id} size="sm" active={active} className="h-6 w-6 rounded-lg" />
+                  <SubjectIcon subject={s.id} size="sm" active={active} className="h-5 w-5 sm:h-6 sm:w-6 rounded-lg" />
                   <span>{s.short}</span>
                 </button>
               );
@@ -205,10 +205,10 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
 
           {hasClasses ? (
             <>
-              <Label n={step()} className="mt-6">
+              <Label n={step()} className="mt-5 sm:mt-6">
                 Class
               </Label>
-              <div className="mt-3 grid grid-cols-3 gap-1 rounded-xl border border-line bg-fg/[0.02] p-1">
+              <div className="mt-2.5 sm:mt-3 grid grid-cols-3 gap-1 rounded-xl border border-line bg-fg/[0.02] p-1">
                 {([9, 10, "general"] as ClassSel[]).map((c) => {
                   const active = cls === c;
                   return (
@@ -218,7 +218,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                       onClick={() => selectClass(c)}
                       aria-pressed={active}
                       className={cn(
-                        "rounded-lg px-3 py-2 text-sm font-semibold transition ring-1 ring-inset",
+                        "rounded-lg px-2.5 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm font-semibold transition ring-1 ring-inset",
                         active ? "bg-brand/15 text-fg ring-brand/70" : "text-muted ring-transparent hover:bg-fg/[0.04] hover:text-fg",
                       )}
                     >
@@ -357,7 +357,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
 
           {/* ── Difficulty (compact segmented row) ── */}
           <div className="mt-5 border-t border-line pt-5">
-            <div className="flex items-center justify-between mb-2.5">
+            <div className="flex items-center justify-between mb-2">
               <Label n={step()}>Difficulty</Label>
               <span className="font-mono text-[10.5px] text-subtle capitalize">
                 {difficulty === "any" ? "Mixed" : difficulty}
@@ -378,14 +378,14 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                     onClick={() => setDifficulty(d.v)}
                     aria-pressed={active}
                     className={cn(
-                      "flex items-center justify-center gap-1.5 rounded-lg py-2 text-xs font-semibold transition-all duration-200 ring-1 ring-inset",
+                      "flex items-center justify-center gap-1 rounded-lg py-1.5 px-0.5 sm:py-2 sm:px-1 text-[11px] sm:text-xs font-semibold transition-all duration-200 ring-1 ring-inset truncate",
                       active
                         ? "bg-brand/15 text-fg ring-brand/60 shadow-[0_0_10px_-3px_rgba(249,115,22,0.35)]"
                         : "ring-transparent text-muted hover:bg-fg/[0.04] hover:text-fg",
                     )}
                   >
                     <span className={cn("h-1.5 w-1.5 rounded-full shrink-0", d.dot)} />
-                    {d.label}
+                    <span className="truncate">{d.label}</span>
                   </button>
                 );
               })}
@@ -393,8 +393,8 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
           </div>
 
           {/* ── Quiz Source (compact segmented row) ── */}
-          <div className="mt-4 border-t border-line pt-5">
-            <div className="flex items-center justify-between mb-2.5">
+          <div className="mt-4 border-t border-line pt-4 sm:pt-5">
+            <div className="flex items-center justify-between mb-2">
               <Label n={step()}>Source</Label>
               <span className="font-mono text-[10.5px] text-subtle">
                 {source === "bank" && isChapter ? "NCERT Bank" : SOURCE_SHORT[source]}
@@ -431,20 +431,20 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                     aria-pressed={active}
                     title={sItem.hint}
                     className={cn(
-                      "flex items-center justify-center gap-1.5 rounded-lg py-2 text-xs font-semibold transition-all duration-200 ring-1 ring-inset",
+                      "flex items-center justify-center gap-1 rounded-lg py-1.5 px-0.5 sm:py-2 sm:px-1 text-[11px] sm:text-xs font-semibold transition-all duration-200 ring-1 ring-inset truncate",
                       active
                         ? "bg-brand/15 text-fg ring-brand/60 shadow-[0_0_10px_-3px_rgba(249,115,22,0.35)]"
                         : "ring-transparent text-muted hover:bg-fg/[0.04] hover:text-fg",
                       !isAllowed && !active ? "opacity-40" : "",
                     )}
                   >
-                    <span className="text-[11px]">{sItem.badge}</span>
-                    {sItem.label}
+                    <span className="text-[10px] sm:text-[11px] shrink-0">{sItem.badge}</span>
+                    <span className="truncate">{sItem.label}</span>
                   </button>
                 );
               })}
             </div>
-            <p className="mt-2 text-[11px] text-subtle leading-relaxed">
+            <p className="mt-2 text-[10.5px] sm:text-[11px] text-subtle leading-relaxed">
               {source === "bank"
                 ? "📚 NCERT Curated Bank: Textbook questions with hints & explanations (Best for school & exams)."
                 : source === "triviaapi"
@@ -458,7 +458,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
 
         {/* ------------------------------ How ------------------------------ */}
         <Card className="flex flex-col">
-          <div className="flex-1 space-y-6 p-5 sm:p-6">
+          <div className="flex-1 space-y-5 p-4 sm:space-y-6 sm:p-6">
             <div>
               <Label n={step()}>Questions</Label>
               <div className="mt-3 flex flex-wrap items-center gap-2">
@@ -649,23 +649,12 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
             </div>
           </div>
 
-          <div className="hidden border-t border-line p-5 lg:block">
+          <div className="border-t border-line p-4 sm:p-5">
             <p className="truncate text-sm font-semibold text-fg">{customTopic ? `Custom · ${customTopic}` : topic.label}</p>
             <p className="mt-1 font-mono text-xs text-subtle">{summary}</p>
-            {startButton("mt-4 w-full py-3 text-base")}
+            {startButton("mt-3.5 sm:mt-4 w-full py-3 text-base")}
           </div>
         </Card>
-      </div>
-
-      {/* Mobile / tablet: sticky start bar */}
-      <div className="sticky bottom-[calc(4.75rem+env(safe-area-inset-bottom))] z-20 mt-4 md:bottom-5 lg:hidden">
-        <div className="glass flex items-center gap-3 rounded-2xl border border-line p-2.5 pl-4 card-shadow">
-          <div className="min-w-0 flex-1">
-            <p className="truncate text-sm font-semibold text-fg">{customTopic ? `Custom · ${customTopic}` : topic.title}</p>
-            <p className="truncate font-mono text-[11px] text-subtle">{summary}</p>
-          </div>
-          {startButton("shrink-0 px-5")}
-        </div>
       </div>
 
       {sheetOpen ? (

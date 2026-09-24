@@ -19,25 +19,25 @@ function Rich({ text }: { text: string }) {
 function SubjectGlyph({ id, active = false }: { id: NotesSubjectId; active?: boolean }) {
   const Icon = id === "science" ? FlaskConical : id === "sst" ? Landmark : id === "math" ? Calculator : id === "english" ? BookOpenText : id === "it" ? Monitor : Languages;
   return (
-    <span className={cn("inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border", active ? "border-transparent grad-hero text-white" : "border-line bg-fg/[0.03] text-brand-ink")}>
-      <Icon className="h-5 w-5" strokeWidth={1.8} />
+    <span className={cn("inline-flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl sm:rounded-2xl border", active ? "border-transparent grad-hero text-white" : "border-line bg-fg/[0.03] text-brand-ink")}>
+      <Icon className="h-4.5 w-4.5 sm:h-5 sm:w-5" strokeWidth={1.8} />
     </span>
   );
 }
 
 function SectionBlock({ index, section }: { index: number; section: NoteChapter["sections"][number] }) {
   return (
-    <section className="border-t border-line pt-10 first:border-t-0 first:pt-0 sm:pt-12">
-      <div className="flex items-baseline gap-4">
-        <span className="font-mono text-sm text-brand-ink">{pad2(index)}</span>
-        <h3 className="text-xl font-bold tracking-tight text-fg sm:text-2xl">{section.title}</h3>
+    <section className="border-t border-line pt-8 first:border-t-0 first:pt-0 sm:pt-12">
+      <div className="flex items-baseline gap-3 sm:gap-4">
+        <span className="font-mono text-xs sm:text-sm text-brand-ink">{pad2(index)}</span>
+        <h3 className="text-lg font-bold tracking-tight text-fg sm:text-2xl">{section.title}</h3>
       </div>
 
       {section.points?.length ? (
-        <ul className="mt-5 space-y-3.5">
+        <ul className="mt-4 sm:mt-5 space-y-2.5 sm:space-y-3.5">
           {section.points.map((p, i) => (
-            <li key={i} className="flex gap-3.5 text-base leading-8 text-muted sm:text-[17px]">
-              <span className="mt-3.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand/80" aria-hidden="true" />
+            <li key={i} className="flex gap-2.5 sm:gap-3.5 text-sm leading-7 text-muted sm:text-[17px] sm:leading-8">
+              <span className="mt-2.5 sm:mt-3.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand/80" aria-hidden="true" />
               <span><Rich text={p} /></span>
             </li>
           ))}
@@ -45,19 +45,19 @@ function SectionBlock({ index, section }: { index: number; section: NoteChapter[
       ) : null}
 
       {section.formula?.length ? (
-        <div className="mt-6 overflow-x-auto rounded-2xl border border-line bg-fg/[0.03] p-5 sm:p-6">
-          <p className="mb-3 flex items-center gap-2 font-mono text-[10.5px] uppercase tracking-[0.16em] text-subtle"><Sigma className="h-3.5 w-3.5 text-brand-ink" /> Formula / derivation</p>
-          <pre className="font-mono text-[14px] leading-7 text-fg sm:text-[15px]">{section.formula.join("\n")}</pre>
+        <div className="mt-5 overflow-x-auto rounded-xl sm:rounded-2xl border border-line bg-fg/[0.03] p-4 sm:p-6">
+          <p className="mb-2 sm:mb-3 flex items-center gap-2 font-mono text-[10px] sm:text-[10.5px] uppercase tracking-[0.16em] text-subtle"><Sigma className="h-3.5 w-3.5 text-brand-ink" /> Formula / derivation</p>
+          <pre className="font-mono text-[13px] leading-6 text-fg sm:text-[15px] sm:leading-7">{section.formula.join("\n")}</pre>
         </div>
       ) : null}
 
       {section.table ? (
-        <div className="mt-6 overflow-x-auto rounded-2xl border border-line">
-          <table className="w-full min-w-[38rem] border-collapse text-left text-sm">
-            <thead><tr className="bg-fg/[0.04]">{section.table.head.map((h) => <th key={h} className="border-b border-line px-5 py-4 font-mono text-[10.5px] uppercase tracking-[0.14em] text-subtle">{h}</th>)}</tr></thead>
+        <div className="mt-5 overflow-x-auto rounded-xl sm:rounded-2xl border border-line">
+          <table className="w-full min-w-[32rem] sm:min-w-[38rem] border-collapse text-left text-xs sm:text-sm">
+            <thead><tr className="bg-fg/[0.04]">{section.table.head.map((h) => <th key={h} className="border-b border-line px-3.5 py-3 sm:px-5 sm:py-4 font-mono text-[10px] sm:text-[10.5px] uppercase tracking-[0.14em] text-subtle">{h}</th>)}</tr></thead>
             <tbody>{section.table.rows.map((row, ri) => (
               <tr key={ri} className="align-top even:bg-fg/[0.02]">
-                {row.map((cell, ci) => <td key={ci} className={cn("border-b border-line px-5 py-4 leading-6", ci === 0 ? "font-medium text-fg" : "text-muted")}><Rich text={cell} /></td>)}
+                {row.map((cell, ci) => <td key={ci} className={cn("border-b border-line px-3.5 py-3 sm:px-5 sm:py-4 leading-5 sm:leading-6", ci === 0 ? "font-medium text-fg" : "text-muted")}><Rich text={cell} /></td>)}
               </tr>
             ))}</tbody>
           </table>
@@ -65,9 +65,9 @@ function SectionBlock({ index, section }: { index: number; section: NoteChapter[
       ) : null}
 
       {section.tip ? (
-        <div className="mt-6 flex gap-3.5 rounded-2xl border border-brand/35 bg-brand/[0.07] p-5">
+        <div className="mt-5 flex gap-3 rounded-xl sm:rounded-2xl border border-brand/35 bg-brand/[0.07] p-4 sm:p-5">
           <Lightbulb className="mt-0.5 h-4 w-4 shrink-0 text-brand-ink" />
-          <p className="text-[15px] leading-7 text-fg"><span className="font-mono text-[10.5px] uppercase tracking-[0.16em] text-brand-ink">Remember · </span><Rich text={section.tip} /></p>
+          <p className="text-sm sm:text-[15px] leading-6 sm:leading-7 text-fg"><span className="font-mono text-[10px] sm:text-[10.5px] uppercase tracking-[0.16em] text-brand-ink">Remember · </span><Rich text={section.tip} /></p>
         </div>
       ) : null}
     </section>
@@ -76,7 +76,7 @@ function SectionBlock({ index, section }: { index: number; section: NoteChapter[
 
 function SubjectPicker({ subject, onSubject }: { subject: NotesSubjectId; onSubject: (id: NotesSubjectId) => void }) {
   return (
-    <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+    <div className="grid gap-2.5 sm:gap-3 sm:grid-cols-2 xl:grid-cols-3">
       {NOTES_SUBJECTS.map((s) => {
         const active = s.id === subject;
         const count = NOTES_COUNTS[s.id];
@@ -87,7 +87,7 @@ function SubjectPicker({ subject, onSubject }: { subject: NotesSubjectId; onSubj
             onClick={() => onSubject(s.id)}
             aria-pressed={active}
             className={cn(
-              "flex items-center gap-4 rounded-2xl border p-5 text-left transition-all duration-200 sm:p-6",
+              "flex items-center gap-3.5 rounded-xl sm:rounded-2xl border p-3.5 sm:p-6 text-left transition-all duration-200",
               "ring-1 ring-inset",
               active
                 ? "border-brand bg-brand/[0.08] ring-brand/60 shadow-[0_0_24px_-6px_rgba(249,115,22,0.4)]"
@@ -95,10 +95,10 @@ function SubjectPicker({ subject, onSubject }: { subject: NotesSubjectId; onSubj
             )}
           >
             <SubjectGlyph id={s.id} active={active} />
-            <span className="min-w-0">
-              <span className="block text-lg font-bold tracking-tight text-fg">{s.name}</span>
-              <span className="mt-1 block text-sm text-muted">{s.tagline}</span>
-              <span className="mt-2 block font-mono text-[11px] uppercase tracking-[0.14em] text-subtle">{count} chapters</span>
+            <span className="min-w-0 flex-1">
+              <span className="block text-base sm:text-lg font-bold tracking-tight text-fg">{s.name}</span>
+              <span className="mt-0.5 sm:mt-1 block text-xs sm:text-sm text-muted truncate">{s.tagline}</span>
+              <span className="mt-1 sm:mt-2 block font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.14em] text-subtle">{count} chapters</span>
             </span>
           </button>
         );
@@ -186,27 +186,27 @@ export default function NotesBrowser() {
         <div className="animate-fade-in">
           <div className="max-w-3xl">
             <Label>Study library</Label>
-            <h1 className="mt-5 text-4xl font-extrabold uppercase leading-[0.95] tracking-tight text-fg sm:text-6xl lg:text-7xl">Notes that make<br /><span className="grad-text">revision simpler.</span></h1>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">Clear NCERT-aligned chapter notes for Class 9 and 10. Choose a subject, open a chapter, then revise the concepts, key terms, formulas and exam tips at your own pace.</p>
+            <h1 className="mt-4 sm:mt-5 text-3xl font-extrabold uppercase leading-[1.05] tracking-tight text-fg sm:text-6xl lg:text-7xl">Notes that make<br /><span className="grad-text">revision simpler.</span></h1>
+            <p className="mt-4 sm:mt-6 max-w-2xl text-sm leading-relaxed text-muted sm:text-lg">Clear NCERT-aligned chapter notes for Class 9 and 10. Choose a subject, open a chapter, then revise the concepts, key terms, formulas and exam tips at your own pace.</p>
           </div>
 
-          <div className="mt-12">
+          <div className="mt-8 sm:mt-12">
             <Label n="01">Choose a subject</Label>
-            <div className="mt-5"><SubjectPicker subject={subject} onSubject={chooseSubject} /></div>
+            <div className="mt-3.5 sm:mt-5"><SubjectPicker subject={subject} onSubject={chooseSubject} /></div>
           </div>
 
-          <div className="mt-12 flex flex-col gap-5 border-t border-line pt-10 sm:flex-row sm:items-end sm:justify-between">
+          <div className="mt-8 sm:mt-12 flex flex-col gap-4 border-t border-line pt-6 sm:pt-10 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <Label n="02">Choose your class</Label>
-              <div className="mt-4 flex gap-2">
+              <div className="mt-3 sm:mt-4 flex gap-2">
                 {([9, 10] as ClassLevel[]).map((c) => {
                   const active = c === classLevel;
-                  return <button key={c} type="button" onClick={() => chooseClass(c)} className={cn("rounded-full border px-6 py-3 text-sm font-semibold transition", active ? "border-brand bg-brand/[0.1] text-fg glow" : "border-line text-muted hover:border-line-2 hover:text-fg")}>Class {c}</button>;
+                  return <button key={c} type="button" onClick={() => chooseClass(c)} className={cn("rounded-full border px-4.5 py-2 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold transition", active ? "border-brand bg-brand/[0.1] text-fg glow" : "border-line text-muted hover:border-line-2 hover:text-fg")}>Class {c}</button>;
                 })}
               </div>
             </div>
             <div className="w-full sm:w-72">
-              <label className="flex items-center gap-3 rounded-xl border border-line bg-fg/[0.03] px-4 py-3 focus-within:border-brand/70"><Search className="h-4 w-4 text-subtle" /><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search a chapter" className="w-full bg-transparent text-sm text-fg outline-none placeholder:text-subtle" /></label>
+              <label className="flex items-center gap-2.5 rounded-xl border border-line bg-fg/[0.03] px-3.5 py-2.5 sm:px-4 sm:py-3 focus-within:border-brand/70"><Search className="h-4 w-4 text-subtle" /><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search a chapter" className="w-full bg-transparent text-xs sm:text-sm text-fg outline-none placeholder:text-subtle" /></label>
             </div>
           </div>
 

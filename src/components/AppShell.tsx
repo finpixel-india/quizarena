@@ -38,10 +38,10 @@ export default function AppShell({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-dvh flex-col">
       <header className="glass sticky top-0 z-30 border-b border-line pt-[env(safe-area-inset-top)]">
-        <div className="mx-auto flex h-16 max-w-6xl items-center px-5 sm:px-8">
-          <Link href="/" className="flex items-center gap-2.5" aria-label="QuizLab home">
+        <div className="mx-auto flex h-14 sm:h-16 max-w-6xl items-center px-4 sm:px-8">
+          <Link href="/" className="flex items-center gap-2.5" aria-label="Quiz Arena home">
             <LogoMark />
-            <span className="text-[17px] font-bold tracking-tight text-fg">QuizLab</span>
+            <span className="text-[17px] font-bold tracking-tight text-fg">Quiz Arena</span>
           </Link>
 
           <nav className="ml-10 hidden items-center gap-1 md:flex" aria-label="Main">
@@ -61,7 +61,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
             })}
           </nav>
 
-          <div className="ml-auto flex items-center gap-1.5">
+          <div className="ml-auto flex items-center gap-1 sm:gap-1.5">
             <Link
               href="/#builder"
               className="mr-1 hidden items-center gap-1.5 rounded-full grad-cta px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white shadow-[0_8px_24px_-10px_rgba(249,115,22,0.9)] transition hover:brightness-110 md:inline-flex"
@@ -92,17 +92,17 @@ export default function AppShell({ children }: { children: ReactNode }) {
         </div>
       </header>
 
-      <main className="flex-1 pb-28 md:pb-0">{children}</main>
+      <main className="flex-1 pb-20 md:pb-0">{children}</main>
 
       <footer className="hidden border-t border-line md:block">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-8 py-6 font-mono text-[11px] uppercase tracking-[0.16em] text-subtle">
-          <span>QuizLab · NCERT-aligned practice</span>
+          <span>Quiz Arena · NCERT-aligned practice</span>
           <span>Curated bank · Open Trivia DB · The Trivia API</span>
         </div>
       </footer>
 
-      <nav className="glass fixed inset-x-0 bottom-0 z-30 border-t border-line pb-[env(safe-area-inset-bottom)] md:hidden" aria-label="Main">
-        <div className="mx-auto grid max-w-lg grid-cols-5">
+      <nav className="glass fixed inset-x-0 bottom-0 z-30 border-t border-line pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-1 md:hidden" aria-label="Main">
+        <div className="mx-auto grid max-w-md grid-cols-5 px-1">
           {NAV.map((item) => {
             const active = isActive(pathname, item.href);
             const Icon = item.icon;
@@ -111,11 +111,13 @@ export default function AppShell({ children }: { children: ReactNode }) {
                 key={item.href}
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                className={cn("relative flex flex-col items-center gap-1 py-3 text-[10.5px] font-medium transition", active ? "text-fg" : "text-subtle")}
+                className={cn(
+                  "flex flex-col items-center gap-1 rounded-xl py-2 px-1 text-[10px] font-medium transition active:scale-95",
+                  active ? "text-brand-ink bg-brand/[0.08]" : "text-subtle hover:text-fg",
+                )}
               >
-                {active ? <span className="absolute inset-x-7 top-0 h-px grad-cta shadow-[0_0_10px_1px_rgba(249,115,22,0.75)]" /> : null}
-                <Icon className={cn("h-5 w-5", active && "text-brand-ink")} strokeWidth={active ? 2.2 : 1.8} />
-                {item.label}
+                <Icon className={cn("h-4.5 w-4.5", active ? "text-brand-ink" : "text-subtle")} strokeWidth={active ? 2.2 : 1.8} />
+                <span className="truncate">{item.label}</span>
               </Link>
             );
           })}

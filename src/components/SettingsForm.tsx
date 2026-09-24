@@ -12,10 +12,10 @@ import { useAttempts } from "@/lib/use-local-data";
 
 function Section({ n, title, description, children }: { n: string; title: string; description?: string; children: ReactNode }) {
   return (
-    <Card className="p-6 sm:p-8">
+    <Card className="p-4 sm:p-8">
       <Label n={n}>{title}</Label>
-      {description ? <p className="mt-3 text-sm leading-relaxed text-muted">{description}</p> : null}
-      <div className="mt-6">{children}</div>
+      {description ? <p className="mt-2.5 sm:mt-3 text-xs sm:text-sm leading-relaxed text-muted">{description}</p> : null}
+      <div className="mt-4 sm:mt-6">{children}</div>
     </Card>
   );
 }

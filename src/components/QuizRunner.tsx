@@ -496,15 +496,15 @@ export default function QuizRunner({ topic, config, mode }: { topic: TopicInfo; 
           ) : null}
         </div>
 
-        <div key={index} className="mt-9 animate-fade-up sm:mt-12">
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-subtle">
+        <div key={index} className="mt-6 animate-fade-up sm:mt-12">
+          <p className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-subtle sm:text-[11px] sm:tracking-[0.2em]">
             <span className="text-brand-ink">Q{pad2(index + 1)}</span>
             {q.difficulty ? ` · ${q.difficulty}` : ""}
           </p>
-          <h2 className="mt-3 text-2xl font-bold leading-snug tracking-tight text-fg sm:text-[28px]">{q.question}</h2>
+          <h2 className="mt-2.5 text-xl font-bold leading-snug tracking-tight text-fg sm:mt-3 sm:text-[28px]">{q.question}</h2>
 
           {hintShown ? (
-            <div className="mt-5 flex items-start gap-3 rounded-xl border border-warning/30 bg-warning/10 p-3.5 text-sm animate-pop">
+            <div className="mt-4 flex items-start gap-2.5 rounded-xl border border-warning/30 bg-warning/10 p-3 text-xs sm:mt-5 sm:gap-3 sm:p-3.5 sm:text-sm animate-pop">
               <Lightbulb className="mt-0.5 h-4 w-4 shrink-0 text-warning" />
               <p className="text-fg">
                 {q.hint ? <span className="font-medium">{q.hint} </span> : null}
@@ -513,7 +513,7 @@ export default function QuizRunner({ topic, config, mode }: { topic: TopicInfo; 
             </div>
           ) : null}
 
-          <div className={cn("mt-7 grid gap-3", shortOptions && q.options.length > 2 && "sm:grid-cols-2")}>
+          <div className={cn("mt-5 sm:mt-7 grid gap-2.5 sm:gap-3", shortOptions && q.options.length > 2 && "sm:grid-cols-2")}>
             {q.options.map((opt, i) => {
               const isElim = eliminated.includes(i);
               const isSelected = picked === i;
@@ -525,7 +525,7 @@ export default function QuizRunner({ topic, config, mode }: { topic: TopicInfo; 
                   disabled={locked || isElim}
                   onClick={() => commitAnswer(i)}
                   className={cn(
-                    "group flex min-h-[3.75rem] w-full items-center gap-3.5 rounded-2xl border p-4 text-left text-[15px] font-medium text-fg transition duration-200 sm:text-base",
+                    "group flex min-h-[3.25rem] sm:min-h-[3.75rem] w-full items-center gap-3 sm:gap-3.5 rounded-xl sm:rounded-2xl border p-3.5 sm:p-4 text-left text-sm font-medium text-fg transition duration-200 sm:text-base",
                     isElim
                       ? "cursor-not-allowed border-dashed border-line bg-transparent text-subtle line-through opacity-50"
                       : isSelected
@@ -535,13 +535,13 @@ export default function QuizRunner({ topic, config, mode }: { topic: TopicInfo; 
                 >
                   <span
                     className={cn(
-                      "inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border font-mono text-xs font-semibold transition",
+                      "inline-flex h-7 w-7 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-lg border font-mono text-[11px] sm:text-xs font-semibold transition",
                       isElim ? "border-line text-subtle" : isSelected ? "border-brand text-brand-ink" : "border-line-2 text-muted group-hover:border-brand group-hover:text-brand-ink",
                     )}
                   >
-                    {isSelected ? <Check className="h-4 w-4" /> : LETTERS[i]}
+                    {isSelected ? <Check className="h-3.5 w-3.5 sm:h-4 sm:w-4" /> : LETTERS[i]}
                   </span>
-                  <span className="flex-1">{opt}</span>
+                  <span className="flex-1 leading-snug">{opt}</span>
                 </button>
               );
             })}
@@ -553,8 +553,8 @@ export default function QuizRunner({ topic, config, mode }: { topic: TopicInfo; 
         </div>
       </main>
 
-      <footer className="glass sticky bottom-0 z-20 border-t border-line pb-[env(safe-area-inset-bottom)]">
-        <div className="mx-auto flex max-w-3xl items-center gap-2 px-4 py-3 sm:px-6">
+      <footer className="glass sticky bottom-0 z-20 border-t border-line pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-2.5 sm:py-3">
+        <div className="mx-auto flex max-w-3xl items-center gap-2 px-4 sm:px-6">
           {hintBudget ? (
             <button type="button" onClick={takeHint} disabled={!canHint} className={cn(btn.secondary, "flex-1 sm:flex-none")} title={q.type === "boolean" ? "Hints aren't available for True/False questions" : "Use a hint (H)"}>
               <Lightbulb className="h-4 w-4 text-warning" />

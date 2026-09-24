@@ -173,10 +173,10 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
   );
 
   return (
-    <div>
-      <div className="grid gap-4 lg:grid-cols-[1.15fr_1fr] lg:items-start lg:gap-6">
+    <div className="w-full max-w-full min-w-0">
+      <div className="grid w-full max-w-full min-w-0 grid-cols-1 gap-4 lg:grid-cols-[1.15fr_1fr] lg:items-start lg:gap-6">
         {/* ------------------------------ What ------------------------------ */}
-        <Card className="p-4 sm:p-7">
+        <Card className="w-full max-w-full min-w-0 overflow-hidden p-4 sm:p-7">
           <Label n={step()}>Subject</Label>
           {/* Horizontal scrollable tab strip — smooth momentum scrolling on mobile */}
           <div className="mt-3 -mx-4 flex gap-1.5 overflow-x-auto px-4 pb-1 scrollbar-none sm:mx-0 sm:px-0">
@@ -208,7 +208,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
               <Label n={step()} className="mt-5 sm:mt-6">
                 Class
               </Label>
-              <div className="mt-2.5 sm:mt-3 grid grid-cols-3 gap-1 rounded-xl border border-line bg-fg/[0.02] p-1">
+              <div className="mt-2.5 sm:mt-3 grid w-full max-w-full min-w-0 grid-cols-3 gap-1 rounded-xl border border-line bg-fg/[0.02] p-1">
                 {([9, 10, "general"] as ClassSel[]).map((c) => {
                   const active = cls === c;
                   return (
@@ -363,7 +363,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                 {difficulty === "any" ? "Mixed" : difficulty}
               </span>
             </div>
-            <div className="grid grid-cols-4 gap-1 rounded-xl border border-line bg-fg/[0.02] p-1">
+            <div className="grid w-full max-w-full min-w-0 grid-cols-4 gap-1 rounded-xl border border-line bg-fg/[0.02] p-1">
               {([
                 { v: "any" as Difficulty, label: "Mixed", dot: "bg-gradient-to-r from-emerald-400 via-amber-400 to-rose-400" },
                 { v: "easy" as Difficulty, label: "Easy", dot: "bg-emerald-400" },
@@ -400,7 +400,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                 {source === "bank" && isChapter ? "NCERT Bank" : SOURCE_SHORT[source]}
               </span>
             </div>
-            <div className="grid grid-cols-3 gap-1 rounded-xl border border-line bg-fg/[0.02] p-1">
+            <div className="grid w-full max-w-full min-w-0 grid-cols-3 gap-1 rounded-xl border border-line bg-fg/[0.02] p-1">
               {([
                 {
                   id: "bank" as SourceId,
@@ -457,11 +457,11 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
         </Card>
 
         {/* ------------------------------ How ------------------------------ */}
-        <Card className="flex flex-col">
-          <div className="flex-1 space-y-5 p-4 sm:space-y-6 sm:p-6">
+        <Card className="flex w-full max-w-full min-w-0 flex-col overflow-hidden">
+          <div className="w-full max-w-full min-w-0 flex-1 space-y-5 p-4 sm:space-y-6 sm:p-6">
             <div>
               <Label n={step()}>Questions</Label>
-              <div className="mt-3 flex flex-wrap items-center gap-2">
+              <div className="mt-3 flex flex-wrap items-center gap-1.5 sm:gap-2">
                 {QUESTION_PRESETS.map((n) => (
                   <button
                     key={n}
@@ -494,7 +494,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                   onBlur={() => {
                     if (amountText) setAmountText(String(count));
                   }}
-                  className={cn(inputCls(!!amountText), "w-24")}
+                  className={cn(inputCls(!!amountText), "w-20 sm:w-24 text-xs sm:text-sm py-1.5 sm:py-2")}
                 />
               </div>
               <p className="mt-2 text-xs text-subtle">
@@ -516,7 +516,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
               </div>
               {timerMode === "per-question" ? (
                 <>
-                  <div className="mt-3 flex flex-wrap items-center gap-2">
+                  <div className="mt-3 flex flex-wrap items-center gap-1.5 sm:gap-2">
                     {TIME_PRESETS.map((t) => (
                       <button
                         key={t}
@@ -552,9 +552,9 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                           setTime(n);
                           setTimeText(String(n));
                         }}
-                        className={cn(inputCls(!!timeText), "w-28 pr-9")}
+                        className={cn(inputCls(!!timeText), "w-24 sm:w-28 pr-8 sm:pr-9 text-xs sm:text-sm py-1.5 sm:py-2")}
                       />
-                      <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 font-mono text-[11px] text-subtle">sec</span>
+                      <span className="pointer-events-none absolute right-2.5 sm:right-3 top-1/2 -translate-y-1/2 font-mono text-[10px] sm:text-[11px] text-subtle">sec</span>
                     </label>
                   </div>
                   <p className="mt-2 text-xs text-subtle">
@@ -563,7 +563,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                 </>
               ) : (
                 <>
-                  <div className="mt-3 flex flex-wrap items-center gap-2">
+                  <div className="mt-3 flex flex-wrap items-center gap-1.5 sm:gap-2">
                     {TOTAL_TIME_PRESETS.map((t) => (
                       <button
                         key={t}
@@ -599,9 +599,9 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                           setTotalTime(m * 60);
                           setTotalText(String(m));
                         }}
-                        className={cn(inputCls(!!totalText), "w-28 pr-9")}
+                        className={cn(inputCls(!!totalText), "w-24 sm:w-28 pr-8 sm:pr-9 text-xs sm:text-sm py-1.5 sm:py-2")}
                       />
-                      <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 font-mono text-[11px] text-subtle">min</span>
+                      <span className="pointer-events-none absolute right-2.5 sm:right-3 top-1/2 -translate-y-1/2 font-mono text-[10px] sm:text-[11px] text-subtle">min</span>
                     </label>
                   </div>
                   <p className="mt-2 text-xs text-subtle">
@@ -621,7 +621,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                       placeholder="Optional tag…"
                       value={customTopic}
                       onChange={(e) => setCustomTopic(e.target.value)}
-                      className={cn(inputCls(!!customTopic), "w-44")}
+                      className={cn(inputCls(!!customTopic), "w-full sm:w-44 text-xs sm:text-sm py-1.5 sm:py-2")}
                       maxLength={60}
                     />
                   </OptionRow>
@@ -649,7 +649,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
             </div>
           </div>
 
-          <div className="border-t border-line p-4 sm:p-5">
+          <div className="w-full max-w-full min-w-0 border-t border-line p-4 sm:p-5">
             <p className="truncate text-sm font-semibold text-fg">{customTopic ? `Custom · ${customTopic}` : topic.label}</p>
             <p className="mt-1 font-mono text-xs text-subtle">{summary}</p>
             {startButton("mt-3.5 sm:mt-4 w-full py-3 text-base")}

@@ -55,8 +55,8 @@ export default function HomeClient() {
   }
 
   return (
-    <div>
-      <Container className="pb-0 sm:pb-0">
+    <div className="w-full max-w-full overflow-x-hidden">
+      <Container className="pb-0 sm:pb-0 w-full max-w-full overflow-hidden">
       {/* ------------------------------- Hero (dark) ------------------------------ */}
       <section className="flex flex-col gap-6 pb-8 sm:gap-10 sm:pb-16 lg:flex-row lg:items-end lg:justify-between lg:pb-20">
         <div className="max-w-2xl animate-fade-up">
@@ -111,7 +111,7 @@ export default function HomeClient() {
       </section>
 
       {/* ------------------------------ Builder (dark) ----------------------------- */}
-      <section id="builder" className="scroll-mt-20 pb-12 sm:pb-20">
+      <section id="builder" className="scroll-mt-20 pb-12 sm:pb-20 w-full max-w-full min-w-0 overflow-hidden">
         <Label n="01" className="mb-4 sm:mb-6">
           Build your quiz
         </Label>
@@ -120,9 +120,9 @@ export default function HomeClient() {
       </Container>
 
       {/* --------------------------- Cream band (light) --------------------------- */}
-      <section className="band-light relative overflow-hidden border-t border-line">
+      <section className="band-light relative overflow-hidden border-t border-line w-full max-w-full">
         <div className="grid-lines absolute inset-0 hidden [mask-image:linear-gradient(to_bottom,#000,transparent)] md:block" aria-hidden="true" />
-        <div className="relative mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+        <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-20">
           {rows.length ? (
             <>
               <div className="flex flex-wrap items-end justify-between gap-4">

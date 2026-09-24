@@ -12,7 +12,7 @@ export function Container({ className, children }: { className?: string; childre
 }
 
 export function Card({ className, children }: { className?: string; children: ReactNode }) {
-  return <div className={cn("rounded-2xl border border-line bg-card card-shadow md:backdrop-blur-xl", className)}>{children}</div>;
+  return <div className={cn("w-full max-w-full min-w-0 rounded-2xl border border-line bg-card card-shadow md:backdrop-blur-xl", className)}>{children}</div>;
 }
 
 /** Mono, uppercase eyebrow label — "■ 02 —— SUBJECT". */
@@ -177,7 +177,7 @@ export function Segmented<T extends string | number>({
   className?: string;
 }) {
   return (
-    <div className={cn("inline-flex max-w-full gap-1 overflow-x-auto rounded-xl border border-line bg-fg/[0.02] p-1 scrollbar-none", className)}>
+    <div className={cn("flex w-full max-w-full gap-1 rounded-xl border border-line bg-fg/[0.02] p-1 sm:inline-flex sm:w-auto", className)}>
       {options.map((o) => {
         const active = value === o.v;
         return (
@@ -187,7 +187,7 @@ export function Segmented<T extends string | number>({
             aria-pressed={active}
             onClick={() => onChange(o.v)}
             className={cn(
-              "shrink-0 rounded-lg px-3.5 py-1.5 text-sm font-medium transition ring-1 ring-inset",
+              "flex-1 min-w-0 sm:flex-initial rounded-lg px-2.5 py-1.5 sm:px-3.5 text-xs sm:text-sm font-medium transition ring-1 ring-inset truncate text-center",
               active ? "bg-brand/15 text-fg ring-brand/70" : "ring-transparent text-muted hover:bg-fg/[0.04] hover:text-fg",
             )}
           >
@@ -251,7 +251,7 @@ export const btn = {
 
 export function chip(active: boolean) {
   return cn(
-    "min-w-[3.25rem] rounded-xl border px-3.5 py-2 text-sm font-medium tabular-nums transition active:scale-95 disabled:cursor-not-allowed disabled:opacity-25",
+    "min-w-[2.75rem] sm:min-w-[3.25rem] rounded-xl border px-2.5 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-sm font-medium tabular-nums transition active:scale-95 disabled:cursor-not-allowed disabled:opacity-25 text-center shrink-0",
     // Always reserve the glow shadow space — transparent when inactive prevents layout shift
     active
       ? "border-brand bg-brand/10 text-fg shadow-[0_0_0_1px_rgba(249,115,22,0.55),0_0_20px_-6px_rgba(249,115,22,0.45)]"

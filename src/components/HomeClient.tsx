@@ -66,7 +66,7 @@ export default function HomeClient() {
               NCERT-aligned practice
             </span>
             <span className="hidden text-line-2 sm:inline">/</span>
-            <span className="hidden sm:inline">Class 9 &amp; 10 — Science · SST · Math · IT</span>
+            <span className="hidden sm:inline">Class 9 &amp; 10 — Science · SST · Math · IT · Board PYQs</span>
           </div>
 
           <h1 className="mt-5 text-3xl font-extrabold uppercase leading-[1.05] tracking-tight text-fg sm:mt-7 sm:text-6xl lg:text-7xl">

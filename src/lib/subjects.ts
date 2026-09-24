@@ -11,6 +11,7 @@ export interface SubjectMeta {
 export const SUBJECTS: SubjectMeta[] = [
   { id: "science", name: "Science", short: "Science", tagline: "Physics, Chemistry & Biology", hasClasses: true },
   { id: "sst", name: "Social Studies", short: "SST", tagline: "History, Geography, Civics & Economics", hasClasses: true },
+  { id: "pyq", name: "Board PYQ", short: "PYQ", tagline: "Class 10 Board Past Year Questions", hasClasses: false },
   { id: "math", name: "Basic Math", short: "Math", tagline: "Arithmetic, fractions, percentages & equations", hasClasses: false },
   { id: "it", name: "Information Technology", short: "IT", tagline: "Computers, networks & programming", hasClasses: false },
   { id: "custom", name: "Custom Topic", short: "Custom", tagline: "Trivia API · Any custom topic", hasClasses: false },

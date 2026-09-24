@@ -1,5 +1,5 @@
 import type { ComponentType, ReactNode } from "react";
-import { Calculator, Cpu, FlaskConical, Landmark, Sparkles } from "lucide-react";
+import { Calculator, Cpu, FlaskConical, GraduationCap, Landmark, Sparkles } from "lucide-react";
 import { cn } from "@/lib/format";
 
 type IconType = ComponentType<{ className?: string; strokeWidth?: number }>;
@@ -62,6 +62,7 @@ export function EmptyState({ icon: Icon, title, description, action }: { icon: I
 const SUBJECT_ICONS: Record<string, IconType> = {
   science: FlaskConical,
   sst: Landmark,
+  pyq: GraduationCap,
   math: Calculator,
   it: Cpu,
   custom: Sparkles,

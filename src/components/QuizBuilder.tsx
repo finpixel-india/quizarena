@@ -126,7 +126,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
   const flatTopics = hasClasses ? [] : topics.filter((t) => t.subject === subject);
 
   /* ------------------------------- derived -------------------------------- */
-  const defaultSource: SourceId = isChapter ? "bank" : "triviaapi";
+  const defaultSource: SourceId = isChapter || subject === "pyq" ? "bank" : "triviaapi";
   const source: SourceId = userSource && topic.sources.includes(userSource)
     ? userSource
     : topic.sources.includes(defaultSource)
@@ -134,7 +134,6 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
     : topic.sources[0];
   const cap = source === "bank" && topic.bankCount !== null ? Math.min(MAX_QUESTIONS, topic.bankCount) : MAX_QUESTIONS;
   const count = Math.max(1, Math.min(amount, cap));
-  const showDifficulty = source !== "bank" || topic.bankCount === null;
   const summary =
     timerMode === "total"
       ? `${count} Q · ${totalTime ? totalLabel(totalTime) + " total" : "no limit"} · ${hints ? `${hints} hint${hints > 1 ? "s" : ""}` : "no hints"}`
@@ -152,7 +151,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
         time: timerMode === "per-question" ? time : 0,
         timerMode,
         totalTime,
-        difficulty: showDifficulty ? difficulty : "any",
+        difficulty,
         source,
         hints,
         fullscreen: wantFs,

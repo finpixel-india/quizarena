@@ -190,6 +190,7 @@ export default function QuizRunner({ topic, config, mode }: { topic: TopicInfo; 
         timeTaken: a.timeTaken,
         hint: qq.hint,
         explanation: qq.explanation,
+        difficulty: qq.difficulty,
         type: qq.type,
         origin: qq.origin,
       })),
@@ -497,10 +498,31 @@ export default function QuizRunner({ topic, config, mode }: { topic: TopicInfo; 
         </div>
 
         <div key={index} className="mt-6 animate-fade-up sm:mt-12">
-          <p className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-subtle sm:text-[11px] sm:tracking-[0.2em]">
-            <span className="text-brand-ink">Q{pad2(index + 1)}</span>
-            {q.difficulty ? ` · ${q.difficulty}` : ""}
-          </p>
+          <div className="flex items-center gap-2">
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-subtle sm:text-[11px] sm:tracking-[0.2em]">
+              <span className="font-semibold text-brand-ink">Q{pad2(index + 1)}</span>
+            </span>
+            {q.difficulty ? (
+              <span
+                className={cn(
+                  "inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider border",
+                  q.difficulty === "easy"
+                    ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
+                    : q.difficulty === "hard"
+                    ? "border-rose-500/30 bg-rose-500/10 text-rose-400"
+                    : "border-amber-500/30 bg-amber-500/10 text-amber-400",
+                )}
+              >
+                <span
+                  className={cn(
+                    "h-1.5 w-1.5 rounded-full",
+                    q.difficulty === "easy" ? "bg-emerald-400" : q.difficulty === "hard" ? "bg-rose-400" : "bg-amber-400",
+                  )}
+                />
+                {q.difficulty}
+              </span>
+            ) : null}
+          </div>
           <h2 className="mt-2.5 text-xl font-bold leading-snug tracking-tight text-fg sm:mt-3 sm:text-[28px]">{q.question}</h2>
 
           {hintShown ? (

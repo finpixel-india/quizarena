@@ -114,6 +114,26 @@ export default function ReviewList({ questions }: { questions: AttemptQuestion[]
               <Card key={n} className="p-5 sm:p-6">
                 <div className="flex flex-wrap items-center gap-2.5 text-xs">
                   <span className="font-mono font-semibold text-brand-ink">Q{pad2(n)}</span>
+                  {q.difficulty ? (
+                    <span
+                      className={cn(
+                        "inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider border",
+                        q.difficulty === "easy"
+                          ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
+                          : q.difficulty === "hard"
+                          ? "border-rose-500/30 bg-rose-500/10 text-rose-400"
+                          : "border-amber-500/30 bg-amber-500/10 text-amber-400",
+                      )}
+                    >
+                      <span
+                        className={cn(
+                          "h-1.5 w-1.5 rounded-full",
+                          q.difficulty === "easy" ? "bg-emerald-400" : q.difficulty === "hard" ? "bg-rose-400" : "bg-amber-400",
+                        )}
+                      />
+                      {q.difficulty}
+                    </span>
+                  ) : null}
                   <span className={cn("inline-flex items-center gap-1 rounded-full border px-2 py-0.5 font-medium", meta.cls)}>
                     <Icon className="h-3 w-3" /> {meta.label}
                   </span>

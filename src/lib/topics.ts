@@ -3,6 +3,11 @@ import { science10 } from "@/data/bank/science10";
 import { sst9 } from "@/data/bank/sst9";
 import { sst10 } from "@/data/bank/sst10";
 import { itTopics, mathConcepts } from "@/data/bank/it";
+import { science_pyq } from "@/data/bank/science_pyq";
+import { sst_pyq } from "@/data/bank/sst_pyq";
+import { math_pyq } from "@/data/bank/math_pyq";
+import { hindi_grammar_pyq } from "@/data/bank/hindi_grammar_pyq";
+import { english_grammar_pyq } from "@/data/bank/english_grammar_pyq";
 import type { ChapterData, RawQ } from "@/data/bank/types";
 import { generateMath, LEVEL_NAME, MATH_GEN_KEYS, type MathGenKey } from "./math-gen";
 import { hashText } from "./hash";
@@ -46,6 +51,7 @@ const SUBJECT_ONLINE: Record<string, OnlineRef> = {
   sst: { opentdb: 23, triviaapi: { categories: "history,geography,society_and_culture" } },
   math: { opentdb: 19, triviaapi: { tags: "mathematics,math,numbers" } },
   it: { opentdb: 18, triviaapi: { tags: "computing,technology,programming" } },
+  pyq: { opentdb: 17, triviaapi: { categories: "science,history,geography" } },
 };
 
 function getScienceBranch(classLevel: 9 | 10, no: number): "chemistry" | "biology" | "physics" {
@@ -254,6 +260,74 @@ defs.push({
   description: "All IT topics — or computer trivia from an online source",
 });
 
+const PYQ_TOPICS = [
+  {
+    id: "pyq-science",
+    title: "Science PYQ",
+    label: "Board PYQ · Class 10 Science",
+    description: "CBSE Class 10 Board Exam Past Year Questions — Physics, Chemistry & Biology",
+    data: science_pyq,
+  },
+  {
+    id: "pyq-sst",
+    title: "Social Science PYQ",
+    label: "Board PYQ · Class 10 Social Science",
+    description: "CBSE Class 10 Board Exam Past Year Questions — History, Geography, Civics & Economics",
+    data: sst_pyq,
+  },
+  {
+    id: "pyq-math",
+    title: "Mathematics PYQ",
+    label: "Board PYQ · Class 10 Mathematics",
+    description: "CBSE Class 10 Board Exam Past Year Questions — Standard & Basic Math",
+    data: math_pyq,
+  },
+  {
+    id: "pyq-hindi",
+    title: "Hindi Grammar PYQ",
+    label: "Board PYQ · Class 10 Hindi Grammar",
+    description: "CBSE Class 10 Board Exam Past Year Questions — रचना के आधार पर वाक्य, पदबंध, वाच्य, समास, मुहावरे",
+    data: hindi_grammar_pyq,
+  },
+  {
+    id: "pyq-english",
+    title: "English Grammar PYQ",
+    label: "Board PYQ · Class 10 English Grammar",
+    description: "CBSE Class 10 Board Exam Past Year Questions — Tenses, Modals, Concord, Reported Speech & Determiners",
+    data: english_grammar_pyq,
+  },
+];
+
+for (const p of PYQ_TOPICS) {
+  const items = p.data.flatMap((t) => keyed(t.id, t.q));
+  defs.push({
+    id: p.id,
+    subject: "pyq",
+    classLevel: 10,
+    title: p.title,
+    label: p.label,
+    kind: "topic",
+    sources: ["bank"],
+    bankCount: items.length,
+    bank: { kind: "raw", items },
+    description: p.description,
+  });
+}
+
+const pyqAllItems = PYQ_TOPICS.flatMap((p) => p.data.flatMap((t) => keyed(t.id, t.q)));
+defs.push({
+  id: "pyq-all",
+  subject: "pyq",
+  classLevel: 10,
+  title: "All Subjects Board Mock",
+  label: "Board PYQ · All Subjects 5-in-1 Mock",
+  kind: "mixed",
+  sources: ["bank"],
+  bankCount: pyqAllItems.length,
+  bank: { kind: "raw", items: pyqAllItems },
+  description: "550 questions combining Class 10 Science, SST, Math, Hindi & English Board PYQs",
+});
+
 const CUSTOM_TOPICS: Array<{
   id: string;
   title: string;
@@ -324,8 +398,17 @@ export function subjectQuestionCount(subject: SubjectId): number | null {
 }
 
 function rawToQuestion(item: KeyedQ): QuizQuestion {
-  const [question, correct, wrong, hint, explanation] = item.q;
-  return buildQuestion({ id: item.key, question, correct, wrong, hint, explanation, origin: "bank" });
+  const [question, correct, wrong, hint, explanation, difficulty] = item.q;
+  return buildQuestion({
+    id: item.key,
+    question,
+    correct,
+    wrong,
+    hint,
+    explanation,
+    difficulty: difficulty ?? "medium",
+    origin: "bank",
+  });
 }
 
 /**
@@ -335,7 +418,11 @@ function rawToQuestion(item: KeyedQ): QuizQuestion {
  */
 export function getBankQuestions(def: TopicDef, count: number, difficulty: Difficulty, exclude: ReadonlySet<string> = new Set()): QuizQuestion[] {
   if (def.bank.kind === "raw") {
-    const shuffled = shuffle(def.bank.items);
+    const rawItems = def.bank.items;
+    const filteredByDiff = difficulty === "any" ? rawItems : rawItems.filter((it) => it.q[5] === difficulty);
+    const pool = filteredByDiff.length >= count ? filteredByDiff : rawItems;
+
+    const shuffled = shuffle(pool);
     const fresh = shuffled.filter((it) => !exclude.has(hashText(it.q[0])));
     const stale = shuffled.filter((it) => exclude.has(hashText(it.q[0])));
     const picked = fresh.slice(0, count);

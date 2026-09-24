@@ -1,4 +1,4 @@
-export type SubjectId = "math" | "it" | "science" | "sst" | "custom";
+export type SubjectId = "math" | "it" | "science" | "sst" | "custom" | "pyq";
 export type SourceId = "bank" | "opentdb" | "triviaapi";
 export type Difficulty = "any" | "easy" | "medium" | "hard";
 export type ThemePref = "system" | "light" | "dark";
@@ -31,6 +31,7 @@ export interface AttemptQuestion {
   points: number;
   hint?: string;
   explanation?: string;
+  difficulty?: string;
   type: "multiple" | "boolean";
   origin: SourceId;
 }

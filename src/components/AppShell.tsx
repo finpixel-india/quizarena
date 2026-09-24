@@ -37,11 +37,11 @@ export default function AppShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="flex min-h-dvh flex-col">
-      <header className="glass sticky top-0 z-30 border-b border-line pt-[env(safe-area-inset-top)]">
+      <header className="glass sticky top-0 z-40 w-full border-b border-line pt-[env(safe-area-inset-top)]">
         <div className="mx-auto flex h-14 sm:h-16 max-w-6xl items-center px-4 sm:px-8">
-          <Link href="/" className="flex items-center gap-2.5" aria-label="Quiz Arena home">
+          <Link href="/" className="flex items-center gap-2.5" aria-label="Quiz Lab home">
             <LogoMark />
-            <span className="text-[17px] font-bold tracking-tight text-fg">Quiz Arena</span>
+            <span className="text-[17px] font-bold tracking-tight text-fg">Quiz Lab</span>
           </Link>
 
           <nav className="ml-10 hidden items-center gap-1 md:flex" aria-label="Main">
@@ -96,7 +96,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
 
       <footer className="hidden border-t border-line md:block">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-8 py-6 font-mono text-[11px] uppercase tracking-[0.16em] text-subtle">
-          <span>Quiz Arena · NCERT-aligned practice</span>
+          <span>Quiz Lab · NCERT-aligned practice</span>
           <span>Curated bank · Open Trivia DB · The Trivia API</span>
         </div>
       </footer>

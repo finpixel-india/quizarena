@@ -40,9 +40,25 @@ export const SST_SECTIONS = ["History", "Geography", "Political Science", "Econo
 
 const defs: TopicDef[] = [];
 
+// Subject → Trivia API online config used for all chapters of that subject
+const SUBJECT_ONLINE: Record<string, OnlineRef> = {
+  science: { opentdb: 17, triviaapi: { categories: "science" } },
+  sst: { opentdb: 23, triviaapi: { categories: "history,geography,society_and_culture" } },
+  math: { opentdb: 19, triviaapi: { tags: "mathematics,math,numbers" } },
+  it: { opentdb: 18, triviaapi: { tags: "computing,technology,programming" } },
+};
+
 function addClassTopics(subject: SubjectId, classLevel: 9 | 10, chapters: ChapterData[]) {
   const subjName = subject === "science" ? "Science" : "SST";
+  const online = SUBJECT_ONLINE[subject];
   for (const ch of chapters) {
+    // Derive a chapter-specific tag from the chapter title for better Trivia API results
+    const chapterTag = ch.title.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
+    const chOnline: OnlineRef = subject === "science"
+      ? { opentdb: 17, triviaapi: { categories: "science", tags: chapterTag } }
+      : subject === "sst"
+      ? { opentdb: 23, triviaapi: { categories: "history,geography,society_and_culture", tags: chapterTag } }
+      : online ?? {};
     defs.push({
       id: ch.id,
       subject,
@@ -52,9 +68,10 @@ function addClassTopics(subject: SubjectId, classLevel: 9 | 10, chapters: Chapte
       title: ch.title,
       label: `Class ${classLevel} ${subjName} · ${ch.title}`,
       kind: "chapter",
-      sources: ["bank"],
+      sources: ["triviaapi", "bank"],
       bankCount: ch.q.length,
       bank: { kind: "raw", items: keyed(ch.id, ch.q) },
+      online: chOnline,
     });
   }
   if (subject === "sst") {
@@ -62,6 +79,7 @@ function addClassTopics(subject: SubjectId, classLevel: 9 | 10, chapters: Chapte
       const secChapters = chapters.filter((c) => c.section === section);
       if (!secChapters.length) continue;
       const items = fromChapters(secChapters);
+      const sectionTag = section.toLowerCase().replace(/\s+/g, "_");
       defs.push({
         id: `sst${classLevel}-${SECTION_CODE[section]}-all`,
         subject,
@@ -70,9 +88,10 @@ function addClassTopics(subject: SubjectId, classLevel: 9 | 10, chapters: Chapte
         title: `All ${section} chapters`,
         label: `Class ${classLevel} SST · ${section} (all chapters)`,
         kind: "class-all",
-        sources: ["bank"],
+        sources: ["triviaapi", "bank"],
         bankCount: items.length,
         bank: { kind: "raw", items },
+        online: { opentdb: 23, triviaapi: { categories: "history,geography,society_and_culture", tags: sectionTag } },
       });
     }
   }
@@ -84,9 +103,10 @@ function addClassTopics(subject: SubjectId, classLevel: 9 | 10, chapters: Chapte
     title: `All Class ${classLevel} chapters`,
     label: `Class ${classLevel} ${subjName} · All chapters`,
     kind: "class-all",
-    sources: ["bank"],
+    sources: ["triviaapi", "bank"],
     bankCount: all.length,
     bank: { kind: "raw", items: all },
+    online: online,
     description: "A mixed quiz across every chapter",
   });
 }
@@ -139,9 +159,10 @@ for (const key of MATH_GEN_KEYS) {
     title: MATH_META[key].title,
     label: `Basic Math · ${MATH_META[key].title}`,
     kind: "topic",
-    sources: ["bank"],
+    sources: ["triviaapi", "bank"],
     bankCount: null,
     bank: { kind: "gen", keys: [key] },
+    online: { opentdb: 19, triviaapi: { tags: "mathematics,math,numbers" } },
     description: MATH_META[key].description,
   });
 }
@@ -153,9 +174,10 @@ defs.push({
   title: mathConcepts.title,
   label: `Basic Math · ${mathConcepts.title}`,
   kind: "topic",
-  sources: ["bank"],
+  sources: ["triviaapi", "bank"],
   bankCount: conceptItems.length,
   bank: { kind: "raw", items: conceptItems },
+  online: { opentdb: 19, triviaapi: { tags: "mathematics,math,numbers" } },
   description: mathConcepts.description,
 });
 
@@ -186,10 +208,12 @@ for (const t of itTopics) {
     title: t.title,
     label: `IT · ${t.title}`,
     kind: "topic",
-    sources: online ? ["triviaapi", "bank", "opentdb"] : ["bank"],
+    sources: ["triviaapi", "bank"],
     bankCount: t.q.length,
     bank: { kind: "raw", items: keyed(t.id, t.q) },
-    online: online ? { opentdb: online.opentdb, triviaapi: { tags: online.tags } } : undefined,
+    online: online
+      ? { opentdb: online.opentdb, triviaapi: { tags: online.tags } }
+      : { opentdb: 18, triviaapi: { tags: "computing,technology,programming" } },
     description: t.description,
   });
 }

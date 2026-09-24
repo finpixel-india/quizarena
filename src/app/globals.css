@@ -151,6 +151,7 @@
     -webkit-tap-highlight-color: transparent;
     text-size-adjust: 100%;
     overflow-x: hidden;
+    scrollbar-gutter: stable;
   }
 
   body {

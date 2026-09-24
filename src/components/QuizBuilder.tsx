@@ -405,16 +405,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                   <button
                     key={sItem.id}
                     type="button"
-                    onClick={() => {
-                      if (isAllowed) {
-                        setSourcePref(sItem.id);
-                      } else {
-                        const alt =
-                          topics.find((t) => t.subject === subject && t.sources.includes(sItem.id)) ??
-                          topics.find((t) => t.sources.includes(sItem.id));
-                        if (alt) { selectTopic(alt.id); setSourcePref(sItem.id); }
-                      }
-                    }}
+                    onClick={() => setSourcePref(sItem.id)}
                     aria-pressed={active}
                     title={sItem.id === "triviaapi" ? "The Trivia API — Recommended" : sItem.id === "bank" ? "Curated offline bank" : "Open Trivia DB"}
                     className={cn(

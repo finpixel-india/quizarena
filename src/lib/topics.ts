@@ -48,17 +48,39 @@ const SUBJECT_ONLINE: Record<string, OnlineRef> = {
   it: { opentdb: 18, triviaapi: { tags: "computing,technology,programming" } },
 };
 
+function getScienceBranch(classLevel: 9 | 10, no: number): "chemistry" | "biology" | "physics" {
+  if (classLevel === 9) {
+    if (no <= 4) return "chemistry";
+    if (no === 5 || no === 6 || no === 12) return "biology";
+    return "physics";
+  } else {
+    if (no <= 4) return "chemistry";
+    if ((no >= 5 && no <= 8) || no === 13) return "biology";
+    return "physics";
+  }
+}
+
+const SST_BRANCH_ONLINE: Record<string, OnlineRef> = {
+  History: { opentdb: 23, triviaapi: { categories: "history" } },
+  Geography: { opentdb: 22, triviaapi: { categories: "geography" } },
+  "Political Science": { opentdb: 24, triviaapi: { categories: "society_and_culture", tags: "politics" } },
+  Economics: { opentdb: 9, triviaapi: { categories: "society_and_culture", tags: "economics" } },
+};
+
 function addClassTopics(subject: SubjectId, classLevel: 9 | 10, chapters: ChapterData[]) {
   const subjName = subject === "science" ? "Science" : "SST";
   const online = SUBJECT_ONLINE[subject];
   for (const ch of chapters) {
-    // Derive a chapter-specific tag from the chapter title for better Trivia API results
-    const chapterTag = ch.title.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
-    const chOnline: OnlineRef = subject === "science"
-      ? { opentdb: 17, triviaapi: { categories: "science", tags: chapterTag } }
-      : subject === "sst"
-      ? { opentdb: 23, triviaapi: { categories: "history,geography,society_and_culture", tags: chapterTag } }
-      : online ?? {};
+    let chOnline: OnlineRef;
+    if (subject === "science") {
+      const branch = getScienceBranch(classLevel, ch.no);
+      chOnline = { opentdb: 17, triviaapi: { categories: "science", tags: branch } };
+    } else if (subject === "sst" && ch.section && SST_BRANCH_ONLINE[ch.section]) {
+      chOnline = SST_BRANCH_ONLINE[ch.section];
+    } else {
+      chOnline = online ?? {};
+    }
+
     defs.push({
       id: ch.id,
       subject,
@@ -68,7 +90,7 @@ function addClassTopics(subject: SubjectId, classLevel: 9 | 10, chapters: Chapte
       title: ch.title,
       label: `Class ${classLevel} ${subjName} · ${ch.title}`,
       kind: "chapter",
-      sources: ["triviaapi", "bank"],
+      sources: ["bank", "triviaapi"],
       bankCount: ch.q.length,
       bank: { kind: "raw", items: keyed(ch.id, ch.q) },
       online: chOnline,
@@ -79,7 +101,7 @@ function addClassTopics(subject: SubjectId, classLevel: 9 | 10, chapters: Chapte
       const secChapters = chapters.filter((c) => c.section === section);
       if (!secChapters.length) continue;
       const items = fromChapters(secChapters);
-      const sectionTag = section.toLowerCase().replace(/\s+/g, "_");
+      const sstConfig = SST_BRANCH_ONLINE[section] ?? { opentdb: 23, triviaapi: { categories: "history,geography" } };
       defs.push({
         id: `sst${classLevel}-${SECTION_CODE[section]}-all`,
         subject,
@@ -88,10 +110,10 @@ function addClassTopics(subject: SubjectId, classLevel: 9 | 10, chapters: Chapte
         title: `All ${section} chapters`,
         label: `Class ${classLevel} SST · ${section} (all chapters)`,
         kind: "class-all",
-        sources: ["triviaapi", "bank"],
+        sources: ["bank", "triviaapi"],
         bankCount: items.length,
         bank: { kind: "raw", items },
-        online: { opentdb: 23, triviaapi: { categories: "history,geography,society_and_culture", tags: sectionTag } },
+        online: sstConfig,
       });
     }
   }
@@ -103,7 +125,7 @@ function addClassTopics(subject: SubjectId, classLevel: 9 | 10, chapters: Chapte
     title: `All Class ${classLevel} chapters`,
     label: `Class ${classLevel} ${subjName} · All chapters`,
     kind: "class-all",
-    sources: ["triviaapi", "bank"],
+    sources: ["bank", "triviaapi"],
     bankCount: all.length,
     bank: { kind: "raw", items: all },
     online: online,

@@ -50,7 +50,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
   const [memory, setMemory] = useState<Record<string, string>>(() => ({ [memKey(init.subject, initCls)]: init.id }));
   const [sheetOpen, setSheetOpen] = useState(false);
 
-  const [sourcePref, setSourcePref] = useState<SourceId>(settings.source);
+  const [userSource, setUserSource] = useState<SourceId | null>(null);
   const [amount, setAmount] = useState(settings.defaultQuestions);
   const [amountText, setAmountText] = useState(QUESTION_PRESETS.includes(settings.defaultQuestions) ? "" : String(settings.defaultQuestions));
   const [timerMode, setTimerMode] = useState<TimerMode>(settings.timerMode);
@@ -76,6 +76,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
 
   const topic = byId.get(topicId) ?? init;
   const hasClasses = hasClassesFor(subject);
+  const isChapter = topic.kind === "chapter" || topic.kind === "class-all";
 
   function defaultTopicId(s: SubjectId, c: ClassSel): string {
     const remembered = memory[memKey(s, c)];
@@ -98,6 +99,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
     if (s === subject) return;
     setSubject(s);
     setTopicId(defaultTopicId(s, cls));
+    setUserSource(null); // allow smart default to match new subject
   }
 
   function selectClass(c: ClassSel) {
@@ -124,7 +126,12 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
   const flatTopics = hasClasses ? [] : topics.filter((t) => t.subject === subject);
 
   /* ------------------------------- derived -------------------------------- */
-  const source: SourceId = topic.sources.includes(sourcePref) ? sourcePref : topic.sources[0];
+  const defaultSource: SourceId = isChapter ? "bank" : "triviaapi";
+  const source: SourceId = userSource && topic.sources.includes(userSource)
+    ? userSource
+    : topic.sources.includes(defaultSource)
+    ? defaultSource
+    : topic.sources[0];
   const cap = source === "bank" && topic.bankCount !== null ? Math.min(MAX_QUESTIONS, topic.bankCount) : MAX_QUESTIONS;
   const count = Math.max(1, Math.min(amount, cap));
   const showDifficulty = source !== "bank" || topic.bankCount === null;
@@ -390,14 +397,29 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
             <div className="flex items-center justify-between mb-2.5">
               <Label n={step()}>Source</Label>
               <span className="font-mono text-[10.5px] text-subtle">
-                {SOURCE_SHORT[source]}
+                {source === "bank" && isChapter ? "NCERT Bank" : SOURCE_SHORT[source]}
               </span>
             </div>
             <div className="grid grid-cols-3 gap-1 rounded-xl border border-line bg-fg/[0.02] p-1">
               {([
-                { id: "triviaapi" as SourceId, label: "Trivia API", badge: "⭐" },
-                { id: "bank" as SourceId, label: "Curated", badge: "📚" },
-                { id: "opentdb" as SourceId, label: "OpenTDB", badge: "🌐" },
+                {
+                  id: "bank" as SourceId,
+                  label: isChapter ? "NCERT Bank" : "Curated",
+                  badge: isChapter ? "⭐" : "📚",
+                  hint: isChapter ? "NCERT syllabus-aligned chapter questions" : "Curated offline bank",
+                },
+                {
+                  id: "triviaapi" as SourceId,
+                  label: "Trivia API",
+                  badge: isChapter ? "🌐" : "⭐",
+                  hint: isChapter ? "Online trivia for this discipline" : "Online trivia API — recommended for custom topics",
+                },
+                {
+                  id: "opentdb" as SourceId,
+                  label: "OpenTDB",
+                  badge: "🌐",
+                  hint: "Open Trivia DB",
+                },
               ]).map((sItem) => {
                 const active = source === sItem.id;
                 const isAllowed = topic.sources.includes(sItem.id);
@@ -405,9 +427,9 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                   <button
                     key={sItem.id}
                     type="button"
-                    onClick={() => setSourcePref(sItem.id)}
+                    onClick={() => setUserSource(sItem.id)}
                     aria-pressed={active}
-                    title={sItem.id === "triviaapi" ? "The Trivia API — Recommended" : sItem.id === "bank" ? "Curated offline bank" : "Open Trivia DB"}
+                    title={sItem.hint}
                     className={cn(
                       "flex items-center justify-center gap-1.5 rounded-lg py-2 text-xs font-semibold transition-all duration-200 ring-1 ring-inset",
                       active
@@ -422,6 +444,15 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                 );
               })}
             </div>
+            <p className="mt-2 text-[11px] text-subtle leading-relaxed">
+              {source === "bank"
+                ? "📚 NCERT Curated Bank: Textbook questions with hints & explanations (Best for school & exams)."
+                : source === "triviaapi"
+                ? isChapter
+                  ? "🌐 Trivia API: Online questions filtered by this discipline (e.g. chemistry/physics)."
+                  : "⭐ Trivia API: Broad questions from the online trivia database (Best for custom topics)."
+                : "🌐 Open Trivia DB: Community-submitted trivia."}
+            </p>
           </div>
         </Card>
 

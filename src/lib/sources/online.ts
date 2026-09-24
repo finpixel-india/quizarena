@@ -173,6 +173,31 @@ const CATEGORY_MAP: Record<string, string> = {
   general: "general_knowledge",
 };
 
+const TAG_MAP: Record<string, string> = {
+  chemistry: "chemistry",
+  chemical: "chemistry",
+  physics: "physics",
+  biology: "biology",
+  space: "space,astronomy",
+  astronomy: "astronomy",
+  cricket: "cricket",
+  football: "football",
+  soccer: "soccer",
+  math: "mathematics",
+  maths: "mathematics",
+  mathematics: "mathematics",
+  tech: "technology",
+  technology: "technology",
+  coding: "programming,technology",
+  programming: "programming,technology",
+  computer: "computing,technology",
+  computers: "computing,technology",
+  history: "history",
+  geography: "geography",
+  politics: "politics",
+  war: "world_war_two,history",
+};
+
 export async function fetchTriviaApi(
   ref: { categories?: string; tags?: string; customTopic?: string },
   amount: number,
@@ -193,7 +218,15 @@ export async function fetchTriviaApi(
         break;
       }
     }
-    tags = cleanTag || tags;
+    for (const w of words) {
+      if (TAG_MAP[w]) {
+        tags = TAG_MAP[w];
+        break;
+      }
+    }
+    if (!tags) {
+      tags = cleanTag || undefined;
+    }
   }
 
   const parseItems = (data: unknown): QuizQuestion[] => {

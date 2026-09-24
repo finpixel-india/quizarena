@@ -187,8 +187,8 @@ export function Segmented<T extends string | number>({
             aria-pressed={active}
             onClick={() => onChange(o.v)}
             className={cn(
-              "shrink-0 rounded-lg px-3.5 py-1.5 text-sm font-medium transition",
-              active ? "bg-brand/15 text-fg ring-1 ring-brand/70" : "text-muted hover:bg-fg/[0.04] hover:text-fg",
+              "shrink-0 rounded-lg px-3.5 py-1.5 text-sm font-medium transition ring-1 ring-inset",
+              active ? "bg-brand/15 text-fg ring-brand/70" : "ring-transparent text-muted hover:bg-fg/[0.04] hover:text-fg",
             )}
           >
             {o.label}
@@ -252,7 +252,10 @@ export const btn = {
 export function chip(active: boolean) {
   return cn(
     "min-w-[3.25rem] rounded-xl border px-3.5 py-2 text-sm font-medium tabular-nums transition active:scale-95 disabled:cursor-not-allowed disabled:opacity-25",
-    active ? "border-brand bg-brand/10 text-fg glow" : "border-line bg-fg/[0.02] text-muted hover:border-line-2 hover:text-fg",
+    // Always reserve the glow shadow space — transparent when inactive prevents layout shift
+    active
+      ? "border-brand bg-brand/10 text-fg shadow-[0_0_0_1px_rgba(249,115,22,0.55),0_0_20px_-6px_rgba(249,115,22,0.45)]"
+      : "border-line bg-fg/[0.02] text-muted shadow-[0_0_0_1px_transparent] hover:border-line-2 hover:text-fg",
   );
 }
 

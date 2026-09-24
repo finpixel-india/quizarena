@@ -24,52 +24,6 @@ const totalLabel = (t: number) => (t >= 3600 && t % 3600 === 0 ? `${t / 3600} hr
 const hasClassesFor = (s: SubjectId) => SUBJECTS.find((x) => x.id === s)?.hasClasses ?? false;
 const memKey = (s: SubjectId, c: ClassSel) => (hasClassesFor(s) ? `${s}:${c}` : s);
 
-const SUBJECT_THEMES: Record<
-  SubjectId,
-  {
-    tag: string;
-    sub: string;
-    activeBorder: string;
-    activeBg: string;
-    glow: string;
-  }
-> = {
-  science: {
-    tag: "25 Ch",
-    sub: "Physics · Chem · Bio",
-    activeBorder: "border-emerald-500/70",
-    activeBg: "bg-emerald-500/[0.08]",
-    glow: "shadow-[0_0_24px_-4px_rgba(16,185,129,0.35)]",
-  },
-  sst: {
-    tag: "42 Ch",
-    sub: "History & Civics",
-    activeBorder: "border-indigo-500/70",
-    activeBg: "bg-indigo-500/[0.08]",
-    glow: "shadow-[0_0_24px_-4px_rgba(99,102,241,0.35)]",
-  },
-  math: {
-    tag: "∞ Gen",
-    sub: "Mental & Equations",
-    activeBorder: "border-amber-500/70",
-    activeBg: "bg-amber-500/[0.08]",
-    glow: "shadow-[0_0_24px_-4px_rgba(245,158,11,0.35)]",
-  },
-  it: {
-    tag: "Tech",
-    sub: "Computers & Code",
-    activeBorder: "border-cyan-500/70",
-    activeBg: "bg-cyan-500/[0.08]",
-    glow: "shadow-[0_0_24px_-4px_rgba(6,182,212,0.35)]",
-  },
-  custom: {
-    tag: "Trivia",
-    sub: "Any Custom Topic",
-    activeBorder: "border-rose-500/70",
-    activeBg: "bg-gradient-to-b from-rose-500/[0.1] to-orange-500/[0.05]",
-    glow: "shadow-[0_0_24px_-4px_rgba(244,63,94,0.35)]",
-  },
-};
 
 function OptionRow({ label, hint, children }: { label: string; hint?: string; children: ReactNode }) {
   return (
@@ -213,14 +167,14 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
 
   return (
     <div>
-      <div className="grid gap-4 lg:grid-cols-[1.15fr_1fr] lg:gap-6">
+      <div className="grid gap-4 lg:grid-cols-[1.15fr_1fr] lg:items-start lg:gap-6">
         {/* ------------------------------ What ------------------------------ */}
         <Card className="p-5 sm:p-7">
           <Label n={step()}>Subject</Label>
-          <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5">
+          {/* Horizontal scrollable tab strip — no grid, no orphaned tiles */}
+          <div className="mt-3 flex gap-1.5 overflow-x-auto pb-0.5 scrollbar-none">
             {SUBJECTS.map((s) => {
               const active = s.id === subject;
-              const theme = SUBJECT_THEMES[s.id] ?? SUBJECT_THEMES.science;
               return (
                 <button
                   key={s.id}
@@ -228,31 +182,15 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                   onClick={() => selectSubject(s.id)}
                   aria-pressed={active}
                   className={cn(
-                    "group relative flex flex-col justify-between min-h-[88px] sm:min-h-[96px] rounded-xl border border-line p-3 text-left transition-all duration-200 ease-out active:scale-[0.97] overflow-hidden",
+                    "flex shrink-0 items-center gap-2 rounded-xl border px-3.5 py-2.5 text-sm font-semibold transition-all duration-200 active:scale-[0.97]",
                     "ring-1 ring-inset",
                     active
-                      ? cn(theme.activeBorder, theme.activeBg, theme.glow)
-                      : "ring-transparent bg-fg/[0.02] hover:border-line-2 hover:bg-fg/[0.04]",
+                      ? "border-brand/50 bg-brand/10 text-fg ring-brand/60 shadow-[0_0_16px_-4px_rgba(249,115,22,0.3)]"
+                      : "border-line bg-fg/[0.02] text-muted ring-transparent hover:border-line-2 hover:bg-fg/[0.04] hover:text-fg",
                   )}
                 >
-                  {active ? (
-                    <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-brand/[0.06] to-transparent" />
-                  ) : null}
-                  <div className="flex w-full items-center justify-between">
-                    <SubjectIcon subject={s.id} size="sm" active={active} />
-                    <span
-                      className={cn(
-                        "rounded-full px-1.5 py-0.5 font-mono text-[9px] font-semibold tracking-wider transition-colors",
-                        active ? "bg-brand/20 text-brand-ink" : "bg-fg/[0.05] text-subtle group-hover:text-muted",
-                      )}
-                    >
-                      {theme.tag}
-                    </span>
-                  </div>
-                  <div className="mt-2 min-w-0">
-                    <span className="block text-[13px] font-bold tracking-tight text-fg">{s.short}</span>
-                    <span className="mt-0.5 block truncate font-mono text-[9.5px] text-subtle">{theme.sub}</span>
-                  </div>
+                  <SubjectIcon subject={s.id} size="sm" active={active} className="h-6 w-6 rounded-lg" />
+                  <span>{s.short}</span>
                 </button>
               );
             })}
@@ -391,7 +329,10 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                         aria-pressed={active}
                         className={cn(
                           "flex items-center justify-between gap-3 rounded-lg border px-3.5 py-2.5 text-left transition active:scale-[0.99]",
-                          active ? "border-brand bg-brand/[0.07] glow" : "border-line bg-fg/[0.02] hover:border-line-2 hover:bg-fg/[0.04]",
+                          "shadow-[0_0_0_1px_transparent]",
+                          active
+                            ? "border-brand bg-brand/[0.07] shadow-[0_0_0_1px_rgba(249,115,22,0.55),0_0_20px_-6px_rgba(249,115,22,0.35)]"
+                            : "border-line bg-fg/[0.02] hover:border-line-2 hover:bg-fg/[0.04]",
                         )}
                       >
                         <span className="min-w-0">

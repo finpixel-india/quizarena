@@ -81,7 +81,19 @@ function SubjectPicker({ subject, onSubject }: { subject: NotesSubjectId; onSubj
         const active = s.id === subject;
         const count = NOTES_COUNTS[s.id];
         return (
-          <button key={s.id} type="button" onClick={() => onSubject(s.id)} aria-pressed={active} className={cn("flex items-center gap-4 rounded-2xl border p-5 text-left transition sm:p-6", active ? "border-brand bg-brand/[0.08] glow" : "border-line bg-card hover:border-line-2 hover:bg-fg/[0.04]")}>
+          <button
+            key={s.id}
+            type="button"
+            onClick={() => onSubject(s.id)}
+            aria-pressed={active}
+            className={cn(
+              "flex items-center gap-4 rounded-2xl border p-5 text-left transition-all duration-200 sm:p-6",
+              "ring-1 ring-inset",
+              active
+                ? "border-brand bg-brand/[0.08] ring-brand/60 shadow-[0_0_24px_-6px_rgba(249,115,22,0.4)]"
+                : "border-line bg-card ring-transparent hover:border-line-2 hover:bg-fg/[0.04]",
+            )}
+          >
             <SubjectGlyph id={s.id} active={active} />
             <span className="min-w-0">
               <span className="block text-lg font-bold tracking-tight text-fg">{s.name}</span>
@@ -153,10 +165,10 @@ export default function NotesBrowser() {
     return `/notes?subject=${nextSubject}&class=${nextClass}`;
   }
   function chooseSubject(next: NotesSubjectId) {
-    router.replace(libraryUrl(next, classLevel));
+    router.replace(libraryUrl(next, classLevel), { scroll: false });
   }
   function chooseClass(next: ClassLevel) {
-    router.replace(libraryUrl(subject, next));
+    router.replace(libraryUrl(subject, next), { scroll: false });
   }
   function openChapter(id: string) {
     router.push(`/notes?subject=${subject}&class=${classLevel}&chapter=${id}`);

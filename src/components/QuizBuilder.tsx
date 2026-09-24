@@ -228,10 +228,11 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                   onClick={() => selectSubject(s.id)}
                   aria-pressed={active}
                   className={cn(
-                    "group relative flex flex-col justify-between min-h-[90px] sm:min-h-[100px] rounded-xl border p-3 text-left transition-all duration-250 ease-out hover:-translate-y-0.5 hover:shadow-md active:scale-[0.97] col-span-1 last:col-span-2 sm:last:col-span-1 overflow-hidden",
+                    "group relative flex flex-col justify-between min-h-[88px] sm:min-h-[96px] rounded-xl border border-line p-3 text-left transition-all duration-200 ease-out active:scale-[0.97] overflow-hidden",
+                    "ring-1 ring-inset",
                     active
-                      ? cn("ring-1 ring-inset", theme.activeBorder, theme.activeBg, theme.glow)
-                      : "border-line bg-fg/[0.02] hover:border-line-2 hover:bg-fg/[0.04]",
+                      ? cn(theme.activeBorder, theme.activeBg, theme.glow)
+                      : "ring-transparent bg-fg/[0.02] hover:border-line-2 hover:bg-fg/[0.04]",
                   )}
                 >
                   {active ? (
@@ -272,8 +273,8 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                       onClick={() => selectClass(c)}
                       aria-pressed={active}
                       className={cn(
-                        "rounded-lg px-3 py-2 text-sm font-semibold transition",
-                        active ? "bg-brand/15 text-fg ring-1 ring-brand/70" : "text-muted hover:bg-fg/[0.04] hover:text-fg",
+                        "rounded-lg px-3 py-2 text-sm font-semibold transition ring-1 ring-inset",
+                        active ? "bg-brand/15 text-fg ring-brand/70" : "text-muted ring-transparent hover:bg-fg/[0.04] hover:text-fg",
                       )}
                     >
                       {c === "general" ? "General" : `Class ${c}`}
@@ -429,10 +430,10 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                     onClick={() => setDifficulty(d.v)}
                     aria-pressed={active}
                     className={cn(
-                      "flex items-center justify-center gap-1.5 rounded-lg py-2 text-xs font-semibold transition-all duration-200",
+                      "flex items-center justify-center gap-1.5 rounded-lg py-2 text-xs font-semibold transition-all duration-200 ring-1 ring-inset",
                       active
-                        ? "bg-brand/15 text-fg ring-1 ring-brand/60 shadow-[0_0_10px_-3px_rgba(249,115,22,0.35)]"
-                        : "text-muted hover:bg-fg/[0.04] hover:text-fg",
+                        ? "bg-brand/15 text-fg ring-brand/60 shadow-[0_0_10px_-3px_rgba(249,115,22,0.35)]"
+                        : "ring-transparent text-muted hover:bg-fg/[0.04] hover:text-fg",
                     )}
                   >
                     <span className={cn("h-1.5 w-1.5 rounded-full shrink-0", d.dot)} />
@@ -476,10 +477,10 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                     aria-pressed={active}
                     title={sItem.id === "triviaapi" ? "The Trivia API — Recommended" : sItem.id === "bank" ? "Curated offline bank" : "Open Trivia DB"}
                     className={cn(
-                      "flex items-center justify-center gap-1.5 rounded-lg py-2 text-xs font-semibold transition-all duration-200",
+                      "flex items-center justify-center gap-1.5 rounded-lg py-2 text-xs font-semibold transition-all duration-200 ring-1 ring-inset",
                       active
-                        ? "bg-brand/15 text-fg ring-1 ring-brand/60 shadow-[0_0_10px_-3px_rgba(249,115,22,0.35)]"
-                        : "text-muted hover:bg-fg/[0.04] hover:text-fg",
+                        ? "bg-brand/15 text-fg ring-brand/60 shadow-[0_0_10px_-3px_rgba(249,115,22,0.35)]"
+                        : "ring-transparent text-muted hover:bg-fg/[0.04] hover:text-fg",
                       !isAllowed && !active ? "opacity-40" : "",
                     )}
                   >

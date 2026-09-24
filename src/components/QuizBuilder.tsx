@@ -24,6 +24,53 @@ const totalLabel = (t: number) => (t >= 3600 && t % 3600 === 0 ? `${t / 3600} hr
 const hasClassesFor = (s: SubjectId) => SUBJECTS.find((x) => x.id === s)?.hasClasses ?? false;
 const memKey = (s: SubjectId, c: ClassSel) => (hasClassesFor(s) ? `${s}:${c}` : s);
 
+const SUBJECT_THEMES: Record<
+  SubjectId,
+  {
+    tag: string;
+    sub: string;
+    activeBorder: string;
+    activeBg: string;
+    glow: string;
+  }
+> = {
+  science: {
+    tag: "25 Ch",
+    sub: "Physics · Chem · Bio",
+    activeBorder: "border-emerald-500/70",
+    activeBg: "bg-emerald-500/[0.08]",
+    glow: "shadow-[0_0_24px_-4px_rgba(16,185,129,0.35)]",
+  },
+  sst: {
+    tag: "42 Ch",
+    sub: "History & Civics",
+    activeBorder: "border-indigo-500/70",
+    activeBg: "bg-indigo-500/[0.08]",
+    glow: "shadow-[0_0_24px_-4px_rgba(99,102,241,0.35)]",
+  },
+  math: {
+    tag: "∞ Gen",
+    sub: "Mental & Equations",
+    activeBorder: "border-amber-500/70",
+    activeBg: "bg-amber-500/[0.08]",
+    glow: "shadow-[0_0_24px_-4px_rgba(245,158,11,0.35)]",
+  },
+  it: {
+    tag: "Tech",
+    sub: "Computers & Code",
+    activeBorder: "border-cyan-500/70",
+    activeBg: "bg-cyan-500/[0.08]",
+    glow: "shadow-[0_0_24px_-4px_rgba(6,182,212,0.35)]",
+  },
+  custom: {
+    tag: "Trivia",
+    sub: "Any Custom Topic",
+    activeBorder: "border-rose-500/70",
+    activeBg: "bg-gradient-to-b from-rose-500/[0.1] to-orange-500/[0.05]",
+    glow: "shadow-[0_0_24px_-4px_rgba(244,63,94,0.35)]",
+  },
+};
+
 function OptionRow({ label, hint, children }: { label: string; hint?: string; children: ReactNode }) {
   return (
     <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
@@ -173,6 +220,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
           <div className="mt-4 grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5">
             {SUBJECTS.map((s) => {
               const active = s.id === subject;
+              const theme = SUBJECT_THEMES[s.id] ?? SUBJECT_THEMES.science;
               return (
                 <button
                   key={s.id}
@@ -180,15 +228,40 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                   onClick={() => selectSubject(s.id)}
                   aria-pressed={active}
                   className={cn(
-                    "flex flex-col items-start gap-4 rounded-2xl border p-4 text-left transition active:scale-[0.98]",
-                    active ? "border-brand bg-brand/[0.07] glow" : "border-line bg-fg/[0.02] hover:border-line-2 hover:bg-fg/[0.04]",
+                    "group relative flex flex-col justify-between min-h-[110px] sm:min-h-[124px] rounded-2xl border p-3.5 sm:p-4 text-left transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-lg active:scale-[0.98] col-span-1 last:col-span-2 sm:last:col-span-1 overflow-hidden",
+                    active
+                      ? cn("ring-1 ring-inset", theme.activeBorder, theme.activeBg, theme.glow)
+                      : "border-line bg-fg/[0.02] hover:border-line-2 hover:bg-fg/[0.04]",
                   )}
                 >
-                  <SubjectIcon subject={s.id} size="sm" active={active} />
-                  <span>
-                    <span className="block text-sm font-semibold text-fg">{s.short}</span>
-                    <span className="mt-0.5 block font-mono text-[11px] text-subtle">{subjectMeta[s.id]}</span>
-                  </span>
+                  {active ? (
+                    <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-brand/[0.06] to-transparent" />
+                  ) : null}
+
+                  {/* Top row: Icon + Pill Badge */}
+                  <div className="flex w-full items-center justify-between">
+                    <SubjectIcon subject={s.id} size="sm" active={active} />
+                    <span
+                      className={cn(
+                        "rounded-full px-2 py-0.5 font-mono text-[10px] font-semibold tracking-wider transition-colors",
+                        active
+                          ? "bg-brand/20 text-brand-ink"
+                          : "bg-fg/[0.05] text-subtle group-hover:text-muted",
+                      )}
+                    >
+                      {theme.tag}
+                    </span>
+                  </div>
+
+                  {/* Bottom: Title & Subtitle */}
+                  <div className="mt-3 min-w-0">
+                    <span className="block text-sm sm:text-[15px] font-bold tracking-tight text-fg">
+                      {s.short}
+                    </span>
+                    <span className="mt-0.5 block truncate font-mono text-[10.5px] text-subtle">
+                      {theme.sub}
+                    </span>
+                  </div>
                 </button>
               );
             })}
@@ -353,6 +426,130 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
               </div>
             )}
           </div>
+
+          {/* ------------------ Difficulty Level (User Mockup 1) ------------------ */}
+          <div className="mt-8 border-t border-line pt-7">
+            <div className="flex items-center justify-between">
+              <Label n={step()}>Difficulty</Label>
+              <span className="font-mono text-[11px] text-subtle">
+                {difficulty === "any"
+                  ? "Adaptive mixed difficulty"
+                  : `${difficulty.charAt(0).toUpperCase() + difficulty.slice(1)} questions`}
+              </span>
+            </div>
+            <div className="mt-3.5 grid grid-cols-2 gap-2 sm:grid-cols-4">
+              {[
+                { v: "any" as Difficulty, label: "Mixed", desc: "All levels", dot: "bg-gradient-to-r from-emerald-400 via-amber-400 to-rose-400" },
+                { v: "easy" as Difficulty, label: "Easy", desc: "Warmup", dot: "bg-emerald-400" },
+                { v: "medium" as Difficulty, label: "Medium", desc: "Standard", dot: "bg-amber-400" },
+                { v: "hard" as Difficulty, label: "Hard", desc: "Challenge", dot: "bg-rose-400" },
+              ].map((d) => {
+                const active = difficulty === d.v;
+                return (
+                  <button
+                    key={d.v}
+                    type="button"
+                    onClick={() => setDifficulty(d.v)}
+                    aria-pressed={active}
+                    className={cn(
+                      "group relative flex flex-col items-start gap-1 rounded-xl border p-3 text-left transition-all duration-200 active:scale-[0.98]",
+                      active
+                        ? "border-brand bg-brand/[0.08] shadow-[0_0_16px_-4px_rgba(249,115,22,0.4)]"
+                        : "border-line bg-fg/[0.02] hover:border-line-2 hover:bg-fg/[0.04]",
+                    )}
+                  >
+                    <div className="flex w-full items-center justify-between">
+                      <span className={cn("text-xs sm:text-sm font-semibold", active ? "text-fg" : "text-muted group-hover:text-fg")}>
+                        {d.label}
+                      </span>
+                      <span className={cn("h-2 w-2 rounded-full", d.dot)} />
+                    </div>
+                    <span className="font-mono text-[10.5px] text-subtle">{d.desc}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* ------------------ Quiz Source (User Mockup 2) ------------------ */}
+          <div className="mt-8 border-t border-line pt-7">
+            <div className="flex items-center justify-between">
+              <Label n={step()}>Quiz Source</Label>
+              <span className="font-mono text-[11px] text-subtle">
+                {source === "triviaapi"
+                  ? "The Trivia API · Online"
+                  : source === "bank"
+                  ? "Curated Bank · Offline"
+                  : "Open Trivia DB · Online"}
+              </span>
+            </div>
+            <div className="mt-3.5 grid gap-2 sm:grid-cols-3">
+              {[
+                {
+                  id: "triviaapi" as SourceId,
+                  name: "The Trivia API",
+                  badge: "Recommended",
+                  badgeCls: "bg-brand/15 text-brand-ink",
+                  desc: "Verified online trivia with thousands of categories & tags",
+                },
+                {
+                  id: "bank" as SourceId,
+                  name: "Curated Bank",
+                  badge: "Offline",
+                  badgeCls: "bg-emerald-500/15 text-emerald-400",
+                  desc: "NCERT & syllabus aligned questions, works 100% offline",
+                },
+                {
+                  id: "opentdb" as SourceId,
+                  name: "Open Trivia DB",
+                  badge: "Free DB",
+                  badgeCls: "bg-blue-500/15 text-blue-400",
+                  desc: "Community trivia covering science, history, tech & arts",
+                },
+              ].map((sItem) => {
+                const active = source === sItem.id;
+                const isAllowed = topic.sources.includes(sItem.id);
+                return (
+                  <button
+                    key={sItem.id}
+                    type="button"
+                    onClick={() => {
+                      if (isAllowed) {
+                        setSourcePref(sItem.id);
+                      } else {
+                        const alt =
+                          topics.find((t) => t.subject === subject && t.sources.includes(sItem.id)) ??
+                          topics.find((t) => t.sources.includes(sItem.id));
+                        if (alt) {
+                          selectTopic(alt.id);
+                          setSourcePref(sItem.id);
+                        }
+                      }
+                    }}
+                    aria-pressed={active}
+                    className={cn(
+                      "group relative flex flex-col items-start gap-1.5 rounded-xl border p-3.5 text-left transition-all duration-200 active:scale-[0.98]",
+                      active
+                        ? "border-brand bg-brand/[0.08] shadow-[0_0_16px_-4px_rgba(249,115,22,0.4)]"
+                        : "border-line bg-fg/[0.02] hover:border-line-2 hover:bg-fg/[0.04]",
+                    )}
+                  >
+                    <div className="flex w-full items-center justify-between">
+                      <span className={cn("text-xs sm:text-sm font-bold", active ? "text-fg" : "text-muted group-hover:text-fg")}>
+                        {sItem.name}
+                      </span>
+                      <span className={cn("rounded px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider", sItem.badgeCls)}>
+                        {sItem.badge}
+                      </span>
+                    </div>
+                    <p className="text-[11px] leading-relaxed text-subtle line-clamp-2">
+                      {sItem.desc}
+                    </p>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </Card>
 
         {/* ------------------------------ How ------------------------------ */}
@@ -512,13 +709,8 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
             </div>
 
             <div>
-              <Label n={step()}>Options</Label>
+              <Label n={step()}>Preferences</Label>
               <div className="mt-5 space-y-5">
-                {topic.sources.length > 1 ? (
-                  <OptionRow label="Source" hint={source === "bank" ? "Curated · works offline" : SOURCE_META[source].url?.replace("https://", "")}>
-                    <Segmented value={source} onChange={setSourcePref} options={topic.sources.map((s) => ({ v: s, label: SOURCE_SHORT[s] }))} />
-                  </OptionRow>
-                ) : null}
                 {source === "triviaapi" && subject !== "custom" ? (
                   <OptionRow label="Topic tag / keyword (optional)" hint="Refine trivia with a specific tag (e.g. space, coding, nature)">
                     <input
@@ -528,20 +720,6 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                       onChange={(e) => setCustomTopic(e.target.value)}
                       className={cn(inputCls(!!customTopic), "w-44")}
                       maxLength={60}
-                    />
-                  </OptionRow>
-                ) : null}
-                {showDifficulty ? (
-                  <OptionRow label="Difficulty">
-                    <Segmented<Difficulty>
-                      value={difficulty}
-                      onChange={setDifficulty}
-                      options={[
-                        { v: "any", label: "Mixed" },
-                        { v: "easy", label: "Easy" },
-                        { v: "medium", label: "Medium" },
-                        { v: "hard", label: "Hard" },
-                      ]}
                     />
                   </OptionRow>
                 ) : null}

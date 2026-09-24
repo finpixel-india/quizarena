@@ -1,4 +1,4 @@
-export type SubjectId = "math" | "it" | "science" | "sst";
+export type SubjectId = "math" | "it" | "science" | "sst" | "custom";
 export type SourceId = "bank" | "opentdb" | "triviaapi";
 export type Difficulty = "any" | "easy" | "medium" | "hard";
 export type ThemePref = "system" | "light" | "dark";
@@ -78,6 +78,8 @@ export interface QuizConfig {
   hints: number;
   /** Try to enter full screen when the quiz starts. */
   fullscreen: boolean;
+  /** Optional custom topic query/tag for online trivia. */
+  customTopic?: string;
 }
 
 export interface GenerateResponse {

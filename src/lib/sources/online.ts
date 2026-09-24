@@ -132,29 +132,110 @@ interface TtaItem {
   difficulty?: string;
 }
 
+const CATEGORY_MAP: Record<string, string> = {
+  science: "science",
+  physics: "science",
+  chemistry: "science",
+  biology: "science",
+  nature: "science",
+  astronomy: "science",
+  space: "science",
+  history: "history",
+  war: "history",
+  geography: "geography",
+  countries: "geography",
+  capitals: "geography",
+  music: "music",
+  songs: "music",
+  film: "film_and_tv",
+  movie: "film_and_tv",
+  movies: "film_and_tv",
+  cinema: "film_and_tv",
+  tv: "film_and_tv",
+  art: "arts_and_literature",
+  arts: "arts_and_literature",
+  literature: "arts_and_literature",
+  books: "arts_and_literature",
+  sport: "sport_and_leisure",
+  sports: "sport_and_leisure",
+  games: "sport_and_leisure",
+  cricket: "sport_and_leisure",
+  football: "sport_and_leisure",
+  soccer: "sport_and_leisure",
+  olympics: "sport_and_leisure",
+  food: "food_and_drink",
+  drink: "food_and_drink",
+  cooking: "food_and_drink",
+  society: "society_and_culture",
+  culture: "society_and_culture",
+  politics: "society_and_culture",
+  gk: "general_knowledge",
+  general: "general_knowledge",
+};
+
 export async function fetchTriviaApi(
-  ref: { categories?: string; tags?: string },
+  ref: { categories?: string; tags?: string; customTopic?: string },
   amount: number,
   difficulty: Difficulty,
 ): Promise<QuizQuestion[]> {
-  const params = new URLSearchParams({ limit: String(Math.min(50, Math.max(1, amount))), types: "text_choice" });
-  if (ref.categories) params.set("categories", ref.categories);
-  if (ref.tags) params.set("tags", ref.tags);
-  if (difficulty !== "any") params.set("difficulties", difficulty);
+  const limit = Math.min(50, Math.max(1, amount));
+  let tags = ref.tags;
+  let categories = ref.categories;
 
-  const data = await fetchJson(`https://the-trivia-api.com/v2/questions?${params.toString()}`);
-  if (!Array.isArray(data)) throw new Error("unexpected response");
+  if (ref.customTopic) {
+    const raw = ref.customTopic.trim().toLowerCase();
+    const cleanTag = raw.replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
 
-  return (data as TtaItem[])
-    .filter((item) => item?.question?.text && item.correctAnswer && Array.isArray(item.incorrectAnswers))
-    .map((item) =>
-      buildQuestion({
-        id: `tta-${item.id}`,
-        question: item.question.text.trim(),
-        correct: item.correctAnswer.trim(),
-        wrong: item.incorrectAnswers.map((s) => s.trim()),
-        difficulty: item.difficulty,
-        origin: "triviaapi",
-      }),
-    );
+    const words = raw.split(/[\s,]+/);
+    for (const w of words) {
+      if (CATEGORY_MAP[w]) {
+        categories = CATEGORY_MAP[w];
+        break;
+      }
+    }
+    tags = cleanTag || tags;
+  }
+
+  const parseItems = (data: unknown): QuizQuestion[] => {
+    if (!Array.isArray(data)) return [];
+    return (data as TtaItem[])
+      .filter((item) => item?.question?.text && item.correctAnswer && Array.isArray(item.incorrectAnswers))
+      .map((item) =>
+        buildQuestion({
+          id: `tta-${item.id}`,
+          question: item.question.text.trim(),
+          correct: item.correctAnswer.trim(),
+          wrong: item.incorrectAnswers.map((s) => s.trim()),
+          difficulty: item.difficulty,
+          origin: "triviaapi",
+        }),
+      );
+  };
+
+  const attempt = async (t?: string, c?: string) => {
+    const params = new URLSearchParams({ limit: String(limit), types: "text_choice" });
+    if (c) params.set("categories", c);
+    if (t) params.set("tags", t);
+    if (difficulty !== "any") params.set("difficulties", difficulty);
+    try {
+      const data = await fetchJson(`https://the-trivia-api.com/v2/questions?${params.toString()}`);
+      return parseItems(data);
+    } catch {
+      return [];
+    }
+  };
+
+  let results = await attempt(tags, categories);
+
+  if (results.length === 0 && tags) {
+    if (categories) {
+      results = await attempt(undefined, categories);
+    }
+  }
+
+  if (results.length === 0) {
+    results = await attempt(undefined, "general_knowledge");
+  }
+
+  return results;
 }

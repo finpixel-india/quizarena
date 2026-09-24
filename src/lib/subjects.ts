@@ -13,6 +13,7 @@ export const SUBJECTS: SubjectMeta[] = [
   { id: "sst", name: "Social Studies", short: "SST", tagline: "History, Geography, Civics & Economics", hasClasses: true },
   { id: "math", name: "Basic Math", short: "Math", tagline: "Arithmetic, fractions, percentages & equations", hasClasses: false },
   { id: "it", name: "Information Technology", short: "IT", tagline: "Computers, networks & programming", hasClasses: false },
+  { id: "custom", name: "Custom Topic", short: "Custom", tagline: "Trivia API · Any custom topic", hasClasses: false },
 ];
 
 export function getSubject(id: string): SubjectMeta | undefined {

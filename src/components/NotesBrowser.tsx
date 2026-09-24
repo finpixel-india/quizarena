@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ArrowLeft, ArrowRight, BookOpen, BookOpenText, Calculator, ChevronDown, FlaskConical, Landmark, Languages, Lightbulb, ListChecks, Search, Sigma, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, BookOpenText, Calculator, ChevronDown, FlaskConical, Landmark, Languages, Lightbulb, ListChecks, Monitor, Search, Sigma, Sparkles } from "lucide-react";
 import { DiagramFrame } from "@/components/notes/DiagramKit";
 import { getDiagram } from "@/components/notes";
 import { Badge, Card, Container, Label, btn } from "@/components/ui";
@@ -17,7 +17,7 @@ function Rich({ text }: { text: string }) {
 }
 
 function SubjectGlyph({ id, active = false }: { id: NotesSubjectId; active?: boolean }) {
-  const Icon = id === "science" ? FlaskConical : id === "sst" ? Landmark : id === "math" ? Calculator : id === "english" ? BookOpenText : Languages;
+  const Icon = id === "science" ? FlaskConical : id === "sst" ? Landmark : id === "math" ? Calculator : id === "english" ? BookOpenText : id === "it" ? Monitor : Languages;
   return (
     <span className={cn("inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border", active ? "border-transparent grad-hero text-white" : "border-line bg-fg/[0.03] text-brand-ink")}>
       <Icon className="h-5 w-5" strokeWidth={1.8} />
@@ -132,7 +132,7 @@ export default function NotesBrowser() {
   const sp = useSearchParams();
   const subjectFromUrl = sp.get("subject");
   const subject: NotesSubjectId =
-    subjectFromUrl === "sst" || subjectFromUrl === "math" || subjectFromUrl === "english" || subjectFromUrl === "hindi" ? subjectFromUrl : "science";
+    subjectFromUrl === "sst" || subjectFromUrl === "math" || subjectFromUrl === "english" || subjectFromUrl === "hindi" || subjectFromUrl === "it" ? subjectFromUrl : "science";
   const classLevel: ClassLevel = sp.get("class") === "10" ? 10 : 9;
   const chapterId = sp.get("chapter") ?? "";
   const [query, setQuery] = useState("");

@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import QuizRunner from "@/components/QuizRunner";
 import { MAX_TOTAL_TIME, MIN_TOTAL_TIME, clampInt, isDifficulty, isSource, normalizeTime } from "@/lib/settings";
 import { getTopicInfo } from "@/lib/topics";
-import type { QuizConfig, QuizMode, SourceId } from "@/lib/types";
+import type { QuizConfig, QuizMode, SourceId, TopicInfo } from "@/lib/types";
 import { useEffect } from "react";
 
 export default function QuizPageClient() {
@@ -26,8 +26,18 @@ export default function QuizPageClient() {
     );
   }
 
+  const customTopic = sp.get("q") || "";
+  const displayTopic: TopicInfo = useMemo(() => {
+    if (!customTopic) return topic;
+    return {
+      ...topic,
+      title: customTopic,
+      label: `Custom · ${customTopic}`,
+    };
+  }, [topic, customTopic]);
+
   const mode: QuizMode = sp.get("mode") === "mistakes" ? "mistakes" : "standard";
-  const requested = isSource(sp.get("src")) ? (sp.get("src") as SourceId) : "bank";
+  const requested = isSource(sp.get("src")) ? (sp.get("src") as SourceId) : "triviaapi";
   const source: SourceId = topic.sources.includes(requested) || mode === "mistakes" ? requested : topic.sources[0];
   const timerMode = sp.get("tm") === "total" ? "total" : "per-question";
   const config: QuizConfig = {
@@ -40,7 +50,8 @@ export default function QuizPageClient() {
     difficulty: isDifficulty(sp.get("d")) ? (sp.get("d") as QuizConfig["difficulty"]) : "any",
     hints: clampInt(sp.get("h"), 0, 3, 3),
     fullscreen: sp.get("fs") === "1" ? true : sp.get("fs") === "0" ? false : false,
+    customTopic: customTopic || undefined,
   };
 
-  return <QuizRunner key={`${topic.id}-${mode}-${config.amount}-${config.timerMode}`} topic={topic} config={config} mode={mode} />;
+  return <QuizRunner key={`${topic.id}-${customTopic}-${mode}-${config.amount}-${config.timerMode}`} topic={displayTopic} config={config} mode={mode} />;
 }

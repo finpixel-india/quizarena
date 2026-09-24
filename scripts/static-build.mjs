@@ -5,6 +5,11 @@ import path from "node:path";
 const root = process.cwd();
 const apiDir = path.join(root, "src/app/api");
 const stash = path.join(root, ".api-stash");
+const nextDir = path.join(root, ".next");
+
+if (existsSync(nextDir)) {
+  rmSync(nextDir, { recursive: true, force: true });
+}
 
 function run(cmd, args, env = {}) {
   const res = spawnSync(cmd, args, { stdio: "inherit", env: { ...process.env, ...env }, shell: process.platform === "win32" });

@@ -103,7 +103,7 @@ defs.push({
   title: "General Science",
   label: "Science · General Science",
   kind: "general",
-  sources: ["bank", "opentdb", "triviaapi"],
+  sources: ["triviaapi", "opentdb", "bank"],
   bankCount: scienceAll.length,
   bank: { kind: "raw", items: scienceAll },
   online: { opentdb: 17, triviaapi: { categories: "science" } },
@@ -117,7 +117,7 @@ defs.push({
   title: "History & Geography",
   label: "SST · History & Geography",
   kind: "general",
-  sources: ["bank", "opentdb", "triviaapi"],
+  sources: ["triviaapi", "opentdb", "bank"],
   bankCount: sstAll.length,
   bank: { kind: "raw", items: sstAll },
   online: { opentdb: 23, triviaapi: { categories: "history,geography" } },
@@ -165,23 +165,31 @@ defs.push({
   title: "Mixed Math Challenge",
   label: "Basic Math · Mixed Challenge",
   kind: "mixed",
-  sources: ["bank", "opentdb", "triviaapi"],
+  sources: ["triviaapi", "opentdb", "bank"],
   bankCount: null,
   bank: { kind: "gen", keys: MATH_GEN_KEYS, concepts: conceptItems },
   online: { opentdb: 19, triviaapi: { tags: "mathematics,math,numbers,geometry" } },
   description: "Everything mixed — or pull math trivia from an online source",
 });
 
+const IT_ONLINE: Record<string, { tags: string; opentdb: number }> = {
+  "it-fundamentals": { tags: "computers,hardware,technology", opentdb: 18 },
+  "it-networking": { tags: "the_internet,networking,technology", opentdb: 18 },
+  "it-software": { tags: "programming,software,technology,computing", opentdb: 18 },
+};
+
 for (const t of itTopics) {
+  const online = IT_ONLINE[t.id];
   defs.push({
     id: t.id,
     subject: "it",
     title: t.title,
     label: `IT · ${t.title}`,
     kind: "topic",
-    sources: ["bank"],
+    sources: online ? ["triviaapi", "bank", "opentdb"] : ["bank"],
     bankCount: t.q.length,
     bank: { kind: "raw", items: keyed(t.id, t.q) },
+    online: online ? { opentdb: online.opentdb, triviaapi: { tags: online.tags } } : undefined,
     description: t.description,
   });
 }
@@ -193,12 +201,49 @@ defs.push({
   title: "Mixed IT Quiz",
   label: "IT · Mixed Quiz",
   kind: "mixed",
-  sources: ["bank", "opentdb", "triviaapi"],
+  sources: ["triviaapi", "opentdb", "bank"],
   bankCount: itAll.length,
   bank: { kind: "raw", items: itAll },
   online: { opentdb: 18, triviaapi: { tags: "computing,technology,programming" } },
   description: "All IT topics — or computer trivia from an online source",
 });
+
+const CUSTOM_TOPICS: Array<{
+  id: string;
+  title: string;
+  description: string;
+  tags?: string;
+  categories?: string;
+  opentdb?: number;
+}> = [
+  { id: "custom-any", title: "Custom Topic (Your Choice)", description: "Type any custom topic or keyword to generate a quiz", tags: "general_knowledge", categories: "general_knowledge", opentdb: 9 },
+  { id: "custom-space", title: "Space & Astronomy", description: "Planets, stars, galaxies, NASA and space exploration", tags: "space,astronomy,space_exploration", categories: "science", opentdb: 17 },
+  { id: "custom-tech", title: "Tech, AI & Coding", description: "Computers, artificial intelligence, software and the web", tags: "technology,programming,computing", categories: "science", opentdb: 18 },
+  { id: "custom-history", title: "World History", description: "Ancient civilizations, world wars and historic events", tags: "history,world_history", categories: "history", opentdb: 23 },
+  { id: "custom-geography", title: "World Geography", description: "Countries, capitals, flags, mountains and rivers", tags: "geography", categories: "geography", opentdb: 22 },
+  { id: "custom-sports", title: "Sports & Games", description: "Cricket, football, Olympics, athletics and world records", tags: "cricket,football,sports", categories: "sport_and_leisure", opentdb: 21 },
+  { id: "custom-inventions", title: "Inventions & Discoveries", description: "Great inventors, groundbreaking discoveries and science milestones", tags: "inventions,science,discoveries", categories: "science", opentdb: 17 },
+  { id: "custom-nature", title: "Animals & Wildlife", description: "Fauna, habitats, biodiversity and nature trivia", tags: "animals,wildlife,nature", categories: "science", opentdb: 27 },
+  { id: "custom-gk", title: "General Knowledge", description: "Mixed trivia covering culture, facts, world affairs and science", categories: "general_knowledge", opentdb: 9 },
+];
+
+for (const c of CUSTOM_TOPICS) {
+  defs.push({
+    id: c.id,
+    subject: "custom",
+    title: c.title,
+    label: `Custom · ${c.title}`,
+    kind: "topic",
+    sources: ["triviaapi", "opentdb", "bank"],
+    bankCount: null,
+    bank: { kind: "raw", items: scienceAll },
+    online: {
+      opentdb: c.opentdb ?? 9,
+      triviaapi: { ...(c.categories ? { categories: c.categories } : {}), ...(c.tags ? { tags: c.tags } : {}) },
+    },
+    description: c.description,
+  });
+}
 
 const byId = new Map(defs.map((d) => [d.id, d]));
 

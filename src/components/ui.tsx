@@ -1,5 +1,5 @@
 import type { ComponentType, ReactNode } from "react";
-import { Calculator, Cpu, FlaskConical, Landmark } from "lucide-react";
+import { Calculator, Cpu, FlaskConical, Landmark, Sparkles } from "lucide-react";
 import { cn } from "@/lib/format";
 
 type IconType = ComponentType<{ className?: string; strokeWidth?: number }>;
@@ -64,6 +64,7 @@ const SUBJECT_ICONS: Record<string, IconType> = {
   sst: Landmark,
   math: Calculator,
   it: Cpu,
+  custom: Sparkles,
 };
 
 export function SubjectIcon({ subject, size = "md", active, className }: { subject: string; size?: "sm" | "md" | "lg"; active?: boolean; className?: string }) {

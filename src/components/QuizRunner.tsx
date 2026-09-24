@@ -89,6 +89,7 @@ export default function QuizRunner({ topic, config, mode }: { topic: TopicInfo; 
             amount: config.amount,
             difficulty: config.difficulty,
             exclude: seenHashes(config.topicId),
+            customTopic: config.customTopic,
           });
           if (!data.questions?.length) throw new Error("Could not load questions. Please try again.");
           qs = unseenFirst(config.topicId, data.questions);

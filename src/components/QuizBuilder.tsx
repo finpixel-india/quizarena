@@ -60,6 +60,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
   const [difficulty, setDifficulty] = useState<Difficulty>(settings.defaultDifficulty);
   const [hints, setHints] = useState(settings.hintsPerQuiz);
   const [fullscreen, setFullscreen] = useState(settings.autoFullscreen);
+  const [customTopic, setCustomTopic] = useState("");
   const [starting, setStarting] = useState(false);
 
   const subjectMeta = useMemo(() => {
@@ -147,6 +148,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
         source,
         hints,
         fullscreen: wantFs,
+        customTopic: customTopic.trim() || undefined,
       }),
     );
   }
@@ -168,7 +170,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
         {/* ------------------------------ What ------------------------------ */}
         <Card className="p-5 sm:p-8">
           <Label n={step()}>Subject</Label>
-          <div className="mt-4 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
+          <div className="mt-4 grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5">
             {SUBJECTS.map((s) => {
               const active = s.id === subject;
               return (
@@ -256,28 +258,98 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                 </div>
               ) : null
             ) : (
-              <div className="grid gap-2 sm:grid-cols-2">
-                {flatTopics.map((t) => {
-                  const active = t.id === topicId;
-                  return (
-                    <button
-                      key={t.id}
-                      type="button"
-                      onClick={() => selectTopic(t.id)}
-                      aria-pressed={active}
-                      className={cn(
-                        "flex items-center justify-between gap-3 rounded-xl border px-4 py-3 text-left transition active:scale-[0.99]",
-                        active ? "border-brand bg-brand/[0.07] glow" : "border-line bg-fg/[0.02] hover:border-line-2 hover:bg-fg/[0.04]",
-                      )}
-                    >
-                      <span className="min-w-0">
-                        <span className="block truncate text-sm font-semibold text-fg">{t.title}</span>
-                        <span className="mt-0.5 block truncate text-xs text-subtle">{t.description}</span>
-                      </span>
-                      <span className="shrink-0 font-mono text-[11px] text-subtle">{t.bankCount === null ? "∞" : t.bankCount}</span>
-                    </button>
-                  );
-                })}
+              <div className="space-y-4">
+                {subject === "custom" ? (
+                  <div className="space-y-3.5 rounded-2xl border border-brand/35 bg-brand/[0.04] p-4 sm:p-5">
+                    <div>
+                      <p className="text-sm font-semibold text-fg">Enter your custom quiz topic</p>
+                      <p className="mt-0.5 text-xs text-muted">Type any topic or interest — Trivia API will fetch questions for it!</p>
+                      <div className="mt-3 flex items-center gap-2">
+                        <input
+                          type="text"
+                          value={customTopic}
+                          onChange={(e) => setCustomTopic(e.target.value)}
+                          placeholder="e.g. Cricket, Artificial Intelligence, Space, World History..."
+                          className="w-full rounded-xl border border-line bg-fg/[0.03] px-3.5 py-2.5 text-sm font-medium text-fg outline-none transition focus:border-brand"
+                        />
+                        {customTopic ? (
+                          <button
+                            type="button"
+                            onClick={() => setCustomTopic("")}
+                            className="rounded-xl border border-line p-2.5 text-subtle hover:text-fg"
+                            title="Clear"
+                          >
+                            <X className="h-4 w-4" />
+                          </button>
+                        ) : null}
+                      </div>
+                    </div>
+                    <div>
+                      <p className="font-mono text-[10.5px] uppercase tracking-[0.16em] text-subtle">Quick suggestions:</p>
+                      <div className="mt-2 flex flex-wrap gap-1.5">
+                        {[
+                          "Space & Astronomy",
+                          "Artificial Intelligence",
+                          "World War II",
+                          "Cricket",
+                          "World Geography",
+                          "Inventions",
+                          "Human Body",
+                          "Animals & Nature",
+                          "Ancient Rome",
+                          "Movies & Cinema",
+                        ].map((tag) => (
+                          <button
+                            key={tag}
+                            type="button"
+                            onClick={() => {
+                              setCustomTopic(tag);
+                              const match = flatTopics.find((t) => t.title.toLowerCase().includes(tag.toLowerCase().split(" ")[0]));
+                              if (match) selectTopic(match.id);
+                            }}
+                            className={cn(
+                              "rounded-lg border px-2.5 py-1 text-xs font-medium transition",
+                              customTopic.toLowerCase() === tag.toLowerCase()
+                                ? "border-brand bg-brand/15 text-brand-ink"
+                                : "border-line bg-fg/[0.02] text-muted hover:border-line-2 hover:text-fg",
+                            )}
+                          >
+                            {tag}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ) : null}
+
+                <div className="grid gap-2 sm:grid-cols-2">
+                  {flatTopics.map((t) => {
+                    const active = t.id === topicId;
+                    return (
+                      <button
+                        key={t.id}
+                        type="button"
+                        onClick={() => {
+                          selectTopic(t.id);
+                          if (subject === "custom" && t.id !== "custom-any") {
+                            setCustomTopic(t.title);
+                          }
+                        }}
+                        aria-pressed={active}
+                        className={cn(
+                          "flex items-center justify-between gap-3 rounded-xl border px-4 py-3 text-left transition active:scale-[0.99]",
+                          active ? "border-brand bg-brand/[0.07] glow" : "border-line bg-fg/[0.02] hover:border-line-2 hover:bg-fg/[0.04]",
+                        )}
+                      >
+                        <span className="min-w-0">
+                          <span className="block truncate text-sm font-semibold text-fg">{t.title}</span>
+                          <span className="mt-0.5 block truncate text-xs text-subtle">{t.description}</span>
+                        </span>
+                        <span className="shrink-0 font-mono text-[11px] text-subtle">{t.bankCount === null ? "∞" : t.bankCount}</span>
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
             )}
           </div>
@@ -447,6 +519,18 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
                     <Segmented value={source} onChange={setSourcePref} options={topic.sources.map((s) => ({ v: s, label: SOURCE_SHORT[s] }))} />
                   </OptionRow>
                 ) : null}
+                {source === "triviaapi" && subject !== "custom" ? (
+                  <OptionRow label="Topic tag / keyword (optional)" hint="Refine trivia with a specific tag (e.g. space, coding, nature)">
+                    <input
+                      type="text"
+                      placeholder="Optional tag…"
+                      value={customTopic}
+                      onChange={(e) => setCustomTopic(e.target.value)}
+                      className={cn(inputCls(!!customTopic), "w-44")}
+                      maxLength={60}
+                    />
+                  </OptionRow>
+                ) : null}
                 {showDifficulty ? (
                   <OptionRow label="Difficulty">
                     <Segmented<Difficulty>
@@ -485,7 +569,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
           </div>
 
           <div className="hidden border-t border-line p-8 lg:block">
-            <p className="truncate text-sm font-semibold text-fg">{topic.label}</p>
+            <p className="truncate text-sm font-semibold text-fg">{customTopic ? `Custom · ${customTopic}` : topic.label}</p>
             <p className="mt-1 font-mono text-xs text-subtle">{summary}</p>
             {startButton("mt-5 w-full py-3.5 text-base")}
           </div>
@@ -496,7 +580,7 @@ export default function QuizBuilder({ topics, settings, initialTopicId }: { topi
       <div className="sticky bottom-[calc(4.75rem+env(safe-area-inset-bottom))] z-20 mt-4 md:bottom-5 lg:hidden">
         <div className="glass flex items-center gap-3 rounded-2xl border border-line p-2.5 pl-4 card-shadow">
           <div className="min-w-0 flex-1">
-            <p className="truncate text-sm font-semibold text-fg">{topic.title}</p>
+            <p className="truncate text-sm font-semibold text-fg">{customTopic ? `Custom · ${customTopic}` : topic.title}</p>
             <p className="truncate font-mono text-[11px] text-subtle">{summary}</p>
           </div>
           {startButton("shrink-0 px-5")}

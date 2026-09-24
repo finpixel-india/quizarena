@@ -29,10 +29,15 @@ export async function generateQuiz(cfg: {
   amount: number;
   difficulty: Difficulty;
   exclude?: string[];
+  customTopic?: string;
 }): Promise<GenerateResponse> {
   const def = getTopic(cfg.topicId);
   if (!def) throw new QuizError("That topic could not be found.", 404);
   const topic = toInfo(def);
+  if (cfg.customTopic) {
+    topic.title = cfg.customTopic;
+    topic.label = `Custom · ${cfg.customTopic}`;
+  }
   const amount = Math.min(50, Math.max(1, Math.round(cfg.amount)));
   const source: SourceId = def.sources.includes(cfg.source) ? cfg.source : def.sources[0];
   const exclude = new Set((cfg.exclude ?? []).filter((h) => typeof h === "string" && h.length <= 32).slice(0, 300));
@@ -53,8 +58,11 @@ export async function generateQuiz(cfg: {
   try {
     if (source === "opentdb" && def.online?.opentdb) {
       online = await fetchOpenTdb(def.online.opentdb, amount, cfg.difficulty);
-    } else if (source === "triviaapi" && def.online?.triviaapi) {
-      online = await fetchTriviaApi(def.online.triviaapi, amount, cfg.difficulty);
+    } else if (source === "triviaapi") {
+      const ref = cfg.customTopic
+        ? { customTopic: cfg.customTopic }
+        : def.online?.triviaapi ?? { categories: "general_knowledge" };
+      online = await fetchTriviaApi(ref, amount, cfg.difficulty);
     } else {
       failure = "not available for this topic";
     }

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 export type ClassLevel = 9 | 10;
-export type NotesSubjectId = "science" | "sst" | "math" | "english" | "hindi";
+export type NotesSubjectId = "science" | "sst" | "math" | "english" | "hindi" | "it";
 
 export interface NoteTable {
   head: string[];

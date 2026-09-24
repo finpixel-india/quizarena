@@ -11,6 +11,7 @@ import { notes9 } from "./science9";
 import { notes10 } from "./science10";
 import { sstNotes9 } from "./sst9";
 import { sstNotes10 } from "./sst10";
+import { itNotes } from "./it";
 import type { ChapterNote, ClassLevel, NoteSection, NotesSubjectId } from "./types";
 
 export interface NoteChapter extends ChapterNote {
@@ -26,8 +27,9 @@ const sstNotes = deepen([...sstNotes9, ...sstNotes10], "sst", expandedSst);
 const mathsNotes = deepen([...mathNotes9, ...mathNotes10], "math", expandedMath);
 const englishNotes = deepen([...englishNotes9, ...englishNotes10], "english");
 const hindiNotes = deepen([...hindiNotes9, ...hindiNotes10], "hindi");
+const itNotesList = deepen(itNotes, "it");
 
-export const ALL_NOTES: NoteChapter[] = [...scienceNotes, ...sstNotes, ...mathsNotes, ...englishNotes, ...hindiNotes];
+export const ALL_NOTES: NoteChapter[] = [...scienceNotes, ...sstNotes, ...mathsNotes, ...englishNotes, ...hindiNotes, ...itNotesList];
 export const SCIENCE_NOTES = scienceNotes;
 
 export const NOTES_SUBJECTS: Array<{ id: NotesSubjectId; name: string; short: string; tagline: string; classes: number[] }> = [
@@ -36,6 +38,7 @@ export const NOTES_SUBJECTS: Array<{ id: NotesSubjectId; name: string; short: st
   { id: "math", name: "Mathematics", short: "Math", tagline: "Concepts · Theorems · Formulas", classes: [9, 10] },
   { id: "english", name: "English Grammar", short: "English", tagline: "Tenses · Clauses · Reported Speech", classes: [9, 10] },
   { id: "hindi", name: "Hindi Grammar", short: "Hindi", tagline: "व्याकरण · भाषा · वाक्य रचना", classes: [9, 10] },
+  { id: "it", name: "Information Technology", short: "IT", tagline: "Computers · Networks · Coding · AI", classes: [9, 10] },
 ];
 
 export function notesByClass(classLevel: ClassLevel, subject: NotesSubjectId = "science"): NoteChapter[] {
@@ -81,6 +84,7 @@ export const NOTES_COUNTS = {
   math: mathsNotes.length,
   english: englishNotes.length,
   hindi: hindiNotes.length,
+  it: itNotesList.length,
   class9: ALL_NOTES.filter((n) => n.classLevel === 9).length,
   class10: ALL_NOTES.filter((n) => n.classLevel === 10).length,
   sections: ALL_NOTES.reduce((s, c) => s + c.sections.length, 0),

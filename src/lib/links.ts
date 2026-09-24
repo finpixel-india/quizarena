@@ -10,6 +10,7 @@ export function quizHref(args: {
   source?: SourceId | string;
   hints?: number;
   fullscreen?: boolean;
+  customTopic?: string;
 }): string {
   const timerMode = args.timerMode === "total" ? "total" : "per-question";
   const p = new URLSearchParams({
@@ -18,11 +19,12 @@ export function quizHref(args: {
     t: String(args.time),
     tm: timerMode,
     d: args.difficulty ?? "any",
-    src: args.source ?? "bank",
+    src: args.source ?? "triviaapi",
   });
   if (timerMode === "total") p.set("tt", String(args.totalTime ?? 0));
   if (args.hints !== undefined) p.set("h", String(args.hints));
   if (args.fullscreen !== undefined) p.set("fs", args.fullscreen ? "1" : "0");
+  if (args.customTopic) p.set("q", args.customTopic);
   return `/quiz?${p.toString()}`;
 }
 

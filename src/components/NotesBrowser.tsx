@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ArrowLeft, ArrowRight, BookOpen, BookOpenText, Calculator, ChevronDown, FlaskConical, Landmark, Languages, Lightbulb, ListChecks, Monitor, Search, Sigma, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, BookOpenText, Calculator, ChevronDown, FlaskConical, ImageIcon, Landmark, Languages, Lightbulb, ListChecks, Monitor, Search, Sigma } from "lucide-react";
 import { DiagramFrame } from "@/components/notes/DiagramKit";
 import { getDiagram } from "@/components/notes";
 import { Badge, Card, Container, Label, btn } from "@/components/ui";
@@ -250,7 +250,7 @@ export default function NotesBrowser() {
         </div>
 
         <header className="mt-12 sm:mt-16">
-          <div className="flex flex-wrap items-center gap-2"><Badge tone="brand"><BookOpen className="h-3.5 w-3.5" /> {subjectName} · Class {selected.classLevel}</Badge><Badge>Chapter {pad2(selected.chapterNo)}</Badge>{diagram ? <Badge><Sparkles className="h-3.5 w-3.5 text-brand-ink" /> Labelled diagram</Badge> : null}</div>
+          <div className="flex flex-wrap items-center gap-2"><Badge tone="brand"><BookOpen className="h-3.5 w-3.5" /> {subjectName} · Class {selected.classLevel}</Badge><Badge>Chapter {pad2(selected.chapterNo)}</Badge>{diagram ? <Badge><ImageIcon className="h-3.5 w-3.5 text-brand-ink" /> Labelled diagram</Badge> : null}</div>
           <h1 className="mt-6 text-4xl font-extrabold leading-[1] tracking-tight text-fg sm:text-5xl lg:text-6xl">{selected.title}</h1>
           <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.16em] text-subtle">{selected.unit}</p>
           <p className="mt-7 max-w-3xl text-lg leading-8 text-muted sm:text-xl">{selected.overview}</p>

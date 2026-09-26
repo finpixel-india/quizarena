@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowRight, Check, CircleAlert, Clock, Lightbulb, Loader2, Maximize, Minimize, Play, RotateCcw, SkipForward, Sparkles, Timer, X } from "lucide-react";
+import { ArrowRight, Check, CircleAlert, Clock, Lightbulb, Loader2, Maximize, Minimize, Play, RotateCcw, SkipForward, Timer, X } from "lucide-react";
 import { Card, btn } from "@/components/ui";
 import { useFullscreen } from "@/lib/client-hooks";
 import { cn, pad2 } from "@/lib/format";

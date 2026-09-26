@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo } from "react";
-import { ChevronLeft, Crown, Plus, RotateCcw, Star } from "lucide-react";
+import { Award, ChevronLeft, Crown, Plus, RotateCcw } from "lucide-react";
 import LocalTime from "@/components/LocalTime";
 import ReviewList, { PractiseMistakesButton } from "@/components/ReviewList";
 import { Badge, Card, Container, Label, ProgressRing, btn } from "@/components/ui";
@@ -97,7 +97,7 @@ export default function ResultsClient({ id }: { id: string }) {
                 ) : null}
                 {isTopicBest ? (
                   <Badge tone="brand" className="animate-pop">
-                    <Star className="h-3.5 w-3.5" /> Personal best for this topic
+                    <Award className="h-3.5 w-3.5" /> Personal best for this topic
                   </Badge>
                 ) : null}
                 <Badge>

@@ -511,13 +511,13 @@ export default function QuizBuilder({
                 {
                   id: "bank" as SourceId,
                   label: isChapter ? "NCERT Bank" : "Curated",
-                  badge: isChapter ? "⭐" : "📚",
+                  badge: isChapter ? "📖" : "📚",
                   hint: isChapter ? "NCERT syllabus-aligned chapter questions" : "Curated offline bank",
                 },
                 {
                   id: "triviaapi" as SourceId,
                   label: "Trivia API",
-                  badge: isChapter ? "🌐" : "⭐",
+                  badge: "🌐",
                   hint: isChapter ? "Online trivia for this discipline" : "Online trivia API — recommended for custom topics",
                 },
                 {
@@ -559,7 +559,7 @@ export default function QuizBuilder({
                 : source === "triviaapi"
                 ? isChapter
                   ? "🌐 Trivia API: Online questions filtered by this discipline (e.g. chemistry/physics)."
-                  : "⭐ Trivia API: Broad questions from the online trivia database (Best for custom topics)."
+                  : "🌐 Trivia API: Broad questions from the online trivia database (Best for custom topics)."
                 : "🌐 Open Trivia DB: Community-submitted trivia."}
             </p>
           </div>

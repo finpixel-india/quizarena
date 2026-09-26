@@ -1,5 +1,5 @@
 import type { ComponentType, ReactNode } from "react";
-import { Calculator, Cpu, FlaskConical, GraduationCap, Landmark, Sparkles } from "lucide-react";
+import { Calculator, Cpu, FlaskConical, GraduationCap, Landmark, SlidersHorizontal } from "lucide-react";
 import { cn } from "@/lib/format";
 
 type IconType = ComponentType<{ className?: string; strokeWidth?: number }>;
@@ -65,7 +65,7 @@ const SUBJECT_ICONS: Record<string, IconType> = {
   pyq: GraduationCap,
   math: Calculator,
   it: Cpu,
-  custom: Sparkles,
+  custom: SlidersHorizontal,
 };
 
 export function SubjectIcon({ subject, size = "md", active, className }: { subject: string; size?: "sm" | "md" | "lg"; active?: boolean; className?: string }) {

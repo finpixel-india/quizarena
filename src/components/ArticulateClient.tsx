@@ -288,12 +288,25 @@ export default function ArticulateClient() {
     spinTimers.current.push(endT);
   }, [isSpinning, pool, currentPrompt, mode, settings.muteSounds, resetTimer]);
 
-  /* ── Off the cuff timer logic ── */
+  /* ── Off the cuff timer — opens fullscreen overlay directly in speaking phase ── */
   const toggleTimer = useCallback(() => {
-    if (timerState === "idle") { setTimerState("running"); setTimerLeft(settings.speechMinutes * 60); }
-    else if (timerState === "running") { setTimerState("paused"); if (timerRef.current) clearInterval(timerRef.current); }
-    else if (timerState === "paused") { setTimerState("running"); }
-    else if (timerState === "done") { resetTimer(); }
+    if (timerState === "idle") {
+      // Open fullscreen overlay directly in speaking mode
+      const secs = settings.speechMinutes * 60;
+      setOverlayPhase("speaking");
+      setOverlayTotal(secs);
+      setOverlayLeft(secs);
+      setShowOverlay(true);
+      setTimerState("running");
+      setTimerLeft(secs);
+    } else if (timerState === "running") {
+      setTimerState("paused");
+      if (timerRef.current) clearInterval(timerRef.current);
+    } else if (timerState === "paused") {
+      setTimerState("running");
+    } else if (timerState === "done") {
+      resetTimer();
+    }
   }, [timerState, settings.speechMinutes, resetTimer]);
 
   useEffect(() => {
@@ -329,7 +342,13 @@ export default function ArticulateClient() {
   const closeOverlay = useCallback(() => {
     if (overlayRef.current) clearInterval(overlayRef.current);
     setShowOverlay(false);
-  }, []);
+    // Reset off-the-cuff timer state so Start button works again
+    if (mode === "off-the-cuff") {
+      if (timerRef.current) clearInterval(timerRef.current);
+      setTimerState("idle");
+      setTimerLeft(settings.speechMinutes * 60);
+    }
+  }, [mode, settings.speechMinutes]);
 
   useEffect(() => {
     if (!showOverlay || (overlayPhase !== "research" && overlayPhase !== "speaking")) return;
@@ -435,11 +454,11 @@ export default function ArticulateClient() {
             </p>
 
             {/* Category selector — BOTH modes */}
-            <div className="relative mt-4 w-full max-w-[260px] z-20">
+            <div className="relative mt-4 w-full max-w-[260px] z-30">
               <button
                 type="button"
                 onClick={() => setCategoryOpen((v) => !v)}
-                className="flex items-center justify-between w-full gap-2 rounded-full border border-white/[0.12] bg-white/[0.04] px-4 py-2 text-sm font-medium text-fg hover:bg-white/[0.07] transition cursor-pointer"
+                className="relative z-30 flex items-center justify-between w-full gap-2 rounded-full border border-white/[0.12] bg-white/[0.04] px-4 py-2 text-sm font-medium text-fg hover:bg-white/[0.07] transition cursor-pointer"
               >
                 <span className="flex items-center gap-2">
                   <span className="leading-none">{activeCat.emoji}</span>
@@ -450,9 +469,9 @@ export default function ArticulateClient() {
 
               {categoryOpen && (
                 <>
-                  <div className="fixed inset-0 z-10" onClick={() => setCategoryOpen(false)} />
+                  <div className="fixed inset-0 z-20" onClick={() => setCategoryOpen(false)} />
                   <div
-                    className="absolute left-0 right-0 top-full mt-1.5 z-20 rounded-2xl border border-white/[0.1] overflow-hidden animate-fade-in"
+                    className="absolute left-0 right-0 top-full mt-1.5 z-30 rounded-2xl border border-white/[0.1] overflow-hidden animate-fade-in"
                     style={{ background: "rgba(16,12,10,0.97)", backdropFilter: "blur(20px)" }}
                   >
                     <div className="py-1.5 px-1.5 space-y-0.5 max-h-56 overflow-y-auto overscroll-contain scrollbar-none">
@@ -481,8 +500,8 @@ export default function ArticulateClient() {
           </div>
         </div>
 
-        {/* ─── PROMPT STAGE ─── */}
-        <div className="flex flex-col items-center justify-center w-full my-8 sm:my-10 min-h-[110px] sm:min-h-[140px] text-center overflow-hidden">
+        {/* ─── PROMPT STAGE — fixed height so buttons never shift ─── */}
+        <div className="relative w-full h-[160px] sm:h-[200px] my-4 sm:my-6 flex flex-col items-center justify-center text-center overflow-hidden">
           <p className={cn(
             "font-mono text-[11px] font-bold tracking-[0.25em] uppercase mb-4 transition-colors duration-300",
             isSpinning ? "text-[#d96b43]/60" : mode === "deep-research" ? "text-[#d96b43]" : "text-[#d96b43]",
@@ -491,7 +510,7 @@ export default function ArticulateClient() {
           </p>
 
           {/* Slot machine text area — fixed height, clip overflow, animate each tick */}
-          <div className="w-full overflow-hidden">
+          <div className="w-full overflow-hidden flex items-center justify-center flex-1">
             <h2
               key={tickKey}
               className={cn(
@@ -569,14 +588,16 @@ export default function ArticulateClient() {
         />
       )}
 
-      {/* ─── RADIAL RESEARCH OVERLAY ─── */}
+      {/* ─── RADIAL TIMER OVERLAY ─── */}
       {showOverlay && (() => {
+        const isResearching = overlayPhase === "research";
+        // Orange for speaking (both modes), teal only during research phase of deep-research
+        const ringColor = isResearching ? "#38b2ac" : "#d96b43";
         const isSpeaking = overlayPhase === "speaking";
-        const ringColor = isSpeaking ? "#d96b43" : "#38b2ac";
         const speakingThirds = overlayTotal > 0 ? overlayTotal / 3 : 20;
-        // Determine active pill: What? (first third), So what? (second), Now what? (last)
         const activePill = overlayLeft > speakingThirds * 2 ? 0 : overlayLeft > speakingThirds ? 1 : 2;
         const PILLS = ["What?", "So what?", "Now what?"];
+        const isOffTheCuff = mode === "off-the-cuff";
 
         return (
         <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-bg/96 backdrop-blur-2xl px-4 animate-fade-in">
@@ -595,7 +616,7 @@ export default function ArticulateClient() {
                     className={cn(
                       "rounded-full px-5 py-2 text-sm font-semibold border transition-all duration-300 cursor-default",
                       i === activePill
-                        ? "bg-[#1a3a2a] border-[#38b2ac]/40 text-white"
+                        ? "bg-[#d96b43]/20 border-[#d96b43]/40 text-white"
                         : "bg-transparent border-white/[0.12] text-fg/40"
                     )}
                   >

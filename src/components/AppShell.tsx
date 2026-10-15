@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import { ArrowUpRight, BarChart3, BookOpenText, FlaskConical, History, Lightbulb, Maximize, Minimize, Moon, Settings2, Sun, Zap } from "lucide-react";
+import { ArrowUpRight, BarChart3, BookOpenText, FlaskConical, History, Lightbulb, Maximize, Mic, Minimize, Moon, Settings2, Sun, Zap } from "lucide-react";
 import { btn } from "@/components/ui";
 import { useFullscreen, useTheme } from "@/lib/client-hooks";
 import { cn } from "@/lib/format";
@@ -12,6 +12,7 @@ const NAV = [
   { href: "/", label: "Quiz", icon: Zap },
   { href: "/notes", label: "Notes", icon: BookOpenText },
   { href: "/facts", label: "Facts", icon: Lightbulb },
+  { href: "/articulate", label: "Articulate", icon: Mic },
   { href: "/history", label: "History", icon: History },
   { href: "/stats", label: "Stats", icon: BarChart3 },
   { href: "/settings", label: "Settings", icon: Settings2 },
@@ -93,17 +94,21 @@ export default function AppShell({ children }: { children: ReactNode }) {
         </div>
       </header>
 
-      <main key={pathname} className="flex-1 pb-20 md:pb-0 animate-fade-up">{children}</main>
+      <main key={pathname} className={cn("flex-1 pb-20 md:pb-0 animate-fade-up", pathname === "/articulate" && "flex flex-col")}>
+        {children}
+      </main>
 
-      <footer className="hidden border-t border-line md:block">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-8 py-6 font-mono text-[11px] uppercase tracking-[0.16em] text-subtle">
-          <span>Quiz Lab · NCERT-aligned practice</span>
-          <span>Curated bank · Open Trivia DB · The Trivia API</span>
-        </div>
-      </footer>
+      {pathname !== "/articulate" ? (
+        <footer className="hidden border-t border-line md:block">
+          <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-8 py-6 font-mono text-[11px] uppercase tracking-[0.16em] text-subtle">
+            <span>Quiz Lab · NCERT-aligned practice</span>
+            <span>Curated bank · Open Trivia DB · The Trivia API</span>
+          </div>
+        </footer>
+      ) : null}
 
       <nav className="glass fixed inset-x-0 bottom-0 z-30 border-t border-line pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-1 md:hidden" aria-label="Main">
-        <div className="mx-auto grid max-w-md grid-cols-6 px-1">
+        <div className="mx-auto grid max-w-md grid-cols-7 px-1">
           {NAV.map((item) => {
             const active = isActive(pathname, item.href);
             const Icon = item.icon;

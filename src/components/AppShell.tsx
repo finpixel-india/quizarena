@@ -93,7 +93,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
         </div>
       </header>
 
-      <main className="flex-1 pb-20 md:pb-0">{children}</main>
+      <main key={pathname} className="flex-1 pb-20 md:pb-0 animate-fade-up">{children}</main>
 
       <footer className="hidden border-t border-line md:block">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-8 py-6 font-mono text-[11px] uppercase tracking-[0.16em] text-subtle">

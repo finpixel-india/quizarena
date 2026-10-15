@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import { ArrowUpRight, BarChart3, BookOpenText, FlaskConical, History, Lightbulb, Maximize, Mic, Minimize, Moon, Settings2, Sun, Zap } from "lucide-react";
+import { ArrowUpRight, BookOpenText, FlaskConical, Lightbulb, Maximize, Mic, Minimize, Moon, Settings2, Sun, Zap } from "lucide-react";
 import { btn } from "@/components/ui";
 import { useFullscreen, useTheme } from "@/lib/client-hooks";
 import { cn } from "@/lib/format";
@@ -13,14 +13,11 @@ const NAV = [
   { href: "/notes", label: "Notes", icon: BookOpenText },
   { href: "/facts", label: "Facts", icon: Lightbulb },
   { href: "/articulate", label: "Articulate", icon: Mic },
-  { href: "/history", label: "History", icon: History },
-  { href: "/stats", label: "Stats", icon: BarChart3 },
   { href: "/settings", label: "Settings", icon: Settings2 },
 ];
 
 function isActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
-  if (href === "/history" && pathname.startsWith("/results")) return true;
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
@@ -108,7 +105,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
       ) : null}
 
       <nav className="glass fixed inset-x-0 bottom-0 z-30 border-t border-line pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-1 md:hidden" aria-label="Main">
-        <div className="mx-auto grid max-w-md grid-cols-7 px-1">
+        <div className="mx-auto grid max-w-md grid-cols-5 px-2">
           {NAV.map((item) => {
             const active = isActive(pathname, item.href);
             const Icon = item.icon;
@@ -118,11 +115,11 @@ export default function AppShell({ children }: { children: ReactNode }) {
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "flex flex-col items-center gap-1 rounded-xl py-2 px-1 text-[10px] font-medium transition active:scale-95",
+                  "flex flex-col items-center gap-1 rounded-xl py-2 px-1 text-[11px] font-medium transition active:scale-95",
                   active ? "text-brand-ink bg-brand/[0.08]" : "text-subtle hover:text-fg",
                 )}
               >
-                <Icon className={cn("h-4.5 w-4.5", active ? "text-brand-ink" : "text-subtle")} strokeWidth={active ? 2.2 : 1.8} />
+                <Icon className={cn("h-5 w-5", active ? "text-brand-ink" : "text-subtle")} strokeWidth={active ? 2.2 : 1.8} />
                 <span className="truncate">{item.label}</span>
               </Link>
             );

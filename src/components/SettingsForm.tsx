@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { Check, CircleAlert, ExternalLink, Loader2, Monitor, Moon, Sun, Trash2 } from "lucide-react";
+import { ArrowUpRight, BarChart3, Check, CircleAlert, ExternalLink, History, Loader2, Monitor, Moon, Sun, Trash2 } from "lucide-react";
 import { Card, CollapsibleSection, Label, Segmented, Switch, chip, inputCls } from "@/components/ui";
 import { useTheme } from "@/lib/client-hooks";
 import { cn } from "@/lib/format";
@@ -86,6 +87,43 @@ export default function SettingsForm() {
             <CircleAlert className="h-3.5 w-3.5" /> Couldn&apos;t save
           </span>
         ) : null}
+      </div>
+
+      {/* Activity & Analytics: Direct clean links to History and Stats */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+        <Link
+          href="/history"
+          className="group flex items-center justify-between rounded-2xl border border-line bg-card p-4 sm:p-5 transition hover:border-brand/50 hover:bg-brand/[0.04] card-shadow"
+        >
+          <div className="flex items-center gap-3.5">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand/10 text-brand-ink transition group-hover:scale-105">
+              <History className="h-5 w-5" />
+            </div>
+            <div>
+              <p className="text-sm font-bold text-fg transition group-hover:text-brand-ink">Quiz History</p>
+              <p className="text-xs text-subtle font-mono mt-0.5">
+                {count} saved quiz{count === 1 ? "" : "zes"}
+              </p>
+            </div>
+          </div>
+          <ArrowUpRight className="h-4 w-4 text-subtle transition group-hover:text-fg group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </Link>
+
+        <Link
+          href="/stats"
+          className="group flex items-center justify-between rounded-2xl border border-line bg-card p-4 sm:p-5 transition hover:border-brand/50 hover:bg-brand/[0.04] card-shadow"
+        >
+          <div className="flex items-center gap-3.5">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand/10 text-brand-ink transition group-hover:scale-105">
+              <BarChart3 className="h-5 w-5" />
+            </div>
+            <div>
+              <p className="text-sm font-bold text-fg transition group-hover:text-brand-ink">Stats &amp; High Scores</p>
+              <p className="text-xs text-subtle font-mono mt-0.5">Accuracy, streaks &amp; niches</p>
+            </div>
+          </div>
+          <ArrowUpRight className="h-4 w-4 text-subtle transition group-hover:text-fg group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </Link>
       </div>
 
       {/* 01 Question source (Collapsible) */}
@@ -367,9 +405,23 @@ export default function SettingsForm() {
           History is stored only on this device (browser storage) — no account, no server database.
         </p>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-mono text-sm text-muted">
-            <span className="text-fg font-bold">{count}</span> saved quiz{count === 1 ? "" : "zes"} recorded
-          </p>
+          <div className="flex flex-wrap items-center gap-2">
+            <p className="font-mono text-sm text-muted">
+              <span className="text-fg font-bold">{count}</span> saved quiz{count === 1 ? "" : "zes"} recorded
+            </p>
+            {count > 0 ? (
+              <span className="flex items-center gap-2 text-xs font-semibold">
+                <span className="text-line-2">·</span>
+                <Link href="/history" className="text-brand-ink hover:underline">
+                  View history →
+                </Link>
+                <span className="text-line-2">·</span>
+                <Link href="/stats" className="text-brand-ink hover:underline">
+                  View stats →
+                </Link>
+              </span>
+            ) : null}
+          </div>
           <button
             type="button"
             onClick={clearHistory}

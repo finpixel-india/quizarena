@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { ArrowUpRight, RotateCcw } from "lucide-react";
+import { ArrowUpRight, BarChart3, History, RotateCcw } from "lucide-react";
 import QuizBuilder from "@/components/QuizBuilder";
 import { Card, Container, Label, SubjectIcon } from "@/components/ui";
 import { accuracyTone, cn, relativeTime, splitLabel } from "@/lib/format";
@@ -80,40 +80,80 @@ export default function HomeClient() {
             Chapter-wise quizzes with timers, hints and instant answer reviews. Set everything up on one screen and start in a single tap.
           </p>
 
-          {last ? (
+          <div className="mt-6 flex flex-wrap items-center gap-2.5 sm:mt-8 sm:gap-3">
+            {last ? (
+              <Link
+                href={quizHref({ topicId: last.topicId, amount: last.totalQuestions, time: last.timePerQuestion, timerMode: last.timerMode, totalTime: last.totalTime, difficulty: last.difficulty, source: last.source })}
+                className="group inline-flex max-w-full items-center gap-2 rounded-full border border-line-2 px-4 py-2 text-xs text-muted transition hover:border-brand hover:text-fg sm:px-5 sm:py-2.5 sm:text-sm"
+              >
+                <RotateCcw className="h-3.5 w-3.5 shrink-0 text-brand-ink sm:h-4 sm:w-4" />
+                <span className="truncate">
+                  Replay last quiz · <span className="font-medium text-fg">{splitLabel(last.topicLabel).title}</span>
+                </span>
+              </Link>
+            ) : null}
+
             <Link
-              href={quizHref({ topicId: last.topicId, amount: last.totalQuestions, time: last.timePerQuestion, timerMode: last.timerMode, totalTime: last.totalTime, difficulty: last.difficulty, source: last.source })}
-              className="group mt-6 inline-flex max-w-full items-center gap-2 rounded-full border border-line-2 px-4 py-2 text-xs text-muted transition hover:border-brand hover:text-fg sm:mt-8 sm:px-5 sm:py-2.5 sm:text-sm"
+              href="/history"
+              className="inline-flex items-center gap-2 rounded-full border border-line bg-card/60 px-4 py-2 text-xs font-semibold text-muted transition hover:border-brand hover:bg-brand/[0.06] hover:text-fg sm:px-5 sm:py-2.5 sm:text-sm"
             >
-              <RotateCcw className="h-3.5 w-3.5 shrink-0 text-brand-ink sm:h-4 sm:w-4" />
-              <span className="truncate">
-                Replay last quiz · <span className="font-medium text-fg">{splitLabel(last.topicLabel).title}</span>
-              </span>
+              <History className="h-3.5 w-3.5 text-brand-ink sm:h-4 sm:w-4" />
+              <span>History</span>
             </Link>
-          ) : null}
+
+            <Link
+              href="/stats"
+              className="inline-flex items-center gap-2 rounded-full border border-line bg-card/60 px-4 py-2 text-xs font-semibold text-muted transition hover:border-brand hover:bg-brand/[0.06] hover:text-fg sm:px-5 sm:py-2.5 sm:text-sm"
+            >
+              <BarChart3 className="h-3.5 w-3.5 text-brand-ink sm:h-4 sm:w-4" />
+              <span>Stats</span>
+            </Link>
+          </div>
         </div>
 
         {rows.length ? (
-          <div className="grid shrink-0 grid-cols-3 overflow-hidden rounded-2xl border border-line bg-card card-shadow animate-fade-up md:backdrop-blur-xl">
+          <Link
+            href="/stats"
+            className="group grid shrink-0 grid-cols-3 overflow-hidden rounded-2xl border border-line bg-card card-shadow animate-fade-up md:backdrop-blur-xl transition hover:border-brand/60"
+            title="View complete stats and high scores"
+          >
             {[
               { k: "Streak", v: `${stats.currentStreak}d` },
               { k: "Accuracy", v: `${stats.accuracy}%` },
               { k: "High score", v: stats.highestScore?.score ?? 0 },
             ].map((s, i) => (
-              <div key={s.k} className={cn("px-3 py-3 text-center sm:px-7 sm:py-5 sm:text-left", i > 0 && "border-l border-line")}>
-                <p className="font-mono text-[9px] uppercase tracking-[0.14em] text-subtle sm:text-[10px] sm:tracking-[0.18em]">{s.k}</p>
+              <div key={s.k} className={cn("px-3 py-3 text-center sm:px-7 sm:py-5 sm:text-left transition group-hover:bg-fg/[0.02]", i > 0 && "border-l border-line")}>
+                <p className="font-mono text-[9px] uppercase tracking-[0.14em] text-subtle group-hover:text-brand-ink transition sm:text-[10px] sm:tracking-[0.18em]">{s.k}</p>
                 <p className="mt-1 font-mono text-lg font-semibold text-fg tabular-nums sm:mt-1.5 sm:text-2xl">{s.v}</p>
               </div>
             ))}
-          </div>
+          </Link>
         ) : null}
       </section>
 
       {/* ------------------------------ Builder (dark) ----------------------------- */}
       <section id="builder" className="scroll-mt-20 pb-12 sm:pb-20 w-full max-w-full min-w-0 overflow-hidden">
-        <Label n="01" className="mb-4 sm:mb-6">
-          Build your quiz
-        </Label>
+        <div className="flex items-center justify-between mb-4 sm:mb-6">
+          <Label n="01">
+            Build your quiz
+          </Label>
+          <div className="flex items-center gap-2">
+            <Link
+              href="/history"
+              className="inline-flex items-center gap-1.5 rounded-full border border-line px-3 py-1.5 text-xs font-medium text-muted transition hover:border-brand hover:text-fg"
+            >
+              <History className="h-3.5 w-3.5 text-brand-ink" />
+              <span className="hidden sm:inline">Quiz</span> History
+            </Link>
+            <Link
+              href="/stats"
+              className="inline-flex items-center gap-1.5 rounded-full border border-line px-3 py-1.5 text-xs font-medium text-muted transition hover:border-brand hover:text-fg"
+            >
+              <BarChart3 className="h-3.5 w-3.5 text-brand-ink" />
+              <span className="hidden sm:inline">High</span> Stats
+            </Link>
+          </div>
+        </div>
         <QuizBuilder topics={topics} settings={settings} initialTopicId={explicitTopicId} />
       </section>
       </Container>
@@ -131,12 +171,20 @@ export default function HomeClient() {
                     Every quiz, <span className="grad-text">reviewed.</span>
                   </h2>
                 </div>
-                <Link
-                  href="/history"
-                  className="inline-flex items-center gap-2 rounded-full border border-line-2 px-5 py-2.5 text-sm font-semibold text-fg transition hover:border-brand hover:bg-brand/10"
-                >
-                  See all history <ArrowUpRight className="h-4 w-4" />
-                </Link>
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <Link
+                    href="/stats"
+                    className="inline-flex items-center gap-2 rounded-full border border-line-2 px-4 py-2 sm:px-5 sm:py-2.5 text-xs sm:text-sm font-semibold text-muted transition hover:border-brand hover:bg-brand/10 hover:text-fg"
+                  >
+                    <BarChart3 className="h-4 w-4 text-brand-ink" /> Full stats
+                  </Link>
+                  <Link
+                    href="/history"
+                    className="inline-flex items-center gap-2 rounded-full border border-line-2 px-4 py-2 sm:px-5 sm:py-2.5 text-xs sm:text-sm font-semibold text-fg transition hover:border-brand hover:bg-brand/10"
+                  >
+                    See all history <ArrowUpRight className="h-4 w-4" />
+                  </Link>
+                </div>
               </div>
 
               <div className="mt-10 grid gap-4 lg:grid-cols-3 lg:gap-6">

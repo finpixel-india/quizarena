@@ -240,7 +240,7 @@ export default function ArticulateClient() {
 
   const [currentPrompt, setCurrentPrompt] = useState<ArticulatePrompt>(() => {
     const p = ARTICULATE_PROMPTS.filter((x) => x.mode === "off-the-cuff");
-    return p.find((x) => x.title === "Voicemail") ?? p[0];
+    return p[0];
   });
 
   /* ── Slot machine spinning state ── */
@@ -248,6 +248,16 @@ export default function ArticulateClient() {
   const [tickKey, setTickKey] = useState(0);
   const [isSpinning, setIsSpinning] = useState(false);
   const spinTimers = useRef<ReturnType<typeof setTimeout>[]>([]);
+
+  /* ── Randomize default topic on client load so it never remains the same ── */
+  useEffect(() => {
+    const p = ARTICULATE_PROMPTS.filter((x) => x.mode === mode);
+    if (p.length > 0) {
+      const rand = p[Math.floor(Math.random() * p.length)];
+      setCurrentPrompt(rand);
+      setDisplayText(rand.title);
+    }
+  }, []);
 
   /* ── Fullscreen Glassmorphism Timer Page State ── */
   const [showOverlay, setShowOverlay] = useState(false);
@@ -379,10 +389,29 @@ export default function ArticulateClient() {
     setMode(m);
     setModeKey((k) => k + 1);
     setCategoryOpen(false);
-    const src = ARTICULATE_PROMPTS.filter((p) => p.mode === m);
-    if (src.length) {
-      setCurrentPrompt(src[0]);
-      setDisplayText(src[0].title);
+    const src = category === "all"
+      ? ARTICULATE_PROMPTS.filter((p) => p.mode === m)
+      : ARTICULATE_PROMPTS.filter((p) => p.mode === m && p.category === category);
+    const cand = src.length > 0 ? src : ARTICULATE_PROMPTS.filter((p) => p.mode === m);
+    if (cand.length) {
+      const rand = cand[Math.floor(Math.random() * cand.length)];
+      setCurrentPrompt(rand);
+      setDisplayText(rand.title);
+    }
+  };
+
+  /* ── Category selection ── */
+  const handleSelectCategory = (catId: ArticulateCategory) => {
+    setCategory(catId);
+    setCategoryOpen(false);
+    const src = catId === "all"
+      ? ARTICULATE_PROMPTS.filter((p) => p.mode === mode)
+      : ARTICULATE_PROMPTS.filter((p) => p.mode === mode && p.category === catId);
+    const cand = src.length > 0 ? src : ARTICULATE_PROMPTS.filter((p) => p.mode === mode);
+    if (cand.length) {
+      const rand = cand[Math.floor(Math.random() * cand.length)];
+      setCurrentPrompt(rand);
+      setDisplayText(rand.title);
     }
   };
 
@@ -477,7 +506,7 @@ export default function ArticulateClient() {
                       <button
                         key={cat.id}
                         type="button"
-                        onClick={() => { setCategory(cat.id); setCategoryOpen(false); }}
+                        onClick={() => handleSelectCategory(cat.id)}
                         className={cn(
                           "flex items-center w-full gap-3 px-3.5 py-2.5 rounded-xl text-[14px] sm:text-[15px] transition cursor-pointer text-left",
                           isActive ? "bg-white/[0.1] text-fg font-medium" : "text-fg/60 hover:text-fg hover:bg-white/[0.05]"
@@ -496,20 +525,25 @@ export default function ArticulateClient() {
 
         {/* ─── PROMPT STAGE (Strictly height-locked, text scaled up comfortably) ─── */}
         <div className="relative z-10 w-full h-[190px] sm:h-[220px] flex-shrink-0 my-3 sm:my-5 flex flex-col items-center justify-center text-center overflow-hidden select-none">
-          <p className="h-5 flex-shrink-0 font-mono text-xs sm:text-[13px] font-bold tracking-[0.25em] uppercase mb-2 text-[#d96b43]">
-            {isSpinning ? "SPINNING..." : mode === "deep-research" ? "YOUR TOPIC" : "READY"}
+          <p className="h-5 flex-shrink-0 font-mono text-xs sm:text-[13px] font-bold tracking-[0.25em] uppercase mb-1.5 text-[#d96b43]">
+            {isSpinning ? "SPINNING..." : mode === "deep-research" ? "RESEARCH TOPIC" : "VOCAB PROMPT"}
           </p>
 
-          <div className="w-full h-[140px] sm:h-[160px] flex-shrink-0 flex items-center justify-center px-3 sm:px-4 overflow-hidden">
+          <div className="w-full flex-1 flex flex-col items-center justify-center px-3 sm:px-4 overflow-hidden">
             <h2
               key={tickKey}
               className={cn(
-                "font-serif font-normal text-fg leading-[1.12] tracking-[-0.015em] max-w-[20ch] mx-auto text-[2.2rem] sm:text-[3rem] md:text-[3.5rem] line-clamp-3",
+                "font-serif font-normal text-fg leading-[1.12] tracking-[-0.015em] max-w-[20ch] mx-auto text-[2.2rem] sm:text-[3rem] md:text-[3.5rem] line-clamp-2",
                 isSpinning ? "animate-slot-in" : "animate-prompt-land",
               )}
             >
               {displayText || "\u00A0"}
             </h2>
+            {!isSpinning && currentPrompt.context && (
+              <p className="mt-2 text-xs sm:text-sm text-muted/80 max-w-[42ch] mx-auto line-clamp-2 italic font-serif">
+                &ldquo;{currentPrompt.context}&rdquo;
+              </p>
+            )}
           </div>
         </div>
 
@@ -603,10 +637,15 @@ export default function ArticulateClient() {
             {/* Main Column — Clean, Spaced, Symmetrical on Phone */}
             <div className="relative z-10 flex flex-col items-center text-center w-full max-w-lg mx-auto">
               
-              {/* Topic Title */}
-              <h2 className="font-mono text-xs sm:text-sm font-bold tracking-[0.24em] uppercase text-[#d96b43] mb-3 max-w-[32ch] px-4 leading-relaxed">
+              {/* Topic Title & Context */}
+              <h2 className="font-mono text-xs sm:text-sm font-bold tracking-[0.24em] uppercase text-[#d96b43] mb-1.5 max-w-[32ch] px-4 leading-relaxed">
                 {currentPrompt.title}
               </h2>
+              {currentPrompt.context && (
+                <p className="text-xs sm:text-[13px] text-muted/70 italic font-serif max-w-sm px-4 mb-2.5 line-clamp-2">
+                  &ldquo;{currentPrompt.context}&rdquo;
+                </p>
+              )}
 
               {/* Subtitle / Structure Pills */}
               <div className="min-h-[44px] flex items-center justify-center mb-1 sm:mb-2">

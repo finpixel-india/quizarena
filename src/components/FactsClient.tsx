@@ -3,23 +3,24 @@
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import Image from "next/image";
 import {
+  ArrowLeft,
   Bookmark,
   BookmarkCheck,
+  Check,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
   Compass,
-  Filter,
+  Layers,
+  ListFilter,
   Loader2,
   Radio,
-  Search,
+  Share2,
   Shuffle,
-  Sparkles,
-  X,
 } from "lucide-react";
 import { Container, Label, PageHeader } from "@/components/ui";
 import { cn } from "@/lib/format";
-import { FACT_CATEGORIES, FACTS, type Fact, type FactCategory } from "@/data/facts";
+import { FACT_CATEGORIES, FACTS, type Fact } from "@/data/facts";
 import { fetchLiveBatch } from "@/data/facts/live";
 
 /* ─── Local storage key ──────────────────────────────────────────────────── */
@@ -42,7 +43,7 @@ function persistSaved(s: Set<string>) {
   }
 }
 
-/* ─── Symmetrical Fact Card ──────────────────────────────────────────────── */
+/* ─── Symmetrical Grid Card ──────────────────────────────────────────────── */
 function FactCard({
   fact,
   saved,
@@ -82,8 +83,7 @@ function FactCard({
           onLoad={() => setImgLoaded(true)}
           unoptimized
         />
-        {/* Soft dark vignette */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
         {/* Category tag */}
         <div className="absolute left-3 top-3 z-10">
@@ -93,12 +93,12 @@ function FactCard({
           </span>
         </div>
 
-        {/* Live indicator tag if dynamically streamed */}
+        {/* Live stream badge */}
         {fact.isLive && (
           <div className="absolute left-3 bottom-3 z-10">
             <span className="inline-flex items-center gap-1 rounded-full border border-emerald-400/30 bg-black/60 px-2 py-0.5 font-mono text-[9.5px] uppercase tracking-wider text-emerald-300 backdrop-blur-md">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              Live Stream
+              Live Feed
             </span>
           </div>
         )}
@@ -122,27 +122,23 @@ function FactCard({
         </button>
       </div>
 
-      {/* ── Content container with strict symmetrical line clamping ── */}
+      {/* ── Content container with strict symmetrical line heights ── */}
       <div className="flex flex-1 flex-col justify-between p-4 sm:p-5">
         <div>
-          {/* Title: exactly 2 lines min-height */}
           <h3 className="line-clamp-2 min-h-[2.85rem] text-[15px] font-bold leading-snug tracking-tight text-fg group-hover:text-brand-ink transition-colors sm:text-base">
             {fact.title}
           </h3>
-
-          {/* Body: exactly 3 lines min-height */}
           <p className="mt-2.5 line-clamp-3 min-h-[3.9rem] text-[13px] leading-relaxed text-muted">
             {fact.body}
           </p>
         </div>
 
-        {/* Bottom meta row */}
         <div className="mt-4 flex items-center justify-between border-t border-line/60 pt-3 text-[11px] font-mono text-subtle">
           <span className="truncate max-w-[170px]">
-            {fact.source ? `Src: ${fact.source}` : "Verified Curiosity"}
+            {fact.source ? `Src: ${fact.source}` : "Verified Fact"}
           </span>
           <span className="inline-flex items-center gap-1 font-sans text-xs font-semibold text-brand-ink opacity-0 transition-opacity group-hover:opacity-100">
-            Read <ChevronRight className="h-3.5 w-3.5" />
+            Read full <ChevronRight className="h-3.5 w-3.5" />
           </span>
         </div>
       </div>
@@ -150,309 +146,272 @@ function FactCard({
   );
 }
 
-/* ─── Category Selection Menu Modal ──────────────────────────────────────── */
-function CategoryMenuModal({
-  activeCategory,
-  onSelect,
-  onClose,
-  categories,
-  categoryCounts,
-  savedCount,
+/* ─── Full Page Fact View ─────────────────────────────────────────────────── */
+function FullPageFactView({
+  fact,
+  facts,
+  saved,
+  onToggleSave,
+  onBack,
+  onSelectFact,
 }: {
-  activeCategory: string;
-  onSelect: (id: string) => void;
-  onClose: () => void;
-  categories: FactCategory[];
-  categoryCounts: Record<string, number>;
-  savedCount: number;
+  fact: Fact;
+  facts: Fact[];
+  saved: Set<string>;
+  onToggleSave: (id: string) => void;
+  onBack: () => void;
+  onSelectFact: (f: Fact) => void;
 }) {
-  const [search, setSearch] = useState("");
+  const currentIndex = facts.findIndex((f) => f.id === fact.id);
+  const prevFact = currentIndex > 0 ? facts[currentIndex - 1] : null;
+  const nextFact = currentIndex < facts.length - 1 ? facts[currentIndex + 1] : null;
+  const isSaved = saved.has(fact.id);
+  const catObj = FACT_CATEGORIES.find((c) => c.id === fact.category) || FACT_CATEGORIES[0];
+  const [copied, setCopied] = useState(false);
+  const [heroLoaded, setHeroLoaded] = useState(false);
 
-  const filtered = useMemo(() => {
-    if (!search.trim()) return categories;
-    const q = search.toLowerCase();
-    return categories.filter(
-      (c) => c.label.toLowerCase().includes(q) || c.description.toLowerCase().includes(q),
-    );
-  }, [categories, search]);
-
+  // Keyboard navigation
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowLeft" && prevFact) onSelectFact(prevFact);
+      if (e.key === "ArrowRight" && nextFact) onSelectFact(nextFact);
+      if (e.key === "Escape") onBack();
+      if (e.key === "b" || e.key === "B") onToggleSave(fact.id);
     }
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [onClose]);
+  }, [prevFact, nextFact, onSelectFact, onBack, onToggleSave, fact.id]);
+
+  // Scroll to top on fact change
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setHeroLoaded(false);
+  }, [fact.id]);
+
+  const handleShare = () => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
+  // Related facts in this category (excluding current)
+  const relatedFacts = useMemo(() => {
+    return facts.filter((f) => f.id !== fact.id && f.category === fact.category).slice(0, 3);
+  }, [facts, fact.id, fact.category]);
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 animate-fade-in"
-      style={{ backdropFilter: "blur(18px)", background: "rgba(0,0,0,0.75)" }}
-      onClick={onClose}
-    >
-      <div
-        className="relative flex max-h-[85vh] w-full max-w-2xl flex-col overflow-hidden rounded-3xl border border-line bg-card shadow-2xl animate-pop"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Header */}
-        <div className="flex items-center justify-between border-b border-line px-5 py-4 sm:px-6">
-          <div className="flex items-center gap-2.5">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-brand/30 bg-brand/10 text-brand-ink">
-              <Compass className="h-4.5 w-4.5" />
-            </span>
-            <div>
-              <h2 className="text-base font-bold text-fg sm:text-lg">Select Fact Category</h2>
-              <p className="text-xs text-muted">Choose what realm of knowledge to explore</p>
-            </div>
-          </div>
+    <div className="w-full animate-fade-up">
+      {/* ── Top Bar ── */}
+      <div className="border-b border-line bg-surface/50 backdrop-blur-md sticky top-[56px] sm:top-[64px] z-30 py-3">
+        <Container className="py-0 flex items-center justify-between gap-3">
           <button
             type="button"
-            onClick={onClose}
-            className="flex h-8 w-8 items-center justify-center rounded-xl border border-line text-muted hover:border-line-2 hover:text-fg transition"
+            onClick={onBack}
+            className="inline-flex items-center gap-2 rounded-xl border border-line px-3.5 py-2 text-xs sm:text-sm font-semibold text-fg hover:border-brand hover:text-brand-ink transition active:scale-95"
           >
-            <X className="h-4 w-4" />
+            <ArrowLeft className="h-4 w-4" />
+            <span>Back to facts</span>
           </button>
-        </div>
 
-        {/* Search input */}
-        <div className="border-b border-line px-5 py-3 sm:px-6">
-          <div className="relative">
-            <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-subtle" />
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search by topic, keyword, universe, deep sea..."
-              className="w-full rounded-xl border border-line bg-fg/[0.02] py-2 pl-9 pr-3 text-sm text-fg outline-none focus:border-brand transition"
-              autoFocus
-            />
-          </div>
-        </div>
+          <div className="flex items-center gap-2">
+            <span className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-line bg-card px-3 py-1 font-mono text-xs text-subtle">
+              <span>{catObj.emoji}</span>
+              <span>{catObj.label}</span>
+              <span className="text-line-2">·</span>
+              <span>{currentIndex + 1} of {facts.length}</span>
+            </span>
 
-        {/* Category options grid */}
-        <div className="overflow-y-auto p-4 sm:p-6">
-          <div className="grid gap-2.5 sm:grid-cols-2">
-            {filtered.map((cat) => {
-              const isSelected = activeCategory === cat.id;
-              const count = categoryCounts[cat.id] ?? 0;
-              return (
-                <button
-                  key={cat.id}
-                  type="button"
-                  onClick={() => {
-                    onSelect(cat.id);
-                    onClose();
-                  }}
-                  className={cn(
-                    "flex items-start gap-3 rounded-2xl border p-3.5 text-left transition-all duration-200 active:scale-[0.98]",
-                    isSelected
-                      ? "border-brand bg-brand/15 shadow-[0_0_0_1px_rgba(249,115,22,0.55),0_0_24px_-6px_rgba(249,115,22,0.35)]"
-                      : "border-line bg-fg/[0.02] hover:border-line-2 hover:bg-fg/[0.04]",
-                  )}
-                >
-                  <span className="text-2xl shrink-0 mt-0.5">{cat.emoji}</span>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center justify-between gap-1">
-                      <span className="font-semibold text-sm text-fg truncate">{cat.label}</span>
-                      <span
-                        className={cn(
-                          "rounded-md px-1.5 py-0.5 font-mono text-[10px]",
-                          isSelected ? "bg-brand/25 text-brand-ink" : "bg-fg/[0.06] text-subtle",
-                        )}
-                      >
-                        {count}
-                      </span>
-                    </div>
-                    <p className="mt-0.5 text-xs text-muted line-clamp-1">{cat.description}</p>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Saved shortcut */}
-          <div className="mt-4 pt-4 border-t border-line">
             <button
               type="button"
-              onClick={() => {
-                onSelect("saved");
-                onClose();
-              }}
+              onClick={() => onToggleSave(fact.id)}
               className={cn(
-                "flex w-full items-center justify-between rounded-2xl border p-3.5 transition active:scale-[0.98]",
-                activeCategory === "saved"
-                  ? "border-brand bg-brand/15 text-brand-ink"
-                  : "border-line bg-fg/[0.02] text-muted hover:border-line-2 hover:text-fg",
+                "inline-flex items-center gap-1.5 rounded-xl border px-3.5 py-2 text-xs sm:text-sm font-semibold transition active:scale-95",
+                isSaved
+                  ? "border-brand bg-brand/20 text-brand-ink"
+                  : "border-line text-muted hover:border-line-2 hover:text-fg",
               )}
             >
-              <div className="flex items-center gap-2.5">
-                <Sparkles className="h-4.5 w-4.5 text-amber-400" />
-                <span className="text-sm font-semibold text-fg">Your Bookmarked Facts</span>
-              </div>
-              <span className="rounded-md bg-fg/[0.06] px-2 py-0.5 font-mono text-xs text-subtle">
-                {savedCount} saved
-              </span>
+              {isSaved ? <BookmarkCheck className="h-4 w-4" /> : <Bookmark className="h-4 w-4" />}
+              <span className="hidden xs:inline">{isSaved ? "Saved" : "Save"}</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={handleShare}
+              className="inline-flex items-center gap-1.5 rounded-xl border border-line px-3.5 py-2 text-xs sm:text-sm font-medium text-muted hover:border-line-2 hover:text-fg transition active:scale-95"
+              title="Copy link"
+            >
+              <Share2 className="h-4 w-4" />
+              <span className="hidden sm:inline">{copied ? "Copied!" : "Share"}</span>
             </button>
           </div>
-        </div>
+        </Container>
       </div>
-    </div>
-  );
-}
 
-/* ─── Spotlight Modal ────────────────────────────────────────────────────── */
-function SpotlightModal({
-  facts,
-  startIndex,
-  saved,
-  onToggleSave,
-  onClose,
-}: {
-  facts: Fact[];
-  startIndex: number;
-  saved: Set<string>;
-  onToggleSave: (id: string) => void;
-  onClose: () => void;
-}) {
-  const [idx, setIdx] = useState(startIndex);
-  const fact = facts[idx] || facts[0];
-  const catObj = FACT_CATEGORIES.find((c) => c.id === fact?.category) || FACT_CATEGORIES[0];
-  const [imgLoaded, setImgLoaded] = useState(false);
+      {/* ── Main Article Layout ── */}
+      <Container className="pt-6 sm:pt-10 max-w-4xl">
+        <article className="space-y-6 sm:space-y-8">
+          {/* Hero Banner */}
+          <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl border border-line bg-surface shadow-2xl">
+            {!heroLoaded && (
+              <div className="absolute inset-0 animate-shimmer bg-gradient-to-r from-transparent via-fg/[0.06] to-transparent" />
+            )}
+            <Image
+              src={fact.image}
+              alt={fact.title}
+              fill
+              sizes="(max-width: 1024px) 100vw, 896px"
+              className={cn(
+                "object-cover transition-opacity duration-700",
+                heroLoaded ? "opacity-100" : "opacity-0",
+              )}
+              onLoad={() => setHeroLoaded(true)}
+              priority
+              unoptimized
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-  useEffect(() => {
-    setImgLoaded(false);
-  }, [idx]);
+            <div className="absolute left-4 sm:left-6 bottom-4 sm:bottom-6 right-4 sm:right-6">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-black/60 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md">
+                {catObj.emoji} {catObj.label}
+              </span>
+            </div>
+          </div>
 
-  useEffect(() => {
-    function onKey(e: KeyboardEvent) {
-      if (e.key === "ArrowLeft") setIdx((i) => Math.max(0, i - 1));
-      if (e.key === "ArrowRight") setIdx((i) => Math.min(facts.length - 1, i + 1));
-      if (e.key === "Escape") onClose();
-      if ((e.key === "b" || e.key === "B") && fact) onToggleSave(fact.id);
-    }
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [fact, facts.length, onClose, onToggleSave]);
+          {/* Title & Body */}
+          <div className="space-y-4 sm:space-y-6">
+            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-fg leading-tight">
+              {fact.title}
+            </h1>
 
-  if (!fact) return null;
-  const isSaved = saved.has(fact.id);
+            <div className="flex flex-wrap items-center gap-3 pt-2 text-xs font-mono text-subtle border-b border-line pb-4">
+              <span>EXPLORATION NO. {currentIndex + 1}</span>
+              {fact.source && (
+                <>
+                  <span>·</span>
+                  <span>SOURCE: {fact.source}</span>
+                </>
+              )}
+              {fact.isLive && (
+                <>
+                  <span>·</span>
+                  <span className="text-emerald-400 font-semibold">● LIVE GLOBAL DISCOVERY</span>
+                </>
+              )}
+            </div>
 
-  return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 animate-fade-in"
-      style={{ backdropFilter: "blur(20px)", background: "rgba(0,0,0,0.8)" }}
-      onClick={onClose}
-    >
-      <div
-        className="relative w-full max-w-2xl overflow-hidden rounded-3xl border border-line bg-card card-shadow animate-pop flex flex-col max-h-[90vh]"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Full visual banner */}
-        <div className="relative aspect-[16/9] w-full shrink-0 overflow-hidden bg-surface">
-          {!imgLoaded && (
-            <div className="absolute inset-0 animate-shimmer bg-gradient-to-r from-transparent via-fg/[0.06] to-transparent" />
-          )}
-          <Image
-            src={fact.image}
-            alt={fact.title}
-            fill
-            sizes="672px"
-            className={cn("object-cover transition-opacity duration-700", imgLoaded ? "opacity-100" : "opacity-0")}
-            onLoad={() => setImgLoaded(true)}
-            unoptimized
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+            <p className="text-base sm:text-xl leading-relaxed text-fg/90 font-normal">
+              {fact.body}
+            </p>
+          </div>
 
-          {/* Category pill */}
-          <span className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-black/60 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-md">
-            {catObj.emoji} {catObj.label}
-          </span>
+          {/* ── Next / Previous Navigation Bar ── */}
+          <div className="pt-6 border-t border-line">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+              {prevFact ? (
+                <button
+                  type="button"
+                  onClick={() => onSelectFact(prevFact)}
+                  className="group flex flex-col justify-between rounded-2xl border border-line bg-card p-4 sm:p-5 text-left transition hover:border-brand hover:shadow-lg active:scale-[0.98]"
+                >
+                  <span className="flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-muted group-hover:text-brand-ink">
+                    <ChevronLeft className="h-4 w-4" /> Previous Fact
+                  </span>
+                  <span className="mt-2 line-clamp-1 text-sm font-bold text-fg sm:text-base">
+                    {prevFact.title}
+                  </span>
+                </button>
+              ) : (
+                <div className="rounded-2xl border border-line/40 bg-card/40 p-4 text-xs font-mono text-subtle flex items-center">
+                  Start of knowledge stream
+                </div>
+              )}
 
-          {/* Close button */}
-          <button
-            type="button"
-            onClick={onClose}
-            className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-xl border border-white/20 bg-black/60 text-white backdrop-blur-md transition hover:bg-black/80"
-          >
-            <X className="h-4.5 w-4.5" />
-          </button>
+              {nextFact ? (
+                <button
+                  type="button"
+                  onClick={() => onSelectFact(nextFact)}
+                  className="group flex flex-col justify-between rounded-2xl border border-line bg-card p-4 sm:p-5 text-right transition hover:border-brand hover:shadow-lg active:scale-[0.98]"
+                >
+                  <span className="flex items-center justify-end gap-1.5 text-xs font-mono uppercase tracking-wider text-muted group-hover:text-brand-ink">
+                    Next Fact <ChevronRight className="h-4 w-4" />
+                  </span>
+                  <span className="mt-2 line-clamp-1 text-sm font-bold text-fg sm:text-base">
+                    {nextFact.title}
+                  </span>
+                </button>
+              ) : (
+                <div className="rounded-2xl border border-line/40 bg-card/40 p-4 text-xs font-mono text-subtle flex items-center justify-end">
+                  End of stream
+                </div>
+              )}
+            </div>
+          </div>
 
-          {/* Index counter */}
-          <span className="absolute bottom-4 right-4 rounded-lg bg-black/60 px-2.5 py-1 font-mono text-[11px] text-white/80 backdrop-blur-md">
-            {idx + 1} / {facts.length}
-          </span>
-        </div>
-
-        {/* Content body */}
-        <div className="overflow-y-auto px-6 py-5 sm:px-8 sm:py-6 flex-1">
-          <h2 className="text-xl font-extrabold tracking-tight text-fg sm:text-2xl">{fact.title}</h2>
-          <p className="mt-3.5 text-sm leading-relaxed text-muted sm:text-base">{fact.body}</p>
-          {fact.source && (
-            <div className="mt-5 inline-flex items-center gap-2 rounded-lg border border-line bg-fg/[0.03] px-3 py-1.5 font-mono text-[11px] text-subtle">
-              <span>Source:</span>
-              <span className="font-semibold text-fg">{fact.source}</span>
+          {/* ── Related curiosities ── */}
+          {relatedFacts.length > 0 && (
+            <div className="pt-8 sm:pt-12">
+              <Label className="mb-4">More in {catObj.label}</Label>
+              <div className="grid gap-4 sm:grid-cols-3">
+                {relatedFacts.map((rf) => (
+                  <button
+                    key={rf.id}
+                    type="button"
+                    onClick={() => onSelectFact(rf)}
+                    className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-card text-left transition hover:border-line-2 hover:-translate-y-1"
+                  >
+                    <div className="relative aspect-video w-full overflow-hidden bg-surface">
+                      <Image
+                        src={rf.image}
+                        alt={rf.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        unoptimized
+                      />
+                    </div>
+                    <div className="p-3">
+                      <h4 className="line-clamp-2 text-xs sm:text-sm font-bold text-fg group-hover:text-brand-ink transition">
+                        {rf.title}
+                      </h4>
+                    </div>
+                  </button>
+                ))}
+              </div>
             </div>
           )}
-        </div>
-
-        {/* Navigation bottom bar */}
-        <div className="flex items-center justify-between border-t border-line px-5 py-3.5 sm:px-8 bg-surface/30">
-          <button
-            type="button"
-            onClick={() => setIdx((i) => Math.max(0, i - 1))}
-            disabled={idx === 0}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-line px-4 py-2 text-sm font-medium text-muted transition hover:border-line-2 hover:text-fg disabled:pointer-events-none disabled:opacity-30"
-          >
-            <ChevronLeft className="h-4 w-4" /> Prev
-          </button>
-
-          <button
-            type="button"
-            onClick={() => onToggleSave(fact.id)}
-            className={cn(
-              "inline-flex items-center gap-1.5 rounded-xl border px-4 py-2 text-sm font-medium transition active:scale-95",
-              isSaved
-                ? "border-brand bg-brand/20 text-brand-ink"
-                : "border-line text-muted hover:border-brand/50 hover:text-brand-ink",
-            )}
-          >
-            {isSaved ? (
-              <>
-                <BookmarkCheck className="h-4 w-4" /> Bookmarked
-              </>
-            ) : (
-              <>
-                <Bookmark className="h-4 w-4" /> Bookmark
-              </>
-            )}
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setIdx((i) => Math.min(facts.length - 1, i + 1))}
-            disabled={idx === facts.length - 1}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-line px-4 py-2 text-sm font-medium text-muted transition hover:border-line-2 hover:text-fg disabled:pointer-events-none disabled:opacity-30"
-          >
-            Next <ChevronRight className="h-4 w-4" />
-          </button>
-        </div>
-      </div>
+        </article>
+      </Container>
     </div>
   );
 }
 
-/* ─── Main Facts Client ─────────────────────────────────────────────────── */
+/* ─── Main Facts Client Component ────────────────────────────────────────── */
 export default function FactsClient() {
   const [activeCategory, setActiveCategory] = useState("all");
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [saved, setSaved] = useState<Set<string>>(new Set());
-  const [spotlight, setSpotlight] = useState<{ facts: Fact[]; idx: number } | null>(null);
+  const [selectedFact, setSelectedFact] = useState<Fact | null>(null);
   const [hydrated, setHydrated] = useState(false);
 
   // Dynamic live stream facts
   const [liveFacts, setLiveFacts] = useState<Fact[]>([]);
   const [isStreaming, setIsStreaming] = useState(false);
   const [, startTransition] = useTransition();
+
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   // Load bookmarks on mount
   useEffect(() => {
@@ -514,12 +473,12 @@ export default function FactsClient() {
   const shuffleFact = () => {
     const pool = visibleFacts.length > 0 ? visibleFacts : allCombinedFacts;
     const idx = Math.floor(Math.random() * pool.length);
-    setSpotlight({ facts: pool, idx });
+    setSelectedFact(pool[idx]);
   };
 
   const activeCategoryObj = useMemo(() => {
     if (activeCategory === "saved") {
-      return { id: "saved", label: "Bookmarked Facts", emoji: "🔖", description: "Your personal collection", accent: "" };
+      return { id: "saved", label: "Bookmarked Facts", emoji: "🔖", description: "Your saved collection", accent: "" };
     }
     return FACT_CATEGORIES.find((c) => c.id === activeCategory) || FACT_CATEGORIES[0];
   }, [activeCategory]);
@@ -532,74 +491,88 @@ export default function FactsClient() {
     );
   }
 
+  // ── Render Full Page View if a Fact is Selected ──
+  if (selectedFact) {
+    return (
+      <FullPageFactView
+        fact={selectedFact}
+        facts={visibleFacts.length > 0 ? visibleFacts : allCombinedFacts}
+        saved={saved}
+        onToggleSave={toggleSave}
+        onBack={() => setSelectedFact(null)}
+        onSelectFact={(f) => setSelectedFact(f)}
+      />
+    );
+  }
+
   return (
-    <>
-      <Container className="w-full max-w-6xl overflow-hidden pb-16">
-        {/* ── Page Header ── */}
-        <section className="pb-6 sm:pb-10">
-          <div className="animate-fade-up">
-            <Label className="mb-3">Encyclopedic Discoveries</Label>
-            <PageHeader
-              title="Interesting Facts"
-              description="Explore mind-bending phenomena, historical glitches, cosmic anomalies, and deep sea mysteries. An infinite stream of verified curiosities you never knew existed."
-              action={
-                <div className="flex flex-wrap items-center gap-2.5">
-                  <button
-                    type="button"
-                    onClick={shuffleFact}
-                    className="inline-flex items-center gap-2 rounded-full border border-line-2 bg-card px-4.5 py-2.5 text-xs sm:text-sm font-semibold text-fg transition hover:border-brand hover:text-brand-ink active:scale-95"
-                  >
-                    <Shuffle className="h-4 w-4 text-brand-ink" />
-                    Surprise me
-                  </button>
-                  <button
-                    type="button"
-                    onClick={loadMoreLiveFacts}
-                    disabled={isStreaming}
-                    className="inline-flex items-center gap-2 rounded-full grad-cta px-4.5 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-[0_8px_24px_-10px_rgba(249,115,22,0.8)] transition hover:brightness-110 active:scale-95 disabled:opacity-50"
-                  >
-                    {isStreaming ? (
-                      <Loader2 className="h-4 w-4 animate-spin" />
-                    ) : (
-                      <Radio className="h-4 w-4 animate-pulse" />
-                    )}
-                    {isStreaming ? "Streaming…" : "Live Feed +"}
-                  </button>
-                </div>
-              }
-            />
-          </div>
-
-          {/* Quick Metrics */}
-          <div className="mt-5 flex flex-wrap items-center gap-4 sm:gap-8 border-y border-line py-3.5 font-mono text-xs text-subtle">
-            <div>
-              <span className="font-bold text-fg tabular-nums">{allCombinedFacts.length}</span> Total Facts
-            </div>
-            <div>
-              <span className="font-bold text-fg tabular-nums">{FACT_CATEGORIES.length - 1}</span> Categories
-            </div>
-            <div>
-              <span className="font-bold text-fg tabular-nums">{saved.size}</span> Bookmarked
-            </div>
-            {liveFacts.length > 0 && (
-              <div className="inline-flex items-center gap-1.5 text-emerald-400">
-                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="font-bold tabular-nums">+{liveFacts.length}</span> Streamed Live
+    <Container className="w-full max-w-6xl overflow-hidden pb-16">
+      {/* ── Page Header ── */}
+      <section className="pb-6 sm:pb-8">
+        <div className="animate-fade-up">
+          <Label className="mb-3">Encyclopedic Discoveries</Label>
+          <PageHeader
+            title="Interesting Facts"
+            description="Explore mind-bending phenomena, historical glitches, cosmic anomalies, and deep sea mysteries. An infinite stream of verified curiosities you never knew existed."
+            action={
+              <div className="flex flex-wrap items-center gap-2.5">
+                <button
+                  type="button"
+                  onClick={shuffleFact}
+                  className="inline-flex items-center gap-2 rounded-full border border-line-2 bg-card px-4.5 py-2.5 text-xs sm:text-sm font-semibold text-fg transition hover:border-brand hover:text-brand-ink active:scale-95"
+                >
+                  <Shuffle className="h-4 w-4 text-brand-ink" />
+                  Surprise me
+                </button>
+                <button
+                  type="button"
+                  onClick={loadMoreLiveFacts}
+                  disabled={isStreaming}
+                  className="inline-flex items-center gap-2 rounded-full grad-cta px-4.5 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-[0_8px_24px_-10px_rgba(249,115,22,0.8)] transition hover:brightness-110 active:scale-95 disabled:opacity-50"
+                >
+                  {isStreaming ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Radio className="h-4 w-4 animate-pulse" />
+                  )}
+                  {isStreaming ? "Streaming…" : "Live Feed +"}
+                </button>
               </div>
-            )}
-          </div>
-        </section>
+            }
+          />
+        </div>
 
-        {/* ── Category Menu Trigger & Quick Bar ── */}
-        <section className="sticky top-[56px] z-30 -mx-4 mb-6 border-b border-line glass px-4 py-3 sm:-mx-8 sm:top-[64px] sm:px-8">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            {/* The Main Menu Button requested by user */}
+        {/* Quick Metrics */}
+        <div className="mt-5 flex flex-wrap items-center gap-4 sm:gap-8 border-y border-line py-3 font-mono text-xs text-subtle">
+          <div>
+            <span className="font-bold text-fg tabular-nums">{allCombinedFacts.length}</span> Total Facts
+          </div>
+          <div>
+            <span className="font-bold text-fg tabular-nums">{FACT_CATEGORIES.length - 1}</span> Categories
+          </div>
+          <div>
+            <span className="font-bold text-fg tabular-nums">{saved.size}</span> Bookmarked
+          </div>
+          {liveFacts.length > 0 && (
+            <div className="inline-flex items-center gap-1.5 text-emerald-400">
+              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="font-bold tabular-nums">+{liveFacts.length}</span> Streamed Live
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* ── Category Selection Bar with Dropdown List ── */}
+      <section className="sticky top-[56px] z-30 -mx-4 mb-8 border-b border-line glass px-4 py-3 sm:-mx-8 sm:top-[64px] sm:px-8">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          {/* Dropdown Container */}
+          <div ref={dropdownRef} className="relative">
             <button
               type="button"
-              onClick={() => setMenuOpen(true)}
-              className="inline-flex items-center gap-2.5 rounded-2xl border border-line-2 bg-card px-4 py-2.5 text-xs sm:text-sm font-medium text-fg shadow-sm transition-all hover:border-brand hover:shadow-[0_0_16px_rgba(249,115,22,0.2)] active:scale-95"
+              onClick={() => setDropdownOpen((v) => !v)}
+              className="inline-flex items-center gap-2.5 rounded-2xl border border-line-2 bg-card px-4 py-2.5 text-xs sm:text-sm font-semibold text-fg shadow-sm transition-all hover:border-brand hover:shadow-[0_0_16px_rgba(249,115,22,0.2)] active:scale-95"
             >
-              <Filter className="h-4 w-4 text-brand-ink" />
+              <ListFilter className="h-4 w-4 text-brand-ink" />
               <span>Category:</span>
               <span className="font-bold text-fg flex items-center gap-1.5">
                 <span>{activeCategoryObj.emoji}</span>
@@ -608,129 +581,173 @@ export default function FactsClient() {
               <span className="rounded-md bg-fg/[0.06] px-2 py-0.5 font-mono text-[11px] text-subtle">
                 {visibleFacts.length}
               </span>
-              <ChevronDown className="h-4 w-4 text-muted ml-0.5" />
+              <ChevronDown
+                className={cn("h-4 w-4 text-muted transition-transform duration-200 ml-0.5", dropdownOpen && "rotate-180")}
+              />
             </button>
 
-            {/* Quick quick-toggle pills */}
-            <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none max-w-full">
-              {["all", "space", "creatures", "quantum", "history", "saved"].map((catId) => {
-                const isSelected = activeCategory === catId;
-                const cat = FACT_CATEGORIES.find((c) => c.id === catId);
-                const label = catId === "saved" ? "Saved" : cat?.label;
-                const emoji = catId === "saved" ? "🔖" : cat?.emoji;
-                return (
+            {/* Dropdown List (opens smoothly as a list under the button) */}
+            {dropdownOpen && (
+              <div className="absolute left-0 top-full mt-2 z-50 w-72 sm:w-84 max-h-96 overflow-y-auto rounded-2xl border border-line bg-surface/95 backdrop-blur-2xl p-1.5 shadow-2xl animate-fade-up">
+                <div className="px-3 py-2 text-[10px] font-mono uppercase tracking-wider text-subtle border-b border-line/60">
+                  Select Realm
+                </div>
+                <div className="divide-y divide-line/40">
+                  {FACT_CATEGORIES.map((cat) => {
+                    const isSelected = activeCategory === cat.id;
+                    const count = categoryCounts[cat.id] ?? 0;
+                    return (
+                      <button
+                        key={cat.id}
+                        type="button"
+                        onClick={() => {
+                          setActiveCategory(cat.id);
+                          setDropdownOpen(false);
+                        }}
+                        className={cn(
+                          "flex w-full items-center justify-between gap-2.5 rounded-xl px-3 py-2.5 text-left text-xs sm:text-sm transition-colors",
+                          isSelected
+                            ? "bg-brand/15 text-brand-ink font-semibold"
+                            : "text-muted hover:bg-fg/[0.04] hover:text-fg",
+                        )}
+                      >
+                        <span className="flex items-center gap-2 truncate">
+                          <span className="text-base">{cat.emoji}</span>
+                          <span className="truncate">{cat.label}</span>
+                        </span>
+                        <div className="flex items-center gap-1.5">
+                          <span className="rounded-md bg-fg/[0.06] px-1.5 py-0.5 font-mono text-[10px] text-subtle">
+                            {count}
+                          </span>
+                          {isSelected && <Check className="h-3.5 w-3.5 text-brand-ink shrink-0" />}
+                        </div>
+                      </button>
+                    );
+                  })}
+
+                  {/* Bookmarked option */}
                   <button
-                    key={catId}
                     type="button"
-                    onClick={() => setActiveCategory(catId)}
+                    onClick={() => {
+                      setActiveCategory("saved");
+                      setDropdownOpen(false);
+                    }}
                     className={cn(
-                      "shrink-0 rounded-xl border px-3 py-1.5 text-xs font-medium transition active:scale-95",
-                      isSelected
-                        ? "border-brand bg-brand/15 text-fg shadow-[0_0_12px_rgba(249,115,22,0.3)]"
-                        : "border-line bg-fg/[0.02] text-muted hover:border-line-2 hover:text-fg",
+                      "flex w-full items-center justify-between gap-2.5 rounded-xl px-3 py-2.5 text-left text-xs sm:text-sm transition-colors",
+                      activeCategory === "saved"
+                        ? "bg-brand/15 text-brand-ink font-semibold"
+                        : "text-muted hover:bg-fg/[0.04] hover:text-fg",
                     )}
                   >
-                    <span>{emoji} </span>
-                    <span>{label}</span>
+                    <span className="flex items-center gap-2">
+                      <Bookmark className="h-4 w-4 text-brand-ink" />
+                      <span>Bookmarked Facts</span>
+                    </span>
+                    <span className="rounded-md bg-fg/[0.06] px-1.5 py-0.5 font-mono text-[10px] text-subtle">
+                      {saved.size}
+                    </span>
                   </button>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* ── Perfectly Symmetrical Fact Cards Grid ── */}
-        <section>
-          {visibleFacts.length === 0 ? (
-            <div className="flex flex-col items-center gap-4 rounded-3xl border border-line bg-card px-8 py-20 text-center card-shadow animate-fade-up">
-              <span className="text-4xl">{activeCategory === "saved" ? "🔖" : "🔍"}</span>
-              <h3 className="text-lg font-bold text-fg">
-                {activeCategory === "saved" ? "No bookmarked facts yet" : "No facts found"}
-              </h3>
-              <p className="max-w-sm text-sm text-muted">
-                {activeCategory === "saved"
-                  ? "Click the bookmark ribbon on any fact to save it to your personal vault."
-                  : "Try switching to another category or explore all facts."}
-              </p>
-              <button
-                type="button"
-                onClick={() => setActiveCategory("all")}
-                className="mt-2 inline-flex items-center gap-2 rounded-full border border-line-2 px-5 py-2.5 text-sm font-semibold text-fg transition hover:border-brand hover:bg-brand/10"
-              >
-                Browse all facts
-              </button>
-            </div>
-          ) : (
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
-              {visibleFacts.map((fact, i) => (
-                <div key={fact.id} className="h-full">
-                  <FactCard
-                    fact={fact}
-                    saved={saved.has(fact.id)}
-                    onToggleSave={toggleSave}
-                    onOpen={() => setSpotlight({ facts: visibleFacts, idx: i })}
-                    style={{ animationDelay: `${Math.min(i * 35, 350)}ms` }}
-                  />
                 </div>
-              ))}
-            </div>
-          )}
-        </section>
+              </div>
+            )}
+          </div>
 
-        {/* ── Infinite Live Discovery Footer ── */}
-        <section className="mt-14 flex flex-col items-center justify-center gap-4 border-t border-line/60 pt-10 text-center">
-          <p className="text-sm text-muted">
-            Viewing <span className="font-semibold text-fg">{visibleFacts.length}</span> facts. Never hit the limits with our live global feed.
-          </p>
+          {/* Quick toggle chips */}
+          <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none max-w-full">
+            {["all", "space", "creatures", "quantum", "history", "saved"].map((catId) => {
+              const isSelected = activeCategory === catId;
+              const cat = FACT_CATEGORIES.find((c) => c.id === catId);
+              const label = catId === "saved" ? "Saved" : cat?.label;
+              const emoji = catId === "saved" ? "🔖" : cat?.emoji;
+              return (
+                <button
+                  key={catId}
+                  type="button"
+                  onClick={() => setActiveCategory(catId)}
+                  className={cn(
+                    "shrink-0 rounded-xl border px-3 py-1.5 text-xs font-medium transition active:scale-95",
+                    isSelected
+                      ? "border-brand bg-brand/15 text-fg shadow-[0_0_12px_rgba(249,115,22,0.3)]"
+                      : "border-line bg-fg/[0.02] text-muted hover:border-line-2 hover:text-fg",
+                  )}
+                >
+                  <span>{emoji} </span>
+                  <span>{label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
-          <div className="flex flex-wrap items-center justify-center gap-3">
+      {/* ── Perfectly Symmetrical Fact Cards Grid ── */}
+      <section>
+        {visibleFacts.length === 0 ? (
+          <div className="flex flex-col items-center gap-4 rounded-3xl border border-line bg-card px-8 py-20 text-center card-shadow animate-fade-up">
+            <span className="text-4xl">{activeCategory === "saved" ? "🔖" : "🔍"}</span>
+            <h3 className="text-lg font-bold text-fg">
+              {activeCategory === "saved" ? "No bookmarked facts yet" : "No facts found"}
+            </h3>
+            <p className="max-w-sm text-sm text-muted">
+              {activeCategory === "saved"
+                ? "Click the bookmark ribbon on any fact to save it to your personal vault."
+                : "Try switching to another category or explore all facts."}
+            </p>
             <button
               type="button"
-              onClick={loadMoreLiveFacts}
-              disabled={isStreaming}
-              className="inline-flex items-center gap-2 rounded-full grad-cta px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_-10px_rgba(249,115,22,0.8)] transition hover:brightness-110 active:scale-95 disabled:opacity-50"
+              onClick={() => setActiveCategory("all")}
+              className="mt-2 inline-flex items-center gap-2 rounded-full border border-line-2 px-5 py-2.5 text-sm font-semibold text-fg transition hover:border-brand hover:bg-brand/10"
             >
-              {isStreaming ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
-              ) : (
-                <Radio className="h-4 w-4" />
-              )}
-              {isStreaming ? "Streaming new facts…" : "Load More Live Facts"}
-            </button>
-
-            <button
-              type="button"
-              onClick={shuffleFact}
-              className="inline-flex items-center gap-2 rounded-full border border-line-2 px-6 py-3 text-sm font-semibold text-fg transition hover:border-brand hover:text-brand-ink active:scale-95"
-            >
-              <Shuffle className="h-4 w-4" /> Surprise Me
+              Browse all facts
             </button>
           </div>
-        </section>
-      </Container>
+        ) : (
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
+            {visibleFacts.map((fact, i) => (
+              <div key={fact.id} className="h-full">
+                <FactCard
+                  fact={fact}
+                  saved={saved.has(fact.id)}
+                  onToggleSave={toggleSave}
+                  onOpen={() => setSelectedFact(fact)}
+                  style={{ animationDelay: `${Math.min(i * 35, 350)}ms` }}
+                />
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
 
-      {/* ── Category Menu Modal ── */}
-      {menuOpen && (
-        <CategoryMenuModal
-          activeCategory={activeCategory}
-          onSelect={(id) => setActiveCategory(id)}
-          onClose={() => setMenuOpen(false)}
-          categories={FACT_CATEGORIES}
-          categoryCounts={categoryCounts}
-          savedCount={saved.size}
-        />
-      )}
+      {/* ── Infinite Live Discovery Footer ── */}
+      <section className="mt-14 flex flex-col items-center justify-center gap-4 border-t border-line/60 pt-10 text-center">
+        <p className="text-sm text-muted">
+          Viewing <span className="font-semibold text-fg">{visibleFacts.length}</span> facts. Never hit the limits with our live global feed.
+        </p>
 
-      {/* ── Spotlight Fullscreen Modal ── */}
-      {spotlight && (
-        <SpotlightModal
-          facts={spotlight.facts}
-          startIndex={spotlight.idx}
-          saved={saved}
-          onToggleSave={toggleSave}
-          onClose={() => setSpotlight(null)}
-        />
-      )}
-    </>
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          <button
+            type="button"
+            onClick={loadMoreLiveFacts}
+            disabled={isStreaming}
+            className="inline-flex items-center gap-2 rounded-full grad-cta px-6 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_-10px_rgba(249,115,22,0.8)] transition hover:brightness-110 active:scale-95 disabled:opacity-50"
+          >
+            {isStreaming ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <Radio className="h-4 w-4" />
+            )}
+            {isStreaming ? "Streaming new facts…" : "Load More Live Facts"}
+          </button>
+
+          <button
+            type="button"
+            onClick={shuffleFact}
+            className="inline-flex items-center gap-2 rounded-full border border-line-2 px-6 py-3 text-sm font-semibold text-fg transition hover:border-brand hover:text-brand-ink active:scale-95"
+          >
+            <Shuffle className="h-4 w-4" /> Surprise Me
+          </button>
+        </div>
+      </section>
+    </Container>
   );
 }

@@ -18,7 +18,7 @@ export interface FactCategory {
 }
 
 export const FACT_CATEGORIES: FactCategory[] = [
-  { id: "all",       label: "All Facts",            emoji: "✨", description: "Explore everything across all dimensions", accent: "from-amber-500/20 to-orange-500/20" },
+  { id: "all",       label: "All Facts",            emoji: "🌐", description: "Explore everything across all dimensions", accent: "from-amber-500/20 to-orange-500/20" },
   { id: "space",     label: "Space & Cosmos",       emoji: "🚀", description: "Black holes, rogue worlds & cosmic anomalies", accent: "from-purple-500/20 to-indigo-500/20" },
   { id: "quantum",   label: "Quantum & Physics",    emoji: "⚛️", description: "Reality-breaking experiments & particles", accent: "from-cyan-500/20 to-blue-500/20" },
   { id: "creatures", label: "Alien Creatures",      emoji: "🐙", description: "Bizarre biological marvels on our own planet", accent: "from-emerald-500/20 to-teal-500/20" },

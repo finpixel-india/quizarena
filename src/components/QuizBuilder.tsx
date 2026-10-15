@@ -37,6 +37,95 @@ function OptionRow({ label, hint, children }: { label: string; hint?: string; ch
   );
 }
 
+const DIFFICULTY_OPTIONS: { v: Difficulty; label: string; hint: string; dot: string }[] = [
+  { v: "any", label: "Mixed", hint: "All levels combined", dot: "bg-gradient-to-r from-emerald-400 via-amber-400 to-rose-400" },
+  { v: "easy", label: "Easy", hint: "Foundational & recall", dot: "bg-emerald-400" },
+  { v: "medium", label: "Medium", hint: "Standard problem-solving", dot: "bg-amber-400" },
+  { v: "hard", label: "Hard", hint: "Challenging & deep concepts", dot: "bg-rose-400" },
+];
+
+function CollapsibleSection({
+  stepNumber,
+  title,
+  preview,
+  isOpen,
+  onToggle,
+  children,
+  className,
+}: {
+  stepNumber?: string;
+  title: string;
+  preview: ReactNode;
+  isOpen: boolean;
+  onToggle: () => void;
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "rounded-2xl border transition-all duration-200 overflow-hidden",
+        isOpen
+          ? "border-brand/50 bg-card shadow-[0_4px_24px_-8px_rgba(249,115,22,0.18)] ring-1 ring-brand/30"
+          : "border-line bg-fg/[0.02] hover:border-line-2 hover:bg-fg/[0.035]",
+        className,
+      )}
+    >
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-expanded={isOpen}
+        className="flex w-full items-center justify-between gap-3 p-3.5 sm:p-4 text-left transition select-none cursor-pointer group"
+      >
+        <div className="flex items-center gap-2 sm:gap-2.5 min-w-0 flex-1">
+          {stepNumber ? (
+            <span className="font-mono text-[11px] sm:text-xs font-semibold text-brand-ink shrink-0">
+              {stepNumber}
+            </span>
+          ) : null}
+          <span className="text-xs sm:text-sm font-bold text-fg shrink-0 group-hover:text-brand-ink transition-colors">
+            {title}
+          </span>
+          <span className="text-line-2 text-xs">·</span>
+          <div className="min-w-0 truncate">{preview}</div>
+        </div>
+
+        <div className="flex items-center gap-2 shrink-0">
+          <span className="text-[11px] sm:text-xs font-semibold text-brand-ink hidden xs:inline">
+            {isOpen ? "Close" : "Change"}
+          </span>
+          <span
+            className={cn(
+              "inline-flex h-7 w-7 items-center justify-center rounded-lg border transition-all duration-200",
+              isOpen
+                ? "border-brand/40 bg-brand/10 text-brand-ink"
+                : "border-line bg-card text-subtle group-hover:text-fg group-hover:border-line-2",
+            )}
+          >
+            <ChevronDown
+              className={cn("h-4 w-4 transition-transform duration-300 ease-out", isOpen && "rotate-180")}
+            />
+          </span>
+        </div>
+      </button>
+
+      <div
+        className={cn(
+          "grid transition-[grid-template-rows] duration-300 ease-in-out border-line/40",
+          isOpen ? "grid-rows-[1fr] border-t" : "grid-rows-[0fr]",
+        )}
+      >
+        <div className="overflow-hidden">
+          <div className="p-3.5 sm:p-4 bg-fg/[0.015]">
+            {children}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
 export default function QuizBuilder({
   topics,
   settings,
@@ -91,6 +180,10 @@ export default function QuizBuilder({
     [initSubject]: initCls,
   }));
   const [sheetOpen, setSheetOpen] = useState(false);
+  const [openSubject, setOpenSubject] = useState(false);
+  const [openClass, setOpenClass] = useState(false);
+  const [openDifficulty, setOpenDifficulty] = useState(false);
+  const [openTimer, setOpenTimer] = useState(false);
 
   // Independent options loaded from saved preferences (with settings as fallback)
   const initialAmount = typeof prefs.amount === "number" && prefs.amount >= 1 ? prefs.amount : settings.defaultQuestions;
@@ -250,9 +343,6 @@ export default function QuizBuilder({
     );
   }
 
-  let stepNo = 0;
-  const step = () => pad2(++stepNo);
-
   const startButton = (className?: string) => (
     <button type="button" onClick={start} disabled={starting} className={cn(btn.primary, className)}>
       {starting ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
@@ -263,249 +353,258 @@ export default function QuizBuilder({
 
   return (
     <div className="w-full max-w-full min-w-0">
-      <div className="grid w-full max-w-full min-w-0 grid-cols-1 gap-4 lg:grid-cols-[1.15fr_1fr] lg:items-start lg:gap-6">
-        {/* ------------------------------ What ------------------------------ */}
-        <Card className="w-full max-w-full min-w-0 overflow-hidden p-4 sm:p-7">
-          <Label n={step()}>Subject</Label>
-          {/* Horizontal scrollable tab strip */}
-          <div className="mt-3 -mx-4 flex gap-1.5 overflow-x-auto px-4 pb-1 scrollbar-none sm:mx-0 sm:px-0">
-            {SUBJECTS.map((s) => {
-              const active = s.id === subject;
-              return (
-                <button
-                  key={s.id}
-                  type="button"
-                  onClick={() => selectSubject(s.id)}
-                  aria-pressed={active}
-                  className={cn(
-                    "flex shrink-0 items-center gap-2 rounded-xl border px-3 py-2 text-xs sm:px-3.5 sm:py-2.5 sm:text-sm font-semibold transition-all duration-200 active:scale-[0.97]",
-                    "ring-1 ring-inset",
-                    active
-                      ? "border-brand/50 bg-brand/10 text-fg ring-brand/60 shadow-[0_0_16px_-4px_rgba(249,115,22,0.3)]"
-                      : "border-line bg-fg/[0.02] text-muted ring-transparent hover:border-line-2 hover:bg-fg/[0.04] hover:text-fg",
-                  )}
-                >
-                  <SubjectIcon subject={s.id} size="sm" active={active} className="h-5 w-5 sm:h-6 sm:w-6 rounded-lg" />
-                  <span>{s.short}</span>
-                </button>
-              );
-            })}
-          </div>
+      <div className="grid w-full max-w-full min-w-0 grid-cols-1 gap-4 lg:grid-cols-2 lg:items-start lg:gap-6">
+        {/* ------------------------------ Left Column: Topic & Content ------------------------------ */}
+        <Card className="w-full max-w-full min-w-0 overflow-hidden p-4 sm:p-6 space-y-4 sm:space-y-5">
+          {/* Section: Subject (Collapsible) */}
+          <CollapsibleSection
+            stepNumber="01"
+            title="Subject"
+            isOpen={openSubject}
+            onToggle={() => setOpenSubject((prev) => !prev)}
+            preview={
+              <div className="inline-flex items-center gap-1.5 min-w-0">
+                <SubjectIcon subject={subject} size="sm" className="h-5 w-5 rounded-md text-brand-ink" />
+                <span className="text-xs sm:text-sm font-semibold text-fg truncate">
+                  {SUBJECTS.find((s) => s.id === subject)?.short ?? subject}
+                </span>
+              </div>
+            }
+          >
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              {SUBJECTS.map((s) => {
+                const active = s.id === subject;
+                return (
+                  <button
+                    key={s.id}
+                    type="button"
+                    onClick={() => {
+                      selectSubject(s.id);
+                      setOpenSubject(false);
+                    }}
+                    aria-pressed={active}
+                    className={cn(
+                      "flex items-center gap-2.5 rounded-xl border p-2.5 sm:p-3 text-left transition-all duration-200 active:scale-[0.98]",
+                      active
+                        ? "border-brand bg-brand/15 text-brand-ink shadow-[0_0_12px_rgba(249,115,22,0.25)] font-semibold"
+                        : "border-line bg-card text-muted hover:border-line-2 hover:bg-fg/[0.03] hover:text-fg",
+                    )}
+                  >
+                    <SubjectIcon subject={s.id} size="sm" active={active} className="h-7 w-7 rounded-lg shrink-0" />
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs sm:text-sm font-semibold truncate text-fg">{s.short}</p>
+                      <p className="text-[10px] sm:text-[11px] text-subtle truncate">{s.tagline}</p>
+                    </div>
+                    {active && <Check className="h-4 w-4 text-brand-ink shrink-0" />}
+                  </button>
+                );
+              })}
+            </div>
+          </CollapsibleSection>
 
+          {/* Section: Class (Collapsible, if hasClasses) */}
           {hasClasses ? (
-            <>
-              <Label n={step()} className="mt-5 sm:mt-6">
-                Class
-              </Label>
-              <div className="mt-2.5 sm:mt-3 grid w-full max-w-full min-w-0 grid-cols-3 gap-1 rounded-xl border border-line bg-fg/[0.02] p-1">
-                {([9, 10, "general"] as ClassSel[]).map((c) => {
+            <CollapsibleSection
+              stepNumber="02"
+              title="Class"
+              isOpen={openClass}
+              onToggle={() => setOpenClass((prev) => !prev)}
+              preview={
+                <span className="rounded-md bg-brand/10 border border-brand/20 px-2 py-0.5 font-mono text-[11px] sm:text-xs font-semibold text-brand-ink">
+                  {cls === "general" ? "General / Mixed" : `Class ${cls}`}
+                </span>
+              }
+            >
+              <div className="grid grid-cols-3 gap-2">
+                {([
+                  { c: 10 as ClassSel, label: "Class 10", hint: "Board Syllabus" },
+                  { c: 9 as ClassSel, label: "Class 9", hint: "Foundations" },
+                  { c: "general" as ClassSel, label: "General", hint: "Mixed levels" },
+                ]).map(({ c, label, hint }) => {
                   const active = cls === c;
                   return (
                     <button
                       key={String(c)}
                       type="button"
-                      onClick={() => selectClass(c)}
+                      onClick={() => {
+                        selectClass(c);
+                        setOpenClass(false);
+                      }}
                       aria-pressed={active}
                       className={cn(
-                        "rounded-lg px-2.5 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm font-semibold transition ring-1 ring-inset",
-                        active ? "bg-brand/15 text-fg ring-brand/70" : "text-muted ring-transparent hover:bg-fg/[0.04] hover:text-fg",
+                        "flex flex-col items-center justify-center rounded-xl border p-2.5 sm:p-3 text-center transition-all duration-200 active:scale-[0.98]",
+                        active
+                          ? "border-brand bg-brand/15 text-fg ring-1 ring-brand shadow-[0_0_12px_rgba(249,115,22,0.25)] font-semibold"
+                          : "border-line bg-card text-muted hover:border-line-2 hover:bg-fg/[0.03] hover:text-fg",
                       )}
                     >
-                      {c === "general" ? "General" : `Class ${c}`}
+                      <span className="text-xs sm:text-sm font-bold text-fg">{label}</span>
+                      <span className="text-[10px] sm:text-[11px] text-subtle mt-0.5">{hint}</span>
                     </button>
                   );
                 })}
               </div>
-            </>
+            </CollapsibleSection>
           ) : null}
 
-          <Label n={step()} className="mt-6">
-            {hasClasses && cls !== "general" ? "Chapter" : "Topic"}
-          </Label>
-          <div className="mt-3">
-            {hasClasses && cls !== "general" ? (
-              <button
-                type="button"
-                onClick={() => setSheetOpen(true)}
-                className="group flex w-full items-center gap-3 rounded-xl border border-line bg-fg/[0.02] p-3.5 text-left transition hover:border-line-2 hover:bg-fg/[0.04]"
-                aria-haspopup="dialog"
-              >
-                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-line font-mono text-sm text-brand-ink">
-                  {topic.chapterNo ? pad2(topic.chapterNo) : <Layers className="h-4 w-4" />}
-                </span>
-                <span className="min-w-0 flex-1">
-                  <span className="block truncate text-sm font-semibold text-fg">{topic.title}</span>
-                  <span className="mt-0.5 block truncate text-xs text-subtle">
-                    {topic.section ? `${topic.section} · ` : ""}
-                    {topic.bankCount} questions · NCERT-aligned
-                  </span>
-                </span>
-                <span className="hidden text-xs font-medium text-muted transition group-hover:text-fg sm:inline">Change</span>
-                <ChevronDown className="h-4 w-4 shrink-0 text-subtle transition group-hover:text-fg" />
-              </button>
-            ) : hasClasses ? (
-              generalTopic ? (
-                <div className="flex items-start gap-3 rounded-xl border border-brand bg-brand/[0.06] p-3.5 glow">
-                  <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-line text-brand-ink">
-                    <Globe2 className="h-4 w-4" />
-                  </span>
-                  <div className="min-w-0">
-                    <p className="text-sm font-semibold text-fg">{generalTopic.title}</p>
-                    <p className="mt-0.5 text-xs text-muted">{generalTopic.description}</p>
-                  </div>
-                </div>
-              ) : null
-            ) : (
-              <div className="space-y-3">
-                {subject === "custom" ? (
-                  <div className="space-y-3 rounded-xl border border-brand/35 bg-brand/[0.04] p-3.5">
-                    <div>
-                      <p className="text-sm font-semibold text-fg">Enter your custom quiz topic</p>
-                      <p className="mt-0.5 text-xs text-muted">Type any topic — Trivia API will fetch questions for it!</p>
-                      <div className="mt-2.5 flex items-center gap-2">
-                        <input
-                          type="text"
-                          value={customTopic}
-                          onChange={(e) => {
-                            setCustomTopic(e.target.value);
-                            saveBuilderPrefs({ customTopic: e.target.value });
-                          }}
-                          placeholder="e.g. Cricket, AI, Space, World History..."
-                          className="w-full rounded-lg border border-line bg-fg/[0.03] px-3 py-2 text-sm font-medium text-fg outline-none transition focus:border-brand"
-                        />
-                        {customTopic ? (
-                          <button
-                            type="button"
-                            onClick={() => {
-                              setCustomTopic("");
-                              saveBuilderPrefs({ customTopic: "" });
-                            }}
-                            className="rounded-lg border border-line p-2 text-subtle hover:text-fg"
-                            title="Clear"
-                          >
-                            <X className="h-4 w-4" />
-                          </button>
-                        ) : null}
-                      </div>
-                    </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      {[
-                        "Space & Astronomy",
-                        "Artificial Intelligence",
-                        "World War II",
-                        "Cricket",
-                        "World Geography",
-                        "Inventions",
-                        "Human Body",
-                        "Animals & Nature",
-                      ].map((tag) => (
-                        <button
-                          key={tag}
-                          type="button"
-                          onClick={() => {
-                            setCustomTopic(tag);
-                            saveBuilderPrefs({ customTopic: tag });
-                            const match = flatTopics.find((t) => t.title.toLowerCase().includes(tag.toLowerCase().split(" ")[0]));
-                            if (match) selectTopic(match.id);
-                          }}
-                          className={cn(
-                            "rounded-md border px-2 py-0.5 text-xs font-medium transition",
-                            customTopic.toLowerCase() === tag.toLowerCase()
-                              ? "border-brand bg-brand/15 text-brand-ink"
-                              : "border-line bg-fg/[0.02] text-muted hover:border-line-2 hover:text-fg",
-                          )}
-                        >
-                          {tag}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                ) : null}
-
-                <div className="grid gap-1.5 sm:grid-cols-2">
-                  {flatTopics.map((t) => {
-                    const active = t.id === topicId;
-                    return (
-                      <button
-                        key={t.id}
-                        type="button"
-                        onClick={() => {
-                          selectTopic(t.id);
-                          if (subject === "custom" && t.id !== "custom-any") {
-                            setCustomTopic(t.title);
-                            saveBuilderPrefs({ customTopic: t.title });
-                          }
-                        }}
-                        aria-pressed={active}
-                        className={cn(
-                          "flex items-center justify-between gap-3 rounded-lg border px-3.5 py-2.5 text-left transition active:scale-[0.99]",
-                          "shadow-[0_0_0_1px_transparent]",
-                          active
-                            ? "border-brand bg-brand/[0.07] shadow-[0_0_0_1px_rgba(249,115,22,0.55),0_0_20px_-6px_rgba(249,115,22,0.35)]"
-                            : "border-line bg-fg/[0.02] hover:border-line-2 hover:bg-fg/[0.04]",
-                        )}
-                      >
-                        <span className="min-w-0">
-                          <span className="block truncate text-sm font-semibold text-fg">{t.title}</span>
-                          <span className="mt-0.5 block truncate text-xs text-subtle">{t.description}</span>
-                        </span>
-                        <span className="shrink-0 font-mono text-[11px] text-subtle">{t.bankCount === null ? "∞" : t.bankCount}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* ── Difficulty (compact segmented row) ── */}
-          <div className="mt-5 border-t border-line pt-5">
-            <div className="flex items-center justify-between mb-2">
-              <Label n={step()}>Difficulty</Label>
-              <span className="font-mono text-[10.5px] text-subtle capitalize">
-                {difficulty === "any" ? "Mixed" : difficulty}
+          {/* Section: Chapter / Topic */}
+          <div className="space-y-2.5">
+            <div className="flex items-center justify-between">
+              <Label n={hasClasses ? "03" : "02"}>
+                {hasClasses && cls !== "general" ? "Chapter" : "Topic"}
+              </Label>
+              <span className="font-mono text-[10.5px] text-subtle">
+                {hasClasses && cls !== "general" ? "NCERT aligned" : "Syllabus topic"}
               </span>
             </div>
-            <div className="grid w-full max-w-full min-w-0 grid-cols-4 gap-1 rounded-xl border border-line bg-fg/[0.02] p-1">
-              {([
-                { v: "any" as Difficulty, label: "Mixed", dot: "bg-gradient-to-r from-emerald-400 via-amber-400 to-rose-400" },
-                { v: "easy" as Difficulty, label: "Easy", dot: "bg-emerald-400" },
-                { v: "medium" as Difficulty, label: "Med", dot: "bg-amber-400" },
-                { v: "hard" as Difficulty, label: "Hard", dot: "bg-rose-400" },
-              ] as { v: Difficulty; label: string; dot: string }[]).map((d) => {
-                const active = difficulty === d.v;
-                return (
-                  <button
-                    key={d.v}
-                    type="button"
-                    onClick={() => {
-                      setDifficulty(d.v);
-                      saveBuilderPrefs({ difficulty: d.v });
-                    }}
-                    aria-pressed={active}
-                    className={cn(
-                      "flex items-center justify-center gap-1 rounded-lg py-1.5 px-0.5 sm:py-2 sm:px-1 text-[11px] sm:text-xs font-semibold transition-all duration-200 ring-1 ring-inset truncate",
-                      active
-                        ? "bg-brand/15 text-fg ring-brand/60 shadow-[0_0_10px_-3px_rgba(249,115,22,0.35)]"
-                        : "ring-transparent text-muted hover:bg-fg/[0.04] hover:text-fg",
-                    )}
-                  >
-                    <span className={cn("h-1.5 w-1.5 rounded-full shrink-0", d.dot)} />
-                    <span className="truncate">{d.label}</span>
-                  </button>
-                );
-              })}
+
+            <div>
+              {hasClasses && cls !== "general" ? (
+                <button
+                  type="button"
+                  onClick={() => setSheetOpen(true)}
+                  className="group flex w-full items-center gap-3 rounded-2xl border border-line bg-card p-3.5 text-left transition hover:border-line-2 hover:bg-fg/[0.02]"
+                  aria-haspopup="dialog"
+                >
+                  <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-line font-mono text-sm text-brand-ink bg-fg/[0.02]">
+                    {topic.chapterNo ? pad2(topic.chapterNo) : <Layers className="h-4 w-4" />}
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block truncate text-sm font-semibold text-fg">{topic.title}</span>
+                    <span className="mt-0.5 block truncate text-xs text-subtle">
+                      {topic.section ? `${topic.section} · ` : ""}
+                      {topic.bankCount} questions · NCERT-aligned
+                    </span>
+                  </span>
+                  <span className="hidden text-xs font-semibold text-brand-ink transition group-hover:underline sm:inline">
+                    Change Chapter
+                  </span>
+                  <ChevronDown className="h-4 w-4 shrink-0 text-subtle transition group-hover:text-fg" />
+                </button>
+              ) : hasClasses ? (
+                generalTopic ? (
+                  <div className="flex items-start gap-3 rounded-2xl border border-brand/40 bg-brand/[0.05] p-3.5 glow-soft">
+                    <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-line text-brand-ink bg-card">
+                      <Globe2 className="h-4 w-4" />
+                    </span>
+                    <div className="min-w-0">
+                      <p className="text-sm font-semibold text-fg">{generalTopic.title}</p>
+                      <p className="mt-0.5 text-xs text-muted">{generalTopic.description}</p>
+                    </div>
+                  </div>
+                ) : null
+              ) : (
+                <div className="space-y-3">
+                  {subject === "custom" ? (
+                    <div className="space-y-3 rounded-2xl border border-brand/35 bg-brand/[0.04] p-3.5">
+                      <div>
+                        <p className="text-sm font-semibold text-fg">Enter your custom quiz topic</p>
+                        <p className="mt-0.5 text-xs text-muted">Type any topic — Trivia API will fetch questions for it!</p>
+                        <div className="mt-2.5 flex items-center gap-2">
+                          <input
+                            type="text"
+                            value={customTopic}
+                            onChange={(e) => {
+                              setCustomTopic(e.target.value);
+                              saveBuilderPrefs({ customTopic: e.target.value });
+                            }}
+                            placeholder="e.g. Cricket, AI, Space, World History..."
+                            className="w-full rounded-xl border border-line bg-card px-3 py-2 text-sm font-medium text-fg outline-none transition focus:border-brand"
+                          />
+                          {customTopic ? (
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setCustomTopic("");
+                                saveBuilderPrefs({ customTopic: "" });
+                              }}
+                              className="rounded-xl border border-line p-2 text-subtle hover:text-fg"
+                              title="Clear"
+                            >
+                              <X className="h-4 w-4" />
+                            </button>
+                          ) : null}
+                        </div>
+                      </div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {[
+                          "Space & Astronomy",
+                          "Artificial Intelligence",
+                          "World War II",
+                          "Cricket",
+                          "World Geography",
+                          "Inventions",
+                          "Human Body",
+                          "Animals & Nature",
+                        ].map((tag) => (
+                          <button
+                            key={tag}
+                            type="button"
+                            onClick={() => {
+                              setCustomTopic(tag);
+                              saveBuilderPrefs({ customTopic: tag });
+                              const match = flatTopics.find((t) => t.title.toLowerCase().includes(tag.toLowerCase().split(" ")[0]));
+                              if (match) selectTopic(match.id);
+                            }}
+                            className={cn(
+                              "rounded-lg border px-2.5 py-1 text-xs font-medium transition",
+                              customTopic.toLowerCase() === tag.toLowerCase()
+                                ? "border-brand bg-brand/15 text-brand-ink"
+                                : "border-line bg-card text-muted hover:border-line-2 hover:text-fg",
+                            )}
+                          >
+                            {tag}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+
+                  <div className="grid gap-1.5 sm:grid-cols-2">
+                    {flatTopics.map((t) => {
+                      const active = t.id === topicId;
+                      return (
+                        <button
+                          key={t.id}
+                          type="button"
+                          onClick={() => {
+                            selectTopic(t.id);
+                            if (subject === "custom" && t.id !== "custom-any") {
+                              setCustomTopic(t.title);
+                              saveBuilderPrefs({ customTopic: t.title });
+                            }
+                          }}
+                          aria-pressed={active}
+                          className={cn(
+                            "flex items-center justify-between gap-3 rounded-xl border px-3.5 py-2.5 text-left transition active:scale-[0.99]",
+                            active
+                              ? "border-brand bg-brand/[0.07] ring-1 ring-brand/60 shadow-[0_0_16px_-4px_rgba(249,115,22,0.3)] font-semibold"
+                              : "border-line bg-card hover:border-line-2 hover:bg-fg/[0.02]",
+                          )}
+                        >
+                          <span className="min-w-0">
+                            <span className="block truncate text-sm font-semibold text-fg">{t.title}</span>
+                            <span className="mt-0.5 block truncate text-xs text-subtle">{t.description}</span>
+                          </span>
+                          <span className="shrink-0 font-mono text-[11px] text-subtle">{t.bankCount === null ? "∞" : t.bankCount}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
-          {/* ── Quiz Source (compact segmented row) ── */}
-          <div className="mt-4 border-t border-line pt-4 sm:pt-5">
-            <div className="flex items-center justify-between mb-2">
-              <Label n={step()}>Source</Label>
+          {/* Section: Question Source */}
+          <div className="border-t border-line/60 pt-4 sm:pt-5 space-y-2.5">
+            <div className="flex items-center justify-between">
+              <Label n={hasClasses ? "04" : "03"}>Source</Label>
               <span className="font-mono text-[10.5px] text-subtle">
                 {source === "bank" && isChapter ? "NCERT Bank" : SOURCE_SHORT[source]}
               </span>
             </div>
+
             <div className="grid w-full max-w-full min-w-0 grid-cols-3 gap-1 rounded-xl border border-line bg-fg/[0.02] p-1">
               {([
                 {
@@ -553,7 +652,7 @@ export default function QuizBuilder({
                 );
               })}
             </div>
-            <p className="mt-2 text-[10.5px] sm:text-[11px] text-subtle leading-relaxed">
+            <p className="text-[10.5px] sm:text-[11px] text-subtle leading-relaxed">
               {source === "bank"
                 ? "📚 NCERT Curated Bank: Textbook questions with hints & explanations (Best for school & exams)."
                 : source === "triviaapi"
@@ -565,12 +664,18 @@ export default function QuizBuilder({
           </div>
         </Card>
 
-        {/* ------------------------------ How ------------------------------ */}
+        {/* ------------------------------ Right Column: Quiz Rules & Format ------------------------------ */}
         <Card className="flex w-full max-w-full min-w-0 flex-col overflow-hidden">
-          <div className="w-full max-w-full min-w-0 flex-1 space-y-5 p-4 sm:space-y-6 sm:p-6">
-            <div>
-              <Label n={step()}>Questions</Label>
-              <div className="mt-3 flex flex-wrap items-center gap-1.5 sm:gap-2">
+          <div className="w-full max-w-full min-w-0 flex-1 space-y-4 sm:space-y-5 p-4 sm:p-6">
+            {/* Section: Questions */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label n="01">Questions</Label>
+                <span className="font-mono text-[10.5px] text-subtle">
+                  1–{cap}{cap < MAX_QUESTIONS ? " available" : ""}
+                </span>
+              </div>
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
                 {QUESTION_PRESETS.map((n) => (
                   <button
                     key={n}
@@ -614,14 +719,74 @@ export default function QuizBuilder({
                   className={cn(inputCls(!!amountText), "w-20 sm:w-24 text-xs sm:text-sm py-1.5 sm:py-2")}
                 />
               </div>
-              <p className="mt-2 text-xs text-subtle">
-                1–{cap}{cap < MAX_QUESTIONS ? " (available questions)" : ""}.
-              </p>
             </div>
 
-            <div>
-              <Label n={step()}>Timer</Label>
-              <div className="mt-3">
+            {/* Section: Difficulty (Collapsible) */}
+            <CollapsibleSection
+              stepNumber="02"
+              title="Difficulty"
+              isOpen={openDifficulty}
+              onToggle={() => setOpenDifficulty((prev) => !prev)}
+              preview={
+                <div className="inline-flex items-center gap-1.5 rounded-md border border-line bg-card px-2 py-0.5 text-[11px] sm:text-xs font-semibold text-fg">
+                  <span className={cn("h-2 w-2 rounded-full shrink-0", (DIFFICULTY_OPTIONS.find((d) => d.v === difficulty) ?? DIFFICULTY_OPTIONS[0]).dot)} />
+                  <span className="capitalize">{difficulty === "any" ? "Mixed / Any" : difficulty}</span>
+                </div>
+              }
+            >
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                {DIFFICULTY_OPTIONS.map((d) => {
+                  const active = difficulty === d.v;
+                  return (
+                    <button
+                      key={d.v}
+                      type="button"
+                      onClick={() => {
+                        setDifficulty(d.v);
+                        saveBuilderPrefs({ difficulty: d.v });
+                        setOpenDifficulty(false);
+                      }}
+                      aria-pressed={active}
+                      className={cn(
+                        "flex flex-col items-center justify-center rounded-xl border p-2.5 sm:p-3 text-center transition-all duration-200 active:scale-[0.98]",
+                        active
+                          ? "border-brand bg-brand/15 text-fg ring-1 ring-brand shadow-[0_0_12px_rgba(249,115,22,0.25)] font-semibold"
+                          : "border-line bg-card text-muted hover:border-line-2 hover:bg-fg/[0.03] hover:text-fg",
+                      )}
+                    >
+                      <div className="flex items-center gap-1.5">
+                        <span className={cn("h-2 w-2 rounded-full shrink-0", d.dot)} />
+                        <span className="text-xs sm:text-sm font-bold text-fg">{d.label}</span>
+                      </div>
+                      <span className="text-[10px] sm:text-[11px] text-subtle mt-0.5">{d.hint}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </CollapsibleSection>
+
+            {/* Section: Timer (Collapsible) */}
+            <CollapsibleSection
+              stepNumber="03"
+              title="Timer"
+              isOpen={openTimer}
+              onToggle={() => setOpenTimer((prev) => !prev)}
+              preview={
+                <div className="inline-flex items-center gap-1.5 rounded-md border border-line bg-card px-2 py-0.5 font-mono text-[11px] sm:text-xs font-semibold text-fg">
+                  <span className="text-brand-ink">⏱️</span>
+                  <span>
+                    {timerMode === "per-question"
+                      ? time === 0
+                        ? "No limit"
+                        : `${time}s / Q`
+                      : totalTime
+                      ? `${totalLabel(totalTime)} total`
+                      : "No limit"}
+                  </span>
+                </div>
+              }
+            >
+              <div className="space-y-3.5">
                 <Segmented<TimerMode>
                   value={timerMode}
                   onChange={(m) => {
@@ -633,119 +798,121 @@ export default function QuizBuilder({
                     { v: "total", label: "Whole quiz" },
                   ]}
                 />
-              </div>
-              {timerMode === "per-question" ? (
-                <>
-                  <div className="mt-3 flex flex-wrap items-center gap-1.5 sm:gap-2">
-                    {TIME_PRESETS.map((t) => (
-                      <button
-                        key={t}
-                        type="button"
-                        aria-pressed={!timeText && time === t}
-                        onClick={() => {
-                          setTime(t);
-                          setTimeText("");
-                          saveBuilderPrefs({ time: t });
-                        }}
-                        className={chip(!timeText && time === t)}
-                      >
-                        {timeLabel(t)}
-                      </button>
-                    ))}
-                    <label className="relative">
-                      <span className="sr-only">Custom seconds per question</span>
-                      <input
-                        type="number"
-                        inputMode="numeric"
-                        min={MIN_TIME}
-                        max={MAX_TIME}
-                        placeholder="Custom"
-                        value={timeText}
-                        onChange={(e) => {
-                          const v = e.target.value.replace(/\D/g, "").slice(0, 3);
-                          setTimeText(v);
-                          const n = parseInt(v, 10);
-                          if (n >= MIN_TIME) {
-                            const clamped = Math.min(MAX_TIME, n);
-                            setTime(clamped);
-                            saveBuilderPrefs({ time: clamped });
-                          }
-                        }}
-                        onBlur={() => {
-                          if (!timeText) return;
-                          const n = Math.min(MAX_TIME, Math.max(MIN_TIME, parseInt(timeText, 10) || MIN_TIME));
-                          setTime(n);
-                          setTimeText(String(n));
-                          saveBuilderPrefs({ time: n });
-                        }}
-                        className={cn(inputCls(!!timeText), "w-24 sm:w-28 pr-8 sm:pr-9 text-xs sm:text-sm py-1.5 sm:py-2")}
-                      />
-                      <span className="pointer-events-none absolute right-2.5 sm:right-3 top-1/2 -translate-y-1/2 font-mono text-[10px] sm:text-[11px] text-subtle">sec</span>
-                    </label>
-                  </div>
-                  <p className="mt-2 text-xs text-subtle">
-                    {MIN_TIME}–{MAX_TIME}s each. Faster answers earn a speed bonus.
-                  </p>
-                </>
-              ) : (
-                <>
-                  <div className="mt-3 flex flex-wrap items-center gap-1.5 sm:gap-2">
-                    {TOTAL_TIME_PRESETS.map((t) => (
-                      <button
-                        key={t}
-                        type="button"
-                        aria-pressed={!totalText && totalTime === t}
-                        onClick={() => {
-                          setTotalTime(t);
-                          setTotalText("");
-                          saveBuilderPrefs({ totalTime: t });
-                        }}
-                        className={chip(!totalText && totalTime === t)}
-                      >
-                        {totalLabel(t)}
-                      </button>
-                    ))}
-                    <label className="relative">
-                      <span className="sr-only">Custom total minutes</span>
-                      <input
-                        type="number"
-                        inputMode="numeric"
-                        min={Math.round(MIN_TOTAL_TIME / 60)}
-                        max={Math.round(MAX_TOTAL_TIME / 60)}
-                        placeholder="Custom"
-                        value={totalText}
-                        onChange={(e) => {
-                          const v = e.target.value.replace(/\D/g, "").slice(0, 3);
-                          setTotalText(v);
-                          const n = parseInt(v, 10);
-                          if (n >= 1) {
-                            const clamped = Math.min(MAX_TOTAL_TIME, n * 60);
-                            setTotalTime(clamped);
-                            saveBuilderPrefs({ totalTime: clamped });
-                          }
-                        }}
-                        onBlur={() => {
-                          if (!totalText) return;
-                          const m = Math.min(Math.round(MAX_TOTAL_TIME / 60), Math.max(Math.round(MIN_TOTAL_TIME / 60), parseInt(totalText, 10) || 5));
-                          setTotalTime(m * 60);
-                          setTotalText(String(m));
-                          saveBuilderPrefs({ totalTime: m * 60 });
-                        }}
-                        className={cn(inputCls(!!totalText), "w-24 sm:w-28 pr-8 sm:pr-9 text-xs sm:text-sm py-1.5 sm:py-2")}
-                      />
-                      <span className="pointer-events-none absolute right-2.5 sm:right-3 top-1/2 -translate-y-1/2 font-mono text-[10px] sm:text-[11px] text-subtle">min</span>
-                    </label>
-                  </div>
-                  <p className="mt-2 text-xs text-subtle">
-                    {MIN_TOTAL_TIME / 60}–{Math.round(MAX_TOTAL_TIME / 60)} min total. Unanswered questions count as skipped.
-                  </p>
-                </>
-              )}
-            </div>
 
-            <div>
-              <Label n={step()}>Preferences</Label>
-              <div className="mt-4 space-y-4">
+                {timerMode === "per-question" ? (
+                  <>
+                    <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                      {TIME_PRESETS.map((t) => (
+                        <button
+                          key={t}
+                          type="button"
+                          aria-pressed={!timeText && time === t}
+                          onClick={() => {
+                            setTime(t);
+                            setTimeText("");
+                            saveBuilderPrefs({ time: t });
+                          }}
+                          className={chip(!timeText && time === t)}
+                        >
+                          {timeLabel(t)}
+                        </button>
+                      ))}
+                      <label className="relative">
+                        <span className="sr-only">Custom seconds per question</span>
+                        <input
+                          type="number"
+                          inputMode="numeric"
+                          min={MIN_TIME}
+                          max={MAX_TIME}
+                          placeholder="Custom"
+                          value={timeText}
+                          onChange={(e) => {
+                            const v = e.target.value.replace(/\D/g, "").slice(0, 3);
+                            setTimeText(v);
+                            const n = parseInt(v, 10);
+                            if (n >= MIN_TIME) {
+                              const clamped = Math.min(MAX_TIME, n);
+                              setTime(clamped);
+                              saveBuilderPrefs({ time: clamped });
+                            }
+                          }}
+                          onBlur={() => {
+                            if (!timeText) return;
+                            const n = Math.min(MAX_TIME, Math.max(MIN_TIME, parseInt(timeText, 10) || MIN_TIME));
+                            setTime(n);
+                            setTimeText(String(n));
+                            saveBuilderPrefs({ time: n });
+                          }}
+                          className={cn(inputCls(!!timeText), "w-24 sm:w-28 pr-8 sm:pr-9 text-xs sm:text-sm py-1.5 sm:py-2")}
+                        />
+                        <span className="pointer-events-none absolute right-2.5 sm:right-3 top-1/2 -translate-y-1/2 font-mono text-[10px] sm:text-[11px] text-subtle">sec</span>
+                      </label>
+                    </div>
+                    <p className="text-[11px] text-subtle">
+                      {MIN_TIME}–{MAX_TIME}s each. Faster answers earn a speed bonus.
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                      {TOTAL_TIME_PRESETS.map((t) => (
+                        <button
+                          key={t}
+                          type="button"
+                          aria-pressed={!totalText && totalTime === t}
+                          onClick={() => {
+                            setTotalTime(t);
+                            setTotalText("");
+                            saveBuilderPrefs({ totalTime: t });
+                          }}
+                          className={chip(!totalText && totalTime === t)}
+                        >
+                          {totalLabel(t)}
+                        </button>
+                      ))}
+                      <label className="relative">
+                        <span className="sr-only">Custom total minutes</span>
+                        <input
+                          type="number"
+                          inputMode="numeric"
+                          min={Math.round(MIN_TOTAL_TIME / 60)}
+                          max={Math.round(MAX_TOTAL_TIME / 60)}
+                          placeholder="Custom"
+                          value={totalText}
+                          onChange={(e) => {
+                            const v = e.target.value.replace(/\D/g, "").slice(0, 3);
+                            setTotalText(v);
+                            const n = parseInt(v, 10);
+                            if (n >= 1) {
+                              const clamped = Math.min(MAX_TOTAL_TIME, n * 60);
+                              setTotalTime(clamped);
+                              saveBuilderPrefs({ totalTime: clamped });
+                            }
+                          }}
+                          onBlur={() => {
+                            if (!totalText) return;
+                            const m = Math.min(Math.round(MAX_TOTAL_TIME / 60), Math.max(Math.round(MIN_TOTAL_TIME / 60), parseInt(totalText, 10) || 5));
+                            setTotalTime(m * 60);
+                            setTotalText(String(m));
+                            saveBuilderPrefs({ totalTime: m * 60 });
+                          }}
+                          className={cn(inputCls(!!totalText), "w-24 sm:w-28 pr-8 sm:pr-9 text-xs sm:text-sm py-1.5 sm:py-2")}
+                        />
+                        <span className="pointer-events-none absolute right-2.5 sm:right-3 top-1/2 -translate-y-1/2 font-mono text-[10px] sm:text-[11px] text-subtle">min</span>
+                      </label>
+                    </div>
+                    <p className="text-[11px] text-subtle">
+                      {MIN_TOTAL_TIME / 60}–{Math.round(MAX_TOTAL_TIME / 60)} min total. Unanswered questions count as skipped.
+                    </p>
+                  </>
+                )}
+              </div>
+            </CollapsibleSection>
+
+            {/* Section: Preferences */}
+            <div className="border-t border-line/60 pt-4 sm:pt-5 space-y-3.5">
+              <Label n="04">Preferences</Label>
+              <div className="space-y-3 sm:space-y-4">
                 {source === "triviaapi" && subject !== "custom" ? (
                   <OptionRow label="Topic tag (optional)" hint="Refine trivia with a keyword (e.g. space, coding, nature)">
                     <input
@@ -790,7 +957,7 @@ export default function QuizBuilder({
             </div>
           </div>
 
-          <div className="w-full max-w-full min-w-0 border-t border-line p-4 sm:p-5">
+          <div className="w-full max-w-full min-w-0 border-t border-line p-4 sm:p-5 bg-fg/[0.01]">
             <p className="truncate text-sm font-semibold text-fg">{customTopic ? `Custom · ${customTopic}` : topic.label}</p>
             <p className="mt-1 font-mono text-xs text-subtle">{summary}</p>
             {startButton("mt-3.5 sm:mt-4 w-full py-3 text-base")}

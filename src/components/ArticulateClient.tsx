@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Check, ChevronDown, ChevronUp, Clock, RotateCcw, Settings2 } from "lucide-react";
+import { Check, ChevronDown, ChevronUp, RotateCcw, Settings2 } from "lucide-react";
 import { ARTICULATE_PROMPTS, type ArticulateCategory, type ArticulateMode, type ArticulatePrompt } from "@/data/articulate/prompts";
 import { cn } from "@/lib/format";
 
@@ -179,99 +179,7 @@ function SettingsOverlay({ settings, onChange, onClose }: { settings: Settings; 
   );
 }
 
-/* ─── Glass Timer Card ───────────────────────────────────────────────────── */
-function TimerCard({
-  mode, settings,
-  timerState, timerLeft,
-  onToggleTimer, onResetTimer,
-  onOpenResearch,
-}: {
-  mode: ArticulateMode;
-  settings: Settings;
-  timerState: "idle" | "running" | "paused" | "done";
-  timerLeft: number;
-  onToggleTimer: () => void;
-  onResetTimer: () => void;
-  onOpenResearch: () => void;
-}) {
-  const fmt = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
 
-  return (
-    <div
-      className="w-full max-w-[480px] mx-auto mt-6 rounded-2xl border border-white/[0.1] overflow-hidden"
-      style={{ background: "rgba(255,255,255,0.04)", backdropFilter: "blur(24px)", WebkitBackdropFilter: "blur(24px)" }}
-    >
-      {mode === "off-the-cuff" ? (
-        /* Off the cuff timer */
-        <div className="flex items-center justify-between gap-4 px-5 py-4">
-          <div className="flex items-center gap-3">
-            <div className={cn(
-              "w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-colors",
-              timerState === "running" ? "bg-[#d96b43]/20" : timerState === "done" ? "bg-danger/20" : "bg-white/[0.06]"
-            )}>
-              <Clock className={cn("w-4 h-4", timerState === "running" ? "text-[#d96b43]" : timerState === "done" ? "text-danger" : "text-muted")} />
-            </div>
-            <div>
-              <p className="text-[11px] font-mono font-semibold uppercase tracking-[0.16em] text-subtle">Speech Timer</p>
-              <p className={cn("text-xl font-bold tabular-nums font-mono leading-tight mt-0.5", timerState === "running" ? "text-[#d96b43]" : timerState === "done" ? "text-danger" : "text-fg")}>
-                {timerState === "idle" ? `${String(settings.speechMinutes).padStart(1, "0")}:00` : fmt(timerLeft)}
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            {timerState !== "idle" && (
-              <button type="button" onClick={onResetTimer} className="w-8 h-8 rounded-full flex items-center justify-center text-subtle hover:text-fg hover:bg-white/[0.07] transition cursor-pointer">
-                <RotateCcw className="w-3.5 h-3.5" />
-              </button>
-            )}
-            <button
-              type="button"
-              onClick={onToggleTimer}
-              className={cn(
-                "rounded-full px-5 py-2 text-sm font-semibold transition active:scale-95 tabular-nums cursor-pointer",
-                timerState === "running" ? "bg-[#d96b43]/15 text-[#d96b43] border border-[#d96b43]/40"
-                  : timerState === "done" ? "bg-danger/10 text-danger border border-danger/30"
-                  : "bg-white/[0.08] text-fg border border-white/[0.12] hover:bg-white/[0.12]"
-              )}
-            >
-              {timerState === "idle" && `Start ${settings.speechMinutes} min`}
-              {timerState === "running" && `${fmt(timerLeft)} — Pause`}
-              {timerState === "paused" && `Resume ${fmt(timerLeft)}`}
-              {timerState === "done" && "Time's up · Reset"}
-            </button>
-          </div>
-        </div>
-      ) : (
-        /* Deep research — two-row layout */
-        <div className="p-5">
-          <div className="grid grid-cols-2 gap-3">
-            {/* Research phase */}
-            <button
-              type="button"
-              onClick={onOpenResearch}
-              className="flex flex-col items-start gap-1.5 rounded-xl border border-white/[0.1] bg-white/[0.04] hover:bg-white/[0.08] p-4 transition active:scale-[0.98] cursor-pointer text-left group"
-            >
-              <span className="font-mono text-[10px] font-bold tracking-[0.18em] uppercase text-[#d96b43]">Research</span>
-              <span className="text-xl font-bold tabular-nums font-mono text-fg">{settings.researchMinutes}:00</span>
-              <span className="text-xs text-subtle group-hover:text-muted transition">Start research phase →</span>
-            </button>
-            {/* Speech phase */}
-            <button
-              type="button"
-              onClick={onOpenResearch}
-              className="flex flex-col items-start gap-1.5 rounded-xl border border-white/[0.1] bg-white/[0.04] hover:bg-white/[0.08] p-4 transition active:scale-[0.98] cursor-pointer text-left group"
-            >
-              <span className="font-mono text-[10px] font-bold tracking-[0.18em] uppercase text-muted">Speech</span>
-              <span className="text-xl font-bold tabular-nums font-mono text-fg/50">{settings.speechMinutes}:00</span>
-              <span className="text-xs text-subtle group-hover:text-muted transition">After researching →</span>
-            </button>
-          </div>
-          <p className="text-[11px] text-subtle/60 text-center mt-3">Tap to start the full-screen research timer</p>
-        </div>
-      )}
-    </div>
-  );
-}
 
 /* ─── Main Component ─────────────────────────────────────────────────────── */
 export default function ArticulateClient() {
@@ -608,6 +516,40 @@ export default function ArticulateClient() {
             {hasSpun ? "Spin again" : "Spin"}
           </button>
 
+          {/* Inline timer button — adapts to mode */}
+          {mode === "off-the-cuff" ? (
+            <div className="flex items-center gap-1.5">
+              {timerState !== "idle" && (
+                <button type="button" onClick={resetTimer} className="w-9 h-9 rounded-full flex items-center justify-center text-subtle hover:text-fg hover:bg-white/[0.07] transition cursor-pointer">
+                  <RotateCcw className="w-3.5 h-3.5" />
+                </button>
+              )}
+              <button
+                type="button"
+                onClick={toggleTimer}
+                className={cn(
+                  "rounded-full px-5 py-3 text-[15px] font-semibold transition active:scale-95 tabular-nums cursor-pointer border",
+                  timerState === "running" ? "bg-[#d96b43]/15 text-[#d96b43] border-[#d96b43]/40"
+                    : timerState === "done" ? "bg-danger/10 text-danger border-danger/30"
+                    : "bg-transparent text-fg border-white/[0.15] hover:bg-white/[0.06]"
+                )}
+              >
+                {timerState === "idle" && `Start ${settings.speechMinutes} min timer`}
+                {timerState === "running" && `${fmt(timerLeft)} — Pause`}
+                {timerState === "paused" && `Resume ${fmt(timerLeft)}`}
+                {timerState === "done" && "Time's up · Reset"}
+              </button>
+            </div>
+          ) : (
+            <button
+              type="button"
+              onClick={openResearch}
+              className="rounded-full px-5 py-3 text-[15px] font-semibold transition active:scale-95 cursor-pointer border bg-transparent text-fg border-white/[0.15] hover:bg-white/[0.06]"
+            >
+              Start {settings.researchMinutes} min research
+            </button>
+          )}
+
           <button
             type="button"
             onClick={() => setSettingsOpen(true)}
@@ -616,17 +558,6 @@ export default function ArticulateClient() {
             <Settings2 className="w-4 h-4" />
           </button>
         </div>
-
-        {/* ─── GLASSMORPHISM TIMER CARD ─── */}
-        <TimerCard
-          mode={mode}
-          settings={settings}
-          timerState={timerState}
-          timerLeft={timerLeft}
-          onToggleTimer={toggleTimer}
-          onResetTimer={resetTimer}
-          onOpenResearch={openResearch}
-        />
       </div>
 
       {/* ─── SETTINGS OVERLAY ─── */}
@@ -639,19 +570,48 @@ export default function ArticulateClient() {
       )}
 
       {/* ─── RADIAL RESEARCH OVERLAY ─── */}
-      {showOverlay && (
+      {showOverlay && (() => {
+        const isSpeaking = overlayPhase === "speaking";
+        const ringColor = isSpeaking ? "#d96b43" : "#38b2ac";
+        const speakingThirds = overlayTotal > 0 ? overlayTotal / 3 : 20;
+        // Determine active pill: What? (first third), So what? (second), Now what? (last)
+        const activePill = overlayLeft > speakingThirds * 2 ? 0 : overlayLeft > speakingThirds ? 1 : 2;
+        const PILLS = ["What?", "So what?", "Now what?"];
+
+        return (
         <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-bg/96 backdrop-blur-2xl px-4 animate-fade-in">
-          <div className="text-center mb-3">
-            <h3 className="font-mono text-xs sm:text-sm font-bold tracking-[0.22em] uppercase text-[#d96b43] mb-1.5">
+          <div className="text-center mb-2">
+            <h3 className="font-mono text-xs sm:text-sm font-bold tracking-[0.22em] uppercase text-[#d96b43] mb-2">
               {currentPrompt.title.toUpperCase()}
             </h3>
-            <span className="font-mono text-[11px] font-bold tracking-[0.28em] uppercase text-[#38b2ac]">
-              {overlayPhase === "research" ? "RESEARCHING" : overlayPhase === "speaking" ? "SPEAKING" : "TIME'S UP"}
-            </span>
+
+            {/* Speaking phase pills */}
+            {isSpeaking ? (
+              <div className="flex items-center justify-center gap-2 mb-2">
+                {PILLS.map((pill, i) => (
+                  <button
+                    key={pill}
+                    type="button"
+                    className={cn(
+                      "rounded-full px-5 py-2 text-sm font-semibold border transition-all duration-300 cursor-default",
+                      i === activePill
+                        ? "bg-[#1a3a2a] border-[#38b2ac]/40 text-white"
+                        : "bg-transparent border-white/[0.12] text-fg/40"
+                    )}
+                  >
+                    {pill}
+                  </button>
+                ))}
+              </div>
+            ) : (
+              <span className="font-mono text-[11px] font-bold tracking-[0.28em] uppercase" style={{ color: ringColor }}>
+                {overlayPhase === "research" ? "RESEARCHING" : "TIME'S UP"}
+              </span>
+            )}
           </div>
 
           {/* Ring */}
-          <div className="relative my-9" style={{ width: 280, height: 280 }}>
+          <div className="relative my-7" style={{ width: 280, height: 280 }}>
             {(() => {
               const size = 280, sw = 8, r = (size - sw) / 2;
               const circ = 2 * Math.PI * r;
@@ -662,10 +622,11 @@ export default function ArticulateClient() {
                     <circle cx={size/2} cy={size/2} r={r} fill="none" strokeWidth={sw} className="stroke-fg/[0.07]" />
                     <circle cx={size/2} cy={size/2} r={r} fill="none" strokeWidth={sw} strokeLinecap="round"
                       strokeDasharray={circ} strokeDashoffset={circ - pct * circ}
-                      className="stroke-[#38b2ac] transition-[stroke-dashoffset] duration-700 ease-linear" />
+                      style={{ stroke: ringColor }}
+                      className="transition-[stroke-dashoffset,stroke] duration-700 ease-linear" />
                   </svg>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-serif text-6xl sm:text-7xl font-normal tabular-nums tracking-tight" style={{ color: "#38b2ac" }}>
+                    <span className="font-serif text-6xl sm:text-7xl font-normal tabular-nums tracking-tight transition-colors duration-300" style={{ color: ringColor }}>
                       {fmt(overlayLeft)}
                     </span>
                   </div>
@@ -674,8 +635,8 @@ export default function ArticulateClient() {
             })()}
           </div>
 
-          <p className="font-serif text-sm text-muted mb-6 italic">
-            {overlayPhase === "research" ? "Research." : overlayPhase === "speaking" ? "Speak now." : "Time's up."}
+          <p className="font-serif text-sm text-muted mb-5 italic">
+            {overlayPhase === "research" ? "Research." : overlayPhase === "speaking" ? "Speak." : "Time's up."}
           </p>
 
           <div className="flex items-center gap-4">
@@ -697,7 +658,8 @@ export default function ArticulateClient() {
             </button>
           </div>
         </div>
-      )}
+        );
+      })()}
     </div>
   );
 }

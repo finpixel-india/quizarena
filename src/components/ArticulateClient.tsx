@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Check, ChevronDown, Clock, RotateCcw, Settings2, Sparkles, Volume2, VolumeX, X } from "lucide-react";
+import { Check, ChevronDown, Clock, RotateCcw, Settings2, X } from "lucide-react";
 import {
   ARTICULATE_CATEGORIES,
   ARTICULATE_PROMPTS,
@@ -11,8 +11,48 @@ import {
 } from "@/data/articulate/prompts";
 import { cn } from "@/lib/format";
 
+/* ─── Settings Interface & Defaults ─────────────────────────────────────── */
+interface ArticulateSettings {
+  offCuffSeconds: number;
+  researchSeconds: number;
+  speakingSeconds: number;
+  soundSpin: boolean;
+  soundChime: boolean;
+  showGuidingThought: boolean;
+  autoStartTimer: boolean;
+}
+
+const DEFAULT_SETTINGS: ArticulateSettings = {
+  offCuffSeconds: 60,
+  researchSeconds: 300,
+  speakingSeconds: 120,
+  soundSpin: true,
+  soundChime: true,
+  showGuidingThought: true,
+  autoStartTimer: false,
+};
+
+const SETTINGS_KEY = "ql-articulate-settings";
+
+function loadSavedSettings(): ArticulateSettings {
+  if (typeof window === "undefined") return DEFAULT_SETTINGS;
+  try {
+    const raw = localStorage.getItem(SETTINGS_KEY);
+    if (!raw) return DEFAULT_SETTINGS;
+    return { ...DEFAULT_SETTINGS, ...JSON.parse(raw) };
+  } catch {
+    return DEFAULT_SETTINGS;
+  }
+}
+
+function saveSettings(settings: ArticulateSettings) {
+  try {
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+  } catch {}
+}
+
 /* ─── Minimal Instagram SVG Icon ────────────────────────────────────────── */
-function InstagramIcon({ className = "w-3.5 h-3.5" }: { className?: string }) {
+function InstagramIcon({ className = "w-3 h-3" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
@@ -22,46 +62,118 @@ function InstagramIcon({ className = "w-3.5 h-3.5" }: { className?: string }) {
   );
 }
 
-/* ─── Soft Web Audio Chime Synthesizer ─────────────────────────────────── */
-function playChime() {
-  try {
-    const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-    if (!AudioCtx) return;
-    const ctx = new AudioCtx();
-    const now = ctx.currentTime;
+/* ─── Web Audio API Sound Synthesizer ──────────────────────────────────── */
+class SoundEngine {
+  private ctx: AudioContext | null = null;
 
-    const playTone = (freq: number, start: number, duration: number) => {
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = "sine";
-      osc.frequency.setValueAtTime(freq, start);
-      gain.gain.setValueAtTime(0.001, start);
-      gain.gain.exponentialRampToValueAtTime(0.2, start + 0.04);
-      gain.gain.exponentialRampToValueAtTime(0.001, start + duration);
+  private initCtx() {
+    if (!this.ctx && typeof window !== "undefined") {
+      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+      if (AudioCtx) {
+        this.ctx = new AudioCtx();
+      }
+    }
+    if (this.ctx && this.ctx.state === "suspended") {
+      this.ctx.resume().catch(() => {});
+    }
+  }
+
+  // Realistic mechanical reel ticker click
+  playTick(pitch = 750) {
+    this.initCtx();
+    if (!this.ctx) return;
+    try {
+      const now = this.ctx.currentTime;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+
+      osc.type = "triangle";
+      osc.frequency.setValueAtTime(pitch, now);
+      osc.frequency.exponentialRampToValueAtTime(90, now + 0.022);
+
+      gain.gain.setValueAtTime(0.001, now);
+      gain.gain.exponentialRampToValueAtTime(0.16, now + 0.002);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.022);
+
       osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start(start);
-      osc.stop(start + duration);
-    };
+      gain.connect(this.ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.022);
+    } catch {}
+  }
 
-    playTone(587.33, now, 0.45);        // D5
-    playTone(880.0, now + 0.15, 0.65);   // A5
-  } catch {
-    // AudioContext blocked by user policy or unavailable
+  // Mechanical lock-in ratchet & subtle bell when spin lands
+  playLock() {
+    this.initCtx();
+    if (!this.ctx) return;
+    try {
+      const now = this.ctx.currentTime;
+
+      // Heavy lock thud
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(320, now);
+      osc.frequency.exponentialRampToValueAtTime(60, now + 0.05);
+      gain.gain.setValueAtTime(0.22, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.05);
+
+      // Sweet resolving harmonic bell
+      const bell = this.ctx.createOscillator();
+      const bellGain = this.ctx.createGain();
+      bell.type = "sine";
+      bell.frequency.setValueAtTime(880, now + 0.015);
+      bellGain.gain.setValueAtTime(0.001, now + 0.015);
+      bellGain.gain.exponentialRampToValueAtTime(0.12, now + 0.035);
+      bellGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.55);
+      bell.connect(bellGain);
+      bellGain.connect(this.ctx.destination);
+      bell.start(now + 0.015);
+      bell.stop(now + 0.55);
+    } catch {}
+  }
+
+  // Soft triad chime when countdown reaches 0:00
+  playChime() {
+    this.initCtx();
+    if (!this.ctx) return;
+    try {
+      const now = this.ctx.currentTime;
+      const playTone = (freq: number, start: number, dur: number) => {
+        if (!this.ctx) return;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(freq, start);
+        gain.gain.setValueAtTime(0.001, start);
+        gain.gain.exponentialRampToValueAtTime(0.18, start + 0.03);
+        gain.gain.exponentialRampToValueAtTime(0.0001, start + dur);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start(start);
+        osc.stop(start + dur);
+      };
+
+      playTone(523.25, now, 0.45);        // C5
+      playTone(659.25, now + 0.12, 0.55); // E5
+      playTone(783.99, now + 0.24, 0.75); // G5
+    } catch {}
   }
 }
 
+const sounds = new SoundEngine();
+
 export default function ArticulateClient() {
   /* ─── State ──────────────────────────────────────────────────────────── */
+  const [settings, setSettings] = useState<ArticulateSettings>(loadSavedSettings);
   const [mode, setMode] = useState<ArticulateMode>("off-the-cuff");
   const [category, setCategory] = useState<ArticulateCategory>("all");
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-
-  // Custom durations (in seconds)
-  const [offCuffDuration, setOffCuffDuration] = useState(60); // 1 min default
-  const [researchDuration, setResearchDuration] = useState(300); // 5 min default
-  const [soundEnabled, setSoundEnabled] = useState(true);
 
   // Active prompt
   const initialPool = useMemo(() => {
@@ -69,27 +181,28 @@ export default function ArticulateClient() {
   }, []);
 
   const [currentPrompt, setCurrentPrompt] = useState<ArticulatePrompt>(() => {
-    return initialPool.find((p) => p.title === "Comfort Zone") ?? initialPool[0];
+    return initialPool.find((p) => p.title === "Voicemail") ?? initialPool[0];
   });
 
-  // Slot machine animation state
+  // Slot machine spin animation state
   const [isSpinning, setIsSpinning] = useState(false);
   const [spinDisplayTitle, setSpinDisplayTitle] = useState("");
-  const spinIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const [spinVelocityY, setSpinVelocityY] = useState(0);
+  const spinTimeoutsRef = useRef<NodeJS.Timeout[]>([]);
 
-  // In-card timer state (Off the cuff)
+  // In-place Timer (Off the cuff)
   const [timerStatus, setTimerStatus] = useState<"idle" | "running" | "paused" | "completed">("idle");
-  const [timerSecondsLeft, setTimerSecondsLeft] = useState(60);
+  const [timerSecondsLeft, setTimerSecondsLeft] = useState(() => settings.offCuffSeconds);
   const timerIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Full-screen Deep Research Radial Timer Overlay
+  // Deep Research Fullscreen Radial Overlay (Screenshot 2)
   const [showRadialOverlay, setShowRadialOverlay] = useState(false);
   const [radialPhase, setRadialPhase] = useState<"research" | "speaking" | "done">("research");
-  const [radialSecondsLeft, setRadialSecondsLeft] = useState(300);
-  const [radialTotalSeconds, setRadialTotalSeconds] = useState(300);
+  const [radialSecondsLeft, setRadialSecondsLeft] = useState(() => settings.researchSeconds);
+  const [radialTotalSeconds, setRadialTotalSeconds] = useState(() => settings.researchSeconds);
   const radialIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Filtered prompt pool
+  // Filtered pool
   const currentPool = useMemo(() => {
     return ARTICULATE_PROMPTS.filter((p) => {
       const modeMatch = p.mode === mode;
@@ -98,7 +211,7 @@ export default function ArticulateClient() {
     });
   }, [mode, category]);
 
-  // Helper for formatting time (e.g., 0:59 or 4:58)
+  // Format time (e.g. 0:59, 4:58)
   const formatTime = (totalSeconds: number) => {
     const mins = Math.floor(totalSeconds / 60);
     const secs = totalSeconds % 60;
@@ -111,7 +224,6 @@ export default function ArticulateClient() {
     setMode(newMode);
     resetTimer();
 
-    // Select a fitting initial prompt for the new mode
     const newPool = ARTICULATE_PROMPTS.filter((p) => {
       const modeMatch = p.mode === newMode;
       const catMatch = category === "all" ? true : p.category === category;
@@ -122,10 +234,14 @@ export default function ArticulateClient() {
     }
   };
 
-  /* ─── Slot-Machine Spin Action ───────────────────────────────────────── */
+  /* ─── Realistic Slot-Machine Reel Spin (1.8s physics deceleration) ───── */
   const spinPrompt = useCallback(() => {
     if (isSpinning) return;
     resetTimer();
+
+    // Clear any pending timeouts
+    spinTimeoutsRef.current.forEach(clearTimeout);
+    spinTimeoutsRef.current = [];
 
     const pool = currentPool.length > 0
       ? currentPool
@@ -133,58 +249,82 @@ export default function ArticulateClient() {
 
     if (pool.length === 0) return;
 
-    // Filter out the current one so we never draw the exact same one twice
+    // Pick final destination item that isn't the current one
     const candidatePool = pool.filter((p) => p.id !== currentPrompt.id);
     const finalCandidates = candidatePool.length > 0 ? candidatePool : pool;
     const finalPick = finalCandidates[Math.floor(Math.random() * finalCandidates.length)];
 
     setIsSpinning(true);
-    let step = 0;
-    const totalSteps = 8;
-    const stepDuration = 65;
 
-    if (spinIntervalRef.current) clearInterval(spinIntervalRef.current);
+    // 20 gradual deceleration steps over ~1.85 seconds
+    const intervals = [
+      45, 45, 45, 50, 50, 55, 60, 65, 70, 75,
+      85, 95, 110, 130, 155, 185, 220, 260, 310,
+    ];
 
-    spinIntervalRef.current = setInterval(() => {
-      step++;
-      const randomInterim = pool[Math.floor(Math.random() * pool.length)];
-      setSpinDisplayTitle(randomInterim.title);
+    let accumulatedTime = 0;
 
-      if (step >= totalSteps) {
-        if (spinIntervalRef.current) clearInterval(spinIntervalRef.current);
-        setCurrentPrompt(finalPick);
-        setIsSpinning(false);
-        setSpinDisplayTitle("");
+    intervals.forEach((stepDuration, stepIndex) => {
+      accumulatedTime += stepDuration;
+
+      const t = setTimeout(() => {
+        // Random intermediary topic
+        const interim = pool[Math.floor(Math.random() * pool.length)];
+        setSpinDisplayTitle(interim.title);
+        setSpinVelocityY((stepIndex % 2 === 0 ? 1 : -1) * (14 - Math.min(12, stepIndex * 0.6)));
+
+        // Audio ticker with realistic frequency scaling
+        if (settings.soundSpin) {
+          const pitch = 700 + (stepIndex / intervals.length) * 350;
+          sounds.playTick(pitch);
+        }
+      }, accumulatedTime);
+
+      spinTimeoutsRef.current.push(t);
+    });
+
+    // Final arrival on the selected prompt
+    const finalArrivalTimeout = setTimeout(() => {
+      setCurrentPrompt(finalPick);
+      setSpinDisplayTitle("");
+      setIsSpinning(false);
+      setSpinVelocityY(0);
+
+      // Lock sound
+      if (settings.soundSpin) {
+        sounds.playLock();
       }
-    }, stepDuration);
-  }, [isSpinning, currentPool, currentPrompt.id, mode]);
 
-  /* ─── In-Card Timer Mechanics (Off The Cuff) ─────────────────────────── */
-  const activeDuration = mode === "off-the-cuff" ? offCuffDuration : researchDuration;
+      // Auto-start timer if user enabled it in settings
+      if (settings.autoStartTimer) {
+        if (mode === "off-the-cuff") {
+          setTimerStatus("running");
+          setTimerSecondsLeft(settings.offCuffSeconds);
+        } else {
+          openRadialTimer();
+        }
+      }
+    }, accumulatedTime + 330);
 
+    spinTimeoutsRef.current.push(finalArrivalTimeout);
+  }, [isSpinning, currentPool, currentPrompt.id, mode, settings]);
+
+  /* ─── In-Card Timer Mechanics (Off the cuff) ─────────────────────────── */
   const resetTimer = useCallback(() => {
     if (timerIntervalRef.current) clearInterval(timerIntervalRef.current);
     setTimerStatus("idle");
-    setTimerSecondsLeft(activeDuration);
-  }, [activeDuration]);
-
-  // Sync timer duration if duration settings change and timer is idle
-  useEffect(() => {
-    if (timerStatus === "idle") {
-      setTimerSecondsLeft(activeDuration);
-    }
-  }, [activeDuration, timerStatus]);
+    setTimerSecondsLeft(settings.offCuffSeconds);
+  }, [settings.offCuffSeconds]);
 
   const toggleTimer = useCallback(() => {
     if (mode === "deep-research") {
-      // For deep research, open the dedicated radial timer overlay as in Screenshot 2
       openRadialTimer();
       return;
     }
 
     if (timerStatus === "idle") {
       setTimerStatus("running");
-      setTimerSecondsLeft(offCuffDuration);
+      setTimerSecondsLeft(settings.offCuffSeconds);
     } else if (timerStatus === "running") {
       setTimerStatus("paused");
       if (timerIntervalRef.current) clearInterval(timerIntervalRef.current);
@@ -193,7 +333,7 @@ export default function ArticulateClient() {
     } else if (timerStatus === "completed") {
       resetTimer();
     }
-  }, [mode, timerStatus, offCuffDuration, resetTimer]);
+  }, [mode, timerStatus, settings.offCuffSeconds, resetTimer]);
 
   useEffect(() => {
     if (timerStatus === "running") {
@@ -202,7 +342,7 @@ export default function ArticulateClient() {
           if (prev <= 1) {
             if (timerIntervalRef.current) clearInterval(timerIntervalRef.current);
             setTimerStatus("completed");
-            if (soundEnabled) playChime();
+            if (settings.soundChime) sounds.playChime();
             return 0;
           }
           return prev - 1;
@@ -215,13 +355,13 @@ export default function ArticulateClient() {
     return () => {
       if (timerIntervalRef.current) clearInterval(timerIntervalRef.current);
     };
-  }, [timerStatus, soundEnabled]);
+  }, [timerStatus, settings.soundChime]);
 
-  /* ─── Radial Timer Overlay (Deep Research) ───────────────────────────── */
+  /* ─── Fullscreen Radial Timer (Screenshot 2: Deep Research) ───────────── */
   const openRadialTimer = () => {
     setRadialPhase("research");
-    setRadialTotalSeconds(researchDuration);
-    setRadialSecondsLeft(researchDuration);
+    setRadialTotalSeconds(settings.researchSeconds);
+    setRadialSecondsLeft(settings.researchSeconds);
     setShowRadialOverlay(true);
   };
 
@@ -232,12 +372,10 @@ export default function ArticulateClient() {
 
   const advanceRadialToSpeaking = () => {
     if (radialIntervalRef.current) clearInterval(radialIntervalRef.current);
-    if (soundEnabled) playChime();
+    if (settings.soundChime) sounds.playChime();
     setRadialPhase("speaking");
-    // 2 minutes for structured speaking
-    const speakDuration = 120;
-    setRadialTotalSeconds(speakDuration);
-    setRadialSecondsLeft(speakDuration);
+    setRadialTotalSeconds(settings.speakingSeconds);
+    setRadialSecondsLeft(settings.speakingSeconds);
   };
 
   useEffect(() => {
@@ -252,7 +390,7 @@ export default function ArticulateClient() {
               advanceRadialToSpeaking();
             } else {
               setRadialPhase("done");
-              if (soundEnabled) playChime();
+              if (settings.soundChime) sounds.playChime();
             }
             return 0;
           }
@@ -264,9 +402,9 @@ export default function ArticulateClient() {
     return () => {
       if (radialIntervalRef.current) clearInterval(radialIntervalRef.current);
     };
-  }, [showRadialOverlay, radialPhase, soundEnabled]);
+  }, [showRadialOverlay, radialPhase, settings.soundChime]);
 
-  /* ─── Keyboard Shortcuts ─────────────────────────────────────────────── */
+  /* ─── Keyboard Listeners (Space & T / Enter) ─────────────────────────── */
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       const activeTag = document.activeElement?.tagName.toLowerCase();
@@ -293,29 +431,33 @@ export default function ArticulateClient() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [spinPrompt, toggleTimer, showRadialOverlay, radialPhase]);
 
-  /* ─── Active Category Meta ───────────────────────────────────────────── */
+  // Update & persist settings helper
+  const updateSettings = (patch: Partial<ArticulateSettings>) => {
+    setSettings((prev) => {
+      const next = { ...prev, ...patch };
+      saveSettings(next);
+      return next;
+    });
+  };
+
   const activeCategoryMeta = ARTICULATE_CATEGORIES.find((c) => c.id === category) ?? ARTICULATE_CATEGORIES[0];
-
-  // Dynamic status micro-label
-  const statusLabel = useMemo(() => {
-    if (isSpinning) return "SPINNING...";
-    if (timerStatus === "running") return "SPEAKING";
-    if (timerStatus === "paused") return "PAUSED";
-    if (timerStatus === "completed") return "TIME'S UP";
-    return "READY";
-  }, [isSpinning, timerStatus]);
-
-  // Main prompt text to display
   const displayTitle = isSpinning ? spinDisplayTitle : currentPrompt.title;
 
   return (
     <div className="relative flex flex-1 flex-col items-center justify-center w-full min-h-[calc(100dvh-4rem)] md:min-h-[calc(100dvh-4.25rem)] px-4 py-4 md:py-6 select-none overflow-hidden">
-      {/* ─── Constrained Central Stack (Max 540px - 580px) ────────────────── */}
+      
+      {/* ─── Atmospheric Vignette Lighting (Subtle warm glow left, teal glow right) ─── */}
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute -left-32 top-1/4 h-[34rem] w-[34rem] rounded-full [background:radial-gradient(closest-side,rgba(217,107,67,0.11),transparent)] blur-2xl" />
+        <div className="absolute -right-32 top-1/3 h-[36rem] w-[36rem] rounded-full [background:radial-gradient(closest-side,rgba(20,85,65,0.13),transparent)] blur-2xl" />
+      </div>
+
+      {/* ─── Main Stack (Max width 560px, cleanly centered) ────────────────── */}
       <div className="flex flex-col items-center w-full max-w-[560px] text-center my-auto">
         
-        {/* ── Header: Title + Creator Attribution ── */}
+        {/* ── Title & Creator Attribution ── */}
         <div className="flex flex-col items-center mb-6 sm:mb-8">
-          <h1 className="font-serif text-3xl sm:text-4xl font-extrabold tracking-tight text-fg">
+          <h1 className="font-serif text-3xl sm:text-4xl font-normal tracking-tight text-fg">
             Articulate
           </h1>
           <div className="mt-1.5 flex items-center gap-1.5 text-xs text-muted">
@@ -333,7 +475,7 @@ export default function ArticulateClient() {
           </div>
         </div>
 
-        {/* ── Practice Mode Segmented Toggle ── */}
+        {/* ── Mode Segmented Toggle ── */}
         <div className="flex flex-col items-center w-full mb-5">
           <div className="inline-flex p-1 rounded-full border border-line bg-card/80 backdrop-blur-md shadow-sm">
             <button
@@ -342,7 +484,7 @@ export default function ArticulateClient() {
               className={cn(
                 "flex items-center gap-2 rounded-full px-4 sm:px-5 py-2 text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer",
                 mode === "off-the-cuff"
-                  ? "bg-brand text-white shadow-[0_4px_16px_-4px_rgba(249,115,22,0.6)]"
+                  ? "bg-[#d96b43] text-white shadow-[0_4px_16px_-4px_rgba(217,107,67,0.6)]"
                   : "text-muted hover:text-fg hover:bg-fg/[0.04]",
               )}
             >
@@ -355,7 +497,7 @@ export default function ArticulateClient() {
               className={cn(
                 "flex items-center gap-2 rounded-full px-4 sm:px-5 py-2 text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer",
                 mode === "deep-research"
-                  ? "bg-brand text-white shadow-[0_4px_16px_-4px_rgba(249,115,22,0.6)]"
+                  ? "bg-[#d96b43] text-white shadow-[0_4px_16px_-4px_rgba(217,107,67,0.6)]"
                   : "text-muted hover:text-fg hover:bg-fg/[0.04]",
               )}
             >
@@ -364,34 +506,30 @@ export default function ArticulateClient() {
             </button>
           </div>
 
-          {/* Mode Description Caption */}
-          <p className="mt-2 text-xs text-muted font-normal max-w-sm">
+          {/* Subtitle Caption */}
+          <p className="mt-2 text-xs text-muted font-normal max-w-sm transition-opacity duration-300">
             {mode === "off-the-cuff"
               ? "Minimal prep. Try to think quick on your feet."
               : "Take your time. Explore the topic in depth and structure a detailed argument."}
           </p>
         </div>
 
-        {/* ── Category Dropdown / Filter ── */}
-        <div className="relative mb-5 z-20">
+        {/* ── Category Pill (No Star Icon) ── */}
+        <div className="relative mb-6 z-20">
           <button
             type="button"
             onClick={() => setIsCategoryOpen(!isCategoryOpen)}
-            className="inline-flex items-center gap-2 rounded-full border border-line bg-card px-4 py-1.5 text-xs font-semibold text-fg shadow-sm hover:border-line-2 hover:bg-fg/[0.04] transition cursor-pointer"
+            className="inline-flex items-center gap-1.5 rounded-full border border-line bg-card px-4 py-1.5 text-xs font-semibold text-fg shadow-sm hover:border-line-2 hover:bg-fg/[0.04] transition cursor-pointer"
             aria-expanded={isCategoryOpen}
           >
-            <span>{activeCategoryMeta.emoji || "✦"}</span>
             <span>{activeCategoryMeta.label}</span>
             <ChevronDown className={cn("w-3.5 h-3.5 text-muted transition-transform duration-200", isCategoryOpen && "rotate-180")} />
           </button>
 
           {isCategoryOpen && (
             <>
-              <div
-                className="fixed inset-0 z-10"
-                onClick={() => setIsCategoryOpen(false)}
-              />
-              <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-52 rounded-2xl border border-line bg-surface p-1.5 shadow-2xl z-20 backdrop-blur-xl animate-fade-in text-left">
+              <div className="fixed inset-0 z-10" onClick={() => setIsCategoryOpen(false)} />
+              <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-48 rounded-2xl border border-line bg-surface p-1.5 shadow-2xl z-20 backdrop-blur-xl animate-fade-in text-left">
                 {ARTICULATE_CATEGORIES.map((cat) => {
                   const active = category === cat.id;
                   return (
@@ -404,15 +542,10 @@ export default function ArticulateClient() {
                       }}
                       className={cn(
                         "flex items-center justify-between w-full rounded-xl px-3 py-2 text-xs font-medium transition cursor-pointer",
-                        active
-                          ? "bg-brand/15 text-brand-ink font-semibold"
-                          : "text-muted hover:bg-fg/[0.05] hover:text-fg",
+                        active ? "bg-brand/15 text-brand-ink font-semibold" : "text-muted hover:bg-fg/[0.05] hover:text-fg",
                       )}
                     >
-                      <span className="flex items-center gap-2">
-                        <span>{cat.emoji || "✦"}</span>
-                        <span>{cat.label}</span>
-                      </span>
+                      <span>{cat.label}</span>
                       {active && <Check className="w-3.5 h-3.5 text-brand-ink shrink-0" />}
                     </button>
                   );
@@ -422,89 +555,90 @@ export default function ArticulateClient() {
           )}
         </div>
 
-        {/* ── Central Prompt Stage (Focal Card) ── */}
-        <div
-          className={cn(
-            "w-full rounded-[28px] border bg-card/85 backdrop-blur-xl card-shadow px-6 py-10 sm:px-10 sm:py-14 flex flex-col items-center justify-center relative overflow-hidden transition-all duration-300 min-h-[220px] sm:min-h-[260px]",
-            timerStatus === "completed"
-              ? "border-danger/40 ring-2 ring-danger/20 shadow-[0_0_36px_-6px_rgba(248,113,113,0.35)]"
-              : timerStatus === "running"
-              ? "border-brand/40 ring-1 ring-brand/20 shadow-[0_0_30px_-8px_rgba(249,115,22,0.25)]"
-              : "border-line",
-          )}
-        >
-          {/* Status Micro-Label */}
+        {/* ── Central Prompt Display (Open Floating Space, No Bulky Card Box!) ── */}
+        <div className="w-full flex flex-col items-center justify-center my-6 sm:my-8 px-4 min-h-[160px] sm:min-h-[190px]">
+          {/* Micro Status Label */}
           <div
             className={cn(
-              "font-mono text-[11px] font-bold tracking-[0.22em] uppercase mb-4 transition-colors",
+              "font-mono text-[11px] font-bold tracking-[0.25em] uppercase mb-3 transition-colors",
               timerStatus === "completed"
                 ? "text-danger animate-bounce"
                 : timerStatus === "running"
                 ? "text-brand-ink"
                 : isSpinning
                 ? "text-brand animate-pulse"
-                : "text-subtle",
+                : "text-[#d96b43]",
             )}
           >
-            {statusLabel}
+            {isSpinning
+              ? "SPINNING..."
+              : timerStatus === "running"
+              ? "SPEAKING"
+              : timerStatus === "paused"
+              ? "PAUSED"
+              : timerStatus === "completed"
+              ? "TIME'S UP"
+              : "READY"}
           </div>
 
-          {/* Prompt Display Heading (Serif) */}
-          <div className="relative w-full flex flex-col items-center justify-center overflow-hidden min-h-[72px]">
+          {/* Prompt Headline in Editorial Display Serif */}
+          <div className="relative w-full flex flex-col items-center justify-center overflow-hidden">
             <h2
+              style={{
+                transform: `translateY(${spinVelocityY}px)`,
+                transition: isSpinning ? "transform 40ms linear, filter 40ms linear" : "all 300ms cubic-bezier(0.16, 1, 0.3, 1)",
+              }}
               className={cn(
-                "font-serif font-bold text-fg tracking-tight leading-tight transition-all duration-150 max-w-[38ch]",
-                isSpinning ? "opacity-70 blur-[1px] translate-y-1 scale-95" : "opacity-100 blur-0 translate-y-0 scale-100",
+                "font-serif font-normal text-fg tracking-tight leading-[1.08] select-text max-w-[34ch]",
+                isSpinning ? "blur-[1.5px] opacity-75" : "blur-0 opacity-100",
                 displayTitle.length > 36
-                  ? "text-xl sm:text-2xl"
+                  ? "text-2xl sm:text-3xl md:text-4xl"
                   : displayTitle.length > 20
-                  ? "text-2xl sm:text-3xl"
-                  : "text-3xl sm:text-4xl md:text-[2.65rem]",
+                  ? "text-3xl sm:text-4xl md:text-5xl"
+                  : "text-4xl sm:text-5xl md:text-6xl lg:text-7xl",
               )}
             >
               {displayTitle}
             </h2>
 
-            {/* Guiding Question / Context (if available and not spinning) */}
-            {!isSpinning && currentPrompt.context && (
-              <p className="mt-3 text-xs sm:text-sm text-muted font-sans italic max-w-sm">
+            {/* Optional Guiding Thought / Prompt Context */}
+            {!isSpinning && settings.showGuidingThought && currentPrompt.context && (
+              <p className="mt-3.5 text-xs sm:text-sm text-muted font-serif italic max-w-sm tracking-wide">
                 &ldquo;{currentPrompt.context}&rdquo;
               </p>
             )}
           </div>
         </div>
 
-        {/* ── Bottom Action Bar (Controls) ── */}
-        <div className="flex items-center justify-center gap-3 w-full mt-6">
-          {/* Button 1: Spin */}
+        {/* ── Primary Action Bar (Clean, Minimal, No Star Icons) ── */}
+        <div className="flex items-center justify-center gap-3 w-full mt-4 sm:mt-6">
+          {/* Spin Button */}
           <button
             type="button"
             onClick={spinPrompt}
             disabled={isSpinning}
-            className="inline-flex items-center justify-center gap-2 rounded-full grad-cta px-7 py-3 text-sm font-bold text-white shadow-[0_8px_24px_-8px_rgba(249,115,22,0.8)] hover:brightness-110 active:scale-95 transition disabled:opacity-50 cursor-pointer shrink-0"
+            className="inline-flex items-center justify-center rounded-full bg-[#d96b43] text-white px-8 py-3 text-sm font-semibold shadow-[0_8px_24px_-8px_rgba(217,107,67,0.7)] hover:brightness-110 active:scale-95 transition disabled:opacity-50 cursor-pointer shrink-0"
           >
-            <Sparkles className="w-4 h-4" />
-            <span>Spin</span>
+            Spin
           </button>
 
-          {/* Button 2: Timer Button */}
+          {/* Timer Button */}
           {mode === "off-the-cuff" ? (
             <div className="flex items-center gap-1.5 flex-1 max-w-[240px]">
               <button
                 type="button"
                 onClick={toggleTimer}
                 className={cn(
-                  "flex-1 inline-flex items-center justify-center gap-2 rounded-full border px-5 py-3 text-sm font-semibold transition active:scale-95 tabular-nums cursor-pointer",
+                  "flex-1 inline-flex items-center justify-center rounded-full border px-6 py-3 text-sm font-semibold transition active:scale-95 tabular-nums cursor-pointer",
                   timerStatus === "running"
                     ? "border-brand bg-brand/10 text-brand-ink shadow-[0_0_16px_-4px_rgba(249,115,22,0.4)]"
                     : timerStatus === "completed"
                     ? "border-danger bg-danger/10 text-danger"
-                    : "border-line-2 bg-card hover:bg-fg/5 text-fg",
+                    : "border-line-2 bg-card/80 hover:bg-fg/5 text-fg",
                 )}
               >
-                <Clock className="w-4 h-4 shrink-0 text-muted" />
                 <span>
-                  {timerStatus === "idle" && `Start ${Math.round(offCuffDuration / 60)} min timer`}
+                  {timerStatus === "idle" && `Start ${Math.round(settings.offCuffSeconds / 60)} min timer`}
                   {timerStatus === "running" && `${formatTime(timerSecondsLeft)} — Pause`}
                   {timerStatus === "paused" && `Resume (${formatTime(timerSecondsLeft)})`}
                   {timerStatus === "completed" && "Reset timer"}
@@ -526,142 +660,220 @@ export default function ArticulateClient() {
             <button
               type="button"
               onClick={openRadialTimer}
-              className="flex-1 max-w-[240px] inline-flex items-center justify-center gap-2 rounded-full border border-line-2 bg-card hover:bg-fg/5 text-fg px-5 py-3 text-sm font-semibold transition active:scale-95 tabular-nums cursor-pointer"
+              className="flex-1 max-w-[240px] inline-flex items-center justify-center rounded-full border border-line-2 bg-card/80 hover:bg-fg/5 text-fg px-6 py-3 text-sm font-semibold transition active:scale-95 tabular-nums cursor-pointer"
             >
-              <Clock className="w-4 h-4 shrink-0 text-brand-ink" />
-              <span>Start {Math.round(researchDuration / 60)} min research</span>
+              Start {Math.round(settings.researchSeconds / 60)} min timer
             </button>
           )}
 
-          {/* Button 3: Settings Gear */}
-          <div className="relative">
-            <button
-              type="button"
-              onClick={() => setIsSettingsOpen(!isSettingsOpen)}
-              className="inline-flex items-center justify-center h-11 w-11 rounded-full border border-line bg-card hover:bg-fg/5 text-muted hover:text-fg transition cursor-pointer"
-              title="Timer & Sound Settings"
-            >
-              <Settings2 className="w-4 h-4" />
-            </button>
-
-            {/* Settings Popover */}
-            {isSettingsOpen && (
-              <>
-                <div
-                  className="fixed inset-0 z-20"
-                  onClick={() => setIsSettingsOpen(false)}
-                />
-                <div className="absolute right-0 bottom-full mb-2 w-64 rounded-2xl border border-line bg-surface p-4 shadow-2xl z-30 backdrop-blur-xl animate-fade-in text-left">
-                  <div className="flex items-center justify-between pb-2 mb-3 border-b border-line">
-                    <span className="text-xs font-bold text-fg">Articulate Settings</span>
-                    <button
-                      type="button"
-                      onClick={() => setIsSettingsOpen(false)}
-                      className="text-subtle hover:text-fg"
-                    >
-                      <X className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-
-                  {/* Off the cuff duration */}
-                  <div className="mb-3">
-                    <span className="text-[11px] font-semibold text-muted block mb-1.5">
-                      Off the Cuff Duration
-                    </span>
-                    <div className="grid grid-cols-3 gap-1">
-                      {[30, 60, 90].map((sec) => (
-                        <button
-                          key={sec}
-                          type="button"
-                          onClick={() => {
-                            setOffCuffDuration(sec);
-                            if (timerStatus === "idle") setTimerSecondsLeft(sec);
-                          }}
-                          className={cn(
-                            "rounded-lg py-1 px-1.5 text-xs font-medium text-center border transition",
-                            offCuffDuration === sec
-                              ? "border-brand bg-brand/15 text-brand-ink font-semibold"
-                              : "border-line bg-fg/[0.02] text-muted hover:text-fg",
-                          )}
-                        >
-                          {sec < 60 ? `${sec}s` : `${sec / 60}m`}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Deep research duration */}
-                  <div className="mb-3">
-                    <span className="text-[11px] font-semibold text-muted block mb-1.5">
-                      Research Duration
-                    </span>
-                    <div className="grid grid-cols-3 gap-1">
-                      {[120, 180, 300].map((sec) => (
-                        <button
-                          key={sec}
-                          type="button"
-                          onClick={() => setResearchDuration(sec)}
-                          className={cn(
-                            "rounded-lg py-1 px-1.5 text-xs font-medium text-center border transition",
-                            researchDuration === sec
-                              ? "border-brand bg-brand/15 text-brand-ink font-semibold"
-                              : "border-line bg-fg/[0.02] text-muted hover:text-fg",
-                          )}
-                        >
-                          {sec / 60}m
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Sound toggle */}
-                  <div className="flex items-center justify-between pt-2 border-t border-line">
-                    <span className="text-xs text-muted flex items-center gap-1.5">
-                      {soundEnabled ? <Volume2 className="w-3.5 h-3.5 text-brand-ink" /> : <VolumeX className="w-3.5 h-3.5 text-subtle" />}
-                      Chime audio
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => setSoundEnabled(!soundEnabled)}
-                      className={cn(
-                        "relative inline-flex h-5 w-9 shrink-0 rounded-full border transition cursor-pointer",
-                        soundEnabled ? "border-brand bg-brand" : "border-line-2 bg-fg/10",
-                      )}
-                    >
-                      <span
-                        className={cn(
-                          "inline-block h-3.5 w-3.5 rounded-full bg-white shadow transition-transform my-auto ml-0.5",
-                          soundEnabled ? "translate-x-4" : "translate-x-0",
-                        )}
-                      />
-                    </button>
-                  </div>
-                </div>
-              </>
-            )}
-          </div>
+          {/* Settings Button */}
+          <button
+            type="button"
+            onClick={() => setIsSettingsOpen(true)}
+            className="inline-flex items-center justify-center h-11 w-11 rounded-full border border-line bg-card/80 hover:bg-fg/5 text-muted hover:text-fg transition cursor-pointer shrink-0"
+            title="Settings"
+          >
+            <Settings2 className="w-4 h-4" />
+          </button>
         </div>
-
-        {/* ── Keyboard Shortcuts Hint (Desktop) ── */}
-        <p className="mt-4 font-mono text-[10px] uppercase tracking-wider text-subtle hidden sm:block">
-          Press <kbd className="px-1.5 py-0.5 rounded border border-line bg-fg/[0.04] text-fg">Space</kbd> to spin · <kbd className="px-1.5 py-0.5 rounded border border-line bg-fg/[0.04] text-fg">T</kbd> to toggle timer
-        </p>
       </div>
 
-      {/* ─── Fullscreen Radial Countdown Timer Overlay (from Screenshot 2) ── */}
+      {/* ─── Settings Modal (Proper Settings Panel) ────────────────────────── */}
+      {isSettingsOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in">
+          <div className="glass w-full max-w-sm rounded-3xl border border-line p-5 shadow-2xl relative text-left">
+            <div className="flex items-center justify-between pb-3 border-b border-line">
+              <span className="text-sm font-bold text-fg">Articulate Settings</span>
+              <button
+                type="button"
+                onClick={() => setIsSettingsOpen(false)}
+                className="h-8 w-8 rounded-full flex items-center justify-center text-muted hover:text-fg hover:bg-fg/[0.05] transition"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <div className="py-4 space-y-4 text-xs">
+              {/* Off the cuff prep timer */}
+              <div>
+                <label className="font-semibold text-fg block mb-1.5">
+                  Off the Cuff Duration
+                </label>
+                <div className="grid grid-cols-5 gap-1">
+                  {[30, 45, 60, 90, 120].map((sec) => (
+                    <button
+                      key={sec}
+                      type="button"
+                      onClick={() => {
+                        updateSettings({ offCuffSeconds: sec });
+                        if (timerStatus === "idle") setTimerSecondsLeft(sec);
+                      }}
+                      className={cn(
+                        "rounded-xl py-1.5 text-xs font-semibold text-center border transition cursor-pointer",
+                        settings.offCuffSeconds === sec
+                          ? "border-[#d96b43] bg-[#d96b43]/15 text-[#d96b43]"
+                          : "border-line bg-fg/[0.02] text-muted hover:text-fg",
+                      )}
+                    >
+                      {sec < 60 ? `${sec}s` : `${sec / 60}m`}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Deep research timer */}
+              <div>
+                <label className="font-semibold text-fg block mb-1.5">
+                  Deep Research Prep Duration
+                </label>
+                <div className="grid grid-cols-4 gap-1">
+                  {[120, 180, 300, 420].map((sec) => (
+                    <button
+                      key={sec}
+                      type="button"
+                      onClick={() => updateSettings({ researchSeconds: sec })}
+                      className={cn(
+                        "rounded-xl py-1.5 text-xs font-semibold text-center border transition cursor-pointer",
+                        settings.researchSeconds === sec
+                          ? "border-[#d96b43] bg-[#d96b43]/15 text-[#d96b43]"
+                          : "border-line bg-fg/[0.02] text-muted hover:text-fg",
+                      )}
+                    >
+                      {sec / 60} min
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Speaking timer */}
+              <div>
+                <label className="font-semibold text-fg block mb-1.5">
+                  Speaking Duration (After Research)
+                </label>
+                <div className="grid grid-cols-3 gap-1">
+                  {[60, 120, 180].map((sec) => (
+                    <button
+                      key={sec}
+                      type="button"
+                      onClick={() => updateSettings({ speakingSeconds: sec })}
+                      className={cn(
+                        "rounded-xl py-1.5 text-xs font-semibold text-center border transition cursor-pointer",
+                        settings.speakingSeconds === sec
+                          ? "border-[#d96b43] bg-[#d96b43]/15 text-[#d96b43]"
+                          : "border-line bg-fg/[0.02] text-muted hover:text-fg",
+                      )}
+                    >
+                      {sec / 60} min
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Toggles */}
+              <div className="pt-2 border-t border-line space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-muted">Reel ticking audio</span>
+                  <button
+                    type="button"
+                    onClick={() => updateSettings({ soundSpin: !settings.soundSpin })}
+                    className={cn(
+                      "relative inline-flex h-5 w-9 shrink-0 rounded-full border transition cursor-pointer",
+                      settings.soundSpin ? "border-[#d96b43] bg-[#d96b43]" : "border-line-2 bg-fg/10",
+                    )}
+                  >
+                    <span
+                      className={cn(
+                        "inline-block h-3.5 w-3.5 rounded-full bg-white shadow transition-transform my-auto ml-0.5",
+                        settings.soundSpin ? "translate-x-4" : "translate-x-0",
+                      )}
+                    />
+                  </button>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <span className="text-muted">Completion chime sound</span>
+                  <button
+                    type="button"
+                    onClick={() => updateSettings({ soundChime: !settings.soundChime })}
+                    className={cn(
+                      "relative inline-flex h-5 w-9 shrink-0 rounded-full border transition cursor-pointer",
+                      settings.soundChime ? "border-[#d96b43] bg-[#d96b43]" : "border-line-2 bg-fg/10",
+                    )}
+                  >
+                    <span
+                      className={cn(
+                        "inline-block h-3.5 w-3.5 rounded-full bg-white shadow transition-transform my-auto ml-0.5",
+                        settings.soundChime ? "translate-x-4" : "translate-x-0",
+                      )}
+                    />
+                  </button>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <span className="text-muted">Show guiding thought context</span>
+                  <button
+                    type="button"
+                    onClick={() => updateSettings({ showGuidingThought: !settings.showGuidingThought })}
+                    className={cn(
+                      "relative inline-flex h-5 w-9 shrink-0 rounded-full border transition cursor-pointer",
+                      settings.showGuidingThought ? "border-[#d96b43] bg-[#d96b43]" : "border-line-2 bg-fg/10",
+                    )}
+                  >
+                    <span
+                      className={cn(
+                        "inline-block h-3.5 w-3.5 rounded-full bg-white shadow transition-transform my-auto ml-0.5",
+                        settings.showGuidingThought ? "translate-x-4" : "translate-x-0",
+                      )}
+                    />
+                  </button>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <span className="text-muted">Auto-start timer after spin</span>
+                  <button
+                    type="button"
+                    onClick={() => updateSettings({ autoStartTimer: !settings.autoStartTimer })}
+                    className={cn(
+                      "relative inline-flex h-5 w-9 shrink-0 rounded-full border transition cursor-pointer",
+                      settings.autoStartTimer ? "border-[#d96b43] bg-[#d96b43]" : "border-line-2 bg-fg/10",
+                    )}
+                  >
+                    <span
+                      className={cn(
+                        "inline-block h-3.5 w-3.5 rounded-full bg-white shadow transition-transform my-auto ml-0.5",
+                        settings.autoStartTimer ? "translate-x-4" : "translate-x-0",
+                      )}
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setIsSettingsOpen(false)}
+              className="w-full rounded-2xl bg-fg/[0.06] hover:bg-fg/[0.1] text-fg py-2.5 text-xs font-semibold transition"
+            >
+              Done
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* ─── Fullscreen Radial Countdown Overlay (Screenshot 2) ──────────── */}
       {showRadialOverlay && (
         <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-bg/95 backdrop-blur-2xl px-4 animate-fade-in select-none">
           {/* Upper Title */}
-          <div className="text-center mb-2">
-            <h3 className="font-mono text-xs sm:text-sm font-bold tracking-[0.2em] uppercase text-brand-ink">
+          <div className="text-center mb-1">
+            <h3 className="font-mono text-xs sm:text-sm font-bold tracking-[0.2em] uppercase text-[#d96b43]">
               {currentPrompt.title}
             </h3>
-            <span className="font-mono text-[11px] font-semibold tracking-[0.25em] uppercase text-brand mt-1 block">
+            <span className="font-mono text-[11px] font-semibold tracking-[0.25em] uppercase text-[#38b2ac] mt-1.5 block">
               {radialPhase === "research" ? "RESEARCHING" : radialPhase === "speaking" ? "SPEAKING" : "TIME'S UP"}
             </span>
           </div>
 
-          {/* Radial Circular SVG Ring */}
+          {/* Massive Circular SVG Progress Ring */}
           <div className="relative my-8 flex items-center justify-center">
             {(() => {
               const ringSize = 280;
@@ -679,7 +891,6 @@ export default function ArticulateClient() {
                     className="-rotate-90"
                     aria-hidden="true"
                   >
-                    {/* Background Track */}
                     <circle
                       cx={ringSize / 2}
                       cy={ringSize / 2}
@@ -688,7 +899,6 @@ export default function ArticulateClient() {
                       strokeWidth={strokeWidth}
                       className="stroke-fg/[0.08]"
                     />
-                    {/* Animated Progress Arc */}
                     <circle
                       cx={ringSize / 2}
                       cy={ringSize / 2}
@@ -698,13 +908,12 @@ export default function ArticulateClient() {
                       strokeLinecap="round"
                       strokeDasharray={circumference}
                       strokeDashoffset={strokeDashoffset}
-                      className="stroke-brand transition-[stroke-dashoffset] duration-700 ease-linear"
+                      className="stroke-[#38b2ac] transition-[stroke-dashoffset] duration-700 ease-linear"
                     />
                   </svg>
 
-                  {/* Centered Large Digits */}
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <span className="font-serif text-5xl sm:text-6xl font-semibold text-fg tabular-nums tracking-tight">
+                    <span className="font-serif text-6xl sm:text-7xl font-normal text-fg tabular-nums tracking-tight">
                       {formatTime(radialSecondsLeft)}
                     </span>
                   </div>
@@ -722,13 +931,13 @@ export default function ArticulateClient() {
               : "Completed."}
           </p>
 
-          {/* Bottom Action Controls */}
+          {/* Action Buttons */}
           <div className="flex items-center gap-4">
             {radialPhase === "research" && (
               <button
                 type="button"
                 onClick={advanceRadialToSpeaking}
-                className="inline-flex items-center justify-center rounded-full grad-cta px-7 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_-8px_rgba(249,115,22,0.8)] hover:brightness-110 active:scale-95 transition cursor-pointer"
+                className="inline-flex items-center justify-center rounded-full bg-[#d96b43] text-white px-7 py-3 text-sm font-semibold shadow-[0_8px_24px_-8px_rgba(217,107,67,0.7)] hover:brightness-110 active:scale-95 transition cursor-pointer"
               >
                 Done researching
               </button>
@@ -740,9 +949,9 @@ export default function ArticulateClient() {
                 onClick={() => {
                   if (radialIntervalRef.current) clearInterval(radialIntervalRef.current);
                   setRadialPhase("done");
-                  if (soundEnabled) playChime();
+                  if (settings.soundChime) sounds.playChime();
                 }}
-                className="inline-flex items-center justify-center rounded-full grad-cta px-7 py-3 text-sm font-semibold text-white shadow-[0_8px_24px_-8px_rgba(249,115,22,0.8)] hover:brightness-110 active:scale-95 transition cursor-pointer"
+                className="inline-flex items-center justify-center rounded-full bg-[#d96b43] text-white px-7 py-3 text-sm font-semibold shadow-[0_8px_24px_-8px_rgba(217,107,67,0.7)] hover:brightness-110 active:scale-95 transition cursor-pointer"
               >
                 Done speaking
               </button>

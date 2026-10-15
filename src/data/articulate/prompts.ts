@@ -17,7 +17,7 @@ export interface CategoryMeta {
 }
 
 export const ARTICULATE_CATEGORIES: CategoryMeta[] = [
-  { id: "all", label: "General", emoji: "✦", description: "All topics across every category" },
+  { id: "all", label: "General", description: "All topics across every category" },
   { id: "philosophy", label: "Philosophy", emoji: "🏛️", description: "Existential, ethical, and deep questions" },
   { id: "technology", label: "Technology", emoji: "⚡", description: "AI, digital culture, and future tech" },
   { id: "society", label: "Society", emoji: "🌐", description: "Culture, human dynamics, and communities" },

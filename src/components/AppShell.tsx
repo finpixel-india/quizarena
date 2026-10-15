@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import { ArrowUpRight, BarChart3, BookOpenText, FlaskConical, History, Maximize, Minimize, Moon, Settings2, Sun, Zap } from "lucide-react";
+import { ArrowUpRight, BarChart3, BookOpenText, FlaskConical, History, Lightbulb, Maximize, Minimize, Moon, Settings2, Sun, Zap } from "lucide-react";
 import { btn } from "@/components/ui";
 import { useFullscreen, useTheme } from "@/lib/client-hooks";
 import { cn } from "@/lib/format";
@@ -11,6 +11,7 @@ import { cn } from "@/lib/format";
 const NAV = [
   { href: "/", label: "Quiz", icon: Zap },
   { href: "/notes", label: "Notes", icon: BookOpenText },
+  { href: "/facts", label: "Facts", icon: Lightbulb },
   { href: "/history", label: "History", icon: History },
   { href: "/stats", label: "Stats", icon: BarChart3 },
   { href: "/settings", label: "Settings", icon: Settings2 },
@@ -102,7 +103,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
       </footer>
 
       <nav className="glass fixed inset-x-0 bottom-0 z-30 border-t border-line pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-1 md:hidden" aria-label="Main">
-        <div className="mx-auto grid max-w-md grid-cols-5 px-1">
+        <div className="mx-auto grid max-w-md grid-cols-6 px-1">
           {NAV.map((item) => {
             const active = isActive(pathname, item.href);
             const Icon = item.icon;

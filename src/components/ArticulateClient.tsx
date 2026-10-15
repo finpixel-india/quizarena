@@ -36,7 +36,7 @@ function persistSettings(s: Settings) {
 /* ─── Instagram Icon ─────────────────────────────────────────────────────── */
 function IgIcon() {
   return (
-    <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
       <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
       <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
@@ -130,15 +130,15 @@ function SettingsOverlay({ settings, onChange, onClose }: { settings: Settings; 
   const done = () => { persistSettings(local); onChange(local); onClose(); };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={onClose}>
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-md" />
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 select-none" onClick={onClose}>
+      <div className="absolute inset-0 bg-black/65 backdrop-blur-md" />
       <div
-        className="relative z-10 w-full max-w-[340px] rounded-3xl overflow-hidden border border-white/[0.1] shadow-2xl"
-        style={{ background: "rgba(18,14,12,0.92)", backdropFilter: "blur(32px)" }}
+        className="relative z-10 w-full max-w-[350px] rounded-3xl overflow-hidden border border-white/[0.12] shadow-2xl"
+        style={{ background: "rgba(18,14,12,0.94)", backdropFilter: "blur(32px)" }}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="p-6 sm:p-7">
-          <div className="flex items-center justify-between mb-1">
+          <div className="flex items-center justify-between mb-1.5">
             <h2 className="font-serif text-2xl font-normal text-fg tracking-tight">Settings</h2>
             <button
               type="button"
@@ -153,50 +153,50 @@ function SettingsOverlay({ settings, onChange, onClose }: { settings: Settings; 
           {/* SPEECH */}
           <div className="mb-7">
             <div className="flex items-center justify-between mb-3">
-              <span className="font-mono text-[11px] font-bold tracking-[0.2em] uppercase text-[#d96b43]">Speech</span>
-              <span className="text-lg font-bold text-fg tabular-nums">{local.speechMinutes} min</span>
+              <span className="font-mono text-xs font-bold tracking-[0.2em] uppercase text-[#d96b43]">Speech</span>
+              <span className="text-xl font-bold text-fg tabular-nums">{local.speechMinutes} min</span>
             </div>
             <Slider min={1} max={10} value={local.speechMinutes} onChange={(v) => upd({ speechMinutes: v })} />
             <div className="flex justify-between mt-2">
-              <span className="text-[10px] font-mono text-subtle">1 min</span>
-              <span className="text-[10px] font-mono text-subtle">10 min</span>
+              <span className="text-xs font-mono text-subtle">1 min</span>
+              <span className="text-xs font-mono text-subtle">10 min</span>
             </div>
           </div>
 
           {/* RESEARCH */}
           <div className="mb-6">
             <div className="flex items-center justify-between mb-3">
-              <span className="font-mono text-[11px] font-bold tracking-[0.2em] uppercase text-[#d96b43]">Research</span>
-              <span className="text-lg font-bold text-fg tabular-nums">{local.researchMinutes} min</span>
+              <span className="font-mono text-xs font-bold tracking-[0.2em] uppercase text-[#d96b43]">Research</span>
+              <span className="text-xl font-bold text-fg tabular-nums">{local.researchMinutes} min</span>
             </div>
             <Slider min={1} max={60} value={local.researchMinutes} onChange={(v) => upd({ researchMinutes: v })} />
             <div className="flex justify-between mt-2">
-              <span className="text-[10px] font-mono text-subtle">1 min</span>
-              <span className="text-[10px] font-mono text-subtle">60 min</span>
+              <span className="text-xs font-mono text-subtle">1 min</span>
+              <span className="text-xs font-mono text-subtle">60 min</span>
             </div>
-            <p className="text-xs text-subtle mt-1.5">Deep research only</p>
+            <p className="text-xs text-subtle mt-1.5">Deep research mode only</p>
           </div>
 
-          <div className="h-px bg-white/[0.07] mb-5" />
+          <div className="h-px bg-white/[0.08] mb-5" />
 
-          <label className="flex items-center gap-3 cursor-pointer select-none mb-5">
+          <label className="flex items-center gap-3 cursor-pointer select-none mb-6">
             <button
               type="button"
               onClick={() => upd({ muteSounds: !local.muteSounds })}
               className={cn(
-                "w-[18px] h-[18px] rounded-[5px] border flex items-center justify-center shrink-0 transition-all cursor-pointer",
+                "w-5 h-5 rounded-[6px] border flex items-center justify-center shrink-0 transition-all cursor-pointer",
                 local.muteSounds ? "bg-[#d96b43] border-[#d96b43]" : "border-white/25 bg-white/[0.04]"
               )}
             >
-              {local.muteSounds && <Check className="w-2.5 h-2.5 text-white" strokeWidth={3} />}
+              {local.muteSounds && <Check className="w-3 h-3 text-white" strokeWidth={3} />}
             </button>
-            <span className="text-sm text-fg/85">Mute sound effects</span>
+            <span className="text-[15px] text-fg/85">Mute sound effects</span>
           </label>
 
           <button
             type="button"
             onClick={done}
-            className="w-full rounded-full bg-[#d96b43] text-white py-3.5 text-[15px] font-semibold hover:brightness-110 active:scale-[0.98] transition cursor-pointer shadow-[0_4px_16px_rgba(217,107,67,0.35)]"
+            className="w-full rounded-full bg-[#d96b43] text-white py-3.5 text-base font-semibold hover:brightness-110 active:scale-[0.98] transition cursor-pointer shadow-[0_4px_16px_rgba(217,107,67,0.35)]"
           >
             Done
           </button>
@@ -258,7 +258,7 @@ export default function ArticulateClient() {
 
   const fmt = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
 
-  /* ── Spin Logic (contained, stable) ── */
+  /* ── Spin Logic (contained, stable, zero layout shift) ── */
   const doSpin = useCallback(() => {
     if (isSpinning) return;
     spinTimers.current.forEach(clearTimeout);
@@ -272,7 +272,6 @@ export default function ArticulateClient() {
 
     setIsSpinning(true);
 
-    // Deceleration curve
     const phases: [number, number][] = [
       [55, 6],
       [75, 5],
@@ -358,7 +357,6 @@ export default function ArticulateClient() {
         if (prev <= 1) {
           clearInterval(overlayRef.current!);
           if (overlayPhase === "research") {
-            // Naturally move to ready-to-speak so user can take a breath before speaking
             finishResearch();
           } else {
             setOverlayPhase("done");
@@ -391,7 +389,7 @@ export default function ArticulateClient() {
   const activeCat = DISPLAY_CATEGORIES.find((c) => c.id === category) ?? DISPLAY_CATEGORIES[0];
 
   return (
-    <div className="relative flex flex-1 flex-col items-center justify-between w-full min-h-[calc(100dvh-4rem)] overflow-hidden select-none">
+    <div className="relative flex flex-1 flex-col items-center justify-center w-full min-h-[calc(100dvh-4rem)] overflow-hidden select-none">
 
       {/* ── Atmospheric glows ── */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
@@ -399,21 +397,21 @@ export default function ArticulateClient() {
         <div className="absolute -right-24 top-0 h-[60vh] w-[50vw] rounded-full [background:radial-gradient(ellipse_at_center,rgba(217,107,67,0.12),transparent_70%)]" />
       </div>
 
-      {/* ── Main Vertical Content Stack ── */}
-      <div className="flex flex-col items-center w-full max-w-[560px] mx-auto px-5 pt-8 sm:pt-12 pb-8 flex-1 justify-center">
+      {/* ── Main Centered Stack (Symmetric on mobile & desktop) ── */}
+      <div className="flex flex-col items-center w-full max-w-[560px] mx-auto px-4 sm:px-6 py-6 sm:py-10 flex-1 justify-center text-center">
 
         {/* ─── HEADER ─── */}
         <div className="text-center mb-6 sm:mb-8">
-          <h1 className="font-serif text-[2.2rem] sm:text-[2.7rem] font-normal tracking-tight text-fg leading-none">
+          <h1 className="font-serif text-[2.6rem] sm:text-[3.3rem] font-normal tracking-tight text-fg leading-none">
             Articulate
           </h1>
-          <div className="flex items-center justify-center gap-1.5 mt-2 text-xs text-muted">
+          <div className="flex items-center justify-center gap-2 mt-2.5 text-sm text-muted">
             <span>made by</span>
             <a
               href="https://instagram.com/ur.spideey"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-0.5 text-[11px] text-fg/75 hover:text-fg hover:border-white/20 transition"
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-fg/80 hover:text-fg hover:border-white/20 transition"
             >
               <IgIcon />
               @ur.spideey
@@ -432,7 +430,7 @@ export default function ArticulateClient() {
                   type="button"
                   onClick={() => switchMode(m)}
                   className={cn(
-                    "flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-300 cursor-pointer",
+                    "flex items-center gap-2 rounded-full px-5 py-2.5 sm:px-6 sm:py-3 text-[14px] sm:text-[15px] font-semibold transition-all duration-300 cursor-pointer",
                     active ? "bg-[#d96b43] text-white shadow-[0_2px_16px_-4px_rgba(217,107,67,0.7)]" : "text-fg/45 hover:text-fg/70",
                   )}
                 >
@@ -447,21 +445,21 @@ export default function ArticulateClient() {
           </div>
 
           {/* Subtitle Caption */}
-          <p key={modeKey} className="mt-3 text-sm text-muted text-center max-w-xs leading-relaxed animate-mode-in">
+          <p key={modeKey} className="mt-3.5 text-[15px] sm:text-base text-muted text-center max-w-sm leading-relaxed animate-mode-in">
             {mode === "off-the-cuff"
               ? "Minimal prep. Try to think quick on your feet."
               : "Spin a topic, set a research timer, then speak with structure."}
           </p>
 
           {/* Category Selector with Native Outside-Click Handling */}
-          <div ref={catRef} className="relative mt-3.5 w-full max-w-[260px]">
+          <div ref={catRef} className="relative mt-4 w-full max-w-[280px]">
             <button
               type="button"
               onClick={() => setCategoryOpen((v) => !v)}
-              className="flex items-center justify-between w-full gap-2 rounded-full border border-white/[0.12] bg-white/[0.04] px-4 py-2 text-sm font-medium text-fg hover:bg-white/[0.08] transition cursor-pointer"
+              className="flex items-center justify-between w-full gap-2 rounded-full border border-white/[0.12] bg-white/[0.04] px-4.5 py-2.5 text-[15px] font-medium text-fg hover:bg-white/[0.08] transition cursor-pointer"
             >
-              <span className="flex items-center gap-2">
-                <span className="leading-none">{activeCat.emoji}</span>
+              <span className="flex items-center gap-2.5">
+                <span className="text-base leading-none">{activeCat.emoji}</span>
                 <span>{activeCat.label}</span>
               </span>
               {categoryOpen ? <ChevronUp className="w-4 h-4 text-muted shrink-0" /> : <ChevronDown className="w-4 h-4 text-muted shrink-0" />}
@@ -472,7 +470,7 @@ export default function ArticulateClient() {
                 className="absolute left-0 right-0 top-full mt-2 z-50 rounded-2xl border border-white/[0.12] p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-2xl animate-fade-in"
                 style={{ background: "rgba(22, 18, 15, 0.97)" }}
               >
-                <div className="space-y-0.5 max-h-56 overflow-y-auto overscroll-contain scrollbar-none">
+                <div className="space-y-0.5 max-h-60 overflow-y-auto overscroll-contain scrollbar-none">
                   {DISPLAY_CATEGORIES.map((cat) => {
                     const isActive = category === cat.id;
                     return (
@@ -481,11 +479,11 @@ export default function ArticulateClient() {
                         type="button"
                         onClick={() => { setCategory(cat.id); setCategoryOpen(false); }}
                         className={cn(
-                          "flex items-center w-full gap-3 px-3 py-2.5 rounded-xl text-sm transition cursor-pointer text-left",
+                          "flex items-center w-full gap-3 px-3.5 py-2.5 rounded-xl text-[14px] sm:text-[15px] transition cursor-pointer text-left",
                           isActive ? "bg-white/[0.1] text-fg font-medium" : "text-fg/60 hover:text-fg hover:bg-white/[0.05]"
                         )}
                       >
-                        <span className="text-base w-5 text-center shrink-0 leading-none">{cat.emoji}</span>
+                        <span className="text-lg w-5 text-center shrink-0 leading-none">{cat.emoji}</span>
                         <span>{cat.label}</span>
                       </button>
                     );
@@ -496,17 +494,17 @@ export default function ArticulateClient() {
           </div>
         </div>
 
-        {/* ─── PROMPT STAGE (Strictly height-locked so buttons NEVER move) ─── */}
-        <div className="relative z-10 w-full h-[180px] sm:h-[210px] flex-shrink-0 my-3 sm:my-5 flex flex-col items-center justify-center text-center overflow-hidden select-none">
-          <p className="h-5 flex-shrink-0 font-mono text-[11px] font-bold tracking-[0.25em] uppercase mb-2 text-[#d96b43]">
+        {/* ─── PROMPT STAGE (Strictly height-locked, text scaled up comfortably) ─── */}
+        <div className="relative z-10 w-full h-[190px] sm:h-[220px] flex-shrink-0 my-3 sm:my-5 flex flex-col items-center justify-center text-center overflow-hidden select-none">
+          <p className="h-5 flex-shrink-0 font-mono text-xs sm:text-[13px] font-bold tracking-[0.25em] uppercase mb-2 text-[#d96b43]">
             {isSpinning ? "SPINNING..." : mode === "deep-research" ? "YOUR TOPIC" : "READY"}
           </p>
 
-          <div className="w-full h-[130px] sm:h-[150px] flex-shrink-0 flex items-center justify-center px-4 overflow-hidden">
+          <div className="w-full h-[140px] sm:h-[160px] flex-shrink-0 flex items-center justify-center px-3 sm:px-4 overflow-hidden">
             <h2
               key={tickKey}
               className={cn(
-                "font-serif font-normal text-fg leading-[1.14] tracking-[-0.015em] max-w-[22ch] mx-auto text-3xl sm:text-4xl md:text-5xl line-clamp-3",
+                "font-serif font-normal text-fg leading-[1.12] tracking-[-0.015em] max-w-[20ch] mx-auto text-[2.2rem] sm:text-[3rem] md:text-[3.5rem] line-clamp-3",
                 isSpinning ? "animate-slot-in" : "animate-prompt-land",
               )}
             >
@@ -515,23 +513,23 @@ export default function ArticulateClient() {
           </div>
         </div>
 
-        {/* ─── ACTION BAR (Always rock-solid stationary) ─── */}
-        <div className="flex items-center gap-3">
+        {/* ─── ACTION BAR (Symmetric & responsive on mobile) ─── */}
+        <div className="flex items-center justify-center gap-2.5 sm:gap-3 w-full max-w-[460px] px-1">
           <button
             type="button"
             onClick={doSpin}
             disabled={isSpinning}
-            className="rounded-full bg-[#d96b43] text-white px-8 py-3 text-[15px] font-semibold shadow-[0_8px_28px_-8px_rgba(217,107,67,0.7)] hover:brightness-110 active:scale-95 transition disabled:opacity-40 cursor-pointer"
+            className="flex-1 sm:flex-initial rounded-full bg-[#d96b43] text-white px-5 sm:px-8 py-3.5 text-[15px] sm:text-base font-semibold shadow-[0_8px_28px_-8px_rgba(217,107,67,0.7)] hover:brightness-110 active:scale-95 transition disabled:opacity-40 cursor-pointer whitespace-nowrap text-center"
           >
             {hasSpun ? "Spin again" : "Spin"}
           </button>
 
-          {/* Action button opens fullscreen glassmorphism timer page */}
+          {/* Action button */}
           {mode === "off-the-cuff" ? (
             <button
               type="button"
               onClick={startOffTheCuff}
-              className="rounded-full border border-white/20 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-6 py-3 text-[15px] font-semibold transition active:scale-95 cursor-pointer"
+              className="flex-1 sm:flex-initial rounded-full border border-white/20 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-4 sm:px-7 py-3.5 text-[15px] sm:text-base font-semibold transition active:scale-95 cursor-pointer whitespace-nowrap text-center"
             >
               Start {settings.speechMinutes} min timer
             </button>
@@ -539,7 +537,7 @@ export default function ArticulateClient() {
             <button
               type="button"
               onClick={startDeepResearch}
-              className="rounded-full border border-white/20 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-6 py-3 text-[15px] font-semibold transition active:scale-95 cursor-pointer"
+              className="flex-1 sm:flex-initial rounded-full border border-white/20 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-4 sm:px-7 py-3.5 text-[15px] sm:text-base font-semibold transition active:scale-95 cursor-pointer whitespace-nowrap text-center"
             >
               Start {settings.researchMinutes} min research
             </button>
@@ -548,10 +546,10 @@ export default function ArticulateClient() {
           <button
             type="button"
             onClick={() => setSettingsOpen(true)}
-            className="flex items-center justify-center w-11 h-11 rounded-full border border-white/15 text-fg/50 hover:text-fg hover:bg-white/[0.06] transition cursor-pointer"
+            className="w-12 h-12 shrink-0 rounded-full border border-white/15 text-fg/50 hover:text-fg hover:bg-white/[0.06] transition flex items-center justify-center cursor-pointer"
             title="Timer Settings"
           >
-            <Settings2 className="w-4 h-4" />
+            <Settings2 className="w-5 h-5" />
           </button>
         </div>
       </div>
@@ -590,7 +588,7 @@ export default function ArticulateClient() {
           { title: "Now what?", desc: "Action or takeaway" },
         ];
 
-        // Circle dimensions matching reference SS (thick 28px chunky ring)
+        // Circle dimensions: viewBox 330 allows perfect fluid scaling on all mobile screens
         const size = 330;
         const strokeWidth = 28;
         const radius = (size - strokeWidth) / 2;
@@ -598,40 +596,40 @@ export default function ArticulateClient() {
         const strokeDashoffset = circ - elapsedFraction * circ;
 
         return (
-          <div className="fixed inset-0 z-50 flex flex-col items-center justify-center px-4 py-8 bg-[#0d0d0f]/98 backdrop-blur-3xl animate-fade-in select-none">
+          <div className="fixed inset-0 z-50 flex flex-col items-center justify-center px-4 py-6 sm:py-8 bg-[#0d0d0f]/98 backdrop-blur-3xl animate-fade-in select-none">
             {/* Ambient Radial Theme Aura */}
             <div className="pointer-events-none absolute w-[520px] h-[520px] rounded-full bg-[#d96b43]/12 blur-[140px]" />
 
-            {/* Main Column — Clean, Spaced, No Box Borders */}
+            {/* Main Column — Clean, Spaced, Symmetrical on Phone */}
             <div className="relative z-10 flex flex-col items-center text-center w-full max-w-lg mx-auto">
               
               {/* Topic Title */}
-              <h2 className="font-mono text-xs sm:text-sm font-bold tracking-[0.25em] uppercase text-[#d96b43] mb-3 max-w-[34ch] leading-relaxed">
+              <h2 className="font-mono text-xs sm:text-sm font-bold tracking-[0.24em] uppercase text-[#d96b43] mb-3 max-w-[32ch] px-4 leading-relaxed">
                 {currentPrompt.title}
               </h2>
 
               {/* Subtitle / Structure Pills */}
-              <div className="min-h-[44px] flex items-center justify-center mb-2">
+              <div className="min-h-[44px] flex items-center justify-center mb-1 sm:mb-2">
                 {isResearch ? (
-                  <span className="font-mono text-xs font-bold tracking-[0.3em] uppercase text-[#d96b43]/90">
+                  <span className="font-mono text-xs sm:text-[13px] font-bold tracking-[0.3em] uppercase text-[#d96b43]/90">
                     RESEARCHING
                   </span>
                 ) : (
                   /* Speaking / Ready: The 3 Pill buttons */
-                  <div className="flex items-center justify-center gap-2.5">
+                  <div className="flex items-center justify-center gap-2 sm:gap-2.5 px-2">
                     {PILLS.map((pill, idx) => {
                       const active = idx === activePill;
                       return (
                         <div
                           key={pill.title}
                           className={cn(
-                            "flex items-center px-5 py-2 rounded-full border transition-all duration-300",
+                            "flex items-center px-4 sm:px-5 py-1.5 sm:py-2 rounded-full border transition-all duration-300",
                             active
                               ? "bg-[#d96b43]/20 border-[#d96b43] text-white shadow-[0_0_18px_rgba(217,107,67,0.35)]"
                               : "bg-white/[0.04] border-white/[0.1] text-white/45"
                           )}
                         >
-                          <span className="text-xs font-semibold">{pill.title}</span>
+                          <span className="text-xs sm:text-sm font-semibold">{pill.title}</span>
                         </div>
                       );
                     })}
@@ -639,9 +637,9 @@ export default function ArticulateClient() {
                 )}
               </div>
 
-              {/* Thick Glassmorphism Radial Timer Ring */}
-              <div className="relative my-7 sm:my-9 flex items-center justify-center" style={{ width: size, height: size }}>
-                <svg width={size} height={size} className="-rotate-90" aria-hidden="true">
+              {/* Thick Glassmorphism Radial Timer Ring (Fluid responsive width) */}
+              <div className="relative my-6 sm:my-8 flex items-center justify-center w-[270px] h-[270px] sm:w-[330px] sm:h-[330px]">
+                <svg viewBox="0 0 330 330" className="w-full h-full -rotate-90" aria-hidden="true">
                   {/* Outer Glass Bevel Stroke */}
                   <circle
                     cx={size / 2} cy={size / 2} r={radius + strokeWidth / 2}
@@ -676,7 +674,7 @@ export default function ArticulateClient() {
                 {/* Large Serif Digits Inside Ring */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
                   <span
-                    className="font-serif text-7xl sm:text-8xl font-normal tabular-nums tracking-tight leading-none"
+                    className="font-serif text-7xl sm:text-8xl md:text-9xl font-normal tabular-nums tracking-tight leading-none"
                     style={{ color: "#d96b43" }}
                   >
                     {fmt(overlayLeft)}
@@ -685,7 +683,7 @@ export default function ArticulateClient() {
               </div>
 
               {/* Status Caption */}
-              <p className="font-serif text-lg sm:text-xl text-fg/80 italic mb-7">
+              <p className="font-serif text-xl sm:text-2xl text-fg/85 italic mb-6 sm:mb-7">
                 {isResearch
                   ? "Research."
                   : isReadyToSpeak
@@ -701,7 +699,7 @@ export default function ArticulateClient() {
                   <button
                     type="button"
                     onClick={finishResearch}
-                    className="rounded-full bg-[#d96b43] text-white px-8 py-3.5 text-[15px] font-semibold hover:brightness-110 active:scale-95 transition shadow-[0_8px_24px_-6px_rgba(217,107,67,0.6)] cursor-pointer"
+                    className="rounded-full bg-[#d96b43] text-white px-8 py-3.5 text-base font-semibold hover:brightness-110 active:scale-95 transition shadow-[0_8px_24px_-6px_rgba(217,107,67,0.6)] cursor-pointer"
                   >
                     Done researching
                   </button>
@@ -711,7 +709,7 @@ export default function ArticulateClient() {
                   <button
                     type="button"
                     onClick={startSpeakingCountdown}
-                    className="rounded-full bg-[#d96b43] text-white px-10 py-3.5 text-[15px] font-semibold hover:brightness-110 active:scale-95 transition shadow-[0_8px_24px_-6px_rgba(217,107,67,0.6)] cursor-pointer"
+                    className="rounded-full bg-[#d96b43] text-white px-10 py-3.5 text-base font-semibold hover:brightness-110 active:scale-95 transition shadow-[0_8px_24px_-6px_rgba(217,107,67,0.6)] cursor-pointer"
                   >
                     Speak
                   </button>
@@ -725,7 +723,7 @@ export default function ArticulateClient() {
                       setOverlayPhase("done");
                       if (!settings.muteSounds) playChime();
                     }}
-                    className="rounded-full bg-[#d96b43] text-white px-8 py-3.5 text-[15px] font-semibold hover:brightness-110 active:scale-95 transition shadow-[0_8px_24px_-6px_rgba(217,107,67,0.6)] cursor-pointer"
+                    className="rounded-full bg-[#d96b43] text-white px-8 py-3.5 text-base font-semibold hover:brightness-110 active:scale-95 transition shadow-[0_8px_24px_-6px_rgba(217,107,67,0.6)] cursor-pointer"
                   >
                     Done speaking
                   </button>
@@ -735,7 +733,7 @@ export default function ArticulateClient() {
                   <button
                     type="button"
                     onClick={closeOverlay}
-                    className="rounded-full bg-[#d96b43] text-white px-8 py-3.5 text-[15px] font-semibold hover:brightness-110 active:scale-95 transition shadow-[0_8px_24px_-6px_rgba(217,107,67,0.6)] cursor-pointer"
+                    className="rounded-full bg-[#d96b43] text-white px-8 py-3.5 text-base font-semibold hover:brightness-110 active:scale-95 transition shadow-[0_8px_24px_-6px_rgba(217,107,67,0.6)] cursor-pointer"
                   >
                     Finish
                   </button>
@@ -744,7 +742,7 @@ export default function ArticulateClient() {
                 <button
                   type="button"
                   onClick={closeOverlay}
-                  className="text-sm text-muted hover:text-fg underline underline-offset-4 cursor-pointer transition px-3 py-1.5"
+                  className="text-base text-muted hover:text-fg underline underline-offset-4 cursor-pointer transition px-3 py-1.5"
                 >
                   Close
                 </button>

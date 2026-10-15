@@ -2,23 +2,13 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Check, CircleAlert, ExternalLink, Loader2, Monitor, Moon, Sun, Trash2 } from "lucide-react";
-import { Card, Label, Segmented, Switch, chip, inputCls } from "@/components/ui";
+import { Card, CollapsibleSection, Label, Segmented, Switch, chip, inputCls } from "@/components/ui";
 import { useTheme } from "@/lib/client-hooks";
 import { cn } from "@/lib/format";
 import { MAX_QUESTIONS, MAX_TIME, MAX_TOTAL_TIME, MIN_TIME, MIN_TOTAL_TIME, QUESTION_PRESETS, SOURCE_META, TIME_PRESETS, TOTAL_TIME_PRESETS } from "@/lib/settings";
 import { clearAttempts, loadSettings, saveSettings } from "@/lib/storage";
 import type { Difficulty, SourceId, ThemePref, TimerMode, UserSettings } from "@/lib/types";
 import { useAttempts } from "@/lib/use-local-data";
-
-function Section({ n, title, description, children }: { n: string; title: string; description?: string; children: ReactNode }) {
-  return (
-    <Card className="p-4 sm:p-8">
-      <Label n={n}>{title}</Label>
-      {description ? <p className="mt-2.5 sm:mt-3 text-xs sm:text-sm leading-relaxed text-muted">{description}</p> : null}
-      <div className="mt-4 sm:mt-6">{children}</div>
-    </Card>
-  );
-}
 
 const timeLabel = (t: number) => (t === 0 ? "No limit" : `${t}s`);
 const totalLabel = (t: number) => (t >= 3600 && t % 3600 === 0 ? `${t / 3600} hr` : `${Math.round(t / 60)} min`);
@@ -33,6 +23,11 @@ export default function SettingsForm() {
   const [qText, setQText] = useState("");
   const [tText, setTText] = useState("");
   const [totalText, setTotalText] = useState("");
+  const [openSource, setOpenSource] = useState(false);
+  const [openDefaults, setOpenDefaults] = useState(false);
+  const [openGameplay, setOpenGameplay] = useState(false);
+  const [openAppearance, setOpenAppearance] = useState(false);
+  const [openData, setOpenData] = useState(false);
   const timer = useRef<number | undefined>(undefined);
   const hydrated = useRef(false);
 
@@ -93,7 +88,22 @@ export default function SettingsForm() {
         ) : null}
       </div>
 
-      <Section n="01" title="Question source" description="Where questions come from by default. You can still switch per quiz in the builder.">
+      {/* 01 Question source (Collapsible) */}
+      <CollapsibleSection
+        stepNumber="01"
+        title="Question source"
+        isOpen={openSource}
+        onToggle={() => setOpenSource((prev) => !prev)}
+        preview={
+          <span className="inline-flex items-center gap-1.5 rounded-md border border-line bg-card px-2 py-0.5 text-xs font-semibold text-fg">
+            <span>{s.source === "bank" ? "📚" : "🌐"}</span>
+            <span>{SOURCE_META[s.source]?.name ?? s.source}</span>
+          </span>
+        }
+      >
+        <p className="text-xs sm:text-sm leading-relaxed text-muted mb-4">
+          Where questions come from by default. You can still switch per quiz in the builder.
+        </p>
         <div className="grid gap-2.5">
           {(Object.keys(SOURCE_META) as SourceId[]).map((id) => {
             const meta = SOURCE_META[id];
@@ -105,8 +115,8 @@ export default function SettingsForm() {
                 onClick={() => update({ source: id })}
                 aria-pressed={active}
                 className={cn(
-                  "flex items-start gap-4 rounded-2xl border p-4 text-left transition",
-                  active ? "border-brand bg-brand/[0.06] glow" : "border-line bg-fg/[0.02] hover:border-line-2",
+                  "flex items-start gap-4 rounded-2xl border p-3.5 sm:p-4 text-left transition",
+                  active ? "border-brand bg-brand/[0.06] glow" : "border-line bg-card hover:border-line-2",
                 )}
               >
                 <span className={cn("mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border", active ? "border-brand" : "border-line-2")}>
@@ -136,17 +146,37 @@ export default function SettingsForm() {
             );
           })}
         </div>
-        <p className="mt-4 rounded-xl border border-line bg-fg/[0.02] p-4 text-xs leading-relaxed text-muted">
+        <p className="mt-4 rounded-xl border border-line bg-card p-3.5 sm:p-4 text-xs leading-relaxed text-muted">
           <span className="font-semibold text-fg">How it works:</span> Class 9 & 10 chapter quizzes always use the NCERT-aligned curated bank (online trivia
           databases don&apos;t have chapter-wise questions). Your source is used for General Science, History & Geography, Mixed Math and Mixed IT. If an online
           source is unavailable, QuizLab falls back to the curated bank automatically.
         </p>
-      </Section>
+      </CollapsibleSection>
 
-      <Section n="02" title="Quiz defaults" description="Pre-selected in the quiz builder.">
-        <div className="space-y-7">
+      {/* 02 Quiz defaults (Collapsible) */}
+      <CollapsibleSection
+        stepNumber="02"
+        title="Quiz defaults"
+        isOpen={openDefaults}
+        onToggle={() => setOpenDefaults((prev) => !prev)}
+        preview={
+          <div className="inline-flex items-center gap-1.5 font-mono text-[11px] sm:text-xs font-semibold text-fg truncate">
+            <span>{s.defaultQuestions} Q</span>
+            <span className="text-line-2">·</span>
+            <span>{s.timerMode === "per-question" ? `${s.defaultTime}s` : `${Math.round(s.defaultTotalTime / 60)}m`}</span>
+            <span className="text-line-2">·</span>
+            <span className="capitalize">{s.defaultDifficulty}</span>
+            <span className="text-line-2">·</span>
+            <span>{s.hintsPerQuiz ? `${s.hintsPerQuiz}h` : "0h"}</span>
+          </div>
+        }
+      >
+        <p className="text-xs sm:text-sm leading-relaxed text-muted mb-4">
+          Pre-selected defaults when opening the quiz builder.
+        </p>
+        <div className="space-y-6">
           <div>
-            <p className="mb-3 text-sm font-medium text-fg">Number of questions</p>
+            <p className="mb-2 text-sm font-medium text-fg">Number of questions</p>
             <div className="flex flex-wrap items-center gap-2">
               {QUESTION_PRESETS.map((n) => (
                 <button
@@ -180,7 +210,7 @@ export default function SettingsForm() {
             </div>
           </div>
           <div>
-            <p className="mb-3 text-sm font-medium text-fg">Timer mode</p>
+            <p className="mb-2 text-sm font-medium text-fg">Timer mode</p>
             <Segmented<TimerMode>
               value={s.timerMode}
               onChange={(v) => update({ timerMode: v })}
@@ -189,7 +219,7 @@ export default function SettingsForm() {
                 { v: "total", label: "Whole quiz" },
               ]}
             />
-            <div className="mt-4 flex flex-wrap items-center gap-2">
+            <div className="mt-3 flex flex-wrap items-center gap-2">
               {s.timerMode === "per-question"
                 ? TIME_PRESETS.map((t) => (
                     <button key={t} type="button" className={chip(!tText && s.defaultTime === t)} onClick={() => { setTText(""); update({ defaultTime: t }); }}>
@@ -215,7 +245,7 @@ export default function SettingsForm() {
                 />
               )}
             </div>
-            <p className="mt-2.5 text-xs text-subtle">
+            <p className="mt-2 text-xs text-subtle">
               {s.timerMode === "per-question" ? `${MIN_TIME}–${MAX_TIME} seconds for each question.` : `One countdown for the whole quiz, ${MIN_TOTAL_TIME / 60}–${Math.round(MAX_TOTAL_TIME / 60)} minutes.`}
             </p>
           </div>
@@ -249,10 +279,24 @@ export default function SettingsForm() {
             />
           </div>
         </div>
-      </Section>
+      </CollapsibleSection>
 
-      <Section n="03" title="Gameplay" description="Answers, explanations and your score appear only on the results screen after the quiz.">
-        <div className="space-y-6">
+      {/* 03 Gameplay (Collapsible) */}
+      <CollapsibleSection
+        stepNumber="03"
+        title="Gameplay"
+        isOpen={openGameplay}
+        onToggle={() => setOpenGameplay((prev) => !prev)}
+        preview={
+          <span className="inline-flex items-center gap-1.5 rounded-md border border-line bg-card px-2 py-0.5 text-xs font-semibold text-fg">
+            <span>{s.autoFullscreen ? "🖥️ Fullscreen on" : "Windowed"}</span>
+          </span>
+        }
+      >
+        <p className="text-xs sm:text-sm leading-relaxed text-muted mb-4">
+          Answers, explanations and your score appear only on the results screen after the quiz.
+        </p>
+        <div className="space-y-4">
           <Switch
             checked={s.autoFullscreen}
             onChange={(v) => update({ autoFullscreen: v })}
@@ -260,12 +304,26 @@ export default function SettingsForm() {
             description="Pre-enable the full screen option in the quiz builder."
           />
         </div>
-        <p className="mt-6 border-t border-line pt-5 font-mono text-[11px] leading-relaxed text-subtle">
+        <p className="mt-4 border-t border-line/60 pt-4 font-mono text-[11px] leading-relaxed text-subtle">
           Scoring: +100 per correct · up to +50 speed bonus when a per-question timer is on · −30 when a hint is used
         </p>
-      </Section>
+      </CollapsibleSection>
 
-      <Section n="04" title="Appearance" description="Dark mode is the default.">
+      {/* 04 Appearance (Collapsible) */}
+      <CollapsibleSection
+        stepNumber="04"
+        title="Appearance"
+        isOpen={openAppearance}
+        onToggle={() => setOpenAppearance((prev) => !prev)}
+        preview={
+          <span className="inline-flex items-center gap-1.5 rounded-md border border-line bg-card px-2 py-0.5 text-xs font-semibold text-fg capitalize">
+            <span>{pref === "dark" ? "🌙 Dark" : pref === "light" ? "☀️ Light" : "💻 System"}</span>
+          </span>
+        }
+      >
+        <p className="text-xs sm:text-sm leading-relaxed text-muted mb-4">
+          Dark mode is the default. Choose your preferred theme.
+        </p>
         <div className="grid grid-cols-3 gap-2.5">
           {(
             [
@@ -283,7 +341,7 @@ export default function SettingsForm() {
                 aria-pressed={active}
                 className={cn(
                   "flex flex-col items-center gap-2 rounded-2xl border p-4 text-sm font-medium transition",
-                  active ? "border-brand bg-brand/[0.06] text-fg glow" : "border-line text-muted hover:border-line-2 hover:text-fg",
+                  active ? "border-brand bg-brand/[0.06] text-fg glow" : "border-line bg-card text-muted hover:border-line-2 hover:text-fg",
                 )}
               >
                 <o.icon className={cn("h-5 w-5", active && "text-brand-ink")} strokeWidth={1.75} /> {o.label}
@@ -291,12 +349,26 @@ export default function SettingsForm() {
             );
           })}
         </div>
-      </Section>
+      </CollapsibleSection>
 
-      <Section n="05" title="Your data" description="History is stored only on this device (browser storage) — no account, no server database.">
+      {/* 05 Your data (Collapsible) */}
+      <CollapsibleSection
+        stepNumber="05"
+        title="Your data"
+        isOpen={openData}
+        onToggle={() => setOpenData((prev) => !prev)}
+        preview={
+          <span className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-subtle">
+            <span className="text-fg">{count}</span> saved quiz{count === 1 ? "" : "zes"}
+          </span>
+        }
+      >
+        <p className="text-xs sm:text-sm leading-relaxed text-muted mb-4">
+          History is stored only on this device (browser storage) — no account, no server database.
+        </p>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="font-mono text-sm text-muted">
-            <span className="text-fg">{count}</span> saved quiz{count === 1 ? "" : "zes"}
+            <span className="text-fg font-bold">{count}</span> saved quiz{count === 1 ? "" : "zes"} recorded
           </p>
           <button
             type="button"
@@ -307,7 +379,7 @@ export default function SettingsForm() {
             {clearing ? <Loader2 className="h-4 w-4 animate-spin" /> : <Trash2 className="h-4 w-4" />} Clear all history
           </button>
         </div>
-      </Section>
+      </CollapsibleSection>
     </div>
   );
 }

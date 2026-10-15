@@ -1,5 +1,5 @@
 import type { ComponentType, ReactNode } from "react";
-import { Calculator, Cpu, FlaskConical, GraduationCap, Landmark, SlidersHorizontal } from "lucide-react";
+import { Calculator, ChevronDown, Cpu, FlaskConical, GraduationCap, Landmark, SlidersHorizontal } from "lucide-react";
 import { cn } from "@/lib/format";
 
 type IconType = ComponentType<{ className?: string; strokeWidth?: number }>;
@@ -13,6 +13,88 @@ export function Container({ className, children }: { className?: string; childre
 
 export function Card({ className, children }: { className?: string; children: ReactNode }) {
   return <div className={cn("w-full max-w-full min-w-0 rounded-2xl border border-line bg-card card-shadow md:backdrop-blur-xl", className)}>{children}</div>;
+}
+
+/** Smooth, bug-free collapsible section with CSS Grid animation and live preview */
+export function CollapsibleSection({
+  stepNumber,
+  title,
+  preview,
+  isOpen,
+  onToggle,
+  children,
+  className,
+}: {
+  stepNumber?: string;
+  title: string;
+  preview: ReactNode;
+  isOpen: boolean;
+  onToggle: () => void;
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "rounded-2xl border transition-all duration-200 overflow-hidden",
+        isOpen
+          ? "border-brand/50 bg-card shadow-[0_4px_24px_-8px_rgba(249,115,22,0.18)] ring-1 ring-brand/30"
+          : "border-line bg-fg/[0.02] hover:border-line-2 hover:bg-fg/[0.035]",
+        className,
+      )}
+    >
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-expanded={isOpen}
+        className="flex w-full items-center justify-between gap-3 p-3.5 sm:p-4 text-left transition select-none cursor-pointer group"
+      >
+        <div className="flex items-center gap-2 sm:gap-2.5 min-w-0 flex-1">
+          {stepNumber ? (
+            <span className="font-mono text-[11px] sm:text-xs font-semibold text-brand-ink shrink-0">
+              {stepNumber}
+            </span>
+          ) : null}
+          <span className="text-xs sm:text-sm font-bold text-fg shrink-0 group-hover:text-brand-ink transition-colors">
+            {title}
+          </span>
+          <span className="text-line-2 text-xs">·</span>
+          <div className="min-w-0 truncate">{preview}</div>
+        </div>
+
+        <div className="flex items-center gap-2 shrink-0">
+          <span className="text-[11px] sm:text-xs font-semibold text-brand-ink hidden xs:inline">
+            {isOpen ? "Close" : "Change"}
+          </span>
+          <span
+            className={cn(
+              "inline-flex h-7 w-7 items-center justify-center rounded-lg border transition-all duration-200",
+              isOpen
+                ? "border-brand/40 bg-brand/10 text-brand-ink"
+                : "border-line bg-card text-subtle group-hover:text-fg group-hover:border-line-2",
+            )}
+          >
+            <ChevronDown
+              className={cn("h-4 w-4 transition-transform duration-300 ease-out", isOpen && "rotate-180")}
+            />
+          </span>
+        </div>
+      </button>
+
+      <div
+        className={cn(
+          "grid transition-[grid-template-rows] duration-300 ease-in-out border-line/40",
+          isOpen ? "grid-rows-[1fr] border-t" : "grid-rows-[0fr]",
+        )}
+      >
+        <div className="overflow-hidden">
+          <div className="p-3.5 sm:p-4 bg-fg/[0.015]">
+            {children}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 /** Mono, uppercase eyebrow label — "■ 02 —— SUBJECT". */

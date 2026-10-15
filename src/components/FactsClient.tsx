@@ -217,9 +217,7 @@ function FullPageFactView({
         <div className="flex items-center gap-2">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-line bg-card px-3 py-1 font-mono text-[11px] sm:text-xs text-subtle">
             <span>{catObj.emoji}</span>
-            <span className="hidden xs:inline">{catObj.label}</span>
-            <span className="text-line-2">·</span>
-            <span>{currentIndex + 1} / {facts.length}</span>
+            <span className="font-semibold text-fg">{catObj.label}</span>
           </span>
 
           <button
@@ -428,14 +426,6 @@ export default function FactsClient() {
     return allCombinedFacts.filter((f) => f.category === activeCategory);
   }, [allCombinedFacts, activeCategory, saved]);
 
-  // Category counts
-  const categoryCounts = useMemo(() => {
-    const counts: Record<string, number> = { all: allCombinedFacts.length };
-    for (const f of allCombinedFacts) {
-      counts[f.category] = (counts[f.category] ?? 0) + 1;
-    }
-    return counts;
-  }, [allCombinedFacts]);
 
   // Load more facts from live public sources
   const loadMoreLiveFacts = async () => {
@@ -524,25 +514,6 @@ export default function FactsClient() {
             }
           />
         </div>
-
-        {/* Quick Metrics */}
-        <div className="mt-5 flex flex-wrap items-center gap-4 sm:gap-8 border-y border-line py-3 font-mono text-xs text-subtle">
-          <div>
-            <span className="font-bold text-fg tabular-nums">{allCombinedFacts.length}</span> Total Facts
-          </div>
-          <div>
-            <span className="font-bold text-fg tabular-nums">{FACT_CATEGORIES.length - 1}</span> Categories
-          </div>
-          <div>
-            <span className="font-bold text-fg tabular-nums">{saved.size}</span> Bookmarked
-          </div>
-          {liveFacts.length > 0 && (
-            <div className="inline-flex items-center gap-1.5 text-emerald-400">
-              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="font-bold tabular-nums">+{liveFacts.length}</span> Streamed Live
-            </div>
-          )}
-        </div>
       </section>
 
       {/* ── Collapsible Category Selection Section (Zero glitches, smooth accordion) ── */}
@@ -555,9 +526,6 @@ export default function FactsClient() {
               <span className="text-xs font-mono text-subtle uppercase tracking-wider block">Active Realm</span>
               <span className="text-sm sm:text-base font-bold text-fg">{activeCategoryObj.label}</span>
             </div>
-            <span className="ml-2 rounded-full bg-brand/10 border border-brand/20 px-2.5 py-0.5 font-mono text-xs font-semibold text-brand-ink">
-              {visibleFacts.length} facts
-            </span>
           </div>
 
           <button
@@ -585,7 +553,6 @@ export default function FactsClient() {
             <div className="p-3 sm:p-5 grid gap-2.5 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 bg-fg/[0.01]">
               {FACT_CATEGORIES.map((cat) => {
                 const isSelected = activeCategory === cat.id;
-                const count = categoryCounts[cat.id] ?? 0;
                 return (
                   <button
                     key={cat.id}
@@ -605,12 +572,7 @@ export default function FactsClient() {
                       <span className="text-lg shrink-0">{cat.emoji}</span>
                       <span className="text-xs sm:text-sm truncate">{cat.label}</span>
                     </div>
-                    <div className="flex items-center gap-1 shrink-0">
-                      <span className="rounded-md bg-fg/[0.06] px-1.5 py-0.5 font-mono text-[10px] text-subtle">
-                        {count}
-                      </span>
-                      {isSelected && <Check className="h-3.5 w-3.5 text-brand-ink" />}
-                    </div>
+                    {isSelected && <Check className="h-3.5 w-3.5 text-brand-ink shrink-0" />}
                   </button>
                 );
               })}
@@ -633,12 +595,7 @@ export default function FactsClient() {
                   <Bookmark className="h-4 w-4 text-brand-ink shrink-0" />
                   <span className="text-xs sm:text-sm truncate">Bookmarked</span>
                 </div>
-                <div className="flex items-center gap-1 shrink-0">
-                  <span className="rounded-md bg-fg/[0.06] px-1.5 py-0.5 font-mono text-[10px] text-subtle">
-                    {saved.size}
-                  </span>
-                  {activeCategory === "saved" && <Check className="h-3.5 w-3.5 text-brand-ink" />}
-                </div>
+                {activeCategory === "saved" && <Check className="h-3.5 w-3.5 text-brand-ink shrink-0" />}
               </button>
             </div>
           </div>
@@ -686,7 +643,7 @@ export default function FactsClient() {
       {/* ── Infinite Live Discovery Footer ── */}
       <section className="mt-14 flex flex-col items-center justify-center gap-4 border-t border-line/60 pt-10 text-center">
         <p className="text-sm text-muted">
-          Viewing <span className="font-semibold text-fg">{visibleFacts.length}</span> facts. Never hit the limits with our live global feed.
+          Never hit the limits with our infinite live global feed.
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-3">

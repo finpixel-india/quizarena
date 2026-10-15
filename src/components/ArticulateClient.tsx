@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Check, ChevronDown, ChevronUp, RotateCcw, Play, Pause, Settings2, X } from "lucide-react";
+import { Check, ChevronDown, ChevronUp, Settings2, X } from "lucide-react";
 import { ARTICULATE_PROMPTS, type ArticulateCategory, type ArticulateMode, type ArticulatePrompt } from "@/data/articulate/prompts";
 import { cn } from "@/lib/format";
 
@@ -207,6 +207,8 @@ function SettingsOverlay({ settings, onChange, onClose }: { settings: Settings; 
 }
 
 /* ─── Main Component ─────────────────────────────────────────────────────── */
+type TimerPhase = "research" | "ready-to-speak" | "speaking" | "done";
+
 export default function ArticulateClient() {
   const [settings, setSettings] = useState<Settings>(loadSettings);
   const [mode, setMode] = useState<ArticulateMode>("off-the-cuff");
@@ -249,10 +251,9 @@ export default function ArticulateClient() {
 
   /* ── Fullscreen Glassmorphism Timer Page State ── */
   const [showOverlay, setShowOverlay] = useState(false);
-  const [overlayPhase, setOverlayPhase] = useState<"research" | "speaking" | "done">("speaking");
+  const [overlayPhase, setOverlayPhase] = useState<TimerPhase>("speaking");
   const [overlayLeft, setOverlayLeft] = useState(0);
   const [overlayTotal, setOverlayTotal] = useState(0);
-  const [isOverlayPaused, setIsOverlayPaused] = useState(false);
   const overlayRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const fmt = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
@@ -313,7 +314,6 @@ export default function ArticulateClient() {
     setOverlayPhase("speaking");
     setOverlayTotal(secs);
     setOverlayLeft(secs);
-    setIsOverlayPaused(false);
     setShowOverlay(true);
   }, [settings.speechMinutes]);
 
@@ -322,39 +322,33 @@ export default function ArticulateClient() {
     setOverlayPhase("research");
     setOverlayTotal(secs);
     setOverlayLeft(secs);
-    setIsOverlayPaused(false);
     setShowOverlay(true);
   }, [settings.researchMinutes]);
 
-  const advanceToSpeaking = useCallback(() => {
+  /* Called when user finishes researching (or research time elapses) */
+  const finishResearch = useCallback(() => {
     if (overlayRef.current) clearInterval(overlayRef.current);
     if (!settings.muteSounds) playChime();
     const secs = settings.speechMinutes * 60;
-    setOverlayPhase("speaking");
+    // Enter ready-to-speak state: displays speech duration & Speak button without auto-starting
+    setOverlayPhase("ready-to-speak");
     setOverlayTotal(secs);
     setOverlayLeft(secs);
-    setIsOverlayPaused(false);
   }, [settings.speechMinutes, settings.muteSounds]);
 
-  const toggleOverlayPause = useCallback(() => {
-    setIsOverlayPaused((p) => !p);
+  /* User taps "Speak" button to initiate speech timer */
+  const startSpeakingCountdown = useCallback(() => {
+    setOverlayPhase("speaking");
   }, []);
-
-  const restartOverlay = useCallback(() => {
-    const secs = overlayPhase === "research" ? settings.researchMinutes * 60 : settings.speechMinutes * 60;
-    setOverlayTotal(secs);
-    setOverlayLeft(secs);
-    setIsOverlayPaused(false);
-  }, [overlayPhase, settings.researchMinutes, settings.speechMinutes]);
 
   const closeOverlay = useCallback(() => {
     if (overlayRef.current) clearInterval(overlayRef.current);
     setShowOverlay(false);
   }, []);
 
-  /* ── Countdown Loop ── */
+  /* ── Countdown Loop (Only ticks during research or speaking) ── */
   useEffect(() => {
-    if (!showOverlay || isOverlayPaused || overlayPhase === "done") {
+    if (!showOverlay || overlayPhase === "done" || overlayPhase === "ready-to-speak") {
       if (overlayRef.current) clearInterval(overlayRef.current);
       return;
     }
@@ -364,7 +358,8 @@ export default function ArticulateClient() {
         if (prev <= 1) {
           clearInterval(overlayRef.current!);
           if (overlayPhase === "research") {
-            advanceToSpeaking();
+            // Naturally move to ready-to-speak so user can take a breath before speaking
+            finishResearch();
           } else {
             setOverlayPhase("done");
             if (!settings.muteSounds) playChime();
@@ -378,7 +373,7 @@ export default function ArticulateClient() {
     return () => {
       if (overlayRef.current) clearInterval(overlayRef.current);
     };
-  }, [showOverlay, isOverlayPaused, overlayPhase, advanceToSpeaking, settings.muteSounds]);
+  }, [showOverlay, overlayPhase, finishResearch, settings.muteSounds]);
 
   /* ── Mode switch ── */
   const switchMode = (m: ArticulateMode) => {
@@ -426,7 +421,7 @@ export default function ArticulateClient() {
           </div>
         </div>
 
-        {/* ─── MODE TOGGLE & CATEGORY DROPDOWN (z-30 ensures dropdown floats above prompt) ─── */}
+        {/* ─── MODE TOGGLE & CATEGORY DROPDOWN ─── */}
         <div className="relative z-30 flex flex-col items-center w-full mb-4">
           <div className="inline-flex p-1 rounded-full border border-white/[0.1] bg-white/[0.04]">
             {(["off-the-cuff", "deep-research"] as ArticulateMode[]).map((m) => {
@@ -570,169 +565,186 @@ export default function ArticulateClient() {
         />
       )}
 
-      {/* ─── FULLSCREEN GLASSMORPHISM TIMER PAGE (Theme-aligned, Zero Green) ─── */}
+      {/* ─── FULLSCREEN CLEAN TIMER PAGE (No Window / Card Box) ─── */}
       {showOverlay && (() => {
         const isResearch = overlayPhase === "research";
+        const isReadyToSpeak = overlayPhase === "ready-to-speak";
         const isSpeaking = overlayPhase === "speaking";
         const isDone = overlayPhase === "done";
-        const pct = overlayTotal > 0 ? overlayLeft / overlayTotal : 0;
+
+        // Progress calculation:
+        // In ready-to-speak: 0 (clean un-filled glass ring)
+        // In research/speaking: arc grows clockwise as time elapses
+        const elapsedFraction = (isReadyToSpeak || overlayTotal <= 0)
+          ? 0
+          : Math.max(0, Math.min(1, (overlayTotal - overlayLeft) / overlayTotal));
 
         // Structure Pills for speaking practice (What? / So what? / Now what?)
         const speakingThirds = overlayTotal > 0 ? overlayTotal / 3 : 20;
-        const activePill = overlayLeft > speakingThirds * 2 ? 0 : overlayLeft > speakingThirds ? 1 : 2;
+        const activePill = isReadyToSpeak
+          ? 0
+          : overlayLeft > speakingThirds * 2 ? 0 : overlayLeft > speakingThirds ? 1 : 2;
         const PILLS = [
           { title: "What?", desc: "The core point" },
           { title: "So what?", desc: "Why it matters" },
           { title: "Now what?", desc: "Action or takeaway" },
         ];
 
+        // Circle dimensions matching reference SS (thick 28px chunky ring)
+        const size = 330;
+        const strokeWidth = 28;
+        const radius = (size - strokeWidth) / 2;
+        const circ = 2 * Math.PI * radius;
+        const strokeDashoffset = circ - elapsedFraction * circ;
+
         return (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-hidden animate-fade-in select-none">
-            {/* Atmospheric Glass Backdrop */}
-            <div
-              className="absolute inset-0 bg-black/75 backdrop-blur-2xl"
-              onClick={closeOverlay}
-            />
-
+          <div className="fixed inset-0 z-50 flex flex-col items-center justify-center px-4 py-8 bg-[#0d0d0f]/98 backdrop-blur-3xl animate-fade-in select-none">
             {/* Ambient Radial Theme Aura */}
-            <div className="pointer-events-none absolute w-[460px] h-[460px] rounded-full bg-[#d96b43]/15 blur-[120px]" />
+            <div className="pointer-events-none absolute w-[520px] h-[520px] rounded-full bg-[#d96b43]/12 blur-[140px]" />
 
-            {/* Central Glass Card */}
-            <div
-              className="relative z-10 w-full max-w-[480px] rounded-3xl border border-white/[0.12] p-7 sm:p-9 flex flex-col items-center text-center shadow-[0_24px_64px_-16px_rgba(0,0,0,0.85),0_0_0_1px_rgba(255,255,255,0.06)] backdrop-blur-3xl"
-              style={{ background: "rgba(18, 14, 12, 0.88)" }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Phase Badge */}
-              <div className="mb-2">
-                {isResearch ? (
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-[#d96b43]/35 bg-[#d96b43]/10 px-3.5 py-1 text-[11px] font-mono font-bold tracking-[0.2em] uppercase text-[#d96b43]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#d96b43] animate-pulse" />
-                    Research Phase
-                  </span>
-                ) : isSpeaking ? (
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-[#d96b43]/35 bg-[#d96b43]/10 px-3.5 py-1 text-[11px] font-mono font-bold tracking-[0.2em] uppercase text-[#d96b43]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#d96b43] animate-pulse" />
-                    Speaking Practice
-                  </span>
-                ) : (
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-danger/40 bg-danger/10 px-3.5 py-1 text-[11px] font-mono font-bold tracking-[0.2em] uppercase text-danger">
-                    Time&apos;s Up!
-                  </span>
-                )}
-              </div>
-
+            {/* Main Column — Clean, Spaced, No Box Borders */}
+            <div className="relative z-10 flex flex-col items-center text-center w-full max-w-lg mx-auto">
+              
               {/* Topic Title */}
-              <h2 className="font-serif text-2xl sm:text-3xl font-normal text-fg leading-snug tracking-tight my-2 max-w-[24ch]">
+              <h2 className="font-mono text-xs sm:text-sm font-bold tracking-[0.25em] uppercase text-[#d96b43] mb-3 max-w-[34ch] leading-relaxed">
                 {currentPrompt.title}
               </h2>
 
-              {/* Structure Pills during Speaking Phase (NO GREEN, Theme-aligned Warm Orange & Glass) */}
-              {isSpeaking && (
-                <div className="flex items-center justify-center gap-2 my-3 w-full">
-                  {PILLS.map((pill, idx) => {
-                    const active = idx === activePill;
-                    return (
-                      <div
-                        key={pill.title}
-                        className={cn(
-                          "flex flex-col items-center flex-1 py-2 px-1 rounded-2xl border transition-all duration-300",
-                          active
-                            ? "bg-[#d96b43] border-[#d96b43] text-white shadow-[0_4px_20px_rgba(217,107,67,0.45)] scale-[1.03]"
-                            : "bg-white/[0.04] border-white/[0.08] text-white/50"
-                        )}
-                      >
-                        <span className="text-xs font-semibold leading-none">{pill.title}</span>
-                        <span className={cn("text-[10px] mt-1 leading-none", active ? "text-white/85" : "text-white/40")}>
-                          {pill.desc}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-
-              {/* Radial Timer Ring */}
-              <div className="relative my-5" style={{ width: 240, height: 240 }}>
-                {(() => {
-                  const size = 240, sw = 8, r = (size - sw) / 2;
-                  const circ = 2 * Math.PI * r;
-                  const offset = circ - pct * circ;
-                  return (
-                    <>
-                      <svg width={size} height={size} className="-rotate-90 absolute inset-0" aria-hidden="true">
-                        <circle
-                          cx={size / 2} cy={size / 2} r={r}
-                          fill="none" strokeWidth={sw}
-                          className="stroke-white/[0.08]"
-                        />
-                        <circle
-                          cx={size / 2} cy={size / 2} r={r}
-                          fill="none" strokeWidth={sw} strokeLinecap="round"
-                          strokeDasharray={circ}
-                          strokeDashoffset={offset}
-                          className="stroke-[#d96b43] transition-[stroke-dashoffset] duration-700 ease-linear"
-                        />
-                      </svg>
-                      <div className="absolute inset-0 flex flex-col items-center justify-center">
-                        <span className="font-serif text-6xl sm:text-7xl font-normal tabular-nums tracking-tight text-fg">
-                          {fmt(overlayLeft)}
-                        </span>
-                        <span className="text-xs font-mono tracking-widest uppercase text-muted mt-1">
-                          {isOverlayPaused ? "Paused" : isResearch ? "Researching" : isSpeaking ? "Speaking" : "Finished"}
-                        </span>
-                      </div>
-                    </>
-                  );
-                })()}
+              {/* Subtitle / Structure Pills */}
+              <div className="min-h-[44px] flex items-center justify-center mb-2">
+                {isResearch ? (
+                  <span className="font-mono text-xs font-bold tracking-[0.3em] uppercase text-[#d96b43]/90">
+                    RESEARCHING
+                  </span>
+                ) : (
+                  /* Speaking / Ready: The 3 Pill buttons */
+                  <div className="flex items-center justify-center gap-2.5">
+                    {PILLS.map((pill, idx) => {
+                      const active = idx === activePill;
+                      return (
+                        <div
+                          key={pill.title}
+                          className={cn(
+                            "flex items-center px-5 py-2 rounded-full border transition-all duration-300",
+                            active
+                              ? "bg-[#d96b43]/20 border-[#d96b43] text-white shadow-[0_0_18px_rgba(217,107,67,0.35)]"
+                              : "bg-white/[0.04] border-white/[0.1] text-white/45"
+                          )}
+                        >
+                          <span className="text-xs font-semibold">{pill.title}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
 
-              {/* Context Guidance Caption */}
-              <p className="text-sm text-muted max-w-xs mb-6 leading-relaxed italic">
+              {/* Thick Glassmorphism Radial Timer Ring */}
+              <div className="relative my-7 sm:my-9 flex items-center justify-center" style={{ width: size, height: size }}>
+                <svg width={size} height={size} className="-rotate-90" aria-hidden="true">
+                  {/* Outer Glass Bevel Stroke */}
+                  <circle
+                    cx={size / 2} cy={size / 2} r={radius + strokeWidth / 2}
+                    fill="none" strokeWidth={1}
+                    stroke="rgba(255, 255, 255, 0.12)"
+                  />
+                  {/* Thick Dark Glassmorphism Track */}
+                  <circle
+                    cx={size / 2} cy={size / 2} r={radius}
+                    fill="none" strokeWidth={strokeWidth}
+                    stroke="rgba(255, 255, 255, 0.08)"
+                  />
+                  {/* Inner Glass Bevel Stroke */}
+                  <circle
+                    cx={size / 2} cy={size / 2} r={radius - strokeWidth / 2}
+                    fill="none" strokeWidth={1}
+                    stroke="rgba(255, 255, 255, 0.06)"
+                  />
+                  {/* Active Colored Progress Arc (Radial cut, thick, glow) */}
+                  <circle
+                    cx={size / 2} cy={size / 2} r={radius}
+                    fill="none" strokeWidth={strokeWidth}
+                    strokeLinecap="butt"
+                    strokeDasharray={circ}
+                    strokeDashoffset={strokeDashoffset}
+                    stroke="#d96b43"
+                    className="transition-[stroke-dashoffset] duration-700 ease-linear"
+                    style={{ filter: "drop-shadow(0 0 14px rgba(217, 107, 67, 0.45))" }}
+                  />
+                </svg>
+
+                {/* Large Serif Digits Inside Ring */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <span
+                    className="font-serif text-7xl sm:text-8xl font-normal tabular-nums tracking-tight leading-none"
+                    style={{ color: "#d96b43" }}
+                  >
+                    {fmt(overlayLeft)}
+                  </span>
+                </div>
+              </div>
+
+              {/* Status Caption */}
+              <p className="font-serif text-lg sm:text-xl text-fg/80 italic mb-7">
                 {isResearch
-                  ? "Take notes and organize your thoughts."
+                  ? "Research."
+                  : isReadyToSpeak
+                  ? "Ready."
                   : isSpeaking
-                  ? "Speak. Structure your argument."
-                  : "Time is up! Great practice."}
+                  ? "Speak."
+                  : "Time's up."}
               </p>
 
-              {/* Timer Page Control Buttons */}
-              <div className="flex flex-wrap items-center gap-2.5 w-full justify-center">
-                {!isDone && (
-                  <button
-                    type="button"
-                    onClick={toggleOverlayPause}
-                    className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.06] hover:bg-white/[0.12] px-5 py-2.5 text-sm font-semibold text-fg transition active:scale-95 cursor-pointer"
-                  >
-                    {isOverlayPaused ? <Play className="w-3.5 h-3.5 fill-current" /> : <Pause className="w-3.5 h-3.5 fill-current" />}
-                    {isOverlayPaused ? "Resume" : "Pause"}
-                  </button>
-                )}
-
+              {/* Action Controls Matching Reference Screenshot */}
+              <div className="flex items-center justify-center gap-4">
                 {isResearch && (
                   <button
                     type="button"
-                    onClick={advanceToSpeaking}
-                    className="rounded-full bg-[#d96b43] text-white px-5 py-2.5 text-sm font-semibold shadow-[0_6px_20px_rgba(217,107,67,0.4)] hover:brightness-110 active:scale-95 transition cursor-pointer"
+                    onClick={finishResearch}
+                    className="rounded-full bg-[#d96b43] text-white px-8 py-3.5 text-[15px] font-semibold hover:brightness-110 active:scale-95 transition shadow-[0_8px_24px_-6px_rgba(217,107,67,0.6)] cursor-pointer"
                   >
-                    Done researching →
+                    Done researching
                   </button>
                 )}
 
-                <button
-                  type="button"
-                  onClick={restartOverlay}
-                  className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] px-4 py-2.5 text-sm font-medium text-fg/70 hover:text-fg transition active:scale-95 cursor-pointer"
-                  title="Restart timer"
-                >
-                  <RotateCcw className="w-3.5 h-3.5" />
-                  Restart
-                </button>
+                {isReadyToSpeak && (
+                  <button
+                    type="button"
+                    onClick={startSpeakingCountdown}
+                    className="rounded-full bg-[#d96b43] text-white px-10 py-3.5 text-[15px] font-semibold hover:brightness-110 active:scale-95 transition shadow-[0_8px_24px_-6px_rgba(217,107,67,0.6)] cursor-pointer"
+                  >
+                    Speak
+                  </button>
+                )}
+
+                {isSpeaking && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (overlayRef.current) clearInterval(overlayRef.current);
+                      setOverlayPhase("done");
+                      if (!settings.muteSounds) playChime();
+                    }}
+                    className="rounded-full bg-[#d96b43] text-white px-8 py-3.5 text-[15px] font-semibold hover:brightness-110 active:scale-95 transition shadow-[0_8px_24px_-6px_rgba(217,107,67,0.6)] cursor-pointer"
+                  >
+                    Done speaking
+                  </button>
+                )}
+
+                {isDone && (
+                  <button
+                    type="button"
+                    onClick={closeOverlay}
+                    className="rounded-full bg-[#d96b43] text-white px-8 py-3.5 text-[15px] font-semibold hover:brightness-110 active:scale-95 transition shadow-[0_8px_24px_-6px_rgba(217,107,67,0.6)] cursor-pointer"
+                  >
+                    Finish
+                  </button>
+                )}
 
                 <button
                   type="button"
                   onClick={closeOverlay}
-                  className="rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] px-4 py-2.5 text-sm font-medium text-fg/70 hover:text-fg transition active:scale-95 cursor-pointer"
+                  className="text-sm text-muted hover:text-fg underline underline-offset-4 cursor-pointer transition px-3 py-1.5"
                 >
                   Close
                 </button>

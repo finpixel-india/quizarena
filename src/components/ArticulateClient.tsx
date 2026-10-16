@@ -591,7 +591,7 @@ export default function ArticulateClient() {
   const activeElocutionType = ELOCUTION_TYPES.find((t) => t.id === elocutionType) ?? ELOCUTION_TYPES[0];
 
   return (
-    <div className="relative flex flex-col justify-between items-center w-full min-h-[calc(100dvh-4rem)] overflow-y-auto overflow-x-hidden select-none px-4 sm:px-6 pt-5 sm:pt-8 pb-20 sm:pb-10">
+    <div className="relative flex flex-col justify-between items-center w-full h-[calc(100dvh-7.5rem)] min-h-[460px] md:h-auto md:min-h-[calc(100dvh-4rem)] overflow-y-auto overflow-x-hidden select-none px-4 sm:px-6 pt-3.5 sm:pt-8 pb-3 sm:pb-10">
 
       {/* ── Atmospheric glows ── */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
@@ -606,11 +606,11 @@ export default function ArticulateClient() {
       <div className="w-full max-w-xl flex flex-col items-center shrink-0 text-center">
 
         {/* ─── HEADER ─── */}
-        <div className="text-center mb-3 sm:mb-4">
-          <h1 className="font-serif text-[2.4rem] sm:text-[3rem] font-normal tracking-tight text-fg leading-none">
+        <div className="text-center mb-2.5 sm:mb-4">
+          <h1 className="font-serif text-[2.2rem] sm:text-[3rem] font-normal tracking-tight text-fg leading-none">
             Articulate
           </h1>
-          <div className="flex items-center justify-center gap-1.5 mt-2 text-xs text-muted">
+          <div className="flex items-center justify-center gap-1.5 mt-1.5 sm:mt-2 text-xs text-muted">
             <span>made by</span>
             <a
               href="https://instagram.com/ur.spideey"
@@ -634,7 +634,7 @@ export default function ArticulateClient() {
                 type="button"
                 onClick={() => switchMode(m.id)}
                 className={cn(
-                  "flex items-center gap-2 rounded-full px-4 py-2 sm:px-5 sm:py-2 text-[13px] sm:text-[14px] font-semibold transition-all duration-300 cursor-pointer whitespace-nowrap",
+                  "flex items-center gap-1.5 sm:gap-2 rounded-full px-3.5 py-1.5 sm:px-5 sm:py-2 text-xs sm:text-[14px] font-semibold transition-all duration-300 cursor-pointer whitespace-nowrap",
                   active ? "bg-[#d96b43] text-white shadow-[0_2px_16px_-4px_rgba(217,107,67,0.7)]" : "text-fg/45 hover:text-fg/70",
                 )}
               >
@@ -649,7 +649,7 @@ export default function ArticulateClient() {
         </div>
 
         {/* ─── CATEGORY & FILTERS (Fixed 42px row height across all modes) ─── */}
-        <div className="h-11 flex items-center justify-center mt-3.5 sm:mt-4 w-full">
+        <div className="h-10 sm:h-11 flex items-center justify-center mt-2.5 sm:mt-4 w-full">
           {mode === "elocution" ? (
             /* Elocution: Side-by-side Category and Difficulty Dropdowns */
             <div className="flex items-center justify-center gap-2.5">
@@ -861,15 +861,15 @@ export default function ArticulateClient() {
             </div>
 
             {/* Action Buttons (Generous, Symmetrical, Fixed Slots) */}
-            <div className="flex items-center justify-center gap-2.5 sm:gap-4 w-full max-w-[440px] h-11 sm:h-12">
+            <div className="flex items-center justify-center gap-2.5 sm:gap-4 w-full max-w-[440px] h-12">
               {/* Slot 1: Primary Stopwatch Control (Start / Stop / Retry) */}
               {stopwatchState === "idle" && (
                 <button
                   type="button"
                   onClick={startStopwatch}
-                  className="w-[110px] sm:w-[130px] h-11 sm:h-12 rounded-full bg-[#d96b43] text-white px-4 sm:px-6 text-xs sm:text-[15px] font-semibold shadow-[0_4px_20px_-4px_rgba(217,107,67,0.5)] hover:brightness-110 active:scale-95 transition cursor-pointer flex items-center justify-center gap-2 whitespace-nowrap shrink-0"
+                  className="w-[110px] sm:w-[130px] h-12 rounded-full bg-[#d96b43] text-white px-4 sm:px-6 text-[13px] sm:text-[15px] font-semibold shadow-[0_4px_20px_-4px_rgba(217,107,67,0.5)] hover:brightness-110 active:scale-95 transition cursor-pointer flex items-center justify-center gap-2 whitespace-nowrap shrink-0"
                 >
-                  <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
+                  <Play className="w-4 h-4 fill-current" />
                   Start
                 </button>
               )}
@@ -877,9 +877,9 @@ export default function ArticulateClient() {
                 <button
                   type="button"
                   onClick={stopStopwatch}
-                  className="w-[110px] sm:w-[130px] h-11 sm:h-12 rounded-full bg-rose-600 hover:bg-rose-500 text-white px-4 sm:px-6 text-xs sm:text-[15px] font-semibold shadow-[0_4px_20px_-4px_rgba(225,29,72,0.5)] active:scale-95 transition cursor-pointer flex items-center justify-center gap-2 animate-pulse whitespace-nowrap shrink-0"
+                  className="w-[110px] sm:w-[130px] h-12 rounded-full bg-rose-600 hover:bg-rose-500 text-white px-4 sm:px-6 text-[13px] sm:text-[15px] font-semibold shadow-[0_4px_20px_-4px_rgba(225,29,72,0.5)] active:scale-95 transition cursor-pointer flex items-center justify-center gap-2 animate-pulse whitespace-nowrap shrink-0"
                 >
-                  <Square className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
+                  <Square className="w-4 h-4 fill-current" />
                   Stop
                 </button>
               )}
@@ -887,9 +887,9 @@ export default function ArticulateClient() {
                 <button
                   type="button"
                   onClick={resetStopwatch}
-                  className="w-[110px] sm:w-[130px] h-11 sm:h-12 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-4 sm:px-6 text-xs sm:text-[15px] font-medium transition active:scale-95 cursor-pointer flex items-center justify-center gap-2 whitespace-nowrap shrink-0"
+                  className="w-[110px] sm:w-[130px] h-12 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-4 sm:px-6 text-[13px] sm:text-[15px] font-medium transition active:scale-95 cursor-pointer flex items-center justify-center gap-2 whitespace-nowrap shrink-0"
                 >
-                  <RotateCcw className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  <RotateCcw className="w-4 h-4" />
                   Retry
                 </button>
               )}
@@ -900,7 +900,7 @@ export default function ArticulateClient() {
                 onClick={nextElocutionChallenge}
                 disabled={stopwatchState === "running"}
                 className={cn(
-                  "w-[160px] sm:w-[185px] h-11 sm:h-12 rounded-full text-xs sm:text-[15px] transition active:scale-95 flex items-center justify-center gap-1.5 px-4 sm:px-6 whitespace-nowrap shrink-0",
+                  "w-[160px] sm:w-[185px] h-12 rounded-full text-[13px] sm:text-[15px] transition active:scale-95 flex items-center justify-center gap-1.5 px-4 sm:px-6 whitespace-nowrap shrink-0",
                   stopwatchState === "stopped"
                     ? "bg-[#d96b43] text-white font-semibold shadow-[0_4px_20px_-4px_rgba(217,107,67,0.5)] hover:brightness-110 cursor-pointer"
                     : stopwatchState === "running"
@@ -915,7 +915,7 @@ export default function ArticulateClient() {
               <button
                 type="button"
                 onClick={() => setSettingsOpen(true)}
-                className="w-11 h-11 sm:w-12 sm:h-12 shrink-0 rounded-full border border-white/15 text-fg/50 hover:text-fg hover:bg-white/[0.06] transition flex items-center justify-center cursor-pointer"
+                className="w-12 h-12 shrink-0 rounded-full border border-white/15 text-fg/50 hover:text-fg hover:bg-white/[0.06] transition flex items-center justify-center cursor-pointer"
                 title="Timer Settings"
               >
                 <Settings2 className="w-4 h-4" />
@@ -924,13 +924,13 @@ export default function ArticulateClient() {
           </div>
         ) : (
           /* Off-the-cuff / Deep-research Action Bar */
-          <div className="flex items-center justify-center gap-2.5 sm:gap-4 w-full max-w-[440px] h-11 sm:h-12 animate-fade-in">
+          <div className="flex items-center justify-center gap-2.5 sm:gap-4 w-full max-w-[440px] h-12 animate-fade-in">
             {/* Slot 1: Spin */}
             <button
               type="button"
               onClick={doSpin}
               disabled={isSpinning}
-              className="w-[110px] sm:w-[130px] h-11 sm:h-12 shrink-0 rounded-full bg-[#d96b43] text-white px-4 sm:px-6 text-xs sm:text-[15px] font-semibold shadow-[0_4px_20px_-4px_rgba(217,107,67,0.5)] hover:brightness-110 active:scale-95 transition disabled:opacity-40 cursor-pointer whitespace-nowrap text-center flex items-center justify-center"
+              className="w-[110px] sm:w-[130px] h-12 shrink-0 rounded-full bg-[#d96b43] text-white px-4 sm:px-6 text-[13px] sm:text-[15px] font-semibold shadow-[0_4px_20px_-4px_rgba(217,107,67,0.5)] hover:brightness-110 active:scale-95 transition disabled:opacity-40 cursor-pointer whitespace-nowrap text-center flex items-center justify-center"
             >
               {hasSpun ? "Spin again" : "Spin"}
             </button>
@@ -940,7 +940,7 @@ export default function ArticulateClient() {
               <button
                 type="button"
                 onClick={startOffTheCuff}
-                className="w-[160px] sm:w-[185px] h-11 sm:h-12 shrink-0 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-4 sm:px-6 text-xs sm:text-[15px] font-semibold transition active:scale-95 cursor-pointer whitespace-nowrap text-center flex items-center justify-center"
+                className="w-[160px] sm:w-[185px] h-12 shrink-0 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-4 sm:px-6 text-[13px] sm:text-[15px] font-semibold transition active:scale-95 cursor-pointer whitespace-nowrap text-center flex items-center justify-center"
               >
                 Start {settings.speechMinutes}m timer
               </button>
@@ -948,7 +948,7 @@ export default function ArticulateClient() {
               <button
                 type="button"
                 onClick={startDeepResearch}
-                className="w-[160px] sm:w-[185px] h-11 sm:h-12 shrink-0 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-4 sm:px-6 text-xs sm:text-[15px] font-semibold transition active:scale-95 cursor-pointer whitespace-nowrap text-center flex items-center justify-center"
+                className="w-[160px] sm:w-[185px] h-12 shrink-0 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-4 sm:px-6 text-[13px] sm:text-[15px] font-semibold transition active:scale-95 cursor-pointer whitespace-nowrap text-center flex items-center justify-center"
               >
                 Start {settings.researchMinutes}m research
               </button>
@@ -958,7 +958,7 @@ export default function ArticulateClient() {
             <button
               type="button"
               onClick={() => setSettingsOpen(true)}
-              className="w-11 h-11 sm:w-12 sm:h-12 shrink-0 rounded-full border border-white/15 text-fg/50 hover:text-fg hover:bg-white/[0.06] transition flex items-center justify-center cursor-pointer"
+              className="w-12 h-12 shrink-0 rounded-full border border-white/15 text-fg/50 hover:text-fg hover:bg-white/[0.06] transition flex items-center justify-center cursor-pointer"
               title="Timer Settings"
             >
               <Settings2 className="w-4 h-4" />

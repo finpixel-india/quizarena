@@ -6,35 +6,50 @@ export const itNotesAi: ChapterNote[] = [
     "subject": "it",
     "classLevel": "ai",
     "chapterNo": 1,
-    "title": "Introduction",
-    "unit": "Artificial Intelligence Master Curriculum",
-    "overview": "title: \"Artificial Intelligence Master Notes: Basics to Advanced\"",
+    "title": "AI Master Curriculum Roadmap",
+    "unit": "Unit 0: AI Master Curriculum Overview",
+    "overview": "A comprehensive journey from the foundational principles of artificial intelligence and machine learning to cutting-edge deep learning, large language models (LLMs), autonomous agents, safety frameworks, and production architectures.",
     "sections": [
       {
-        "title": "Overview & Core Concepts",
+        "title": "Curriculum Architecture & Roadmap",
         "points": [
-          "title: \"Artificial Intelligence Master Notes: Basics to Advanced\"",
-          "subtitle: \"AI, Machine Learning, Deep Learning, LLMs, Generative AI, Agents, Automation, Evaluation, Safety and Projects\"",
-          "format: \"Markdown\"",
-          "language: \"English, with selected Hindi-friendly explanations\"",
-          "revision_date: \"2026-10-16\"",
-          "intended_audience: \"Beginners, school students, college learners, developers, educators, and professionals\""
+          "**Foundations & Core Intelligence:** Understanding intelligence definitions, narrow vs general vs super intelligence, history of AI (from Dartmouth 1956 to modern deep learning), the Turing test, and symbolic reasoning.",
+          "**Machine Learning & Neural Networks:** Supervised learning (classification, regression), unsupervised clustering and dimensionality reduction, reinforcement learning fundamentals, perceptrons, backpropagation, and deep neural architectures (CNNs, RNNs).",
+          "**Generative AI & Modern LLMs:** Transformer architectures, self-attention mechanisms, tokenization, pre-training, fine-tuning, RLHF (Reinforcement Learning from Human Feedback), and Retrieval-Augmented Generation (RAG).",
+          "**Autonomous Agents & Tool Use:** ReAct prompting frameworks, autonomous agent loops, function/tool calling, planning modules, multi-agent collaboration, and real-world system orchestration.",
+          "**Evaluation, Safety & Ethics:** Measuring performance (precision, recall, F1, perplexity, BLEU), bias detection and fairness, adversarial robustness, alignment, privacy compliance, and EU AI Act regulations."
+        ]
+      },
+      {
+        "title": "Learning Methodology & Practical Mastery",
+        "points": [
+          "**Multi-Tier Pedagogy:** Crafted to serve school students (CBSE Class 9-12), university undergraduates, competitive exam aspirants, and software engineers transitioning into AI.",
+          "**Intuitive Explanations:** Every complex mathematical formulation (e.g. attention math, gradient descent) is paired with conceptual analogies, visual breakdowns, and real-world system examples.",
+          "**End-to-End AI Project Lifecycle:** Systematic training across the five crucial phases: Problem Scoping, Data Acquisition, Data Exploration, Modelling, and Evaluation."
         ]
       }
     ],
     "keyTerms": [
       {
-        "term": "Introduction",
-        "meaning": "title: \"Artificial Intelligence Master Notes: Basics to Advanced\""
+        "term": "Artificial Intelligence (AI)",
+        "meaning": "The field of computer science dedicated to building machines and algorithms capable of performing tasks requiring human-like intelligence."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Machine Learning (ML)",
+        "meaning": "A subset of AI where systems learn statistical patterns directly from data rather than following hardcoded rule-based programming."
+      },
+      {
+        "term": "Deep Learning (DL)",
+        "meaning": "A specialized branch of machine learning utilizing multi-layered artificial neural networks capable of learning hierarchical feature representations."
+      },
+      {
+        "term": "Generative AI",
+        "meaning": "AI models capable of generating novel, high-quality content—including natural language, photorealistic images, audio, and executable code."
       }
     ],
     "examTips": [
-      "Master fundamental concepts before attempting complex workflows.",
-      "Verify inputs, outputs, and safety guidelines during practical implementations."
+      "Always distinguish clearly between Narrow AI (ANI), General AI (AGI), and Super AI (ASI) in conceptual questions.",
+      "Memorize the 5 sequential phases of the AI Project Lifecycle: Problem Scoping, Data Acquisition, Data Exploration, Modelling, and Evaluation."
     ]
   },
   {

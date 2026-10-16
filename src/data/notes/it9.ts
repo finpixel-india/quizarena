@@ -3386,9 +3386,9 @@ export const itNotes9: ChapterNote[] = [
     "subject": "it",
     "classLevel": 9,
     "chapterNo": 24,
-    "title": "Part E — Practice questions",
+    "title": "Part E — Practice Arena: 60 Objective Questions",
     "unit": "Part E — Practice Questions",
-    "overview": "Choose the best answer.",
+    "overview": "60 essential objective practice questions (40 Multiple Choice + 20 True/False) covering Employability Skills, Computer Basics, LibreOffice Writer, Calc, and Impress.",
     "sections": [
       {
         "title": "Section A — Multiple-choice questions (1–40)",
@@ -3503,58 +3503,6 @@ export const itNotes9: ChapterNote[] = [
           "**58.** The main document and the data source have different roles in mail merge.",
           "**59.** Speaker notes and visible slide text always appear in exactly the same place during a slide show.",
           "**60.** A slide transition affects how one slide changes to another."
-        ]
-      },
-      {
-        "title": "Section C — Short-answer questions (61–80)",
-        "points": [
-          "Answer in a few sentences or a clear list.",
-          "**61.** Define communication and name the three broad methods listed in this syllabus.",
-          "**62.** List the seven elements of the communication cycle in the correct sequence.",
-          "**63.** Explain any four factors that can affect a person's perspective during communication.",
-          "**64.** What is self-management? Give three practical examples from student life.",
-          "**65.** Distinguish a service business, a manufacturing business and a hybrid business, giving one example of each.",
-          "**66.** State four characteristics of entrepreneurship and explain one reward and one possible risk.",
-          "**67.** Explain an ecosystem and distinguish biotic from abiotic components.",
-          "**68.** State four ways a school computer lab can reduce waste or conserve resources.",
-          "**69.** Differentiate IT, ITeS and BPO in simple terms.",
-          "**70.** List five areas in which the CBSE syllabus expects students to recognize applications of IT.",
-          "**71.** Explain the difference between hardware and software with two examples of each.",
-          "**72.** Distinguish RAM from storage. Why should a student save a document instead of relying only on RAM?",
-          "**73.** Explain home keys, guide keys and touch typing.",
-          "**74.** If 900 characters are typed in 6 minutes, estimate gross WPM using five characters per standard word. Show the calculation.",
-          "**75.** Explain the difference between editing and formatting a document.",
-          "**76.** What are non-printing characters? Give two examples and explain when showing them is useful.",
-          "**77.** Explain the difference between a main document and a data source in mail merge.",
-          "**78.** In a spreadsheet, what do cell `C4` and range `B2:D5` mean?",
-          "**79.** Explain SUM, AVERAGE, MAX, MIN and COUNT, using a simple example for at least two of them.",
-          "**80.** Distinguish relative, absolute and mixed cell references; include one example of each."
-        ]
-      },
-      {
-        "title": "Section D — Practical and scenario tasks (81–100)",
-        "points": [
-          "Perform these tasks or describe the exact method if the required software is not available. The answer key gives expected outcomes rather than one required visual design.",
-          "**81. Communication-cycle diagram:** Draw and label the sender, idea/message, encoding, channel, receiver, decoding and feedback. Give a school-based example.",
-          "**82. Self-management plan:** Prepare a one-week plan for improving typing accuracy. Include practice days, time per session and a way to measure progress.",
-          "**83. ICT identification:** Make a table containing eight devices. Classify each as input, output, storage or communication and write one function.",
-          "**84. IT-enabled services survey:** Identify eight IT-enabled services and explain the technology used in each without recording private information.",
-          "**85. Keyboard practical:** Demonstrate the home row, use five editing/navigation keys and perform three mouse operations. Record one technique that helped you reduce errors.",
-          "**86. Typing results:** Complete a typing-tutor exercise and record the software-reported speed, accuracy and errors. Repeat and compare; explain why the result is meaningful only when the same measurement method is used.",
-          "**87. Writer document:** Create a one-page guide with a title, two headings, numbered list, bold text, footer and page number. Save, close and reopen it.",
-          "**88. Editing challenge:** Use Find and Replace and spell-check to correct an intentionally flawed paragraph. Explain why Replace All must be used carefully.",
-          "**89. Page formatting:** Format a two-page notice with appropriate margins, a page break, image, columns (if suitable), header/footer and a consistent heading style.",
-          "**90. Table operation:** Create a table in Writer and demonstrate inserting/deleting a row or column, merging/splitting cells where suitable, and copying or moving the table.",
-          "**91. Print setup:** Use Print Preview to inspect a three-page document and explain how to print only pages 2–3.",
-          "**92. Mail merge:** Create a main letter and a data source with five fictional recipients; insert merge fields, preview, generate and save the output.",
-          "**93. Spreadsheet addresses:** Create a table and correctly identify cell B3, range A2:A6, range B1:D1 and rectangular range A1:C4.",
-          "**94. Spreadsheet formulas:** Enter data for at least five students and use SUM, AVERAGE, MAX, MIN and COUNT. Explain the purpose of each formula.",
-          "**95. Format and fill:** Format prices to two decimal places, dates consistently and a large value in scientific notation if supported. Use the fill handle for a series and copy a formula.",
-          "**96. Absolute reference:** Put a fixed percentage in B1 and prices in A3:A7. Use a formula that multiplies each price by the fixed percentage and copy it down without changing B1.",
-          "**97. Charts:** Create one column chart and one line chart from the same monthly dataset. Add a title and labels and explain which chart is more useful for a comparison versus a trend.",
-          "**98. Presentation basics:** Create five slides with a title, three content slides and a conclusion. Use a template, select layouts, save the editable file and export to PDF.",
-          "**99. Slide management and design:** Duplicate, move and delete slides; use Slide Sorter and Notes view; insert and group shapes; apply a consistent slide master and one restrained transition.",
-          "**100. Presentation quality review:** Review a completed presentation for readable type, contrast, relevance of visuals, accurate data, spelling, source credits and excessive animation. List at least five changes you would make and why."
         ]
       }
     ],
@@ -3766,127 +3714,6 @@ export const itNotes9: ChapterNote[] = [
       {
         "term": "Glossary",
         "meaning": "Glossary — Fundamental concepts, practical guidelines, and key summaries."
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
-      }
-    ],
-    "examTips": [
-      "Master fundamental concepts before attempting complex workflows.",
-      "Verify inputs, outputs, and safety guidelines during practical implementations."
-    ]
-  },
-  {
-    "id": "note-it9-26",
-    "subject": "it",
-    "classLevel": 9,
-    "chapterNo": 26,
-    "title": "Official sources and further study",
-    "unit": "Reference & Glossary",
-    "overview": "This is the main curriculum source used to map the five subject-specific units and their listed theory/practical outcomes: IT–ITeS industry; Data Entry & Keyboarding Skills; Digital Documentation; Electronic Spreadsheet; Digital Presentation.",
-    "sections": [
-      {
-        "title": "Official CBSE curriculum — Class IX Information Technology (402), 2026–27",
-        "points": [
-          "**Primary source:** [Information Technology (Subject Code 402), Class IX, Session 2026–27 — CBSE PDF](https://cbseacademic.nic.in/web_material/Curriculum27/sec/402-IT-IX.pdf)",
-          "This is the main curriculum source used to map the five subject-specific units and their listed theory/practical outcomes: IT–ITeS industry; Data Entry & Keyboarding Skills; Digital Documentation; Electronic Spreadsheet; Digital Presentation."
-        ]
-      },
-      {
-        "title": "Official CBSE Employability Skills — Class IX, 2026–27",
-        "points": [
-          "**Primary source:** [Employability Skills (Common for All Skill Courses), Class IX, Session 2026–27 — CBSE PDF](https://cbseacademic.nic.in/web_material/Curriculum27/Sec/EmployabilitySkills_IX.pdf)",
-          "This common document covers Communication Skills-I, Self-Management Skills-I, Information and Communication Technology Skills-I, Entrepreneurial Skills-I and Green Skills-I. Those topics form Part A of the Class IX IT course."
-        ]
-      },
-      {
-        "title": "CBSE skill education pages",
-        "points": [
-          "[CBSE Skill Education Curriculum index](https://cbseacademic.nic.in/skill-education-curriculum.html)",
-          "[CBSE Skill Education Books and Support Material](https://cbseacademic.nic.in/skill-education-books.html)",
-          "[CBSE Skill Education Sample Question Papers](https://cbseacademic.nic.in/skill-education-sqp.html)",
-          "Use the latest Class IX Information Technology (402) sample question paper and marking scheme listed for the relevant session when available. This notes file is a study aid, not an official CBSE publication or substitute for the school's practical manual."
-        ]
-      },
-      {
-        "title": "Safe software learning",
-        "points": [
-          "[LibreOffice Help](https://help.libreoffice.org/): Writer, Calc and Impress guidance.",
-          "[LibreOffice Documentation](https://documentation.libreoffice.org/): official product documentation.",
-          "[Typing.com](https://www.typing.com/) or the typing tutor selected by the school: practise only with teacher-approved tools and follow the local lab's software instructions."
-        ]
-      },
-      {
-        "title": "Final syllabus audit",
-        "table": {
-          "head": [
-            "Official Class IX IT (402) syllabus item",
-            "Covered in these notes"
-          ],
-          "rows": [
-            [
-              "Part A: Communication Skills-I",
-              "Chapter 1"
-            ],
-            [
-              "Part A: Self-Management Skills-I",
-              "Chapter 2"
-            ],
-            [
-              "Part A: ICT Skills-I",
-              "Chapter 3"
-            ],
-            [
-              "Part A: Entrepreneurial Skills-I",
-              "Chapter 4"
-            ],
-            [
-              "Part A: Green Skills-I",
-              "Chapter 5"
-            ],
-            [
-              "Part B Unit 1: Introduction to IT–ITeS industry",
-              "Chapter 6"
-            ],
-            [
-              "Part B Unit 2: Data Entry & Keyboarding Skills, including typing tutor",
-              "Chapter 7"
-            ],
-            [
-              "Part B Unit 3: Digital Documentation — create/open/save, editing, formatting, tables, printing, mail merge",
-              "Chapters 8–11"
-            ],
-            [
-              "Part B Unit 4: Electronic Spreadsheet — create, formulas/functions, formatting, fill handle, references and charts",
-              "Chapters 12–15"
-            ],
-            [
-              "Part B Unit 5: Digital Presentation — effectiveness, create, manage slides, formatting/animation, tables/images/shapes, masters/transitions",
-              "Chapters 16–18"
-            ],
-            [
-              "Theory revision and knowledge checks",
-              "Parts D–F"
-            ],
-            [
-              "Practical outcomes/projects",
-              "Part C and Section D questions"
-            ]
-          ]
-        }
-      },
-      {
-        "title": "Final syllabus audit — Details",
-        "points": [
-          "End of CBSE Class 9 Information Technology (402) Master Notes. Last checked against the official CBSE 2026–27 curriculum links listed above. Always follow any newer official CBSE update or teacher-issued instruction if the syllabus or examination pattern changes."
-        ]
-      }
-    ],
-    "keyTerms": [
-      {
-        "term": "Official sources and further study",
-        "meaning": "This is the main curriculum source used to map the five subject-specific units and their listed theory/practical outcomes: IT–ITeS industry; Data Entry & Keyboarding Skills; Digital Documentation; Electronic Spreadsheet; Digital Presentation."
       },
       {
         "term": "Standard Practice",

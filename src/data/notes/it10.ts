@@ -3142,9 +3142,9 @@ export const itNotes10: ChapterNote[] = [
     "subject": "it",
     "classLevel": 10,
     "chapterNo": 33,
-    "title": "Practice Question Bank",
+    "title": "Part F — Practice Arena: 50 Objective Questions",
     "unit": "Practice & Self-Assessment",
-    "overview": "A. Deletes all images  B. Applies consistent formatting  C. Disables spell-check  D. Converts a file into a database",
+    "overview": "50 high-yield objective questions (35 Multiple Choice + 15 True/False) covering Styles, Mail Merge, Spreadsheets, DBMS, and Web Security.",
     "sections": [
       {
         "title": "Section A — Multiple-choice questions",
@@ -3260,66 +3260,6 @@ export const itNotes10: ChapterNote[] = [
           "**69.** State five basic evacuation rules.",
           "**70.** Why should project databases use fictional or minimal personal data?"
         ]
-      },
-      {
-        "title": "Section C — Practical/application questions",
-        "points": [
-          "**71.** A report has headings formatted only with bold and large font. They do not appear in its automatic ToC. What should be checked and corrected?",
-          "**72.** An image disappears when a document is emailed to another computer. Give a likely cause and a possible fix.",
-          "**73.** A student changes the font on 25 headings manually. Suggest a better method for future documents and for correcting the existing file.",
-          "**74.** A Calc workbook has monthly expense sheets. Describe a way to create a combined category summary.",
-          "**75.** A business wants the selling price required to earn ₹5,000 profit, given a profit formula. Which Calc feature is suitable, and what are its three key settings?",
-          "**76.** A production plan must maximise profit subject to raw-material and labour limits. Which tool is appropriate and what are its key components?",
-          "**77.** A spreadsheet macro was downloaded from an unknown website. What should the student do before executing it?",
-          "**78.** A source workbook is moved and links in Summary stop working. Explain why this may happen and two ways to reduce the risk.",
-          "**79.** Two students edit separate spreadsheet copies. How can changes be compared and merged safely?",
-          "**80.** Design a library Books table with at least five fields, suitable data types and a primary key.",
-          "**81.** Why might StudentName be unsuitable as a primary key? Suggest an alternative.",
-          "**82.** Design a many-to-many relationship between Students and Courses. Name the three tables and their key fields.",
-          "**83.** Describe how to create a query for marks >= 80 sorted from highest to lowest.",
-          "**84.** A report has no title and prints one record across two pages. Suggest improvements.",
-          "**85.** You notice a loose electrical cable across a busy passage. State the safe response."
-        ]
-      },
-      {
-        "title": "Section D — Case studies",
-        "points": [
-          "**86.** A school club spreadsheet repeats every member's contact details for each event. Explain a database design improvement and the relevant relationship.",
-          "**87.** A report's ToC page numbers are old after new content was added. What action is needed and why?",
-          "**88.** A school wants to compare low-cost, expected and high-cost event budgets. Which Calc feature is suitable? What should stay constant and what should change?",
-          "**89.** A teacher wants students from Section A who scored at least 80. How should query criteria be combined?",
-          "**90.** A computer lab reports eye strain, neck discomfort and cluttered cables. Suggest five improvements, identifying ergonomic and physical-safety controls.",
-          "**91.** During a fire drill, a student tries to return for a bag. Explain the correct action and reason.",
-          "**92.** A library needs data entry, record search and a printable monthly lending summary. Name the best-fit Base objects and explain how they work together.",
-          "**93.** Improve this vague message into a complete, courteous instruction: “Send the report soon.” State which 7 Cs improve.",
-          "**94.** A student team wants to sell recycled-paper notebooks. List five questions to investigate and two ways to reduce environmental impact.",
-          "**95.** A loan record refers to BookID 500, but no such book exists. Which principle is violated and how can the database prevent it?"
-        ]
-      },
-      {
-        "title": "Section E — Rapid revision",
-        "points": [
-          "**96.** Give one reason to use a paragraph style instead of repeated manual formatting.",
-          "**97.** Name two image insertion methods in Writer.",
-          "**98.** What does “accept changes” mean?",
-          "**99.** Why should a scenario model document its assumptions?",
-          "**100.** Give one difference between a candidate key and a foreign key.",
-          "**101.** What does the Report Wizard do?",
-          "**102.** Why is sorting data not the same as correcting data?",
-          "**103.** Name two risks associated with poorly configured hyperlinks/external data links.",
-          "**104.** Give two ways to reduce e-waste from school IT equipment.",
-          "**105.** What is the safest high-level response to a suspected live-electrical incident?",
-          "**106.** Why should a query result be checked against its source table?",
-          "**107.** Why is an M:N relationship usually not represented by putting many values in one cell?",
-          "**108.** Give two uses of comments in collaborative documents.",
-          "**109.** Name two health problems/risks associated with poor computer ergonomics.",
-          "**110.** What should a project report say about its sample data?",
-          "**111.** Why must a primary key not be blank or duplicated?",
-          "**112.** Name three stages in planning an activity.",
-          "**113.** Distinguish an accident from a hazard.",
-          "**114.** Why must exit routes remain unobstructed?",
-          "**115.** Name Writer, Calc and Base and one role of each."
-        ]
       }
     ],
     "keyTerms": [],
@@ -3382,66 +3322,6 @@ export const itNotes10: ChapterNote[] = [
       {
         "term": "Glossary",
         "meaning": "Glossary — Fundamental concepts, practical guidelines, and key summaries."
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
-      }
-    ],
-    "examTips": [
-      "Master fundamental concepts before attempting complex workflows.",
-      "Verify inputs, outputs, and safety guidelines during practical implementations."
-    ]
-  },
-  {
-    "id": "note-it10-35",
-    "subject": "it",
-    "classLevel": 10,
-    "chapterNo": 35,
-    "title": "Official Sources and Further Study",
-    "unit": "Reference & Glossary",
-    "overview": "Prioritise documents for the current academic session. These official sources were consulted while preparing the syllabus map:",
-    "sections": [
-      {
-        "title": "Overview & Core Concepts",
-        "points": [
-          "Prioritise documents for the current academic session. These official sources were consulted while preparing the syllabus map:",
-          "1. **CBSE Information Technology (402), Class X, 2026–27 curriculum PDF:** https://cbseacademic.nic.in/web_material/Curriculum27/sec/402-IT-X.pdf",
-          "2. **CBSE Employability Skills, Class X, 2026–27 curriculum PDF:** https://cbseacademic.nic.in/web_material/Curriculum27/Sec/EmployabilitySkills-X.pdf",
-          "3. **CBSE Skill Education curriculum index:** https://cbseacademic.nic.in/skill-education-curriculum.html",
-          "4. **CBSE curriculum/sample-paper documents:** https://cbseacademic.nic.in/curriculum_2027.html",
-          "5. **LibreOffice official documentation:** https://documentation.libreoffice.org/",
-          "6. **LibreOffice official help:** https://help.libreoffice.org/"
-        ]
-      },
-      {
-        "title": "Final study checklist",
-        "points": [
-          "[ ] I can explain all five Employability Skills units.",
-          "[ ] I can create, update and apply styles in Writer.",
-          "[ ] I can insert/position images and drawing objects.",
-          "[ ] I can create/update a ToC and work with templates.",
-          "[ ] I can use Track Changes, comments and document comparison.",
-          "[ ] I can consolidate spreadsheet data and create subtotals.",
-          "[ ] I can explain scenarios, Goal Seek and Solver.",
-          "[ ] I understand macro recording, basic use and security risk.",
-          "[ ] I can link spreadsheet data and review changes.",
-          "[ ] I can explain DBMS, data types, keys and data models.",
-          "[ ] I can create related tables and explain referential integrity.",
-          "[ ] I can create queries, forms and reports in Base.",
-          "[ ] I can identify workplace hazards and suggest controls.",
-          "[ ] I understand ergonomics, safe evacuation and emergency reporting.",
-          "[ ] I have at least five Writer, five Calc and five Base practical problems in my portfolio.",
-          "[ ] I have prepared the assigned project report and field-visit/portfolio evidence.",
-          "[ ] I have checked the official curriculum and school instructions for my academic session.",
-          "End of Class 10 Information Technology (402) master notes."
-        ]
-      }
-    ],
-    "keyTerms": [
-      {
-        "term": "Official Sources and Further Study",
-        "meaning": "Prioritise documents for the current academic session. These official sources were consulted while preparing the syllabus map:"
       },
       {
         "term": "Standard Practice",

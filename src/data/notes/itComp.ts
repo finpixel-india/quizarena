@@ -5600,20 +5600,14 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 44,
-    "title": "44. Practice questions",
+    "title": "44. Competitive IT & CS Practice Arena",
     "unit": "Unit 9: Projects, Revision & Practice",
-    "overview": "These questions are mixed-level. The purpose is to diagnose understanding across primary basics, middle-school concepts, secondary IT and introductory Class 11–12 programming. Some questions have more than one reasonable answer; explain the reasoning for open-ended tasks.",
+    "overview": "40 diagnostic multiple-choice questions testing core concepts across Computer Hardware, Operating Systems, Networking, Python, and SQL.",
     "sections": [
       {
-        "title": "Overview & Core Concepts",
+        "title": "Multiple-Choice Practice Questions (1–40)",
         "points": [
-          "These questions are mixed-level. The purpose is to diagnose understanding across primary basics, middle-school concepts, secondary IT and introductory Class 11–12 programming. Some questions have more than one reasonable answer; explain the reasoning for open-ended tasks."
-        ]
-      },
-      {
-        "title": "44.1 Multiple-choice questions",
-        "points": [
-          "Choose the best answer unless the question explicitly allows multiple answers.",
+          "Choose the best answer for each question. Selecting an option will immediately validate your answer.",
           "1. Which part of the input-process-output model performs calculations and executes instructions?",
           "A. Input device · B. Processing unit · C. Printer · D. Folder",
           "2. Which of the following is hardware?",
@@ -5694,106 +5688,6 @@ export const itNotesComp: ChapterNote[] = [
           "A. A server-side error category · B. A mouse click · C. A file extension · D. A user password",
           "40. When should you trust AI-generated technical advice?",
           "A. Always, if it sounds confident · B. Only when it contains no caveats · C. Verify important claims and test code in a safe environment · D. When it asks you to reveal a secret key"
-        ]
-      },
-      {
-        "title": "44.2 Short-answer questions",
-        "points": [
-          "41. Define IT and give three examples of its use in daily life.",
-          "42. Explain data, information and knowledge using a marks-report example.",
-          "43. Describe input, processing, output and storage.",
-          "44. Explain the roles of CPU, RAM and persistent storage.",
-          "45. Differentiate system software, application software and firmware.",
-          "46. What is an operating system? State four responsibilities.",
-          "47. Give three habits that improve file organisation.",
-          "48. Explain the difference between a browser, a website and a search engine.",
-          "49. Why does HTTPS not guarantee that a website is honest?",
-          "50. Compare LAN and WAN.",
-          "51. Explain bandwidth and latency using a video-call example.",
-          "52. What is phishing? Give three warning signs and one safe response.",
-          "53. Explain authentication and authorisation.",
-          "54. What is a backup? Why must it be tested?",
-          "55. Explain the four parts of computational thinking.",
-          "56. What is an algorithm? Describe two qualities of a good algorithm.",
-          "57. Compare RAM and ROM/firmware memory, while noting modern terminology.",
-          "58. Explain the difference between a primary key and a foreign key.",
-          "59. What is a transaction? Briefly explain ACID.",
-          "60. State the roles of HTML, CSS and JavaScript.",
-          "61. What is a version-control repository? Why is Git useful for a project?",
-          "62. Explain a difference between a virtual machine and a container.",
-          "63. What are a sensor and an actuator? Give one example of each.",
-          "64. What is digital accessibility? Give four practical examples.",
-          "65. Explain why correlation does not prove causation.",
-          "66. What is the difference between rule-based automation and AI-based inference?",
-          "67. Why should real student data not be put into an unfamiliar online coding tool?",
-          "68. Explain the difference between open-source software and freeware.",
-          "69. What is an API? Give one example of how a learning website might use one.",
-          "70. List the main steps in a responsible software project lifecycle."
-        ]
-      },
-      {
-        "title": "44.3 Python tracing and coding",
-        "points": [
-          "71. What is printed?",
-          "72. What is printed?",
-          "73. What is printed?",
-          "74. What is printed?",
-          "75. What exception may occur when running `int(\"hello\")`?",
-          "76. Write a Python function `is_even(number)` that returns `True` for an even integer and `False` for an odd integer.",
-          "77. Write a program that asks for a number and prints whether it is positive, negative or zero.",
-          "78. Write a loop that calculates the sum of integers from 1 to 100 inclusive.",
-          "79. Write a function that returns the largest value in a non-empty list without using `max()`. State what should happen for an empty list.",
-          "80. Describe test cases for a program that accepts marks from 0 to 100 inclusive.",
-          "81. Write Python code to count how often each word appears in a list of words, using an appropriate collection.",
-          "82. Write a program fragment to read a UTF-8 text file and print its contents safely using a context manager.",
-          "83. Explain the difference between `print()` and `return`.",
-          "84. Why is `==` used in a condition instead of `=`?",
-          "85. Explain why this loop never ends, then correct it:"
-        ],
-        "formula": [
-          "x = 4",
-          "x = x + 3",
-          "print(x)",
-          "for i in range(2, 5):",
-          "    print(i)",
-          "name = \"IT\"",
-          "print(name * 3)",
-          "items = [3, 1, 2]",
-          "items.append(4)",
-          "print(len(items), sum(items))",
-          "count = 1",
-          "while count <= 5:",
-          "    print(count)"
-        ]
-      },
-      {
-        "title": "44.4 Database, web and reasoning tasks",
-        "points": [
-          "86. Design a simple table for books with a primary key, title, author and publication year.",
-          "87. Write an SQL query to select all students with a score of at least 80, ordered from highest score to lowest.",
-          "88. Explain why a query with user input should use a parameterised statement.",
-          "89. Write minimal semantic HTML for a page with one main heading and one paragraph.",
-          "90. Describe two CSS rules that make a page more readable on phones.",
-          "91. Explain what happens, at a high level, after a user enters an HTTPS URL in a browser.",
-          "92. State the difference between an HTML element and a CSS selector.",
-          "93. Explain why a hidden browser button is not sufficient to protect an administrator action.",
-          "94. What should a developer do when an API request fails or returns unexpected JSON?",
-          "95. Name three checks before deploying a student-learning website update."
-        ]
-      },
-      {
-        "title": "44.5 Project and digital citizenship reflection",
-        "points": [
-          "96. Plan a small website for a school club. Name its audience, main pages, three requirements and two non-functional requirements.",
-          "97. Create a safe backup plan for a student who works on a laptop and a school computer.",
-          "98. A message claims a student's account will be disabled in ten minutes unless they share an OTP. Describe a safe response and explain why.",
-          "99. A classmate copies a diagram from the Internet into a project. What must they check before reusing it?",
-          "100. A chart shows that students who sleep longer often receive higher marks. Give two reasons this does not prove that sleep alone caused the marks.",
-          "101. Design five test cases for a quiz page, including an error or edge case.",
-          "102. Explain how to build a file-organiser automation safely before allowing it to move real files.",
-          "103. List the materials you would include in a technical project handover.",
-          "104. Describe a simple IoT project and three privacy or safety questions that must be answered.",
-          "105. Explain when you might use a spreadsheet and when you might use a relational database."
         ]
       }
     ],
@@ -6719,105 +6613,6 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "examTips": [
       "Back up important information and test restores."
-    ]
-  },
-  {
-    "id": "note-itcomp-49",
-    "subject": "it",
-    "classLevel": "competitive",
-    "chapterNo": 49,
-    "title": "50. Reliable learning resources and references",
-    "unit": "Unit 10: Advanced Systems, Linux & Careers",
-    "overview": "The following are authoritative starting points for deeper study. Online documentation changes, so check the version and date when a detail matters. Prefer official documentation for language syntax, system requirements, curricula and security practices.",
-    "sections": [
-      {
-        "title": "Overview & Core Concepts",
-        "points": [
-          "The following are authoritative starting points for deeper study. Online documentation changes, so check the version and date when a detail matters. Prefer official documentation for language syntax, system requirements, curricula and security practices."
-        ]
-      },
-      {
-        "title": "47.1 Official CBSE Information Technology curriculum (India)",
-        "points": [
-          "These are the Department of Skill Education's official curriculum documents for the 2026–27 session. The dedicated Class 9 and Class 10 notes files should map their syllabus-specific units against these documents, including employability skills, subject-specific theory and practical work as listed by CBSE.",
-          "**CBSE Information Technology (Subject Code 402), Class IX, 2026–27:** [Official PDF](https://cbseacademic.nic.in/web_material/Curriculum27/sec/402-IT-IX.pdf)",
-          "**CBSE Information Technology (Subject Code 402), Class X, 2026–27:** [Official PDF](https://cbseacademic.nic.in/web_material/Curriculum27/Sec/402-IT-X.pdf)",
-          "**CBSE curriculum portal:** [CBSE Academic](https://cbseacademic.nic.in/)",
-          "The general guide does not claim that every chapter here is a Class 9 or Class 10 examination requirement. It includes material beyond a single school subject so the student can build a broader foundation."
-        ]
-      },
-      {
-        "title": "47.2 Python and programming",
-        "points": [
-          "**Python Tutorial and documentation:** [docs.python.org](https://docs.python.org/3/tutorial/index.html)",
-          "**Python standard library:** [docs.python.org — Library Reference](https://docs.python.org/3/library/)",
-          "**Python downloads:** [python.org](https://www.python.org/downloads/)",
-          "Use the documentation matching the Python version installed in the student's environment. The official tutorial introduces the language but is not a complete reference for every library."
-        ]
-      },
-      {
-        "title": "47.3 Web development",
-        "points": [
-          "**MDN Learn Web Development:** [developer.mozilla.org](https://developer.mozilla.org/en-US/docs/Learn_web_development)",
-          "**MDN HTML, CSS and JavaScript references:** [MDN Web Docs](https://developer.mozilla.org/)",
-          "**W3C Web Accessibility Initiative:** [Introduction to Web Accessibility](https://www.w3.org/WAI/fundamentals/accessibility-intro/)",
-          "**WHATWG HTML Living Standard:** [html.spec.whatwg.org](https://html.spec.whatwg.org/)",
-          "**CSS specifications and drafts:** [W3C CSS](https://www.w3.org/Style/CSS/)",
-          "MDN is a learning resource; standards documents specify detailed behaviour. Beginners should start with tutorials and consult formal specifications when needed."
-        ]
-      },
-      {
-        "title": "47.4 Cybersecurity",
-        "points": [
-          "**CISA Secure Our World:** [cisa.gov/secure-our-world](https://www.cisa.gov/secure-our-world) — practical guidance about phishing, passwords, MFA and updates.",
-          "**NIST Cybersecurity Framework 2.0:** [NIST resource centre](https://www.nist.gov/cyberframework/resources) — a risk-management framework for organisations of different sizes and maturity levels.",
-          "**OWASP Top 10:** [owasp.org/www-project-top-ten](https://owasp.org/www-project-top-ten/) — an awareness resource for major Web application security risks.",
-          "Cybersecurity practices evolve and differ by role. Use the official guidance applicable to your device, school, organisation and jurisdiction. Educational practice should occur only on systems you own or are authorised to test."
-        ]
-      },
-      {
-        "title": "47.5 Data, standards and collaboration",
-        "points": [
-          "**Unicode Standard:** [unicode.org/standard](https://www.unicode.org/standard/standard.html) — character representation for writing systems and symbols.",
-          "**Pro Git book:** [git-scm.com/book](https://git-scm.com/book/en/v2) — version control from introductory concepts to collaboration.",
-          "**PostgreSQL documentation:** [postgresql.org/docs](https://www.postgresql.org/docs/) — database concepts and SQL reference for PostgreSQL; other DBMSs differ in details.",
-          "**W3C Web Accessibility Initiative:** [w3.org/WAI](https://www.w3.org/WAI/) — accessibility principles, techniques and standards."
-        ]
-      },
-      {
-        "title": "47.6 A sensible study order",
-        "points": [
-          "1. Learn to operate and organise a computer safely.",
-          "2. Understand hardware, software, files, storage and networking fundamentals.",
-          "3. Practise documents, spreadsheets and presentations.",
-          "4. Learn Internet research, privacy, security and digital citizenship.",
-          "5. Study computational thinking and algorithms.",
-          "6. Learn a text language, such as Python, with many small projects.",
-          "7. Add data structures, SQL and web development.",
-          "8. Learn Git, testing, software design, accessibility and secure coding.",
-          "9. Explore cloud, data science, networking, embedded systems or other specialisms.",
-          "10. Study AI and automation in the separate AI master guide, then practise responsible, verifiable projects."
-        ]
-      },
-      {
-        "title": "Final note",
-        "points": [
-          "Technology changes quickly. Treat these notes as a structured foundation, not as a claim that every topic in computing can be completely mastered in one file. Deep mastery comes from reading trustworthy documentation, building projects, testing real cases, learning from mistakes, protecting users' data and revisiting concepts as tools evolve."
-        ]
-      }
-    ],
-    "keyTerms": [
-      {
-        "term": "50. Reliable learning resources and references",
-        "meaning": "The following are authoritative starting points for deeper study. Online documentation changes, so check the version and date when a detail matters. Prefer official documentation for language syntax, system requirements, curricula and security practices."
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
-      }
-    ],
-    "examTips": [
-      "The general guide does not claim that every chapter here is a Class 9 or Class 10 examination requirement. It includes material beyond a single school subject so the student can build a broader foundation."
     ]
   }
 ];

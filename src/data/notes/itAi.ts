@@ -4809,159 +4809,94 @@ export const itNotesAi: ChapterNote[] = [
     "subject": "it",
     "classLevel": "ai",
     "chapterNo": 55,
-    "title": "54. Practice Questions",
-    "unit": "Unit 10: Projects, Recipes & Practice",
-    "overview": "Try answering before checking the key. Some questions test concepts; others ask you to apply them. “Best answer” may depend on the scenario, so read every condition carefully.",
+    "title": "54. AI Mastery & Certification Practice Arena (MCQ)",
+    "unit": "Unit 11: AI Practice & Self-Assessment",
+    "overview": "40 comprehensive multiple-choice questions with verified answers testing AI Fundamentals, Machine Learning, Deep Learning, LLMs, RAG, and AI Ethics.",
     "sections": [
       {
-        "title": "Overview & Core Concepts",
+        "title": "AI Objective Assessment (Questions 1–40)",
         "points": [
-          "Try answering before checking the key. Some questions test concepts; others ask you to apply them. “Best answer” may depend on the scenario, so read every condition carefully."
-        ]
-      },
-      {
-        "title": "Section A — Foundations (1–15)",
-        "points": [
-          "1. Define artificial intelligence in one or two sentences.",
-          "2. Explain one important difference between an algorithm and a machine-learning model.",
-          "3. Is every automated workflow an AI system? Explain with an example.",
-          "4. What is the relationship between AI, machine learning and deep learning?",
-          "5. Distinguish narrow AI from the concept of AGI.",
-          "6. Give two reasons a fluent LLM answer may be incorrect.",
-          "7. What is a foundation model?",
-          "8. Why is a model only one component of an AI product?",
-          "9. State four stages of the AI problem-solving lifecycle.",
-          "10. What is a baseline and why should one be built?",
-          "11. Name four data-quality dimensions.",
-          "12. Explain the difference between structured and unstructured data.",
-          "13. What is a feature? What is a target label?",
-          "14. Why is data provenance important?",
-          "15. Give one example in which a simple rule is better than a generative model."
-        ]
-      },
-      {
-        "title": "Section B — Machine learning and data (16–35)",
-        "points": [
-          "16. Distinguish regression and classification.",
-          "17. Give an example of an unsupervised learning problem.",
-          "18. What is self-supervised learning?",
-          "19. Explain reinforcement learning using the words agent, state, action and reward.",
-          "20. What is overfitting?",
-          "21. What is underfitting?",
-          "22. Why are train, validation and test sets kept separate?",
-          "23. Give two examples of data leakage.",
-          "24. Why might random splitting be inappropriate for forecasting?",
-          "25. Explain precision in plain language.",
-          "26. Explain recall in plain language.",
-          "27. When may PR-AUC be more informative than accuracy?",
-          "28. Name two common regression metrics.",
-          "29. Why does correlation not prove causation?",
-          "30. What is a feature pipeline and why does it help prevent training-serving skew?",
-          "31. Give two ways to handle missing values.",
-          "32. Why should a scaler be fitted only on training data?",
-          "33. What does class imbalance mean?",
-          "34. Why is a high overall accuracy potentially misleading?",
-          "35. What should you do after observing a model's errors on a test set?"
-        ]
-      },
-      {
-        "title": "Section C — Deep learning and modalities (36–50)",
-        "points": [
-          "36. What are weights and biases in a neural network?",
-          "37. What is an activation function?",
-          "38. What is a loss function?",
-          "39. Describe the roles of forward propagation and backpropagation.",
-          "40. What does a learning rate control?",
-          "41. Name two computer-vision tasks.",
-          "42. What is OCR?",
-          "43. Name three NLP tasks.",
-          "44. Why is a token not always a word?",
-          "45. What is an embedding?",
-          "46. What problem does attention address in a Transformer?",
-          "47. Distinguish a decoder-style language model from an encoder-style model at a high level.",
-          "48. Name two generative-model families besides autoregressive LLMs.",
-          "49. State two challenges with speech recognition.",
-          "50. Why should a vision-language model's output be checked for critical use?"
-        ]
-      },
-      {
-        "title": "Section D — LLMs and prompting (51–65)",
-        "points": [
-          "51. What is an LLM?",
-          "52. What does next-token prediction mean?",
-          "53. What is a context window, and why is it not a guarantee of perfect recall?",
-          "54. Explain temperature in text generation at a high level.",
-          "55. What is prompt engineering?",
-          "56. List five elements of a well-specified prompt.",
-          "57. Distinguish zero-shot from few-shot prompting.",
-          "58. Why are examples in a prompt potentially helpful and potentially harmful?",
-          "59. Why does structured output need validation?",
-          "60. How can a system respond appropriately if evidence is missing?",
-          "61. What is supervised fine-tuning?",
-          "62. What is preference-based optimisation trying to improve?",
-          "63. Name one potential benefit and one limitation of synthetic training data.",
-          "64. Why is a model version change a reason to rerun evaluations?",
-          "65. What is the difference between model capability and application reliability?"
-        ]
-      },
-      {
-        "title": "Section E — RAG, embeddings and applications (66–80)",
-        "points": [
-          "66. Expand RAG and explain its purpose.",
-          "67. List the major steps in a RAG pipeline.",
-          "68. What trade-off appears when choosing chunk size?",
-          "69. Distinguish keyword retrieval from dense retrieval.",
-          "70. What is hybrid search?",
-          "71. What does a reranker do?",
-          "72. Why must document permissions be checked before providing retrieved content to a model?",
-          "73. Name two metrics for retrieval evaluation.",
-          "74. Why should an answer's citations be checked?",
-          "75. When might a structured database query be preferable to RAG?",
-          "76. Explain cosine similarity informally.",
-          "77. What can happen if a vector index mixes embeddings from incompatible model versions?",
-          "78. What is an API endpoint?",
-          "79. Why should a privileged API key not be embedded in browser code?",
-          "80. What is idempotency, and why does it matter for automation?"
-        ]
-      },
-      {
-        "title": "Section F — Agents, automation and safety (81–100)",
-        "points": [
-          "81. Distinguish a fixed workflow from an agentic loop.",
-          "82. Name five components of an agent system.",
-          "83. Why is a model-proposed tool call not equivalent to authorisation?",
-          "84. Give two examples of actions that should normally require additional confirmation or strong controls.",
-          "85. What is human-in-the-loop review?",
-          "86. Why should an agent have a step budget and stop condition?",
-          "87. What is prompt injection?",
-          "88. Distinguish direct from indirect prompt injection.",
-          "89. Name three mitigations for prompt injection or tool misuse.",
-          "90. What is excessive agency?",
-          "91. Give two examples of useful AI automation triggers.",
-          "92. Explain a dead-letter queue.",
-          "93. What is the risk of a retry loop with no limit?",
-          "94. Why do multiple agents not automatically improve accuracy?",
-          "95. What should a model-evaluation dataset include beyond typical easy examples?",
-          "96. Give three useful production monitoring metrics for an LLM application.",
-          "97. What is the difference between open weights and a hosted model API?",
-          "98. Why must AI-related laws and provider terms be checked from current primary sources?",
-          "99. Name three elements of a production readiness checklist.",
-          "100. Propose a small AI project and list two ways to test whether it works."
-        ]
-      },
-      {
-        "title": "Section G — Applied scenarios (101–110)",
-        "points": [
-          "101. A school website wants an assistant to answer questions from approved lesson notes. Should it use only a prompt, RAG, fine-tuning or a combination? Explain the initial choice.",
-          "102. A customer wants the exact live status of an order. Why is a direct authenticated tool query safer than relying on the LLM's memory?",
-          "103. A fraud classifier has 98% accuracy but misses most fraudulent transactions. What should be investigated?",
-          "104. A document retrieved by RAG includes text instructing the system to reveal another student's records. What should the application do?",
-          "105. An agent was asked to draft an email and sends it without approval. Which design boundary failed?",
-          "106. A model update improves average scores but worsens accuracy in one language. What is a suitable release decision process?",
-          "107. A text model creates an answer with a plausible citation that does not support the claim. What evaluation category failed?",
-          "108. A time-series forecast is very accurate in an offline test but poor after launch. Name three possible causes.",
-          "109. A local model is free to download but requires large hardware and operational effort. Why may it not be “free” in total cost?",
-          "110. A student wants to build a quiz generator. Describe a safe workflow from approved content to publication."
+          "Choose the best answer for each question. Selecting an option will immediately validate your answer with verified rationale.",
+          "1. Which statement best defines Artificial Intelligence (AI)?",
+          "A. Any software that runs on cloud hardware  B. Systems engineered to perceive their environment, learn from data, reason, and take actions to achieve goals  C. Electronic circuits that replace digital silicon with biological tissue  D. A database management system that indexes text using SQL queries",
+          "2. How does Narrow (Weak) AI differ from Artificial General Intelligence (AGI)?",
+          "A. Narrow AI performs a specific designated task; AGI would possess human-level adaptability across any intellectual domain  B. Narrow AI uses deep learning while AGI only uses rule-based systems  C. Narrow AI cannot run on modern GPUs  D. Narrow AI only works with numeric data, whereas AGI only processes text",
+          "3. What was the core purpose of Alan Turing's 1950 'Imitation Game' (Turing Test)?",
+          "A. To measure the floating-point calculations per second of a machine  B. To assess whether a machine's conversational behavior is indistinguishable from a human  C. To prove that digital computers cannot learn language  D. To encrypt military messages using electro-mechanical rotors",
+          "4. Which machine learning paradigm uses labeled input-output pairs to train predictive models?",
+          "A. Unsupervised Learning  B. Supervised Learning  C. Self-assembling Learning  D. Heuristic Search",
+          "5. Customer segmentation and anomaly detection on unlabeled data are typical applications of:",
+          "A. Supervised classification  B. Unsupervised clustering  C. Supervised regression  D. Rule-based compiler parsing",
+          "6. In Reinforcement Learning, how does the agent discover optimal behavior?",
+          "A. By memorizing a static lookup table of SQL records  B. By interacting with an environment and receiving numeric scalar rewards or penalties  C. By using manual if-else conditional branches written by programmers  D. By minimizing character counts in source code",
+          "7. What distinguishes a classification task from a regression task?",
+          "A. Classification predicts continuous quantities; regression predicts categorical classes  B. Classification predicts discrete categories or labels; regression predicts continuous numeric values  C. Classification only runs on audio data; regression only runs on text  D. Classification requires neural networks; regression cannot use neural networks",
+          "8. What occurs when a machine learning model suffers from severe 'overfitting'?",
+          "A. The model performs perfectly on new unseen data but poorly on training data  B. The model memorizes training noise and specifics, failing to generalize to unseen test data  C. The loss function gradient approaches infinity and causes hardware memory errors  D. The model simplifies all parameters to zero",
+          "9. Which technique is commonly employed during model training to mitigate overfitting?",
+          "A. L1/L2 weight regularization and Dropout  B. Removing the validation split completely  C. Increasing training epochs indefinitely on a small dataset  D. Disabling activation functions",
+          "10. In a standard ML data pipeline, what is the role of the validation set?",
+          "A. It is used to calculate backpropagation weight gradients directly  B. It is used to tune hyperparameters and monitor generalization during model iteration  C. It is discarded before training begins  D. It is used solely to store customer production logs",
+          "11. For an emergency medical diagnostic model, why is high Recall usually prioritized over high Precision?",
+          "A. Because missing a true positive condition (false negative) carries a catastrophic cost  B. Because recall requires zero computation time  C. Because high recall guarantees zero false alarms  D. Because medical regulators forbid the use of precision",
+          "12. What does the F1-score mathematically represent?",
+          "A. The arithmetic mean of accuracy and loss  B. The harmonic mean of precision and recall  C. The sum of true positives and true negatives  D. The difference between training and testing error",
+          "13. What is the fundamental mechanism of Gradient Descent optimization?",
+          "A. Randomly guessing weights until accuracy hits 100%  B. Calculating the gradient of the loss function with respect to model weights and updating parameters in the opposite direction  C. Sorting dataset features in ascending alphabetical order  D. Doubling model layer counts after each iteration",
+          "14. What consequence typically arises if the learning rate is set excessively high?",
+          "A. Training converges immediately in one step  B. The loss may oscillate erratically, diverge, and fail to reach a minimum  C. Weights remain frozen at exactly zero  D. The model automatically switches to unsupervised mode",
+          "15. Why are non-linear activation functions (such as ReLU or GELU) required in deep neural networks?",
+          "A. Without non-linearity, stacking multiple linear layers collapses mathematically into a single linear transformation  B. Because computers cannot multiply matrices linearly  C. To prevent data from being saved to disk  D. To convert floating-point values into ASCII characters",
+          "16. What does the Rectified Linear Unit (ReLU) activation function return?",
+          "A. f(x) = 1 / (1 + e^-x)  B. f(x) = max(0, x)  C. f(x) = tanh(x)  D. f(x) = x^2",
+          "17. What algorithm calculates gradients of the loss with respect to all layer weights using the calculus chain rule?",
+          "A. Breadth-First Search  B. Backpropagation  C. Quicksort  D. Dijkstra's Algorithm",
+          "18. Why are Convolutional Neural Networks (CNNs) particularly effective for image analysis?",
+          "A. They use sliding kernels that capture spatial hierarchies and translation invariance  B. They process images strictly as one-dimensional flat text files  C. They avoid using matrix multiplications  D. They require no training data",
+          "19. What historical limitation of recurrent networks (RNNs) was solved by the Transformer architecture?",
+          "A. Inability to process text  B. Sequential bottleneck and vanishing/exploding gradients over long sequence contexts  C. Inability to use GPUs  D. High reliance on manual regex rules",
+          "20. How does the Self-Attention mechanism in Transformers operate?",
+          "A. It forces every token to only communicate with its immediate left neighbor  B. It computes pairwise attention scores (Query, Key, Value) allowing every token to attend dynamically to all tokens in the sequence  C. It deletes 50% of dictionary words randomly  D. It converts text to binary sound waves",
+          "21. What is the role of tokenization in Large Language Models?",
+          "A. Compiling Python code into binary machine bytecode  B. Segmenting raw text into numeric integer token IDs using subword algorithms like BPE  C. Encrypting messages with RSA private keys  D. Checking spelling using an English dictionary",
+          "22. In vector embedding space, what does a small angle / high cosine similarity between two word vectors indicate?",
+          "A. The two words have identical letter counts  B. The two words share strong semantic similarity or contextual relationship  C. The words were written by different authors  D. The words are antonyms in every language",
+          "23. How do autoregressive Large Language Models (e.g. GPT series) generate text?",
+          "A. By iteratively sampling and predicting the next most probable token conditioned on previous tokens  B. By fetching pre-written HTML paragraphs from Wikipedia  C. By executing SQL SELECT statements against an internal database  D. By translating text to assembly instructions",
+          "24. In LLM generation, what is 'hallucination'?",
+          "A. When the model runs out of GPU VRAM  B. When the model generates factually false or fabricated statements with authoritative confidence  C. When text contains emojis  D. When response latency exceeds 10 seconds",
+          "25. What happens when the sampling 'Temperature' parameter of an LLM is lowered towards 0.0?",
+          "A. The model generates completely random and nonsensical tokens  B. The model becomes deterministic, choosing the highest-probability token at each step  C. The model's context window increases tenfold  D. The model refuses all user prompts",
+          "26. What distinguishes Few-Shot prompting from Zero-Shot prompting?",
+          "A. Few-shot includes several input-output examples directly inside the prompt context before the query  B. Few-shot updates the underlying neural network weights on disk  C. Few-shot is only used for image generation  D. Zero-shot requires connecting to an external vector database",
+          "27. What is Retrieval-Augmented Generation (RAG)?",
+          "A. A hardware upgrade that replaces SSDs with magnetic tape  B. An architecture that retrieves relevant external document chunks and injects them into the prompt to ground model answers  C. Retraining a foundation model from scratch using public web crawls  D. Compressing model weights using 4-bit quantization",
+          "28. Why is document 'chunking' critical in a production RAG pipeline?",
+          "A. Because LLMs cannot read words longer than 5 letters  B. Because embeddings represent bounded semantic passages better and chunks fit within LLM context limits  C. To randomly shuffle the order of paragraphs  D. To convert text documents into PNG images",
+          "29. What is the primary function of a Vector Database (e.g. Pinecone, Chroma, Milvus, Qdrant)?",
+          "A. Executing relational foreign-key transactions with ACID guarantees  B. Indexing high-dimensional embeddings for high-speed approximate nearest neighbor (ANN) similarity search  C. Storing CSS and JavaScript files for frontend websites  D. Compiling C++ code into machine executables",
+          "30. What is the role of a 'Reranker' (cross-encoder) in an advanced RAG pipeline?",
+          "A. It deletes all retrieved documents to save memory  B. It scores query-document pairs jointly with deep attention to reorder candidate chunks for superior precision  C. It translates queries into another human language  D. It generates synthetic images of text",
+          "31. What is Parameter-Efficient Fine-Tuning (PEFT / LoRA)?",
+          "A. Training every single foundation model parameter from scratch on new hardware  B. Freezing base model weights and training small low-rank adapter matrices, drastically reducing GPU memory requirements  C. Deleting 90% of model layers to run on mobile phones  D. Replacing all neural weights with decision trees",
+          "32. In the context of LLMs, what is an 'AI Agent'?",
+          "A. A human customer support employee who writes prompts  B. An autonomous system using an LLM as its reasoning engine to plan steps, invoke external tools, and loop until a goal is met  C. A desktop antivirus scanner  D. A database backup script running on a cron schedule",
+          "33. What does the ReAct framework in agentic AI stand for?",
+          "A. Reaction, Activation, Testing  B. Reasoning and Acting  C. Relational Database Action  D. Recursive Architecture Control",
+          "34. What causes Algorithmic Bias in machine learning and AI systems?",
+          "A. Using computers manufactured in different regions  B. Historical prejudices, skewed sampling, or unrepresentative distributions in training data  C. Setting the learning rate to a decimal value  D. Using open-source software libraries",
+          "35. What is the purpose of an AI 'Model Card' (or System Card)?",
+          "A. A warranty card for purchasing GPUs  B. Standardized documentation describing a model's architecture, training data, intended use, limitations, and safety evaluations  C. A digital certificate required to boot Windows  D. A receipt showing the electricity bill of model training",
+          "36. What safety vulnerability occurs in 'Prompt Injection' attacks against LLMs?",
+          "A. Malicious untrusted input overrides developer system instructions and coerces the model into unintended behavior  B. Overheating the host server's CPU cooling fans  C. Overwriting the operating system kernel via buffer overflow  D. Physical theft of hard drives from the datacenter",
+          "37. What is 'RLHF' in the training pipeline of frontier models like ChatGPT?",
+          "A. Random Linear Hyperparameter Filtering  B. Reinforcement Learning from Human Feedback  C. Real-time Linguistic Hardware Formatting  D. Relational Logic with Heuristic Functions",
+          "38. In image generation models (like Stable Diffusion), how does the 'Diffusion' process work?",
+          "A. By assembling pre-existing clipart from a vector library  B. By training a model to gradually denoise a random Gaussian noise tensor into a coherent image guided by text conditioning  C. By taking a digital photograph with a web camera  D. By resizing an icon file",
+          "39. What is 'Quantization' of a neural network model (e.g. 4-bit or 8-bit precision)?",
+          "A. Converting 16-bit/32-bit floating point weights to lower-bit representations to reduce memory footprint and boost inference speed  B. Deleting all negative weights from the neural layers  C. Training a quantum computer from scratch  D. Encrypting weights with a password",
+          "40. Why is 'Human-in-the-Loop' (HITL) architecture essential for high-stakes AI automation?",
+          "A. To ensure human operators write all database queries manually  B. To ensure consequential actions (financial transactions, patient prescriptions, legal filings) require human review and approval  C. Because computers shut down automatically when humans leave the room  D. To avoid using electricity during weekends"
         ]
       }
     ],
@@ -5143,81 +5078,6 @@ export const itNotesAi: ChapterNote[] = [
       "**Label:** Target or annotation associated with a data example.",
       "**Supervised learning:** Training from labelled examples.",
       "**Synthetic data:** Artificially generated examples."
-    ]
-  },
-  {
-    "id": "note-itai-57",
-    "subject": "it",
-    "classLevel": "ai",
-    "chapterNo": 57,
-    "title": "57. Recommended Official Learning Resources",
-    "unit": "Unit 11: AI Reference & Appendices",
-    "overview": "AI is fast-moving. Prefer official documentation, maintained courses, foundational papers and standards. Access date for this edition: **16 October 2026**. Check current pages because APIs, models, regulations and recommendations may change.",
-    "sections": [
-      {
-        "title": "Overview & Core Concepts",
-        "points": [
-          "AI is fast-moving. Prefer official documentation, maintained courses, foundational papers and standards. Access date for this edition: **16 October 2026**. Check current pages because APIs, models, regulations and recommendations may change."
-        ]
-      },
-      {
-        "title": "57.1 Foundations and machine learning",
-        "points": [
-          "1. **Google Machine Learning Crash Course** — structured modules on regression, classification, data, neural networks, embeddings, LLMs and production ML: <https://developers.google.com/machine-learning/crash-course/>",
-          "2. **scikit-learn User Guide** — classical ML, preprocessing, supervised/unsupervised learning, model selection, metrics and common pitfalls: <https://scikit-learn.org/stable/user_guide.html>",
-          "3. **PyTorch Tutorials** — tensors, datasets, neural networks, automatic differentiation, optimisation and model saving: <https://docs.pytorch.org/tutorials/>",
-          "4. **TensorFlow tutorials** — beginner and advanced neural-network examples: <https://www.tensorflow.org/tutorials>",
-          "5. **Original Transformer paper, “Attention Is All You Need”** — foundational architecture paper: <https://arxiv.org/abs/1706.03762>"
-        ]
-      },
-      {
-        "title": "57.2 LLMs and generative AI",
-        "points": [
-          "6. **Hugging Face LLM Course** — language models, tokenisers, Transformers, datasets and practical tools: <https://huggingface.co/learn/llm-course/>",
-          "7. **Hugging Face Transformers documentation** — model use, training and fine-tuning: <https://huggingface.co/docs/transformers/>",
-          "8. **Google Generative AI glossary** — definitions including embeddings, foundation models and RAG: <https://docs.cloud.google.com/docs/generative-ai/glossary>",
-          "9. **OpenAI API documentation** — current model APIs, structured output, prompting, embeddings, tools, agents, evaluation, safety and production topics: <https://developers.openai.com/api/docs/>",
-          "10. **OpenAI function calling** — guide to defining tools and handling model-generated function calls: <https://developers.openai.com/api/docs/guides/function-calling>",
-          "11. **OpenAI embeddings** — guide to vector representations and embedding use: <https://developers.openai.com/api/docs/guides/embeddings>",
-          "12. **OpenAI evaluations** — evaluation concepts and implementation guidance: <https://developers.openai.com/api/docs/guides/evals>",
-          "13. **Anthropic prompting documentation** — clarity, examples, structured prompts and tool-use considerations: <https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview>",
-          "14. **Anthropic, “Building Effective Agents”** — practical comparison of workflows and agentic designs: <https://www.anthropic.com/engineering/building-effective-agents>",
-          "15. **Model Context Protocol** — protocol documentation and ecosystem: <https://modelcontextprotocol.io/>"
-        ]
-      },
-      {
-        "title": "57.3 Responsible AI, governance and security",
-        "points": [
-          "16. **NIST AI Risk Management Framework** — risk management concepts, playbook and related profiles: <https://www.nist.gov/itl/ai-risk-management-framework>",
-          "17. **NIST Generative AI Profile** — generative-AI-specific risks and suggested actions: <https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf>",
-          "18. **OWASP Top 10 for LLM Applications** — community-maintained key security risks and mitigations: <https://genai.owasp.org/resource/owasp-top-10-for-llm-applications-2025/>",
-          "19. **UNESCO AI Competency Framework for Students** — human-centred, ethical and practical AI literacy: <https://www.unesco.org/en/articles/ai-competency-framework-students>",
-          "20. **UNESCO AI Competency Framework for Teachers** — guidance for educators: <https://www.unesco.org/en/articles/ai-competency-framework-teachers>"
-        ]
-      },
-      {
-        "title": "57.4 Legal and policy primary sources",
-        "points": [
-          "21. **European Commission — AI Act**: <https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai>",
-          "22. **European Commission — Navigating the AI Act FAQ**: <https://digital-strategy.ec.europa.eu/en/faqs/navigating-ai-act>",
-          "23. **India MeitY — Acts and policies, including DPDP Rules and related documents**: <https://www.meity.gov.in/documents/act-and-policies>",
-          "These links are learning resources, not an exhaustive list of every tool vendor, library or jurisdiction. Use the official documentation for the particular model, data service, framework, licence or law relevant to your project."
-        ]
-      }
-    ],
-    "keyTerms": [
-      {
-        "term": "57. Recommended Official Learning Resources",
-        "meaning": "AI is fast-moving. Prefer official documentation, maintained courses, foundational papers and standards. Access date for this edition: **16 October 2026**. Check current pages because APIs, models, regulations and recommendations may change."
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
-      }
-    ],
-    "examTips": [
-      "Master fundamental concepts before attempting complex workflows.",
-      "Verify inputs, outputs, and safety guidelines during practical implementations."
     ]
   },
   {

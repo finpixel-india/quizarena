@@ -1101,124 +1101,164 @@ export const IT_ANSWERS: Record<string, AnswerItem> = {
     "solution": "A spreadsheet is suitable for small, manually analysed tables and charts; a relational database is more suitable when data is related, multi-user, integrity-constrained or transactional. The choice depends on scale, risk and workflow.\n\n---"
   },
   "note-itai-55-1": {
-    "solution": "AI is the field of building computational systems that perform tasks associated with intelligent behaviour, such as perception, prediction, language, planning or learning."
+    "correctKey": "B",
+    "explanation": "Artificial Intelligence refers to computational systems engineered to perceive environments, learn representations from data, perform inference, and make goal-oriented decisions."
   },
   "note-itai-55-2": {
-    "solution": "An algorithm is a defined procedure; an ML model has parameters learned from data and applies learned patterns to new inputs."
+    "correctKey": "A",
+    "explanation": "All contemporary AI systems (speech recognition, vision models, LLMs) are Narrow AI designed for specialized tasks. AGI remains a theoretical concept of general human-level cognitive breadth."
   },
   "note-itai-55-3": {
-    "solution": "No. A scheduled backup or fixed invoice-routing rule is automation without necessarily using AI."
+    "correctKey": "B",
+    "explanation": "The Turing Test was proposed as an operational test of machine intelligence based on whether an interrogator can distinguish between human and machine text responses."
   },
   "note-itai-55-4": {
-    "solution": "Deep learning is part of machine learning, which is one major branch of AI; AI also includes symbolic and search/planning methods."
+    "correctKey": "B",
+    "explanation": "Supervised learning trains models on labeled training pairs (x, y) where ground truth targets are provided to compute loss and update weights."
   },
   "note-itai-55-5": {
-    "solution": "Narrow AI targets a limited class of tasks. AGI is a debated concept for broadly generalisable capability across many domains."
+    "correctKey": "B",
+    "explanation": "Unsupervised learning discovers hidden distributions, clusters (like k-means), and dimensionality reduction without target labels."
   },
   "note-itai-55-6": {
-    "solution": "The model may generate unsupported information, rely on an incorrect assumption, have stale knowledge, or misinterpret the prompt."
+    "correctKey": "B",
+    "explanation": "Reinforcement learning (RL) agents explore states and take actions in an environment to maximize cumulative reward over time."
   },
   "note-itai-55-7": {
-    "solution": "A broad pretrained model that can be adapted to many downstream tasks."
+    "correctKey": "B",
+    "explanation": "Classification assigns inputs to discrete classes (e.g. spam / not spam), while regression estimates continuous values (e.g. house price, temperature)."
   },
   "note-itai-55-8": {
-    "solution": "A product also needs data access, permissions, orchestration, user interface, validation, safety controls and monitoring."
+    "correctKey": "B",
+    "explanation": "Overfitting happens when a model learns training data noise and idiosyncrasies too closely, yielding high training accuracy but poor generalization to test sets."
   },
   "note-itai-55-9": {
-    "solution": "Examples: define problem, collect/govern data, choose method, evaluate, pilot, deploy and monitor."
+    "correctKey": "A",
+    "explanation": "Regularization methods such as L1/L2 penalties, weight decay, early stopping, and dropout constrain parameter magnitudes to prevent overfitting."
   },
   "note-itai-55-10": {
-    "solution": "A simple reference method that measures whether added complexity brings actual improvement."
+    "correctKey": "B",
+    "explanation": "The validation set provides an unbiased evaluation during training to guide hyperparameter selection (learning rate, layer size) without contaminating the final test set."
   },
   "note-itai-55-11": {
-    "solution": "Accuracy, completeness, consistency, timeliness, validity, uniqueness and representativeness are examples."
+    "correctKey": "A",
+    "explanation": "Recall measures TP / (TP + FN). In critical diagnostics, failing to detect a life-threatening disease (false negative) is much worse than a false positive alarm that can be re-tested."
   },
   "note-itai-55-12": {
-    "solution": "Structured data follows a defined schema like rows and columns; unstructured data includes free-form text, images, audio or video."
+    "correctKey": "B",
+    "explanation": "The F1-score is 2 * (Precision * Recall) / (Precision + Recall), giving balanced weight especially on imbalanced datasets."
   },
   "note-itai-55-13": {
-    "solution": "A feature is an input; a target label is the value a supervised model should predict."
+    "correctKey": "B",
+    "explanation": "Gradient descent computes the gradient vector of the objective loss function and shifts weights iteratively in the direction of steepest descent."
   },
   "note-itai-55-14": {
-    "solution": "Provenance helps verify where data came from, what permissions apply and which transformations were performed."
+    "correctKey": "B",
+    "explanation": "A learning rate that is too high causes optimizer steps to overshoot optimal minima, leading to oscillating or diverging loss."
   },
   "note-itai-55-15": {
-    "solution": "Example: use ordinary code to calculate tax or enforce a strict minimum-age rule rather than asking an LLM to approximate the result."
+    "correctKey": "A",
+    "explanation": "Any composition of linear layers is just another linear transformation (W2 * W1 * x = W3 * x). Non-linear activations allow networks to approximate arbitrary complex functions."
   },
   "note-itai-55-16": {
-    "solution": "Regression predicts a numeric value; classification predicts a category."
+    "correctKey": "B",
+    "explanation": "ReLU is defined as f(x) = max(0, x). It is computationally efficient and helps mitigate vanishing gradients for positive inputs."
   },
   "note-itai-55-17": {
-    "solution": "Group similar documents without known categories, or detect unusual network activity."
+    "correctKey": "B",
+    "explanation": "Backpropagation performs reverse-mode automatic differentiation through the computational graph using the chain rule to obtain parameter gradients."
   },
   "note-itai-55-18": {
-    "solution": "Training where the learning target is generated from the data itself, such as predicting a missing or next token."
+    "correctKey": "A",
+    "explanation": "CNNs exploit spatial locality and parameter sharing through convolutional filters, detecting low-level edges up to high-level semantic object parts."
   },
   "note-itai-55-19": {
-    "solution": "An agent observes a state, chooses an action, receives reward from the environment and learns a policy that improves long-term return."
+    "correctKey": "B",
+    "explanation": "Traditional RNNs processed tokens sequentially one by one, causing memory bottlenecks on long sequences. Transformers replaced recurrence with parallel self-attention."
   },
   "note-itai-55-20": {
-    "solution": "Overfitting occurs when a model fits training-specific detail and generalises poorly."
+    "correctKey": "B",
+    "explanation": "Self-attention computes Query-Key similarity dot-products and applies softmax to weight Value vectors, capturing context across the entire input sequence simultaneously."
   },
   "note-itai-55-21": {
-    "solution": "Underfitting occurs when a model is too limited or insufficiently trained to capture useful patterns."
+    "correctKey": "B",
+    "explanation": "Tokenization converts raw string characters into integer token sequences using subword algorithms (e.g. Byte-Pair Encoding or WordPiece) that match model vocabulary."
   },
   "note-itai-55-22": {
-    "solution": "Training fits parameters; validation supports selection/tuning; test provides a final held-out estimate."
+    "correctKey": "B",
+    "explanation": "Embeddings map semantic concepts into geometric space where vectors pointing in similar directions (cosine similarity near 1.0) represent closely related meanings."
   },
   "note-itai-55-23": {
-    "solution": "Examples: fitting a scaler on all data before the split; using a future outcome field; near duplicates appearing across train and test."
+    "correctKey": "A",
+    "explanation": "Autoregressive LLMs model the conditional probability distribution P(token_t | token_1...token_{t-1}) and append sampled tokens step by step."
   },
   "note-itai-55-24": {
-    "solution": "Random splitting can put future information in training when the real task is predicting a later period."
+    "correctKey": "B",
+    "explanation": "Hallucination occurs when an LLM produces output that sounds fluent and plausible but is factually inaccurate, ungrounded, or completely invented."
   },
   "note-itai-55-25": {
-    "solution": "Precision asks: among predictions labelled positive, what fraction are truly positive?"
+    "correctKey": "B",
+    "explanation": "Lower temperature sharpens the probability distribution. At temperature 0, the model executes greedy decoding, selecting the most likely token consistently."
   },
   "note-itai-55-26": {
-    "solution": "Recall asks: among all true positive cases, what fraction did the system find?"
+    "correctKey": "A",
+    "explanation": "Few-shot prompting provides demonstrations inside the prompt context to guide format and reasoning without performing gradient weight updates."
   },
   "note-itai-55-27": {
-    "solution": "With rare positive events, PR-AUC can show how precision and recall trade off better than overall accuracy."
+    "correctKey": "B",
+    "explanation": "RAG combines vector search with LLMs: queries retrieve top-k document passages from an external knowledge base and supply them as grounding context."
   },
   "note-itai-55-28": {
-    "solution": "MAE, MSE and RMSE."
+    "correctKey": "B",
+    "explanation": "Chunking divides large books or manuals into focused passages (e.g. 300–500 tokens) with overlap so retrieved sections are concise and semantically accurate."
   },
   "note-itai-55-29": {
-    "solution": "Correlation may be explained by confounding, coincidence or reverse causation; observational association alone does not establish the effect of an intervention."
+    "correctKey": "B",
+    "explanation": "Vector databases index dense embeddings using algorithms like HNSW to perform fast Approximate Nearest Neighbor (ANN) search over millions of vectors."
   },
   "note-itai-55-30": {
-    "solution": "A pipeline packages preprocessing with modelling, keeping transformations consistent and reducing training-serving mismatch."
+    "correctKey": "B",
+    "explanation": "Bi-encoder vector search is fast but approximate. A cross-encoder reranker scores the top candidates jointly, placing the most relevant evidence at the top of the prompt."
   },
   "note-itai-55-31": {
-    "solution": "Remove affected rows where appropriate, impute with a justified method, or add a missingness indicator."
+    "correctKey": "B",
+    "explanation": "Low-Rank Adaptation (LoRA) decomposes weight update matrices into small low-rank factors (delta W = A * B), enabling efficient fine-tuning on consumer hardware."
   },
   "note-itai-55-32": {
-    "solution": "Otherwise, information from the validation/test distribution influences training-time preprocessing and can make evaluation optimistic."
+    "correctKey": "B",
+    "explanation": "An AI agent couples an LLM reasoning engine with memory, planning loops, and tool execution (APIs, web search, code execution) to accomplish multi-step objectives."
   },
   "note-itai-55-33": {
-    "solution": "One class is much more common than another."
+    "correctKey": "B",
+    "explanation": "ReAct combines 'Reasoning' (generating internal thought traces) and 'Acting' (invoking specific tool actions) in an alternating loop to solve complex tasks."
   },
   "note-itai-55-34": {
-    "solution": "A majority-class model may score highly while failing to identify the rare class that matters."
+    "correctKey": "B",
+    "explanation": "Algorithmic bias reflects historical biases, lack of demographic representation, or flawed labeling in training datasets, which models learn and perpetuate."
   },
   "note-itai-55-35": {
-    "solution": "Use the test set to estimate performance and diagnose broad error patterns, but avoid repeatedly tuning against it. Use validation or a fresh holdout for further development."
+    "correctKey": "B",
+    "explanation": "Model cards provide transparent technical documentation detailing benchmarks, training data composition, evaluation metrics, and known safety boundaries."
   },
   "note-itai-55-36": {
-    "solution": "Weights control learned connections/input contributions; biases shift the weighted sum."
+    "correctKey": "A",
+    "explanation": "Prompt injection occurs when user or external untrusted text contains adversarial commands that hijack the model's instructions and bypass safety guardrails."
   },
   "note-itai-55-37": {
-    "solution": "An activation function transforms a neuron's input and helps networks represent nonlinear patterns."
+    "correctKey": "B",
+    "explanation": "RLHF aligns raw base models with human preferences using reward models trained on human comparison rankings, improving helpfulness and safety."
   },
   "note-itai-55-38": {
-    "solution": "A loss function measures mismatch between prediction and target under the chosen objective."
+    "correctKey": "B",
+    "explanation": "Diffusion models learn the reverse process of adding Gaussian noise, iteratively removing noise conditioned on text embeddings to generate high-fidelity images."
   },
   "note-itai-55-39": {
-    "solution": "Forward propagation computes predictions; backpropagation computes gradients for training updates."
+    "correctKey": "A",
+    "explanation": "Quantization reduces numerical precision (e.g. FP16 to INT8 or INT4), drastically lowering RAM/VRAM usage with minimal degradation in output quality."
   },
   "note-itai-55-40": {
-    "solution": "The learning rate controls the size of parameter updates."
+    "correctKey": "B",
+    "explanation": "Human-in-the-loop ensures that autonomous agents cannot execute irreversible or safety-critical decisions without explicit human review and authorization."
   },
   "note-itai-55-41": {
     "solution": "Image classification, object detection, segmentation, OCR, tracking and pose estimation are examples."

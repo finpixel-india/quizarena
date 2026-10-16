@@ -422,14 +422,27 @@ function AbhyasArena({ chapter }: { chapter: NoteChapter }) {
 
   const isHindi = chapter.id.startsWith("note-hi");
 
+  useEffect(() => {
+    setActiveSectionIdx("all");
+    setSelectedAnswers({});
+    setScratchNotes({});
+  }, [chapter.id]);
+
   const parsedSections = useMemo(() => {
-    return chapter.sections.map((sec, idx) => ({
-      index: idx,
-      title: sec.title,
-      ...parseAbhyasPoints(sec.points || [], sec.title),
-      table: sec.table,
-      tip: sec.tip,
-    }));
+    return chapter.sections
+      .map((sec, idx) => {
+        const parsed = parseAbhyasPoints(sec.points || [], sec.title);
+        const mcqs = parsed.questions.filter((q) => q.type === "mcq");
+        return {
+          index: idx,
+          title: sec.title,
+          instructions: parsed.instructions,
+          questions: mcqs,
+          table: sec.table,
+          tip: sec.tip,
+        };
+      })
+      .filter((s) => s.questions.length > 0);
   }, [chapter]);
 
   const allQuestions = useMemo(() => {
@@ -600,8 +613,9 @@ function SectionBlock({ index, section, chapterId }: { index: number; section: N
   const isSectionAbhyas =
     section.title.includes("अभ्यास") ||
     section.title.includes("स्व-जाँच") ||
-    section.title.toLowerCase().includes("practice") ||
-    section.title.toLowerCase().includes("questions");
+    section.title.toLowerCase().includes("practice questions") ||
+    section.title.toLowerCase().includes("practice arena") ||
+    section.title.toLowerCase().includes("self-assessment");
   const [selectedAnswers, setSelectedAnswers] = useState<Record<string, string>>({});
   const [scratchNotes, setScratchNotes] = useState<Record<string, string>>({});
 
@@ -610,6 +624,7 @@ function SectionBlock({ index, section, chapterId }: { index: number; section: N
     return parseAbhyasPoints(section.points || [], section.title);
   }, [isSectionAbhyas, section.points, section.title]);
 
+  const hasMcqs = parsed ? parsed.questions.some((q) => q.type === "mcq") : false;
   const isHindi = chapterId.startsWith("note-hi");
 
   return (
@@ -619,13 +634,13 @@ function SectionBlock({ index, section, chapterId }: { index: number; section: N
         <h3 className="text-lg font-bold tracking-tight text-fg sm:text-2xl">{section.title}</h3>
       </div>
 
-      {isSectionAbhyas && parsed && parsed.questions.length > 0 ? (
+      {isSectionAbhyas && parsed && hasMcqs ? (
         <div className="mt-5 space-y-4">
           {parsed.instructions.length ? (
             <div className="rounded-xl border border-brand/30 bg-brand/[0.05] p-4 text-xs sm:text-sm text-fg">
               {parsed.instructions.map((inst, ii) => (
                 <p key={ii} className="flex items-start gap-2 leading-relaxed">
-                  <span className="font-mono font-bold text-brand-ink">निर्देश:</span>
+                  <span className="font-mono font-bold text-brand-ink">{isHindi ? "निर्देश:" : "Instructions:"}</span>
                   <span><Rich text={inst} /></span>
                 </p>
               ))}
@@ -633,7 +648,7 @@ function SectionBlock({ index, section, chapterId }: { index: number; section: N
           ) : null}
 
           <div className="space-y-4">
-            {parsed.questions.map((q) => (
+            {parsed.questions.filter((q) => q.type === "mcq").map((q) => (
               <QuestionCard
                 key={q.id}
                 chapterId={chapterId}
@@ -895,11 +910,13 @@ export default function NotesBrowser() {
   /* ------------------------------ Reader view ------------------------------ */
   const isAbhyasChapter =
     selected.title.includes("अभ्यास") ||
-    selected.title.includes("पुनरावृत्ति") ||
-    selected.unit.includes("अभ्यास") ||
-    selected.title.toLowerCase().includes("practice") ||
+    selected.title.toLowerCase().includes("practice arena") ||
+    selected.title.toLowerCase().includes("practice question") ||
+    selected.title.toLowerCase().includes("practice questions") ||
     selected.title.toLowerCase().includes("question bank") ||
-    selected.unit.toLowerCase().includes("practice");
+    selected.title.toLowerCase().includes("assessment (mcq)") ||
+    selected.title.toLowerCase().includes("practice arena (mcq)") ||
+    selected.title.toLowerCase().includes("objective questions");
 
   const levelLabel =
     selected.classLevel === "competitive"

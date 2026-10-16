@@ -1,4 +1,4 @@
-export type ArticulateMode = "off-the-cuff" | "deep-research";
+export type ArticulateMode = "off-the-cuff" | "deep-research" | "elocution";
 
 export type ArticulateCategory =
   | "all"

@@ -1,9 +1,31 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Check, ChevronDown, ChevronUp, Settings2, X } from "lucide-react";
+import { Check, ChevronDown, ChevronUp, Play, RotateCcw, Settings2, Square, X } from "lucide-react";
 import { ARTICULATE_PROMPTS, type ArticulateCategory, type ArticulateMode, type ArticulatePrompt } from "@/data/articulate/prompts";
+import {
+  ELOCUTION_ITEMS,
+  ELOCUTION_TYPES,
+  type ElocutionDifficulty,
+  type ElocutionItem,
+  type ElocutionType,
+} from "@/data/articulate/elocution";
 import { cn } from "@/lib/format";
+
+/* ─── Mode Definitions ───────────────────────────────────────────────────── */
+const ARTICULATE_MODES: { id: ArticulateMode; label: string; dot: string }[] = [
+  { id: "off-the-cuff", label: "Off the cuff", dot: "bg-pink-200" },
+  { id: "deep-research", label: "Deep research", dot: "bg-sky-200" },
+  { id: "elocution", label: "Elocution", dot: "bg-amber-300" },
+];
+
+function formatStopwatch(ms: number) {
+  const totalSecs = Math.floor(ms / 1000);
+  const minutes = Math.floor(totalSecs / 60);
+  const seconds = totalSecs % 60;
+  const hundredths = Math.floor((ms % 1000) / 10);
+  return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}.${String(hundredths).padStart(2, "0")}`;
+}
 
 /* ─── Category Definitions ───────────────────────────────────────────────── */
 const DISPLAY_CATEGORIES: { id: ArticulateCategory; label: string; emoji: string }[] = [
@@ -259,6 +281,126 @@ export default function ArticulateClient() {
     }
   }, []);
 
+  /* ─── Elocution State ──────────────────────────────────────────────────── */
+  const [elocutionType, setElocutionType] = useState<ElocutionType>("tongue-twister");
+  const [elocutionDifficulty, setElocutionDifficulty] = useState<ElocutionDifficulty>("medium");
+  const [currentElocutionItem, setCurrentElocutionItem] = useState<ElocutionItem>(() => {
+    const list = ELOCUTION_ITEMS.filter((x) => x.type === "tongue-twister" && x.difficulty === "medium");
+    return list[0] ?? ELOCUTION_ITEMS[0];
+  });
+  const [elocutionKey, setElocutionKey] = useState(0);
+
+  /* Stopwatch State */
+  const [stopwatchState, setStopwatchState] = useState<"idle" | "running" | "stopped">("idle");
+  const [stopwatchElapsed, setStopwatchElapsed] = useState(0);
+  const stopwatchTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const stopwatchStartRef = useRef(0);
+
+  // Randomize initial elocution item on mount
+  useEffect(() => {
+    const list = ELOCUTION_ITEMS.filter((x) => x.type === "tongue-twister" && x.difficulty === "medium");
+    if (list.length > 0) {
+      setCurrentElocutionItem(list[Math.floor(Math.random() * list.length)]);
+    }
+  }, []);
+
+  const resetStopwatch = useCallback(() => {
+    if (stopwatchTimerRef.current) {
+      clearInterval(stopwatchTimerRef.current);
+      stopwatchTimerRef.current = null;
+    }
+    setStopwatchElapsed(0);
+    setStopwatchState("idle");
+  }, []);
+
+  const startStopwatch = useCallback(() => {
+    if (stopwatchTimerRef.current) clearInterval(stopwatchTimerRef.current);
+    stopwatchStartRef.current = performance.now();
+    setStopwatchElapsed(0);
+    setStopwatchState("running");
+    if (!settings.muteSounds) playTick(750);
+
+    stopwatchTimerRef.current = setInterval(() => {
+      setStopwatchElapsed(performance.now() - stopwatchStartRef.current);
+    }, 16);
+  }, [settings.muteSounds]);
+
+  const stopStopwatch = useCallback(() => {
+    if (stopwatchTimerRef.current) {
+      clearInterval(stopwatchTimerRef.current);
+      stopwatchTimerRef.current = null;
+    }
+    setStopwatchElapsed(performance.now() - stopwatchStartRef.current);
+    setStopwatchState("stopped");
+    if (!settings.muteSounds) playChime();
+  }, [settings.muteSounds]);
+
+  useEffect(() => {
+    return () => {
+      if (stopwatchTimerRef.current) clearInterval(stopwatchTimerRef.current);
+    };
+  }, []);
+
+  const handleSelectElocutionType = (t: ElocutionType) => {
+    setElocutionType(t);
+    resetStopwatch();
+    const pool = ELOCUTION_ITEMS.filter((x) => x.type === t && x.difficulty === elocutionDifficulty);
+    const candidates = pool.length > 0 ? pool : ELOCUTION_ITEMS.filter((x) => x.type === t);
+    if (candidates.length > 0) {
+      setCurrentElocutionItem(candidates[Math.floor(Math.random() * candidates.length)]);
+      setElocutionKey((k) => k + 1);
+    }
+  };
+
+  const handleSelectElocutionDifficulty = (d: ElocutionDifficulty) => {
+    setElocutionDifficulty(d);
+    resetStopwatch();
+    const pool = ELOCUTION_ITEMS.filter((x) => x.type === elocutionType && x.difficulty === d);
+    const candidates = pool.length > 0 ? pool : ELOCUTION_ITEMS.filter((x) => x.difficulty === d);
+    if (candidates.length > 0) {
+      setCurrentElocutionItem(candidates[Math.floor(Math.random() * candidates.length)]);
+      setElocutionKey((k) => k + 1);
+    }
+  };
+
+  const nextElocutionChallenge = useCallback(() => {
+    resetStopwatch();
+    const pool = ELOCUTION_ITEMS.filter((x) => x.type === elocutionType && x.difficulty === elocutionDifficulty);
+    const candidates = pool.filter((x) => x.id !== currentElocutionItem.id);
+    const list = candidates.length > 0 ? candidates : pool;
+    if (list.length > 0) {
+      const next = list[Math.floor(Math.random() * list.length)];
+      setCurrentElocutionItem(next);
+      setElocutionKey((k) => k + 1);
+      if (!settings.muteSounds) playLock();
+    }
+  }, [elocutionType, elocutionDifficulty, currentElocutionItem.id, resetStopwatch, settings.muteSounds]);
+
+  const elocutionWords = useMemo(() => {
+    return currentElocutionItem.text.trim().split(/\s+/).length;
+  }, [currentElocutionItem.text]);
+
+  const elocutionWpm = useMemo(() => {
+    const secs = stopwatchElapsed / 1000;
+    if (secs < 0.4) return 0;
+    return Math.round((elocutionWords / secs) * 60);
+  }, [elocutionWords, stopwatchElapsed]);
+
+  /* Keyboard shortcut: Spacebar to start / stop stopwatch in elocution mode */
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (mode !== "elocution") return;
+      if (e.code === "Space" && (e.target === document.body || (e.target as HTMLElement)?.tagName === "BUTTON")) {
+        e.preventDefault();
+        if (stopwatchState === "idle") startStopwatch();
+        else if (stopwatchState === "running") stopStopwatch();
+        else if (stopwatchState === "stopped") resetStopwatch();
+      }
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [mode, stopwatchState, startStopwatch, stopStopwatch, resetStopwatch]);
+
   /* ── Fullscreen Glassmorphism Timer Page State ── */
   const [showOverlay, setShowOverlay] = useState(false);
   const [overlayPhase, setOverlayPhase] = useState<TimerPhase>("speaking");
@@ -389,6 +531,16 @@ export default function ArticulateClient() {
     setMode(m);
     setModeKey((k) => k + 1);
     setCategoryOpen(false);
+    resetStopwatch();
+
+    if (m === "elocution") {
+      const pool = ELOCUTION_ITEMS.filter((x) => x.type === elocutionType && x.difficulty === elocutionDifficulty);
+      if (pool.length > 0) {
+        setCurrentElocutionItem(pool[Math.floor(Math.random() * pool.length)]);
+      }
+      return;
+    }
+
     const src = category === "all"
       ? ARTICULATE_PROMPTS.filter((p) => p.mode === m)
       : ARTICULATE_PROMPTS.filter((p) => p.mode === m && p.category === category);
@@ -427,14 +579,14 @@ export default function ArticulateClient() {
       </div>
 
       {/* ── Main Centered Stack (Symmetric on mobile & desktop) ── */}
-      <div className="flex flex-col items-center w-full max-w-[560px] mx-auto px-4 sm:px-6 py-6 sm:py-10 flex-1 justify-center text-center">
+      <div className="flex flex-col items-center w-full max-w-[580px] mx-auto px-4 sm:px-6 py-6 sm:py-10 flex-1 justify-center text-center">
 
         {/* ─── HEADER ─── */}
-        <div className="text-center mb-6 sm:mb-8">
+        <div className="text-center mb-5 sm:mb-7">
           <h1 className="font-serif text-[2.6rem] sm:text-[3.3rem] font-normal tracking-tight text-fg leading-none">
             Articulate
           </h1>
-          <div className="flex items-center justify-center gap-2 mt-2.5 text-sm text-muted">
+          <div className="flex items-center justify-center gap-2 mt-2 text-sm text-muted">
             <span>made by</span>
             <a
               href="https://instagram.com/ur.spideey"
@@ -448,144 +600,345 @@ export default function ArticulateClient() {
           </div>
         </div>
 
-        {/* ─── MODE TOGGLE & CATEGORY DROPDOWN ─── */}
-        <div className="relative z-30 flex flex-col items-center w-full mb-4">
-          <div className="inline-flex p-1 rounded-full border border-white/[0.1] bg-white/[0.04]">
-            {(["off-the-cuff", "deep-research"] as ArticulateMode[]).map((m) => {
-              const active = mode === m;
+        {/* ─── MODE TOGGLE & FILTERS ─── */}
+        <div className="relative z-30 flex flex-col items-center w-full mb-3">
+          <div className="inline-flex p-1 rounded-full border border-white/[0.1] bg-white/[0.04] max-w-full overflow-x-auto scrollbar-none">
+            {ARTICULATE_MODES.map((m) => {
+              const active = mode === m.id;
               return (
                 <button
-                  key={m}
+                  key={m.id}
                   type="button"
-                  onClick={() => switchMode(m)}
+                  onClick={() => switchMode(m.id)}
                   className={cn(
-                    "flex items-center gap-2 rounded-full px-5 py-2.5 sm:px-6 sm:py-3 text-[14px] sm:text-[15px] font-semibold transition-all duration-300 cursor-pointer",
+                    "flex items-center gap-2 rounded-full px-4 py-2 sm:px-5 sm:py-2.5 text-[13px] sm:text-[14px] font-semibold transition-all duration-300 cursor-pointer whitespace-nowrap",
                     active ? "bg-[#d96b43] text-white shadow-[0_2px_16px_-4px_rgba(217,107,67,0.7)]" : "text-fg/45 hover:text-fg/70",
                   )}
                 >
                   <span className={cn(
                     "w-2 h-2 rounded-full shrink-0 transition-all duration-300",
-                    active ? (m === "off-the-cuff" ? "bg-pink-200" : "bg-sky-200") : "bg-current opacity-40"
+                    active ? m.dot : "bg-current opacity-40"
                   )} />
-                  {m === "off-the-cuff" ? "Off the cuff" : "Deep research"}
+                  {m.label}
                 </button>
               );
             })}
           </div>
 
           {/* Subtitle Caption */}
-          <p key={modeKey} className="mt-3.5 text-[15px] sm:text-base text-muted text-center max-w-sm leading-relaxed animate-mode-in">
+          <p key={modeKey} className="mt-2.5 text-[14px] sm:text-[15px] text-muted text-center max-w-sm leading-relaxed animate-mode-in">
             {mode === "off-the-cuff"
               ? "Minimal prep. Try to think quick on your feet."
-              : "Spin a topic, set a research timer, then speak with structure."}
+              : mode === "deep-research"
+              ? "Spin a topic, set a research timer, then speak with structure."
+              : "Start the stopwatch, read aloud clearly, and measure your speed & diction."}
           </p>
 
-          {/* Category Selector with Native Outside-Click Handling */}
-          <div ref={catRef} className="relative mt-4 w-full max-w-[280px]">
-            <button
-              type="button"
-              onClick={() => setCategoryOpen((v) => !v)}
-              className="flex items-center justify-between w-full gap-2 rounded-full border border-white/[0.12] bg-white/[0.04] px-4.5 py-2.5 text-[15px] font-medium text-fg hover:bg-white/[0.08] transition cursor-pointer"
-            >
-              <span className="flex items-center gap-2.5">
-                <span className="text-base leading-none">{activeCat.emoji}</span>
-                <span>{activeCat.label}</span>
-              </span>
-              {categoryOpen ? <ChevronUp className="w-4 h-4 text-muted shrink-0" /> : <ChevronDown className="w-4 h-4 text-muted shrink-0" />}
-            </button>
-
-            {categoryOpen && (
-              <div
-                className="absolute left-0 right-0 top-full mt-2 z-50 rounded-2xl border border-white/[0.12] p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-2xl animate-fade-in"
-                style={{ background: "rgba(22, 18, 15, 0.97)" }}
-              >
-                <div className="space-y-0.5 max-h-60 overflow-y-auto overscroll-contain scrollbar-none">
-                  {DISPLAY_CATEGORIES.map((cat) => {
-                    const isActive = category === cat.id;
-                    return (
-                      <button
-                        key={cat.id}
-                        type="button"
-                        onClick={() => handleSelectCategory(cat.id)}
-                        className={cn(
-                          "flex items-center w-full gap-3 px-3.5 py-2.5 rounded-xl text-[14px] sm:text-[15px] transition cursor-pointer text-left",
-                          isActive ? "bg-white/[0.1] text-fg font-medium" : "text-fg/60 hover:text-fg hover:bg-white/[0.05]"
-                        )}
-                      >
-                        <span className="text-lg w-5 text-center shrink-0 leading-none">{cat.emoji}</span>
-                        <span>{cat.label}</span>
-                      </button>
-                    );
-                  })}
-                </div>
+          {mode === "elocution" ? (
+            /* ── Elocution 3-Type & 3-Difficulty Filters ── */
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-2.5 mt-3.5 w-full max-w-lg animate-fade-in">
+              {/* Type selector */}
+              <div className="inline-flex p-1 rounded-full border border-white/[0.1] bg-white/[0.04] max-w-full overflow-x-auto scrollbar-none">
+                {ELOCUTION_TYPES.map((t) => {
+                  const active = elocutionType === t.id;
+                  return (
+                    <button
+                      key={t.id}
+                      type="button"
+                      onClick={() => handleSelectElocutionType(t.id)}
+                      className={cn(
+                        "flex items-center gap-1.5 rounded-full px-3 py-1.5 sm:px-3.5 sm:py-1.5 text-xs sm:text-[13px] font-medium transition cursor-pointer whitespace-nowrap",
+                        active ? "bg-[#d96b43] text-white shadow-sm font-semibold" : "text-fg/50 hover:text-fg/80"
+                      )}
+                    >
+                      <span className="leading-none text-xs">{t.emoji}</span>
+                      <span>{t.label}</span>
+                    </button>
+                  );
+                })}
               </div>
-            )}
-          </div>
-        </div>
 
-        {/* ─── PROMPT STAGE (Strictly height-locked, text scaled up comfortably) ─── */}
-        <div className="relative z-10 w-full h-[190px] sm:h-[220px] flex-shrink-0 my-3 sm:my-5 flex flex-col items-center justify-center text-center overflow-hidden select-none">
-          <p className="h-5 flex-shrink-0 font-mono text-xs sm:text-[13px] font-bold tracking-[0.25em] uppercase mb-1.5 text-[#d96b43]">
-            {isSpinning ? "SPINNING..." : mode === "deep-research" ? "RESEARCH TOPIC" : "VOCAB PROMPT"}
-          </p>
-
-          <div className="w-full flex-1 flex flex-col items-center justify-center px-3 sm:px-4 overflow-hidden">
-            <h2
-              key={tickKey}
-              className={cn(
-                "font-serif font-normal text-fg leading-[1.12] tracking-[-0.015em] max-w-[20ch] mx-auto text-[2.2rem] sm:text-[3rem] md:text-[3.5rem] line-clamp-2",
-                isSpinning ? "animate-slot-in" : "animate-prompt-land",
-              )}
-            >
-              {displayText || "\u00A0"}
-            </h2>
-            {!isSpinning && currentPrompt.context && (
-              <p className="mt-2 text-xs sm:text-sm text-muted/80 max-w-[42ch] mx-auto line-clamp-2 italic font-serif">
-                &ldquo;{currentPrompt.context}&rdquo;
-              </p>
-            )}
-          </div>
-        </div>
-
-        {/* ─── ACTION BAR (Symmetric & responsive on mobile) ─── */}
-        <div className="flex items-center justify-center gap-2.5 sm:gap-3 w-full max-w-[460px] px-1">
-          <button
-            type="button"
-            onClick={doSpin}
-            disabled={isSpinning}
-            className="flex-1 sm:flex-initial rounded-full bg-[#d96b43] text-white px-5 sm:px-8 py-3.5 text-[15px] sm:text-base font-semibold shadow-[0_8px_28px_-8px_rgba(217,107,67,0.7)] hover:brightness-110 active:scale-95 transition disabled:opacity-40 cursor-pointer whitespace-nowrap text-center"
-          >
-            {hasSpun ? "Spin again" : "Spin"}
-          </button>
-
-          {/* Action button */}
-          {mode === "off-the-cuff" ? (
-            <button
-              type="button"
-              onClick={startOffTheCuff}
-              className="flex-1 sm:flex-initial rounded-full border border-white/20 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-4 sm:px-7 py-3.5 text-[15px] sm:text-base font-semibold transition active:scale-95 cursor-pointer whitespace-nowrap text-center"
-            >
-              Start {settings.speechMinutes} min timer
-            </button>
+              {/* Difficulty selector */}
+              <div className="inline-flex p-1 rounded-full border border-white/[0.1] bg-white/[0.04]">
+                {(["easy", "medium", "hard"] as ElocutionDifficulty[]).map((d) => {
+                  const active = elocutionDifficulty === d;
+                  const dot = d === "easy" ? "bg-emerald-400" : d === "medium" ? "bg-amber-400" : "bg-rose-400";
+                  return (
+                    <button
+                      key={d}
+                      type="button"
+                      onClick={() => handleSelectElocutionDifficulty(d)}
+                      className={cn(
+                        "flex items-center gap-1.5 rounded-full px-3 py-1.5 sm:px-3.5 sm:py-1.5 text-xs sm:text-[13px] font-medium transition cursor-pointer capitalize",
+                        active ? "bg-white/[0.14] text-fg font-semibold shadow-sm" : "text-fg/50 hover:text-fg/80"
+                      )}
+                    >
+                      <span className={cn("w-1.5 h-1.5 rounded-full shrink-0", dot)} />
+                      <span>{d}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
           ) : (
-            <button
-              type="button"
-              onClick={startDeepResearch}
-              className="flex-1 sm:flex-initial rounded-full border border-white/20 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-4 sm:px-7 py-3.5 text-[15px] sm:text-base font-semibold transition active:scale-95 cursor-pointer whitespace-nowrap text-center"
-            >
-              Start {settings.researchMinutes} min research
-            </button>
-          )}
+            /* ── Category Selector with Native Outside-Click Handling ── */
+            <div ref={catRef} className="relative mt-4 w-full max-w-[280px]">
+              <button
+                type="button"
+                onClick={() => setCategoryOpen((v) => !v)}
+                className="flex items-center justify-between w-full gap-2 rounded-full border border-white/[0.12] bg-white/[0.04] px-4.5 py-2.5 text-[15px] font-medium text-fg hover:bg-white/[0.08] transition cursor-pointer"
+              >
+                <span className="flex items-center gap-2.5">
+                  <span className="text-base leading-none">{activeCat.emoji}</span>
+                  <span>{activeCat.label}</span>
+                </span>
+                {categoryOpen ? <ChevronUp className="w-4 h-4 text-muted shrink-0" /> : <ChevronDown className="w-4 h-4 text-muted shrink-0" />}
+              </button>
 
-          <button
-            type="button"
-            onClick={() => setSettingsOpen(true)}
-            className="w-12 h-12 shrink-0 rounded-full border border-white/15 text-fg/50 hover:text-fg hover:bg-white/[0.06] transition flex items-center justify-center cursor-pointer"
-            title="Timer Settings"
-          >
-            <Settings2 className="w-5 h-5" />
-          </button>
+              {categoryOpen && (
+                <div
+                  className="absolute left-0 right-0 top-full mt-2 z-50 rounded-2xl border border-white/[0.12] p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-2xl animate-fade-in"
+                  style={{ background: "rgba(22, 18, 15, 0.97)" }}
+                >
+                  <div className="space-y-0.5 max-h-60 overflow-y-auto overscroll-contain scrollbar-none">
+                    {DISPLAY_CATEGORIES.map((cat) => {
+                      const isActive = category === cat.id;
+                      return (
+                        <button
+                          key={cat.id}
+                          type="button"
+                          onClick={() => handleSelectCategory(cat.id)}
+                          className={cn(
+                            "flex items-center w-full gap-3 px-3.5 py-2.5 rounded-xl text-[14px] sm:text-[15px] transition cursor-pointer text-left",
+                            isActive ? "bg-white/[0.1] text-fg font-medium" : "text-fg/60 hover:text-fg hover:bg-white/[0.05]"
+                          )}
+                        >
+                          <span className="text-lg w-5 text-center shrink-0 leading-none">{cat.emoji}</span>
+                          <span>{cat.label}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
         </div>
+
+        {mode === "elocution" ? (
+          /* ─── ELOCUTION STAGE (Sentence Card + Precision Stopwatch) ─── */
+          <div className="relative z-10 w-full max-w-[540px] my-3 sm:my-5 flex flex-col items-center justify-center text-center animate-fade-in">
+            {/* Meta info badge row */}
+            <div className="flex flex-wrap items-center justify-center gap-2 mb-3 text-xs font-mono">
+              <span className="font-bold tracking-[0.2em] uppercase text-[#d96b43]">
+                {currentElocutionItem.title}
+              </span>
+              <span className="text-white/20">·</span>
+              <span className="text-muted tracking-wider uppercase text-[11px]">
+                {elocutionWords} words
+              </span>
+              {currentElocutionItem.focus && (
+                <>
+                  <span className="text-white/20 hidden sm:inline">·</span>
+                  <span className="text-muted/70 italic hidden sm:inline text-[11.5px]">
+                    {currentElocutionItem.focus}
+                  </span>
+                </>
+              )}
+            </div>
+
+            {/* Sentence Glassmorphism Card */}
+            <div className="relative w-full p-5 sm:p-7 rounded-3xl border border-white/[0.12] bg-white/[0.035] backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all flex flex-col items-center justify-center min-h-[150px] sm:min-h-[170px]">
+              <p
+                key={elocutionKey}
+                className="font-serif text-xl sm:text-2xl md:text-[1.65rem] font-normal leading-[1.38] tracking-[-0.01em] text-fg select-text animate-prompt-land max-w-[42ch]"
+              >
+                &ldquo;{currentElocutionItem.text}&rdquo;
+              </p>
+
+              {currentElocutionItem.keyWords && currentElocutionItem.keyWords.length > 0 && (
+                <div className="flex flex-wrap items-center justify-center gap-1.5 mt-3.5 pt-3 border-t border-white/[0.06] w-full">
+                  <span className="text-[10px] font-mono text-subtle uppercase tracking-wider mr-1">Vocab:</span>
+                  {currentElocutionItem.keyWords.map((kw) => (
+                    <span key={kw} className="px-2 py-0.5 rounded-md bg-white/[0.05] border border-white/[0.08] text-[11px] font-mono text-[#d96b43]">
+                      {kw}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Stopwatch & Speed Stats */}
+            <div className="mt-5 flex flex-col items-center">
+              <div className="flex items-center gap-3">
+                {stopwatchState === "running" && (
+                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping shrink-0" />
+                )}
+                <span className={cn(
+                  "font-mono text-4xl sm:text-5xl font-bold tabular-nums tracking-tight transition-colors duration-200",
+                  stopwatchState === "running" ? "text-[#d96b43]" : stopwatchState === "stopped" ? "text-emerald-400" : "text-fg/50"
+                )}>
+                  {formatStopwatch(stopwatchElapsed)}
+                </span>
+              </div>
+
+              {/* Post-reading speed stats */}
+              {stopwatchState === "stopped" && (
+                <div className="mt-3 flex items-center gap-2.5 animate-fade-in">
+                  <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/35 text-emerald-300 text-xs font-mono font-semibold">
+                    <span>Speed:</span>
+                    <span className="text-sm font-bold">{elocutionWpm} WPM</span>
+                  </div>
+                  <span className="text-xs text-muted font-medium">
+                    {elocutionWpm >= 220 ? "Lightning Speed ⚡" : elocutionWpm >= 160 ? "Crisp & Articulate 🎯" : elocutionWpm >= 110 ? "Steady & Measured 🧘" : "Deliberate Pace 🐢"}
+                  </span>
+                </div>
+              )}
+
+              {stopwatchState === "running" && (
+                <p className="mt-2 text-xs font-mono uppercase tracking-wider text-rose-400/90 animate-pulse">
+                  Reading aloud... tap stop when finished
+                </p>
+              )}
+
+              {stopwatchState === "idle" && (
+                <p className="mt-2 text-xs text-muted">
+                  Tap start, read the sentence aloud, then tap stop.
+                </p>
+              )}
+            </div>
+
+            {/* Action buttons */}
+            <div className="mt-5 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 w-full max-w-[420px]">
+              {stopwatchState === "idle" && (
+                <>
+                  <button
+                    type="button"
+                    onClick={startStopwatch}
+                    className="flex-1 rounded-full bg-[#d96b43] text-white px-6 py-3.5 text-[15px] sm:text-base font-semibold shadow-[0_8px_28px_-8px_rgba(217,107,67,0.7)] hover:brightness-110 active:scale-95 transition cursor-pointer flex items-center justify-center gap-2"
+                  >
+                    <Play className="w-4 h-4 fill-current" />
+                    Start stopwatch
+                  </button>
+                  <button
+                    type="button"
+                    onClick={nextElocutionChallenge}
+                    className="rounded-full border border-white/20 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-5 py-3.5 text-[15px] sm:text-base font-semibold transition active:scale-95 cursor-pointer"
+                  >
+                    Next challenge
+                  </button>
+                </>
+              )}
+
+              {stopwatchState === "running" && (
+                <button
+                  type="button"
+                  onClick={stopStopwatch}
+                  className="w-full max-w-xs rounded-full bg-rose-600 hover:bg-rose-500 text-white px-8 py-3.5 text-base font-bold shadow-[0_8px_28px_-6px_rgba(225,29,72,0.65)] active:scale-95 transition cursor-pointer flex items-center justify-center gap-2.5 animate-pulse"
+                >
+                  <Square className="w-4 h-4 fill-current" />
+                  Done reading (Stop)
+                </button>
+              )}
+
+              {stopwatchState === "stopped" && (
+                <>
+                  <button
+                    type="button"
+                    onClick={resetStopwatch}
+                    className="flex-1 rounded-full border border-white/20 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-5 py-3.5 text-[15px] sm:text-base font-semibold transition active:scale-95 cursor-pointer flex items-center justify-center gap-2"
+                  >
+                    <RotateCcw className="w-4 h-4" />
+                    Try again
+                  </button>
+                  <button
+                    type="button"
+                    onClick={nextElocutionChallenge}
+                    className="flex-1 rounded-full bg-[#d96b43] text-white px-6 py-3.5 text-[15px] sm:text-base font-semibold shadow-[0_8px_28px_-8px_rgba(217,107,67,0.7)] hover:brightness-110 active:scale-95 transition cursor-pointer flex items-center justify-center gap-2"
+                  >
+                    Next challenge →
+                  </button>
+                </>
+              )}
+
+              <button
+                type="button"
+                onClick={() => setSettingsOpen(true)}
+                className="w-12 h-12 shrink-0 rounded-full border border-white/15 text-fg/50 hover:text-fg hover:bg-white/[0.06] transition flex items-center justify-center cursor-pointer"
+                title="Timer Settings"
+              >
+                <Settings2 className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        ) : (
+          /* ─── PROMPT STAGE & ACTION BAR FOR OFF-THE-CUFF & DEEP-RESEARCH ─── */
+          <>
+            {/* ─── PROMPT STAGE (Strictly height-locked, text scaled up comfortably) ─── */}
+            <div className="relative z-10 w-full h-[190px] sm:h-[220px] flex-shrink-0 my-3 sm:my-5 flex flex-col items-center justify-center text-center overflow-hidden select-none">
+              <p className="h-5 flex-shrink-0 font-mono text-xs sm:text-[13px] font-bold tracking-[0.25em] uppercase mb-1.5 text-[#d96b43]">
+                {isSpinning ? "SPINNING..." : mode === "deep-research" ? "RESEARCH TOPIC" : "VOCAB PROMPT"}
+              </p>
+
+              <div className="w-full flex-1 flex flex-col items-center justify-center px-3 sm:px-4 overflow-hidden">
+                <h2
+                  key={tickKey}
+                  className={cn(
+                    "font-serif font-normal text-fg leading-[1.12] tracking-[-0.015em] max-w-[20ch] mx-auto text-[2.2rem] sm:text-[3rem] md:text-[3.5rem] line-clamp-2",
+                    isSpinning ? "animate-slot-in" : "animate-prompt-land",
+                  )}
+                >
+                  {displayText || "\u00A0"}
+                </h2>
+                {!isSpinning && currentPrompt.context && (
+                  <p className="mt-2 text-xs sm:text-sm text-muted/80 max-w-[42ch] mx-auto line-clamp-2 italic font-serif">
+                    &ldquo;{currentPrompt.context}&rdquo;
+                  </p>
+                )}
+              </div>
+            </div>
+
+            {/* ─── ACTION BAR (Symmetric & responsive on mobile) ─── */}
+            <div className="flex items-center justify-center gap-2.5 sm:gap-3 w-full max-w-[460px] px-1">
+              <button
+                type="button"
+                onClick={doSpin}
+                disabled={isSpinning}
+                className="flex-1 sm:flex-initial rounded-full bg-[#d96b43] text-white px-5 sm:px-8 py-3.5 text-[15px] sm:text-base font-semibold shadow-[0_8px_28px_-8px_rgba(217,107,67,0.7)] hover:brightness-110 active:scale-95 transition disabled:opacity-40 cursor-pointer whitespace-nowrap text-center"
+              >
+                {hasSpun ? "Spin again" : "Spin"}
+              </button>
+
+              {/* Action button */}
+              {mode === "off-the-cuff" ? (
+                <button
+                  type="button"
+                  onClick={startOffTheCuff}
+                  className="flex-1 sm:flex-initial rounded-full border border-white/20 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-4 sm:px-7 py-3.5 text-[15px] sm:text-base font-semibold transition active:scale-95 cursor-pointer whitespace-nowrap text-center"
+                >
+                  Start {settings.speechMinutes} min timer
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={startDeepResearch}
+                  className="flex-1 sm:flex-initial rounded-full border border-white/20 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-4 sm:px-7 py-3.5 text-[15px] sm:text-base font-semibold transition active:scale-95 cursor-pointer whitespace-nowrap text-center"
+                >
+                  Start {settings.researchMinutes} min research
+                </button>
+              )}
+
+              <button
+                type="button"
+                onClick={() => setSettingsOpen(true)}
+                className="w-12 h-12 shrink-0 rounded-full border border-white/15 text-fg/50 hover:text-fg hover:bg-white/[0.06] transition flex items-center justify-center cursor-pointer"
+                title="Timer Settings"
+              >
+                <Settings2 className="w-5 h-5" />
+              </button>
+            </div>
+          </>
+        )}
       </div>
 
       {/* ─── SETTINGS MODAL ─── */}

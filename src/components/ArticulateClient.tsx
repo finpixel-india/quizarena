@@ -578,7 +578,7 @@ export default function ArticulateClient() {
   const activeElocutionType = ELOCUTION_TYPES.find((t) => t.id === elocutionType) ?? ELOCUTION_TYPES[0];
 
   return (
-    <div className="relative flex flex-1 flex-col items-center justify-center w-full min-h-[calc(100dvh-4rem)] overflow-hidden select-none">
+    <div className="relative flex flex-1 flex-col items-center justify-center w-full h-[calc(100dvh-4rem)] max-h-[calc(100dvh-4rem)] overflow-hidden select-none">
 
       {/* ── Atmospheric glows ── */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
@@ -586,21 +586,21 @@ export default function ArticulateClient() {
         <div className="absolute -right-24 top-0 h-[60vh] w-[50vw] rounded-full [background:radial-gradient(ellipse_at_center,rgba(217,107,67,0.12),transparent_70%)]" />
       </div>
 
-      {/* ── Main Centered Stack (Symmetric on mobile & desktop) ── */}
-      <div className="flex flex-col items-center w-full max-w-[580px] mx-auto px-4 sm:px-6 py-6 sm:py-10 flex-1 justify-center text-center">
+      {/* ── Main Centered Stack (Symmetric & strictly fits in viewport with zero scroll) ── */}
+      <div className="flex flex-col items-center w-full max-w-[580px] mx-auto px-4 sm:px-6 py-2 sm:py-4 flex-1 justify-center text-center">
 
         {/* ─── HEADER ─── */}
-        <div className="text-center mb-5 sm:mb-7">
-          <h1 className="font-serif text-[2.6rem] sm:text-[3.3rem] font-normal tracking-tight text-fg leading-none">
+        <div className="text-center mb-3 sm:mb-4">
+          <h1 className="font-serif text-[2.2rem] sm:text-[2.8rem] font-normal tracking-tight text-fg leading-none">
             Articulate
           </h1>
-          <div className="flex items-center justify-center gap-2 mt-2 text-sm text-muted">
+          <div className="flex items-center justify-center gap-1.5 mt-1.5 text-xs text-muted">
             <span>made by</span>
             <a
               href="https://instagram.com/ur.spideey"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-fg/80 hover:text-fg hover:border-white/20 transition"
+              className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-0.5 text-[11px] text-fg/80 hover:text-fg hover:border-white/20 transition"
             >
               <IgIcon />
               @ur.spideey
@@ -609,7 +609,7 @@ export default function ArticulateClient() {
         </div>
 
         {/* ─── MODE TOGGLE & FILTERS ─── */}
-        <div className="relative z-30 flex flex-col items-center w-full mb-3">
+        <div className="relative z-30 flex flex-col items-center w-full mb-2">
           <div className="inline-flex p-1 rounded-full border border-white/[0.1] bg-white/[0.04] max-w-full overflow-x-auto scrollbar-none">
             {ARTICULATE_MODES.map((m) => {
               const active = mode === m.id;
@@ -619,7 +619,7 @@ export default function ArticulateClient() {
                   type="button"
                   onClick={() => switchMode(m.id)}
                   className={cn(
-                    "flex items-center gap-2 rounded-full px-4 py-2 sm:px-5 sm:py-2.5 text-[13px] sm:text-[14px] font-semibold transition-all duration-300 cursor-pointer whitespace-nowrap",
+                    "flex items-center gap-2 rounded-full px-4 py-2 sm:px-5 sm:py-2 text-[13px] sm:text-[14px] font-semibold transition-all duration-300 cursor-pointer whitespace-nowrap",
                     active ? "bg-[#d96b43] text-white shadow-[0_2px_16px_-4px_rgba(217,107,67,0.7)]" : "text-fg/45 hover:text-fg/70",
                   )}
                 >
@@ -633,25 +633,16 @@ export default function ArticulateClient() {
             })}
           </div>
 
-          {/* Subtitle Caption */}
-          <p key={modeKey} className="mt-2.5 text-[14px] sm:text-[15px] text-muted text-center max-w-sm leading-relaxed animate-mode-in">
-            {mode === "off-the-cuff"
-              ? "Minimal prep. Try to think quick on your feet."
-              : mode === "deep-research"
-              ? "Spin a topic, set a research timer, then speak with structure."
-              : "Train enunciation, breath cadence, and syntactic flow."}
-          </p>
-
           {mode === "elocution" ? (
             /* ── Elocution Category Dropdown & Difficulty Selector ── */
-            <div className="flex flex-col items-center w-full max-w-[280px] mt-4">
+            <div className="flex flex-col items-center w-full max-w-[260px] mt-3">
               <div ref={elocutionCatRef} className="relative w-full">
                 <button
                   type="button"
                   onClick={() => setElocutionCatOpen((v) => !v)}
-                  className="flex items-center justify-between w-full gap-2 rounded-full border border-white/[0.12] bg-white/[0.04] px-4.5 py-2.5 text-[15px] font-medium text-fg hover:bg-white/[0.08] transition cursor-pointer"
+                  className="flex items-center justify-between w-full gap-2 rounded-full border border-white/[0.12] bg-white/[0.04] px-4 py-2 text-[14px] font-medium text-fg hover:bg-white/[0.08] transition cursor-pointer"
                 >
-                  <span className="flex items-center gap-2.5">
+                  <span className="flex items-center gap-2">
                     <span className="text-base leading-none">{activeElocutionType.emoji}</span>
                     <span>{activeElocutionType.label}</span>
                   </span>
@@ -664,7 +655,7 @@ export default function ArticulateClient() {
 
                 {elocutionCatOpen && (
                   <div
-                    className="absolute left-0 right-0 top-full mt-2 z-50 rounded-2xl border border-white/[0.12] p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-2xl animate-fade-in"
+                    className="absolute left-0 right-0 top-full mt-1.5 z-50 rounded-2xl border border-white/[0.12] p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-2xl animate-fade-in"
                     style={{ background: "rgba(22, 18, 15, 0.97)" }}
                   >
                     <div className="space-y-0.5">
@@ -679,13 +670,13 @@ export default function ArticulateClient() {
                               setElocutionCatOpen(false);
                             }}
                             className={cn(
-                              "flex items-center w-full gap-3 px-3.5 py-2.5 rounded-xl text-[14px] sm:text-[15px] transition cursor-pointer text-left",
+                              "flex items-center w-full gap-2.5 px-3 py-2 rounded-xl text-[14px] transition cursor-pointer text-left",
                               isActive
                                 ? "bg-white/[0.1] text-fg font-medium"
                                 : "text-fg/60 hover:text-fg hover:bg-white/[0.05]"
                             )}
                           >
-                            <span className="text-lg w-5 text-center shrink-0 leading-none">{t.emoji}</span>
+                            <span className="text-base w-5 text-center shrink-0 leading-none">{t.emoji}</span>
                             <span>{t.label}</span>
                           </button>
                         );
@@ -696,7 +687,7 @@ export default function ArticulateClient() {
               </div>
 
               {/* Symmetrical Difficulty Segment */}
-              <div className="inline-flex items-center p-0.5 mt-2.5 rounded-full border border-white/[0.08] bg-white/[0.03]">
+              <div className="inline-flex items-center p-0.5 mt-2 rounded-full border border-white/[0.08] bg-white/[0.03]">
                 {(["easy", "medium", "hard"] as ElocutionDifficulty[]).map((d) => {
                   const active = elocutionDifficulty === d;
                   const dot = d === "easy" ? "bg-emerald-400" : d === "medium" ? "bg-amber-400" : "bg-rose-400";
@@ -719,13 +710,13 @@ export default function ArticulateClient() {
             </div>
           ) : (
             /* ── Category Selector with Native Outside-Click Handling ── */
-            <div ref={catRef} className="relative mt-4 w-full max-w-[280px]">
+            <div ref={catRef} className="relative mt-3 w-full max-w-[260px]">
               <button
                 type="button"
                 onClick={() => setCategoryOpen((v) => !v)}
-                className="flex items-center justify-between w-full gap-2 rounded-full border border-white/[0.12] bg-white/[0.04] px-4.5 py-2.5 text-[15px] font-medium text-fg hover:bg-white/[0.08] transition cursor-pointer"
+                className="flex items-center justify-between w-full gap-2 rounded-full border border-white/[0.12] bg-white/[0.04] px-4 py-2 text-[14px] font-medium text-fg hover:bg-white/[0.08] transition cursor-pointer"
               >
-                <span className="flex items-center gap-2.5">
+                <span className="flex items-center gap-2">
                   <span className="text-base leading-none">{activeCat.emoji}</span>
                   <span>{activeCat.label}</span>
                 </span>
@@ -734,7 +725,7 @@ export default function ArticulateClient() {
 
               {categoryOpen && (
                 <div
-                  className="absolute left-0 right-0 top-full mt-2 z-50 rounded-2xl border border-white/[0.12] p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-2xl animate-fade-in"
+                  className="absolute left-0 right-0 top-full mt-1.5 z-50 rounded-2xl border border-white/[0.12] p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-2xl animate-fade-in"
                   style={{ background: "rgba(22, 18, 15, 0.97)" }}
                 >
                   <div className="space-y-0.5 max-h-60 overflow-y-auto overscroll-contain scrollbar-none">
@@ -746,11 +737,11 @@ export default function ArticulateClient() {
                           type="button"
                           onClick={() => handleSelectCategory(cat.id)}
                           className={cn(
-                            "flex items-center w-full gap-3 px-3.5 py-2.5 rounded-xl text-[14px] sm:text-[15px] transition cursor-pointer text-left",
+                            "flex items-center w-full gap-2.5 px-3 py-2 rounded-xl text-[14px] transition cursor-pointer text-left",
                             isActive ? "bg-white/[0.1] text-fg font-medium" : "text-fg/60 hover:text-fg hover:bg-white/[0.05]"
                           )}
                         >
-                          <span className="text-lg w-5 text-center shrink-0 leading-none">{cat.emoji}</span>
+                          <span className="text-base w-5 text-center shrink-0 leading-none">{cat.emoji}</span>
                           <span>{cat.label}</span>
                         </button>
                       );
@@ -763,127 +754,107 @@ export default function ArticulateClient() {
         </div>
 
         {mode === "elocution" ? (
-          /* ─── ELOCUTION STAGE (Open Typography — NO Window Box) ─── */
-          <div className="relative z-10 w-full max-w-[560px] my-5 sm:my-7 flex flex-col items-center justify-center text-center animate-fade-in">
-            {/* Meta info badge row */}
-            <div className="flex items-center justify-center gap-2 mb-3 text-xs font-mono">
-              <span className="font-bold tracking-[0.2em] uppercase text-[#d96b43]">
-                {currentElocutionItem.title}
-              </span>
-              <span className="text-white/20">·</span>
-              <span className="text-muted tracking-wider uppercase text-[11px]">
-                {elocutionWords} words
-              </span>
-            </div>
-
-            {/* Sentence: Pure floating typography (NO card border / NO window box) */}
-            <div className="w-full px-2 sm:px-4">
+          /* ─── ELOCUTION STAGE (Height-locked, Open Typography, Zero Layout Shift) ─── */
+          <div className="relative z-10 w-full max-w-[560px] my-2 flex flex-col items-center justify-center text-center animate-fade-in">
+            {/* Sentence: Pure floating typography (NO card border / NO window box / Fixed height) */}
+            <div className="w-full px-2 sm:px-4 h-[120px] sm:h-[140px] flex items-center justify-center">
               <p
                 key={elocutionKey}
-                className="font-serif text-lg sm:text-xl md:text-[1.42rem] font-normal leading-[1.5] tracking-[-0.01em] text-fg/95 select-text animate-prompt-land max-w-[42ch] sm:max-w-[48ch] mx-auto text-balance"
+                className="font-serif text-lg sm:text-xl md:text-[1.35rem] font-normal leading-[1.45] tracking-[-0.01em] text-fg/95 select-text animate-prompt-land max-w-[42ch] sm:max-w-[46ch] mx-auto text-balance line-clamp-4"
               >
                 &ldquo;{currentElocutionItem.text}&rdquo;
               </p>
             </div>
 
-            {/* Key Vocab pills if present */}
-            {currentElocutionItem.keyWords && currentElocutionItem.keyWords.length > 0 && (
-              <div className="flex flex-wrap items-center justify-center gap-1.5 mt-3.5">
-                {currentElocutionItem.keyWords.map((kw) => (
-                  <span
-                    key={kw}
-                    className="px-2.5 py-0.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono text-[#d96b43]"
-                  >
-                    {kw}
-                  </span>
-                ))}
-              </div>
-            )}
-
-            {/* Stopwatch & Speed Stats (Compact, sleek & refined) */}
-            <div className="mt-5 mb-3 flex flex-col items-center justify-center">
-              <div className="flex items-center gap-2">
-                {stopwatchState === "running" && (
-                  <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping shrink-0" />
-                )}
+            {/* Stopwatch & Speed Stats (Fixed Height Container — Zero Layout Shift) */}
+            <div className="h-16 flex flex-col items-center justify-center my-1.5">
+              <div className="flex items-center justify-center gap-2 font-mono text-2xl sm:text-3xl font-semibold tabular-nums text-fg/85">
+                <span className="w-2.5 h-2.5 flex items-center justify-center">
+                  {stopwatchState === "running" ? (
+                    <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping" />
+                  ) : stopwatchState === "stopped" ? (
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                  ) : null}
+                </span>
                 <span className={cn(
-                  "font-mono text-2xl sm:text-3xl font-semibold tabular-nums tracking-wide transition-colors duration-200",
+                  "transition-colors duration-200",
                   stopwatchState === "running" ? "text-[#d96b43]" : stopwatchState === "stopped" ? "text-emerald-400" : "text-fg/40"
                 )}>
                   {formatStopwatch(stopwatchElapsed)}
                 </span>
               </div>
 
-              {/* Post-reading speed stats badge */}
-              {stopwatchState === "stopped" && (
-                <div className="mt-2 flex items-center gap-2 animate-fade-in text-xs font-mono">
-                  <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-semibold">
-                    {elocutionWpm} WPM
-                  </span>
-                  <span className="text-muted text-[11.5px]">
-                    {elocutionWpm >= 220 ? "⚡ Lightning" : elocutionWpm >= 160 ? "🎯 Crisp" : elocutionWpm >= 110 ? "🧘 Measured" : "🐢 Deliberate"}
-                  </span>
-                </div>
-              )}
+              {/* Fixed height 20px for WPM stats so buttons NEVER displace */}
+              <div className="h-5 flex items-center justify-center mt-1">
+                {stopwatchState === "stopped" ? (
+                  <div className="flex items-center gap-2 animate-fade-in text-xs font-mono">
+                    <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-semibold text-[11px]">
+                      {elocutionWpm} WPM
+                    </span>
+                    <span className="text-muted text-[11px]">
+                      {elocutionWpm >= 220 ? "⚡ Lightning" : elocutionWpm >= 160 ? "🎯 Crisp" : elocutionWpm >= 110 ? "🧘 Measured" : "🐢 Deliberate"}
+                    </span>
+                  </div>
+                ) : null}
+              </div>
             </div>
 
-            {/* Action buttons (Symmetrical & sleek) */}
-            <div className="flex items-center justify-center gap-2 sm:gap-2.5 w-full max-w-[340px]">
+            {/* Action buttons (Symmetrical & Fixed Slots — START & STOP NEVER DISPLACE) */}
+            <div className="flex items-center justify-center gap-2 sm:gap-2.5 w-full max-w-[340px] h-10">
+              {/* Slot 1: Primary Stopwatch Control (Start / Stop / Retry) */}
               {stopwatchState === "idle" && (
-                <>
-                  <button
-                    type="button"
-                    onClick={startStopwatch}
-                    className="flex-1 rounded-full bg-[#d96b43] text-white px-5 py-2.5 text-xs sm:text-[13px] font-semibold shadow-[0_4px_16px_-4px_rgba(217,107,67,0.6)] hover:brightness-110 active:scale-95 transition cursor-pointer flex items-center justify-center gap-1.5"
-                  >
-                    <Play className="w-3.5 h-3.5 fill-current" />
-                    Start
-                  </button>
-                  <button
-                    type="button"
-                    onClick={nextElocutionChallenge}
-                    className="flex-1 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-4 py-2.5 text-xs sm:text-[13px] font-medium transition active:scale-95 cursor-pointer text-center"
-                  >
-                    Next
-                  </button>
-                </>
+                <button
+                  type="button"
+                  onClick={startStopwatch}
+                  className="flex-1 max-w-[140px] h-10 rounded-full bg-[#d96b43] text-white px-4 text-xs sm:text-[13px] font-semibold shadow-[0_4px_16px_-4px_rgba(217,107,67,0.6)] hover:brightness-110 active:scale-95 transition cursor-pointer flex items-center justify-center gap-1.5 whitespace-nowrap"
+                >
+                  <Play className="w-3.5 h-3.5 fill-current" />
+                  Start
+                </button>
               )}
-
               {stopwatchState === "running" && (
                 <button
                   type="button"
                   onClick={stopStopwatch}
-                  className="flex-1 max-w-[180px] rounded-full bg-rose-600 hover:bg-rose-500 text-white px-5 py-2.5 text-xs sm:text-[13px] font-semibold shadow-[0_4px_16px_-4px_rgba(225,29,72,0.6)] active:scale-95 transition cursor-pointer flex items-center justify-center gap-1.5"
+                  className="flex-1 max-w-[140px] h-10 rounded-full bg-rose-600 hover:bg-rose-500 text-white px-4 text-xs sm:text-[13px] font-semibold shadow-[0_4px_16px_-4px_rgba(225,29,72,0.6)] active:scale-95 transition cursor-pointer flex items-center justify-center gap-1.5 animate-pulse whitespace-nowrap"
                 >
                   <Square className="w-3.5 h-3.5 fill-current" />
                   Stop
                 </button>
               )}
-
               {stopwatchState === "stopped" && (
-                <>
-                  <button
-                    type="button"
-                    onClick={resetStopwatch}
-                    className="flex-1 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-4 py-2.5 text-xs sm:text-[13px] font-medium transition active:scale-95 cursor-pointer flex items-center justify-center gap-1.5"
-                  >
-                    <RotateCcw className="w-3.5 h-3.5" />
-                    Retry
-                  </button>
-                  <button
-                    type="button"
-                    onClick={nextElocutionChallenge}
-                    className="flex-1 rounded-full bg-[#d96b43] text-white px-5 py-2.5 text-xs sm:text-[13px] font-semibold shadow-[0_4px_16px_-4px_rgba(217,107,67,0.6)] hover:brightness-110 active:scale-95 transition cursor-pointer flex items-center justify-center gap-1.5"
-                  >
-                    Next →
-                  </button>
-                </>
+                <button
+                  type="button"
+                  onClick={resetStopwatch}
+                  className="flex-1 max-w-[140px] h-10 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-4 text-xs sm:text-[13px] font-medium transition active:scale-95 cursor-pointer flex items-center justify-center gap-1.5 whitespace-nowrap"
+                >
+                  <RotateCcw className="w-3.5 h-3.5" />
+                  Retry
+                </button>
               )}
 
+              {/* Slot 2: Next Challenge (Fixed Position) */}
+              <button
+                type="button"
+                onClick={nextElocutionChallenge}
+                disabled={stopwatchState === "running"}
+                className={cn(
+                  "flex-1 max-w-[140px] h-10 rounded-full text-xs sm:text-[13px] font-medium transition active:scale-95 flex items-center justify-center gap-1 whitespace-nowrap",
+                  stopwatchState === "stopped"
+                    ? "bg-[#d96b43] text-white font-semibold shadow-[0_4px_16px_-4px_rgba(217,107,67,0.6)] hover:brightness-110 cursor-pointer"
+                    : stopwatchState === "running"
+                    ? "border border-white/10 bg-white/[0.02] text-fg/30 cursor-not-allowed"
+                    : "border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg cursor-pointer"
+                )}
+              >
+                Next {stopwatchState === "stopped" ? "→" : ""}
+              </button>
+
+              {/* Slot 3: Settings Gear (Fixed Position) */}
               <button
                 type="button"
                 onClick={() => setSettingsOpen(true)}
-                className="w-9 h-9 shrink-0 rounded-full border border-white/15 text-fg/50 hover:text-fg hover:bg-white/[0.06] transition flex items-center justify-center cursor-pointer"
+                className="w-10 h-10 shrink-0 rounded-full border border-white/15 text-fg/50 hover:text-fg hover:bg-white/[0.06] transition flex items-center justify-center cursor-pointer"
                 title="Timer Settings"
               >
                 <Settings2 className="w-4 h-4" />
@@ -892,71 +863,65 @@ export default function ArticulateClient() {
           </div>
         ) : (
           /* ─── PROMPT STAGE & ACTION BAR FOR OFF-THE-CUFF & DEEP-RESEARCH ─── */
-          <>
-            {/* ─── PROMPT STAGE (Strictly height-locked, text scaled up comfortably) ─── */}
-            <div className="relative z-10 w-full h-[190px] sm:h-[220px] flex-shrink-0 my-3 sm:my-5 flex flex-col items-center justify-center text-center overflow-hidden select-none">
-              <p className="h-5 flex-shrink-0 font-mono text-xs sm:text-[13px] font-bold tracking-[0.25em] uppercase mb-1.5 text-[#d96b43]">
-                {isSpinning ? "SPINNING..." : mode === "deep-research" ? "RESEARCH TOPIC" : "VOCAB PROMPT"}
-              </p>
-
-              <div className="w-full flex-1 flex flex-col items-center justify-center px-3 sm:px-4 overflow-hidden">
-                <h2
-                  key={tickKey}
-                  className={cn(
-                    "font-serif font-normal text-fg leading-[1.12] tracking-[-0.015em] max-w-[20ch] mx-auto text-[2.2rem] sm:text-[3rem] md:text-[3.5rem] line-clamp-2",
-                    isSpinning ? "animate-slot-in" : "animate-prompt-land",
-                  )}
-                >
-                  {displayText || "\u00A0"}
-                </h2>
-                {!isSpinning && currentPrompt.context && (
-                  <p className="mt-2 text-xs sm:text-sm text-muted/80 max-w-[42ch] mx-auto line-clamp-2 italic font-serif">
-                    &ldquo;{currentPrompt.context}&rdquo;
-                  </p>
+          <div className="relative z-10 w-full max-w-[560px] my-2 flex flex-col items-center justify-center text-center animate-fade-in">
+            {/* Title Display (Height locked, pure text, NO VOCAB PROMPT label, NO quote subtitle) */}
+            <div className="w-full px-2 sm:px-4 h-[120px] sm:h-[140px] flex items-center justify-center overflow-hidden">
+              <h2
+                key={tickKey}
+                className={cn(
+                  "font-serif font-normal text-fg leading-[1.12] tracking-[-0.015em] max-w-[20ch] mx-auto text-[2.2rem] sm:text-[3rem] md:text-[3.4rem] line-clamp-2",
+                  isSpinning ? "animate-slot-in" : "animate-prompt-land",
                 )}
-              </div>
+              >
+                {displayText || "\u00A0"}
+              </h2>
             </div>
 
-            {/* ─── ACTION BAR (Symmetric & responsive on mobile) ─── */}
-            <div className="flex items-center justify-center gap-2.5 sm:gap-3 w-full max-w-[460px] px-1">
+            {/* Spacer to match Elocution's timer height (64px) for 100% stable layout between modes */}
+            <div className="h-16 my-1.5" />
+
+            {/* ─── ACTION BAR (Identical 3-Slot Symmetry) ─── */}
+            <div className="flex items-center justify-center gap-2 sm:gap-2.5 w-full max-w-[340px] h-10">
+              {/* Slot 1: Spin */}
               <button
                 type="button"
                 onClick={doSpin}
                 disabled={isSpinning}
-                className="flex-1 sm:flex-initial rounded-full bg-[#d96b43] text-white px-5 sm:px-8 py-3.5 text-[15px] sm:text-base font-semibold shadow-[0_8px_28px_-8px_rgba(217,107,67,0.7)] hover:brightness-110 active:scale-95 transition disabled:opacity-40 cursor-pointer whitespace-nowrap text-center"
+                className="flex-1 max-w-[140px] h-10 rounded-full bg-[#d96b43] text-white px-4 text-xs sm:text-[13px] font-semibold shadow-[0_4px_16px_-4px_rgba(217,107,67,0.6)] hover:brightness-110 active:scale-95 transition disabled:opacity-40 cursor-pointer whitespace-nowrap text-center flex items-center justify-center"
               >
                 {hasSpun ? "Spin again" : "Spin"}
               </button>
 
-              {/* Action button */}
+              {/* Slot 2: Start Timer / Research */}
               {mode === "off-the-cuff" ? (
                 <button
                   type="button"
                   onClick={startOffTheCuff}
-                  className="flex-1 sm:flex-initial rounded-full border border-white/20 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-4 sm:px-7 py-3.5 text-[15px] sm:text-base font-semibold transition active:scale-95 cursor-pointer whitespace-nowrap text-center"
+                  className="flex-1 max-w-[140px] h-10 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-3 text-xs sm:text-[13px] font-semibold transition active:scale-95 cursor-pointer whitespace-nowrap text-center flex items-center justify-center"
                 >
-                  Start {settings.speechMinutes} min timer
+                  Start {settings.speechMinutes}m timer
                 </button>
               ) : (
                 <button
                   type="button"
                   onClick={startDeepResearch}
-                  className="flex-1 sm:flex-initial rounded-full border border-white/20 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-4 sm:px-7 py-3.5 text-[15px] sm:text-base font-semibold transition active:scale-95 cursor-pointer whitespace-nowrap text-center"
+                  className="flex-1 max-w-[140px] h-10 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-3 text-xs sm:text-[13px] font-semibold transition active:scale-95 cursor-pointer whitespace-nowrap text-center flex items-center justify-center"
                 >
-                  Start {settings.researchMinutes} min research
+                  Start {settings.researchMinutes}m research
                 </button>
               )}
 
+              {/* Slot 3: Settings Gear */}
               <button
                 type="button"
                 onClick={() => setSettingsOpen(true)}
-                className="w-12 h-12 shrink-0 rounded-full border border-white/15 text-fg/50 hover:text-fg hover:bg-white/[0.06] transition flex items-center justify-center cursor-pointer"
+                className="w-10 h-10 shrink-0 rounded-full border border-white/15 text-fg/50 hover:text-fg hover:bg-white/[0.06] transition flex items-center justify-center cursor-pointer"
                 title="Timer Settings"
               >
-                <Settings2 className="w-5 h-5" />
+                <Settings2 className="w-4 h-4" />
               </button>
             </div>
-          </>
+          </div>
         )}
       </div>
 

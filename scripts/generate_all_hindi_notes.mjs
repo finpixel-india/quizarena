@@ -29,6 +29,9 @@ function parseMarkdownTable(lines) {
 }
 
 function parseChapterBody(rawText, unit, classLevel, chapterNo, title, idPrefix) {
+  const isPractice =
+    title.includes('अभ्यास') || title.includes('पुनरावृत्ति') || unit.includes('अभ्यास');
+
   const lines = rawText.split('\n');
   const sections = [];
   const keyTerms = [];
@@ -85,6 +88,17 @@ function parseChapterBody(rawText, unit, classLevel, chapterNo, title, idPrefix)
     // Skip initial header line
     if (i === 0 && (trimmed.startsWith('# ') || trimmed.startsWith('## '))) continue;
 
+    // Filter out anchor tags and answer mentions
+    if (
+      trimmed.includes('उत्तरमाला भाग 8 में है') ||
+      trimmed.includes('उत्तरमाला से मिलाएँ') ||
+      trimmed.includes('उत्तर देखें') ||
+      trimmed.includes('<a id=') ||
+      trimmed.includes('</a>')
+    ) {
+      continue;
+    }
+
     // Detect subsection header
     if (trimmed.startsWith('## ') || trimmed.startsWith('### ') || trimmed.startsWith('#### ')) {
       const hTitle = trimmed.replace(/^#+\s*/, '').trim();
@@ -132,29 +146,33 @@ function parseChapterBody(rawText, unit, classLevel, chapterNo, title, idPrefix)
       continue;
     }
 
-    // Key terms extraction
-    const termMatch = trimmed.match(/^[-*]?\s*\*\*([^*]+)\*\*[:—-]\s*(.+)$/);
-    if (termMatch && keyTerms.length < 20) {
-      const term = termMatch[1].trim();
-      const meaning = termMatch[2].trim();
-      if (term.length < 40 && meaning.length > 3 && !seenTerms.has(term)) {
-        seenTerms.add(term);
-        keyTerms.push({ term, meaning });
+    // Key terms extraction (only for regular theory chapters, NOT for practice chapters)
+    if (!isPractice) {
+      const termMatch = trimmed.match(/^[-*]?\s*\*\*([^*]+)\*\*[:—-]\s*(.+)$/);
+      if (termMatch && keyTerms.length < 20) {
+        const term = termMatch[1].trim();
+        const meaning = termMatch[2].trim();
+        if (term.length < 40 && meaning.length > 3 && !seenTerms.has(term)) {
+          seenTerms.add(term);
+          keyTerms.push({ term, meaning });
+        }
       }
     }
 
-    // Exam tips extraction
-    if (
-      trimmed.includes('सावधानी') ||
-      trimmed.includes('महत्वपूर्ण') ||
-      trimmed.includes('याद रखें') ||
-      trimmed.includes('परीक्षा') ||
-      trimmed.includes('पहचान')
-    ) {
-      if (examTips.length < 10) {
-        const cleanTip = trimmed.replace(/^[-*]\s*/, '').replace(/^\*\*|\*\*$/g, '');
-        if (cleanTip.length > 10 && cleanTip.length < 250) {
-          examTips.push(cleanTip);
+    // Exam tips extraction (only for regular theory chapters, NOT for practice chapters)
+    if (!isPractice) {
+      if (
+        trimmed.includes('सावधानी') ||
+        trimmed.includes('महत्वपूर्ण') ||
+        trimmed.includes('याद रखें') ||
+        trimmed.includes('परीक्षा') ||
+        trimmed.includes('पहचान')
+      ) {
+        if (examTips.length < 10) {
+          const cleanTip = trimmed.replace(/^[-*]\s*/, '').replace(/^\*\*|\*\*$/g, '');
+          if (cleanTip.length > 10 && cleanTip.length < 250 && !/^\d+\./.test(cleanTip)) {
+            examTips.push(cleanTip);
+          }
         }
       }
     }
@@ -167,7 +185,9 @@ function parseChapterBody(rawText, unit, classLevel, chapterNo, title, idPrefix)
   flushSection();
 
   if (!overview) {
-    overview = `${title} — व्याकरण के मुख्य नियम, परिभाषाएँ, उदाहरण एवं अभ्यास प्रश्न।`;
+    overview = isPractice
+      ? `${title} — परीक्षा-उपयोगी अभ्यास प्रश्न एवं स्व-मूल्यांकन।`
+      : `${title} — व्याकरण के मुख्य नियम, परिभाषाएँ, उदाहरण एवं अभ्यास प्रश्न।`;
   }
 
   return {
@@ -179,27 +199,29 @@ function parseChapterBody(rawText, unit, classLevel, chapterNo, title, idPrefix)
     unit,
     overview,
     sections,
-    keyTerms:
-      keyTerms.length > 0
-        ? keyTerms
-        : [
-            { term: title, meaning: overview },
-            { term: 'व्याकरणिक नियम', meaning: 'शुद्ध भाषा प्रयोग एवं वाक्य-रचना के मानक नियम।' }
-          ],
-    examTips:
-      examTips.length > 0
-        ? examTips
-        : [
-            'परिभाषा के साथ-साथ उदाहरणों के आधार पर नियम याद रखें।',
-            'वाक्य में शब्द का वास्तविक संदर्भ देखकर व्याकरणिक भेद का निर्णय करें।'
-          ],
+    keyTerms: isPractice
+      ? []
+      : keyTerms.length > 0
+      ? keyTerms
+      : [
+          { term: title, meaning: overview },
+          { term: 'व्याकरणिक नियम', meaning: 'शुद्ध भाषा प्रयोग एवं वाक्य-रचना के मानक नियम।' },
+        ],
+    examTips: isPractice
+      ? []
+      : examTips.length > 0
+      ? examTips
+      : [
+          'परिभाषा के साथ-साथ उदाहरणों के आधार पर नियम याद रखें।',
+          'वाक्य में शब्द का वास्तविक संदर्भ देखकर व्याकरणिक भेद का निर्णय करें।',
+        ],
   };
 }
 
 // -------------------------------------------------------------
 // 1. GENERATE CLASS 9
 // -------------------------------------------------------------
-console.log('Generating Class 9 notes...');
+console.log('Generating Class 9 notes (without answers chapter)...');
 const file9 = 'C:/Users/hiii/.gemini/antigravity/brain/8173d0ba-c217-46bd-9fac-384820988f1b/.user_uploaded/media_1792143099445_c4fa66cf.md';
 const content9 = fs.readFileSync(file9, 'utf8');
 const chunks9 = content9.split(/\n(?=# (?:अध्याय|स्रोत))/g);
@@ -225,10 +247,15 @@ const parsed9 = [];
 for (let i = 1; i < chunks9.length; i++) {
   let raw = chunks9[i];
   const firstLine = raw.trim().split('\n')[0].replace(/^#\s*/, '').trim();
-  
-  // If it's chunk 23 (# स्रोत और पाठ्यक्रम-सीमा) and chunk 22 is chapter 22, we can merge or make it chapter 23
+
+  // EXCLUDE answers chapter (उत्तरमाला और समाधान)
+  if (firstLine.includes('उत्तरमाला')) {
+    console.log('Skipping answers chapter:', firstLine);
+    continue;
+  }
+
+  // If it's chunk 23 (# स्रोत और पाठ्यक्रम-सीमा), append to previous chapter (शब्दावली)
   if (firstLine.startsWith('स्रोत')) {
-    // Append to previous chapter 22
     if (parsed9.length > 0) {
       const prev = parsed9[parsed9.length - 1];
       const extra = parseChapterBody(raw, prev.unit, 9, prev.chapterNo, 'स्रोत एवं पाठ्यक्रम-निर्देशिका', 'note-hi9');
@@ -256,7 +283,7 @@ fs.writeFileSync('c:/Users/hiii/OneDrive/Documents/Apps/Quiz Arena/src/data/note
 // -------------------------------------------------------------
 // 2. GENERATE CLASS 10
 // -------------------------------------------------------------
-console.log('Generating Class 10 notes...');
+console.log('Generating Class 10 notes (without answers chapter)...');
 const file10 = 'C:/Users/hiii/.gemini/antigravity/brain/8173d0ba-c217-46bd-9fac-384820988f1b/.user_uploaded/media_1792143099444_390108c0.md';
 const content10 = fs.readFileSync(file10, 'utf8');
 const chunks10 = content10.split(/\n(?=# (?:अध्याय|अभ्यास|मिश्रित|उत्तरमाला|शब्दावली|आधिकारिक))/g);
@@ -265,7 +292,7 @@ const units10 = [
   { max: 6, unit: 'इकाई 1: वाक्य-विचार, पदबंध एवं वाच्य' },
   { max: 9, unit: 'इकाई 2: समास, मुहावरे एवं अलंकार' },
   { max: 13, unit: 'इकाई 3: पद-परिचय आधार एवं भाषा-शुद्धि' },
-  { max: 99, unit: 'इकाई 4: अभ्यास-पत्र एवं उत्तरमाला' },
+  { max: 99, unit: 'इकाई 4: अभ्यास-पत्र एवं पुनरावृत्ति' },
 ];
 
 function getUnit10(chNo) {
@@ -279,6 +306,12 @@ const parsed10 = [];
 for (let i = 1; i < chunks10.length; i++) {
   const raw = chunks10[i];
   const firstLine = raw.trim().split('\n')[0].replace(/^#\s*/, '').trim();
+
+  // EXCLUDE answers chapter (उत्तरमाला और व्याख्या)
+  if (firstLine.includes('उत्तरमाला')) {
+    console.log('Skipping answers chapter:', firstLine);
+    continue;
+  }
 
   // If chunk is 'आधिकारिक स्रोत', append to previous chapter (शब्दावली)
   if (firstLine.startsWith('आधिकारिक')) {
@@ -309,14 +342,13 @@ fs.writeFileSync('c:/Users/hiii/OneDrive/Documents/Apps/Quiz Arena/src/data/note
 // -------------------------------------------------------------
 // 3. GENERATE COMPETITIVE (MASTER NOTES)
 // -------------------------------------------------------------
-console.log('Generating Competitive notes...');
+console.log('Generating Competitive notes (without answers chapter)...');
 const fileComp = 'C:/Users/hiii/.gemini/antigravity/brain/8173d0ba-c217-46bd-9fac-384820988f1b/.user_uploaded/media_1792143099447_61d1063b.md';
 const contentComp = fs.readFileSync(fileComp, 'utf8');
 
 const parsedComp = [];
 
 // Find chapters 1 to 30
-// Each is marked by `## अध्याय <N>. <Title>`
 for (let i = 1; i <= 30; i++) {
   const curRegex = new RegExp(`## अध्याय ${i}\\.\\s*([^\\n]+)`);
   const curMatch = curRegex.exec(contentComp);
@@ -331,12 +363,10 @@ for (let i = 1; i <= 30; i++) {
     const nextMatch = nextRegex.exec(contentComp);
     if (nextMatch) endIdx = nextMatch.index;
   } else {
-    // For 30, end is '# भाग 7 — अभ्यास-संग्रह'
     const p7Idx = contentComp.indexOf('# भाग 7 — अभ्यास-संग्रह');
     if (p7Idx !== -1) endIdx = p7Idx;
   }
 
-  // Determine which Part it belongs to by inspecting content before startIdx
   const preceding = contentComp.slice(0, startIdx);
   const partMatch = [...preceding.matchAll(/# (भाग \d+ — [^\n]+)/g)];
   const unit = partMatch.length > 0 ? partMatch[partMatch.length - 1][1].trim() : 'प्रतियोगी हिंदी व्याकरण';
@@ -362,48 +392,38 @@ if (p7Start !== -1 && p8Start !== -1) {
   parsedComp.push(note31);
 }
 
-// Chapter 32: भाग 8 — उत्तरमाला और व्याख्या
+// NOTE: We deliberately skip Chapter 32 (भाग 8 — उत्तरमाला और व्याख्या) per user instruction:
+// "no answers mentions in the last"
+console.log('Skipping Competitive answers part: भाग 8 — उत्तरमाला और व्याख्या');
+
+// Next Chapter 32: परिशिष्ट A — त्वरित पुनरावृत्ति सारणियाँ
 const appAStart = contentComp.indexOf('# परिशिष्ट A — त्वरित पुनरावृत्ति सारणियाँ');
-if (p8Start !== -1 && appAStart !== -1) {
-  const rawP8 = contentComp.slice(p8Start, appAStart);
+const appBStart = contentComp.indexOf('# परिशिष्ट B — पारिभाषिक शब्दावली');
+if (appAStart !== -1 && appBStart !== -1) {
+  const rawAppA = contentComp.slice(appAStart, appBStart);
   const note32 = parseChapterBody(
-    rawP8,
-    'भाग 8 — उत्तरमाला और व्याख्या',
+    rawAppA,
+    'परिशिष्ट — त्वरित पुनरावृत्ति एवं शब्दावली',
     'competitive',
     32,
-    'उत्तरमाला एवं विस्तृत व्याख्या — सभी अभ्यास-पत्र व अध्याय',
+    'परिशिष्ट A — त्वरित पुनरावृत्ति सारणियाँ (A.1 से A.8)',
     'note-hicomp'
   );
   parsedComp.push(note32);
 }
 
-// Chapter 33: परिशिष्ट A — त्वरित पुनरावृत्ति सारणियाँ
-const appBStart = contentComp.indexOf('# परिशिष्ट B — पारिभाषिक शब्दावली');
-if (appAStart !== -1 && appBStart !== -1) {
-  const rawAppA = contentComp.slice(appAStart, appBStart);
-  const note33 = parseChapterBody(
-    rawAppA,
-    'परिशिष्ट — त्वरित पुनरावृत्ति एवं शब्दावली',
-    'competitive',
-    33,
-    'परिशिष्ट A — त्वरित पुनरावृत्ति सारणियाँ (A.1 से A.8)',
-    'note-hicomp'
-  );
-  parsedComp.push(note33);
-}
-
-// Chapter 34: परिशिष्ट B — पारिभाषिक शब्दावली एवं संदर्भ
+// Next Chapter 33: परिशिष्ट B — पारिभाषिक शब्दावली एवं संदर्भ
 if (appBStart !== -1) {
   const rawAppB = contentComp.slice(appBStart);
-  const note34 = parseChapterBody(
+  const note33 = parseChapterBody(
     rawAppB,
     'परिशिष्ट — त्वरित पुनरावृत्ति एवं शब्दावली',
     'competitive',
-    34,
+    33,
     'परिशिष्ट B — पारिभाषिक शब्दावली, संदर्भ एवं अध्ययन-स्रोत',
     'note-hicomp'
   );
-  parsedComp.push(note34);
+  parsedComp.push(note33);
 }
 
 console.log(`Competitive generated: ${parsedComp.length} chapters.`);
@@ -414,4 +434,4 @@ export const hindiNotesComp: ChapterNote[] = ${JSON.stringify(parsedComp, null, 
 `;
 fs.writeFileSync('c:/Users/hiii/OneDrive/Documents/Apps/Quiz Arena/src/data/notes/hindiComp.ts', codeComp, 'utf8');
 
-console.log('ALL HINDI NOTES GENERATED SUCCESSFULLY!');
+console.log('ALL HINDI NOTES GENERATED WITHOUT ANSWERS IN THE LAST!');

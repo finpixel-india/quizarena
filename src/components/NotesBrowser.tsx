@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ArrowLeft, ArrowRight, BookOpen, BookOpenText, Calculator, ChevronDown, FlaskConical, ImageIcon, Landmark, Languages, Lightbulb, ListChecks, Monitor, Search, Sigma } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, BookOpenText, Calculator, CheckCircle2, ChevronDown, FlaskConical, ImageIcon, Landmark, Languages, Lightbulb, ListChecks, Monitor, PenLine, RotateCcw, Search, Sigma, Sparkles } from "lucide-react";
 import { DiagramFrame } from "@/components/notes/DiagramKit";
 import { getDiagram } from "@/components/notes";
 import { Badge, Card, Container, Label, btn } from "@/components/ui";
@@ -16,6 +16,350 @@ function Rich({ text }: { text: string }) {
   return <>{parts.map((part, i) => (i % 2 === 1 ? <strong key={i} className="font-semibold text-fg">{part}</strong> : <span key={i}>{part}</span>))}</>;
 }
 
+interface ParsedQuestion {
+  id: string;
+  num?: string;
+  text: string;
+  type: "mcq" | "text" | "prompt";
+  options?: Array<{ key: string; text: string }>;
+}
+
+function parseAbhyasPoints(points: string[] = []): { instructions: string[]; questions: ParsedQuestion[] } {
+  const instructions: string[] = [];
+  const questions: ParsedQuestion[] = [];
+
+  for (let i = 0; i < points.length; i++) {
+    const raw = points[i].trim();
+    if (!raw) continue;
+
+    // Filter out any answer mentions or links
+    if (
+      raw.includes("उत्तरमाला") ||
+      raw.includes("उत्तर देखें") ||
+      raw.includes("<a id=") ||
+      raw.toLowerCase().includes("answer")
+    ) {
+      continue;
+    }
+
+    // Instructions
+    if (
+      raw.startsWith("*निर्देश") ||
+      raw.startsWith("निर्देश:") ||
+      raw.startsWith("*समय-सुझाव") ||
+      raw.startsWith("समय-सुझाव:")
+    ) {
+      instructions.push(raw.replace(/^\*+|\*+$/g, ""));
+      continue;
+    }
+
+    // Case 1: MCQ with options on same line: "1. प्रश्न? (क) ... (ख) ... (ग) ... (घ) ..."
+    if (/\([कA]\)/.test(raw) && /^\d+\./.test(raw)) {
+      const qNumMatch = raw.match(/^(\d+)\.\s*(.+?)(?=\s*\([कA]\))/);
+      if (qNumMatch) {
+        const qNum = qNumMatch[1];
+        const qText = qNumMatch[2].trim();
+        const optPart = raw.slice(qNumMatch[0].length);
+        const optMatches = [...optPart.matchAll(/\(([क-घA-D])\)\s*([^()]+)/g)];
+        const options = optMatches.map((m) => ({ key: m[1], text: m[2].trim() }));
+        questions.push({
+          id: `q-${qNum}-${i}`,
+          num: qNum,
+          text: qText,
+          options,
+          type: "mcq",
+        });
+        continue;
+      }
+    }
+
+    // Case 2: Numbered question, next line has options
+    const qMatch = raw.match(/^(\d+)\.\s*(.+)$/);
+    if (qMatch) {
+      const qNum = qMatch[1];
+      const qText = qMatch[2].trim();
+      const next = (points[i + 1] || "").trim();
+      if (next && (next.startsWith("(क)") || next.startsWith("(A)") || next.includes("(क)"))) {
+        const optMatches = [...next.matchAll(/\(([क-घA-D])\)\s*([^()]+)/g)];
+        const options = optMatches.map((m) => ({ key: m[1], text: m[2].trim() }));
+        questions.push({
+          id: `q-${qNum}-${i}`,
+          num: qNum,
+          text: qText,
+          options,
+          type: "mcq",
+        });
+        i++; // skip options line
+        continue;
+      } else {
+        questions.push({
+          id: `q-${qNum}-${i}`,
+          num: qNum,
+          text: qText,
+          type: "text",
+        });
+        continue;
+      }
+    }
+
+    // Case 3: Free-form question or prompt
+    questions.push({
+      id: `q-p-${i}`,
+      text: raw,
+      type: "prompt",
+    });
+  }
+
+  return { instructions, questions };
+}
+
+function QuestionCard({
+  q,
+  selectedOpt,
+  onSelectOpt,
+  scratch,
+  onChangeScratch,
+}: {
+  q: ParsedQuestion;
+  selectedOpt?: string;
+  onSelectOpt: (key: string) => void;
+  scratch?: string;
+  onChangeScratch: (text: string) => void;
+}) {
+  const [showScratch, setShowScratch] = useState(false);
+
+  return (
+    <div
+      className={cn(
+        "rounded-2xl border p-5 sm:p-6 transition-all duration-200",
+        selectedOpt
+          ? "border-brand/50 bg-brand/[0.04] shadow-[0_4px_24px_-8px_rgba(249,115,22,0.18)]"
+          : "border-line bg-card hover:border-line-2 hover:bg-fg/[0.01]"
+      )}
+    >
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <div className="flex items-center gap-2">
+          {q.num ? (
+            <span className="inline-flex items-center rounded-lg border border-brand/40 bg-brand/10 px-2.5 py-0.5 font-mono text-xs font-bold text-brand-ink">
+              प्रश्न {pad2(Number(q.num) || 0) || q.num}
+            </span>
+          ) : null}
+          <span className="font-mono text-[10.5px] uppercase tracking-wider text-subtle">
+            {q.type === "mcq" ? "बहुविकल्पी" : "लघु-उत्तर / अभ्यास"}
+          </span>
+        </div>
+        {selectedOpt ? (
+          <span className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-brand-ink">
+            <CheckCircle2 className="h-4 w-4" /> विकल्प ({selectedOpt}) चुना गया
+          </span>
+        ) : null}
+      </div>
+
+      <p className="mt-3.5 text-base sm:text-[17px] font-semibold leading-relaxed text-fg">
+        <Rich text={q.text} />
+      </p>
+
+      {q.type === "mcq" && q.options?.length ? (
+        <div className="mt-4 grid gap-2.5 sm:grid-cols-2">
+          {q.options.map((opt) => {
+            const active = selectedOpt === opt.key;
+            return (
+              <button
+                key={opt.key}
+                type="button"
+                onClick={() => onSelectOpt(opt.key)}
+                className={cn(
+                  "flex items-start gap-3 rounded-xl border p-3.5 sm:p-4 text-left transition-all duration-150",
+                  active
+                    ? "border-brand bg-brand/[0.12] ring-1 ring-brand/60 text-fg shadow-sm"
+                    : "border-line bg-fg/[0.02] text-muted hover:border-line-2 hover:bg-fg/[0.05] hover:text-fg"
+                )}
+              >
+                <span
+                  className={cn(
+                    "inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border font-mono text-xs font-bold transition mt-0.5",
+                    active ? "border-brand bg-brand text-white" : "border-line bg-bg text-subtle"
+                  )}
+                >
+                  {opt.key}
+                </span>
+                <span className="text-sm sm:text-[15px] leading-snug">
+                  <Rich text={opt.text} />
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      ) : null}
+
+      {q.type !== "mcq" ? (
+        <div className="mt-4 border-t border-line/60 pt-3">
+          <button
+            type="button"
+            onClick={() => setShowScratch((v) => !v)}
+            className="inline-flex items-center gap-1.5 text-xs font-medium text-subtle hover:text-brand-ink transition"
+          >
+            <PenLine className="h-3.5 w-3.5" />
+            {showScratch ? "रफ़ नोट छिपाएँ" : scratch ? "रफ़ नोट देखें / बदलें" : "स्व-प्रयास रफ़ नोट (यहाँ लिखकर अभ्यास करें)"}
+          </button>
+          {showScratch ? (
+            <div className="mt-2.5 animate-fade-in">
+              <textarea
+                value={scratch || ""}
+                onChange={(e) => onChangeScratch(e.target.value)}
+                placeholder="यहाँ अपना उत्तर, विग्रह, या नियम लिखकर स्वयं जाँचें..."
+                rows={2}
+                className="w-full resize-y rounded-xl border border-line bg-fg/[0.02] p-3 text-xs sm:text-sm text-fg outline-none placeholder:text-subtle focus:border-brand/70"
+              />
+            </div>
+          ) : scratch ? (
+            <p className="mt-1 text-xs text-muted italic line-clamp-1">आपका नोट: {scratch}</p>
+          ) : null}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+function AbhyasArena({ chapter }: { chapter: NoteChapter }) {
+  const [selectedAnswers, setSelectedAnswers] = useState<Record<string, string>>({});
+  const [scratchNotes, setScratchNotes] = useState<Record<string, string>>({});
+  const [activeSectionIdx, setActiveSectionIdx] = useState<number | "all">("all");
+
+  const parsedSections = useMemo(() => {
+    return chapter.sections.map((sec, idx) => ({
+      index: idx,
+      title: sec.title,
+      ...parseAbhyasPoints(sec.points || []),
+      table: sec.table,
+      tip: sec.tip,
+    }));
+  }, [chapter]);
+
+  const totalQuestions = useMemo(() => {
+    return parsedSections.reduce((sum, s) => sum + s.questions.length, 0);
+  }, [parsedSections]);
+
+  const answeredCount = Object.keys(selectedAnswers).filter((k) => selectedAnswers[k]).length;
+
+  const visibleSections =
+    activeSectionIdx === "all"
+      ? parsedSections
+      : parsedSections.filter((s) => s.index === activeSectionIdx);
+
+  return (
+    <div className="mt-8 space-y-8">
+      {/* Exercise Control Bar */}
+      <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-line bg-fg/[0.02] p-4 sm:p-5">
+        <div className="flex flex-wrap items-center gap-3">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-brand/40 bg-brand/10 px-3.5 py-1 font-mono text-xs font-semibold text-brand-ink">
+            <Sparkles className="h-3.5 w-3.5" /> अभ्यास मोड
+          </span>
+          <span className="font-mono text-xs text-muted">
+            कुल प्रश्न: <strong className="text-fg">{totalQuestions}</strong>
+          </span>
+          {answeredCount > 0 ? (
+            <span className="font-mono text-xs text-brand-ink">
+              हल किए गए: <strong className="text-brand-ink">{answeredCount}</strong> / {totalQuestions}
+            </span>
+          ) : null}
+        </div>
+
+        {answeredCount > 0 || Object.keys(scratchNotes).length > 0 ? (
+          <button
+            type="button"
+            onClick={() => {
+              setSelectedAnswers({});
+              setScratchNotes({});
+            }}
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-subtle hover:text-brand-ink transition"
+          >
+            <RotateCcw className="h-3.5 w-3.5" /> सारे उत्तर रीसेट करें
+          </button>
+        ) : null}
+      </div>
+
+      {/* Section Filter Pills (if more than 1 section with questions) */}
+      {parsedSections.length > 1 ? (
+        <div className="flex flex-wrap items-center gap-2 border-b border-line pb-4">
+          <button
+            type="button"
+            onClick={() => setActiveSectionIdx("all")}
+            className={cn(
+              "rounded-full border px-3.5 py-1.5 text-xs font-semibold transition",
+              activeSectionIdx === "all"
+                ? "border-brand bg-brand/[0.1] text-fg glow"
+                : "border-line text-muted hover:border-line-2 hover:text-fg"
+            )}
+          >
+            सभी खंड ({totalQuestions})
+          </button>
+          {parsedSections.map((s) => (
+            <button
+              key={s.index}
+              type="button"
+              onClick={() => setActiveSectionIdx(s.index)}
+              className={cn(
+                "rounded-full border px-3.5 py-1.5 text-xs font-semibold transition",
+                activeSectionIdx === s.index
+                  ? "border-brand bg-brand/[0.1] text-fg glow"
+                  : "border-line text-muted hover:border-line-2 hover:text-fg"
+              )}
+            >
+              {s.title} ({s.questions.length})
+            </button>
+          ))}
+        </div>
+      ) : null}
+
+      {/* Sections and Questions */}
+      <div className="space-y-10">
+        {visibleSections.map((sec) => (
+          <section key={sec.title} className="space-y-4">
+            <div className="flex items-baseline gap-3">
+              <span className="font-mono text-xs sm:text-sm text-brand-ink">{pad2(sec.index + 1)}</span>
+              <h3 className="text-lg font-bold tracking-tight text-fg sm:text-2xl">{sec.title}</h3>
+            </div>
+
+            {/* Instruction Callout */}
+            {sec.instructions.length ? (
+              <div className="rounded-xl border border-brand/30 bg-brand/[0.05] p-4 text-xs sm:text-sm text-fg">
+                {sec.instructions.map((inst, ii) => (
+                  <p key={ii} className="flex items-start gap-2 leading-relaxed">
+                    <span className="font-mono font-bold text-brand-ink">निर्देश:</span>
+                    <span><Rich text={inst} /></span>
+                  </p>
+                ))}
+              </div>
+            ) : null}
+
+            {/* Questions Grid/Stack */}
+            <div className="space-y-4 pt-2">
+              {sec.questions.map((q) => (
+                <QuestionCard
+                  key={q.id}
+                  q={q}
+                  selectedOpt={selectedAnswers[q.id]}
+                  onSelectOpt={(key) =>
+                    setSelectedAnswers((prev) => ({
+                      ...prev,
+                      [q.id]: prev[q.id] === key ? "" : key,
+                    }))
+                  }
+                  scratch={scratchNotes[q.id]}
+                  onChangeScratch={(text) =>
+                    setScratchNotes((prev) => ({ ...prev, [q.id]: text }))
+                  }
+                />
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function SubjectGlyph({ id, active = false }: { id: NotesSubjectId; active?: boolean }) {
   const Icon = id === "science" ? FlaskConical : id === "sst" ? Landmark : id === "math" ? Calculator : id === "english" ? BookOpenText : id === "it" ? Monitor : Languages;
   return (
@@ -26,6 +370,15 @@ function SubjectGlyph({ id, active = false }: { id: NotesSubjectId; active?: boo
 }
 
 function SectionBlock({ index, section }: { index: number; section: NoteChapter["sections"][number] }) {
+  const isSectionAbhyas = section.title.includes("अभ्यास") || section.title.includes("स्व-जाँच");
+  const [selectedAnswers, setSelectedAnswers] = useState<Record<string, string>>({});
+  const [scratchNotes, setScratchNotes] = useState<Record<string, string>>({});
+
+  const parsed = useMemo(() => {
+    if (!isSectionAbhyas) return null;
+    return parseAbhyasPoints(section.points || []);
+  }, [isSectionAbhyas, section.points]);
+
   return (
     <section className="border-t border-line pt-8 first:border-t-0 first:pt-0 sm:pt-12">
       <div className="flex items-baseline gap-3 sm:gap-4">
@@ -33,43 +386,80 @@ function SectionBlock({ index, section }: { index: number; section: NoteChapter[
         <h3 className="text-lg font-bold tracking-tight text-fg sm:text-2xl">{section.title}</h3>
       </div>
 
-      {section.points?.length ? (
-        <ul className="mt-4 sm:mt-5 space-y-2.5 sm:space-y-3.5">
-          {section.points.map((p, i) => (
-            <li key={i} className="flex gap-2.5 sm:gap-3.5 text-sm leading-7 text-muted sm:text-[17px] sm:leading-8">
-              <span className="mt-2.5 sm:mt-3.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand/80" aria-hidden="true" />
-              <span><Rich text={p} /></span>
-            </li>
-          ))}
-        </ul>
-      ) : null}
+      {isSectionAbhyas && parsed && parsed.questions.length > 0 ? (
+        <div className="mt-5 space-y-4">
+          {parsed.instructions.length ? (
+            <div className="rounded-xl border border-brand/30 bg-brand/[0.05] p-4 text-xs sm:text-sm text-fg">
+              {parsed.instructions.map((inst, ii) => (
+                <p key={ii} className="flex items-start gap-2 leading-relaxed">
+                  <span className="font-mono font-bold text-brand-ink">निर्देश:</span>
+                  <span><Rich text={inst} /></span>
+                </p>
+              ))}
+            </div>
+          ) : null}
 
-      {section.formula?.length ? (
-        <div className="mt-5 overflow-x-auto rounded-xl sm:rounded-2xl border border-line bg-fg/[0.03] p-4 sm:p-6">
-          <p className="mb-2 sm:mb-3 flex items-center gap-2 font-mono text-[10px] sm:text-[10.5px] uppercase tracking-[0.16em] text-subtle"><Sigma className="h-3.5 w-3.5 text-brand-ink" /> Formula / derivation</p>
-          <pre className="font-mono text-[13px] leading-6 text-fg sm:text-[15px] sm:leading-7">{section.formula.join("\n")}</pre>
+          <div className="space-y-4">
+            {parsed.questions.map((q) => (
+              <QuestionCard
+                key={q.id}
+                q={q}
+                selectedOpt={selectedAnswers[q.id]}
+                onSelectOpt={(key) =>
+                  setSelectedAnswers((prev) => ({
+                    ...prev,
+                    [q.id]: prev[q.id] === key ? "" : key,
+                  }))
+                }
+                scratch={scratchNotes[q.id]}
+                onChangeScratch={(text) =>
+                  setScratchNotes((prev) => ({ ...prev, [q.id]: text }))
+                }
+              />
+            ))}
+          </div>
         </div>
-      ) : null}
+      ) : (
+        <>
+          {section.points?.length ? (
+            <ul className="mt-4 sm:mt-5 space-y-2.5 sm:space-y-3.5">
+              {section.points.map((p, i) => (
+                <li key={i} className="flex gap-2.5 sm:gap-3.5 text-sm leading-7 text-muted sm:text-[17px] sm:leading-8">
+                  <span className="mt-2.5 sm:mt-3.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand/80" aria-hidden="true" />
+                  <span><Rich text={p} /></span>
+                </li>
+              ))}
+            </ul>
+          ) : null}
 
-      {section.table ? (
-        <div className="mt-5 overflow-x-auto rounded-xl sm:rounded-2xl border border-line">
-          <table className="w-full min-w-[32rem] sm:min-w-[38rem] border-collapse text-left text-xs sm:text-sm">
-            <thead><tr className="bg-fg/[0.04]">{section.table.head.map((h) => <th key={h} className="border-b border-line px-3.5 py-3 sm:px-5 sm:py-4 font-mono text-[10px] sm:text-[10.5px] uppercase tracking-[0.14em] text-subtle">{h}</th>)}</tr></thead>
-            <tbody>{section.table.rows.map((row, ri) => (
-              <tr key={ri} className="align-top even:bg-fg/[0.02]">
-                {row.map((cell, ci) => <td key={ci} className={cn("border-b border-line px-3.5 py-3 sm:px-5 sm:py-4 leading-5 sm:leading-6", ci === 0 ? "font-medium text-fg" : "text-muted")}><Rich text={cell} /></td>)}
-              </tr>
-            ))}</tbody>
-          </table>
-        </div>
-      ) : null}
+          {section.formula?.length ? (
+            <div className="mt-5 overflow-x-auto rounded-xl sm:rounded-2xl border border-line bg-fg/[0.03] p-4 sm:p-6">
+              <p className="mb-2 sm:mb-3 flex items-center gap-2 font-mono text-[10px] sm:text-[10.5px] uppercase tracking-[0.16em] text-subtle"><Sigma className="h-3.5 w-3.5 text-brand-ink" /> Formula / derivation</p>
+              <pre className="font-mono text-[13px] leading-6 text-fg sm:text-[15px] sm:leading-7">{section.formula.join("\n")}</pre>
+            </div>
+          ) : null}
 
-      {section.tip ? (
-        <div className="mt-5 flex gap-3 rounded-xl sm:rounded-2xl border border-brand/35 bg-brand/[0.07] p-4 sm:p-5">
-          <Lightbulb className="mt-0.5 h-4 w-4 shrink-0 text-brand-ink" />
-          <p className="text-sm sm:text-[15px] leading-6 sm:leading-7 text-fg"><span className="font-mono text-[10px] sm:text-[10.5px] uppercase tracking-[0.16em] text-brand-ink">Remember · </span><Rich text={section.tip} /></p>
-        </div>
-      ) : null}
+          {section.table ? (
+            <div className="mt-5 overflow-x-auto rounded-xl sm:rounded-2xl border border-line">
+              <table className="w-full min-w-[32rem] sm:min-w-[38rem] border-collapse text-left text-xs sm:text-sm">
+                <thead><tr className="bg-fg/[0.04]">{section.table.head.map((h) => <th key={h} className="border-b border-line px-3.5 py-3 sm:px-5 sm:py-4 font-mono text-[10px] sm:text-[10.5px] uppercase tracking-[0.14em] text-subtle">{h}</th>)}</tr></thead>
+                <tbody>{section.table.rows.map((row, ri) => (
+                  <tr key={ri} className="align-top even:bg-fg/[0.02]">
+                    {row.map((cell, ci) => <td key={ci} className={cn("border-b border-line px-3.5 py-3 sm:px-5 sm:py-4 leading-5 sm:leading-6", ci === 0 ? "font-medium text-fg" : "text-muted")}><Rich text={cell} /></td>)}
+                  </tr>
+                ))}</tbody>
+              </table>
+            </div>
+          ) : null}
+
+          {section.tip ? (
+            <div className="mt-5 flex gap-3 rounded-xl sm:rounded-2xl border border-brand/35 bg-brand/[0.07] p-4 sm:p-5">
+              <Lightbulb className="mt-0.5 h-4 w-4 shrink-0 text-brand-ink" />
+              <p className="text-sm sm:text-[15px] leading-6 sm:leading-7 text-fg"><span className="font-mono text-[10px] sm:text-[10.5px] uppercase tracking-[0.16em] text-brand-ink">Remember · </span><Rich text={section.tip} /></p>
+            </div>
+          ) : null}
+        </>
+      )}
     </section>
   );
 }
@@ -246,9 +636,24 @@ export default function NotesBrowser() {
   }
 
   /* ------------------------------ Reader view ------------------------------ */
-  const meta = [
-    { k: "Level", v: selected.classLevel === "competitive" ? "Competitive" : `Class ${selected.classLevel}` }, { k: "Chapter", v: pad2(selected.chapterNo) }, { k: "Sections", v: String(selected.sections.length) }, { k: "Key terms", v: String(selected.keyTerms.length) },
-  ];
+  const isAbhyasChapter =
+    selected.title.includes("अभ्यास") ||
+    selected.title.includes("पुनरावृत्ति") ||
+    selected.unit.includes("अभ्यास");
+
+  const meta = isAbhyasChapter
+    ? [
+        { k: "Level", v: selected.classLevel === "competitive" ? "Competitive" : `Class ${selected.classLevel}` },
+        { k: "Chapter", v: pad2(selected.chapterNo) },
+        { k: "Sections", v: String(selected.sections.length) },
+        { k: "Mode", v: "Self-Practice" },
+      ]
+    : [
+        { k: "Level", v: selected.classLevel === "competitive" ? "Competitive" : `Class ${selected.classLevel}` },
+        { k: "Chapter", v: pad2(selected.chapterNo) },
+        { k: "Sections", v: String(selected.sections.length) },
+        { k: "Key terms", v: String(selected.keyTerms.length) },
+      ];
   const subjectName = NOTES_SUBJECTS.find((s) => s.id === subject)?.name ?? subject;
 
   return (
@@ -267,7 +672,15 @@ export default function NotesBrowser() {
         </div>
 
         <header className="mt-12 sm:mt-16">
-          <div className="flex flex-wrap items-center gap-2"><Badge tone="brand"><BookOpen className="h-3.5 w-3.5" /> {subjectName} · {selected.classLevel === "competitive" ? "Competitive" : `Class ${selected.classLevel}`}</Badge><Badge>Chapter {pad2(selected.chapterNo)}</Badge>{diagram ? <Badge><ImageIcon className="h-3.5 w-3.5 text-brand-ink" /> Labelled diagram</Badge> : null}</div>
+          <div className="flex flex-wrap items-center gap-2">
+            <Badge tone="brand">
+              {isAbhyasChapter ? <Sparkles className="h-3.5 w-3.5" /> : <BookOpen className="h-3.5 w-3.5" />}
+              {subjectName} · {isAbhyasChapter ? "स्व-मूल्यांकन एवं अभ्यास" : selected.classLevel === "competitive" ? "Competitive" : `Class ${selected.classLevel}`}
+            </Badge>
+            <Badge>Chapter {pad2(selected.chapterNo)}</Badge>
+            {isAbhyasChapter ? <Badge tone="neutral">No Answers · अभ्यास मोड</Badge> : null}
+            {diagram ? <Badge><ImageIcon className="h-3.5 w-3.5 text-brand-ink" /> Labelled diagram</Badge> : null}
+          </div>
           <h1 className="mt-6 text-4xl font-extrabold leading-[1] tracking-tight text-fg sm:text-5xl lg:text-6xl">{selected.title}</h1>
           <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.16em] text-subtle">{selected.unit}</p>
           <p className="mt-7 max-w-3xl text-lg leading-8 text-muted sm:text-xl">{selected.overview}</p>
@@ -276,11 +689,19 @@ export default function NotesBrowser() {
 
         {diagram ? <div className="mt-10"><DiagramFrame entry={diagram} index={selected.chapterNo} /></div> : null}
 
-        <div className="mt-12 space-y-10 sm:mt-16 sm:space-y-12">{selected.sections.map((s, i) => <SectionBlock key={s.title} index={i + 1} section={s} />)}</div>
+        {isAbhyasChapter ? (
+          <AbhyasArena chapter={selected} />
+        ) : (
+          <div className="mt-12 space-y-10 sm:mt-16 sm:space-y-12">{selected.sections.map((s, i) => <SectionBlock key={s.title} index={i + 1} section={s} />)}</div>
+        )}
 
-        <Card className="mt-14 p-6 sm:p-8"><Label className="mb-6">Key terms</Label><dl className="grid gap-3 sm:grid-cols-2">{selected.keyTerms.map((t) => <div key={t.term} className="rounded-xl border border-line bg-fg/[0.02] p-4"><dt className="text-base font-semibold text-fg">{t.term}</dt><dd className="mt-1.5 text-sm leading-relaxed text-muted">{t.meaning}</dd></div>)}</dl></Card>
+        {!isAbhyasChapter && selected.keyTerms?.length ? (
+          <Card className="mt-14 p-6 sm:p-8"><Label className="mb-6">Key terms</Label><dl className="grid gap-3 sm:grid-cols-2">{selected.keyTerms.map((t) => <div key={t.term} className="rounded-xl border border-line bg-fg/[0.02] p-4"><dt className="text-base font-semibold text-fg">{t.term}</dt><dd className="mt-1.5 text-sm leading-relaxed text-muted">{t.meaning}</dd></div>)}</dl></Card>
+        ) : null}
 
-        <Card className="mt-6 p-6 sm:p-8"><Label className="mb-6">Exam tips</Label><ul className="space-y-4">{selected.examTips.map((tip, i) => <li key={i} className="flex gap-3.5 text-base leading-7 text-muted"><span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-brand/40 bg-brand/10 font-mono text-[11px] font-semibold text-brand-ink">{i + 1}</span><Rich text={tip} /></li>)}</ul></Card>
+        {!isAbhyasChapter && selected.examTips?.length ? (
+          <Card className="mt-6 p-6 sm:p-8"><Label className="mb-6">Exam tips</Label><ul className="space-y-4">{selected.examTips.map((tip, i) => <li key={i} className="flex gap-3.5 text-base leading-7 text-muted"><span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-brand/40 bg-brand/10 font-mono text-[11px] font-semibold text-brand-ink">{i + 1}</span><Rich text={tip} /></li>)}</ul></Card>
+        ) : null}
 
         <nav className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           {selectedIndex > 0 ? <button type="button" onClick={() => openChapter(chapters[selectedIndex - 1].id)} className={cn(btn.subtle, "justify-start text-left")}><ArrowLeft className="h-4 w-4 shrink-0" /><span><span className="block font-mono text-[10px] uppercase tracking-[0.16em] text-subtle">Previous</span><span className="block max-w-52 truncate">{chapters[selectedIndex - 1].title}</span></span></button> : <span />}

@@ -5,6 +5,7 @@ import { englishNotes9 } from "./english9";
 import { englishNotes10 } from "./english10";
 import { hindiNotes9 } from "./hindi9";
 import { hindiNotes10 } from "./hindi10";
+import { hindiNotesComp } from "./hindiComp";
 import { mathNotes9 } from "./math9";
 import { mathNotes10 } from "./math10";
 import { notes9 } from "./science9";
@@ -26,18 +27,18 @@ const scienceNotes = deepen([...notes9, ...notes10], "science", expandedScience)
 const sstNotes = deepen([...sstNotes9, ...sstNotes10], "sst", expandedSst);
 const mathsNotes = deepen([...mathNotes9, ...mathNotes10], "math", expandedMath);
 const englishNotes = deepen([...englishNotes9, ...englishNotes10], "english");
-const hindiNotes = deepen([...hindiNotes9, ...hindiNotes10], "hindi");
+const hindiNotes = deepen([...hindiNotes9, ...hindiNotes10, ...hindiNotesComp], "hindi");
 const itNotesList = deepen(itNotes, "it");
 
 export const ALL_NOTES: NoteChapter[] = [...scienceNotes, ...sstNotes, ...mathsNotes, ...englishNotes, ...hindiNotes, ...itNotesList];
 export const SCIENCE_NOTES = scienceNotes;
 
-export const NOTES_SUBJECTS: Array<{ id: NotesSubjectId; name: string; short: string; tagline: string; classes: number[] }> = [
+export const NOTES_SUBJECTS: Array<{ id: NotesSubjectId; name: string; short: string; tagline: string; classes: ClassLevel[] }> = [
   { id: "science", name: "Science", short: "Science", tagline: "Physics · Chemistry · Biology", classes: [9, 10] },
   { id: "sst", name: "Social Science", short: "SST", tagline: "History · Geography · Civics · Economics", classes: [9, 10] },
   { id: "math", name: "Mathematics", short: "Math", tagline: "Concepts · Theorems · Formulas", classes: [9, 10] },
   { id: "english", name: "English Grammar", short: "English", tagline: "Tenses · Clauses · Reported Speech", classes: [9, 10] },
-  { id: "hindi", name: "Hindi Grammar", short: "Hindi", tagline: "व्याकरण · भाषा · वाक्य रचना", classes: [9, 10] },
+  { id: "hindi", name: "Hindi Grammar", short: "Hindi", tagline: "व्याकरण · भाषा · वाक्य रचना", classes: [9, 10, "competitive"] },
   { id: "it", name: "Information Technology", short: "IT", tagline: "Computers · Networks · Coding · AI", classes: [9, 10] },
 ];
 
@@ -87,6 +88,7 @@ export const NOTES_COUNTS = {
   it: itNotesList.length,
   class9: ALL_NOTES.filter((n) => n.classLevel === 9).length,
   class10: ALL_NOTES.filter((n) => n.classLevel === 10).length,
+  competitive: ALL_NOTES.filter((n) => n.classLevel === "competitive").length,
   sections: ALL_NOTES.reduce((s, c) => s + c.sections.length, 0),
   diagrams: scienceNotes.filter((c) => c.diagram).length,
   chapters: ALL_NOTES.length,

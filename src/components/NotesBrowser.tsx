@@ -145,7 +145,9 @@ export default function NotesBrowser() {
   const subjectFromUrl = sp.get("subject");
   const subject: NotesSubjectId =
     subjectFromUrl === "sst" || subjectFromUrl === "math" || subjectFromUrl === "english" || subjectFromUrl === "hindi" || subjectFromUrl === "it" ? subjectFromUrl : "science";
-  const classLevel: ClassLevel = sp.get("class") === "10" ? 10 : 9;
+  const rawClass = sp.get("class");
+  const parsedClass: ClassLevel = rawClass === "10" ? 10 : rawClass === "competitive" ? "competitive" : 9;
+  const classLevel: ClassLevel = subject !== "hindi" && parsedClass === "competitive" ? 9 : parsedClass;
   const chapterId = sp.get("chapter") ?? "";
   const [query, setQuery] = useState("");
   const [jumpOpen, setJumpOpen] = useState(false);
@@ -165,7 +167,9 @@ export default function NotesBrowser() {
     return `/notes?subject=${nextSubject}&class=${nextClass}`;
   }
   function chooseSubject(next: NotesSubjectId) {
-    router.replace(libraryUrl(next, classLevel), { scroll: false });
+    const nextSub = NOTES_SUBJECTS.find((s) => s.id === next);
+    const targetClass = nextSub?.classes.includes(classLevel) ? classLevel : 9;
+    router.replace(libraryUrl(next, targetClass), { scroll: false });
   }
   function chooseClass(next: ClassLevel) {
     router.replace(libraryUrl(subject, next), { scroll: false });
@@ -197,11 +201,24 @@ export default function NotesBrowser() {
 
           <div className="mt-8 sm:mt-12 flex flex-col gap-4 border-t border-line pt-6 sm:pt-10 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <Label n="02">Choose your class</Label>
-              <div className="mt-3 sm:mt-4 flex gap-2">
-                {([9, 10] as ClassLevel[]).map((c) => {
+              <Label n="02">Choose your class / level</Label>
+              <div className="mt-3 sm:mt-4 flex flex-wrap gap-2">
+                {((NOTES_SUBJECTS.find((s) => s.id === subject)?.classes ?? [9, 10]) as ClassLevel[]).map((c) => {
                   const active = c === classLevel;
-                  return <button key={c} type="button" onClick={() => chooseClass(c)} className={cn("rounded-full border px-4.5 py-2 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold transition", active ? "border-brand bg-brand/[0.1] text-fg glow" : "border-line text-muted hover:border-line-2 hover:text-fg")}>Class {c}</button>;
+                  const label = c === "competitive" ? "Competitive (प्रतियोगी परीक्षा)" : `Class ${c}`;
+                  return (
+                    <button
+                      key={String(c)}
+                      type="button"
+                      onClick={() => chooseClass(c)}
+                      className={cn(
+                        "rounded-full border px-4.5 py-2 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold transition",
+                        active ? "border-brand bg-brand/[0.1] text-fg glow" : "border-line text-muted hover:border-line-2 hover:text-fg"
+                      )}
+                    >
+                      {label}
+                    </button>
+                  );
                 })}
               </div>
             </div>
@@ -211,7 +228,7 @@ export default function NotesBrowser() {
           </div>
 
           <div className="mt-10">
-            <div className="mb-5 flex items-center justify-between"><h2 className="text-2xl font-bold tracking-tight text-fg sm:text-3xl">Class {classLevel} {NOTES_SUBJECTS.find((s) => s.id === subject)?.name}</h2><span className="font-mono text-xs uppercase tracking-[0.16em] text-subtle">{filtered.length} chapters</span></div>
+            <div className="mb-5 flex items-center justify-between"><h2 className="text-2xl font-bold tracking-tight text-fg sm:text-3xl">{classLevel === "competitive" ? "Competitive" : `Class ${classLevel}`} {NOTES_SUBJECTS.find((s) => s.id === subject)?.name}</h2><span className="font-mono text-xs uppercase tracking-[0.16em] text-subtle">{filtered.length} chapters</span></div>
             <ChapterGrid chapters={filtered} onSelect={openChapter} />
           </div>
 
@@ -220,7 +237,7 @@ export default function NotesBrowser() {
               { v: NOTES_COUNTS.chapters, k: "Chapters" },
               { v: NOTES_COUNTS.sections, k: "Concept sections" },
               { v: NOTES_COUNTS.diagrams, k: "Science diagrams" },
-              { v: "9 & 10", k: "Classes covered" },
+              { v: "9, 10 & Comp", k: "Levels covered" },
             ].map((m) => <div key={m.k} className="bg-bg px-6 py-6"><p className="grad-text font-mono text-3xl font-bold tabular-nums">{m.v}</p><p className="mt-2 font-mono text-[10px] uppercase tracking-[0.16em] text-subtle">{m.k}</p></div>)}
           </div>
         </div>
@@ -230,7 +247,7 @@ export default function NotesBrowser() {
 
   /* ------------------------------ Reader view ------------------------------ */
   const meta = [
-    { k: "Class", v: `${selected.classLevel}` }, { k: "Chapter", v: pad2(selected.chapterNo) }, { k: "Sections", v: String(selected.sections.length) }, { k: "Key terms", v: String(selected.keyTerms.length) },
+    { k: "Level", v: selected.classLevel === "competitive" ? "Competitive" : `Class ${selected.classLevel}` }, { k: "Chapter", v: pad2(selected.chapterNo) }, { k: "Sections", v: String(selected.sections.length) }, { k: "Key terms", v: String(selected.keyTerms.length) },
   ];
   const subjectName = NOTES_SUBJECTS.find((s) => s.id === subject)?.name ?? subject;
 
@@ -238,7 +255,7 @@ export default function NotesBrowser() {
     <Container>
       <article className="mx-auto max-w-4xl animate-fade-in">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <button type="button" onClick={backToLibrary} className={cn(btn.ghost, "-ml-3")}><ArrowLeft className="h-4 w-4" /> All Class {classLevel} {subjectName} notes</button>
+          <button type="button" onClick={backToLibrary} className={cn(btn.ghost, "-ml-3")}><ArrowLeft className="h-4 w-4" /> All {classLevel === "competitive" ? "Competitive" : `Class ${classLevel}`} {subjectName} notes</button>
           <div className="relative">
             <button type="button" onClick={() => setJumpOpen((v) => !v)} className="inline-flex items-center gap-2 rounded-xl border border-line px-4 py-2 text-sm font-medium text-fg hover:border-line-2"><span className="font-mono text-[11px] text-brand-ink">{pad2(selected.chapterNo)}</span><span className="max-w-40 truncate">{selected.title}</span><ChevronDown className={cn("h-4 w-4 text-subtle transition", jumpOpen && "rotate-180")} /></button>
             {jumpOpen ? (
@@ -250,7 +267,7 @@ export default function NotesBrowser() {
         </div>
 
         <header className="mt-12 sm:mt-16">
-          <div className="flex flex-wrap items-center gap-2"><Badge tone="brand"><BookOpen className="h-3.5 w-3.5" /> {subjectName} · Class {selected.classLevel}</Badge><Badge>Chapter {pad2(selected.chapterNo)}</Badge>{diagram ? <Badge><ImageIcon className="h-3.5 w-3.5 text-brand-ink" /> Labelled diagram</Badge> : null}</div>
+          <div className="flex flex-wrap items-center gap-2"><Badge tone="brand"><BookOpen className="h-3.5 w-3.5" /> {subjectName} · {selected.classLevel === "competitive" ? "Competitive" : `Class ${selected.classLevel}`}</Badge><Badge>Chapter {pad2(selected.chapterNo)}</Badge>{diagram ? <Badge><ImageIcon className="h-3.5 w-3.5 text-brand-ink" /> Labelled diagram</Badge> : null}</div>
           <h1 className="mt-6 text-4xl font-extrabold leading-[1] tracking-tight text-fg sm:text-5xl lg:text-6xl">{selected.title}</h1>
           <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.16em] text-subtle">{selected.unit}</p>
           <p className="mt-7 max-w-3xl text-lg leading-8 text-muted sm:text-xl">{selected.overview}</p>

@@ -237,22 +237,27 @@ export default function ArticulateClient() {
   const [modeKey, setModeKey] = useState(0);
   const [category, setCategory] = useState<ArticulateCategory>("all");
   const [categoryOpen, setCategoryOpen] = useState(false);
+  const [elocutionCatOpen, setElocutionCatOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [hasSpun, setHasSpun] = useState(false);
 
-  /* Ref for outside click on category dropdown */
+  /* Ref for outside click on category dropdowns */
   const catRef = useRef<HTMLDivElement>(null);
+  const elocutionCatRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (catRef.current && !catRef.current.contains(e.target as Node)) {
         setCategoryOpen(false);
       }
+      if (elocutionCatRef.current && !elocutionCatRef.current.contains(e.target as Node)) {
+        setElocutionCatOpen(false);
+      }
     }
-    if (categoryOpen) {
+    if (categoryOpen || elocutionCatOpen) {
       document.addEventListener("mousedown", handleClickOutside);
       return () => document.removeEventListener("mousedown", handleClickOutside);
     }
-  }, [categoryOpen]);
+  }, [categoryOpen, elocutionCatOpen]);
 
   /* Prompt pool */
   const pool = useMemo(() => {
@@ -343,6 +348,7 @@ export default function ArticulateClient() {
 
   const handleSelectElocutionType = (t: ElocutionType) => {
     setElocutionType(t);
+    setElocutionCatOpen(false);
     resetStopwatch();
     const pool = ELOCUTION_ITEMS.filter((x) => x.type === t && x.difficulty === elocutionDifficulty);
     const candidates = pool.length > 0 ? pool : ELOCUTION_ITEMS.filter((x) => x.type === t);
@@ -531,6 +537,7 @@ export default function ArticulateClient() {
     setMode(m);
     setModeKey((k) => k + 1);
     setCategoryOpen(false);
+    setElocutionCatOpen(false);
     resetStopwatch();
 
     if (m === "elocution") {
@@ -568,6 +575,7 @@ export default function ArticulateClient() {
   };
 
   const activeCat = DISPLAY_CATEGORIES.find((c) => c.id === category) ?? DISPLAY_CATEGORIES[0];
+  const activeElocutionType = ELOCUTION_TYPES.find((t) => t.id === elocutionType) ?? ELOCUTION_TYPES[0];
 
   return (
     <div className="relative flex flex-1 flex-col items-center justify-center w-full min-h-[calc(100dvh-4rem)] overflow-hidden select-none">
@@ -631,35 +639,64 @@ export default function ArticulateClient() {
               ? "Minimal prep. Try to think quick on your feet."
               : mode === "deep-research"
               ? "Spin a topic, set a research timer, then speak with structure."
-              : "Start the stopwatch, read aloud clearly, and measure your speed & diction."}
+              : "Train enunciation, breath cadence, and syntactic flow."}
           </p>
 
           {mode === "elocution" ? (
-            /* ── Elocution 3-Type & 3-Difficulty Filters ── */
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-2.5 mt-3.5 w-full max-w-lg animate-fade-in">
-              {/* Type selector */}
-              <div className="inline-flex p-1 rounded-full border border-white/[0.1] bg-white/[0.04] max-w-full overflow-x-auto scrollbar-none">
-                {ELOCUTION_TYPES.map((t) => {
-                  const active = elocutionType === t.id;
-                  return (
-                    <button
-                      key={t.id}
-                      type="button"
-                      onClick={() => handleSelectElocutionType(t.id)}
-                      className={cn(
-                        "flex items-center gap-1.5 rounded-full px-3 py-1.5 sm:px-3.5 sm:py-1.5 text-xs sm:text-[13px] font-medium transition cursor-pointer whitespace-nowrap",
-                        active ? "bg-[#d96b43] text-white shadow-sm font-semibold" : "text-fg/50 hover:text-fg/80"
-                      )}
-                    >
-                      <span className="leading-none text-xs">{t.emoji}</span>
-                      <span>{t.label}</span>
-                    </button>
-                  );
-                })}
+            /* ── Elocution Category Dropdown & Difficulty Selector ── */
+            <div className="flex flex-col items-center w-full max-w-[280px] mt-4">
+              <div ref={elocutionCatRef} className="relative w-full">
+                <button
+                  type="button"
+                  onClick={() => setElocutionCatOpen((v) => !v)}
+                  className="flex items-center justify-between w-full gap-2 rounded-full border border-white/[0.12] bg-white/[0.04] px-4.5 py-2.5 text-[15px] font-medium text-fg hover:bg-white/[0.08] transition cursor-pointer"
+                >
+                  <span className="flex items-center gap-2.5">
+                    <span className="text-base leading-none">{activeElocutionType.emoji}</span>
+                    <span>{activeElocutionType.label}</span>
+                  </span>
+                  {elocutionCatOpen ? (
+                    <ChevronUp className="w-4 h-4 text-muted shrink-0" />
+                  ) : (
+                    <ChevronDown className="w-4 h-4 text-muted shrink-0" />
+                  )}
+                </button>
+
+                {elocutionCatOpen && (
+                  <div
+                    className="absolute left-0 right-0 top-full mt-2 z-50 rounded-2xl border border-white/[0.12] p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-2xl animate-fade-in"
+                    style={{ background: "rgba(22, 18, 15, 0.97)" }}
+                  >
+                    <div className="space-y-0.5">
+                      {ELOCUTION_TYPES.map((t) => {
+                        const isActive = elocutionType === t.id;
+                        return (
+                          <button
+                            key={t.id}
+                            type="button"
+                            onClick={() => {
+                              handleSelectElocutionType(t.id);
+                              setElocutionCatOpen(false);
+                            }}
+                            className={cn(
+                              "flex items-center w-full gap-3 px-3.5 py-2.5 rounded-xl text-[14px] sm:text-[15px] transition cursor-pointer text-left",
+                              isActive
+                                ? "bg-white/[0.1] text-fg font-medium"
+                                : "text-fg/60 hover:text-fg hover:bg-white/[0.05]"
+                            )}
+                          >
+                            <span className="text-lg w-5 text-center shrink-0 leading-none">{t.emoji}</span>
+                            <span>{t.label}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
               </div>
 
-              {/* Difficulty selector */}
-              <div className="inline-flex p-1 rounded-full border border-white/[0.1] bg-white/[0.04]">
+              {/* Symmetrical Difficulty Segment */}
+              <div className="inline-flex items-center p-0.5 mt-2.5 rounded-full border border-white/[0.08] bg-white/[0.03]">
                 {(["easy", "medium", "hard"] as ElocutionDifficulty[]).map((d) => {
                   const active = elocutionDifficulty === d;
                   const dot = d === "easy" ? "bg-emerald-400" : d === "medium" ? "bg-amber-400" : "bg-rose-400";
@@ -669,8 +706,8 @@ export default function ArticulateClient() {
                       type="button"
                       onClick={() => handleSelectElocutionDifficulty(d)}
                       className={cn(
-                        "flex items-center gap-1.5 rounded-full px-3 py-1.5 sm:px-3.5 sm:py-1.5 text-xs sm:text-[13px] font-medium transition cursor-pointer capitalize",
-                        active ? "bg-white/[0.14] text-fg font-semibold shadow-sm" : "text-fg/50 hover:text-fg/80"
+                        "flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium transition cursor-pointer capitalize",
+                        active ? "bg-white/[0.14] text-fg font-semibold shadow-sm" : "text-fg/45 hover:text-fg/75"
                       )}
                     >
                       <span className={cn("w-1.5 h-1.5 rounded-full shrink-0", dot)} />
@@ -726,10 +763,10 @@ export default function ArticulateClient() {
         </div>
 
         {mode === "elocution" ? (
-          /* ─── ELOCUTION STAGE (Sentence Card + Precision Stopwatch) ─── */
-          <div className="relative z-10 w-full max-w-[540px] my-3 sm:my-5 flex flex-col items-center justify-center text-center animate-fade-in">
+          /* ─── ELOCUTION STAGE (Open Typography — NO Window Box) ─── */
+          <div className="relative z-10 w-full max-w-[560px] my-5 sm:my-7 flex flex-col items-center justify-center text-center animate-fade-in">
             {/* Meta info badge row */}
-            <div className="flex flex-wrap items-center justify-center gap-2 mb-3 text-xs font-mono">
+            <div className="flex items-center justify-center gap-2 mb-3 text-xs font-mono">
               <span className="font-bold tracking-[0.2em] uppercase text-[#d96b43]">
                 {currentElocutionItem.title}
               </span>
@@ -737,95 +774,77 @@ export default function ArticulateClient() {
               <span className="text-muted tracking-wider uppercase text-[11px]">
                 {elocutionWords} words
               </span>
-              {currentElocutionItem.focus && (
-                <>
-                  <span className="text-white/20 hidden sm:inline">·</span>
-                  <span className="text-muted/70 italic hidden sm:inline text-[11.5px]">
-                    {currentElocutionItem.focus}
-                  </span>
-                </>
-              )}
             </div>
 
-            {/* Sentence Glassmorphism Card */}
-            <div className="relative w-full p-5 sm:p-7 rounded-3xl border border-white/[0.12] bg-white/[0.035] backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all flex flex-col items-center justify-center min-h-[150px] sm:min-h-[170px]">
+            {/* Sentence: Pure floating typography (NO card border / NO window box) */}
+            <div className="w-full px-2 sm:px-4">
               <p
                 key={elocutionKey}
-                className="font-serif text-xl sm:text-2xl md:text-[1.65rem] font-normal leading-[1.38] tracking-[-0.01em] text-fg select-text animate-prompt-land max-w-[42ch]"
+                className="font-serif text-lg sm:text-xl md:text-[1.42rem] font-normal leading-[1.5] tracking-[-0.01em] text-fg/95 select-text animate-prompt-land max-w-[42ch] sm:max-w-[48ch] mx-auto text-balance"
               >
                 &ldquo;{currentElocutionItem.text}&rdquo;
               </p>
-
-              {currentElocutionItem.keyWords && currentElocutionItem.keyWords.length > 0 && (
-                <div className="flex flex-wrap items-center justify-center gap-1.5 mt-3.5 pt-3 border-t border-white/[0.06] w-full">
-                  <span className="text-[10px] font-mono text-subtle uppercase tracking-wider mr-1">Vocab:</span>
-                  {currentElocutionItem.keyWords.map((kw) => (
-                    <span key={kw} className="px-2 py-0.5 rounded-md bg-white/[0.05] border border-white/[0.08] text-[11px] font-mono text-[#d96b43]">
-                      {kw}
-                    </span>
-                  ))}
-                </div>
-              )}
             </div>
 
-            {/* Stopwatch & Speed Stats */}
-            <div className="mt-5 flex flex-col items-center">
-              <div className="flex items-center gap-3">
+            {/* Key Vocab pills if present */}
+            {currentElocutionItem.keyWords && currentElocutionItem.keyWords.length > 0 && (
+              <div className="flex flex-wrap items-center justify-center gap-1.5 mt-3.5">
+                {currentElocutionItem.keyWords.map((kw) => (
+                  <span
+                    key={kw}
+                    className="px-2.5 py-0.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-[11px] font-mono text-[#d96b43]"
+                  >
+                    {kw}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {/* Stopwatch & Speed Stats (Compact, sleek & refined) */}
+            <div className="mt-5 mb-3 flex flex-col items-center justify-center">
+              <div className="flex items-center gap-2">
                 {stopwatchState === "running" && (
-                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping shrink-0" />
+                  <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping shrink-0" />
                 )}
                 <span className={cn(
-                  "font-mono text-4xl sm:text-5xl font-bold tabular-nums tracking-tight transition-colors duration-200",
-                  stopwatchState === "running" ? "text-[#d96b43]" : stopwatchState === "stopped" ? "text-emerald-400" : "text-fg/50"
+                  "font-mono text-2xl sm:text-3xl font-semibold tabular-nums tracking-wide transition-colors duration-200",
+                  stopwatchState === "running" ? "text-[#d96b43]" : stopwatchState === "stopped" ? "text-emerald-400" : "text-fg/40"
                 )}>
                   {formatStopwatch(stopwatchElapsed)}
                 </span>
               </div>
 
-              {/* Post-reading speed stats */}
+              {/* Post-reading speed stats badge */}
               {stopwatchState === "stopped" && (
-                <div className="mt-3 flex items-center gap-2.5 animate-fade-in">
-                  <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/35 text-emerald-300 text-xs font-mono font-semibold">
-                    <span>Speed:</span>
-                    <span className="text-sm font-bold">{elocutionWpm} WPM</span>
-                  </div>
-                  <span className="text-xs text-muted font-medium">
-                    {elocutionWpm >= 220 ? "Lightning Speed ⚡" : elocutionWpm >= 160 ? "Crisp & Articulate 🎯" : elocutionWpm >= 110 ? "Steady & Measured 🧘" : "Deliberate Pace 🐢"}
+                <div className="mt-2 flex items-center gap-2 animate-fade-in text-xs font-mono">
+                  <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-semibold">
+                    {elocutionWpm} WPM
+                  </span>
+                  <span className="text-muted text-[11.5px]">
+                    {elocutionWpm >= 220 ? "⚡ Lightning" : elocutionWpm >= 160 ? "🎯 Crisp" : elocutionWpm >= 110 ? "🧘 Measured" : "🐢 Deliberate"}
                   </span>
                 </div>
               )}
-
-              {stopwatchState === "running" && (
-                <p className="mt-2 text-xs font-mono uppercase tracking-wider text-rose-400/90 animate-pulse">
-                  Reading aloud... tap stop when finished
-                </p>
-              )}
-
-              {stopwatchState === "idle" && (
-                <p className="mt-2 text-xs text-muted">
-                  Tap start, read the sentence aloud, then tap stop.
-                </p>
-              )}
             </div>
 
-            {/* Action buttons */}
-            <div className="mt-5 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 w-full max-w-[420px]">
+            {/* Action buttons (Symmetrical & sleek) */}
+            <div className="flex items-center justify-center gap-2 sm:gap-2.5 w-full max-w-[340px]">
               {stopwatchState === "idle" && (
                 <>
                   <button
                     type="button"
                     onClick={startStopwatch}
-                    className="flex-1 rounded-full bg-[#d96b43] text-white px-6 py-3.5 text-[15px] sm:text-base font-semibold shadow-[0_8px_28px_-8px_rgba(217,107,67,0.7)] hover:brightness-110 active:scale-95 transition cursor-pointer flex items-center justify-center gap-2"
+                    className="flex-1 rounded-full bg-[#d96b43] text-white px-5 py-2.5 text-xs sm:text-[13px] font-semibold shadow-[0_4px_16px_-4px_rgba(217,107,67,0.6)] hover:brightness-110 active:scale-95 transition cursor-pointer flex items-center justify-center gap-1.5"
                   >
-                    <Play className="w-4 h-4 fill-current" />
-                    Start stopwatch
+                    <Play className="w-3.5 h-3.5 fill-current" />
+                    Start
                   </button>
                   <button
                     type="button"
                     onClick={nextElocutionChallenge}
-                    className="rounded-full border border-white/20 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-5 py-3.5 text-[15px] sm:text-base font-semibold transition active:scale-95 cursor-pointer"
+                    className="flex-1 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-4 py-2.5 text-xs sm:text-[13px] font-medium transition active:scale-95 cursor-pointer text-center"
                   >
-                    Next challenge
+                    Next
                   </button>
                 </>
               )}
@@ -834,10 +853,10 @@ export default function ArticulateClient() {
                 <button
                   type="button"
                   onClick={stopStopwatch}
-                  className="w-full max-w-xs rounded-full bg-rose-600 hover:bg-rose-500 text-white px-8 py-3.5 text-base font-bold shadow-[0_8px_28px_-6px_rgba(225,29,72,0.65)] active:scale-95 transition cursor-pointer flex items-center justify-center gap-2.5 animate-pulse"
+                  className="flex-1 max-w-[180px] rounded-full bg-rose-600 hover:bg-rose-500 text-white px-5 py-2.5 text-xs sm:text-[13px] font-semibold shadow-[0_4px_16px_-4px_rgba(225,29,72,0.6)] active:scale-95 transition cursor-pointer flex items-center justify-center gap-1.5"
                 >
-                  <Square className="w-4 h-4 fill-current" />
-                  Done reading (Stop)
+                  <Square className="w-3.5 h-3.5 fill-current" />
+                  Stop
                 </button>
               )}
 
@@ -846,17 +865,17 @@ export default function ArticulateClient() {
                   <button
                     type="button"
                     onClick={resetStopwatch}
-                    className="flex-1 rounded-full border border-white/20 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-5 py-3.5 text-[15px] sm:text-base font-semibold transition active:scale-95 cursor-pointer flex items-center justify-center gap-2"
+                    className="flex-1 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-4 py-2.5 text-xs sm:text-[13px] font-medium transition active:scale-95 cursor-pointer flex items-center justify-center gap-1.5"
                   >
-                    <RotateCcw className="w-4 h-4" />
-                    Try again
+                    <RotateCcw className="w-3.5 h-3.5" />
+                    Retry
                   </button>
                   <button
                     type="button"
                     onClick={nextElocutionChallenge}
-                    className="flex-1 rounded-full bg-[#d96b43] text-white px-6 py-3.5 text-[15px] sm:text-base font-semibold shadow-[0_8px_28px_-8px_rgba(217,107,67,0.7)] hover:brightness-110 active:scale-95 transition cursor-pointer flex items-center justify-center gap-2"
+                    className="flex-1 rounded-full bg-[#d96b43] text-white px-5 py-2.5 text-xs sm:text-[13px] font-semibold shadow-[0_4px_16px_-4px_rgba(217,107,67,0.6)] hover:brightness-110 active:scale-95 transition cursor-pointer flex items-center justify-center gap-1.5"
                   >
-                    Next challenge →
+                    Next →
                   </button>
                 </>
               )}
@@ -864,10 +883,10 @@ export default function ArticulateClient() {
               <button
                 type="button"
                 onClick={() => setSettingsOpen(true)}
-                className="w-12 h-12 shrink-0 rounded-full border border-white/15 text-fg/50 hover:text-fg hover:bg-white/[0.06] transition flex items-center justify-center cursor-pointer"
+                className="w-9 h-9 shrink-0 rounded-full border border-white/15 text-fg/50 hover:text-fg hover:bg-white/[0.06] transition flex items-center justify-center cursor-pointer"
                 title="Timer Settings"
               >
-                <Settings2 className="w-5 h-5" />
+                <Settings2 className="w-4 h-4" />
               </button>
             </div>
           </div>

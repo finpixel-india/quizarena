@@ -1,6 +1,5 @@
 import { expandedMath } from "./expandedMath";
 import { expandedScience } from "./expandedScience";
-import { expandedSst } from "./expandedSst";
 import { englishNotes9 } from "./english9";
 import { englishNotes10 } from "./english10";
 import { englishNotesComp } from "./englishComp";
@@ -28,7 +27,7 @@ function deepen(notes: ChapterNote[], subject: NotesSubjectId, extra: Record<str
 }
 
 const scienceNotes = deepen([...notes9, ...notes10], "science", expandedScience);
-const sstNotes = deepen([...sstNotes9, ...sstNotes10], "sst", expandedSst);
+const sstNotes = deepen([...sstNotes9, ...sstNotes10], "sst");
 const mathsNotes = deepen([...mathNotes9, ...mathNotes10], "math", expandedMath);
 const englishNotes = deepen([...englishNotes9, ...englishNotes10, ...englishNotesComp], "english");
 const hindiNotes = deepen([...hindiNotes9, ...hindiNotes10, ...hindiNotesComp], "hindi");

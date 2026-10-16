@@ -37,6 +37,12 @@ const DISPLAY_CATEGORIES: { id: ArticulateCategory; label: string; emoji: string
   { id: "curveballs",  label: "Curveballs",   emoji: "🎲" },
 ];
 
+const DIFFICULTIES: { id: ElocutionDifficulty; label: string; dot: string }[] = [
+  { id: "easy",   label: "Easy",   dot: "bg-emerald-400" },
+  { id: "medium", label: "Medium", dot: "bg-amber-400" },
+  { id: "hard",   label: "Hard",   dot: "bg-rose-400" },
+];
+
 /* ─── Settings ───────────────────────────────────────────────────────────── */
 interface Settings { speechMinutes: number; researchMinutes: number; muteSounds: boolean; }
 const DEFAULT_SETTINGS: Settings = { speechMinutes: 1, researchMinutes: 5, muteSounds: false };
@@ -238,12 +244,14 @@ export default function ArticulateClient() {
   const [category, setCategory] = useState<ArticulateCategory>("all");
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [elocutionCatOpen, setElocutionCatOpen] = useState(false);
+  const [elocutionDiffOpen, setElocutionDiffOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [hasSpun, setHasSpun] = useState(false);
 
-  /* Ref for outside click on category dropdowns */
+  /* Ref for outside click on dropdowns */
   const catRef = useRef<HTMLDivElement>(null);
   const elocutionCatRef = useRef<HTMLDivElement>(null);
+  const elocutionDiffRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (catRef.current && !catRef.current.contains(e.target as Node)) {
@@ -252,12 +260,15 @@ export default function ArticulateClient() {
       if (elocutionCatRef.current && !elocutionCatRef.current.contains(e.target as Node)) {
         setElocutionCatOpen(false);
       }
+      if (elocutionDiffRef.current && !elocutionDiffRef.current.contains(e.target as Node)) {
+        setElocutionDiffOpen(false);
+      }
     }
-    if (categoryOpen || elocutionCatOpen) {
+    if (categoryOpen || elocutionCatOpen || elocutionDiffOpen) {
       document.addEventListener("mousedown", handleClickOutside);
       return () => document.removeEventListener("mousedown", handleClickOutside);
     }
-  }, [categoryOpen, elocutionCatOpen]);
+  }, [categoryOpen, elocutionCatOpen, elocutionDiffOpen]);
 
   /* Prompt pool */
   const pool = useMemo(() => {
@@ -360,6 +371,7 @@ export default function ArticulateClient() {
 
   const handleSelectElocutionDifficulty = (d: ElocutionDifficulty) => {
     setElocutionDifficulty(d);
+    setElocutionDiffOpen(false);
     resetStopwatch();
     const pool = ELOCUTION_ITEMS.filter((x) => x.type === elocutionType && x.difficulty === d);
     const candidates = pool.length > 0 ? pool : ELOCUTION_ITEMS.filter((x) => x.difficulty === d);
@@ -538,6 +550,7 @@ export default function ArticulateClient() {
     setModeKey((k) => k + 1);
     setCategoryOpen(false);
     setElocutionCatOpen(false);
+    setElocutionDiffOpen(false);
     resetStopwatch();
 
     if (m === "elocution") {
@@ -578,7 +591,7 @@ export default function ArticulateClient() {
   const activeElocutionType = ELOCUTION_TYPES.find((t) => t.id === elocutionType) ?? ELOCUTION_TYPES[0];
 
   return (
-    <div className="relative flex flex-1 flex-col items-center justify-center w-full h-[calc(100dvh-4rem)] max-h-[calc(100dvh-4rem)] overflow-hidden select-none">
+    <div className="relative flex flex-col justify-between items-center w-full h-[calc(100dvh-4rem)] max-h-[calc(100dvh-4rem)] overflow-hidden select-none px-4 sm:px-6 pt-6 sm:pt-9 pb-8 sm:pb-12">
 
       {/* ── Atmospheric glows ── */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
@@ -586,15 +599,18 @@ export default function ArticulateClient() {
         <div className="absolute -right-24 top-0 h-[60vh] w-[50vw] rounded-full [background:radial-gradient(ellipse_at_center,rgba(217,107,67,0.12),transparent_70%)]" />
       </div>
 
-      {/* ── Main Centered Stack (Symmetric & strictly fits in viewport with zero scroll) ── */}
-      <div className="flex flex-col items-center w-full max-w-[580px] mx-auto px-4 sm:px-6 py-2 sm:py-4 flex-1 justify-center text-center">
+      {/* ════════════════════════════════════════════════════════════════════════
+          ZONE 1: TOP SECTION (Header, Mode Switcher, Category Dropdowns)
+          Anchored at top — Height locked across all modes so NOTHING jumps!
+         ════════════════════════════════════════════════════════════════════════ */}
+      <div className="w-full max-w-xl flex flex-col items-center shrink-0 text-center">
 
         {/* ─── HEADER ─── */}
         <div className="text-center mb-3 sm:mb-4">
-          <h1 className="font-serif text-[2.2rem] sm:text-[2.8rem] font-normal tracking-tight text-fg leading-none">
+          <h1 className="font-serif text-[2.4rem] sm:text-[3rem] font-normal tracking-tight text-fg leading-none">
             Articulate
           </h1>
-          <div className="flex items-center justify-center gap-1.5 mt-1.5 text-xs text-muted">
+          <div className="flex items-center justify-center gap-1.5 mt-2 text-xs text-muted">
             <span>made by</span>
             <a
               href="https://instagram.com/ur.spideey"
@@ -608,39 +624,44 @@ export default function ArticulateClient() {
           </div>
         </div>
 
-        {/* ─── MODE TOGGLE & FILTERS ─── */}
-        <div className="relative z-30 flex flex-col items-center w-full mb-2">
-          <div className="inline-flex p-1 rounded-full border border-white/[0.1] bg-white/[0.04] max-w-full overflow-x-auto scrollbar-none">
-            {ARTICULATE_MODES.map((m) => {
-              const active = mode === m.id;
-              return (
-                <button
-                  key={m.id}
-                  type="button"
-                  onClick={() => switchMode(m.id)}
-                  className={cn(
-                    "flex items-center gap-2 rounded-full px-4 py-2 sm:px-5 sm:py-2 text-[13px] sm:text-[14px] font-semibold transition-all duration-300 cursor-pointer whitespace-nowrap",
-                    active ? "bg-[#d96b43] text-white shadow-[0_2px_16px_-4px_rgba(217,107,67,0.7)]" : "text-fg/45 hover:text-fg/70",
-                  )}
-                >
-                  <span className={cn(
-                    "w-2 h-2 rounded-full shrink-0 transition-all duration-300",
-                    active ? m.dot : "bg-current opacity-40"
-                  )} />
-                  {m.label}
-                </button>
-              );
-            })}
-          </div>
+        {/* ─── MODE TOGGLE ─── */}
+        <div className="relative z-30 inline-flex p-1 rounded-full border border-white/[0.1] bg-white/[0.04] max-w-full overflow-x-auto scrollbar-none">
+          {ARTICULATE_MODES.map((m) => {
+            const active = mode === m.id;
+            return (
+              <button
+                key={m.id}
+                type="button"
+                onClick={() => switchMode(m.id)}
+                className={cn(
+                  "flex items-center gap-2 rounded-full px-4 py-2 sm:px-5 sm:py-2 text-[13px] sm:text-[14px] font-semibold transition-all duration-300 cursor-pointer whitespace-nowrap",
+                  active ? "bg-[#d96b43] text-white shadow-[0_2px_16px_-4px_rgba(217,107,67,0.7)]" : "text-fg/45 hover:text-fg/70",
+                )}
+              >
+                <span className={cn(
+                  "w-2 h-2 rounded-full shrink-0 transition-all duration-300",
+                  active ? m.dot : "bg-current opacity-40"
+                )} />
+                {m.label}
+              </button>
+            );
+          })}
+        </div>
 
+        {/* ─── CATEGORY & FILTERS (Fixed 42px row height across all modes) ─── */}
+        <div className="h-11 flex items-center justify-center mt-3.5 sm:mt-4 w-full">
           {mode === "elocution" ? (
-            /* ── Elocution Category Dropdown & Difficulty Selector ── */
-            <div className="flex flex-col items-center w-full max-w-[260px] mt-3">
-              <div ref={elocutionCatRef} className="relative w-full">
+            /* Elocution: Side-by-side Category and Difficulty Dropdowns */
+            <div className="flex items-center justify-center gap-2.5">
+              {/* Category Dropdown */}
+              <div ref={elocutionCatRef} className="relative">
                 <button
                   type="button"
-                  onClick={() => setElocutionCatOpen((v) => !v)}
-                  className="flex items-center justify-between w-full gap-2 rounded-full border border-white/[0.12] bg-white/[0.04] px-4 py-2 text-[14px] font-medium text-fg hover:bg-white/[0.08] transition cursor-pointer"
+                  onClick={() => {
+                    setElocutionCatOpen((v) => !v);
+                    setElocutionDiffOpen(false);
+                  }}
+                  className="flex items-center justify-between gap-2 rounded-full border border-white/[0.12] bg-white/[0.04] px-4 py-2 text-[14px] font-medium text-fg hover:bg-white/[0.08] transition cursor-pointer min-w-[170px]"
                 >
                   <span className="flex items-center gap-2">
                     <span className="text-base leading-none">{activeElocutionType.emoji}</span>
@@ -655,62 +676,88 @@ export default function ArticulateClient() {
 
                 {elocutionCatOpen && (
                   <div
-                    className="absolute left-0 right-0 top-full mt-1.5 z-50 rounded-2xl border border-white/[0.12] p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-2xl animate-fade-in"
+                    className="absolute left-0 top-full mt-1.5 z-50 rounded-2xl border border-white/[0.12] p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-2xl animate-fade-in min-w-[180px]"
                     style={{ background: "rgba(22, 18, 15, 0.97)" }}
                   >
                     <div className="space-y-0.5">
-                      {ELOCUTION_TYPES.map((t) => {
-                        const isActive = elocutionType === t.id;
-                        return (
-                          <button
-                            key={t.id}
-                            type="button"
-                            onClick={() => {
-                              handleSelectElocutionType(t.id);
-                              setElocutionCatOpen(false);
-                            }}
-                            className={cn(
-                              "flex items-center w-full gap-2.5 px-3 py-2 rounded-xl text-[14px] transition cursor-pointer text-left",
-                              isActive
-                                ? "bg-white/[0.1] text-fg font-medium"
-                                : "text-fg/60 hover:text-fg hover:bg-white/[0.05]"
-                            )}
-                          >
-                            <span className="text-base w-5 text-center shrink-0 leading-none">{t.emoji}</span>
-                            <span>{t.label}</span>
-                          </button>
-                        );
-                      })}
+                      {ELOCUTION_TYPES.map((t) => (
+                        <button
+                          key={t.id}
+                          type="button"
+                          onClick={() => {
+                            handleSelectElocutionType(t.id);
+                            setElocutionCatOpen(false);
+                          }}
+                          className={cn(
+                            "flex items-center w-full gap-2.5 px-3 py-2 rounded-xl text-[14px] transition cursor-pointer text-left",
+                            elocutionType === t.id
+                              ? "bg-white/[0.1] text-fg font-medium"
+                              : "text-fg/60 hover:text-fg hover:bg-white/[0.05]"
+                          )}
+                        >
+                          <span className="text-base w-5 text-center shrink-0 leading-none">{t.emoji}</span>
+                          <span>{t.label}</span>
+                        </button>
+                      ))}
                     </div>
                   </div>
                 )}
               </div>
 
-              {/* Symmetrical Difficulty Segment */}
-              <div className="inline-flex items-center p-0.5 mt-2 rounded-full border border-white/[0.08] bg-white/[0.03]">
-                {(["easy", "medium", "hard"] as ElocutionDifficulty[]).map((d) => {
-                  const active = elocutionDifficulty === d;
-                  const dot = d === "easy" ? "bg-emerald-400" : d === "medium" ? "bg-amber-400" : "bg-rose-400";
-                  return (
-                    <button
-                      key={d}
-                      type="button"
-                      onClick={() => handleSelectElocutionDifficulty(d)}
-                      className={cn(
-                        "flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium transition cursor-pointer capitalize",
-                        active ? "bg-white/[0.14] text-fg font-semibold shadow-sm" : "text-fg/45 hover:text-fg/75"
-                      )}
-                    >
-                      <span className={cn("w-1.5 h-1.5 rounded-full shrink-0", dot)} />
-                      <span>{d}</span>
-                    </button>
-                  );
-                })}
+              {/* Difficulty Dropdown */}
+              <div ref={elocutionDiffRef} className="relative">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setElocutionDiffOpen((v) => !v);
+                    setElocutionCatOpen(false);
+                  }}
+                  className="flex items-center justify-between gap-2 rounded-full border border-white/[0.12] bg-white/[0.04] px-3.5 py-2 text-[14px] font-medium text-fg hover:bg-white/[0.08] transition cursor-pointer min-w-[115px]"
+                >
+                  <span className="flex items-center gap-2">
+                    <span className={cn(
+                      "w-2 h-2 rounded-full shrink-0",
+                      elocutionDifficulty === "easy" ? "bg-emerald-400" : elocutionDifficulty === "medium" ? "bg-amber-400" : "bg-rose-400"
+                    )} />
+                    <span className="capitalize">{elocutionDifficulty}</span>
+                  </span>
+                  {elocutionDiffOpen ? (
+                    <ChevronUp className="w-4 h-4 text-muted shrink-0" />
+                  ) : (
+                    <ChevronDown className="w-4 h-4 text-muted shrink-0" />
+                  )}
+                </button>
+
+                {elocutionDiffOpen && (
+                  <div
+                    className="absolute right-0 top-full mt-1.5 z-50 rounded-2xl border border-white/[0.12] p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-2xl animate-fade-in min-w-[130px]"
+                    style={{ background: "rgba(22, 18, 15, 0.97)" }}
+                  >
+                    <div className="space-y-0.5">
+                      {DIFFICULTIES.map((d) => (
+                        <button
+                          key={d.id}
+                          type="button"
+                          onClick={() => handleSelectElocutionDifficulty(d.id)}
+                          className={cn(
+                            "flex items-center w-full gap-2.5 px-3 py-2 rounded-xl text-[14px] transition cursor-pointer text-left capitalize",
+                            elocutionDifficulty === d.id
+                              ? "bg-white/[0.1] text-fg font-medium"
+                              : "text-fg/60 hover:text-fg hover:bg-white/[0.05]"
+                          )}
+                        >
+                          <span className={cn("w-2 h-2 rounded-full shrink-0", d.dot)} />
+                          <span>{d.label}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           ) : (
-            /* ── Category Selector with Native Outside-Click Handling ── */
-            <div ref={catRef} className="relative mt-3 w-full max-w-[260px]">
+            /* Off-the-cuff / Deep-research Category */
+            <div ref={catRef} className="relative w-full max-w-[260px]">
               <button
                 type="button"
                 onClick={() => setCategoryOpen((v) => !v)}
@@ -729,86 +776,100 @@ export default function ArticulateClient() {
                   style={{ background: "rgba(22, 18, 15, 0.97)" }}
                 >
                   <div className="space-y-0.5 max-h-60 overflow-y-auto overscroll-contain scrollbar-none">
-                    {DISPLAY_CATEGORIES.map((cat) => {
-                      const isActive = category === cat.id;
-                      return (
-                        <button
-                          key={cat.id}
-                          type="button"
-                          onClick={() => handleSelectCategory(cat.id)}
-                          className={cn(
-                            "flex items-center w-full gap-2.5 px-3 py-2 rounded-xl text-[14px] transition cursor-pointer text-left",
-                            isActive ? "bg-white/[0.1] text-fg font-medium" : "text-fg/60 hover:text-fg hover:bg-white/[0.05]"
-                          )}
-                        >
-                          <span className="text-base w-5 text-center shrink-0 leading-none">{cat.emoji}</span>
-                          <span>{cat.label}</span>
-                        </button>
-                      );
-                    })}
+                    {DISPLAY_CATEGORIES.map((cat) => (
+                      <button
+                        key={cat.id}
+                        type="button"
+                        onClick={() => handleSelectCategory(cat.id)}
+                        className={cn(
+                          "flex items-center w-full gap-2.5 px-3 py-2 rounded-xl text-[14px] transition cursor-pointer text-left",
+                          category === cat.id ? "bg-white/[0.1] text-fg font-medium" : "text-fg/60 hover:text-fg hover:bg-white/[0.05]"
+                        )}
+                      >
+                        <span className="text-base w-5 text-center shrink-0 leading-none">{cat.emoji}</span>
+                        <span>{cat.label}</span>
+                      </button>
+                    ))}
                   </div>
                 </div>
               )}
             </div>
           )}
         </div>
+      </div>
 
+      {/* ════════════════════════════════════════════════════════════════════════
+          ZONE 2: CENTER STAGE (Topic Title or Elocution Sentence)
+          Floats comfortably in visual center with generous, spacious air
+         ════════════════════════════════════════════════════════════════════════ */}
+      <div className="w-full max-w-3xl flex-1 flex flex-col items-center justify-center my-auto px-4 text-center">
         {mode === "elocution" ? (
-          /* ─── ELOCUTION STAGE (Height-locked, Open Typography, Zero Layout Shift) ─── */
-          <div className="relative z-10 w-full max-w-[560px] my-2 flex flex-col items-center justify-center text-center animate-fade-in">
-            {/* Sentence: Pure floating typography (NO card border / NO window box / Fixed height) */}
-            <div className="w-full px-2 sm:px-4 h-[120px] sm:h-[140px] flex items-center justify-center">
-              <p
-                key={elocutionKey}
-                className="font-serif text-lg sm:text-xl md:text-[1.35rem] font-normal leading-[1.45] tracking-[-0.01em] text-fg/95 select-text animate-prompt-land max-w-[42ch] sm:max-w-[46ch] mx-auto text-balance line-clamp-4"
-              >
-                &ldquo;{currentElocutionItem.text}&rdquo;
-              </p>
-            </div>
+          <div className="w-full py-4 animate-fade-in flex items-center justify-center">
+            <p
+              key={elocutionKey}
+              className="font-serif text-xl sm:text-2xl md:text-[1.85rem] font-normal leading-[1.45] tracking-[-0.01em] text-fg/95 select-text animate-prompt-land max-w-[36ch] sm:max-w-[42ch] mx-auto text-balance"
+            >
+              &ldquo;{currentElocutionItem.text}&rdquo;
+            </p>
+          </div>
+        ) : (
+          <div className="w-full py-4 animate-fade-in flex flex-col items-center justify-center">
+            <span className="text-[11px] sm:text-xs font-mono font-bold tracking-[0.25em] text-[#d96b43]/90 uppercase mb-3">
+              READY
+            </span>
+            <h2
+              key={tickKey}
+              className={cn(
+                "font-serif font-normal text-fg leading-[1.1] tracking-[-0.015em] max-w-[16ch] mx-auto text-[2.6rem] sm:text-[3.6rem] md:text-[4.4rem]",
+                isSpinning ? "animate-slot-in" : "animate-prompt-land",
+              )}
+            >
+              {displayText || "\u00A0"}
+            </h2>
+          </div>
+        )}
+      </div>
 
-            {/* Stopwatch & Speed Stats (Fixed Height Container — Zero Layout Shift) */}
-            <div className="h-16 flex flex-col items-center justify-center my-1.5">
-              <div className="flex items-center justify-center gap-2 font-mono text-2xl sm:text-3xl font-semibold tabular-nums text-fg/85">
-                <span className="w-2.5 h-2.5 flex items-center justify-center">
-                  {stopwatchState === "running" ? (
-                    <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping" />
-                  ) : stopwatchState === "stopped" ? (
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                  ) : null}
-                </span>
-                <span className={cn(
-                  "transition-colors duration-200",
-                  stopwatchState === "running" ? "text-[#d96b43]" : stopwatchState === "stopped" ? "text-emerald-400" : "text-fg/40"
-                )}>
-                  {formatStopwatch(stopwatchElapsed)}
-                </span>
+      {/* ════════════════════════════════════════════════════════════════════════
+          ZONE 3: BOTTOM SECTION (Timer + Symmetrical Action Bar)
+          Anchored at bottom — Matches Unprompted styling with generous space!
+         ════════════════════════════════════════════════════════════════════════ */}
+      <div className="w-full max-w-xl flex flex-col items-center shrink-0">
+        {mode === "elocution" ? (
+          <div className="w-full flex flex-col items-center animate-fade-in">
+            {/* Timer and WPM Badge */}
+            <div className="flex flex-col items-center justify-center mb-5 sm:mb-6">
+              <div className="flex items-center justify-center gap-2 font-mono text-3xl sm:text-4xl font-normal tabular-nums tracking-wide text-fg/90">
+                {stopwatchState === "running" && (
+                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping mr-1" />
+                )}
+                {formatStopwatch(stopwatchElapsed)}
               </div>
 
-              {/* Fixed height 20px for WPM stats so buttons NEVER displace */}
-              <div className="h-5 flex items-center justify-center mt-1">
+              {/* Reserved height (28px) for WPM stats badge so the buttons never jump */}
+              <div className="h-7 flex items-center justify-center mt-2">
                 {stopwatchState === "stopped" ? (
-                  <div className="flex items-center gap-2 animate-fade-in text-xs font-mono">
-                    <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-semibold text-[11px]">
-                      {elocutionWpm} WPM
-                    </span>
-                    <span className="text-muted text-[11px]">
-                      {elocutionWpm >= 220 ? "⚡ Lightning" : elocutionWpm >= 160 ? "🎯 Crisp" : elocutionWpm >= 110 ? "🧘 Measured" : "🐢 Deliberate"}
+                  <div className="flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.05] border border-white/[0.1] text-xs font-mono text-fg/80 animate-fade-in shadow-sm">
+                    <span className="text-[#d96b43] font-bold">{elocutionWpm} WPM</span>
+                    <span className="text-white/20">·</span>
+                    <span className="text-muted">
+                      {elocutionWpm >= 220 ? "⚡ Lightning Speed" : elocutionWpm >= 160 ? "🎯 Crisp & Articulate" : elocutionWpm >= 110 ? "🧘 Measured Cadence" : "🐢 Deliberate Pace"}
                     </span>
                   </div>
                 ) : null}
               </div>
             </div>
 
-            {/* Action buttons (Symmetrical & Fixed Slots — START & STOP NEVER DISPLACE) */}
-            <div className="flex items-center justify-center gap-2 sm:gap-2.5 w-full max-w-[340px] h-10">
+            {/* Action Buttons (Generous, Symmetrical, Fixed Slots) */}
+            <div className="flex items-center justify-center gap-3 sm:gap-4 w-full max-w-[440px] h-12">
               {/* Slot 1: Primary Stopwatch Control (Start / Stop / Retry) */}
               {stopwatchState === "idle" && (
                 <button
                   type="button"
                   onClick={startStopwatch}
-                  className="flex-1 max-w-[140px] h-10 rounded-full bg-[#d96b43] text-white px-4 text-xs sm:text-[13px] font-semibold shadow-[0_4px_16px_-4px_rgba(217,107,67,0.6)] hover:brightness-110 active:scale-95 transition cursor-pointer flex items-center justify-center gap-1.5 whitespace-nowrap"
+                  className="min-w-[120px] sm:min-w-[130px] h-12 rounded-full bg-[#d96b43] text-white px-6 text-sm sm:text-[15px] font-semibold shadow-[0_4px_20px_-4px_rgba(217,107,67,0.5)] hover:brightness-110 active:scale-95 transition cursor-pointer flex items-center justify-center gap-2 whitespace-nowrap"
                 >
-                  <Play className="w-3.5 h-3.5 fill-current" />
+                  <Play className="w-4 h-4 fill-current" />
                   Start
                 </button>
               )}
@@ -816,9 +877,9 @@ export default function ArticulateClient() {
                 <button
                   type="button"
                   onClick={stopStopwatch}
-                  className="flex-1 max-w-[140px] h-10 rounded-full bg-rose-600 hover:bg-rose-500 text-white px-4 text-xs sm:text-[13px] font-semibold shadow-[0_4px_16px_-4px_rgba(225,29,72,0.6)] active:scale-95 transition cursor-pointer flex items-center justify-center gap-1.5 animate-pulse whitespace-nowrap"
+                  className="min-w-[120px] sm:min-w-[130px] h-12 rounded-full bg-rose-600 hover:bg-rose-500 text-white px-6 text-sm sm:text-[15px] font-semibold shadow-[0_4px_20px_-4px_rgba(225,29,72,0.5)] active:scale-95 transition cursor-pointer flex items-center justify-center gap-2 animate-pulse whitespace-nowrap"
                 >
-                  <Square className="w-3.5 h-3.5 fill-current" />
+                  <Square className="w-4 h-4 fill-current" />
                   Stop
                 </button>
               )}
@@ -826,9 +887,9 @@ export default function ArticulateClient() {
                 <button
                   type="button"
                   onClick={resetStopwatch}
-                  className="flex-1 max-w-[140px] h-10 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-4 text-xs sm:text-[13px] font-medium transition active:scale-95 cursor-pointer flex items-center justify-center gap-1.5 whitespace-nowrap"
+                  className="min-w-[120px] sm:min-w-[130px] h-12 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-6 text-sm sm:text-[15px] font-medium transition active:scale-95 cursor-pointer flex items-center justify-center gap-2 whitespace-nowrap"
                 >
-                  <RotateCcw className="w-3.5 h-3.5" />
+                  <RotateCcw className="w-4 h-4" />
                   Retry
                 </button>
               )}
@@ -839,22 +900,22 @@ export default function ArticulateClient() {
                 onClick={nextElocutionChallenge}
                 disabled={stopwatchState === "running"}
                 className={cn(
-                  "flex-1 max-w-[140px] h-10 rounded-full text-xs sm:text-[13px] font-medium transition active:scale-95 flex items-center justify-center gap-1 whitespace-nowrap",
+                  "min-w-[165px] sm:min-w-[185px] h-12 rounded-full text-sm sm:text-[15px] transition active:scale-95 flex items-center justify-center gap-1.5 px-6 whitespace-nowrap",
                   stopwatchState === "stopped"
-                    ? "bg-[#d96b43] text-white font-semibold shadow-[0_4px_16px_-4px_rgba(217,107,67,0.6)] hover:brightness-110 cursor-pointer"
+                    ? "bg-[#d96b43] text-white font-semibold shadow-[0_4px_20px_-4px_rgba(217,107,67,0.5)] hover:brightness-110 cursor-pointer"
                     : stopwatchState === "running"
-                    ? "border border-white/10 bg-white/[0.02] text-fg/30 cursor-not-allowed"
-                    : "border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg cursor-pointer"
+                    ? "border border-white/10 bg-white/[0.02] text-fg/30 cursor-not-allowed font-medium"
+                    : "border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg font-medium cursor-pointer"
                 )}
               >
-                Next {stopwatchState === "stopped" ? "→" : ""}
+                Next challenge {stopwatchState === "stopped" ? "→" : ""}
               </button>
 
-              {/* Slot 3: Settings Gear (Fixed Position) */}
+              {/* Slot 3: Settings Gear */}
               <button
                 type="button"
                 onClick={() => setSettingsOpen(true)}
-                className="w-10 h-10 shrink-0 rounded-full border border-white/15 text-fg/50 hover:text-fg hover:bg-white/[0.06] transition flex items-center justify-center cursor-pointer"
+                className="w-12 h-12 shrink-0 rounded-full border border-white/15 text-fg/50 hover:text-fg hover:bg-white/[0.06] transition flex items-center justify-center cursor-pointer"
                 title="Timer Settings"
               >
                 <Settings2 className="w-4 h-4" />
@@ -862,65 +923,46 @@ export default function ArticulateClient() {
             </div>
           </div>
         ) : (
-          /* ─── PROMPT STAGE & ACTION BAR FOR OFF-THE-CUFF & DEEP-RESEARCH ─── */
-          <div className="relative z-10 w-full max-w-[560px] my-2 flex flex-col items-center justify-center text-center animate-fade-in">
-            {/* Title Display (Height locked, pure text, NO VOCAB PROMPT label, NO quote subtitle) */}
-            <div className="w-full px-2 sm:px-4 h-[120px] sm:h-[140px] flex items-center justify-center overflow-hidden">
-              <h2
-                key={tickKey}
-                className={cn(
-                  "font-serif font-normal text-fg leading-[1.12] tracking-[-0.015em] max-w-[20ch] mx-auto text-[2.2rem] sm:text-[3rem] md:text-[3.4rem] line-clamp-2",
-                  isSpinning ? "animate-slot-in" : "animate-prompt-land",
-                )}
-              >
-                {displayText || "\u00A0"}
-              </h2>
-            </div>
+          /* Off-the-cuff / Deep-research Action Bar */
+          <div className="flex items-center justify-center gap-3 sm:gap-4 w-full max-w-[440px] h-12 animate-fade-in">
+            {/* Slot 1: Spin */}
+            <button
+              type="button"
+              onClick={doSpin}
+              disabled={isSpinning}
+              className="min-w-[120px] sm:min-w-[130px] h-12 rounded-full bg-[#d96b43] text-white px-6 text-sm sm:text-[15px] font-semibold shadow-[0_4px_20px_-4px_rgba(217,107,67,0.5)] hover:brightness-110 active:scale-95 transition disabled:opacity-40 cursor-pointer whitespace-nowrap text-center flex items-center justify-center"
+            >
+              {hasSpun ? "Spin again" : "Spin"}
+            </button>
 
-            {/* Spacer to match Elocution's timer height (64px) for 100% stable layout between modes */}
-            <div className="h-16 my-1.5" />
-
-            {/* ─── ACTION BAR (Identical 3-Slot Symmetry) ─── */}
-            <div className="flex items-center justify-center gap-2 sm:gap-2.5 w-full max-w-[340px] h-10">
-              {/* Slot 1: Spin */}
+            {/* Slot 2: Start Timer / Research */}
+            {mode === "off-the-cuff" ? (
               <button
                 type="button"
-                onClick={doSpin}
-                disabled={isSpinning}
-                className="flex-1 max-w-[140px] h-10 rounded-full bg-[#d96b43] text-white px-4 text-xs sm:text-[13px] font-semibold shadow-[0_4px_16px_-4px_rgba(217,107,67,0.6)] hover:brightness-110 active:scale-95 transition disabled:opacity-40 cursor-pointer whitespace-nowrap text-center flex items-center justify-center"
+                onClick={startOffTheCuff}
+                className="min-w-[165px] sm:min-w-[185px] h-12 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-6 text-sm sm:text-[15px] font-semibold transition active:scale-95 cursor-pointer whitespace-nowrap text-center flex items-center justify-center"
               >
-                {hasSpun ? "Spin again" : "Spin"}
+                Start {settings.speechMinutes}m timer
               </button>
-
-              {/* Slot 2: Start Timer / Research */}
-              {mode === "off-the-cuff" ? (
-                <button
-                  type="button"
-                  onClick={startOffTheCuff}
-                  className="flex-1 max-w-[140px] h-10 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-3 text-xs sm:text-[13px] font-semibold transition active:scale-95 cursor-pointer whitespace-nowrap text-center flex items-center justify-center"
-                >
-                  Start {settings.speechMinutes}m timer
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  onClick={startDeepResearch}
-                  className="flex-1 max-w-[140px] h-10 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-3 text-xs sm:text-[13px] font-semibold transition active:scale-95 cursor-pointer whitespace-nowrap text-center flex items-center justify-center"
-                >
-                  Start {settings.researchMinutes}m research
-                </button>
-              )}
-
-              {/* Slot 3: Settings Gear */}
+            ) : (
               <button
                 type="button"
-                onClick={() => setSettingsOpen(true)}
-                className="w-10 h-10 shrink-0 rounded-full border border-white/15 text-fg/50 hover:text-fg hover:bg-white/[0.06] transition flex items-center justify-center cursor-pointer"
-                title="Timer Settings"
+                onClick={startDeepResearch}
+                className="min-w-[165px] sm:min-w-[185px] h-12 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-6 text-sm sm:text-[15px] font-semibold transition active:scale-95 cursor-pointer whitespace-nowrap text-center flex items-center justify-center"
               >
-                <Settings2 className="w-4 h-4" />
+                Start {settings.researchMinutes}m research
               </button>
-            </div>
+            )}
+
+            {/* Slot 3: Settings Gear */}
+            <button
+              type="button"
+              onClick={() => setSettingsOpen(true)}
+              className="w-12 h-12 shrink-0 rounded-full border border-white/15 text-fg/50 hover:text-fg hover:bg-white/[0.06] transition flex items-center justify-center cursor-pointer"
+              title="Timer Settings"
+            >
+              <Settings2 className="w-4 h-4" />
+            </button>
           </div>
         )}
       </div>

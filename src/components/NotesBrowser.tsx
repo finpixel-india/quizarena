@@ -252,7 +252,7 @@ function QuestionCard({
               {isHindi ? `प्रश्न ${pad2(Number(q.num) || 0) || q.num}` : `Q${pad2(Number(q.num) || 0) || q.num}`}
             </span>
           ) : null}
-          <span className="font-mono text-[10.5px] uppercase tracking-wider text-subtle">
+          <span className="font-mono text-xs sm:text-[10.5px] uppercase tracking-wider text-subtle">
             {q.type === "mcq"
               ? (isHindi ? "बहुविकल्पी" : "Multiple Choice")
               : (isHindi ? "लघु-उत्तर / अभ्यास" : "Practice Question")}
@@ -310,7 +310,7 @@ function QuestionCard({
               >
                 <span
                   className={cn(
-                    "inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border font-mono text-xs font-bold transition mt-0.5",
+                    "inline-flex h-6.5 w-6.5 sm:h-6 sm:w-6 shrink-0 items-center justify-center rounded-full border font-mono text-[13px] sm:text-xs font-bold transition mt-0.5",
                     isSelected && hasValidation
                       ? isOptionCorrect
                         ? "border-emerald-500 bg-emerald-500 text-white"
@@ -324,7 +324,7 @@ function QuestionCard({
                 >
                   {opt.key}
                 </span>
-                <span className="text-sm sm:text-[15px] leading-snug flex-1">
+                <span className="text-[14.5px] sm:text-[15px] leading-relaxed sm:leading-snug flex-1">
                   <Rich text={opt.text} />
                 </span>
                 {isSelected && hasValidation ? (
@@ -346,7 +346,7 @@ function QuestionCard({
 
       {/* Explanation for MCQ after selection */}
       {isSelected && ans?.explanation ? (
-        <div className="mt-4 rounded-xl border border-line-2 bg-fg/[0.03] p-4 text-xs sm:text-sm animate-fade-in">
+        <div className="mt-4 rounded-xl border border-line-2 bg-fg/[0.03] p-4 text-sm sm:text-sm animate-fade-in">
           <p className="font-semibold text-fg flex items-center gap-2 mb-1.5">
             <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" />
             <span>{isHindi ? "व्याख्या व व्याकरणिक नियम:" : "Verified Explanation & Rationale:"}</span>
@@ -364,9 +364,9 @@ function QuestionCard({
             <button
               type="button"
               onClick={() => setShowScratch((v) => !v)}
-              className="inline-flex items-center gap-1.5 text-xs font-medium text-subtle hover:text-brand-ink transition"
+              className="inline-flex items-center gap-1.5 text-sm sm:text-xs font-medium text-subtle hover:text-brand-ink transition"
             >
-              <PenLine className="h-3.5 w-3.5" />
+              <PenLine className="h-4 w-4 sm:h-3.5 sm:w-3.5" />
               {showScratch
                 ? (isHindi ? "रफ़ नोट छिपाएँ" : "Hide scratchpad")
                 : scratch
@@ -378,9 +378,9 @@ function QuestionCard({
               <button
                 type="button"
                 onClick={() => setShowSolution((v) => !v)}
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-ink hover:underline transition"
+                className="inline-flex items-center gap-1.5 text-sm sm:text-xs font-semibold text-brand-ink hover:underline transition"
               >
-                <HelpCircle className="h-3.5 w-3.5" />
+                <HelpCircle className="h-4 w-4 sm:h-3.5 sm:w-3.5" />
                 {showSolution
                   ? (isHindi ? "समाधान व व्याख्या छिपाएँ" : "Hide solution")
                   : (isHindi ? "समाधान व व्याख्या देखें" : "View verified solution")}
@@ -395,7 +395,7 @@ function QuestionCard({
                 onChange={(e) => onChangeScratch(e.target.value)}
                 placeholder={isHindi ? "यहाँ अपना उत्तर, विग्रह, या नियम लिखकर स्वयं जाँचें..." : "Type your answer, code, or reasoning here to practice..."}
                 rows={2}
-                className="w-full resize-y rounded-xl border border-line bg-fg/[0.02] p-3 text-xs sm:text-sm text-fg outline-none placeholder:text-subtle focus:border-brand/70"
+                className="w-full resize-y rounded-xl border border-line bg-fg/[0.02] p-3.5 sm:p-3 text-sm sm:text-sm text-fg outline-none placeholder:text-subtle focus:border-brand/70"
               />
             </div>
           ) : scratch ? (
@@ -403,7 +403,7 @@ function QuestionCard({
           ) : null}
 
           {showSolution && (ans?.solution || ans?.explanation) ? (
-            <div className="rounded-xl border border-line-2 bg-fg/[0.03] p-4 text-xs sm:text-sm animate-fade-in">
+            <div className="rounded-xl border border-line-2 bg-fg/[0.03] p-4 text-sm sm:text-sm animate-fade-in">
               <p className="font-semibold text-fg flex items-center gap-2 mb-1.5">
                 <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" />
                 <span>{isHindi ? "मानक उत्तर / समाधान संकेत:" : "Verified Solution / Answer Key:"}</span>
@@ -497,12 +497,12 @@ function AbhyasArena({ chapter }: { chapter: NoteChapter }) {
             </span>
           ) : null}
           {stats.correct > 0 ? (
-            <span className="inline-flex items-center gap-1 rounded-md border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 font-mono text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+            <span className="inline-flex items-center gap-1 rounded-md border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-1 font-mono text-xs font-semibold text-emerald-600 dark:text-emerald-400">
               ✓ {isHindi ? "सही:" : "Correct:"} {stats.correct}
             </span>
           ) : null}
           {stats.incorrect > 0 ? (
-            <span className="inline-flex items-center gap-1 rounded-md border border-rose-500/20 bg-rose-500/10 px-2 py-0.5 font-mono text-xs font-semibold text-rose-600 dark:text-rose-400">
+            <span className="inline-flex items-center gap-1 rounded-md border border-rose-500/20 bg-rose-500/10 px-2.5 py-1 font-mono text-xs font-semibold text-rose-600 dark:text-rose-400">
               ✗ {isHindi ? "गलत:" : "Incorrect:"} {stats.incorrect}
             </span>
           ) : null}
@@ -515,7 +515,7 @@ function AbhyasArena({ chapter }: { chapter: NoteChapter }) {
               setSelectedAnswers({});
               setScratchNotes({});
             }}
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-subtle hover:text-brand-ink transition"
+            className="inline-flex items-center gap-1.5 text-sm sm:text-xs font-semibold text-subtle hover:text-brand-ink transition"
           >
             <RotateCcw className="h-3.5 w-3.5" /> {isHindi ? "सारे उत्तर रीसेट करें" : "Reset answers"}
           </button>
@@ -529,7 +529,7 @@ function AbhyasArena({ chapter }: { chapter: NoteChapter }) {
             type="button"
             onClick={() => setActiveSectionIdx("all")}
             className={cn(
-              "rounded-full border px-3.5 py-1.5 text-xs font-semibold transition",
+              "rounded-full border px-4 py-2 sm:px-3.5 sm:py-1.5 text-sm sm:text-xs font-semibold transition",
               activeSectionIdx === "all"
                 ? "border-brand bg-brand/[0.1] text-fg glow"
                 : "border-line text-muted hover:border-line-2 hover:text-fg"
@@ -543,7 +543,7 @@ function AbhyasArena({ chapter }: { chapter: NoteChapter }) {
               type="button"
               onClick={() => setActiveSectionIdx(s.index)}
               className={cn(
-                "rounded-full border px-3.5 py-1.5 text-xs font-semibold transition",
+                "rounded-full border px-4 py-2 sm:px-3.5 sm:py-1.5 text-sm sm:text-xs font-semibold transition",
                 activeSectionIdx === s.index
                   ? "border-brand bg-brand/[0.1] text-fg glow"
                   : "border-line text-muted hover:border-line-2 hover:text-fg"
@@ -566,10 +566,10 @@ function AbhyasArena({ chapter }: { chapter: NoteChapter }) {
 
             {/* Instruction Callout */}
             {sec.instructions.length ? (
-              <div className="rounded-xl border border-brand/30 bg-brand/[0.05] p-4 text-xs sm:text-sm text-fg">
+              <div className="rounded-xl border border-brand/30 bg-brand/[0.05] p-4 text-sm sm:text-sm text-fg">
                 {sec.instructions.map((inst, ii) => (
                   <p key={ii} className="flex items-start gap-2 leading-relaxed">
-                    <span className="font-mono font-bold text-brand-ink">{isHindi ? "निर्देश:" : "Instructions:"}</span>
+                    <span className="font-mono font-bold text-sm sm:text-xs text-brand-ink">{isHindi ? "निर्देश:" : "Instructions:"}</span>
                     <span><Rich text={inst} /></span>
                   </p>
                 ))}
@@ -641,10 +641,10 @@ function SectionBlock({ index, section, chapterId }: { index: number; section: N
       {isSectionAbhyas && parsed && hasMcqs ? (
         <div className="mt-5 space-y-4">
           {parsed.instructions.length ? (
-            <div className="rounded-xl border border-brand/30 bg-brand/[0.05] p-4 text-xs sm:text-sm text-fg">
+            <div className="rounded-xl border border-brand/30 bg-brand/[0.05] p-4 text-sm sm:text-sm text-fg">
               {parsed.instructions.map((inst, ii) => (
                 <p key={ii} className="flex items-start gap-2 leading-relaxed">
-                  <span className="font-mono font-bold text-brand-ink">{isHindi ? "निर्देश:" : "Instructions:"}</span>
+                  <span className="font-mono font-bold text-sm sm:text-xs text-brand-ink">{isHindi ? "निर्देश:" : "Instructions:"}</span>
                   <span><Rich text={inst} /></span>
                 </p>
               ))}
@@ -677,8 +677,8 @@ function SectionBlock({ index, section, chapterId }: { index: number; section: N
           {section.points?.length ? (
             <ul className="mt-4 sm:mt-5 space-y-2.5 sm:space-y-3.5">
               {section.points.map((p, i) => (
-                <li key={i} className="flex gap-2.5 sm:gap-3.5 text-sm leading-7 text-muted sm:text-[17px] sm:leading-8">
-                  <span className="mt-2.5 sm:mt-3.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand/80" aria-hidden="true" />
+                <li key={i} className="flex gap-2.5 sm:gap-3.5 text-[15px] leading-relaxed text-muted sm:text-[17px] sm:leading-8">
+                  <span className="mt-2 sm:mt-3.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand/80" aria-hidden="true" />
                   <span><Rich text={p} /></span>
                 </li>
               ))}
@@ -687,18 +687,18 @@ function SectionBlock({ index, section, chapterId }: { index: number; section: N
 
           {section.formula?.length ? (
             <div className="mt-5 overflow-x-auto rounded-xl sm:rounded-2xl border border-line bg-fg/[0.03] p-4 sm:p-6">
-              <p className="mb-2 sm:mb-3 flex items-center gap-2 font-mono text-[10px] sm:text-[10.5px] uppercase tracking-[0.16em] text-subtle"><Sigma className="h-3.5 w-3.5 text-brand-ink" /> Formula / derivation</p>
-              <pre className="font-mono text-[13px] leading-6 text-fg sm:text-[15px] sm:leading-7">{section.formula.join("\n")}</pre>
+              <p className="mb-2 sm:mb-3 flex items-center gap-2 font-mono text-xs sm:text-[10.5px] uppercase tracking-[0.16em] text-subtle"><Sigma className="h-4 w-4 sm:h-3.5 sm:w-3.5 text-brand-ink" /> Formula / derivation</p>
+              <pre className="font-mono text-sm leading-relaxed text-fg sm:text-[15px] sm:leading-7">{section.formula.join("\n")}</pre>
             </div>
           ) : null}
 
           {section.table ? (
             <div className="mt-5 overflow-x-auto rounded-xl sm:rounded-2xl border border-line">
-              <table className="w-full min-w-[32rem] sm:min-w-[38rem] border-collapse text-left text-xs sm:text-sm">
-                <thead><tr className="bg-fg/[0.04]">{section.table.head.map((h) => <th key={h} className="border-b border-line px-3.5 py-3 sm:px-5 sm:py-4 font-mono text-[10px] sm:text-[10.5px] uppercase tracking-[0.14em] text-subtle">{h}</th>)}</tr></thead>
+              <table className="w-full min-w-[32rem] sm:min-w-[38rem] border-collapse text-left text-[13.5px] sm:text-sm">
+                <thead><tr className="bg-fg/[0.04]">{section.table.head.map((h) => <th key={h} className="border-b border-line px-3.5 py-3 sm:px-5 sm:py-4 font-mono text-xs sm:text-[10.5px] uppercase tracking-[0.14em] text-subtle">{h}</th>)}</tr></thead>
                 <tbody>{section.table.rows.map((row, ri) => (
                   <tr key={ri} className="align-top even:bg-fg/[0.02]">
-                    {row.map((cell, ci) => <td key={ci} className={cn("border-b border-line px-3.5 py-3 sm:px-5 sm:py-4 leading-5 sm:leading-6", ci === 0 ? "font-medium text-fg" : "text-muted")}><Rich text={cell} /></td>)}
+                    {row.map((cell, ci) => <td key={ci} className={cn("border-b border-line px-3.5 py-3 sm:px-5 sm:py-4 leading-relaxed sm:leading-6", ci === 0 ? "font-medium text-fg" : "text-muted")}><Rich text={cell} /></td>)}
                   </tr>
                 ))}</tbody>
               </table>
@@ -708,7 +708,7 @@ function SectionBlock({ index, section, chapterId }: { index: number; section: N
           {section.tip ? (
             <div className="mt-5 flex gap-3 rounded-xl sm:rounded-2xl border border-brand/35 bg-brand/[0.07] p-4 sm:p-5">
               <Lightbulb className="mt-0.5 h-4 w-4 shrink-0 text-brand-ink" />
-              <p className="text-sm sm:text-[15px] leading-6 sm:leading-7 text-fg"><span className="font-mono text-[10px] sm:text-[10.5px] uppercase tracking-[0.16em] text-brand-ink">Remember · </span><Rich text={section.tip} /></p>
+              <p className="text-[15px] sm:text-[15px] leading-relaxed sm:leading-7 text-fg"><span className="font-mono text-xs sm:text-[10.5px] uppercase tracking-[0.16em] text-brand-ink">Remember · </span><Rich text={section.tip} /></p>
             </div>
           ) : null}
         </>
@@ -740,8 +740,8 @@ function SubjectPicker({ subject, onSubject }: { subject: NotesSubjectId; onSubj
             <SubjectGlyph id={s.id} active={active} />
             <span className="min-w-0 flex-1">
               <span className="block text-base sm:text-lg font-bold tracking-tight text-fg">{s.name}</span>
-              <span className="mt-0.5 sm:mt-1 block text-xs sm:text-sm text-muted truncate">{s.tagline}</span>
-              <span className="mt-1 sm:mt-2 block font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.14em] text-subtle">{count} chapters</span>
+              <span className="mt-0.5 sm:mt-1 block text-sm sm:text-sm text-muted truncate">{s.tagline}</span>
+              <span className="mt-1 sm:mt-2 block font-mono text-xs sm:text-[11px] uppercase tracking-[0.14em] text-subtle">{count} chapters</span>
             </span>
           </button>
         );
@@ -764,14 +764,14 @@ function ChapterGrid({ chapters, onSelect }: { chapters: NoteChapter[]; onSelect
         <section key={group.unit}>
           <div className="mb-4 flex items-center gap-3">
             <span className="h-1.5 w-1.5 rounded-full bg-brand" />
-            <h3 className="font-mono text-[11px] uppercase tracking-[0.16em] text-subtle">{group.unit}</h3>
+            <h3 className="font-mono text-xs sm:text-[11px] uppercase tracking-[0.16em] text-subtle">{group.unit}</h3>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
             {group.chapters.map((ch) => (
               <button key={ch.id} type="button" onClick={() => onSelect(ch.id)} className="group flex min-h-44 flex-col items-start rounded-2xl border border-line bg-card p-6 text-left transition hover:-translate-y-0.5 hover:border-brand/60 hover:bg-brand/[0.04] hover:shadow-[0_18px_40px_-26px_rgba(249,115,22,0.75)] sm:p-7">
-                <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-brand-ink">{ch.unit.split('·')[0].trim()}</span>
+                <span className="font-mono text-xs sm:text-[11px] font-semibold uppercase tracking-wider text-brand-ink">{ch.unit.split('·')[0].trim()}</span>
                 <span className="mt-4 text-xl font-bold leading-tight tracking-tight text-fg">{ch.title}</span>
-                <span className="mt-3 line-clamp-2 text-sm leading-relaxed text-muted">{ch.overview}</span>
+                <span className="mt-3 line-clamp-2 text-[14.5px] sm:text-sm leading-relaxed text-muted">{ch.overview}</span>
                 <span className="mt-auto flex items-center gap-2 pt-5 text-sm font-semibold text-brand-ink">Open notes <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" /></span>
               </button>
             ))}
@@ -868,7 +868,7 @@ export default function NotesBrowser() {
                       type="button"
                       onClick={() => chooseClass(c)}
                       className={cn(
-                        "rounded-full border px-4.5 py-2 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold transition",
+                        "rounded-full border px-4.5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-sm font-semibold transition",
                         active ? "border-brand bg-brand/[0.1] text-fg glow" : "border-line text-muted hover:border-line-2 hover:text-fg"
                       )}
                     >
@@ -879,7 +879,7 @@ export default function NotesBrowser() {
               </div>
             </div>
             <div className="w-full sm:w-72">
-              <label className="flex items-center gap-2.5 rounded-xl border border-line bg-fg/[0.03] px-3.5 py-2.5 sm:px-4 sm:py-3 focus-within:border-brand/70"><Search className="h-4 w-4 text-subtle" /><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search a chapter" className="w-full bg-transparent text-xs sm:text-sm text-fg outline-none placeholder:text-subtle" /></label>
+              <label className="flex items-center gap-2.5 rounded-xl border border-line bg-fg/[0.03] px-4 py-3 sm:px-4 sm:py-3 focus-within:border-brand/70"><Search className="h-4 w-4 text-subtle shrink-0" /><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search a chapter" className="w-full bg-transparent text-sm sm:text-sm text-fg outline-none placeholder:text-subtle" /></label>
             </div>
           </div>
 
@@ -950,10 +950,10 @@ export default function NotesBrowser() {
         <div className="flex flex-wrap items-center justify-between gap-3">
           <button type="button" onClick={backToLibrary} className={cn(btn.ghost, "-ml-3")}><ArrowLeft className="h-4 w-4" /> All {levelLabel} {subjectName} notes</button>
           <div className="relative">
-            <button type="button" onClick={() => setJumpOpen((v) => !v)} className="inline-flex items-center gap-2 rounded-xl border border-line px-4 py-2 text-sm font-medium text-fg hover:border-line-2"><span className="h-2 w-2 rounded-full bg-brand shrink-0" /><span className="max-w-48 truncate">{selected.title}</span><ChevronDown className={cn("h-4 w-4 text-subtle transition", jumpOpen && "rotate-180")} /></button>
+            <button type="button" onClick={() => setJumpOpen((v) => !v)} className="inline-flex items-center gap-2 rounded-xl border border-line px-4 py-2.5 sm:py-2 text-sm font-medium text-fg hover:border-line-2"><span className="h-2 w-2 rounded-full bg-brand shrink-0" /><span className="max-w-48 truncate">{selected.title}</span><ChevronDown className={cn("h-4 w-4 text-subtle transition", jumpOpen && "rotate-180")} /></button>
             {jumpOpen ? (
               <div className="absolute right-0 top-full z-20 mt-2 max-h-80 w-80 overflow-y-auto rounded-2xl border border-line bg-surface p-2 card-shadow">
-                {chapters.map((ch) => <button key={ch.id} type="button" onClick={() => { openChapter(ch.id); setJumpOpen(false); }} className={cn("flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm transition", ch.id === selected.id ? "bg-brand/[0.1] text-fg" : "text-muted hover:bg-fg/[0.05] hover:text-fg")}><span className="h-1.5 w-1.5 rounded-full bg-brand shrink-0" /><span className="truncate">{ch.title}</span></button>)}
+                {chapters.map((ch) => <button key={ch.id} type="button" onClick={() => { openChapter(ch.id); setJumpOpen(false); }} className={cn("flex w-full items-center gap-3 rounded-xl px-3.5 py-3 sm:px-3 sm:py-2.5 text-left text-sm transition", ch.id === selected.id ? "bg-brand/[0.1] text-fg" : "text-muted hover:bg-fg/[0.05] hover:text-fg")}><span className="h-1.5 w-1.5 rounded-full bg-brand shrink-0" /><span className="truncate">{ch.title}</span></button>)}
               </div>
             ) : null}
           </div>
@@ -970,9 +970,9 @@ export default function NotesBrowser() {
             {diagram ? <Badge><ImageIcon className="h-3.5 w-3.5 text-brand-ink" /> Labelled diagram</Badge> : null}
           </div>
           <h1 className="mt-6 text-4xl font-extrabold leading-[1] tracking-tight text-fg sm:text-5xl lg:text-6xl">{selected.title}</h1>
-          <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.16em] text-subtle">{selected.unit}</p>
+          <p className="mt-4 font-mono text-xs sm:text-[11px] uppercase tracking-[0.16em] text-subtle">{selected.unit}</p>
           <p className="mt-7 max-w-3xl text-lg leading-8 text-muted sm:text-xl">{selected.overview}</p>
-          <dl className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-4">{meta.map((m) => <div key={m.k} className="bg-bg px-5 py-4"><dt className="font-mono text-[10px] uppercase tracking-[0.16em] text-subtle">{m.k}</dt><dd className="mt-1 font-mono text-xl font-semibold text-fg tabular-nums">{m.v}</dd></div>)}</dl>
+          <dl className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-4">{meta.map((m) => <div key={m.k} className="bg-bg px-5 py-4"><dt className="font-mono text-xs sm:text-[10px] uppercase tracking-[0.16em] text-subtle">{m.k}</dt><dd className="mt-1 font-mono text-xl font-semibold text-fg tabular-nums">{m.v}</dd></div>)}</dl>
         </header>
 
         {diagram ? <div className="mt-10"><DiagramFrame entry={diagram} index={selected.chapterNo} /></div> : null}
@@ -992,8 +992,8 @@ export default function NotesBrowser() {
         ) : null}
 
         <nav className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          {selectedIndex > 0 ? <button type="button" onClick={() => openChapter(chapters[selectedIndex - 1].id)} className={cn(btn.subtle, "justify-start text-left")}><ArrowLeft className="h-4 w-4 shrink-0" /><span><span className="block font-mono text-[10px] uppercase tracking-[0.16em] text-subtle">Previous</span><span className="block max-w-52 truncate">{chapters[selectedIndex - 1].title}</span></span></button> : <span />}
-          {selectedIndex < chapters.length - 1 ? <button type="button" onClick={() => openChapter(chapters[selectedIndex + 1].id)} className={cn(btn.subtle, "justify-end text-right")}><span><span className="block font-mono text-[10px] uppercase tracking-[0.16em] text-subtle">Next</span><span className="block max-w-52 truncate">{chapters[selectedIndex + 1].title}</span></span><ArrowRight className="h-4 w-4 shrink-0" /></button> : null}
+          {selectedIndex > 0 ? <button type="button" onClick={() => openChapter(chapters[selectedIndex - 1].id)} className={cn(btn.subtle, "justify-start text-left")}><ArrowLeft className="h-4 w-4 shrink-0" /><span><span className="block font-mono text-xs sm:text-[10px] uppercase tracking-[0.16em] text-subtle">Previous</span><span className="block max-w-52 truncate">{chapters[selectedIndex - 1].title}</span></span></button> : <span />}
+          {selectedIndex < chapters.length - 1 ? <button type="button" onClick={() => openChapter(chapters[selectedIndex + 1].id)} className={cn(btn.subtle, "justify-end text-right")}><span><span className="block font-mono text-xs sm:text-[10px] uppercase tracking-[0.16em] text-subtle">Next</span><span className="block max-w-52 truncate">{chapters[selectedIndex + 1].title}</span></span><ArrowRight className="h-4 w-4 shrink-0" /></button> : null}
         </nav>
 
         {subject === "science" || subject === "sst" ? <Card className="mt-10 flex flex-col items-start gap-4 p-6 sm:flex-row sm:items-center sm:justify-between"><div><p className="flex items-center gap-2 font-semibold text-fg"><ListChecks className="h-4 w-4 text-brand-ink" /> Finished revising?</p><p className="mt-1 text-sm text-muted">Test this chapter with a short practice quiz.</p></div><button type="button" onClick={() => router.push(`/quiz?topic=${quizTopicFor(selected)}&n=10&t=30&tm=per-question&d=any&src=bank&h=3`)} className={btn.primary}>Practise this chapter <ArrowRight className="h-4 w-4" /></button></Card> : null}

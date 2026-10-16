@@ -8,26 +8,27 @@ import { getDiagram } from "@/components/notes";
 import { Badge, Card, Container, Label, btn } from "@/components/ui";
 import { NOTES_COUNTS, NOTES_SUBJECTS, notesByClass, searchChapters, type ClassLevel, type NoteChapter, type NotesSubjectId } from "@/data/notes";
 import { HINDI_ANSWERS } from "@/data/notes/hindiAnswers";
+import { IT_ANSWERS } from "@/data/notes/itAnswers";
 import { cn, pad2 } from "@/lib/format";
 
 function normalizeKey(k?: string): string {
   if (!k) return "";
-  const trimmed = k.trim();
+  const trimmed = k.trim().toUpperCase();
   const map: Record<string, string> = {
-    A: "क",
-    B: "ख",
-    C: "ग",
-    D: "घ",
-    a: "क",
-    b: "ख",
-    c: "ग",
-    d: "घ",
-    "1": "क",
-    "2": "ख",
-    "3": "ग",
-    "4": "घ",
+    "क": "A",
+    "ख": "B",
+    "ग": "C",
+    "घ": "D",
+    "1": "A",
+    "2": "B",
+    "3": "C",
+    "4": "D",
+    "TRUE": "A",
+    "FALSE": "B",
+    "T": "A",
+    "F": "B",
   };
-  return map[trimmed] || trimmed;
+  return map[k.trim()] || map[trimmed] || trimmed;
 }
 
 /* ------------------------------ text with **bold** ------------------------------ */
@@ -45,9 +46,29 @@ interface ParsedQuestion {
   options?: Array<{ key: string; text: string }>;
 }
 
-function parseAbhyasPoints(points: string[] = []): { instructions: string[]; questions: ParsedQuestion[] } {
+function extractOptions(str: string): Array<{ key: string; text: string }> {
+  if (!str) return [];
+  // Pattern 1: (क) ... (ख) ... or (A) ... (B) ...
+  if (/\([क-घA-Da-d1-4]\)/.test(str)) {
+    const matches = [...str.matchAll(/\(([क-घA-Da-d1-4])\)\s*([^()]+)/g)];
+    if (matches.length >= 2) {
+      return matches.map((m) => ({ key: m[1], text: m[2].trim() }));
+    }
+  }
+  // Pattern 2: A. ... B. ... or A. ... · B. ...
+  if (/(?:^|\s{2,}|\s+[·•]\s+|\n)\s*[A-D]\.\s+/.test(str)) {
+    const matches = [...str.matchAll(/(?:^|\s{2,}|\s+[·•]\s+|\n)\s*([A-D])\.\s+([\s\S]+?)(?=(?:\s{2,}|\s+[·•]\s+|\n)\s*[A-D]\.|$)/g)];
+    if (matches.length >= 2) {
+      return matches.map((m) => ({ key: m[1], text: m[2].trim() }));
+    }
+  }
+  return [];
+}
+
+function parseAbhyasPoints(points: string[] = [], secTitle = ""): { instructions: string[]; questions: ParsedQuestion[] } {
   const instructions: string[] = [];
   const questions: ParsedQuestion[] = [];
+  const isTrueFalseSec = /true\s*(?:or|\/)\s*false/i.test(secTitle);
 
   for (let i = 0; i < points.length; i++) {
     const raw = points[i].trim();
@@ -58,7 +79,8 @@ function parseAbhyasPoints(points: string[] = []): { instructions: string[]; que
       raw.includes("उत्तरमाला") ||
       raw.includes("उत्तर देखें") ||
       raw.includes("<a id=") ||
-      raw.toLowerCase().includes("answer")
+      raw.toLowerCase().includes("answer key") ||
+      raw.toLowerCase().includes("consult the answer")
     ) {
       continue;
     }
@@ -70,64 +92,108 @@ function parseAbhyasPoints(points: string[] = []): { instructions: string[]; que
       raw.startsWith("**निर्देश") ||
       raw.startsWith("*समय-सुझाव") ||
       raw.startsWith("समय-सुझाव:") ||
-      raw.startsWith("**समय-सुझाव")
+      raw.startsWith("**समय-सुझाव") ||
+      raw.toLowerCase().startsWith("instructions:") ||
+      raw.toLowerCase().startsWith("choose the best answer") ||
+      raw.toLowerCase().startsWith("write **true** or **false**")
     ) {
       let inst = raw.replace(/^\*+|\*+$/g, "");
-      inst = inst.replace(/^(?:निर्देश|समय-सुझाव)[:\s*]*/, "").trim();
+      inst = inst.replace(/^(?:निर्देश|समय-सुझाव|Instructions)[:\s*]*/i, "").trim();
       instructions.push(inst || raw);
       continue;
     }
 
-    // Case 1: MCQ with options on same line: "1. प्रश्न? (क) ... (ख) ... (ग) ... (घ) ..."
-    if (/\([कA]\)/.test(raw) && /^\d+\./.test(raw)) {
-      const qNumMatch = raw.match(/^(\d+)\.\s*(.+?)(?=\s*\([कA]\))/);
-      if (qNumMatch) {
-        const qNum = qNumMatch[1];
-        const qText = qNumMatch[2].trim();
-        const optPart = raw.slice(qNumMatch[0].length);
-        const optMatches = [...optPart.matchAll(/\(([क-घA-D])\)\s*([^()]+)/g)];
-        const options = optMatches.map((m) => ({ key: m[1], text: m[2].trim() }));
+    // Match question: e.g. "**1. Question text?**", "**1.** Question text", or "1. Question text"
+    const qMatch = raw.match(/^(?:\*\*)?(\d+)\.(?:\*\*)?\s*(.+)$/);
+    if (qMatch) {
+      const qNum = qMatch[1];
+      let qText = qMatch[2].replace(/\*\*$/, "").trim();
+
+      // Case 1: options embedded inside the same line
+      const inlineOpts = extractOptions(qText);
+      if (inlineOpts.length >= 2) {
+        const optStart = qText.search(/\([क-घA-Da-d1-4]\)|(?:\s{2,}|\s+[·•]\s+)[A-D]\.\s+/);
+        if (optStart > 0) qText = qText.slice(0, optStart).trim();
         questions.push({
           id: `q-${qNum}-${i}`,
           num: qNum,
           text: qText,
-          options,
+          options: inlineOpts,
           type: "mcq",
         });
         continue;
       }
-    }
 
-    // Case 2: Numbered question, next line has options
-    const qMatch = raw.match(/^(\d+)\.\s*(.+)$/);
-    if (qMatch) {
-      const qNum = qMatch[1];
-      const qText = qMatch[2].trim();
-      const next = (points[i + 1] || "").trim();
-      if (next && (next.startsWith("(क)") || next.startsWith("(A)") || next.includes("(क)"))) {
-        const optMatches = [...next.matchAll(/\(([क-घA-D])\)\s*([^()]+)/g)];
-        const options = optMatches.map((m) => ({ key: m[1], text: m[2].trim() }));
+      // Case 2: options in next point (e.g. "A. ... B. ..." or "(क) ...")
+      const nextPoint = (points[i + 1] || "").trim();
+      const nextOpts = extractOptions(nextPoint);
+      if (nextOpts.length >= 2) {
         questions.push({
           id: `q-${qNum}-${i}`,
           num: qNum,
           text: qText,
-          options,
+          options: nextOpts,
           type: "mcq",
         });
         i++; // skip options line
         continue;
-      } else {
+      }
+
+      // Case 3: options spread across subsequent points (points[i+1] is A., points[i+2] is B., etc.)
+      if (
+        points[i + 1] && /^A\.\s+/.test(points[i + 1].trim()) &&
+        points[i + 2] && /^B\.\s+/.test(points[i + 2].trim())
+      ) {
+        const spreadOpts: Array<{ key: string; text: string }> = [];
+        let j = i + 1;
+        while (j < points.length && spreadOpts.length < 4) {
+          const optMatch = points[j].trim().match(/^([A-D])\.\s+(.+)$/);
+          if (optMatch) {
+            spreadOpts.push({ key: optMatch[1], text: optMatch[2].trim() });
+            j++;
+          } else {
+            break;
+          }
+        }
+        if (spreadOpts.length >= 2) {
+          questions.push({
+            id: `q-${qNum}-${i}`,
+            num: qNum,
+            text: qText,
+            options: spreadOpts,
+            type: "mcq",
+          });
+          i = j - 1;
+          continue;
+        }
+      }
+
+      // Case 4: True / False section
+      if (isTrueFalseSec) {
         questions.push({
           id: `q-${qNum}-${i}`,
           num: qNum,
           text: qText,
-          type: "text",
+          options: [
+            { key: "A", text: "True" },
+            { key: "B", text: "False" },
+          ],
+          type: "mcq",
         });
         continue;
       }
+
+      // Case 5: Text / Short answer
+      questions.push({
+        id: `q-${qNum}-${i}`,
+        num: qNum,
+        text: qText,
+        type: "text",
+      });
+      continue;
     }
 
-    // Case 3: Free-form question or prompt
+    // Case 6: Free-form question or prompt
     questions.push({
       id: `q-p-${i}`,
       text: raw,
@@ -156,7 +222,8 @@ function QuestionCard({
   const [showScratch, setShowScratch] = useState(false);
   const [showSolution, setShowSolution] = useState(false);
 
-  const ans = q.num ? HINDI_ANSWERS[`${chapterId}-${q.num}`] : undefined;
+  const isHindi = chapterId.startsWith("note-hi");
+  const ans = q.num ? (HINDI_ANSWERS[`${chapterId}-${q.num}`] || IT_ANSWERS[`${chapterId}-${q.num}`]) : undefined;
   const hasValidation = Boolean(ans?.correctKey);
   const isSelected = Boolean(selectedOpt);
   const isCorrect = hasValidation && isSelected ? normalizeKey(selectedOpt) === normalizeKey(ans?.correctKey) : false;
@@ -178,11 +245,13 @@ function QuestionCard({
         <div className="flex items-center gap-2">
           {q.num ? (
             <span className="inline-flex items-center rounded-lg border border-brand/40 bg-brand/10 px-2.5 py-0.5 font-mono text-xs font-bold text-brand-ink">
-              प्रश्न {pad2(Number(q.num) || 0) || q.num}
+              {isHindi ? `प्रश्न ${pad2(Number(q.num) || 0) || q.num}` : `Q${pad2(Number(q.num) || 0) || q.num}`}
             </span>
           ) : null}
           <span className="font-mono text-[10.5px] uppercase tracking-wider text-subtle">
-            {q.type === "mcq" ? "बहुविकल्पी" : "लघु-उत्तर / अभ्यास"}
+            {q.type === "mcq"
+              ? (isHindi ? "बहुविकल्पी" : "Multiple Choice")
+              : (isHindi ? "लघु-उत्तर / अभ्यास" : "Practice Question")}
           </span>
         </div>
 
@@ -190,16 +259,16 @@ function QuestionCard({
           hasValidation ? (
             isCorrect ? (
               <span className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400">
-                <CheckCircle2 className="h-4 w-4" /> सही उत्तर!
+                <CheckCircle2 className="h-4 w-4" /> {isHindi ? "सही उत्तर!" : "Correct!"}
               </span>
             ) : (
               <span className="inline-flex items-center gap-1.5 rounded-lg border border-rose-500/30 bg-rose-500/10 px-2.5 py-1 font-mono text-xs font-bold text-rose-600 dark:text-rose-400">
-                <XCircle className="h-4 w-4" /> गलत उत्तर (सही: {ans?.correctKey})
+                <XCircle className="h-4 w-4" /> {isHindi ? `गलत उत्तर (सही: ${ans?.correctKey})` : `Incorrect (Correct: ${ans?.correctKey})`}
               </span>
             )
           ) : (
             <span className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-brand-ink">
-              <CheckCircle2 className="h-4 w-4" /> विकल्प ({selectedOpt}) चुना गया
+              <CheckCircle2 className="h-4 w-4" /> {isHindi ? `विकल्प (${selectedOpt}) चुना गया` : `Option (${selectedOpt}) selected`}
             </span>
           )
         ) : null}
@@ -257,11 +326,11 @@ function QuestionCard({
                 {isSelected && hasValidation ? (
                   isOptionCorrect ? (
                     <span className="ml-auto inline-flex items-center gap-1 font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400 shrink-0">
-                      <Check className="h-3.5 w-3.5 stroke-[3]" /> सही
+                      <Check className="h-3.5 w-3.5 stroke-[3]" /> {isHindi ? "सही" : "Correct"}
                     </span>
                   ) : isChosen ? (
                     <span className="ml-auto inline-flex items-center gap-1 font-mono text-xs font-bold text-rose-600 dark:text-rose-400 shrink-0">
-                      <X className="h-3.5 w-3.5 stroke-[3]" /> गलत
+                      <X className="h-3.5 w-3.5 stroke-[3]" /> {isHindi ? "गलत" : "Incorrect"}
                     </span>
                   ) : null
                 ) : null}
@@ -276,7 +345,7 @@ function QuestionCard({
         <div className="mt-4 rounded-xl border border-line-2 bg-fg/[0.03] p-4 text-xs sm:text-sm animate-fade-in">
           <p className="font-semibold text-fg flex items-center gap-2 mb-1.5">
             <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" />
-            <span>व्याख्या व व्याकरणिक नियम:</span>
+            <span>{isHindi ? "व्याख्या व व्याकरणिक नियम:" : "Verified Explanation & Rationale:"}</span>
           </p>
           <div className="leading-relaxed text-muted pl-6">
             <Rich text={ans.explanation} />
@@ -294,7 +363,11 @@ function QuestionCard({
               className="inline-flex items-center gap-1.5 text-xs font-medium text-subtle hover:text-brand-ink transition"
             >
               <PenLine className="h-3.5 w-3.5" />
-              {showScratch ? "रफ़ नोट छिपाएँ" : scratch ? "रफ़ नोट देखें / बदलें" : "स्व-प्रयास रफ़ नोट (यहाँ लिखकर अभ्यास करें)"}
+              {showScratch
+                ? (isHindi ? "रफ़ नोट छिपाएँ" : "Hide scratchpad")
+                : scratch
+                ? (isHindi ? "रफ़ नोट देखें / बदलें" : "View / edit scratchpad")
+                : (isHindi ? "स्व-प्रयास रफ़ नोट (यहाँ लिखकर अभ्यास करें)" : "Self-practice scratchpad (type notes / code)")}
             </button>
 
             {ans?.solution || ans?.explanation ? (
@@ -304,7 +377,9 @@ function QuestionCard({
                 className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-ink hover:underline transition"
               >
                 <HelpCircle className="h-3.5 w-3.5" />
-                {showSolution ? "समाधान व व्याख्या छिपाएँ" : "समाधान व व्याख्या देखें"}
+                {showSolution
+                  ? (isHindi ? "समाधान व व्याख्या छिपाएँ" : "Hide solution")
+                  : (isHindi ? "समाधान व व्याख्या देखें" : "View verified solution")}
               </button>
             ) : null}
           </div>
@@ -314,20 +389,20 @@ function QuestionCard({
               <textarea
                 value={scratch || ""}
                 onChange={(e) => onChangeScratch(e.target.value)}
-                placeholder="यहाँ अपना उत्तर, विग्रह, या नियम लिखकर स्वयं जाँचें..."
+                placeholder={isHindi ? "यहाँ अपना उत्तर, विग्रह, या नियम लिखकर स्वयं जाँचें..." : "Type your answer, code, or reasoning here to practice..."}
                 rows={2}
                 className="w-full resize-y rounded-xl border border-line bg-fg/[0.02] p-3 text-xs sm:text-sm text-fg outline-none placeholder:text-subtle focus:border-brand/70"
               />
             </div>
           ) : scratch ? (
-            <p className="text-xs text-muted italic line-clamp-1">आपका नोट: {scratch}</p>
+            <p className="text-xs text-muted italic line-clamp-1">{isHindi ? "आपका नोट:" : "Your note:"} {scratch}</p>
           ) : null}
 
           {showSolution && (ans?.solution || ans?.explanation) ? (
             <div className="rounded-xl border border-line-2 bg-fg/[0.03] p-4 text-xs sm:text-sm animate-fade-in">
               <p className="font-semibold text-fg flex items-center gap-2 mb-1.5">
                 <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" />
-                <span>मानक उत्तर / समाधान संकेत:</span>
+                <span>{isHindi ? "मानक उत्तर / समाधान संकेत:" : "Verified Solution / Answer Key:"}</span>
               </p>
               <div className="leading-relaxed text-muted pl-6">
                 <Rich text={ans.solution || ans.explanation || ""} />
@@ -345,11 +420,13 @@ function AbhyasArena({ chapter }: { chapter: NoteChapter }) {
   const [scratchNotes, setScratchNotes] = useState<Record<string, string>>({});
   const [activeSectionIdx, setActiveSectionIdx] = useState<number | "all">("all");
 
+  const isHindi = chapter.id.startsWith("note-hi");
+
   const parsedSections = useMemo(() => {
     return chapter.sections.map((sec, idx) => ({
       index: idx,
       title: sec.title,
-      ...parseAbhyasPoints(sec.points || []),
+      ...parseAbhyasPoints(sec.points || [], sec.title),
       table: sec.table,
       tip: sec.tip,
     }));
@@ -369,7 +446,7 @@ function AbhyasArena({ chapter }: { chapter: NoteChapter }) {
       if (!optKey) continue;
       const q = allQuestions.find((item) => item.id === qId);
       if (!q || !q.num) continue;
-      const ans = HINDI_ANSWERS[`${chapter.id}-${q.num}`];
+      const ans = HINDI_ANSWERS[`${chapter.id}-${q.num}`] || IT_ANSWERS[`${chapter.id}-${q.num}`];
       if (ans?.correctKey) {
         if (normalizeKey(optKey) === normalizeKey(ans.correctKey)) {
           correct++;
@@ -392,24 +469,24 @@ function AbhyasArena({ chapter }: { chapter: NoteChapter }) {
       <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-line bg-fg/[0.02] p-4 sm:p-5">
         <div className="flex flex-wrap items-center gap-3">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-brand/40 bg-brand/10 px-3.5 py-1 font-mono text-xs font-semibold text-brand-ink">
-            <ListChecks className="h-3.5 w-3.5" /> अभ्यास मोड
+            <ListChecks className="h-3.5 w-3.5" /> {isHindi ? "अभ्यास मोड" : "Practice Arena"}
           </span>
           <span className="font-mono text-xs text-muted">
-            कुल प्रश्न: <strong className="text-fg">{totalQuestions}</strong>
+            {isHindi ? "कुल प्रश्न:" : "Total Questions:"} <strong className="text-fg">{totalQuestions}</strong>
           </span>
           {answeredCount > 0 ? (
             <span className="font-mono text-xs text-muted">
-              हल किए गए: <strong className="text-fg">{answeredCount}</strong> / {totalQuestions}
+              {isHindi ? "हल किए गए:" : "Attempted:"} <strong className="text-fg">{answeredCount}</strong> / {totalQuestions}
             </span>
           ) : null}
           {stats.correct > 0 ? (
             <span className="inline-flex items-center gap-1 rounded-md border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 font-mono text-xs font-semibold text-emerald-600 dark:text-emerald-400">
-              ✓ सही: {stats.correct}
+              ✓ {isHindi ? "सही:" : "Correct:"} {stats.correct}
             </span>
           ) : null}
           {stats.incorrect > 0 ? (
             <span className="inline-flex items-center gap-1 rounded-md border border-rose-500/20 bg-rose-500/10 px-2 py-0.5 font-mono text-xs font-semibold text-rose-600 dark:text-rose-400">
-              ✗ गलत: {stats.incorrect}
+              ✗ {isHindi ? "गलत:" : "Incorrect:"} {stats.incorrect}
             </span>
           ) : null}
         </div>
@@ -423,7 +500,7 @@ function AbhyasArena({ chapter }: { chapter: NoteChapter }) {
             }}
             className="inline-flex items-center gap-1.5 text-xs font-semibold text-subtle hover:text-brand-ink transition"
           >
-            <RotateCcw className="h-3.5 w-3.5" /> सारे उत्तर रीसेट करें
+            <RotateCcw className="h-3.5 w-3.5" /> {isHindi ? "सारे उत्तर रीसेट करें" : "Reset answers"}
           </button>
         ) : null}
       </div>
@@ -441,7 +518,7 @@ function AbhyasArena({ chapter }: { chapter: NoteChapter }) {
                 : "border-line text-muted hover:border-line-2 hover:text-fg"
             )}
           >
-            सभी खंड ({totalQuestions})
+            {isHindi ? "सभी खंड" : "All Sections"} ({totalQuestions})
           </button>
           {parsedSections.map((s) => (
             <button
@@ -475,7 +552,7 @@ function AbhyasArena({ chapter }: { chapter: NoteChapter }) {
               <div className="rounded-xl border border-brand/30 bg-brand/[0.05] p-4 text-xs sm:text-sm text-fg">
                 {sec.instructions.map((inst, ii) => (
                   <p key={ii} className="flex items-start gap-2 leading-relaxed">
-                    <span className="font-mono font-bold text-brand-ink">निर्देश:</span>
+                    <span className="font-mono font-bold text-brand-ink">{isHindi ? "निर्देश:" : "Instructions:"}</span>
                     <span><Rich text={inst} /></span>
                   </p>
                 ))}
@@ -520,14 +597,20 @@ function SubjectGlyph({ id, active = false }: { id: NotesSubjectId; active?: boo
 }
 
 function SectionBlock({ index, section, chapterId }: { index: number; section: NoteChapter["sections"][number]; chapterId: string }) {
-  const isSectionAbhyas = section.title.includes("अभ्यास") || section.title.includes("स्व-जाँच");
+  const isSectionAbhyas =
+    section.title.includes("अभ्यास") ||
+    section.title.includes("स्व-जाँच") ||
+    section.title.toLowerCase().includes("practice") ||
+    section.title.toLowerCase().includes("questions");
   const [selectedAnswers, setSelectedAnswers] = useState<Record<string, string>>({});
   const [scratchNotes, setScratchNotes] = useState<Record<string, string>>({});
 
   const parsed = useMemo(() => {
     if (!isSectionAbhyas) return null;
-    return parseAbhyasPoints(section.points || []);
-  }, [isSectionAbhyas, section.points]);
+    return parseAbhyasPoints(section.points || [], section.title);
+  }, [isSectionAbhyas, section.points, section.title]);
+
+  const isHindi = chapterId.startsWith("note-hi");
 
   return (
     <section className="border-t border-line pt-8 first:border-t-0 first:pt-0 sm:pt-12">
@@ -687,8 +770,16 @@ export default function NotesBrowser() {
   const subject: NotesSubjectId =
     subjectFromUrl === "sst" || subjectFromUrl === "math" || subjectFromUrl === "english" || subjectFromUrl === "hindi" || subjectFromUrl === "it" ? subjectFromUrl : "science";
   const rawClass = sp.get("class");
-  const parsedClass: ClassLevel = rawClass === "10" ? 10 : rawClass === "competitive" ? "competitive" : 9;
-  const classLevel: ClassLevel = subject !== "hindi" && parsedClass === "competitive" ? 9 : parsedClass;
+  const parsedClass: ClassLevel =
+    rawClass === "10"
+      ? 10
+      : rawClass === "competitive"
+      ? "competitive"
+      : rawClass === "ai"
+      ? "ai"
+      : 9;
+  const validClasses = (NOTES_SUBJECTS.find((s) => s.id === subject)?.classes ?? [9, 10]) as ClassLevel[];
+  const classLevel: ClassLevel = validClasses.includes(parsedClass) ? parsedClass : 9;
   const chapterId = sp.get("chapter") ?? "";
   const [query, setQuery] = useState("");
   const [jumpOpen, setJumpOpen] = useState(false);
@@ -732,7 +823,7 @@ export default function NotesBrowser() {
           <div className="max-w-3xl">
             <Label>Study library</Label>
             <h1 className="mt-4 sm:mt-5 text-3xl font-extrabold uppercase leading-[1.05] tracking-tight text-fg sm:text-6xl lg:text-7xl">Notes that make<br /><span className="grad-text">revision simpler.</span></h1>
-            <p className="mt-4 sm:mt-6 max-w-2xl text-sm leading-relaxed text-muted sm:text-lg">Clear NCERT-aligned chapter notes for Class 9 and 10. Choose a subject, open a chapter, then revise the concepts, key terms, formulas and exam tips at your own pace.</p>
+            <p className="mt-4 sm:mt-6 max-w-2xl text-sm leading-relaxed text-muted sm:text-lg">Comprehensive chapter notes with key concepts, practical tables, verified problem solutions, and exam tips. Choose a subject and class level to start learning.</p>
           </div>
 
           <div className="mt-8 sm:mt-12">
@@ -746,7 +837,12 @@ export default function NotesBrowser() {
               <div className="mt-3 sm:mt-4 flex flex-wrap gap-2">
                 {((NOTES_SUBJECTS.find((s) => s.id === subject)?.classes ?? [9, 10]) as ClassLevel[]).map((c) => {
                   const active = c === classLevel;
-                  const label = c === "competitive" ? "Competitive (प्रतियोगी परीक्षा)" : `Class ${c}`;
+                  const label =
+                    c === "competitive"
+                      ? (subject === "it" ? "Competitive (CS & IT)" : "Competitive (प्रतियोगी परीक्षा)")
+                      : c === "ai"
+                      ? "Artificial Intelligence (AI)"
+                      : `Class ${c}`;
                   return (
                     <button
                       key={String(c)}
@@ -769,7 +865,17 @@ export default function NotesBrowser() {
           </div>
 
           <div className="mt-10">
-            <div className="mb-5 flex items-center justify-between"><h2 className="text-2xl font-bold tracking-tight text-fg sm:text-3xl">{classLevel === "competitive" ? "Competitive" : `Class ${classLevel}`} {NOTES_SUBJECTS.find((s) => s.id === subject)?.name}</h2><span className="font-mono text-xs uppercase tracking-[0.16em] text-subtle">{filtered.length} chapters</span></div>
+            <div className="mb-5 flex items-center justify-between">
+              <h2 className="text-2xl font-bold tracking-tight text-fg sm:text-3xl">
+                {classLevel === "competitive"
+                  ? (subject === "it" ? "Competitive CS & IT" : "Competitive Hindi")
+                  : classLevel === "ai"
+                  ? "Artificial Intelligence (AI)"
+                  : `Class ${classLevel}`}{" "}
+                {NOTES_SUBJECTS.find((s) => s.id === subject)?.name}
+              </h2>
+              <span className="font-mono text-xs uppercase tracking-[0.16em] text-subtle">{filtered.length} chapters</span>
+            </div>
             <ChapterGrid chapters={filtered} onSelect={openChapter} />
           </div>
 
@@ -778,7 +884,7 @@ export default function NotesBrowser() {
               { v: NOTES_COUNTS.chapters, k: "Chapters" },
               { v: NOTES_COUNTS.sections, k: "Concept sections" },
               { v: NOTES_COUNTS.diagrams, k: "Science diagrams" },
-              { v: "9, 10 & Comp", k: "Levels covered" },
+              { v: "9, 10, Comp & AI", k: "Levels covered" },
             ].map((m) => <div key={m.k} className="bg-bg px-6 py-6"><p className="grad-text font-mono text-3xl font-bold tabular-nums">{m.v}</p><p className="mt-2 font-mono text-[10px] uppercase tracking-[0.16em] text-subtle">{m.k}</p></div>)}
           </div>
         </div>
@@ -790,17 +896,27 @@ export default function NotesBrowser() {
   const isAbhyasChapter =
     selected.title.includes("अभ्यास") ||
     selected.title.includes("पुनरावृत्ति") ||
-    selected.unit.includes("अभ्यास");
+    selected.unit.includes("अभ्यास") ||
+    selected.title.toLowerCase().includes("practice") ||
+    selected.title.toLowerCase().includes("question bank") ||
+    selected.unit.toLowerCase().includes("practice");
+
+  const levelLabel =
+    selected.classLevel === "competitive"
+      ? (selected.subject === "it" ? "Competitive (CS & IT)" : "Competitive")
+      : selected.classLevel === "ai"
+      ? "Artificial Intelligence"
+      : `Class ${selected.classLevel}`;
 
   const meta = isAbhyasChapter
     ? [
-        { k: "Level", v: selected.classLevel === "competitive" ? "Competitive" : `Class ${selected.classLevel}` },
+        { k: "Level", v: levelLabel },
         { k: "Chapter", v: pad2(selected.chapterNo) },
         { k: "Sections", v: String(selected.sections.length) },
         { k: "Mode", v: "Self-Practice" },
       ]
     : [
-        { k: "Level", v: selected.classLevel === "competitive" ? "Competitive" : `Class ${selected.classLevel}` },
+        { k: "Level", v: levelLabel },
         { k: "Chapter", v: pad2(selected.chapterNo) },
         { k: "Sections", v: String(selected.sections.length) },
         { k: "Key terms", v: String(selected.keyTerms.length) },
@@ -811,7 +927,7 @@ export default function NotesBrowser() {
     <Container>
       <article className="mx-auto max-w-4xl animate-fade-in">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <button type="button" onClick={backToLibrary} className={cn(btn.ghost, "-ml-3")}><ArrowLeft className="h-4 w-4" /> All {classLevel === "competitive" ? "Competitive" : `Class ${classLevel}`} {subjectName} notes</button>
+          <button type="button" onClick={backToLibrary} className={cn(btn.ghost, "-ml-3")}><ArrowLeft className="h-4 w-4" /> All {levelLabel} {subjectName} notes</button>
           <div className="relative">
             <button type="button" onClick={() => setJumpOpen((v) => !v)} className="inline-flex items-center gap-2 rounded-xl border border-line px-4 py-2 text-sm font-medium text-fg hover:border-line-2"><span className="font-mono text-[11px] text-brand-ink">{pad2(selected.chapterNo)}</span><span className="max-w-40 truncate">{selected.title}</span><ChevronDown className={cn("h-4 w-4 text-subtle transition", jumpOpen && "rotate-180")} /></button>
             {jumpOpen ? (
@@ -826,10 +942,10 @@ export default function NotesBrowser() {
           <div className="flex flex-wrap items-center gap-2">
             <Badge tone="brand">
               {isAbhyasChapter ? <ListChecks className="h-3.5 w-3.5" /> : <BookOpen className="h-3.5 w-3.5" />}
-              {subjectName} · {isAbhyasChapter ? "स्व-मूल्यांकन एवं अभ्यास" : selected.classLevel === "competitive" ? "Competitive" : `Class ${selected.classLevel}`}
+              {subjectName} · {isAbhyasChapter ? (selected.subject === "hindi" ? "स्व-मूल्यांकन एवं अभ्यास" : "Practice & Self-Assessment") : levelLabel}
             </Badge>
             <Badge>Chapter {pad2(selected.chapterNo)}</Badge>
-            {isAbhyasChapter ? <Badge tone="neutral">इंटरैक्टिव अभ्यास मोड</Badge> : null}
+            {isAbhyasChapter ? <Badge tone="neutral">{selected.subject === "hindi" ? "इंटरैक्टिव अभ्यास मोड" : "Interactive Practice Mode"}</Badge> : null}
             {diagram ? <Badge><ImageIcon className="h-3.5 w-3.5 text-brand-ink" /> Labelled diagram</Badge> : null}
           </div>
           <h1 className="mt-6 text-4xl font-extrabold leading-[1] tracking-tight text-fg sm:text-5xl lg:text-6xl">{selected.title}</h1>

@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-export type ClassLevel = 9 | 10 | "competitive";
+export type ClassLevel = 9 | 10 | "competitive" | "ai";
 export type NotesSubjectId = "science" | "sst" | "math" | "english" | "hindi" | "it";
 
 export interface NoteTable {

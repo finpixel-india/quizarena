@@ -492,4 +492,289 @@ export const ENGLISH_ANSWERS: Record<string, EnglishAnswer> = {
     correctKey: "B",
     explanation: "In standard English, 'although' introduces a subordinate clause of concession and must not be paired with the coordinating conjunction 'but' in the main clause."
   }
+,
+
+  // ==========================================
+  // Competitive English Practice Arena (note-engcomp-41-1 to 70)
+  // ==========================================
+  "note-engcomp-41-1": {
+    "correctKey": "C",
+    "explanation": "With correlative conjunctions 'neither...nor', the verb agrees in number and person with the nearer subject ('assistants', which is plural, requiring 'were present')."
+  },
+  "note-engcomp-41-2": {
+    "correctKey": "A",
+    "explanation": "'Scenery' is an uncountable mass noun that never takes a plural form ('sceneries') and always takes a singular verb ('is')."
+  },
+  "note-engcomp-41-3": {
+    "correctKey": "C",
+    "explanation": "'Hardly' and 'scarcely' must be paired with 'when' (or 'before'), never 'than' (which belongs exclusively to 'no sooner')."
+  },
+  "note-engcomp-41-4": {
+    "correctKey": "B",
+    "explanation": "When the indefinite pronoun 'one' is used as the subject, every subsequent possessive reference must remain in the 'one' family ('one's duty'), never switching to 'his'."
+  },
+  "note-engcomp-41-5": {
+    "correctKey": "A",
+    "explanation": "Latin comparative adjectives ending in -or ('senior', 'junior', 'superior') take the preposition 'to', never 'than'. Also, when two coordinated adjectives require different prepositions, both must be stated: 'senior to and more experienced than'."
+  },
+  "note-engcomp-41-6": {
+    "correctKey": "B",
+    "explanation": "'Each of' is a singular distributive phrase requiring a singular finite verb ('has submitted') and a singular possessive ('her application')."
+  },
+  "note-engcomp-41-7": {
+    "correctKey": "C",
+    "explanation": "In 'one of those [plural noun] who...', the antecedent of the relative pronoun 'who' is the plural noun 'authors', which requires a plural verb ('who have gained')."
+  },
+  "note-engcomp-41-8": {
+    "correctKey": "C",
+    "explanation": "The correlative conjunction 'no sooner' requires 'than' to introduce the second clause, never 'when'."
+  },
+  "note-engcomp-41-9": {
+    "correctKey": "A",
+    "explanation": "'Unless' is already negative (meaning 'if not'). Introducing 'do not' creates a grammatically unacceptable double negative."
+  },
+  "note-engcomp-41-10": {
+    "correctKey": "B",
+    "explanation": "'The number of' designates a single numerical figure or statistical total and governs a singular verb ('has increased'), unlike 'a number of' which means several and takes a plural verb."
+  },
+  "note-engcomp-41-11": {
+    "correctKey": "C",
+    "explanation": "Universal scientific truths and astronomical realities remain in the simple present tense ('moves') even when introduced by a past reporting verb ('explained')."
+  },
+  "note-engcomp-41-12": {
+    "correctKey": "A",
+    "explanation": "'Despite' takes no preposition; writing 'despite of' is an error. Use either 'despite' or 'in spite of'."
+  },
+  "note-engcomp-41-13": {
+    "correctKey": "A",
+    "explanation": "'Supposing' and 'if' both introduce conditional clauses; using them together is redundant. Use either 'Supposing it rains' or 'If it rains'."
+  },
+  "note-engcomp-41-14": {
+    "correctKey": "C",
+    "explanation": "In the active voice, the causative verb 'make' is followed by a bare infinitive without 'to' ('made the student stand', not 'to stand')."
+  },
+  "note-engcomp-41-15": {
+    "correctKey": "A",
+    "explanation": "The preposition 'between' governs the objective (accusative) case. The pronoun must be 'me' ('between you and me'), not 'I'."
+  },
+  "note-engcomp-41-16": {
+    "correctKey": "C",
+    "explanation": "The time expression 'by this time next year' sets a future completion deadline, requiring the future perfect tense ('will have finished')."
+  },
+  "note-engcomp-41-17": {
+    "correctKey": "B",
+    "explanation": "In an inverted third conditional sentence ('Had the government intervened...'), the main consequence clause requires the perfect conditional ('would have been averted')."
+  },
+  "note-engcomp-41-18": {
+    "correctKey": "A",
+    "explanation": "The intransitive verb meaning 'to recline or rest horizontally' is 'lie' (past tense: 'lay', past participle: 'lain'). 'Laid' is the past tense of the transitive verb 'lay' (to place something down)."
+  },
+  "note-engcomp-41-19": {
+    "correctKey": "B",
+    "explanation": "To establish an institution or monument is 'found' (past: 'founded', past participle: 'founded'). 'Found' is the past tense of 'find' (to discover)."
+  },
+  "note-engcomp-41-20": {
+    "correctKey": "B",
+    "explanation": "The idiomatic construction 'It is high time' or 'It is time' is followed by a subject and a verb in the past simple (V2: 'started') to express that an action is overdue."
+  },
+  "note-engcomp-41-21": {
+    "correctKey": "B",
+    "explanation": "In hypothetical counter-factual conditions (second conditional), the past subjunctive 'were' is used for all persons and numbers ('If I were you')."
+  },
+  "note-engcomp-41-22": {
+    "correctKey": "C",
+    "explanation": "'By next December' marks a future point before which the duration will be completed, requiring the future perfect tense ('will have completed')."
+  },
+  "note-engcomp-41-23": {
+    "correctKey": "A",
+    "explanation": "When the clause after 'as though' describes a plausible, habitual state or attitude, the present indicative ('owns') is used."
+  },
+  "note-engcomp-41-24": {
+    "correctKey": "B",
+    "explanation": "Subordinate clauses after verbs of recommending, requesting, or demanding take the mandative present subjunctive, which uses the bare base form ('be passed', not 'is passed')."
+  },
+  "note-engcomp-41-25": {
+    "correctKey": "A",
+    "explanation": "In a Type 1 conditional sentence, the subordinate if-clause uses the simple present tense ('rains') to denote a real future possibility."
+  },
+  "note-engcomp-41-26": {
+    "correctKey": "B",
+    "explanation": "'Unless' introduces a conditional clause and is followed by the simple present tense ('pay') without 'will'."
+  },
+  "note-engcomp-41-27": {
+    "correctKey": "A",
+    "explanation": "Subordinate time clauses introduced by 'as soon as' use the simple present tense ('lands') to indicate future time."
+  },
+  "note-engcomp-41-28": {
+    "correctKey": "B",
+    "explanation": "Liquids flowing in a stream follow the verb 'flow' (past: 'flowed', past participle: 'flowed'). 'Overflown' is the past participle of 'fly' (birds/aircraft)."
+  },
+  "note-engcomp-41-29": {
+    "correctKey": "B",
+    "explanation": "The transitive verb meaning 'to cut down a tree' is 'fell' (past tense: 'felled'). 'Fell' is the past tense of the intransitive verb 'fall'."
+  },
+  "note-engcomp-41-30": {
+    "correctKey": "B",
+    "explanation": "When 'hang' refers to execution by suspension by the neck, its past participle is 'hanged'. 'Hung' is used for suspending clothes, pictures, or objects."
+  },
+  "note-engcomp-41-31": {
+    "correctKey": "A",
+    "explanation": "The presence of a single article ('The') before 'poet and philosopher' indicates that both titles belong to one identical person, requiring a singular verb ('is')."
+  },
+  "note-engcomp-41-32": {
+    "correctKey": "B",
+    "explanation": "The repetition of the definite article ('The poet and the philosopher') indicates two distinct individuals, requiring a plural verb ('have')."
+  },
+  "note-engcomp-41-33": {
+    "correctKey": "A",
+    "explanation": "When two singular nouns joined by 'and' represent a single composite meal or parcel concept ('bread and butter'), the subject is treated as singular ('is')."
+  },
+  "note-engcomp-41-34": {
+    "correctKey": "A",
+    "explanation": "Parenthetical connectors like 'as well as', 'along with', and 'together with' do not form compound subjects. The verb agrees strictly with the first subject ('The Vice-Chancellor', singular, hence 'has')."
+  },
+  "note-engcomp-41-35": {
+    "correctKey": "A",
+    "explanation": "'Nothing' is the singular grammatical head of the subject ('but' functions as a preposition meaning 'except'), requiring a singular verb ('was')."
+  },
+  "note-engcomp-41-36": {
+    "correctKey": "B",
+    "explanation": "The quantifier phrase 'a (large) number of + plural noun' means 'many' and takes a plural verb ('have arrived')."
+  },
+  "note-engcomp-41-37": {
+    "correctKey": "A",
+    "explanation": "'The number of + plural noun' designates the single numerical count or total and takes a singular verb ('has declined')."
+  },
+  "note-engcomp-41-38": {
+    "correctKey": "A",
+    "explanation": "Fractions and percentages agree with the noun following 'of': 'land' is an uncountable singular noun, requiring a singular verb ('is')."
+  },
+  "note-engcomp-41-39": {
+    "correctKey": "B",
+    "explanation": "When members of a collective noun act individually or are in disagreement ('divided in opinion'), the noun takes a plural verb ('are divided')."
+  },
+  "note-engcomp-41-40": {
+    "correctKey": "A",
+    "explanation": "Plural expressions of monetary sums, distances, or time periods viewed as a single composite unit take a singular verb ('is')."
+  },
+  "note-engcomp-41-41": {
+    "correctKey": "A",
+    "explanation": "The head noun of the subject is the singular collective noun 'bouquet', not the plural prepositional modifier 'of yellow orchids'. Therefore, the verb is singular ('was')."
+  },
+  "note-engcomp-41-42": {
+    "correctKey": "B",
+    "explanation": "'The + Adjective' ('The underprivileged') functions as a plural noun denoting an entire class of people and takes a plural verb ('require')."
+  },
+  "note-engcomp-41-43": {
+    "correctKey": "A",
+    "explanation": "The distributive construction 'many a + singular noun' takes a singular verb ('has perished')."
+  },
+  "note-engcomp-41-44": {
+    "correctKey": "B",
+    "explanation": "'Cattle' is an inherently plural noun that always governs a plural verb ('are grazing')."
+  },
+  "note-engcomp-41-45": {
+    "correctKey": "B",
+    "explanation": "Two separate, contrasting noun clauses joined by 'and' represent two distinct propositions and take a plural verb ('are')."
+  },
+  "note-engcomp-41-46": {
+    "correctKey": "C",
+    "explanation": "There is no standard contracted form 'amn't I' in English. The contracted negative tag for affirmative 'I am' is always 'aren't I?'."
+  },
+  "note-engcomp-41-47": {
+    "correctKey": "B",
+    "explanation": "'Scarcely' is an inherently negative adverb that makes the statement negative, requiring a positive question tag ('does he?')."
+  },
+  "note-engcomp-41-48": {
+    "correctKey": "B",
+    "explanation": "Human compound indefinite pronouns ('everyone', 'somebody', 'nobody') shift to the plural pronoun 'they' in question tags, requiring a plural auxiliary ('didn't they?')."
+  },
+  "note-engcomp-41-49": {
+    "correctKey": "B",
+    "explanation": "Proposals and suggestions beginning with 'Let us' (or 'Let's') always take the tag 'shall we?'."
+  },
+  "note-engcomp-41-50": {
+    "correctKey": "B",
+    "explanation": "Agreement with a negative statement takes an inverted addition using 'neither' or 'nor' ('neither do I')."
+  },
+  "note-engcomp-41-51": {
+    "correctKey": "B",
+    "explanation": "'Little' (without 'a') carries a negative meaning ('hardly any'), and existential 'there' repeats 'there' in a positive question tag ('is there?')."
+  },
+  "note-engcomp-41-52": {
+    "correctKey": "B",
+    "explanation": "'Nothing' is a negative inanimate pronoun, requiring a positive question tag with the singular pronoun 'it' ('can it?')."
+  },
+  "note-engcomp-41-53": {
+    "correctKey": "A",
+    "explanation": "Polite imperative requests take the tag 'will you?'."
+  },
+  "note-engcomp-41-54": {
+    "correctKey": "A",
+    "explanation": "The modal idiom 'had better' forms its question tag using 'hadn't you?'."
+  },
+  "note-engcomp-41-55": {
+    "correctKey": "B",
+    "explanation": "With 1st-person mental opinion verbs like 'I don't think', the tag matches the subordinate clause ('the tribunal will accept' -> 'will it?'), and because 'don't' negates the main clause, the tag is positive."
+  },
+  "note-engcomp-41-56": {
+    "correctKey": "B",
+    "explanation": "The passive voice of present perfect active ('has stolen') is 'has been stolen'. The vague subject 'someone' is omitted."
+  },
+  "note-engcomp-41-57": {
+    "correctKey": "A",
+    "explanation": "Direct questions in the passive voice must maintain auxiliary-subject inversion: 'Why was your proposal rejected by the committee?'."
+  },
+  "note-engcomp-41-58": {
+    "correctKey": "B",
+    "explanation": "The passive of 'It is time to + V1 + Object' follows the formula: 'It is time for + Object + to be + V3' ('It is time for the annual accounts to be audited')."
+  },
+  "note-engcomp-41-59": {
+    "correctKey": "B",
+    "explanation": "The verb 'know' in the passive voice takes the preposition 'to', never 'by' ('known to everyone')."
+  },
+  "note-engcomp-41-60": {
+    "correctKey": "B",
+    "explanation": "Quasi-passive sensory verbs convert using the middle voice template: 'Subject + is + Adjective + when + it is + V3' ('Quinine is bitter when it is tasted')."
+  },
+  "note-engcomp-41-61": {
+    "correctKey": "B",
+    "explanation": "Universal scientific truths and chemical properties remain in the simple present tense ('is') in indirect speech."
+  },
+  "note-engcomp-41-62": {
+    "correctKey": "B",
+    "explanation": "Indirect questions discard auxiliary inversion and adopt declarative statement word order: 'where I lived'."
+  },
+  "note-engcomp-41-63": {
+    "correctKey": "A",
+    "explanation": "Negative imperative advice is reported using the infinitive structure 'advised + object + not to + base verb'."
+  },
+  "note-engcomp-41-64": {
+    "correctKey": "A",
+    "explanation": "The interjection 'Alas!' expresses grief, which is reported using 'exclaimed with sorrow that...'."
+  },
+  "note-engcomp-41-65": {
+    "correctKey": "B",
+    "explanation": "When comparing two subjects across 'than', the pronoun after 'than' must be in the subjective case ('I [am]')."
+  },
+  "note-engcomp-41-66": {
+    "correctKey": "B",
+    "explanation": "Prepositions like 'between' govern the objective case ('between you and me')."
+  },
+  "note-engcomp-41-67": {
+    "correctKey": "B",
+    "explanation": "A gerund ('returning') is a verbal noun and must be preceded by a possessive determiner ('my'), not an objective pronoun."
+  },
+  "note-engcomp-41-68": {
+    "correctKey": "B",
+    "explanation": "When comparing a member within its own class (Everest within Himalayan peaks), 'other' is mandatory to exclude the subject from being compared with itself."
+  },
+  "note-engcomp-41-69": {
+    "correctKey": "B",
+    "explanation": "When comparing two different qualities within the same individual, use 'more + Positive Adjective + than' ('more brave than honest'), not the -er form."
+  },
+  "note-engcomp-41-70": {
+    "correctKey": "B",
+    "explanation": "When choosing between strictly two candidates, standard grammar uses 'the + Comparative' ('the more articulate'), reserving the superlative for three or more."
+  }
 };

@@ -855,7 +855,7 @@ export default function NotesBrowser() {
                   const active = c === classLevel;
                   const label =
                     c === "competitive"
-                      ? (subject === "it" ? "Competitive (CS & IT)" : "Competitive (प्रतियोगी परीक्षा)")
+                      ? (subject === "it" ? "Competitive (CS & IT)" : subject === "english" ? "Competitive English" : "Competitive (प्रतियोगी परीक्षा)")
                       : c === "ai"
                       ? "Artificial Intelligence (AI)"
                       : `Class ${c}`;
@@ -884,7 +884,7 @@ export default function NotesBrowser() {
             <div className="mb-5 flex items-center justify-between">
               <h2 className="text-2xl font-bold tracking-tight text-fg sm:text-3xl">
                 {classLevel === "competitive"
-                  ? (subject === "it" ? "Competitive CS & IT" : "Competitive Hindi")
+                  ? (subject === "it" ? "Competitive CS & IT" : subject === "english" ? "Competitive English" : "Competitive Hindi")
                   : classLevel === "ai"
                   ? "Artificial Intelligence (AI)"
                   : `Class ${classLevel}`}{" "}
@@ -921,7 +921,7 @@ export default function NotesBrowser() {
 
   const levelLabel =
     selected.classLevel === "competitive"
-      ? (selected.subject === "it" ? "Competitive (CS & IT)" : "Competitive")
+      ? (selected.subject === "it" ? "Competitive (CS & IT)" : selected.subject === "english" ? "Competitive English" : "Competitive")
       : selected.classLevel === "ai"
       ? "Artificial Intelligence"
       : `Class ${selected.classLevel}`;

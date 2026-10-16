@@ -3,6 +3,7 @@ import { expandedScience } from "./expandedScience";
 import { expandedSst } from "./expandedSst";
 import { englishNotes9 } from "./english9";
 import { englishNotes10 } from "./english10";
+import { englishNotesComp } from "./englishComp";
 import { hindiNotes9 } from "./hindi9";
 import { hindiNotes10 } from "./hindi10";
 import { hindiNotesComp } from "./hindiComp";
@@ -29,7 +30,7 @@ function deepen(notes: ChapterNote[], subject: NotesSubjectId, extra: Record<str
 const scienceNotes = deepen([...notes9, ...notes10], "science", expandedScience);
 const sstNotes = deepen([...sstNotes9, ...sstNotes10], "sst", expandedSst);
 const mathsNotes = deepen([...mathNotes9, ...mathNotes10], "math", expandedMath);
-const englishNotes = deepen([...englishNotes9, ...englishNotes10], "english");
+const englishNotes = deepen([...englishNotes9, ...englishNotes10, ...englishNotesComp], "english");
 const hindiNotes = deepen([...hindiNotes9, ...hindiNotes10, ...hindiNotesComp], "hindi");
 const itNotesList = deepen([...itNotes9, ...itNotes10, ...itNotesComp, ...itNotesAi], "it");
 
@@ -40,7 +41,7 @@ export const NOTES_SUBJECTS: Array<{ id: NotesSubjectId; name: string; short: st
   { id: "science", name: "Science", short: "Science", tagline: "Physics · Chemistry · Biology", classes: [9, 10] },
   { id: "sst", name: "Social Science", short: "SST", tagline: "History · Geography · Civics · Economics", classes: [9, 10] },
   { id: "math", name: "Mathematics", short: "Math", tagline: "Concepts · Theorems · Formulas", classes: [9, 10] },
-  { id: "english", name: "English Grammar", short: "English", tagline: "Tenses · Clauses · Reported Speech", classes: [9, 10] },
+  { id: "english", name: "English Grammar", short: "English", tagline: "Tenses · Clauses · Reported Speech", classes: [9, 10, "competitive"] },
   { id: "hindi", name: "Hindi Grammar", short: "Hindi", tagline: "व्याकरण · भाषा · वाक्य रचना", classes: [9, 10, "competitive"] },
   { id: "it", name: "Information Technology", short: "IT", tagline: "Computers · Networks · Coding · AI", classes: [9, 10, "competitive", "ai"] },
 ];

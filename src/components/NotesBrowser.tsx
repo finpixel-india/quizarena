@@ -2,12 +2,33 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ArrowLeft, ArrowRight, BookOpen, BookOpenText, Calculator, CheckCircle2, ChevronDown, FlaskConical, ImageIcon, Landmark, Languages, Lightbulb, ListChecks, Monitor, PenLine, RotateCcw, Search, Sigma, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, BookOpenText, Calculator, Check, CheckCircle2, ChevronDown, FlaskConical, HelpCircle, ImageIcon, Landmark, Languages, Lightbulb, ListChecks, Monitor, PenLine, RotateCcw, Search, Sigma, X, XCircle } from "lucide-react";
 import { DiagramFrame } from "@/components/notes/DiagramKit";
 import { getDiagram } from "@/components/notes";
 import { Badge, Card, Container, Label, btn } from "@/components/ui";
 import { NOTES_COUNTS, NOTES_SUBJECTS, notesByClass, searchChapters, type ClassLevel, type NoteChapter, type NotesSubjectId } from "@/data/notes";
+import { HINDI_ANSWERS } from "@/data/notes/hindiAnswers";
 import { cn, pad2 } from "@/lib/format";
+
+function normalizeKey(k?: string): string {
+  if (!k) return "";
+  const trimmed = k.trim();
+  const map: Record<string, string> = {
+    A: "क",
+    B: "ख",
+    C: "ग",
+    D: "घ",
+    a: "क",
+    b: "ख",
+    c: "ग",
+    d: "घ",
+    "1": "क",
+    "2": "ख",
+    "3": "ग",
+    "4": "घ",
+  };
+  return map[trimmed] || trimmed;
+}
 
 /* ------------------------------ text with **bold** ------------------------------ */
 
@@ -46,10 +67,14 @@ function parseAbhyasPoints(points: string[] = []): { instructions: string[]; que
     if (
       raw.startsWith("*निर्देश") ||
       raw.startsWith("निर्देश:") ||
+      raw.startsWith("**निर्देश") ||
       raw.startsWith("*समय-सुझाव") ||
-      raw.startsWith("समय-सुझाव:")
+      raw.startsWith("समय-सुझाव:") ||
+      raw.startsWith("**समय-सुझाव")
     ) {
-      instructions.push(raw.replace(/^\*+|\*+$/g, ""));
+      let inst = raw.replace(/^\*+|\*+$/g, "");
+      inst = inst.replace(/^(?:निर्देश|समय-सुझाव)[:\s*]*/, "").trim();
+      instructions.push(inst || raw);
       continue;
     }
 
@@ -114,12 +139,14 @@ function parseAbhyasPoints(points: string[] = []): { instructions: string[]; que
 }
 
 function QuestionCard({
+  chapterId,
   q,
   selectedOpt,
   onSelectOpt,
   scratch,
   onChangeScratch,
 }: {
+  chapterId: string;
   q: ParsedQuestion;
   selectedOpt?: string;
   onSelectOpt: (key: string) => void;
@@ -127,13 +154,23 @@ function QuestionCard({
   onChangeScratch: (text: string) => void;
 }) {
   const [showScratch, setShowScratch] = useState(false);
+  const [showSolution, setShowSolution] = useState(false);
+
+  const ans = q.num ? HINDI_ANSWERS[`${chapterId}-${q.num}`] : undefined;
+  const hasValidation = Boolean(ans?.correctKey);
+  const isSelected = Boolean(selectedOpt);
+  const isCorrect = hasValidation && isSelected ? normalizeKey(selectedOpt) === normalizeKey(ans?.correctKey) : false;
 
   return (
     <div
       className={cn(
         "rounded-2xl border p-5 sm:p-6 transition-all duration-200",
-        selectedOpt
-          ? "border-brand/50 bg-brand/[0.04] shadow-[0_4px_24px_-8px_rgba(249,115,22,0.18)]"
+        isSelected
+          ? hasValidation
+            ? isCorrect
+              ? "border-emerald-500/40 bg-emerald-500/[0.03] shadow-[0_4px_24px_-8px_rgba(16,185,129,0.18)]"
+              : "border-rose-500/40 bg-rose-500/[0.03] shadow-[0_4px_24px_-8px_rgba(244,63,94,0.18)]"
+            : "border-brand/50 bg-brand/[0.04] shadow-[0_4px_24px_-8px_rgba(249,115,22,0.18)]"
           : "border-line bg-card hover:border-line-2 hover:bg-fg/[0.01]"
       )}
     >
@@ -148,10 +185,23 @@ function QuestionCard({
             {q.type === "mcq" ? "बहुविकल्पी" : "लघु-उत्तर / अभ्यास"}
           </span>
         </div>
-        {selectedOpt ? (
-          <span className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-brand-ink">
-            <CheckCircle2 className="h-4 w-4" /> विकल्प ({selectedOpt}) चुना गया
-          </span>
+
+        {isSelected ? (
+          hasValidation ? (
+            isCorrect ? (
+              <span className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400">
+                <CheckCircle2 className="h-4 w-4" /> सही उत्तर!
+              </span>
+            ) : (
+              <span className="inline-flex items-center gap-1.5 rounded-lg border border-rose-500/30 bg-rose-500/10 px-2.5 py-1 font-mono text-xs font-bold text-rose-600 dark:text-rose-400">
+                <XCircle className="h-4 w-4" /> गलत उत्तर (सही: {ans?.correctKey})
+              </span>
+            )
+          ) : (
+            <span className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-brand-ink">
+              <CheckCircle2 className="h-4 w-4" /> विकल्प ({selectedOpt}) चुना गया
+            </span>
+          )
         ) : null}
       </div>
 
@@ -162,7 +212,9 @@ function QuestionCard({
       {q.type === "mcq" && q.options?.length ? (
         <div className="mt-4 grid gap-2.5 sm:grid-cols-2">
           {q.options.map((opt) => {
-            const active = selectedOpt === opt.key;
+            const isChosen = selectedOpt === opt.key;
+            const isOptionCorrect = hasValidation && normalizeKey(opt.key) === normalizeKey(ans?.correctKey);
+
             return (
               <button
                 key={opt.key}
@@ -170,40 +222,95 @@ function QuestionCard({
                 onClick={() => onSelectOpt(opt.key)}
                 className={cn(
                   "flex items-start gap-3 rounded-xl border p-3.5 sm:p-4 text-left transition-all duration-150",
-                  active
-                    ? "border-brand bg-brand/[0.12] ring-1 ring-brand/60 text-fg shadow-sm"
+                  isSelected
+                    ? hasValidation
+                      ? isOptionCorrect
+                        ? "border-emerald-500 bg-emerald-500/[0.12] ring-1 ring-emerald-500/50 text-fg shadow-sm"
+                        : isChosen
+                        ? "border-rose-500 bg-rose-500/[0.12] ring-1 ring-rose-500/50 text-fg shadow-sm"
+                        : "border-line/60 bg-fg/[0.01] text-subtle opacity-70"
+                      : isChosen
+                      ? "border-brand bg-brand/[0.12] ring-1 ring-brand/60 text-fg shadow-sm"
+                      : "border-line bg-fg/[0.02] text-muted hover:border-line-2 hover:bg-fg/[0.05] hover:text-fg"
                     : "border-line bg-fg/[0.02] text-muted hover:border-line-2 hover:bg-fg/[0.05] hover:text-fg"
                 )}
               >
                 <span
                   className={cn(
                     "inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border font-mono text-xs font-bold transition mt-0.5",
-                    active ? "border-brand bg-brand text-white" : "border-line bg-bg text-subtle"
+                    isSelected && hasValidation
+                      ? isOptionCorrect
+                        ? "border-emerald-500 bg-emerald-500 text-white"
+                        : isChosen
+                        ? "border-rose-500 bg-rose-500 text-white"
+                        : "border-line bg-bg text-subtle"
+                      : isChosen
+                      ? "border-brand bg-brand text-white"
+                      : "border-line bg-bg text-subtle"
                   )}
                 >
                   {opt.key}
                 </span>
-                <span className="text-sm sm:text-[15px] leading-snug">
+                <span className="text-sm sm:text-[15px] leading-snug flex-1">
                   <Rich text={opt.text} />
                 </span>
+                {isSelected && hasValidation ? (
+                  isOptionCorrect ? (
+                    <span className="ml-auto inline-flex items-center gap-1 font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400 shrink-0">
+                      <Check className="h-3.5 w-3.5 stroke-[3]" /> सही
+                    </span>
+                  ) : isChosen ? (
+                    <span className="ml-auto inline-flex items-center gap-1 font-mono text-xs font-bold text-rose-600 dark:text-rose-400 shrink-0">
+                      <X className="h-3.5 w-3.5 stroke-[3]" /> गलत
+                    </span>
+                  ) : null
+                ) : null}
               </button>
             );
           })}
         </div>
       ) : null}
 
+      {/* Explanation for MCQ after selection */}
+      {isSelected && ans?.explanation ? (
+        <div className="mt-4 rounded-xl border border-line-2 bg-fg/[0.03] p-4 text-xs sm:text-sm animate-fade-in">
+          <p className="font-semibold text-fg flex items-center gap-2 mb-1.5">
+            <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" />
+            <span>व्याख्या व व्याकरणिक नियम:</span>
+          </p>
+          <div className="leading-relaxed text-muted pl-6">
+            <Rich text={ans.explanation} />
+          </div>
+        </div>
+      ) : null}
+
+      {/* Non-MCQ Practice & Solution Area */}
       {q.type !== "mcq" ? (
-        <div className="mt-4 border-t border-line/60 pt-3">
-          <button
-            type="button"
-            onClick={() => setShowScratch((v) => !v)}
-            className="inline-flex items-center gap-1.5 text-xs font-medium text-subtle hover:text-brand-ink transition"
-          >
-            <PenLine className="h-3.5 w-3.5" />
-            {showScratch ? "रफ़ नोट छिपाएँ" : scratch ? "रफ़ नोट देखें / बदलें" : "स्व-प्रयास रफ़ नोट (यहाँ लिखकर अभ्यास करें)"}
-          </button>
+        <div className="mt-4 border-t border-line/60 pt-3 space-y-3">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <button
+              type="button"
+              onClick={() => setShowScratch((v) => !v)}
+              className="inline-flex items-center gap-1.5 text-xs font-medium text-subtle hover:text-brand-ink transition"
+            >
+              <PenLine className="h-3.5 w-3.5" />
+              {showScratch ? "रफ़ नोट छिपाएँ" : scratch ? "रफ़ नोट देखें / बदलें" : "स्व-प्रयास रफ़ नोट (यहाँ लिखकर अभ्यास करें)"}
+            </button>
+
+            {ans?.solution || ans?.explanation ? (
+              <button
+                type="button"
+                onClick={() => setShowSolution((v) => !v)}
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-ink hover:underline transition"
+              >
+                <HelpCircle className="h-3.5 w-3.5" />
+                {showSolution ? "समाधान व व्याख्या छिपाएँ" : "समाधान व व्याख्या देखें"}
+              </button>
+            ) : null}
+          </div>
+
           {showScratch ? (
-            <div className="mt-2.5 animate-fade-in">
+            <div className="animate-fade-in">
               <textarea
                 value={scratch || ""}
                 onChange={(e) => onChangeScratch(e.target.value)}
@@ -213,7 +320,19 @@ function QuestionCard({
               />
             </div>
           ) : scratch ? (
-            <p className="mt-1 text-xs text-muted italic line-clamp-1">आपका नोट: {scratch}</p>
+            <p className="text-xs text-muted italic line-clamp-1">आपका नोट: {scratch}</p>
+          ) : null}
+
+          {showSolution && (ans?.solution || ans?.explanation) ? (
+            <div className="rounded-xl border border-line-2 bg-fg/[0.03] p-4 text-xs sm:text-sm animate-fade-in">
+              <p className="font-semibold text-fg flex items-center gap-2 mb-1.5">
+                <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" />
+                <span>मानक उत्तर / समाधान संकेत:</span>
+              </p>
+              <div className="leading-relaxed text-muted pl-6">
+                <Rich text={ans.solution || ans.explanation || ""} />
+              </div>
+            </div>
           ) : null}
         </div>
       ) : null}
@@ -236,11 +355,31 @@ function AbhyasArena({ chapter }: { chapter: NoteChapter }) {
     }));
   }, [chapter]);
 
-  const totalQuestions = useMemo(() => {
-    return parsedSections.reduce((sum, s) => sum + s.questions.length, 0);
+  const allQuestions = useMemo(() => {
+    return parsedSections.flatMap((s) => s.questions);
   }, [parsedSections]);
 
+  const totalQuestions = allQuestions.length;
   const answeredCount = Object.keys(selectedAnswers).filter((k) => selectedAnswers[k]).length;
+
+  const stats = useMemo(() => {
+    let correct = 0;
+    let incorrect = 0;
+    for (const [qId, optKey] of Object.entries(selectedAnswers)) {
+      if (!optKey) continue;
+      const q = allQuestions.find((item) => item.id === qId);
+      if (!q || !q.num) continue;
+      const ans = HINDI_ANSWERS[`${chapter.id}-${q.num}`];
+      if (ans?.correctKey) {
+        if (normalizeKey(optKey) === normalizeKey(ans.correctKey)) {
+          correct++;
+        } else {
+          incorrect++;
+        }
+      }
+    }
+    return { correct, incorrect };
+  }, [selectedAnswers, allQuestions, chapter.id]);
 
   const visibleSections =
     activeSectionIdx === "all"
@@ -253,14 +392,24 @@ function AbhyasArena({ chapter }: { chapter: NoteChapter }) {
       <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-line bg-fg/[0.02] p-4 sm:p-5">
         <div className="flex flex-wrap items-center gap-3">
           <span className="inline-flex items-center gap-1.5 rounded-full border border-brand/40 bg-brand/10 px-3.5 py-1 font-mono text-xs font-semibold text-brand-ink">
-            <Sparkles className="h-3.5 w-3.5" /> अभ्यास मोड
+            <ListChecks className="h-3.5 w-3.5" /> अभ्यास मोड
           </span>
           <span className="font-mono text-xs text-muted">
             कुल प्रश्न: <strong className="text-fg">{totalQuestions}</strong>
           </span>
           {answeredCount > 0 ? (
-            <span className="font-mono text-xs text-brand-ink">
-              हल किए गए: <strong className="text-brand-ink">{answeredCount}</strong> / {totalQuestions}
+            <span className="font-mono text-xs text-muted">
+              हल किए गए: <strong className="text-fg">{answeredCount}</strong> / {totalQuestions}
+            </span>
+          ) : null}
+          {stats.correct > 0 ? (
+            <span className="inline-flex items-center gap-1 rounded-md border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 font-mono text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+              ✓ सही: {stats.correct}
+            </span>
+          ) : null}
+          {stats.incorrect > 0 ? (
+            <span className="inline-flex items-center gap-1 rounded-md border border-rose-500/20 bg-rose-500/10 px-2 py-0.5 font-mono text-xs font-semibold text-rose-600 dark:text-rose-400">
+              ✗ गलत: {stats.incorrect}
             </span>
           ) : null}
         </div>
@@ -338,6 +487,7 @@ function AbhyasArena({ chapter }: { chapter: NoteChapter }) {
               {sec.questions.map((q) => (
                 <QuestionCard
                   key={q.id}
+                  chapterId={chapter.id}
                   q={q}
                   selectedOpt={selectedAnswers[q.id]}
                   onSelectOpt={(key) =>
@@ -369,7 +519,7 @@ function SubjectGlyph({ id, active = false }: { id: NotesSubjectId; active?: boo
   );
 }
 
-function SectionBlock({ index, section }: { index: number; section: NoteChapter["sections"][number] }) {
+function SectionBlock({ index, section, chapterId }: { index: number; section: NoteChapter["sections"][number]; chapterId: string }) {
   const isSectionAbhyas = section.title.includes("अभ्यास") || section.title.includes("स्व-जाँच");
   const [selectedAnswers, setSelectedAnswers] = useState<Record<string, string>>({});
   const [scratchNotes, setScratchNotes] = useState<Record<string, string>>({});
@@ -403,6 +553,7 @@ function SectionBlock({ index, section }: { index: number; section: NoteChapter[
             {parsed.questions.map((q) => (
               <QuestionCard
                 key={q.id}
+                chapterId={chapterId}
                 q={q}
                 selectedOpt={selectedAnswers[q.id]}
                 onSelectOpt={(key) =>
@@ -674,11 +825,11 @@ export default function NotesBrowser() {
         <header className="mt-12 sm:mt-16">
           <div className="flex flex-wrap items-center gap-2">
             <Badge tone="brand">
-              {isAbhyasChapter ? <Sparkles className="h-3.5 w-3.5" /> : <BookOpen className="h-3.5 w-3.5" />}
+              {isAbhyasChapter ? <ListChecks className="h-3.5 w-3.5" /> : <BookOpen className="h-3.5 w-3.5" />}
               {subjectName} · {isAbhyasChapter ? "स्व-मूल्यांकन एवं अभ्यास" : selected.classLevel === "competitive" ? "Competitive" : `Class ${selected.classLevel}`}
             </Badge>
             <Badge>Chapter {pad2(selected.chapterNo)}</Badge>
-            {isAbhyasChapter ? <Badge tone="neutral">No Answers · अभ्यास मोड</Badge> : null}
+            {isAbhyasChapter ? <Badge tone="neutral">इंटरैक्टिव अभ्यास मोड</Badge> : null}
             {diagram ? <Badge><ImageIcon className="h-3.5 w-3.5 text-brand-ink" /> Labelled diagram</Badge> : null}
           </div>
           <h1 className="mt-6 text-4xl font-extrabold leading-[1] tracking-tight text-fg sm:text-5xl lg:text-6xl">{selected.title}</h1>
@@ -692,7 +843,7 @@ export default function NotesBrowser() {
         {isAbhyasChapter ? (
           <AbhyasArena chapter={selected} />
         ) : (
-          <div className="mt-12 space-y-10 sm:mt-16 sm:space-y-12">{selected.sections.map((s, i) => <SectionBlock key={s.title} index={i + 1} section={s} />)}</div>
+          <div className="mt-12 space-y-10 sm:mt-16 sm:space-y-12">{selected.sections.map((s, i) => <SectionBlock key={s.title} index={i + 1} section={s} chapterId={selected.id} />)}</div>
         )}
 
         {!isAbhyasChapter && selected.keyTerms?.length ? (

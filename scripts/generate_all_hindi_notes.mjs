@@ -1,6 +1,22 @@
 import fs from 'fs';
 import path from 'path';
 
+function cleanText(text) {
+  if (!text) return '';
+  let s = text.trim();
+  // Strip bullet markers: "- ", "* ", "+ "
+  s = s.replace(/^[-*+]\s+/, '');
+  // Fix lone leading asterisk before bold e.g. "*उदाहरण:**" -> "**उदाहरण:**"
+  s = s.replace(/^\*([^*]+)\*\*/, '**$1**');
+  // Strip lone single asterisk at start (not followed by another asterisk)
+  s = s.replace(/^\*(?!\*)\s*/, '');
+  // Strip lone single asterisk at end (not preceded by another asterisk)
+  s = s.replace(/\s*(?<!\*)\*$/, '');
+  // Strip HTML anchors
+  s = s.replace(/<a\s+id=[^>]+><\/a>/gi, '').replace(/<a\s+id=[^>]+>/gi, '');
+  return s.trim();
+}
+
 function parseMarkdownTable(lines) {
   if (lines.length < 2) return null;
   const parseRow = (line) =>
@@ -9,7 +25,7 @@ function parseMarkdownTable(lines) {
       .replace(/^\|/, '')
       .replace(/\|$/, '')
       .split('|')
-      .map((c) => c.trim());
+      .map((c) => cleanText(c));
 
   const head = parseRow(lines[0]);
   const rows = [];
@@ -47,7 +63,7 @@ function parseChapterBody(rawText, unit, classLevel, chapterNo, title, idPrefix)
   const seenTerms = new Set();
 
   function getUniqueTitle(rawT) {
-    let t = rawT.trim();
+    let t = cleanText(rawT);
     if (!seenTitles.has(t)) {
       seenTitles.add(t);
       return t;
@@ -71,7 +87,7 @@ function parseChapterBody(rawText, unit, classLevel, chapterNo, title, idPrefix)
         title: getUniqueTitle(currentTitle),
         ...(currentPoints.length > 0 ? { points: [...currentPoints] } : {}),
         ...(table ? { table } : {}),
-        ...(currentTip ? { tip: currentTip } : {}),
+        ...(currentTip ? { tip: cleanText(currentTip) } : {}),
       });
     }
     currentTitle = nextTitle || 'विस्तार एवं उदाहरण';
@@ -83,10 +99,10 @@ function parseChapterBody(rawText, unit, classLevel, chapterNo, title, idPrefix)
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    const trimmed = line.trim();
+    const trimmed = cleanText(line);
 
     // Skip initial header line
-    if (i === 0 && (trimmed.startsWith('# ') || trimmed.startsWith('## '))) continue;
+    if (i === 0 && (line.trim().startsWith('# ') || line.trim().startsWith('## '))) continue;
 
     // Filter out anchor tags and answer mentions
     if (
@@ -100,16 +116,16 @@ function parseChapterBody(rawText, unit, classLevel, chapterNo, title, idPrefix)
     }
 
     // Detect subsection header
-    if (trimmed.startsWith('## ') || trimmed.startsWith('### ') || trimmed.startsWith('#### ')) {
-      const hTitle = trimmed.replace(/^#+\s*/, '').trim();
+    if (line.trim().startsWith('## ') || line.trim().startsWith('### ') || line.trim().startsWith('#### ')) {
+      const hTitle = line.trim().replace(/^#+\s*/, '').trim();
       flushSection(hTitle);
       continue;
     }
 
     // Detect table line
-    if (trimmed.startsWith('|') && trimmed.endsWith('|')) {
+    if (line.trim().startsWith('|') && line.trim().endsWith('|')) {
       inTable = true;
-      currentTableLines.push(trimmed);
+      currentTableLines.push(line.trim());
       continue;
     } else if (inTable) {
       inTable = false;
@@ -120,7 +136,7 @@ function parseChapterBody(rawText, unit, classLevel, chapterNo, title, idPrefix)
           title: getUniqueTitle(currentTitle),
           ...(currentPoints.length > 0 ? { points: [...currentPoints] } : {}),
           table,
-          ...(currentTip ? { tip: currentTip } : {}),
+          ...(currentTip ? { tip: cleanText(currentTip) } : {}),
         });
         currentTitle = `${currentTitle} — विवरण एवं उदाहरण`;
         currentPoints = [];
@@ -129,8 +145,8 @@ function parseChapterBody(rawText, unit, classLevel, chapterNo, title, idPrefix)
     }
 
     // Detect blockquote tip
-    if (trimmed.startsWith('>')) {
-      const tipText = trimmed.replace(/^>\s*/, '').trim();
+    if (line.trim().startsWith('>')) {
+      const tipText = cleanText(line.trim().replace(/^>\s*/, ''));
       if (!currentTip) currentTip = tipText;
       else currentTip += ' ' + tipText;
       continue;
@@ -140,7 +156,7 @@ function parseChapterBody(rawText, unit, classLevel, chapterNo, title, idPrefix)
     if (trimmed === '---' || !trimmed) continue;
 
     // First paragraph without markers as overview
-    if (!overview && !trimmed.startsWith('#') && !trimmed.startsWith('-') && !trimmed.startsWith('*') && !trimmed.startsWith('|')) {
+    if (!overview && !line.trim().startsWith('#') && !line.trim().startsWith('-') && !line.trim().startsWith('*') && !line.trim().startsWith('|')) {
       overview = trimmed;
       currentPoints.push(trimmed);
       continue;
@@ -150,8 +166,8 @@ function parseChapterBody(rawText, unit, classLevel, chapterNo, title, idPrefix)
     if (!isPractice) {
       const termMatch = trimmed.match(/^[-*]?\s*\*\*([^*]+)\*\*[:—-]\s*(.+)$/);
       if (termMatch && keyTerms.length < 20) {
-        const term = termMatch[1].trim();
-        const meaning = termMatch[2].trim();
+        const term = cleanText(termMatch[1]);
+        const meaning = cleanText(termMatch[2]);
         if (term.length < 40 && meaning.length > 3 && !seenTerms.has(term)) {
           seenTerms.add(term);
           keyTerms.push({ term, meaning });
@@ -169,7 +185,7 @@ function parseChapterBody(rawText, unit, classLevel, chapterNo, title, idPrefix)
         trimmed.includes('पहचान')
       ) {
         if (examTips.length < 10) {
-          const cleanTip = trimmed.replace(/^[-*]\s*/, '').replace(/^\*\*|\*\*$/g, '');
+          const cleanTip = cleanText(trimmed.replace(/^[-*]\s*/, '').replace(/^\*\*|\*\*$/g, ''));
           if (cleanTip.length > 10 && cleanTip.length < 250 && !/^\d+\./.test(cleanTip)) {
             examTips.push(cleanTip);
           }
@@ -177,9 +193,7 @@ function parseChapterBody(rawText, unit, classLevel, chapterNo, title, idPrefix)
       }
     }
 
-    // Clean point
-    const pointText = trimmed.replace(/^[-*]\s*/, '');
-    currentPoints.push(pointText);
+    currentPoints.push(trimmed);
   }
 
   flushSection();
@@ -219,11 +233,163 @@ function parseChapterBody(rawText, unit, classLevel, chapterNo, title, idPrefix)
 }
 
 // -------------------------------------------------------------
+// FILE PATHS
+// -------------------------------------------------------------
+const file9 = 'C:/Users/hiii/.gemini/antigravity/brain/8173d0ba-c217-46bd-9fac-384820988f1b/.user_uploaded/media_1792143099445_c4fa66cf.md';
+const file10 = 'C:/Users/hiii/.gemini/antigravity/brain/8173d0ba-c217-46bd-9fac-384820988f1b/.user_uploaded/media_1792143099444_390108c0.md';
+const fileComp = 'C:/Users/hiii/.gemini/antigravity/brain/8173d0ba-c217-46bd-9fac-384820988f1b/.user_uploaded/media_1792143099447_61d1063b.md';
+
+const content9 = fs.readFileSync(file9, 'utf8');
+const content10 = fs.readFileSync(file10, 'utf8');
+const contentComp = fs.readFileSync(fileComp, 'utf8');
+
+// -------------------------------------------------------------
+// BUILD HINDI_ANSWERS MAPPING
+// -------------------------------------------------------------
+console.log('Building HINDI_ANSWERS lookup map...');
+const HINDI_ANSWERS = {};
+
+// 1. Class 9 (Ch 20 questions) from Ch 21
+const p9Ans = content9.indexOf('# अध्याय 21');
+const p9Shabd = content9.indexOf('# अध्याय 22');
+if (p9Ans !== -1 && p9Shabd !== -1) {
+  const chunk21 = content9.slice(p9Ans, p9Shabd);
+  for (const line of chunk21.split('\n')) {
+    const trimmed = line.trim();
+    const m = trimmed.match(/^(\d+)\.\s*(.+)$/);
+    if (m) {
+      const qNum = m[1];
+      const rest = m[2];
+      const mcqMatch = rest.match(/^\*\*\(?([क-घA-D])\)?\s*([^*]+)?\*\*\s*[:\u2014-]?\s*(.*)$/);
+      if (mcqMatch) {
+        HINDI_ANSWERS['note-hi9-20-' + qNum] = {
+          correctKey: mcqMatch[1],
+          explanation: cleanText(((mcqMatch[2] ? mcqMatch[2].trim() + ' — ' : '') + mcqMatch[3]).trim()),
+        };
+      } else {
+        HINDI_ANSWERS['note-hi9-20-' + qNum] = {
+          solution: cleanText(rest.replace(/^\*\*|\*\*$/g, '').trim()),
+        };
+      }
+    }
+  }
+}
+
+// 2. Class 10 (Ch 14 to 19) from Ch 20
+const p10Ans = content10.indexOf('# उत्तरमाला और व्याख्या');
+const p10Shabd = content10.indexOf('# शब्दावली');
+if (p10Ans !== -1 && p10Shabd !== -1) {
+  const chunkAns = content10.slice(p10Ans, p10Shabd);
+  const lines10 = chunkAns.split('\n');
+  let currentSec = '';
+  for (const line of lines10) {
+    if (line.startsWith('## ')) {
+      currentSec = line.trim();
+      continue;
+    }
+    if (currentSec.includes('अभ्यास A') && line.includes('|')) {
+      const parts = line.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map((s) => s.trim());
+      if (parts.length >= 3 && /^\d+$/.test(parts[0])) {
+        const optMatch = parts[1].match(/\(?([क-घA-D])\)?/);
+        HINDI_ANSWERS['note-hi10-14-' + parts[0]] = {
+          correctKey: optMatch ? optMatch[1] : parts[1],
+          explanation: cleanText(parts[2]),
+        };
+      }
+    } else if (currentSec.includes('अभ्यास B')) {
+      const m = line.trim().match(/^(\d+)\.\s*(.+)$/);
+      if (m) HINDI_ANSWERS['note-hi10-15-' + m[1]] = { solution: cleanText(m[2]) };
+    } else if (currentSec.includes('अभ्यास C')) {
+      const m = line.trim().match(/^(\d+)\.\s*(.+)$/);
+      if (m) HINDI_ANSWERS['note-hi10-16-' + m[1]] = { solution: cleanText(m[2]) };
+    } else if (currentSec.includes('अभ्यास D')) {
+      const m = line.trim().match(/^(\d+)\.\s*(.+)$/);
+      if (m) HINDI_ANSWERS['note-hi10-17-' + m[1]] = { solution: cleanText(m[2]) };
+    } else if (currentSec.includes('अभ्यास E')) {
+      const m = line.trim().match(/^(\d+)\.\s*(.+)$/);
+      if (m) HINDI_ANSWERS['note-hi10-18-' + m[1]] = { solution: cleanText(m[2]) };
+    } else if (currentSec.includes('मिश्रित पुनरावृत्ति-पत्र')) {
+      const m = line.trim().match(/^(\d+)\.\s*(.+)$/);
+      if (m) HINDI_ANSWERS['note-hi10-19-' + m[1]] = { solution: cleanText(m[2]) };
+    }
+  }
+}
+
+// 3. Competitive (Ch 31) from Part 8
+const pCompAns = contentComp.indexOf('# भाग 8 — उत्तरमाला और व्याख्या');
+const pCompApp = contentComp.indexOf('# परिशिष्ट A — त्वरित पुनरावृत्ति सारणियाँ');
+if (pCompAns !== -1 && pCompApp !== -1) {
+  const chunkComp = contentComp.slice(pCompAns, pCompApp);
+  let compSec = '';
+  for (const line of chunkComp.split('\n')) {
+    if (line.startsWith('## ') || line.startsWith('### ')) {
+      compSec = line.trim();
+      continue;
+    }
+    if (compSec.includes('अभ्यास-पत्र 1') && line.includes('|')) {
+      const parts = line.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map((s) => s.trim());
+      if (parts.length >= 3 && /^\d+$/.test(parts[0])) {
+        const optMatch = parts[1].match(/\(?([क-घA-D])\)?/);
+        HINDI_ANSWERS['note-hicomp-31-' + parts[0]] = {
+          correctKey: optMatch ? optMatch[1] : parts[1],
+          explanation: cleanText(parts[2]),
+        };
+      }
+    } else if (compSec.includes('अभ्यास-पत्र')) {
+      const m = line.trim().match(/^(\d+)\.\s*(.+)$/);
+      if (m) HINDI_ANSWERS['note-hicomp-31-' + m[1]] = { solution: cleanText(m[2]) };
+    }
+  }
+
+  // Add rubrics for Q111-120 in Ch 31
+  for (let q = 111; q <= 119; q++) {
+    HINDI_ANSWERS['note-hicomp-31-' + q] = {
+      solution:
+        'व्यक्तिगत उत्तर जाँच: माँगा गया व्याकरणिक रूप सही संदर्भ में हो, वाक्य का अर्थ स्पष्ट हो, लिंग-वचन/कारक/क्रिया का मेल सही हो। वाच्य-परिवर्तन में मूल अर्थ सुरक्षित रखें; वाक्य-रचना बदलते समय संयोजक संबंध न बदलें।',
+    };
+  }
+  HINDI_ANSWERS['note-hicomp-31-120'] = {
+    solution:
+      'अनुच्छेद मूल्यांकन-मानदंड: विचार-क्रम, उदाहरण, निष्कर्ष, वर्तनी, वाक्य-संगति और विराम-चिह्न के आधार पर जाँचें (अनुशंसित शब्द सीमा: 120–150 शब्द)।',
+  };
+
+  // Add chapterwise exercise answers for Competitive Ch 1 to 30
+  const idxChStart = chunkComp.indexOf('## अध्यायवार अभ्यास — उत्तर-संकेत');
+  if (idxChStart !== -1) {
+    const chunkCh = chunkComp.slice(idxChStart);
+    let chNo = 0;
+    for (const line of chunkCh.split('\n')) {
+      const chMatch = line.match(/^###\s*अध्याय\s*(\d+)/);
+      if (chMatch) {
+        chNo = parseInt(chMatch[1], 10);
+        continue;
+      }
+      const qm = line.trim().match(/^(\d+)\.\s*(.+)$/);
+      if (qm && chNo > 0) {
+        HINDI_ANSWERS[`note-hicomp-${chNo}-${qm[1]}`] = {
+          solution: cleanText(qm[2]),
+        };
+      }
+    }
+  }
+}
+
+console.log(`Generated ${Object.keys(HINDI_ANSWERS).length} answers in lookup.`);
+
+const codeAnswers = `export interface HindiAnswerItem {
+  correctKey?: string;
+  explanation?: string;
+  solution?: string;
+}
+
+export const HINDI_ANSWERS: Record<string, HindiAnswerItem> = ${JSON.stringify(HINDI_ANSWERS, null, 2)};
+`;
+fs.writeFileSync('c:/Users/hiii/OneDrive/Documents/Apps/Quiz Arena/src/data/notes/hindiAnswers.ts', codeAnswers, 'utf8');
+
+// -------------------------------------------------------------
 // 1. GENERATE CLASS 9
 // -------------------------------------------------------------
 console.log('Generating Class 9 notes (without answers chapter)...');
-const file9 = 'C:/Users/hiii/.gemini/antigravity/brain/8173d0ba-c217-46bd-9fac-384820988f1b/.user_uploaded/media_1792143099445_c4fa66cf.md';
-const content9 = fs.readFileSync(file9, 'utf8');
 const chunks9 = content9.split(/\n(?=# (?:अध्याय|स्रोत))/g);
 
 const units9 = [
@@ -250,7 +416,6 @@ for (let i = 1; i < chunks9.length; i++) {
 
   // EXCLUDE answers chapter (उत्तरमाला और समाधान)
   if (firstLine.includes('उत्तरमाला')) {
-    console.log('Skipping answers chapter:', firstLine);
     continue;
   }
 
@@ -273,7 +438,6 @@ for (let i = 1; i < chunks9.length; i++) {
 }
 
 console.log(`Class 9 generated: ${parsed9.length} chapters.`);
-
 const code9 = `import type { ChapterNote } from "./types";
 
 export const hindiNotes9: ChapterNote[] = ${JSON.stringify(parsed9, null, 2)};
@@ -284,8 +448,6 @@ fs.writeFileSync('c:/Users/hiii/OneDrive/Documents/Apps/Quiz Arena/src/data/note
 // 2. GENERATE CLASS 10
 // -------------------------------------------------------------
 console.log('Generating Class 10 notes (without answers chapter)...');
-const file10 = 'C:/Users/hiii/.gemini/antigravity/brain/8173d0ba-c217-46bd-9fac-384820988f1b/.user_uploaded/media_1792143099444_390108c0.md';
-const content10 = fs.readFileSync(file10, 'utf8');
 const chunks10 = content10.split(/\n(?=# (?:अध्याय|अभ्यास|मिश्रित|उत्तरमाला|शब्दावली|आधिकारिक))/g);
 
 const units10 = [
@@ -309,7 +471,6 @@ for (let i = 1; i < chunks10.length; i++) {
 
   // EXCLUDE answers chapter (उत्तरमाला और व्याख्या)
   if (firstLine.includes('उत्तरमाला')) {
-    console.log('Skipping answers chapter:', firstLine);
     continue;
   }
 
@@ -332,7 +493,6 @@ for (let i = 1; i < chunks10.length; i++) {
 }
 
 console.log(`Class 10 generated: ${parsed10.length} chapters.`);
-
 const code10 = `import type { ChapterNote } from "./types";
 
 export const hindiNotes10: ChapterNote[] = ${JSON.stringify(parsed10, null, 2)};
@@ -343,9 +503,6 @@ fs.writeFileSync('c:/Users/hiii/OneDrive/Documents/Apps/Quiz Arena/src/data/note
 // 3. GENERATE COMPETITIVE (MASTER NOTES)
 // -------------------------------------------------------------
 console.log('Generating Competitive notes (without answers chapter)...');
-const fileComp = 'C:/Users/hiii/.gemini/antigravity/brain/8173d0ba-c217-46bd-9fac-384820988f1b/.user_uploaded/media_1792143099447_61d1063b.md';
-const contentComp = fs.readFileSync(fileComp, 'utf8');
-
 const parsedComp = [];
 
 // Find chapters 1 to 30
@@ -392,9 +549,7 @@ if (p7Start !== -1 && p8Start !== -1) {
   parsedComp.push(note31);
 }
 
-// NOTE: We deliberately skip Chapter 32 (भाग 8 — उत्तरमाला और व्याख्या) per user instruction:
-// "no answers mentions in the last"
-console.log('Skipping Competitive answers part: भाग 8 — उत्तरमाला और व्याख्या');
+// Skip Chapter 32 (भाग 8 — उत्तरमाला और व्याख्या) per user instruction
 
 // Next Chapter 32: परिशिष्ट A — त्वरित पुनरावृत्ति सारणियाँ
 const appAStart = contentComp.indexOf('# परिशिष्ट A — त्वरित पुनरावृत्ति सारणियाँ');
@@ -434,4 +589,4 @@ export const hindiNotesComp: ChapterNote[] = ${JSON.stringify(parsedComp, null, 
 `;
 fs.writeFileSync('c:/Users/hiii/OneDrive/Documents/Apps/Quiz Arena/src/data/notes/hindiComp.ts', codeComp, 'utf8');
 
-console.log('ALL HINDI NOTES GENERATED WITHOUT ANSWERS IN THE LAST!');
+console.log('ALL HINDI NOTES & HINDI_ANSWERS GENERATED CLEANLY!');

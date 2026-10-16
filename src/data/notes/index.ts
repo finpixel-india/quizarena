@@ -1,4 +1,3 @@
-import { expandedScience } from "./expandedScience";
 import { englishNotes9 } from "./english9";
 import { englishNotes10 } from "./english10";
 import { englishNotesComp } from "./englishComp";
@@ -25,7 +24,7 @@ function deepen(notes: ChapterNote[], subject: NotesSubjectId, extra: Record<str
   return notes.map((note) => ({ ...note, subject, sections: [...note.sections, ...(extra[note.id] ?? [])] }));
 }
 
-const scienceNotes = deepen([...notes9, ...notes10], "science", expandedScience);
+const scienceNotes = deepen([...notes9, ...notes10], "science");
 const sstNotes = deepen([...sstNotes9, ...sstNotes10], "sst");
 const mathsNotes = deepen([...mathNotes9, ...mathNotes10], "math");
 const englishNotes = deepen([...englishNotes9, ...englishNotes10, ...englishNotesComp], "english");

@@ -14,22 +14,22 @@ import { itNotes9 } from "./it9";
 import { itNotes10 } from "./it10";
 import { itNotesComp } from "./itComp";
 import { itNotesAi } from "./itAi";
-import type { ChapterNote, ClassLevel, NoteSection, NotesSubjectId } from "./types";
+import type { ChapterNote, ClassLevel, NotesSubjectId } from "./types";
 
 export interface NoteChapter extends ChapterNote {
   subject: NotesSubjectId;
 }
 
-function deepen(notes: ChapterNote[], subject: NotesSubjectId, extra: Record<string, NoteSection[]> = {}): NoteChapter[] {
-  return notes.map((note) => ({ ...note, subject, sections: [...note.sections, ...(extra[note.id] ?? [])] }));
+function withSubject(notes: ChapterNote[], subject: NotesSubjectId): NoteChapter[] {
+  return notes.map((note) => ({ ...note, subject }));
 }
 
-const scienceNotes = deepen([...notes9, ...notes10], "science");
-const sstNotes = deepen([...sstNotes9, ...sstNotes10], "sst");
-const mathsNotes = deepen([...mathNotes9, ...mathNotes10], "math");
-const englishNotes = deepen([...englishNotes9, ...englishNotes10, ...englishNotesComp], "english");
-const hindiNotes = deepen([...hindiNotes9, ...hindiNotes10, ...hindiNotesComp], "hindi");
-const itNotesList = deepen([...itNotes9, ...itNotes10, ...itNotesComp, ...itNotesAi], "it");
+const scienceNotes = withSubject([...notes9, ...notes10], "science");
+const sstNotes = withSubject([...sstNotes9, ...sstNotes10], "sst");
+const mathsNotes = withSubject([...mathNotes9, ...mathNotes10], "math");
+const englishNotes = withSubject([...englishNotes9, ...englishNotes10, ...englishNotesComp], "english");
+const hindiNotes = withSubject([...hindiNotes9, ...hindiNotes10, ...hindiNotesComp], "hindi");
+const itNotesList = withSubject([...itNotes9, ...itNotes10, ...itNotesComp, ...itNotesAi], "it");
 
 export const ALL_NOTES: NoteChapter[] = [...scienceNotes, ...sstNotes, ...mathsNotes, ...englishNotes, ...hindiNotes, ...itNotesList];
 export const SCIENCE_NOTES = scienceNotes;

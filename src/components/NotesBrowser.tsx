@@ -559,8 +559,8 @@ function AbhyasArena({ chapter }: { chapter: NoteChapter }) {
       <div className="space-y-10">
         {visibleSections.map((sec) => (
           <section key={sec.title} className="space-y-4">
-            <div className="flex items-baseline gap-3">
-              <span className="font-mono text-xs sm:text-sm text-brand-ink">{pad2(sec.index + 1)}</span>
+            <div className="flex items-center gap-3">
+              <span className="h-2 w-2 rounded-full bg-brand shrink-0" aria-hidden="true" />
               <h3 className="text-lg font-bold tracking-tight text-fg sm:text-2xl">{sec.title}</h3>
             </div>
 
@@ -633,8 +633,8 @@ function SectionBlock({ index, section, chapterId }: { index: number; section: N
 
   return (
     <section className="border-t border-line pt-8 first:border-t-0 first:pt-0 sm:pt-12">
-      <div className="flex items-baseline gap-3 sm:gap-4">
-        <span className="font-mono text-xs sm:text-sm text-brand-ink">{pad2(index)}</span>
+      <div className="flex items-center gap-3 sm:gap-3.5">
+        <span className="h-2 w-2 rounded-full bg-brand shrink-0" aria-hidden="true" />
         <h3 className="text-lg font-bold tracking-tight text-fg sm:text-2xl">{section.title}</h3>
       </div>
 
@@ -769,8 +769,8 @@ function ChapterGrid({ chapters, onSelect }: { chapters: NoteChapter[]; onSelect
           <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
             {group.chapters.map((ch) => (
               <button key={ch.id} type="button" onClick={() => onSelect(ch.id)} className="group flex min-h-44 flex-col items-start rounded-2xl border border-line bg-card p-6 text-left transition hover:-translate-y-0.5 hover:border-brand/60 hover:bg-brand/[0.04] hover:shadow-[0_18px_40px_-26px_rgba(249,115,22,0.75)] sm:p-7">
-                <span className="font-mono text-xs text-brand-ink">CH {pad2(ch.chapterNo)}</span>
-                <span className="mt-5 text-xl font-bold leading-tight tracking-tight text-fg">{ch.title}</span>
+                <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-brand-ink">{ch.unit.split('·')[0].trim()}</span>
+                <span className="mt-4 text-xl font-bold leading-tight tracking-tight text-fg">{ch.title}</span>
                 <span className="mt-3 line-clamp-2 text-sm leading-relaxed text-muted">{ch.overview}</span>
                 <span className="mt-auto flex items-center gap-2 pt-5 text-sm font-semibold text-brand-ink">Open notes <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" /></span>
               </button>
@@ -932,13 +932,13 @@ export default function NotesBrowser() {
   const meta = isAbhyasChapter
     ? [
         { k: "Level", v: levelLabel },
-        { k: "Chapter", v: pad2(selected.chapterNo) },
+        { k: "Unit", v: selected.unit.split("·")[0].trim() },
         { k: "Sections", v: String(selected.sections.length) },
         { k: "Mode", v: "Self-Practice" },
       ]
     : [
         { k: "Level", v: levelLabel },
-        { k: "Chapter", v: pad2(selected.chapterNo) },
+        { k: "Unit", v: selected.unit.split("·")[0].trim() },
         { k: "Sections", v: String(selected.sections.length) },
         { k: "Key terms", v: String(selected.keyTerms.length) },
       ];
@@ -950,10 +950,10 @@ export default function NotesBrowser() {
         <div className="flex flex-wrap items-center justify-between gap-3">
           <button type="button" onClick={backToLibrary} className={cn(btn.ghost, "-ml-3")}><ArrowLeft className="h-4 w-4" /> All {levelLabel} {subjectName} notes</button>
           <div className="relative">
-            <button type="button" onClick={() => setJumpOpen((v) => !v)} className="inline-flex items-center gap-2 rounded-xl border border-line px-4 py-2 text-sm font-medium text-fg hover:border-line-2"><span className="font-mono text-[11px] text-brand-ink">{pad2(selected.chapterNo)}</span><span className="max-w-40 truncate">{selected.title}</span><ChevronDown className={cn("h-4 w-4 text-subtle transition", jumpOpen && "rotate-180")} /></button>
+            <button type="button" onClick={() => setJumpOpen((v) => !v)} className="inline-flex items-center gap-2 rounded-xl border border-line px-4 py-2 text-sm font-medium text-fg hover:border-line-2"><span className="h-2 w-2 rounded-full bg-brand shrink-0" /><span className="max-w-48 truncate">{selected.title}</span><ChevronDown className={cn("h-4 w-4 text-subtle transition", jumpOpen && "rotate-180")} /></button>
             {jumpOpen ? (
               <div className="absolute right-0 top-full z-20 mt-2 max-h-80 w-80 overflow-y-auto rounded-2xl border border-line bg-surface p-2 card-shadow">
-                {chapters.map((ch) => <button key={ch.id} type="button" onClick={() => { openChapter(ch.id); setJumpOpen(false); }} className={cn("flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm transition", ch.id === selected.id ? "bg-brand/[0.1] text-fg" : "text-muted hover:bg-fg/[0.05] hover:text-fg")}><span className="font-mono text-[11px] text-brand-ink">{pad2(ch.chapterNo)}</span><span className="truncate">{ch.title}</span></button>)}
+                {chapters.map((ch) => <button key={ch.id} type="button" onClick={() => { openChapter(ch.id); setJumpOpen(false); }} className={cn("flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm transition", ch.id === selected.id ? "bg-brand/[0.1] text-fg" : "text-muted hover:bg-fg/[0.05] hover:text-fg")}><span className="h-1.5 w-1.5 rounded-full bg-brand shrink-0" /><span className="truncate">{ch.title}</span></button>)}
               </div>
             ) : null}
           </div>
@@ -965,7 +965,7 @@ export default function NotesBrowser() {
               {isAbhyasChapter ? <ListChecks className="h-3.5 w-3.5" /> : <BookOpen className="h-3.5 w-3.5" />}
               {subjectName} · {isAbhyasChapter ? (selected.subject === "hindi" ? "स्व-मूल्यांकन एवं अभ्यास" : "Practice & Self-Assessment") : levelLabel}
             </Badge>
-            <Badge>Chapter {pad2(selected.chapterNo)}</Badge>
+            <Badge tone="neutral">{selected.unit.split('·')[0].trim()}</Badge>
             {isAbhyasChapter ? <Badge tone="neutral">{selected.subject === "hindi" ? "इंटरैक्टिव अभ्यास मोड" : "Interactive Practice Mode"}</Badge> : null}
             {diagram ? <Badge><ImageIcon className="h-3.5 w-3.5 text-brand-ink" /> Labelled diagram</Badge> : null}
           </div>

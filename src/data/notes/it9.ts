@@ -6,19 +6,19 @@ export const itNotes9: ChapterNote[] = [
     "subject": "it",
     "classLevel": 9,
     "chapterNo": 1,
-    "title": "Part 0 — Course map and assessment",
+    "title": "Course Blueprint & Assessment Architecture",
     "unit": "Part 0 — Course Map & Assessment",
     "overview": "Information Technology is the use of computers, software, networks and digital systems to create, process, store, protect and communicate information. In Class 9, the subject connects everyday use of technology with practical office work: typing accurately, creating documents, organizing numeric data in spreadsheets and presenting information clearly.",
     "sections": [
       {
-        "title": "0.1 What is Information Technology (402)?",
+        "title": "What is Information Technology (402)?",
         "points": [
           "Information Technology is the use of computers, software, networks and digital systems to create, process, store, protect and communicate information. In Class 9, the subject connects everyday use of technology with practical office work: typing accurately, creating documents, organizing numeric data in spreadsheets and presenting information clearly.",
           "The course also builds employability habits: communication, self-management, basic ICT literacy, entrepreneurial thinking and care for the environment. The goal is not merely to know the names of tools. Students should be able to select the right tool, perform a task accurately, save work correctly, explain what they did and behave responsibly while using technology."
         ]
       },
       {
-        "title": "0.2 Official course structure (2026–27)",
+        "title": "Official course structure (2026–27)",
         "points": [
           "CBSE's published curriculum describes a total of **100 marks**, comprising **Theory: 50** and **Practical: 50**. The broad structure is:"
         ],
@@ -64,13 +64,13 @@ export const itNotes9: ChapterNote[] = [
         }
       },
       {
-        "title": "0.2 Official course structure (2026–27) — Details",
+        "title": "Official course structure (2026–27) — Details",
         "points": [
           "The syllabus table lists the Employability Skills marks as follows: Communication Skills-I (2), Self-Management Skills-I (3), ICT Skills-I (1), Entrepreneurial Skills-I (3) and Green Skills-I (1), adding to 10. The subject-specific unit marks are Introduction to IT–ITeS (4), Data Entry & Keyboarding Skills (6), Digital Documentation (10), Electronic Spreadsheet (10) and Digital Presentation (10), adding to 40. Practical and project components together contribute the remaining 50 marks according to the curriculum's assessment structure. Confirm exact school-level scheduling and internal assessment instructions with the subject teacher."
         ]
       },
       {
-        "title": "Part A — Employability Skills",
+        "title": "Employability Skills",
         "points": [
           "[ ] Communication Skills-I",
           "[ ] Self-Management Skills-I",
@@ -80,7 +80,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "Part B — Subject-Specific Skills",
+        "title": "Subject-Specific Skills",
         "points": [
           "[ ] Introduction to IT–ITeS industry",
           "[ ] Data Entry and Keyboarding Skills",
@@ -90,7 +90,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "0.4 Theory knowledge and practical skill are different",
+        "title": "Theory knowledge and practical skill are different",
         "points": [
           "A student might be able to explain mail merge but still struggle to create a merged letter. Another student might click through a process but be unable to explain why a data source is needed. Both knowledge and performance matter."
         ],
@@ -120,7 +120,7 @@ export const itNotes9: ChapterNote[] = [
         }
       },
       {
-        "title": "0.5 Safe and responsible lab habits",
+        "title": "Safe and responsible lab habits",
         "points": [
           "Keep food and liquids away from computers.",
           "Handle cables, keyboards, mice and printers gently; do not force connectors.",
@@ -135,12 +135,8 @@ export const itNotes9: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Part 0 — Course map and assessment",
-        "meaning": "Information Technology is the use of computers, software, networks and digital systems to create, process, store, protect and communicate information. In Class 9, the subject connects everyday use of technology with practical office work: typing accurately, creating documents, organizing numeric data in spreadsheets and presenting information clearly."
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Theory: 50",
+        "meaning": "and **Practical: 50**."
       }
     ],
     "examTips": [
@@ -148,40 +144,16 @@ export const itNotes9: ChapterNote[] = [
     ]
   },
   {
-    "id": "note-it9-2",
-    "subject": "it",
-    "classLevel": 9,
-    "chapterNo": 2,
-    "title": "Part A — Employability Skills",
-    "unit": "Part A — Employability Skills",
-    "overview": "Part A — Employability Skills — Fundamental concepts, practical guidelines, and key summaries.",
-    "sections": [],
-    "keyTerms": [
-      {
-        "term": "Part A — Employability Skills",
-        "meaning": "Part A — Employability Skills — Fundamental concepts, practical guidelines, and key summaries."
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
-      }
-    ],
-    "examTips": [
-      "Master fundamental concepts before attempting complex workflows.",
-      "Verify inputs, outputs, and safety guidelines during practical implementations."
-    ]
-  },
-  {
     "id": "note-it9-3",
     "subject": "it",
     "classLevel": 9,
-    "chapterNo": 3,
-    "title": "Chapter 1 — Communication Skills I",
+    "chapterNo": 2,
+    "title": "Fundamentals of Communication Skills & Verbal Expression",
     "unit": "Part A — Employability Skills",
     "overview": "Examples:",
     "sections": [
       {
-        "title": "1.1 Meaning of communication",
+        "title": "Meaning of communication",
         "points": [
           "**Communication** is the process of sharing information, ideas, opinions, feelings or instructions between people so that meaning can be understood. Communication can be spoken, written, non-verbal or visual. Good communication is not simply speaking a lot; it is expressing a message clearly, listening carefully and checking that the other person has understood.",
           "Examples:",
@@ -215,7 +187,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "1.3 Communication cycle",
+        "title": "Communication cycle",
         "points": [
           "The curriculum identifies these main elements:",
           "1. **Sender:** the person who begins the communication.",
@@ -230,7 +202,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "1.4 Perspectives in communication",
+        "title": "Perspectives in communication",
         "points": [
           "People do not always interpret the same message in the same way. A **perspective** is a way of viewing or interpreting an event, message or situation. The CBSE Employability Skills curriculum points to these factors:",
           "**Visual perception:** people may notice different parts of the same scene.",
@@ -254,13 +226,13 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "1.5 Listening and speaking etiquette",
+        "title": "Listening and speaking etiquette",
         "points": [
           "Active listening means paying attention, not merely waiting for a turn to speak. Helpful habits include facing the speaker, avoiding unrelated phone use, not interrupting, asking relevant questions and summarizing what was heard. When speaking, organize the message, use an appropriate volume, speak respectfully and adapt detail to the audience."
         ]
       },
       {
-        "title": "1.6 Written communication: practical rules",
+        "title": "Written communication: practical rules",
         "points": [
           "A useful email or notice answers the key questions: what is needed, who is involved, what action is required, and by when. Use a specific subject line, short paragraphs, correct names/dates and a courteous tone. Avoid writing an entire message in capital letters because it can appear to be shouting.",
           "Before sending a message:",
@@ -272,13 +244,13 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "1.7 Common communication barriers",
+        "title": "Common communication barriers",
         "points": [
           "Noise, unclear language, information overload, poor listening, emotional reactions, poor connectivity and cultural assumptions can all interfere with communication. A barrier can usually be reduced by improving clarity, selecting another channel, asking for feedback or changing the environment."
         ]
       },
       {
-        "title": "1.8 Practical activities",
+        "title": "Practical activities",
         "points": [
           "Draw and label a communication-cycle diagram.",
           "Role-play a student asking a teacher for help with a spreadsheet.",
@@ -288,7 +260,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "1.9 Quick revision",
+        "title": "Quick revision",
         "points": [
           "**Verbal:** uses words.",
           "**Non-verbal:** communicates through body language and related cues.",
@@ -301,12 +273,20 @@ export const itNotes9: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 1 — Communication Skills I",
-        "meaning": "Examples:"
+        "term": "Communication",
+        "meaning": "is the process of sharing information, ideas, opinions, feelings or instructions between people so that meaning can be understood. Communication can be spoken, written, non-verbal or visual."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Advantages",
+        "meaning": "quick feedback in conversation; allows questions and clarification; written messages can be saved and reviewed."
+      },
+      {
+        "term": "Limitations",
+        "meaning": "spoken instructions may be forgotten; written words can be misread; language differences can cause confusion."
+      },
+      {
+        "term": "Good practice",
+        "meaning": "maintain culturally appropriate eye contact, avoid distracting gestures, face the speaker when possible, keep a respectful posture, and do not assume that one gesture means the same thing in every culture or situation."
       }
     ],
     "examTips": [
@@ -319,20 +299,20 @@ export const itNotes9: ChapterNote[] = [
     "id": "note-it9-4",
     "subject": "it",
     "classLevel": 9,
-    "chapterNo": 4,
-    "title": "Chapter 2 — Self-Management Skills I",
+    "chapterNo": 3,
+    "title": "Self-Management, Time Mastery & Habit Formation",
     "unit": "Part A — Employability Skills",
     "overview": "Examples include arriving on time, organizing a folder before a practical, breaking a large assignment into steps, asking for help when necessary and returning to a task after a mistake.",
     "sections": [
       {
-        "title": "2.1 Meaning and importance",
+        "title": "Meaning and importance",
         "points": [
           "**Self-management** is the ability to guide one's own behaviour, emotions, time, habits and effort so that tasks and goals can be completed responsibly. It does not mean controlling every event. It means choosing a constructive response and making steady progress with the resources available.",
           "Examples include arriving on time, organizing a folder before a practical, breaking a large assignment into steps, asking for help when necessary and returning to a task after a mistake."
         ]
       },
       {
-        "title": "2.2 Results of good self-management",
+        "title": "Results of good self-management",
         "points": [
           "Better use of time and materials.",
           "Greater reliability and independence.",
@@ -381,7 +361,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2.4 Knowing strengths and weaknesses",
+        "title": "Knowing strengths and weaknesses",
         "points": [
           "A **strength** is a skill or quality that helps a person perform well. A **weakness or development area** is something that needs practice or support. A strength–weakness analysis is most useful when it is honest and specific."
         ],
@@ -416,13 +396,13 @@ export const itNotes9: ChapterNote[] = [
         }
       },
       {
-        "title": "2.4 Knowing strengths and weaknesses — Details",
+        "title": "Knowing strengths and weaknesses — Details",
         "points": [
           "A development area is not a permanent label. Skills improve with practice, feedback and the right method."
         ]
       },
       {
-        "title": "2.5 Self-confidence",
+        "title": "Self-confidence",
         "points": [
           "Self-confidence is a realistic belief that one can learn, act and respond to challenges. It is not the same as believing one is always correct. Confident students can admit mistakes and ask for help.",
           "The prescribed learning material emphasizes social, cultural and physical factors that may affect confidence, and practical ways to build it. Examples include:",
@@ -436,13 +416,13 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2.6 Growth after mistakes",
+        "title": "Growth after mistakes",
         "points": [
           "When a spreadsheet formula is wrong, do not hide the mistake or randomly change many cells. Read the formula, check references, compare expected and actual results, test one correction at a time and record what was learned. This method builds competence as well as confidence."
         ]
       },
       {
-        "title": "2.7 Practical activities",
+        "title": "Practical activities",
         "points": [
           "Make a weekly timetable with study, practice, rest and revision.",
           "Write three strengths and two skills you want to improve.",
@@ -454,12 +434,16 @@ export const itNotes9: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 2 — Self-Management Skills I",
-        "meaning": "Examples include arriving on time, organizing a folder before a practical, breaking a large assignment into steps, asking for help when necessary and returning to a task after a mistake."
+        "term": "Self-management",
+        "meaning": "is the ability to guide one's own behaviour, emotions, time, habits and effort so that tasks and goals can be completed responsibly. It does not mean controlling every event."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Stronger goal",
+        "meaning": "“For the next two weeks, I will practise touch typing for 15 minutes on five days each week and record speed and accuracy after each practice."
+      },
+      {
+        "term": "strength",
+        "meaning": "is a skill or quality that helps a person perform well. A **weakness or development area** is something that needs practice or support."
       }
     ],
     "examTips": [
@@ -471,20 +455,20 @@ export const itNotes9: ChapterNote[] = [
     "id": "note-it9-5",
     "subject": "it",
     "classLevel": 9,
-    "chapterNo": 5,
-    "title": "Chapter 3 — Information and Communication Technology Skills I",
+    "chapterNo": 4,
+    "title": "Foundations of ICT, Operating Systems & File Organization",
     "unit": "Part A — Employability Skills",
     "overview": "ICT is used in education, health care, transport, business, government services, agriculture, banking, communication and entertainment. It can save time and connect people, but it also requires safe use, access to devices and networks, and care with personal data.",
     "sections": [
       {
-        "title": "3.1 Meaning of ICT",
+        "title": "Meaning of ICT",
         "points": [
           "**Information and Communication Technology (ICT)** includes digital tools and systems used to create, process, store, find and communicate information. Computers, mobile phones, tablets, the Internet, email, radio, television, digital cameras and video-conferencing systems can all be ICT tools.",
           "ICT is used in education, health care, transport, business, government services, agriculture, banking, communication and entertainment. It can save time and connect people, but it also requires safe use, access to devices and networks, and care with personal data."
         ]
       },
       {
-        "title": "3.2 Basic computer system",
+        "title": "Basic computer system",
         "points": [
           "A computer accepts input, processes data according to instructions, stores data and produces output. Some systems also communicate with other devices through networks.",
           "**Basic cycle:** Input → Processing → Output, with storage and communication available when needed.",
@@ -492,7 +476,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3.3 Hardware and software",
+        "title": "Hardware and software",
         "points": [
           "**Hardware** is the physical equipment that can be touched, such as a keyboard, monitor, CPU components, printer or storage drive. **Software** is the set of programs and instructions that tell hardware what to do."
         ],
@@ -526,7 +510,7 @@ export const itNotes9: ChapterNote[] = [
         }
       },
       {
-        "title": "3.3 Hardware and software — Details",
+        "title": "Hardware and software — Details",
         "points": [
           "Hardware and software depend on each other: software needs suitable hardware to execute; hardware generally needs software instructions to perform useful tasks."
         ]
@@ -576,7 +560,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3.5 Input, processing, output, storage and communication",
+        "title": "Input, processing, output, storage and communication",
         "table": {
           "head": [
             "Type",
@@ -613,7 +597,7 @@ export const itNotes9: ChapterNote[] = [
         }
       },
       {
-        "title": "3.5 Input, processing, output, storage and communication — Details",
+        "title": "Input, processing, output, storage and communication — Details",
         "points": [
           "Some devices perform more than one role. A touchscreen, for example, can display output and receive touch input."
         ]
@@ -639,14 +623,14 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3.7 Peripheral devices",
+        "title": "Peripheral devices",
         "points": [
           "A **peripheral** is an external or auxiliary device connected to a computer. Common examples include keyboards, mice, printers, scanners, webcams, speakers and external drives. Some peripherals connect through USB; others use Bluetooth, audio ports, network connections or other interfaces.",
           "Practical exercise: identify each available lab peripheral, state its purpose, explain whether it is mainly an input, output, storage or communication device, and demonstrate its safe use."
         ]
       },
       {
-        "title": "3.8 Good digital habits",
+        "title": "Good digital habits",
         "points": [
           "Use strong, unique passwords and never post them publicly.",
           "Sign out of shared accounts when finished.",
@@ -658,7 +642,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3.9 Practical activities",
+        "title": "Practical activities",
         "points": [
           "Draw and label a basic computer system.",
           "Classify devices as input, output, storage or communication tools.",
@@ -670,12 +654,20 @@ export const itNotes9: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 3 — Information and Communication Technology Skills I",
-        "meaning": "ICT is used in education, health care, transport, business, government services, agriculture, banking, communication and entertainment. It can save time and connect people, but it also requires safe use, access to devices and networks, and care with personal data."
+        "term": "Basic cycle",
+        "meaning": "Input → Processing → Output, with storage and communication available when needed."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Hardware",
+        "meaning": "is the physical equipment that can be touched, such as a keyboard, monitor, CPU components, printer or storage drive. **Software** is the set of programs and instructions that tell hardware what to do."
+      },
+      {
+        "term": "Monitor",
+        "meaning": "displays visual output."
+      },
+      {
+        "term": "Keyboard",
+        "meaning": "enters text, numbers and commands."
       }
     ],
     "examTips": [
@@ -689,13 +681,13 @@ export const itNotes9: ChapterNote[] = [
     "id": "note-it9-6",
     "subject": "it",
     "classLevel": 9,
-    "chapterNo": 6,
-    "title": "Chapter 4 — Entrepreneurial Skills I",
+    "chapterNo": 5,
+    "title": "Principles of Entrepreneurship & Enterprise Mindset",
     "unit": "Part A — Employability Skills",
     "overview": "Entrepreneurship does not mean that every business succeeds immediately. It involves learning about customers, estimating costs, planning, testing ideas, keeping records, communicating honestly and adapting when circumstances change.",
     "sections": [
       {
-        "title": "4.1 Meaning of entrepreneurship",
+        "title": "Meaning of entrepreneurship",
         "points": [
           "**Entrepreneurship** is the process of recognizing an opportunity, organizing resources and taking responsible action to create or improve a product or service. An **entrepreneur** is a person who starts or develops a business or initiative and accepts responsibility for decisions and risks. Entrepreneurship can create employment, solve local problems and offer useful goods and services.",
           "Entrepreneurship does not mean that every business succeeds immediately. It involves learning about customers, estimating costs, planning, testing ideas, keeping records, communicating honestly and adapting when circumstances change."
@@ -721,7 +713,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4.3 Business activities in a community",
+        "title": "Business activities in a community",
         "points": [
           "Observe businesses in a city, town or village and classify what they do. A grocery store sells goods, a tailor sells a service and may also sell fabric, a bakery manufactures and sells products, and a repair shop provides services while selling spare parts.",
           "A business commonly performs some of these activities:",
@@ -736,7 +728,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4.4 Characteristics of entrepreneurship",
+        "title": "Characteristics of entrepreneurship",
         "points": [
           "Common characteristics include:",
           "**Initiative:** taking the first useful step rather than waiting for every instruction.",
@@ -753,7 +745,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4.5 Role and rewards of entrepreneurship",
+        "title": "Role and rewards of entrepreneurship",
         "points": [
           "Entrepreneurs may:",
           "create jobs for themselves and others;",
@@ -766,7 +758,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4.6 Wage employment and entrepreneurship",
+        "title": "Wage employment and entrepreneurship",
         "table": {
           "head": [
             "Wage-employed person",
@@ -797,13 +789,13 @@ export const itNotes9: ChapterNote[] = [
         }
       },
       {
-        "title": "4.6 Wage employment and entrepreneurship — Details",
+        "title": "Wage employment and entrepreneurship — Details",
         "points": [
           "Neither path is automatically better. Both can provide meaningful work and require responsibility, learning and skill."
         ]
       },
       {
-        "title": "4.7 From an idea to a small project",
+        "title": "From an idea to a small project",
         "points": [
           "Use a practical sequence:",
           "1. **Problem:** identify a genuine need. Example: students need neat, low-cost revision cards.",
@@ -819,7 +811,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4.8 Practical activities",
+        "title": "Practical activities",
         "points": [
           "Create a poster classifying 10 businesses found in a local community as service, manufacturing or hybrid.",
           "List goods and services that businesses provide in exchange for money.",
@@ -831,12 +823,20 @@ export const itNotes9: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 4 — Entrepreneurial Skills I",
-        "meaning": "Entrepreneurship does not mean that every business succeeds immediately. It involves learning about customers, estimating costs, planning, testing ideas, keeping records, communicating honestly and adapting when circumstances change."
+        "term": "Entrepreneurship",
+        "meaning": "is the process of recognizing an opportunity, organizing resources and taking responsible action to create or improve a product or service. An **entrepreneur** is a person who starts or develops a business or initiative and accepts responsibility for decisions and risks."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Initiative",
+        "meaning": "taking the first useful step rather than waiting for every instruction."
+      },
+      {
+        "term": "Creativity",
+        "meaning": "finding a new or improved way to solve a problem."
+      },
+      {
+        "term": "Planning",
+        "meaning": "considering tasks, costs, resources and deadlines."
       }
     ],
     "examTips": [
@@ -849,20 +849,20 @@ export const itNotes9: ChapterNote[] = [
     "id": "note-it9-7",
     "subject": "it",
     "classLevel": 9,
-    "chapterNo": 7,
-    "title": "Chapter 5 — Green Skills I",
+    "chapterNo": 6,
+    "title": "Environmental Sustainability, Conservation & Green Economy",
     "unit": "Part A — Employability Skills",
     "overview": "The **environment** includes living organisms and the physical surroundings in which they live: air, water, soil, sunlight, plants, animals and human-built spaces. Society depends on the environment for water, food, energy, materials and healthy living conditions. Human activities can protect or damage these systems.",
     "sections": [
       {
-        "title": "5.1 Environment and society",
+        "title": "Environment and society",
         "points": [
           "The **environment** includes living organisms and the physical surroundings in which they live: air, water, soil, sunlight, plants, animals and human-built spaces. Society depends on the environment for water, food, energy, materials and healthy living conditions. Human activities can protect or damage these systems.",
           "Examples of beneficial actions include restoring green spaces, using water efficiently, preventing waste, protecting habitats and choosing durable products. Harmful actions may include releasing pollutants, wasting resources, destroying habitats or disposing of electronic waste carelessly."
         ]
       },
       {
-        "title": "5.2 Ecosystem",
+        "title": "Ecosystem",
         "points": [
           "An **ecosystem** is a community of living organisms interacting with each other and with non-living elements in an environment.",
           "**Biotic components:** plants, animals, fungi, microorganisms and other living things.",
@@ -871,7 +871,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "5.3 Causes of environmental imbalance",
+        "title": "Causes of environmental imbalance",
         "points": [
           "Examples include:",
           "air, water and soil pollution;",
@@ -885,7 +885,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "5.4 Natural-resource conservation",
+        "title": "Natural-resource conservation",
         "points": [
           "Natural resources include water, forests, soil, minerals, sunlight, wind and fossil fuels. Conservation means using resources carefully, preventing unnecessary damage and protecting their availability and quality.",
           "**Practical methods:**",
@@ -901,28 +901,28 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "5.5 Environmental protection and conservation",
+        "title": "Environmental protection and conservation",
         "points": [
           "Protection prevents or reduces harm; conservation manages natural systems and resources so they remain healthy and available. Useful activities include planting suitable native species, protecting water bodies, preventing litter, conserving biodiversity, improving public awareness and supporting responsible waste management.",
           "Students should avoid unsafe activities such as handling unknown chemical waste, opening batteries or electronic devices, burning waste or entering hazardous locations. Use supervised school activities and follow local environmental guidance."
         ]
       },
       {
-        "title": "5.6 Green economy",
+        "title": "Green economy",
         "points": [
           "A **green economy** aims to improve human well-being and fairness while reducing environmental risks and unnecessary damage to natural systems. It encourages efficient resource use, lower pollution, cleaner energy and sustainable production and consumption.",
           "Examples of green economic activity may include renewable-energy services, repair and reuse businesses, recycling, energy-efficient buildings, sustainable transport and responsible agricultural practices."
         ]
       },
       {
-        "title": "5.7 Green skills",
+        "title": "Green skills",
         "points": [
           "Green skills are the knowledge, habits and practical abilities that help people work and live in environmentally responsible ways. They can include resource efficiency, waste reduction, environmental awareness, problem-solving, teamwork and the ability to use materials responsibly.",
           "A technology lab can apply green skills by switching off equipment correctly when not needed, printing only when necessary, maintaining devices, reusing materials and arranging proper electronic-waste disposal. Digital systems also consume electricity and hardware resources, so “digital” does not automatically mean “environment-free.”"
         ]
       },
       {
-        "title": "5.8 Practical activities",
+        "title": "Practical activities",
         "points": [
           "Prepare a poster that explains three ways to conserve resources at school.",
           "Observe waste generated in one classroom for a day without handling unsafe waste; suggest a reduction plan.",
@@ -934,12 +934,20 @@ export const itNotes9: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 5 — Green Skills I",
-        "meaning": "The **environment** includes living organisms and the physical surroundings in which they live: air, water, soil, sunlight, plants, animals and human-built spaces. Society depends on the environment for water, food, energy, materials and healthy living conditions. Human activities can protect or damage these systems."
+        "term": "environment",
+        "meaning": "includes living organisms and the physical surroundings in which they live: air, water, soil, sunlight, plants, animals and human-built spaces. Society depends on the environment for water, food, energy, materials and healthy living conditions."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "ecosystem",
+        "meaning": "is a community of living organisms interacting with each other and with non-living elements in an environment."
+      },
+      {
+        "term": "Biotic components",
+        "meaning": "plants, animals, fungi, microorganisms and other living things."
+      },
+      {
+        "term": "Abiotic components",
+        "meaning": "air, water, soil, sunlight, temperature and minerals."
       }
     ],
     "examTips": [
@@ -948,40 +956,16 @@ export const itNotes9: ChapterNote[] = [
     ]
   },
   {
-    "id": "note-it9-8",
-    "subject": "it",
-    "classLevel": 9,
-    "chapterNo": 8,
-    "title": "Part B — Subject-Specific Skills",
-    "unit": "Part B — Subject-Specific Skills",
-    "overview": "Part B — Subject-Specific Skills — Fundamental concepts, practical guidelines, and key summaries.",
-    "sections": [],
-    "keyTerms": [
-      {
-        "term": "Part B — Subject-Specific Skills",
-        "meaning": "Part B — Subject-Specific Skills — Fundamental concepts, practical guidelines, and key summaries."
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
-      }
-    ],
-    "examTips": [
-      "Master fundamental concepts before attempting complex workflows.",
-      "Verify inputs, outputs, and safety guidelines during practical implementations."
-    ]
-  },
-  {
     "id": "note-it9-9",
     "subject": "it",
     "classLevel": 9,
-    "chapterNo": 9,
-    "title": "Chapter 6 — Introduction to IT–ITeS Industry",
+    "chapterNo": 7,
+    "title": "The IT & ITeS Industry Global Landscape",
     "unit": "Part B — Subject-Specific Skills",
     "overview": "India has a substantial IT and business-services sector serving domestic and international customers. Organizations may provide software development, IT consulting, technical support, business-process services, data services, cloud-related services and other technology-supported work. Industry structure changes over time as technology, customer needs and business models evolve.",
     "sections": [
       {
-        "title": "6.1 IT, ITeS, BPO and BPM",
+        "title": "IT, ITeS, BPO and BPM",
         "points": [
           "**Information Technology (IT)** refers to the use of computers, software, networks and related systems to handle information. **Information Technology-enabled Services (ITeS)** are services delivered or improved through IT. Examples include online customer support, digital record processing, remote technical support and certain forms of online data handling.",
           "**Business Process Outsourcing (BPO)** occurs when an organization contracts an external provider to perform a business process. The process might involve customer service, data processing, payroll support or other routine or specialized work. BPO is one part of the broader services ecosystem.",
@@ -989,7 +973,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "6.2 IT and ITeS industry in India",
+        "title": "IT and ITeS industry in India",
         "points": [
           "India has a substantial IT and business-services sector serving domestic and international customers. Organizations may provide software development, IT consulting, technical support, business-process services, data services, cloud-related services and other technology-supported work. Industry structure changes over time as technology, customer needs and business models evolve.",
           "A simplified view of the IT-BPM industry includes:",
@@ -1004,7 +988,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "6.3 Applications of IT in different areas",
+        "title": "Applications of IT in different areas",
         "points": [
           "The CBSE curriculum expects students to recognize IT applications in many parts of life. Learn at least one clear example for each area."
         ],
@@ -1089,21 +1073,21 @@ export const itNotes9: ChapterNote[] = [
         }
       },
       {
-        "title": "6.4 IT-enabled services: examples and identification",
+        "title": "IT-enabled services: examples and identification",
         "points": [
           "A service is IT-enabled when digital systems play a meaningful role in providing it. Examples include a help desk that resolves technical issues remotely, a call centre using a customer-management system, online form processing and a digital appointment platform.",
           "For an assignment, identify the service, the technology used, the user/customer, and the benefit. Avoid simply writing “computer is used”; explain what information is handled and how technology supports the service."
         ]
       },
       {
-        "title": "6.5 Benefits and responsibilities",
+        "title": "Benefits and responsibilities",
         "points": [
           "**Benefits:** speed, accuracy when properly designed, easier storage and search, wider reach, automation of repetitive work, collaboration and improved access to services.",
           "**Challenges:** privacy risks, cybercrime, dependence on connectivity, skill gaps, inaccurate data, system outages, job-role changes, e-waste and unequal access. IT brings value when systems are reliable, inclusive, secure and responsibly managed."
         ]
       },
       {
-        "title": "6.6 Practical activity: IT around you",
+        "title": "Practical activity: IT around you",
         "points": [
           "Create a table with at least eight settings (home, school, library, shop, bank, clinic, government service, entertainment). For each, record:",
           "1. the task being performed;",
@@ -1114,7 +1098,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "6.7 Key terms",
+        "title": "Key terms",
         "points": [
           "**IT:** technology used to handle information.",
           "**ITeS:** services enabled or improved by information technology.",
@@ -1127,12 +1111,20 @@ export const itNotes9: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 6 — Introduction to IT–ITeS Industry",
-        "meaning": "India has a substantial IT and business-services sector serving domestic and international customers. Organizations may provide software development, IT consulting, technical support, business-process services, data services, cloud-related services and other technology-supported work. Industry structure changes over time as technology, customer needs and business models evolve."
+        "term": "Information Technology (IT)",
+        "meaning": "refers to the use of computers, software, networks and related systems to handle information. **Information Technology-enabled Services (ITeS)** are services delivered or improved through IT."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Business Process Outsourcing (BPO)",
+        "meaning": "occurs when an organization contracts an external provider to perform a business process. The process might involve customer service, data processing, payroll support or other routine or specialized work."
+      },
+      {
+        "term": "Business Process Management (BPM)",
+        "meaning": "refers more broadly to managing, analysing and improving business processes. In industry descriptions, IT-BPM commonly refers to IT services and business-process services together."
+      },
+      {
+        "term": "Benefits",
+        "meaning": "speed, accuracy when properly designed, easier storage and search, wider reach, automation of repetitive work, collaboration and improved access to services."
       }
     ],
     "examTips": [
@@ -1143,19 +1135,19 @@ export const itNotes9: ChapterNote[] = [
     "id": "note-it9-10",
     "subject": "it",
     "classLevel": 9,
-    "chapterNo": 10,
-    "title": "Chapter 7 — Data Entry and Keyboarding Skills",
+    "chapterNo": 8,
+    "title": "Touch Typing Ergonomics & Data Entry Mastery",
     "unit": "Part B — Subject-Specific Skills",
     "overview": "Data entry is the process of entering information into a computer system or application. Information might include names, dates, numbers, forms, inventory records or survey responses. Good data entry requires **accuracy, consistency, speed, concentration and confidentiality**. Speed is valuable only when errors remain under control.",
     "sections": [
       {
-        "title": "7.1 What is data entry?",
+        "title": "What is data entry?",
         "points": [
           "Data entry is the process of entering information into a computer system or application. Information might include names, dates, numbers, forms, inventory records or survey responses. Good data entry requires **accuracy, consistency, speed, concentration and confidentiality**. Speed is valuable only when errors remain under control."
         ]
       },
       {
-        "title": "7.2 Keyboard layout and key groups",
+        "title": "Keyboard layout and key groups",
         "points": [
           "A standard keyboard contains several kinds of keys:"
         ],
@@ -1228,7 +1220,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "7.3 Four rows used in touch typing",
+        "title": "Four rows used in touch typing",
         "points": [
           "Touch typing means typing using trained finger positions while keeping eyes mainly on the screen or source text rather than looking at each key. Practise these four working rows:",
           "1. **Number row:** the number/symbol row above letters.",
@@ -1239,7 +1231,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "7.4 Finger placement on a standard QWERTY keyboard",
+        "title": "Finger placement on a standard QWERTY keyboard",
         "points": [
           "Left little finger: commonly Q, A, Z and nearby keys.",
           "Left ring finger: W, S, X.",
@@ -1254,7 +1246,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "7.5 Typing ergonomics",
+        "title": "Typing ergonomics",
         "points": [
           "**Ergonomics** means arranging work and tools to support safe, comfortable and effective activity.",
           "Sit upright with shoulders relaxed; avoid a rigid or hunched posture.",
@@ -1269,7 +1261,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "7.6 Mouse and other pointing-device operations",
+        "title": "Mouse and other pointing-device operations",
         "points": [
           "**Point/hover:** move the pointer onto an item.",
           "**Click:** press and release a button once to select or activate an item.",
@@ -1282,7 +1274,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "7.7 Typing and deleting text",
+        "title": "Typing and deleting text",
         "points": [
           "Use letter and number keys to enter text.",
           "Use **Backspace** to delete the character before the cursor in many text editors.",
@@ -1296,7 +1288,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "7.8 Typing software and Rapid Typing Tutor",
+        "title": "Typing software and Rapid Typing Tutor",
         "points": [
           "The Class IX curriculum specifically refers to Rapid Typing Tutor. Its interface and version may differ from one installation to another, but the learning process is similar:",
           "1. Open the typing tutor installed by the school.",
@@ -1312,7 +1304,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "7.9 Typing speed and accuracy",
+        "title": "Typing speed and accuracy",
         "points": [
           "Typing software can display words per minute, characters per minute, errors and accuracy. Different tools calculate these values differently, so always follow the tool's displayed definition when submitting results.",
           "A common estimate of **gross words per minute (WPM)** treats five characters, including spaces, as one standard word:",
@@ -1325,7 +1317,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "7.10 How to improve typing",
+        "title": "How to improve typing",
         "points": [
           "Start slowly enough to keep accuracy high.",
           "Practise little and often rather than only in one long session.",
@@ -1339,7 +1331,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "7.11 Practical checklist",
+        "title": "Practical checklist",
         "points": [
           "[ ] Identify letter, number, control, function, navigation and editing keys.",
           "[ ] Identify numeric keypad, home keys and guide keys.",
@@ -1356,12 +1348,20 @@ export const itNotes9: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 7 — Data Entry and Keyboarding Skills",
-        "meaning": "Data entry is the process of entering information into a computer system or application. Information might include names, dates, numbers, forms, inventory records or survey responses. Good data entry requires **accuracy, consistency, speed, concentration and confidentiality**. Speed is valuable only when errors remain under control."
+        "term": "Num Lock",
+        "meaning": "often switches the numeric keypad between number entry and navigation functions. Key layouts vary."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Number row",
+        "meaning": "the number/symbol row above letters."
+      },
+      {
+        "term": "Top letter row",
+        "meaning": "`QWERTYUIOP` on a standard QWERTY keyboard."
+      },
+      {
+        "term": "Home row",
+        "meaning": "`ASDFGHJKL;` on a standard QWERTY keyboard."
       }
     ],
     "examTips": [
@@ -1374,26 +1374,26 @@ export const itNotes9: ChapterNote[] = [
     "id": "note-it9-11",
     "subject": "it",
     "classLevel": 9,
-    "chapterNo": 11,
-    "title": "Chapter 8 — Digital Documentation: Getting Started",
+    "chapterNo": 9,
+    "title": "Digital Word Processing Essentials & Document Creation",
     "unit": "Part B — Subject-Specific Skills",
     "overview": "Examples include letters, notices, reports, assignments, meeting notes, forms, certificates and project reports.",
     "sections": [
       {
-        "title": "8.1 What is digital documentation?",
+        "title": "What is digital documentation?",
         "points": [
           "**Digital documentation** means creating and maintaining documents with a word-processing application. A document may contain text, headings, paragraphs, tables, pictures, symbols and page numbers. Digital documents are easier to revise, duplicate, share and print than a paper-only draft.",
           "Examples include letters, notices, reports, assignments, meeting notes, forms, certificates and project reports."
         ]
       },
       {
-        "title": "8.2 Word processor and examples",
+        "title": "Word processor and examples",
         "points": [
           "A **word processor** is an application used to create, edit, format, save and print text documents. Examples include LibreOffice Writer, Microsoft Word, Google Docs and other compatible tools. The Class IX CBSE practical curriculum refers to common word-processing tasks; this book uses **LibreOffice Writer** names where useful because LibreOffice is a common free/open-source office suite. Microsoft Word or another program may show slightly different menu names."
         ]
       },
       {
-        "title": "8.3 Advantages of word processing",
+        "title": "Advantages of word processing",
         "points": [
           "Correct text without rewriting an entire page.",
           "Change font, spacing, margins and page layout.",
@@ -1405,7 +1405,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "8.4 Parts of the Writer window",
+        "title": "Parts of the Writer window",
         "points": [
           "Depending on version and display settings, a typical word-processing window can include:",
           "**Title bar:** shows the document/application name.",
@@ -1457,13 +1457,13 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "8.6 Document views",
+        "title": "Document views",
         "points": [
           "A word processor may offer different views or zoom options. A page-layout view is useful for seeing how pages may print; other views can simplify editing or navigation. Zoom changes on-screen magnification and should not be confused with changing font size or page size."
         ]
       },
       {
-        "title": "8.7 File formats",
+        "title": "File formats",
         "table": {
           "head": [
             "Extension / format",
@@ -1490,19 +1490,19 @@ export const itNotes9: ChapterNote[] = [
         }
       },
       {
-        "title": "8.7 File formats — Details",
+        "title": "File formats — Details",
         "points": [
           "Before submitting, confirm the teacher's requested format and reopen the saved file to make sure it is readable."
         ]
       },
       {
-        "title": "8.8 Good document structure",
+        "title": "Good document structure",
         "points": [
           "A clearly organized document generally includes a meaningful title, consistent headings, readable paragraphs, suitable margins, correct spelling, page numbers where appropriate and tables/images only when they support the message. Formatting should improve communication rather than decorate every line."
         ]
       },
       {
-        "title": "8.9 Practical activity",
+        "title": "Practical activity",
         "points": [
           "Create a one-page document titled **“Digital Safety at School.”** Include a title, two headings, two short paragraphs, a numbered list of five safe practices, one bold phrase, a date, and a footer with your name/class. Save it in the required editable format, close it and reopen it."
         ]
@@ -1510,12 +1510,20 @@ export const itNotes9: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 8 — Digital Documentation: Getting Started",
-        "meaning": "Examples include letters, notices, reports, assignments, meeting notes, forms, certificates and project reports."
+        "term": "Digital documentation",
+        "meaning": "means creating and maintaining documents with a word-processing application. A document may contain text, headings, paragraphs, tables, pictures, symbols and page numbers."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "word processor",
+        "meaning": "is an application used to create, edit, format, save and print text documents. Examples include LibreOffice Writer, Microsoft Word, Google Docs and other compatible tools."
+      },
+      {
+        "term": "LibreOffice Writer",
+        "meaning": "names where useful because LibreOffice is a common free/open-source office suite. Microsoft Word or another program may show slightly different menu names."
+      },
+      {
+        "term": "Title bar",
+        "meaning": "shows the document/application name."
       }
     ],
     "examTips": [
@@ -1527,19 +1535,19 @@ export const itNotes9: ChapterNote[] = [
     "id": "note-it9-12",
     "subject": "it",
     "classLevel": 9,
-    "chapterNo": 12,
-    "title": "Chapter 9 — Editing and Reviewing Documents",
+    "chapterNo": 10,
+    "title": "Document Editing, Proofreading & Review Tools",
     "unit": "CBSE Class 9 IT (402)",
     "overview": "In many desktop applications, `Ctrl+Z` is Undo and `Ctrl+Y` or another app-specific shortcut is Redo. Keyboard shortcuts may differ by operating system and application. The toolbar/menu command is a safe alternative when unsure.",
     "sections": [
       {
-        "title": "9.1 Editing versus formatting",
+        "title": "Editing versus formatting",
         "points": [
           "**Editing** changes the content: correcting words, moving paragraphs, removing extra text or replacing an incorrect name. **Formatting** changes how content looks: font, colour, alignment, spacing, borders or page appearance. Both are needed for a polished document."
         ]
       },
       {
-        "title": "9.2 Undo and Redo",
+        "title": "Undo and Redo",
         "points": [
           "**Undo** reverses a recent supported action.",
           "**Redo** reapplies an action that was undone.",
@@ -1548,7 +1556,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "9.3 Selecting text",
+        "title": "Selecting text",
         "points": [
           "Text must often be selected before it can be moved, formatted, copied or deleted.",
           "**Single word:** double-clicking often selects a word.",
@@ -1560,7 +1568,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "9.4 Cut, copy, paste and move",
+        "title": "Cut, copy, paste and move",
         "points": [
           "**Cut:** removes a selected item and places it on the clipboard.",
           "**Copy:** places a copy on the clipboard while leaving the original in place.",
@@ -1570,7 +1578,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "9.5 Find and Replace",
+        "title": "Find and Replace",
         "points": [
           "**Find** searches for text; **Replace** substitutes one text string with another. This is useful for correcting a repeated spelling or changing a project title consistently.",
           "Example: in a report, replace a mistakenly repeated name `Riya Sharmaa` with `Riya Sharma`.",
@@ -1584,13 +1592,13 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "9.6 Jumping to a page number",
+        "title": "Jumping to a page number",
         "points": [
           "Long documents may provide a Navigator, Find Page or status-bar page control. Use the application feature to go directly to the required page instead of scrolling through every page. Page-navigation controls vary with the word processor and version."
         ]
       },
       {
-        "title": "9.7 Non-printing characters",
+        "title": "Non-printing characters",
         "points": [
           "Non-printing characters are formatting marks that usually do not appear in print. Examples include spaces, paragraph breaks, tabs and manual line breaks. Showing them can help diagnose extra blank paragraphs, repeated spaces or unexpected alignment.",
           "Examples:",
@@ -1601,7 +1609,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "9.8 Spelling, grammar, synonyms and thesaurus",
+        "title": "Spelling, grammar, synonyms and thesaurus",
         "points": [
           "**Spell-check** finds words that may be misspelled according to a selected dictionary.",
           "**Grammar checking** may flag likely language errors depending on tool support and language settings.",
@@ -1611,7 +1619,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "9.9 Review checklist",
+        "title": "Review checklist",
         "points": [
           "Check the title and headings.",
           "Check spelling of names and dates.",
@@ -1623,7 +1631,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "9.10 Practical activity",
+        "title": "Practical activity",
         "points": [
           "Create a deliberately imperfect paragraph with misspellings, repeated words and one incorrect name. Use Select, Cut/Copy/Paste, Undo/Redo, Find and Replace, non-printing characters and spelling tools to revise it. Keep a before-and-after copy and write down at least three corrections made."
         ]
@@ -1631,12 +1639,20 @@ export const itNotes9: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 9 — Editing and Reviewing Documents",
-        "meaning": "In many desktop applications, `Ctrl+Z` is Undo and `Ctrl+Y` or another app-specific shortcut is Redo. Keyboard shortcuts may differ by operating system and application. The toolbar/menu command is a safe alternative when unsure."
+        "term": "Editing",
+        "meaning": "changes the content: correcting words, moving paragraphs, removing extra text or replacing an incorrect name. **Formatting** changes how content looks: font, colour, alignment, spacing, borders or page appearance."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Undo",
+        "meaning": "reverses a recent supported action."
+      },
+      {
+        "term": "Redo",
+        "meaning": "reapplies an action that was undone."
+      },
+      {
+        "term": "Single word",
+        "meaning": "double-clicking often selects a word."
       }
     ],
     "examTips": [
@@ -1648,19 +1664,19 @@ export const itNotes9: ChapterNote[] = [
     "id": "note-it9-13",
     "subject": "it",
     "classLevel": 9,
-    "chapterNo": 13,
-    "title": "Chapter 10 — Text, Paragraph and Page Formatting",
+    "chapterNo": 11,
+    "title": "Typography, Paragraph Styling & Page Layout",
     "unit": "CBSE Class 9 IT (402)",
     "overview": "Formatting helps readers identify structure and understand information. A good document uses a limited set of consistent styles, clear headings and enough white space. Decorative effects should not make the content harder to read.",
     "sections": [
       {
-        "title": "10.1 Why formatting matters",
+        "title": "Why formatting matters",
         "points": [
           "Formatting helps readers identify structure and understand information. A good document uses a limited set of consistent styles, clear headings and enough white space. Decorative effects should not make the content harder to read."
         ]
       },
       {
-        "title": "10.2 Page style and page setup",
+        "title": "Page style and page setup",
         "points": [
           "Page style/settings can control paper size, orientation, margins, columns, headers, footers, background and borders, depending on the program. Common paper sizes include A4 and Letter; use the size required by the task or institution.",
           "**Portrait:** page is taller than it is wide.",
@@ -1672,7 +1688,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "10.3 Text formatting",
+        "title": "Text formatting",
         "points": [
           "Common text properties include:",
           "font family/typeface;",
@@ -1688,7 +1704,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "10.4 Paragraph formatting",
+        "title": "Paragraph formatting",
         "points": [
           "Paragraph options include alignment, indentation, spacing, line spacing, tabs, bullets, numbering, border and background.",
           "**Left align:** text begins at the left margin; common for ordinary paragraphs.",
@@ -1703,39 +1719,39 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "10.5 Text case and language tools",
+        "title": "Text case and language tools",
         "points": [
           "Text-case tools may change selected text to uppercase, lowercase, sentence case or title case. Always check names, acronyms and punctuation after changing case. Spelling and grammar tools depend on document language settings; select the appropriate language when available."
         ]
       },
       {
-        "title": "10.6 Borders, backgrounds and highlighting",
+        "title": "Borders, backgrounds and highlighting",
         "points": [
           "A border draws a line around text, a paragraph, a page or a table. Background colour fills an area. Highlighting emphasizes selected text. Use contrast sufficient for reading and avoid applying intense colours to every paragraph."
         ]
       },
       {
-        "title": "10.7 Headers, footers and page numbers",
+        "title": "Headers, footers and page numbers",
         "points": [
           "A **header** appears in the upper area of pages; a **footer** appears in the lower area. They can contain a document title, class/name, date, chapter or page number. Page-number fields update automatically as pages are added or removed, unlike numbers typed manually into the text.",
           "A useful school report may place the title in the header and a page number in the footer. Keep confidential student details out of documents that will be shared publicly."
         ]
       },
       {
-        "title": "10.8 Images, shapes and special characters",
+        "title": "Images, shapes and special characters",
         "points": [
           "Images and shapes can illustrate a point, but should be relevant and readable. To insert an image, use the Insert command or drag the file into the document where supported. Resize from the corners when possible to preserve proportions. Use text-wrap or anchoring options to control how text flows around it.",
           "Shapes may include lines, arrows, rectangles, callouts and other graphic objects. **Special characters** provide symbols not easily typed from the keyboard; ensure that the selected font supports the character."
         ]
       },
       {
-        "title": "10.9 Formatting an image or shape",
+        "title": "Formatting an image or shape",
         "points": [
           "Possible options include size, crop, rotate, border/line, fill colour, transparency, alignment, anchor and text wrapping. The exact controls depend on the office suite. Keep meaningful images at sufficient resolution, provide descriptions/alternative text where available, and avoid distorting the image by changing width and height independently."
         ]
       },
       {
-        "title": "10.10 Practical activity",
+        "title": "Practical activity",
         "points": [
           "Prepare a two-page school event notice. Apply a page style, header/footer and automatic page number. Use three levels of hierarchy (title, subheading, body), include a numbered list and a relevant image, add a page break between the notice and an information page, and save the editable source file."
         ]
@@ -1743,12 +1759,20 @@ export const itNotes9: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 10 — Text, Paragraph and Page Formatting",
-        "meaning": "Formatting helps readers identify structure and understand information. A good document uses a limited set of consistent styles, clear headings and enough white space. Decorative effects should not make the content harder to read."
+        "term": "Portrait",
+        "meaning": "page is taller than it is wide."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Landscape",
+        "meaning": "page is wider than it is tall."
+      },
+      {
+        "term": "Margins",
+        "meaning": "blank space between the text and the page edges."
+      },
+      {
+        "term": "Page break",
+        "meaning": "starts the following content on a new page."
       }
     ],
     "examTips": [
@@ -1759,13 +1783,13 @@ export const itNotes9: ChapterNote[] = [
     "id": "note-it9-14",
     "subject": "it",
     "classLevel": 9,
-    "chapterNo": 14,
-    "title": "Chapter 11 — Tables, Printing and Mail Merge",
+    "chapterNo": 12,
+    "title": "Tabular Data Formatting, Printing & Mail Merge",
     "unit": "CBSE Class 9 IT (402)",
     "overview": "A table organizes information into rows and columns. The intersection of a row and column is a cell. Tables are useful for timetables, comparison charts, class lists and structured forms.",
     "sections": [
       {
-        "title": "11.1 Creating and editing tables",
+        "title": "Creating and editing tables",
         "points": [
           "A table organizes information into rows and columns. The intersection of a row and column is a cell. Tables are useful for timetables, comparison charts, class lists and structured forms."
         ]
@@ -1802,7 +1826,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "11.2 Print options",
+        "title": "Print options",
         "points": [
           "**Print Preview** shows how pages are likely to appear before sending the job to a printer. Use it to find unwanted blank pages, clipped text, very small content or incorrect margins.",
           "Common print options include:",
@@ -1824,7 +1848,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "11.3 What is mail merge?",
+        "title": "What is mail merge?",
         "points": [
           "**Mail merge** produces multiple personalized documents by combining a **main document** (the common text) with a **data source** (records containing variable fields). It is useful for letters, certificates, labels, invitations or notices that share a format but need different names, addresses or other details.",
           "Example:",
@@ -1853,13 +1877,13 @@ export const itNotes9: ChapterNote[] = [
         "tip": "Dear «StudentName», your practical assessment is scheduled for «Date» in room «Room»."
       },
       {
-        "title": "11.3 What is mail merge? — Details",
+        "title": "What is mail merge? — Details",
         "points": [
           "After merging, each record creates a personalized version with its own values."
         ]
       },
       {
-        "title": "11.4 Main document and data source",
+        "title": "Main document and data source",
         "points": [
           "**Main document:** holds standard text, layout and merge fields.",
           "**Data source:** a table/list/database containing records. Each row usually represents one recipient; each column is a field.",
@@ -1871,7 +1895,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "11.5 Mail merge workflow",
+        "title": "Mail merge workflow",
         "points": [
           "The precise wizard varies by application, but the core steps are:",
           "1. **Create the main document:** write the common letter or certificate text.",
@@ -1897,7 +1921,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "11.6 Practical activity: personalized invitation",
+        "title": "Practical activity: personalized invitation",
         "points": [
           "Create a main invitation document for a school exhibition. Make a data source with at least five fictional recipients and fields `Name`, `Class`, `EventDate` and `Venue`. Insert the merge fields in the invitation, preview each record, generate merged output and save the result. Use fictional data rather than classmates' personal addresses or phone numbers."
         ]
@@ -1905,12 +1929,20 @@ export const itNotes9: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 11 — Tables, Printing and Mail Merge",
-        "meaning": "A table organizes information into rows and columns. The intersection of a row and column is a cell. Tables are useful for timetables, comparison charts, class lists and structured forms."
+        "term": "Merge cells",
+        "meaning": "combine selected adjacent cells into one larger cell, often for a spanning heading."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Split cells",
+        "meaning": "divide a cell into multiple cells."
+      },
+      {
+        "term": "Split a table",
+        "meaning": "divide one table into two separate tables where supported."
+      },
+      {
+        "term": "Print Preview",
+        "meaning": "shows how pages are likely to appear before sending the job to a printer. Use it to find unwanted blank pages, clipped text, very small content or incorrect margins."
       }
     ],
     "examTips": [
@@ -1922,20 +1954,20 @@ export const itNotes9: ChapterNote[] = [
     "id": "note-it9-15",
     "subject": "it",
     "classLevel": 9,
-    "chapterNo": 15,
-    "title": "Chapter 12 — Electronic Spreadsheet: Getting Started",
+    "chapterNo": 13,
+    "title": "Spreadsheet Interface, Workbooks & Grid Navigation",
     "unit": "Part B — Subject-Specific Skills",
     "overview": "An **electronic spreadsheet** is an application that stores data in a grid of rows and columns and can calculate results automatically. A spreadsheet is useful for marksheets, budgets, inventories, attendance, schedules, surveys, simple reports and comparing figures.",
     "sections": [
       {
-        "title": "12.1 Meaning and uses",
+        "title": "Meaning and uses",
         "points": [
           "An **electronic spreadsheet** is an application that stores data in a grid of rows and columns and can calculate results automatically. A spreadsheet is useful for marksheets, budgets, inventories, attendance, schedules, surveys, simple reports and comparing figures.",
           "The official curriculum refers to spreadsheet software such as **LibreOffice Calc**. Similar ideas appear in Microsoft Excel and Google Sheets, although specific menus and functions can differ."
         ]
       },
       {
-        "title": "12.2 Workbook, worksheet, row, column and cell",
+        "title": "Workbook, worksheet, row, column and cell",
         "points": [
           "**Spreadsheet file/workbook:** the saved file, which can contain one or more worksheets.",
           "**Worksheet/sheet:** a grid inside the file.",
@@ -1950,7 +1982,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "12.3 Understanding cell addresses and ranges",
+        "title": "Understanding cell addresses and ranges",
         "points": [
           "`B4` means column B, row 4. `A1:A5` is a range from A1 through A5 in one column. `A1:C3` is a rectangular range covering columns A through C and rows 1 through 3.",
           "Examples:"
@@ -1981,13 +2013,13 @@ export const itNotes9: ChapterNote[] = [
         }
       },
       {
-        "title": "12.3 Understanding cell addresses and ranges — Details",
+        "title": "Understanding cell addresses and ranges — Details",
         "points": [
           "To select a range, click the first cell and drag to the last, or use the name box/navigation feature available in the application. Be sure the address uses a colon between the starting and ending cells where a range is expected."
         ]
       },
       {
-        "title": "12.4 Entering data",
+        "title": "Entering data",
         "points": [
           "A cell can hold text, numeric data, a date/time value, or a formula. The software may interpret entries based on format and locale settings.",
           "**Label/text:** a heading or description such as `Student Name`.",
@@ -2031,13 +2063,13 @@ export const itNotes9: ChapterNote[] = [
         }
       },
       {
-        "title": "12.4 Entering data — Details",
+        "title": "Entering data — Details",
         "points": [
           "Depending on settings, date and number interpretation can vary. Check the displayed result and format, especially when entering dates, decimals or data beginning with zero (such as an ID code)."
         ]
       },
       {
-        "title": "12.5 Creating and saving a spreadsheet",
+        "title": "Creating and saving a spreadsheet",
         "points": [
           "1. Open Calc or the spreadsheet application available in the lab.",
           "2. Start a new spreadsheet/workbook.",
@@ -2050,7 +2082,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "12.6 Best practices when designing a worksheet",
+        "title": "Best practices when designing a worksheet",
         "points": [
           "Use clear headings and consistent column meanings.",
           "Avoid placing unrelated information in the middle of a data table.",
@@ -2063,7 +2095,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "12.7 Practical activity",
+        "title": "Practical activity",
         "points": [
           "Create a worksheet with columns `Student`, `English`, `Science`, `Maths`, and `Total`. Enter fictional values for five students. Identify cell addresses and ranges, save the file, and explain how the worksheet stores text, values and formulas."
         ]
@@ -2071,12 +2103,20 @@ export const itNotes9: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 12 — Electronic Spreadsheet: Getting Started",
-        "meaning": "An **electronic spreadsheet** is an application that stores data in a grid of rows and columns and can calculate results automatically. A spreadsheet is useful for marksheets, budgets, inventories, attendance, schedules, surveys, simple reports and comparing figures."
+        "term": "electronic spreadsheet",
+        "meaning": "is an application that stores data in a grid of rows and columns and can calculate results automatically. A spreadsheet is useful for marksheets, budgets, inventories, attendance, schedules, surveys, simple reports and comparing figures."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Spreadsheet file/workbook",
+        "meaning": "the saved file, which can contain one or more worksheets."
+      },
+      {
+        "term": "Worksheet/sheet",
+        "meaning": "a grid inside the file."
+      },
+      {
+        "term": "Row",
+        "meaning": "horizontal series of cells, usually identified by numbers (1, 2, 3…)."
       }
     ],
     "examTips": [
@@ -2087,13 +2127,13 @@ export const itNotes9: ChapterNote[] = [
     "id": "note-it9-16",
     "subject": "it",
     "classLevel": 9,
-    "chapterNo": 16,
-    "title": "Chapter 13 — Formulas and Basic Functions",
+    "chapterNo": 14,
+    "title": "Spreadsheet Formulas, Arithmetic & Standard Functions",
     "unit": "CBSE Class 9 IT (402)",
     "overview": "A **formula** is an expression used to calculate a result. A **function** is a named, predefined operation provided by the spreadsheet application. A formula can use cell addresses, constants, operators and functions.",
     "sections": [
       {
-        "title": "13.1 Formula versus function",
+        "title": "Formula versus function",
         "points": [
           "A **formula** is an expression used to calculate a result. A **function** is a named, predefined operation provided by the spreadsheet application. A formula can use cell addresses, constants, operators and functions.",
           "Examples:",
@@ -2104,7 +2144,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "13.2 Mathematical operators",
+        "title": "Mathematical operators",
         "table": {
           "head": [
             "Operator",
@@ -2147,13 +2187,13 @@ export const itNotes9: ChapterNote[] = [
         }
       },
       {
-        "title": "13.2 Mathematical operators — Details",
+        "title": "Mathematical operators — Details",
         "points": [
           "Use parentheses to make the intended order clear. For example, `=(A1+B1)*2` adds first and doubles the total. `=A1+B1*2` usually multiplies first and then adds."
         ]
       },
       {
-        "title": "13.3 Formulas with cell references",
+        "title": "Formulas with cell references",
         "points": [
           "Suppose B2 contains 65 and C2 contains 72.",
           "`=B2+C2` returns 137.",
@@ -2199,7 +2239,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "13.5 Example: marksheet",
+        "title": "Example: marksheet",
         "points": [
           "Assume row 1 contains headings and rows 2–6 contain five students. Columns B, C and D store marks for three subjects. Column E stores the total.",
           "In E2, enter:",
@@ -2211,7 +2251,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "13.6 Correct formula syntax",
+        "title": "Correct formula syntax",
         "points": [
           "A common formula pattern is:",
           "`=FUNCTION_NAME(argument1; argument2)`",
@@ -2227,7 +2267,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "13.7 Reading and checking results",
+        "title": "Reading and checking results",
         "points": [
           "When a result looks wrong:",
           "1. Select the result cell.",
@@ -2241,7 +2281,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "13.8 Practical activity",
+        "title": "Practical activity",
         "points": [
           "Enter six fictional students' marks across three subjects. Calculate row totals, row averages, highest marks, lowest marks and count of numeric values. Explain each formula in words, then change one mark and observe which results recalculate."
         ]
@@ -2249,12 +2289,12 @@ export const itNotes9: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 13 — Formulas and Basic Functions",
-        "meaning": "A **formula** is an expression used to calculate a result. A **function** is a named, predefined operation provided by the spreadsheet application. A formula can use cell addresses, constants, operators and functions."
+        "term": "formula",
+        "meaning": "is an expression used to calculate a result. A **function** is a named, predefined operation provided by the spreadsheet application."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "not",
+        "meaning": "simply count every non-empty cell; text labels are not counted as numeric values."
       }
     ],
     "examTips": [
@@ -2265,19 +2305,19 @@ export const itNotes9: ChapterNote[] = [
     "id": "note-it9-17",
     "subject": "it",
     "classLevel": 9,
-    "chapterNo": 17,
-    "title": "Chapter 14 — Formatting Spreadsheet Data and Fill Handle",
+    "chapterNo": 15,
+    "title": "Data Formatting, Number Formats & Autofill Automation",
     "unit": "Part B — Subject-Specific Skills",
     "overview": "Formatting controls how data appears without necessarily changing the stored value. For example, a value such as `0.25` might be displayed as `0.25`, `25%` or another supported format. Formatting can improve readability, but a format should not disguise the true meaning of a value.",
     "sections": [
       {
-        "title": "14.1 Why cell formatting matters",
+        "title": "Why cell formatting matters",
         "points": [
           "Formatting controls how data appears without necessarily changing the stored value. For example, a value such as `0.25` might be displayed as `0.25`, `25%` or another supported format. Formatting can improve readability, but a format should not disguise the true meaning of a value."
         ]
       },
       {
-        "title": "14.2 Formatting tools and dialog boxes",
+        "title": "Formatting tools and dialog boxes",
         "points": [
           "Spreadsheet applications provide formatting tools on toolbars, menus, sidebars or dialog boxes. Depending on software, you may format:",
           "number of decimal places;",
@@ -2292,39 +2332,39 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "14.3 Decimal-place formatting",
+        "title": "Decimal-place formatting",
         "points": [
           "A numeric value may be displayed to a chosen number of decimal places. For example, `12.3456` shown with two decimal places may appear as `12.35`. This display is rounded; the underlying stored value may retain more precision, depending on the software and settings.",
           "Do not confuse display formatting with a formula that permanently rounds a value. Formatting changes the visible presentation; a rounding function changes the calculated result according to its rule."
         ]
       },
       {
-        "title": "14.4 Text/label formatting",
+        "title": "Text/label formatting",
         "points": [
           "Entries such as student IDs, phone numbers or postal codes can include leading zeros or may not represent quantities for arithmetic. If entered as a number, leading zeros may disappear. Store or format such identifiers appropriately as text when needed.",
           "For example, an ID such as `0075` is a code, not a value that should be added. Text formatting may be the right choice."
         ]
       },
       {
-        "title": "14.5 Scientific notation",
+        "title": "Scientific notation",
         "points": [
           "Scientific notation writes a number as a coefficient multiplied by a power of ten, such as `3.2 × 10^5`. Spreadsheet programs may display large or small values in a compact form such as `3.2E+05`. This is useful for scientific data, but ordinary school lists may be easier to read using a standard number format."
         ]
       },
       {
-        "title": "14.6 Date and time formatting",
+        "title": "Date and time formatting",
         "points": [
           "A spreadsheet may store a recognized date/time in a form that permits calculations and display it according to a format, such as `16-Oct-2026`, `16/10/2026`, or a time display. Date interpretation can depend on locale settings, so enter dates unambiguously and check what the application recognized."
         ]
       },
       {
-        "title": "14.7 Alignment",
+        "title": "Alignment",
         "points": [
           "Horizontal alignment includes left, centre and right. Vertical alignment can position content at the top, middle or bottom of a cell. Alignment can make a table easier to scan; it should be consistent for similar data. Text labels are often left-aligned and numeric values are often right-aligned by default, though settings can differ."
         ]
       },
       {
-        "title": "14.8 Fill handle",
+        "title": "Fill handle",
         "points": [
           "The **fill handle** is a small control at the corner of a selected cell or range in many spreadsheets. Dragging it can copy data or formulas, or continue a recognized series."
         ]
@@ -2347,7 +2387,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "14.9 Practical activity",
+        "title": "Practical activity",
         "points": [
           "Create a small expense table containing a date, item, quantity and cost. Format dates consistently, show cost to two decimal places, align headings and values, create a sequence of dates or numbers with the fill handle, and copy a formula down a column. Explain the difference between changing the display and changing the underlying value."
         ]
@@ -2355,12 +2395,8 @@ export const itNotes9: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 14 — Formatting Spreadsheet Data and Fill Handle",
-        "meaning": "Formatting controls how data appears without necessarily changing the stored value. For example, a value such as `0.25` might be displayed as `0.25`, `25%` or another supported format. Formatting can improve readability, but a format should not disguise the true meaning of a value."
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "fill handle",
+        "meaning": "is a small control at the corner of a selected cell or range in many spreadsheets. Dragging it can copy data or formulas, or continue a recognized series."
       }
     ],
     "examTips": [
@@ -2371,19 +2407,19 @@ export const itNotes9: ChapterNote[] = [
     "id": "note-it9-18",
     "subject": "it",
     "classLevel": 9,
-    "chapterNo": 18,
-    "title": "Chapter 15 — Cell References and Charts",
+    "chapterNo": 16,
+    "title": "Cell Referencing Modes & Data Visualisation Charts",
     "unit": "CBSE Class 9 IT (402)",
     "overview": "When a formula is copied to another cell, its references may change. This behaviour is useful when calculations repeat across many rows, but some references must remain fixed. The Class IX curriculum includes **relative, mixed and absolute referencing**.",
     "sections": [
       {
-        "title": "15.1 Why cell referencing matters",
+        "title": "Why cell referencing matters",
         "points": [
           "When a formula is copied to another cell, its references may change. This behaviour is useful when calculations repeat across many rows, but some references must remain fixed. The Class IX curriculum includes **relative, mixed and absolute referencing**."
         ]
       },
       {
-        "title": "15.2 Relative reference",
+        "title": "Relative reference",
         "points": [
           "A relative reference changes based on the formula's new position.",
           "Example: cell C2 contains `=A2+B2`. If the formula is copied one row down to C3, it commonly becomes `=A3+B3`. The relationship “add the two cells in the same row” is preserved.",
@@ -2391,7 +2427,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "15.3 Absolute reference",
+        "title": "Absolute reference",
         "points": [
           "An absolute reference keeps both the column and row fixed when the formula is copied. A dollar sign is used before both the column and row in many spreadsheet applications.",
           "Example: `$B$1` keeps column B and row 1 fixed. This is useful when a formula repeatedly uses one fixed tax rate, discount rate or conversion value.",
@@ -2399,7 +2435,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "15.4 Mixed reference",
+        "title": "Mixed reference",
         "points": [
           "A mixed reference fixes one part while allowing the other part to change.",
           "`$B2`: column B is fixed; the row can change.",
@@ -2408,7 +2444,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "15.5 Comparison table",
+        "title": "Comparison table",
         "table": {
           "head": [
             "Type",
@@ -2440,7 +2476,7 @@ export const itNotes9: ChapterNote[] = [
         }
       },
       {
-        "title": "15.6 Example of a fixed-rate calculation",
+        "title": "Example of a fixed-rate calculation",
         "points": [
           "Suppose cell B1 stores a discount rate of `10%`, and amounts are listed in A3:A7. In B3, enter:",
           "`=A3*$B$1`",
@@ -2448,7 +2484,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "15.7 Charts: purpose and selection",
+        "title": "Charts: purpose and selection",
         "points": [
           "A chart turns numeric data into a visual pattern. It can make comparisons, trends and proportions easier to understand, but a misleading chart can also distort a message. Choose the type according to the question being answered.",
           "Common chart types in spreadsheet software:",
@@ -2462,7 +2498,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "15.8 Creating a chart",
+        "title": "Creating a chart",
         "points": [
           "A general workflow is:",
           "1. Arrange data in a simple table with headings.",
@@ -2489,7 +2525,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "15.9 Practical activity",
+        "title": "Practical activity",
         "points": [
           "Create a worksheet showing the number of books borrowed from a school library over five months. Make a column chart and a line chart, add titles and labels, and write two sentences comparing what each chart makes easy to see. Then create a small mark-comparison chart for three students across three subjects."
         ]
@@ -2497,12 +2533,20 @@ export const itNotes9: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 15 — Cell References and Charts",
-        "meaning": "When a formula is copied to another cell, its references may change. This behaviour is useful when calculations repeat across many rows, but some references must remain fixed. The Class IX curriculum includes **relative, mixed and absolute referencing**."
+        "term": "Column chart",
+        "meaning": "compare categories using vertical bars."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Bar chart",
+        "meaning": "compare categories with horizontal bars; helpful for longer category names."
+      },
+      {
+        "term": "Line chart",
+        "meaning": "show change across an ordered sequence, commonly time."
+      },
+      {
+        "term": "Pie chart",
+        "meaning": "show parts of one whole when there are a small number of meaningful categories that add to a whole."
       }
     ],
     "examTips": [
@@ -2515,20 +2559,20 @@ export const itNotes9: ChapterNote[] = [
     "id": "note-it9-19",
     "subject": "it",
     "classLevel": 9,
-    "chapterNo": 19,
-    "title": "Chapter 16 — Digital Presentation: Fundamentals",
+    "chapterNo": 17,
+    "title": "Slide Presentation Design & Visual Storytelling",
     "unit": "Part B — Subject-Specific Skills",
     "overview": "A **digital presentation** is a sequence of slides used to communicate information to an audience. Presentations can include text, images, diagrams, tables, charts, shapes, audio/video where supported, animation and transitions.",
     "sections": [
       {
-        "title": "16.1 What is a presentation?",
+        "title": "What is a presentation?",
         "points": [
           "A **digital presentation** is a sequence of slides used to communicate information to an audience. Presentations can include text, images, diagrams, tables, charts, shapes, audio/video where supported, animation and transitions.",
           "The curriculum refers to presentation software such as **LibreOffice Impress**. Similar concepts are used in Microsoft PowerPoint, Google Slides and other applications, although some features and menu names differ."
         ]
       },
       {
-        "title": "16.2 Elements of a presentation",
+        "title": "Elements of a presentation",
         "points": [
           "A presentation may contain:",
           "a title and purpose;",
@@ -2542,7 +2586,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "16.3 Features of an effective presentation",
+        "title": "Features of an effective presentation",
         "points": [
           "An effective presentation is clear, accurate, logically organized, readable and suited to its audience. It has consistent design, sensible contrast, appropriate visuals and few unnecessary distractions.",
           "Checklist:",
@@ -2558,7 +2602,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "16.4 Opening and understanding Impress",
+        "title": "Opening and understanding Impress",
         "points": [
           "A presentation window may contain a title bar, menus, toolbars, slide pane, main editing area, sidebar/properties panel and status/zoom controls. The layout depends on software version and workspace configuration.",
           "To create a presentation:",
@@ -2572,14 +2616,14 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "16.5 Templates and slide layouts",
+        "title": "Templates and slide layouts",
         "points": [
           "A **template** provides a starting design or structure, such as themes, backgrounds and common formatting. A **slide layout** defines the kinds and positions of placeholders on an individual slide—for example, title and content, two columns or title only.",
           "Choose a layout suited to the content. Do not force a chart into a layout intended for a title. A consistent template can make the presentation look coherent, but the content must still be clear."
         ]
       },
       {
-        "title": "16.6 Saving and exporting",
+        "title": "Saving and exporting",
         "points": [
           "Common tasks include:",
           "save the editable presentation in the application's native format (commonly `.odp` for Impress);",
@@ -2589,13 +2633,13 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "16.7 Running a slide show and using Help",
+        "title": "Running a slide show and using Help",
         "points": [
           "Use the Slide Show command or the keyboard shortcut configured in the application to present from the beginning or current slide. Test transitions, timings and fonts on the computer that will be used. The Help menu or built-in documentation can explain tools and features; record the exact version when following instructions from a guide."
         ]
       },
       {
-        "title": "16.8 Practical activity",
+        "title": "Practical activity",
         "points": [
           "Create a five-slide presentation titled **“How IT Helps Our Community.”** Include a title slide, three content slides illustrating different sectors, and a conclusion. Use a suitable template, consistent layout, a relevant image or chart, a readable font and one consistent design. Save the editable file and export a PDF copy."
         ]
@@ -2603,12 +2647,16 @@ export const itNotes9: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 16 — Digital Presentation: Fundamentals",
-        "meaning": "A **digital presentation** is a sequence of slides used to communicate information to an audience. Presentations can include text, images, diagrams, tables, charts, shapes, audio/video where supported, animation and transitions."
+        "term": "digital presentation",
+        "meaning": "is a sequence of slides used to communicate information to an audience. Presentations can include text, images, diagrams, tables, charts, shapes, audio/video where supported, animation and transitions."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "template",
+        "meaning": "provides a starting design or structure, such as themes, backgrounds and common formatting. A **slide layout** defines the kinds and positions of placeholders on an individual slide—for example, title and content, two columns or title only."
+      },
+      {
+        "term": "“How IT Helps Our Community.”",
+        "meaning": "Include a title slide, three content slides illustrating different sectors, and a conclusion. Use a suitable template, consistent layout, a relevant image or chart, a readable font and one consistent design."
       }
     ],
     "examTips": [
@@ -2619,20 +2667,20 @@ export const itNotes9: ChapterNote[] = [
     "id": "note-it9-20",
     "subject": "it",
     "classLevel": 9,
-    "chapterNo": 20,
-    "title": "Chapter 17 — Slides, Text, Animation and Views",
+    "chapterNo": 18,
+    "title": "Slide Layouts, Rich Typography, Animation & Transitions",
     "unit": "CBSE Class 9 IT (402)",
     "overview": "A **slide** is one page in the presentation sequence. To add a slide, use the New Slide command or a suitable keyboard shortcut. To duplicate a slide, use Duplicate Slide or the equivalent context/menu command. Duplicating is useful when two slides need a similar layout.",
     "sections": [
       {
-        "title": "17.1 Inserting and duplicating slides",
+        "title": "Inserting and duplicating slides",
         "points": [
           "A **slide** is one page in the presentation sequence. To add a slide, use the New Slide command or a suitable keyboard shortcut. To duplicate a slide, use Duplicate Slide or the equivalent context/menu command. Duplicating is useful when two slides need a similar layout.",
           "After adding a slide, choose the correct layout and enter the content. Check the sequence from beginning to end; an audience should be able to follow the flow without guessing how each slide connects to the next."
         ]
       },
       {
-        "title": "17.2 Copying, moving, deleting and renaming",
+        "title": "Copying, moving, deleting and renaming",
         "points": [
           "**Copy:** create another copy of a slide or selected content.",
           "**Move:** rearrange a slide using drag-and-drop or cut/paste as supported.",
@@ -2642,7 +2690,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "17.3 Slide workspace views",
+        "title": "Slide workspace views",
         "points": [
           "The Class IX curriculum lists these views:",
           "**Normal view:** edit the content of an individual slide.",
@@ -2653,20 +2701,20 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "17.4 Changing view size / zoom",
+        "title": "Changing view size / zoom",
         "points": [
           "Zoom controls make slides appear larger or smaller on screen. Zoom does not normally change the actual slide dimensions or the size of displayed content. Use a useful zoom level for editing and return to fit-slide or suitable overview when checking the full layout."
         ]
       },
       {
-        "title": "17.5 Formatting text in presentations",
+        "title": "Formatting text in presentations",
         "points": [
           "Common formatting options include font, size, bold/italic, colour, alignment, bullets and numbering. Use headings and bullet points to show hierarchy. Use consistent formatting for headings at the same level.",
           "Presentation text should be shorter than a full report. If a slide contains too much information, split the content into multiple slides or provide a separate handout/document."
         ]
       },
       {
-        "title": "17.6 Bullets and numbering",
+        "title": "Bullets and numbering",
         "points": [
           "Bullets are suitable for a list where order is not essential; numbering is useful for steps or ranked sequences. Keep list levels limited, align text consistently and use parallel phrasing when possible.",
           "Example of a useful numbered sequence:",
@@ -2678,7 +2726,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "17.7 Custom animation",
+        "title": "Custom animation",
         "points": [
           "Animation changes how an element appears, moves, emphasizes or disappears during a slide show. It can focus attention when used sparingly—for example, revealing steps one at a time. Too much animation distracts from the message and may make the presentation feel slow or confusing.",
           "A general procedure is:",
@@ -2692,13 +2740,13 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "17.8 Animation versus transition",
+        "title": "Animation versus transition",
         "points": [
           "An **animation** affects an element within a slide, such as the appearance of a bullet list. A **transition** affects how the presentation moves from one slide to another. A slide master controls shared design elements across multiple slides. These are three different features."
         ]
       },
       {
-        "title": "17.9 Practical activity",
+        "title": "Practical activity",
         "points": [
           "Create six slides explaining the steps of a simple process. Use Slide Sorter to rearrange two slides, duplicate one slide, delete an unnecessary slide, add notes, and apply one restrained animation to reveal steps. Present the deck in full-screen mode and confirm the order makes sense."
         ]
@@ -2706,12 +2754,20 @@ export const itNotes9: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 17 — Slides, Text, Animation and Views",
-        "meaning": "A **slide** is one page in the presentation sequence. To add a slide, use the New Slide command or a suitable keyboard shortcut. To duplicate a slide, use Duplicate Slide or the equivalent context/menu command. Duplicating is useful when two slides need a similar layout."
+        "term": "slide",
+        "meaning": "is one page in the presentation sequence. To add a slide, use the New Slide command or a suitable keyboard shortcut."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Copy",
+        "meaning": "create another copy of a slide or selected content."
+      },
+      {
+        "term": "Move",
+        "meaning": "rearrange a slide using drag-and-drop or cut/paste as supported."
+      },
+      {
+        "term": "Delete",
+        "meaning": "remove an unwanted slide or selected object."
       }
     ],
     "examTips": [
@@ -2723,13 +2779,13 @@ export const itNotes9: ChapterNote[] = [
     "id": "note-it9-21",
     "subject": "it",
     "classLevel": 9,
-    "chapterNo": 21,
-    "title": "Chapter 18 — Tables, Images, Drawing Objects and Slide Masters",
+    "chapterNo": 19,
+    "title": "Multimedia Objects, Shapes, Vector Graphics & Slide Masters",
     "unit": "CBSE Class 9 IT (402)",
     "overview": "Tables arrange data in rows and columns. They can be useful for a small comparison, schedule or summary of numbers. A table on a slide should be readable from the back of a room; a large spreadsheet is usually better provided as a separate file or split into several slides.",
     "sections": [
       {
-        "title": "18.1 Tables in presentations",
+        "title": "Tables in presentations",
         "points": [
           "Tables arrange data in rows and columns. They can be useful for a small comparison, schedule or summary of numbers. A table on a slide should be readable from the back of a room; a large spreadsheet is usually better provided as a separate file or split into several slides."
         ]
@@ -2748,7 +2804,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "18.2 Images: insert, move, resize, rotate and format",
+        "title": "Images: insert, move, resize, rotate and format",
         "points": [
           "Images can come from a permitted file or the application's gallery/stock collection, where available. Respect copyright, licences and privacy; a picture being accessible online does not automatically mean it is free to reuse.",
           "**Insert:** add an image from a file or gallery.",
@@ -2762,7 +2818,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "18.3 Drawing objects: lines and shapes",
+        "title": "Drawing objects: lines and shapes",
         "points": [
           "A line can show a connection or direction. Shapes can represent process steps, categories or callouts. A diagram should have a clear purpose and should not use so many shapes that it becomes difficult to follow.",
           "Common uses:",
@@ -2775,13 +2831,13 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "18.4 Grouping and ungrouping objects",
+        "title": "Grouping and ungrouping objects",
         "points": [
           "**Grouping** makes multiple selected objects behave as one group for moving or formatting. It is useful for a diagram made of several shapes and labels. **Ungrouping** separates the objects for individual editing. Select only the intended objects before grouping; otherwise unrelated items may become part of the same group."
         ]
       },
       {
-        "title": "18.5 Slide master",
+        "title": "Slide master",
         "points": [
           "A **slide master** controls design elements shared by multiple slides, such as background, theme, font choices, common placeholders or footer placement. Editing the master can update many slides consistently. The exact features depend on the presentation software.",
           "General workflow:",
@@ -2796,13 +2852,13 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "18.6 Transitions",
+        "title": "Transitions",
         "points": [
           "A transition is the visual effect used between slides. The curriculum includes adding transitions to a presentation. Choose a consistent, restrained transition and test it during the slide show. A transition should not slow the audience down or obscure key information."
         ]
       },
       {
-        "title": "18.7 Effective design principles",
+        "title": "Effective design principles",
         "points": [
           "**Contrast:** make text and objects distinguishable from their backgrounds.",
           "**Alignment:** line up objects consistently.",
@@ -2815,7 +2871,7 @@ export const itNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "18.8 Practical activity",
+        "title": "Practical activity",
         "points": [
           "Create a four-slide presentation about a local environmental issue. Insert an image, make a simple table, draw a flow diagram with grouped shapes, create a slide master with a consistent title style and background, apply it to all slides, add a restrained transition, and export the final presentation to PDF."
         ]
@@ -2823,12 +2879,20 @@ export const itNotes9: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 18 — Tables, Images, Drawing Objects and Slide Masters",
-        "meaning": "Tables arrange data in rows and columns. They can be useful for a small comparison, schedule or summary of numbers. A table on a slide should be readable from the back of a room; a large spreadsheet is usually better provided as a separate file or split into several slides."
+        "term": "Insert",
+        "meaning": "add an image from a file or gallery."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Move",
+        "meaning": "select and drag the image or use position controls."
+      },
+      {
+        "term": "Resize",
+        "meaning": "use handles; resize from corners where possible to preserve proportions."
+      },
+      {
+        "term": "Rotate",
+        "meaning": "use the rotation handle or properties control."
       }
     ],
     "examTips": [
@@ -2839,8 +2903,8 @@ export const itNotes9: ChapterNote[] = [
     "id": "note-it9-22",
     "subject": "it",
     "classLevel": 9,
-    "chapterNo": 22,
-    "title": "Part C — Practical workbook",
+    "chapterNo": 20,
+    "title": "Comprehensive Practical Lab Workbook & Hands-On Exercises",
     "unit": "Part C — Practical Workbook",
     "overview": "The following activities translate the syllabus into demonstrable computer-lab tasks. Use the application installed by your school and follow teacher instructions about where to save files. Names of buttons or menus can vary by version, so focus on the outcome as well as the procedure.",
     "sections": [
@@ -3047,12 +3111,20 @@ export const itNotes9: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Part C — Practical workbook",
-        "meaning": "The following activities translate the syllabus into demonstrable computer-lab tasks. Use the application installed by your school and follow teacher instructions about where to save files. Names of buttons or menus can vary by version, so focus on the outcome as well as the procedure."
+        "term": "Objective",
+        "meaning": "recognize basic parts and explain their function."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Evidence to save",
+        "meaning": "labelled drawing or a one-page document."
+      },
+      {
+        "term": "Success criteria",
+        "meaning": "labels are correct; input/output/storage functions are distinguished; safety note is included."
+      },
+      {
+        "term": "Record table",
+        "meaning": "date, lesson, time, WPM/other speed measure, accuracy, errors, reflection."
       }
     ],
     "examTips": [
@@ -3064,13 +3136,13 @@ export const itNotes9: ChapterNote[] = [
     "id": "note-it9-23",
     "subject": "it",
     "classLevel": 9,
-    "chapterNo": 23,
-    "title": "Part D — Quick revision sheets",
+    "chapterNo": 21,
+    "title": "High-Yield Concept Revision Sheets & Essential Quick Reference",
     "unit": "Part D — Quick Revision",
     "overview": "These shortcuts are common but not universal. Operating systems, applications and school configurations can differ; use menus or Help if a shortcut behaves differently.",
     "sections": [
       {
-        "title": "D.1 Key definitions",
+        "title": "Key definitions",
         "table": {
           "head": [
             "Term",
@@ -3185,7 +3257,7 @@ export const itNotes9: ChapterNote[] = [
         }
       },
       {
-        "title": "D.2 Application comparison",
+        "title": "Application comparison",
         "table": {
           "head": [
             "Task",
@@ -3222,7 +3294,7 @@ export const itNotes9: ChapterNote[] = [
         }
       },
       {
-        "title": "D.3 Common keyboard shortcuts (verify on your computer)",
+        "title": "Common keyboard shortcuts (verify on your computer)",
         "table": {
           "head": [
             "Shortcut on many Windows/Linux desktop apps",
@@ -3293,13 +3365,13 @@ export const itNotes9: ChapterNote[] = [
         }
       },
       {
-        "title": "D.3 Common keyboard shortcuts (verify on your computer) — Details",
+        "title": "Common keyboard shortcuts (verify on your computer) — Details",
         "points": [
           "These shortcuts are common but not universal. Operating systems, applications and school configurations can differ; use menus or Help if a shortcut behaves differently."
         ]
       },
       {
-        "title": "D.4 Spreadsheet formula quick sheet",
+        "title": "Spreadsheet formula quick sheet",
         "table": {
           "head": [
             "Need",
@@ -3346,13 +3418,13 @@ export const itNotes9: ChapterNote[] = [
         }
       },
       {
-        "title": "D.5 Mail merge sequence",
+        "title": "Mail merge sequence",
         "points": [
           "**Main document → Prepare data source → Connect the source → Insert merge fields → Preview records → Merge → Review output → Save → Print if required.**"
         ]
       },
       {
-        "title": "D.6 Presentation terms",
+        "title": "Presentation terms",
         "points": [
           "**Template:** reusable design starting point.",
           "**Layout:** arrangement of placeholders on a slide.",
@@ -3368,12 +3440,20 @@ export const itNotes9: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Part D — Quick revision sheets",
-        "meaning": "These shortcuts are common but not universal. Operating systems, applications and school configurations can differ; use menus or Help if a shortcut behaves differently."
+        "term": "Communication",
+        "meaning": "Sharing information or meaning between people."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Feedback",
+        "meaning": "Response that helps the sender judge understanding."
+      },
+      {
+        "term": "Self-management",
+        "meaning": "Managing one's actions, time, emotions and effort responsibly."
+      },
+      {
+        "term": "ICT",
+        "meaning": "Information and Communication Technology."
       }
     ],
     "examTips": [
@@ -3385,8 +3465,8 @@ export const itNotes9: ChapterNote[] = [
     "id": "note-it9-24",
     "subject": "it",
     "classLevel": 9,
-    "chapterNo": 24,
-    "title": "Part E — Practice Arena: 60 Objective Questions",
+    "chapterNo": 22,
+    "title": "Class 9 IT 402 Practice Arena (MCQ)",
     "unit": "Part E — Practice Questions",
     "overview": "60 essential objective practice questions (40 Multiple Choice + 20 True/False) covering Employability Skills, Computer Basics, LibreOffice Writer, Calc, and Impress.",
     "sections": [
@@ -3506,15 +3586,32 @@ export const itNotes9: ChapterNote[] = [
         ]
       }
     ],
-    "keyTerms": [],
+    "keyTerms": [
+      {
+        "term": "True",
+        "meaning": "or **False**. If false, correct the statement."
+      },
+      {
+        "term": "41.",
+        "meaning": "Feedback is one element of the communication cycle."
+      },
+      {
+        "term": "42.",
+        "meaning": "Self-management means a person never makes mistakes."
+      },
+      {
+        "term": "43.",
+        "meaning": "A scanner is commonly an input device."
+      }
+    ],
     "examTips": []
   },
   {
     "id": "note-it9-25",
     "subject": "it",
     "classLevel": 9,
-    "chapterNo": 25,
-    "title": "Glossary",
+    "chapterNo": 23,
+    "title": "Essential IT & Office Productivity Glossary",
     "unit": "Reference & Glossary",
     "overview": "Glossary — Fundamental concepts, practical guidelines, and key summaries.",
     "sections": [
@@ -3712,12 +3809,20 @@ export const itNotes9: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Glossary",
-        "meaning": "Glossary — Fundamental concepts, practical guidelines, and key summaries."
+        "term": "Abiotic",
+        "meaning": "Non-living component of an environment, such as water or sunlight."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Absolute reference",
+        "meaning": "Spreadsheet reference that fixes its row and column, for example `$B$1`."
+      },
+      {
+        "term": "Animation",
+        "meaning": "Visual effect applied to a slide object or text."
+      },
+      {
+        "term": "BPO",
+        "meaning": "Business Process Outsourcing: contracting a business process to another provider."
       }
     ],
     "examTips": [

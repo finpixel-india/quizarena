@@ -16,7 +16,7 @@ export const sstNotes9: ChapterNote[] = [
     "overview": "The French Revolution of 1789 abolished the feudal order, overthrew absolute monarchy, and introduced transformative ideals of liberty, equality, and fraternity that fundamentally reshaped modern global politics.",
     "sections": [
       {
-        "title": "1. French Society During the Late Eighteenth Century",
+        "title": "French Society During the Late Eighteenth Century",
         "points": [
           "**Accession of Louis XVI (1774):** Louis XVI of the Bourbon dynasty ascended the throne of France at age 20, married to Austrian princess Marie Antoinette. He found an empty royal treasury due to long years of war, the extravagant cost of maintaining the opulent court at Versailles, and France's assistance to the thirteen American colonies to gain independence from Britain (adding over 1 billion livres to a debt that reached over 2 billion livres).",
           "**The Three Estates System:** French society was divided into three unequal estates:",
@@ -27,7 +27,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. The Growing Middle Class and Enlightenment Philosophers",
+        "title": "The Growing Middle Class and Enlightenment Philosophers",
         "points": [
           "**Emergence of the Middle Class:** In the 18th century, new social groups emerged—merchants, manufacturers, lawyers, and teachers—who earned wealth through overseas trade and manufacture of woollen and silk textiles. They believed that no group in society should be privileged by birth and that a person's social position must depend on merit.",
           "**Enlightenment Thinkers:**",
@@ -38,7 +38,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. The Outbreak of the Revolution (1789)",
+        "title": "The Outbreak of the Revolution (1789)",
         "points": [
           "**The Estates General Meeting (5 May 1789):** Louis XVI called a meeting of the Estates General at Versailles to pass proposals for new taxes. The First and Second Estates sent 300 representatives each, while the Third Estate sent 600 educated, prosperous members. Voting had traditionally been conducted estate-wise (one vote per estate). The Third Estate demanded voting per member (one person, one vote), which the king rejected. In protest, the Third Estate walked out.",
           "**The Tennis Court Oath (20 June 1789):** Led by **Mirabeau** (a nobleman who opposed feudal privileges) and **Abbé Sieyès** (a priest who wrote the famous pamphlet *'What is the Third Estate?'*), representatives assembled in an indoor tennis court at Versailles and swore not to disperse until they had drafted a constitution limiting royal powers.",
@@ -47,7 +47,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. France Becomes a Constitutional Monarchy (1791)",
+        "title": "France Becomes a Constitutional Monarchy (1791)",
         "points": [
           "The National Assembly completed the draft constitution in 1791 to limit the powers of the monarch and separate powers among the Legislature, Executive, and Judiciary.",
           "**Active vs Passive Citizens:** Only men above 25 years who paid taxes equal to at least 3 days of a labourer's wage were designated **Active Citizens** with the right to vote (approx 4 million out of 28 million). Remaining men and all women were classified as **Passive Citizens** without political rights.",
@@ -56,7 +56,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. The Republic, The Jacobins & The Reign of Terror (1793–1794)",
+        "title": "The Republic, The Jacobins & The Reign of Terror (1793–1794)",
         "points": [
           "**War with Prussia and Austria (1792):** Louis XVI entered secret negotiations with Prussia. Neighboring rulers feared the spread of revolutionary ideas. In April 1792, the National Assembly voted to declare war against Prussia and Austria. Thousands of volunteers joined the army, singing the patriotic song **Marseillaise** (composed by Roget de L'Isle, later the French national anthem).",
           "**The Jacobin Club & Sans-Culottes:** Political clubs became rallying points. The most successful was the **Jacobin Club**, named after the former convent of St Jacob in Paris. Its members belonged mainly to less prosperous sections: shopkeepers, shoemakers, pastry cooks, watchmakers, and daily-wage earners. Led by **Maximilien Robespierre**, they wore long striped trousers to distinguish themselves from fashionable knee-breeches (*culottes*) nobles and were called **sans-culottes** (literally 'without knee-breeches'), wearing red caps symbolizing liberty.",
@@ -66,7 +66,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Women in the Revolution, Abolition of Slavery & Global Legacy",
+        "title": "Women in the Revolution, Abolition of Slavery & Global Legacy",
         "points": [
           "**Women's Political Struggle:** Women actively participated from the start. They formed about 60 political clubs across French cities; the most famous was **The Society of Revolutionary and Republican Women**. Their primary demand was equal political rights and suffrage. Revolutionary government introduced schooling for girls, prohibited forced marriage, and legalized divorce. However, during the Reign of Terror, women's clubs were banned and political activities prohibited. **Olympe de Gouges**, who wrote the *Declaration of the Rights of Woman and Female Citizen* (1791), protested Jacobin suppression and was guillotined. French women finally won the right to vote in **1946**.",
           "**Abolition of Slavery in the Colonies:** Caribbean colonies (Martinique, Guadeloupe, San Domingo) supplied essential commodities: tobacco, indigo, sugar, and coffee. Europeans were reluctant to work distant lands, giving rise to the **triangular slave trade** between Europe, Africa, and the Americas (from 17th century). French ports Bordeaux and Nantes grew wealthy through slave trading. The Convention abolished slavery in French colonies in **1794**, but Napoleon reintroduced it in 1804. Slavery was finally abolished in French colonies in **1848**.",
@@ -74,7 +74,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "7. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on The French Revolution.",
           "**1. On which date did the storming of the fortress-prison Bastille take place in Paris?**",
@@ -140,7 +140,7 @@ export const sstNotes9: ChapterNote[] = [
     "overview": "The Russian Revolution of 1917 overthrew Tsarist autocracy and established the first socialist state under Bolshevik leadership, creating global ideological divisions between capitalism and communism.",
     "sections": [
       {
-        "title": "1. Ideological Currents: Liberals, Radicals, and Conservatives",
+        "title": "Ideological Currents: Liberals, Radicals, and Conservatives",
         "points": [
           "**Liberals:** Wanted a nation that tolerated all religions. Opposed uncontrolled dynastic power, supported safeguarding individual rights, and argued for a representative, elected parliamentary government with an independent judiciary. However, they were **not democrats**: they opposed universal adult franchise, arguing that only property-owning men should have voting rights, and opposed women's suffrage.",
           "**Radicals:** Wanted a government based on the majority of a country's population. Supported women's suffragette movements. Unlike liberals, they opposed the privileges of great landowners and wealthy factory owners. While they were not against the existence of private property, they strongly disliked the concentration of property in a few hands.",
@@ -148,7 +148,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. The Coming of Socialism to Europe and Karl Marx",
+        "title": "The Coming of Socialism to Europe and Karl Marx",
         "points": [
           "**Socialist Critique of Capitalism:** Socialists saw private property as the root cause of all social ills. Capitalists owned production but cared only for individual profit, neglecting the welfare of workers who produced the wealth. Socialists argued that society as a whole, rather than single individuals, should control property.",
           "**Early Visions of Socialism:**",
@@ -159,7 +159,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. The Russian Empire in 1914: Economy, Society & Politics",
+        "title": "The Russian Empire in 1914: Economy, Society & Politics",
         "points": [
           "**The Russian Empire:** In 1914, **Tsar Nicholas II** ruled Russia and its vast empire (stretching from Baltic states, Ukraine, Belarus, Poland to Central Asia and the Pacific). The majority religion was Russian Orthodox Christianity, but the empire included Catholics, Protestants, Muslims, and Buddhists.",
           "**Economy and Society:** About **85%** of the Russian population depended on agriculture (far higher than France or Germany at 40–50%). Major exporter of grain. Industry existed in isolated pockets (St Petersburg and Moscow). Foreign capital funded rapid railway expansion in the 1890s, doubling coal production.",
@@ -168,7 +168,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. The 1905 Revolution and 'Bloody Sunday'",
+        "title": "The 1905 Revolution and 'Bloody Sunday'",
         "points": [
           "**Political Opposition:** All political parties were illegal in Russia before 1914. The **Russian Social Democratic Workers Party (RSDWP)**, founded in 1898, split in 1903 into two factions:",
           "(1) **Bolsheviks (Majority):** Led by **Vladimir Lenin**, believed the party should be disciplined, selective, and control the quality of its members.",
@@ -178,7 +178,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. The First World War & The February Revolution of 1917",
+        "title": "The First World War & The February Revolution of 1917",
         "points": [
           "**Impact of World War I (1914–1917):** Russia entered WWI fighting Germany and Austria. War was initially popular, but the Tsar refused to consult the Duma. Disastrous military defeats on the Eastern front: Russia lost over 7 million men by 1917. As Russian armies retreated, they destroyed crops and buildings to prevent enemy use, creating 3 million refugees. Severe economic dislocation: Baltic sea routes cut, railway lines broke down, grain diverted to feed the army, resulting in acute bread riots in cities.",
           "**The February Revolution in Petrograd:**",
@@ -190,7 +190,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. The October Revolution (1917) and Bolshevik Transformation",
+        "title": "The October Revolution (1917) and Bolshevik Transformation",
         "points": [
           "**Lenin's April Theses (April 1917):** Lenin returned from exile in Switzerland. He declared that Soviets must take over governance and put forward three clear demands (known as the **April Theses**): (1) War must be brought to a close, (2) Land must be transferred to the peasants, (3) Banks must be nationalized. He also argued that the Bolshevik Party rename itself the **Communist Party**.",
           "**The October Uprising (24–25 October 1917):** Conflict between the Provisional Government and Bolsheviks grew. Lenin persuaded the Petrograd Soviet and Bolshevik Central Committee to seize power. On 16 October 1917, a **Military Revolutionary Committee** was formed under **Leon Trotsky**. On 24 October, the uprising began; pro-Bolshevik troops seized telephone/telegraph offices and railway stations. The cruiser *Aurora* shelled the Winter Palace. By nightfall, ministers surrendered, and the All-Russian Congress of Soviets approved the Bolshevik action.",
@@ -204,7 +204,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "7. Civil War, Stalin's Collectivisation & Global Impact",
+        "title": "Civil War, Stalin's Collectivisation & Global Impact",
         "points": [
           "**The Civil War (1918–1920):** When Bolsheviks ordered land redistribution, the Russian army broke up as peasant soldiers deserted. Non-Bolshevik socialists, liberals, and Tsarist supporters (the **'Whites'** and **'Greens'**) organized troops, backed by French, American, British, and Japanese forces hostile to socialism. By 1920, the Bolshevik **'Reds'** controlled most of the former empire due to military brilliance of Trotsky and cooperation with non-Russian nationalities. In December 1922, the **USSR (Union of Soviet Socialist Republics)** was formed.",
           "**Stalin's Collectivisation Program (1929):** By 1927–28, Soviet towns faced an acute grain supply crisis. **Joseph Stalin** (who headed the party after Lenin's death in 1924) believed rich peasants (**Kulaks**) were hoarding grain to force higher prices. In 1929, the party forced all peasants to cultivate collective farms (**Kolkhoz**). Enraged peasants resisted by slaughtering one-third of their cattle. Resisters were severely deported or exiled. Bad harvests of 1930–1933 led to a devastating famine where over 4 million died. Stalin's critics were accused of conspiracy; over 2 million were imprisoned in labour camps or executed during the Great Purges.",
@@ -212,7 +212,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "8. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Socialism in Europe and the Russian Revolution.",
           "**1. What was the name of the cooperative community established by Robert Owen in Indiana (USA)?**",
@@ -278,7 +278,7 @@ export const sstNotes9: ChapterNote[] = [
     "overview": "Hitler leveraged the political and economic ruin of the Weimar Republic following World War I to establish a totalitarian Nazi dictatorship rooted in aggressive nationalism, racial pseudo-science, and the genocidal destruction of European Jewry.",
     "sections": [
       {
-        "title": "1. The Birth of the Weimar Republic and the Treaty of Versailles",
+        "title": "The Birth of the Weimar Republic and the Treaty of Versailles",
         "points": [
           "**Collapse of Imperial Germany:** Germany fought WWI (1914–1918) alongside Austria-Hungary against the Allies (England, France, Russia). Initial gains turned to defeat after the US joined the Allies in 1917. Germany and the Central Powers were defeated in November 1918. Emperor Kaiser Wilhelm II abdicated.",
           "**Establishment of the Weimar Republic:** A National Assembly met at the town of **Weimar** and established a democratic constitution with a federal structure. Deputies were elected to the German Parliament (**Reichstag**) on the basis of equal and universal votes cast by all adults, including women.",
@@ -291,7 +291,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. The Years of Economic & Political Crisis (1923 & 1929)",
+        "title": "The Years of Economic & Political Crisis (1923 & 1929)",
         "points": [
           "**Hyperinflation of 1923:** Germany had fought the war largely on loans and had to pay reparations in gold, depleting its gold reserves. In 1923, Germany defaulted on payments. France occupied Germany's leading industrial area, the **Ruhr**, to seize coal. Germany responded with passive resistance and printed paper currency recklessly. The value of the German Mark collapsed: in April 1923, 1 US dollar equaled 24,000 marks; by December 1923, it equaled 4.2 trillion marks! Prices soared astronomically—people carried wheelbarrows of cash just to buy a loaf of bread. This crisis of extreme currency depreciation is called **hyperinflation**. The Americans bailed Germany out with the **Dawes Plan**, restructuring reparations.",
           "**The Great Depression (1929):** Short-term US loans fueled German recovery (1924–1928), but this was completely withdrawn when the **Wall Street Crash** struck the USA in October 1929 (13 million shares sold in one day). The Great Depression struck Germany brutally: industrial production fell by 40%, 6 million workers became unemployed, youth took to crime, and middle-class savings evaporated (**proletarianisation**—fear of sinking into the ranks of the working class).",
@@ -299,7 +299,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Hitler's Rise to Power and Nazi Propaganda",
+        "title": "Hitler's Rise to Power and Nazi Propaganda",
         "points": [
           "**Early Career:** Adolf Hitler was born in 1889 in Austria, spent youth in poverty, served as a messenger in WWI, earned an Iron Cross for bravery, and was heartbroken by German defeat. In 1919, he joined the German Workers' Party, took it over, and renamed it the **National Socialist German Workers' Party (Nazi Party)**. In 1923, he launched the failed **Beer Hall Putsch** in Munich to seize power, was imprisoned, and wrote *Mein Kampf*.",
           "**Rise During the Depression:** During the Great Depression, Nazism became a mass movement. In 1928, the Nazi Party received only 2.6% of votes in the Reichstag; by 1932, it became the largest party with **37%** of votes.",
@@ -307,7 +307,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. The Destruction of Democracy (1933)",
+        "title": "The Destruction of Democracy (1933)",
         "points": [
           "**Appointment as Chancellor:** On **30 January 1933**, President Paul von Hindenburg offered the Chancellorship (highest cabinet post) to Adolf Hitler.",
           "**The Reichstag Fire & Fire Decree (28 February 1933):** A mysterious fire broke out in the German Parliament building on 27 February 1933. Hitler capitalized on it immediately: the **Fire Decree of 28 February 1933** suspended fundamental civil rights—freedom of speech, press, and assembly—guaranteed by the Weimar constitution.",
@@ -316,7 +316,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Economic Reconstruction & Foreign Expansion (1933–1939)",
+        "title": "Economic Reconstruction & Foreign Expansion (1933–1939)",
         "points": [
           "**Hjalmar Schacht's Economic Strategy:** Economist **Hjalmar Schacht** was assigned the task of economic recovery. He aimed for full production and full employment through state-funded public works: creating the German super-highways (**Autobahns**) and the famous people's car, the **Volkswagen**.",
           "**Hitler's Aggressive Foreign Policy:**",
@@ -329,7 +329,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. The Nazi Racial Ideology, Youth, Women & The Holocaust",
+        "title": "The Nazi Racial Ideology, Youth, Women & The Holocaust",
         "points": [
           "**Racial Hierarchy & Lebensraum:** Nazism borrowed distorted ideas from Charles Darwin and Herbert Spencer to argue that human races were unequal. At the apex stood the blond, blue-eyed **Nordic German Aryans**; at the lowest rung were the **Jews**, categorized as an 'anti-race' and mortal enemies. Hitler's geopolitical ideology was **Lebensraum** (living space)—the belief that new territories had to be conquered for German settlement (implemented ruthlessly in Poland and the USSR).",
           "**Education & Hitler Youth:** Schools were 'cleansed'—Jewish teachers were dismissed; Jewish and German children were segregated and forbidden to sit together. School textbooks were rewritten to introduce 'racial science'. Boys aged 10 entered **Jungvolk**; at 14, all boys had to join the **Hitler Youth**, where they learned to worship war, glorify aggression, and hate Jews. At 18, they entered the Labour Service.",
@@ -338,7 +338,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "7. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Nazism and the Rise of Hitler.",
           "**1. What was the name of the German parliament established under the democratic Weimar Constitution?**",
@@ -404,7 +404,7 @@ export const sstNotes9: ChapterNote[] = [
     "overview": "Colonial expansion transformed forest management through commercial exploitation, scientific forestry, and repressive forest laws, triggering fierce indigenous rebellions across India (Bastar) and Southeast Asia (Java).",
     "sections": [
       {
-        "title": "1. Why Deforestation? The Causes of Forest Depletion Under Colonialism",
+        "title": "Why Deforestation? The Causes of Forest Depletion Under Colonialism",
         "points": [
           "**Deforestation:** The disappearance of forests. Between 1700 and 1995, 13.9 million sq km of forest (9.3% of the world's total area) was cleared for agriculture, industry, and fuel.",
           "**Causes Under British Colonial Rule in India:**",
@@ -415,7 +415,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. The Rise of Commercial 'Scientific Forestry'",
+        "title": "The Rise of Commercial 'Scientific Forestry'",
         "points": [
           "**Dietrich Brandis:** The British invited a German forest expert, **Dietrich Brandis**, to advise on managing forests. Brandis was appointed the first **Inspector General of Forests in India**.",
           "**Establishment of Legal and Educational Framework:**",
@@ -430,7 +430,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Impact on Everyday Lives and the Ban on Shifting Cultivation",
+        "title": "Impact on Everyday Lives and the Ban on Shifting Cultivation",
         "points": [
           "**Disruption of Rural Livelihoods:** Forest laws turned customary everyday activities—cutting wood for homes, grazing cattle, gathering fruits, roots, and leaves, and hunting small game—into illegal crimes. Villagers were forced to steal wood; forest guards and police extracted bribes, harassment, and free food.",
           "**Ban on Shifting Cultivation (Swidden Agriculture):**",
@@ -441,7 +441,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Rebellions in the Forest: The Bastar Rebellion of 1910",
+        "title": "Rebellions in the Forest: The Bastar Rebellion of 1910",
         "points": [
           "**Geography of Bastar:** Located in the southernmost part of **Chhattisgarh**, bordering Andhra Pradesh, Odisha, and Maharashtra. Central plateau drained by the river **Indravati**. Inhabited by diverse indigenous tribes: Maria and Muria Gonds, Dhurwas, Bhatras, and Halbas.",
           "**Beliefs of the People:** Bastar villagers believe the Earth gave them land, and they show reverence by offering respect at agricultural festivals, guarding water, forests, and animals. If a village needed forest produce from another village, they paid a small fee called **dand** or **devsari**, and appointed watchmen called **kotwars**.",
@@ -453,7 +453,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Forest Transformations in Java (Indonesia)",
+        "title": "Forest Transformations in Java (Indonesia)",
         "points": [
           "**Dutch Colonialism in Java:** Java in Indonesia is today a rice-producing island, but was once covered with thick tropical teak forests. The Dutch colonized Java to exploit timber for shipbuilding and railways.",
           "**The Kalangs of Java:** The **Kalangs** were a skilled community of woodcutters and shifting cultivators. When the Mataram kingdom of Java split in 1755, the 6,000 Kalang families were divided equally between the two courts. When the Dutch took over, they forced Kalangs to work for them. In 1770, the Kalangs resisted by attacking a Dutch fort at Joana, though defeated.",
@@ -463,7 +463,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Forest Society and Colonialism.",
           "**1. Who was appointed as the first Inspector General of Forests in India by the British government?**",
@@ -525,7 +525,7 @@ export const sstNotes9: ChapterNote[] = [
     "overview": "Pastoral nomadism represents a sophisticated, ecologically sustainable adaptation to harsh terrains; under British colonial expansion and African territorial partitions, pastoralists faced severe mobility restrictions, heavy taxes, and loss of grazing lands.",
     "sections": [
       {
-        "title": "1. Pastoral Nomads in the Mountains of India",
+        "title": "Pastoral Nomads in the Mountains of India",
         "points": [
           "**Nomadic Pastoralism:** Pastoral nomads move cyclically between summer and winter pastures (**transhumance**), allowing pastures to recover and avoiding extreme seasonal climates.",
           "**Mountain Pastoral Communities:**",
@@ -536,7 +536,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Pastoral Nomads on Plateaus, Plains, and Deserts",
+        "title": "Pastoral Nomads on Plateaus, Plains, and Deserts",
         "points": [
           "**Plateau and Plain Pastoralists:**",
           "(1) **Dhangars of Maharashtra:** An important pastoral community. In the early 20th century, numbered over 467,000. Most were shepherds, some were blanket weavers, and others buffalo herders. They stay in the semi-arid central plateau during the monsoon. By October, after harvesting their bajra, they march west to the fertile coastal **Konkan** region. Konkani rice farmers welcome them: Dhangar sheep eat post-harvest stubble and manure the fields for the next rice crop. With the onset of monsoon rains, they retreat east because sheep cannot tolerate damp coastal conditions.",
@@ -546,7 +546,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Colonial Rule and Its Crushing Impact on Pastoral Life",
+        "title": "Colonial Rule and Its Crushing Impact on Pastoral Life",
         "points": [
           "Under colonial rule, pastoralists' grazing grounds shrank, their movements were strictly regulated, and the revenue they had to pay increased sharply.",
           "**Four Major Colonial Policies:**",
@@ -557,7 +557,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. How Pastoralists Coped with Changes",
+        "title": "How Pastoralists Coped with Changes",
         "points": [
           "Pastoralists adapted to colonial restrictions through resilience and flexible strategies:",
           "(1) **Reduced Herd Sizes:** Unable to feed large numbers of animals on shrinking pastures, many herders reduced their livestock.",
@@ -567,7 +567,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Pastoralism in Africa: The Maasai Case Study",
+        "title": "Pastoralism in Africa: The Maasai Case Study",
         "points": [
           "**Pastoralism in Africa:** Over half the world's pastoral population lives in Africa (over 22 million people: Bedouins, Berbers, Maasai, Somali, Boran, Turkana).",
           "**The Maasai Community:** Reared cattle in East Africa across southern Kenya and northern Tanzania.",
@@ -580,7 +580,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Pastoralists in the Modern World.",
           "**1. Which pastoral nomadic community travels between the Shiwalik hills in winter and the high Bugyals of Kashmir in summer?**",
@@ -642,7 +642,7 @@ export const sstNotes9: ChapterNote[] = [
     "overview": "India occupies an advantageous strategic position in South Asia, straddling the northern and eastern hemispheres with vast latitudinal and longitudinal extents that bridge maritime trade routes across the Indian Ocean.",
     "sections": [
       {
-        "title": "1. Latitudinal and Longitudinal Extent",
+        "title": "Latitudinal and Longitudinal Extent",
         "points": [
           "**Hemispheric Location:** India lies entirely in the **Northern** and **Eastern** hemispheres.",
           "**Mainland Latitudinal Range:** Extends from **8°4' N** in the south (Kanyakumari, Tamil Nadu) to **37°6' N** in the north (Indira Col, Ladakh).",
@@ -655,7 +655,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Geographic Dimensions and Physical Boundaries",
+        "title": "Geographic Dimensions and Physical Boundaries",
         "points": [
           "**Total Land Area:** India's total landmass covers **3.28 million square kilometres**, accounting for **2.4%** of the world's total geographical area.",
           "**Global Ranking:** India is the **seventh-largest country** in the world (following Russia, Canada, USA, China, Brazil, and Australia).",
@@ -666,7 +666,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Longitudinal Extent, Time Lag & Standard Meridian",
+        "title": "Longitudinal Extent, Time Lag & Standard Meridian",
         "points": [
           "**Span and Distance:** Both the latitudinal and longitudinal extents of mainland India are roughly **30°**.",
           "(1) North-to-South actual distance: **3,214 km**.",
@@ -676,7 +676,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. India's Strategic Location and World Connections",
+        "title": "India's Strategic Location and World Connections",
         "points": [
           "**Central Strategic Position:** The Indian landmass holds a central location between East and West Asia. The trans-Indian Ocean routes connecting European countries in the West and Asian nations in the East converge around the Indian peninsula.",
           "**Deccan Peninsula Protrusion:** No other country has a coastline on the Indian Ocean as long as India's, justifying the naming of an entire ocean after it.",
@@ -686,7 +686,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. India's Neighbours and Administrative Structure",
+        "title": "India's Neighbours and Administrative Structure",
         "points": [
           "**Political Units:** India comprises **28 States** and **8 Union Territories**.",
           "**Land Boundaries Shared With:**",
@@ -699,7 +699,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on India – Size and Location.",
           "**1. The Tropic of Cancer (23°30' N) does NOT pass through which of the following Indian states?**",
@@ -753,7 +753,7 @@ export const sstNotes9: ChapterNote[] = [
     "overview": "India exhibits remarkable geomorphological diversity—ranging from the young, rugged fold mountains of the Himalayas to the ancient, stable Peninsular Plateau, fertile alluvial Northern Plains, and dynamic coastal margins.",
     "sections": [
       {
-        "title": "1. Theory of Plate Tectonics and Formation of India's Landmass",
+        "title": "Theory of Plate Tectonics and Formation of India's Landmass",
         "points": [
           "**Plate Tectonic Theory:** Explains that the Earth's crust is divided into seven major and several minor tectonic plates. Their movements build stresses within plates and continental rocks, resulting in **folding**, **faulting**, and **volcanic activity**.",
           "**Types of Plate Boundaries:**",
@@ -765,7 +765,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. The Himalayan Mountains: Three Parallel Ranges",
+        "title": "The Himalayan Mountains: Three Parallel Ranges",
         "points": [
           "**Characteristics:** Young fold mountains stretching across northern India from the Indus to the Brahmaputra in an arc of **2,400 km**. Width varies from **400 km in Kashmir** to **150 km in Arunachal Pradesh**.",
           "**Three Longitudinal Ranges:**",
@@ -775,7 +775,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Regional Divisions of the Himalayas & Purvachal",
+        "title": "Regional Divisions of the Himalayas & Purvachal",
         "points": [
           "Himalayas are demarcated west to east by river valleys:",
           "(1) **Punjab Himalayas (Kashmir & Himachal Himalayas):** Lies between the **Indus** and **Satluj** rivers.",
@@ -786,7 +786,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. The Northern Plains: Relief, Structure & Divisions",
+        "title": "The Northern Plains: Relief, Structure & Divisions",
         "points": [
           "**Formation & Dimensions:** Formed by the alluvial deposits of three major river systems—the **Indus**, **Ganga**, and **Brahmaputra**—along with their tributaries. Extends over an area of **7 lakh sq km**, length: **2,400 km**, breadth: **240 to 320 km**. Densely populated, agriculturally highly productive zone.",
           "**Three Geographic Sections:**",
@@ -801,7 +801,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. The Peninsular Plateau, Indian Desert, Coastal Plains & Islands",
+        "title": "The Peninsular Plateau, Indian Desert, Coastal Plains & Islands",
         "points": [
           "**The Peninsular Plateau:** A tableland composed of old crystalline, igneous, and metamorphic rocks. Formed due to the breaking and drifting of Gondwanaland. Divided by the Narmada River into:",
           "(1) **Central Highlands:** North of Narmada. Includes the **Malwa Plateau**, **Bundelkhand**, **Baghelkhand**, and **Chota Nagpur Plateau** (drained by Damodar, rich in minerals). Bounded by the Aravalli hills (oldest residual fold mountains) on the northwest.",
@@ -819,7 +819,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Physical Features of India.",
           "**1. What is the geological name of the ancient southern supercontinent of which peninsular India was originally a part?**",
@@ -877,7 +877,7 @@ export const sstNotes9: ChapterNote[] = [
     "overview": "India's drainage network is divided into perennial Himalayan river systems originating in snow-bound glaciers and seasonal Peninsular rivers governed by monsoonal precipitation and rift valley geology.",
     "sections": [
       {
-        "title": "1. Drainage Basics & Himalayan vs Peninsular Rivers",
+        "title": "Drainage Basics & Himalayan vs Peninsular Rivers",
         "points": [
           "**Drainage Terms:** **Drainage** describes the river system of an area. A **drainage basin** is the area drained by a single river system. An elevated upland or mountain that separates two drainage basins is called a **water divide** (e.g., Ambala is located on the water divide between the Indus and the Ganga).",
           "**Drainage Patterns:** Governed by slope, rock structure, and climate:",
@@ -891,7 +891,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. The Indus River System",
+        "title": "The Indus River System",
         "points": [
           "**Origin and Course:** Rises in Tibet, near **Lake Mansarowar**. Flows west, enters India in the Union Territory of **Ladakh**, cutting a spectacular gorge.",
           "**Tributaries in Ladakh:** Joined by the Zaskar, Nubra, Shyok, and Hunza.",
@@ -901,7 +901,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. The Ganga and Brahmaputra River Systems",
+        "title": "The Ganga and Brahmaputra River Systems",
         "points": [
           "**Headwaters of the Ganga:** The headwater **Bhagirathi** rises from the **Gangotri Glacier** and joins the **Alaknanda** at **Devprayag** in Uttarakhand to form the **Ganga**. The Ganga emerges from the mountains onto the plains at **Haridwar**.",
           "**Tributaries:**",
@@ -913,7 +913,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Peninsular River Systems: West-Flowing vs East-Flowing",
+        "title": "Peninsular River Systems: West-Flowing vs East-Flowing",
         "points": [
           "**The Main Water Divide:** Formed by the Western Ghats running north to south close to the western coast.",
           "**West-Flowing Rivers (Flowing into Arabian Sea — Form Estuaries):**",
@@ -928,7 +928,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Lakes, Economic Role of Rivers & River Pollution",
+        "title": "Lakes, Economic Role of Rivers & River Pollution",
         "points": [
           "**Classification of Lakes:**",
           "(1) **Freshwater Lakes:** Mostly of glacial origin in the Himalayas (formed when glaciers dug out a basin filled with snowmelt). **Wular Lake** in Jammu & Kashmir is the largest freshwater lake in India, formed by tectonic activity. Other freshwater lakes: Dal Lake, Bhimtal, Nainital, Loktak (Manipur), and Barapani (Meghalaya).",
@@ -940,7 +940,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Drainage.",
           "**1. At which confluence do the Bhagirathi and Alaknanda rivers unite to form the Ganga?**",
@@ -998,7 +998,7 @@ export const sstNotes9: ChapterNote[] = [
     "overview": "India's climate is governed by the monsoon mechanism, which combines latitude, altitude, seasonal pressure reversals over the Indian Ocean and Tibetan Plateau, and jet stream circulations to create distinct seasons.",
     "sections": [
       {
-        "title": "1. Climate vs Weather & Climatic Controls",
+        "title": "Climate vs Weather & Climatic Controls",
         "points": [
           "**Climate vs Weather:** **Weather** refers to the state of the atmosphere over an area at any point in time (elements: temperature, atmospheric pressure, wind, humidity, precipitation). **Climate** is the sum total of weather conditions and variations over a large area for a long period of time (more than thirty years).",
           "**Monsoon:** Derived from Arabic word **'mausim'** meaning season. Refers to the seasonal reversal in wind direction during the year. India's climate is classified as **'monsoon type'**.",
@@ -1012,7 +1012,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Factors Affecting India's Climate: Winds & Jet Streams",
+        "title": "Factors Affecting India's Climate: Winds & Jet Streams",
         "points": [
           "**Latitude:** The **Tropic of Cancer** passes through the middle of India. The area south of the Tropic of Cancer belongs to the **tropical zone**, while the area north belongs to the **subtropical zone**, imparting both tropical and subtropical climatic features.",
           "**Altitude:** The Himalayas have an average height of 6,000 metres. They act as an impenetrable climatic barrier, preventing the freezing cold winds of Central Asia from entering the subcontinent.",
@@ -1024,7 +1024,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. The Mechanism of the Indian Monsoon & ENSO",
+        "title": "The Mechanism of the Indian Monsoon & ENSO",
         "points": [
           "**Key Factors Influencing Monsoon:**",
           "(1) **Differential Heating:** Land heats and cools faster than water, creating low pressure on mainland India and high pressure over the Indian Ocean.",
@@ -1038,7 +1038,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. The Onset, Progression, and Withdrawal of the Monsoon",
+        "title": "The Onset, Progression, and Withdrawal of the Monsoon",
         "points": [
           "**Onset & Burst of Monsoon:** Around early June, moisture-laden south-westerly winds hit the southern tip of the Indian peninsula. The sudden, violent surge of continuous heavy rainfall accompanied by thunder and lightning is called the **'Burst of the Monsoon'**.",
           "**Two Distinct Branches:**",
@@ -1049,7 +1049,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. The Four Distinct Seasons in India",
+        "title": "The Four Distinct Seasons in India",
         "points": [
           "**1. The Cold Weather Season (Winter — Mid-November to February):** December and January are the coldest months in northern India. North-east trade winds prevail, blowing from land to sea, creating fine weather, clear skies, and low humidity. However, Tamil Nadu coast receives winter rainfall because trade winds blow from sea to land over the Bay of Bengal. Northwest plains receive light winter rains (**Mahawat**).",
           "**2. The Hot Weather Season (Summer — March to May):** Solar heating shifts northwards. Temperatures soar up to 45°C in northwest plains. Characteristics:",
@@ -1062,7 +1062,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Climate.",
           "**1. Which place in India and the world receives the highest average annual rainfall?**",
@@ -1120,7 +1120,7 @@ export const sstNotes9: ChapterNote[] = [
     "overview": "India is one of the world's 12 mega biodiversity nations, showcasing a rich continuum of ecosystems from tropical rainforests and deciduous sal woodlands to alpine meadows, nurtured by distinct climatic zones and protected under national conservation networks.",
     "sections": [
       {
-        "title": "1. Biodiversity Factors: Relief and Climate",
+        "title": "Biodiversity Factors: Relief and Climate",
         "points": [
           "**Mega Biodiversity Status:** India hosts about 47,000 plant species (occupying 10th place in the world and 4th in Asia in plant diversity), 15,000 flowering plants (6% of world total), and roughly 90,000 animal species.",
           "**Key Concepts:**",
@@ -1135,7 +1135,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Major Vegetation Types: Evergreen and Deciduous Forests",
+        "title": "Major Vegetation Types: Evergreen and Deciduous Forests",
         "points": [
           "**1. Tropical Evergreen Forests (Rainforests):**",
           "• *Rainfall:* Heavy rainfall (> **200 cm**) with a short dry season.",
@@ -1151,7 +1151,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Thorn Forests, Montane Forests and Mangroves",
+        "title": "Thorn Forests, Montane Forests and Mangroves",
         "points": [
           "**3. Tropical Thorn Forests and Scrubs:**",
           "• *Rainfall:* Less than **70 cm**.",
@@ -1171,7 +1171,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Wildlife Wealth, Endangerment & National Conservation Measures",
+        "title": "Wildlife Wealth, Endangerment & National Conservation Measures",
         "points": [
           "**Wildlife Richness in India:**",
           "(1) **Elephants:** Found in hot wet forests of Assam, Karnataka, and Kerala.",
@@ -1188,7 +1188,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Natural Vegetation and Wildlife.",
           "**1. In which of the following forest types is Teak the most dominant and economically significant tree species?**",
@@ -1242,7 +1242,7 @@ export const sstNotes9: ChapterNote[] = [
     "overview": "Population is the pivotal element in social science, serving as the producer and consumer of resources; analyzing its size, distribution, growth rates, age-sex structures, and health indicators is indispensable for national development planning.",
     "sections": [
       {
-        "title": "1. Population Size, Distribution and Density (2011 Census)",
+        "title": "Population Size, Distribution and Density (2011 Census)",
         "points": [
           "**Census:** A **census** is an official enumeration of population carried out periodically. In India, the first census was held in 1872; the first complete census was conducted in **1881**. Decennial censuses are conducted every 10 years.",
           "**Population Size (2011 Census):**",
@@ -1259,7 +1259,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Population Growth and Processes of Population Change",
+        "title": "Population Growth and Processes of Population Change",
         "points": [
           "**Growth of Population:** Refers to the change in the number of inhabitants of a territory during a specific period. Expressed in two ways: (1) **Absolute numbers** (subtracting earlier population from later population), (2) **Percentage change per year** (annual growth rate). India's annual growth rate has been steadily declining since 1981, showing effective birth control.",
           "**Three Determinants of Population Change:**",
@@ -1270,7 +1270,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Age Composition and Sex Ratio",
+        "title": "Age Composition and Sex Ratio",
         "points": [
           "**Age Composition:** The number of people in different age groups determines social and economic structure. Divided into three broad categories:",
           "(1) **Children (below 15 years):** Economically unproductive, require investments in food, clothing, education, and medical care (dependent group).",
@@ -1285,7 +1285,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Literacy, Occupational Structure, Health & NPP 2000",
+        "title": "Literacy, Occupational Structure, Health & NPP 2000",
         "points": [
           "**Literacy Rates:**",
           "(1) Census definition: A person aged **7 years and above** who can read and write with understanding in any language is treated as literate.",
@@ -1302,7 +1302,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Population.",
           "**1. According to the 2011 Census, what was the average population density of India?**",
@@ -1360,14 +1360,14 @@ export const sstNotes9: ChapterNote[] = [
     "overview": "Democracy is not merely a system of periodic voting; it is a normative system of governance requiring rule of law, institutional accountability, political equality, and fundamental civic protections.",
     "sections": [
       {
-        "title": "1. What is Democracy? Simple Definition and Its Limitations",
+        "title": "What is Democracy? Simple Definition and Its Limitations",
         "points": [
           "**Basic Etymology & Definition:** Derived from Greek words *'demos'* (people) and *'kratia'* (rule or power). A simple working definition states: **Democracy is a form of government in which the rulers are elected by the people**.",
           "**Why a Simple Definition is Inadequate:** Non-democratic regimes often stage sham elections to gain international legitimacy. For instance, Myanmar military dictators (SLORC) or Pinochet in Chile were not elected by people; hereditary monarchs like the King of Saudi Arabia or Nepal rule not because people chose them, but because they were born into royal dynasties. We must distinguish between a genuine democracy and a regime that merely *mimics* democracy."
         ]
       },
       {
-        "title": "2. Four Core Features of Democracy (Global Case Studies)",
+        "title": "Four Core Features of Democracy (Global Case Studies)",
         "points": [
           "**1. Major Decisions by Elected Leaders (Case: Pakistan under Musharraf):**",
           "• In October 1999, **General Pervez Musharraf** led a military coup, overthrowing the democratically elected government. He designated himself Chief Executive and later President.",
@@ -1388,7 +1388,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Arguments Against Democracy (Debating Deficiencies)",
+        "title": "Arguments Against Democracy (Debating Deficiencies)",
         "points": [
           "Critics point out significant operational weaknesses in democracies:",
           "(1) **Instability:** Leaders keep changing in a democracy, leading to frequent policy reversals and instability.",
@@ -1399,7 +1399,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Arguments For Democracy (Why Democracy is Superior)",
+        "title": "Arguments For Democracy (Why Democracy is Superior)",
         "points": [
           "Despite flaws, democracy remains vastly superior to any alternative form of government:",
           "(1) **More Accountable Governance:** Democratic governments must respond to citizens' needs. *Historical Proof:* The catastrophic **Chinese Famine of 1958–1961** (nearly 30 million died). Democratic India, despite having an equally fragile economy, never suffered a famine of such scale because a multi-party system, free press, and opposition forced the Indian government to act urgently on food security.",
@@ -1410,7 +1410,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Broader Meaning of Democracy",
+        "title": "Broader Meaning of Democracy",
         "points": [
           "**Representative Democracy:** In modern mass societies with millions of citizens, direct citizen participation in every decision is physically impossible. Therefore, modern democracy operates as **representative democracy** where people rule through elected representatives.",
           "**Democratic Principles Beyond Politics:** Democratic decision-making applies to everyday spheres—a family where all members decide jointly, a classroom where students can ask questions without fear, or an organisation governed by transparent consensus.",
@@ -1418,7 +1418,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on What is Democracy? Why Democracy?.",
           "**1. General Pervez Musharraf issued which order in August 2002 to amend Pakistan's Constitution and dismiss assemblies?**",
@@ -1472,7 +1472,7 @@ export const sstNotes9: ChapterNote[] = [
     "overview": "A constitution is the foundational supreme law of a nation; this chapter contrasts South Africa's transition from apartheid to a non-racial democracy with the visionary drafting of India's egalitarian Constitution.",
     "sections": [
       {
-        "title": "1. Democratic Constitution in South Africa & The End of Apartheid",
+        "title": "Democratic Constitution in South Africa & The End of Apartheid",
         "points": [
           "**Apartheid System:** A system of institutionalized racial segregation and discrimination imposed by the white European minority on the black majority in South Africa (17th–20th century).",
           "**Oppressive Features of Apartheid:**",
@@ -1489,7 +1489,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Why Do We Need a Constitution?",
+        "title": "Why Do We Need a Constitution?",
         "points": [
           "A **Constitution** is the supreme written law of a country that determines the relationship among citizens and between citizens and their government.",
           "**Four Primary Functions of a Constitution:**",
@@ -1500,7 +1500,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. The Making of the Indian Constitution",
+        "title": "The Making of the Indian Constitution",
         "points": [
           "**Difficult Circumstances:** India was born through the traumatic partition of 1947, accompanied by widespread religious violence where at least 10 lakh people were killed. Integrating 565 princely states into the Indian Union was a monumental challenge led by **Sardar Vallabhbhai Patel**.",
           "**Evolution of Consensus During National Struggle:**",
@@ -1511,7 +1511,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. The Constituent Assembly of India",
+        "title": "The Constituent Assembly of India",
         "points": [
           "**Composition and Elections:**",
           "(1) Elections to the Constituent Assembly were held in **July 1946**. Its first meeting took place on **9 December 1946**.",
@@ -1525,7 +1525,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Guiding Values: The Preamble to the Indian Constitution",
+        "title": "Guiding Values: The Preamble to the Indian Constitution",
         "points": [
           "The Indian Constitution begins with a short statement of its basic values called the **Preamble** (the *'soul of the Constitution'*):",
           "(1) **Sovereign:** People have the supreme right to make decisions on internal as well as external matters; no external power can dictate to India.",
@@ -1540,7 +1540,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Constitutional Design.",
           "**1. Nelson Mandela was sentenced to life imprisonment in 1964 and spent 28 years in prison on which island?**",
@@ -1594,7 +1594,7 @@ export const sstNotes9: ChapterNote[] = [
     "overview": "Elections are the democratic mechanism through which citizens periodically choose their legislators, mandate public policies, and hold the ruling political executive accountable through free and fair electoral procedures.",
     "sections": [
       {
-        "title": "1. Why Elections? What Makes Elections Democratic?",
+        "title": "Why Elections? What Makes Elections Democratic?",
         "points": [
           "**Why Do We Need Elections?** Elections provide a regular mechanism where voters can: (1) Choose who will make laws for them, (2) Choose who will form the government and take major decisions, (3) Choose the party whose policies will guide government lawmaking.",
           "**Five Minimum Conditions of a Democratic Election:**",
@@ -1606,7 +1606,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Political Competition: Merits and Demerits",
+        "title": "Political Competition: Merits and Demerits",
         "points": [
           "**Demerits of Electoral Competition:**",
           "(1) Creates a sense of factionalism and 'party-politics' in every locality.",
@@ -1618,7 +1618,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. The Indian Electoral System: Constituencies & Reservations",
+        "title": "The Indian Electoral System: Constituencies & Reservations",
         "points": [
           "**Electoral Constituencies:** India is divided into territorial areas called **constituencies** for elections:",
           "(1) For Lok Sabha elections, India is divided into **543 constituencies**. Each constituency elects one **Member of Parliament (MP)**.",
@@ -1631,7 +1631,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Voters' List, Nomination of Candidates & Campaigning",
+        "title": "Voters' List, Nomination of Candidates & Campaigning",
         "points": [
           "**Voters' List (Electoral Roll):** In a democracy, the list of eligible voters is prepared well before elections and given to everyone. In India, all citizens aged **18 years and above** have the right to vote regardless of caste, religion, or gender. The government issues the **Election Photo Identity Card (EPIC)** to prevent bogus voting.",
           "**Nomination of Candidates:** Anyone eligible to vote can become a candidate, provided they are at least **25 years of age**. A candidate gets a party nomination (popularly called **'party ticket'**).",
@@ -1648,7 +1648,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Independent Election Commission & Challenges in Indian Elections",
+        "title": "Independent Election Commission & Challenges in Indian Elections",
         "points": [
           "**Independent Election Commission (EC):** India's elections are conducted by an autonomous and powerful body. The **Chief Election Commissioner (CEC)** is appointed by the President of India, but once appointed, the CEC is completely independent of the government and cannot be removed except by impeachment.",
           "**Powers of the Election Commission:**",
@@ -1666,7 +1666,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Electoral Politics.",
           "**1. How many constituencies are there in total for Lok Sabha elections in India?**",
@@ -1720,7 +1720,7 @@ export const sstNotes9: ChapterNote[] = [
     "overview": "Modern democracies do not function arbitrarily; governance relies on institutional equilibrium where the Legislature makes laws, the Executive executes policies, and an independent Judiciary safeguards constitutional validity.",
     "sections": [
       {
-        "title": "1. How is a Major Policy Decision Taken? The Mandal Case",
+        "title": "How is a Major Policy Decision Taken? The Mandal Case",
         "points": [
           "**The Office Memorandum (13 August 1990):** Government issued an order announcing that **27% of vacancies** in civil posts and services under the Government of India were reserved for the **Socially and Educationally Backward Classes (SEBC)**.",
           "**Background of the Mandal Commission:**",
@@ -1731,7 +1731,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Parliament: Need, Functions and the Two Houses",
+        "title": "Parliament: Need, Functions and the Two Houses",
         "points": [
           "**Need for Parliament:** An assembly of elected representatives exercises supreme political authority on behalf of the people. In India, this national legislature is called **Parliament (Sansad)**.",
           "**Four Primary Roles of Parliament:**",
@@ -1749,7 +1749,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. The Political and Permanent Executive",
+        "title": "The Political and Permanent Executive",
         "points": [
           "**Executive:** The organ of government that executes the policies of the government decided by the legislature.",
           "**Two Categories of the Executive:**",
@@ -1759,7 +1759,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Prime Minister and Council of Ministers",
+        "title": "Prime Minister and Council of Ministers",
         "points": [
           "**The Prime Minister:** The most important political institution. Appointed by the President, but the President cannot appoint just anyone—must appoint the leader of the majority party or coalition that commands a majority in the Lok Sabha.",
           "**Powers of the Prime Minister:**",
@@ -1775,7 +1775,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. The President and the Independent Judiciary",
+        "title": "The President and the Independent Judiciary",
         "points": [
           "**The President of India (Head of the State):** Nominal executive who exercises ceremonial powers. Not elected directly by people; elected by an electoral college comprising elected MPs and elected MLAs. All government activities and international treaties are signed in the President's name. A bill passed by Parliament becomes law only after receiving the President's assent.",
           "**Discretionary Power of President:** When no single party or coalition commands a clear majority in the Lok Sabha, the President uses discretion to appoint a leader who can secure a vote of confidence on the floor of the House.",
@@ -1787,7 +1787,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Working of Institutions.",
           "**1. The Second Backward Classes Commission appointed in 1979 in India was headed by:**",
@@ -1841,7 +1841,7 @@ export const sstNotes9: ChapterNote[] = [
     "overview": "Rights are reasonable claims of individuals recognized by society and sanctioned by constitutional law; without enforceable fundamental rights and independent judicial writs, democracy degenerates into authoritarian tyranny.",
     "sections": [
       {
-        "title": "1. Life Without Rights: Three Global Case Studies",
+        "title": "Life Without Rights: Three Global Case Studies",
         "points": [
           "To understand the value of rights, consider societies that denied them:",
           "**1. Prison in Guantanamo Bay (USA):**",
@@ -1855,7 +1855,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. What are Rights? Why Do We Need Rights in a Democracy?",
+        "title": "What are Rights? Why Do We Need Rights in a Democracy?",
         "points": [
           "**Definition of Rights:** Rights are reasonable claims of a person recognized by society and sanctioned by law.",
           "**Three Essential Qualities of a Right:**",
@@ -1869,7 +1869,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Fundamental Rights in the Indian Constitution (Part III)",
+        "title": "Fundamental Rights in the Indian Constitution (Part III)",
         "points": [
           "The Indian Constitution guarantees six **Fundamental Rights** (Articles 12 to 35):",
           "**1. Right to Equality (Articles 14–18):**",
@@ -1888,7 +1888,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Religious, Cultural & Constitutional Remedies Rights",
+        "title": "Religious, Cultural & Constitutional Remedies Rights",
         "points": [
           "**4. Right to Freedom of Religion (Articles 25–28):**",
           "• Freedom of conscience and free profession, practice, and propagation of religion. India is a secular state with no official state religion; government cannot compel any citizen to pay taxes to promote any specific religion.",
@@ -1902,7 +1902,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Expanding Scope of Rights in Modern India",
+        "title": "Expanding Scope of Rights in Modern India",
         "points": [
           "Rights have expanded continuously through judicial interpretation and legislative enactments:",
           "(1) **National Human Rights Commission (NHRC):** Established by law in 1993 as an independent body headed by a retired Chief Justice of India to investigate human rights violations.",
@@ -1913,7 +1913,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Democratic Rights.",
           "**1. Which Article of the Indian Constitution was described by Dr. B.R. Ambedkar as the 'Heart and Soul of the Constitution'?**",
@@ -1967,7 +1967,7 @@ export const sstNotes9: ChapterNote[] = [
     "overview": "Using the hypothetical village of Palampur, this chapter introduces core economic concepts—the four factors of production, agricultural modernization via the Green Revolution, and rural non-farm diversification.",
     "sections": [
       {
-        "title": "1. Organization of Production & The Four Factors",
+        "title": "Organization of Production & The Four Factors",
         "points": [
           "**Aim of Production:** To produce goods and services required by society.",
           "**Four Essential Requirements (Factors of Production):**",
@@ -1980,7 +1980,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Farming in Palampur: Land Constraints & Multiple Cropping",
+        "title": "Farming in Palampur: Land Constraints & Multiple Cropping",
         "points": [
           "**Hypothetical Setting:** Palampur is well-connected with neighboring villages and towns (large village **Raiganj** 3 km away, nearest small town **Shahpur**). Electricity powers tube-wells.",
           "**Land is Fixed:** 75% of working people depend on farming. Total cultivated land area in Palampur has been fixed since 1960. Standard unit of measuring land area is **hectare** (1 hectare = 10,000 sq m). Local units: *bigha*, *guintha*.",
@@ -1993,7 +1993,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. The Green Revolution and Its Ecological Impact",
+        "title": "The Green Revolution and Its Ecological Impact",
         "points": [
           "**Traditional vs Modern Farming:** Until the mid-1960s, farmers used traditional seeds with relatively low yields and organic cow-dung manure. In the late 1960s, the **Green Revolution** introduced Indian farmers to **High Yielding Varieties (HYV) seeds** of wheat and rice.",
           "**Requirements of Modern Farming:** HYV seeds required plenty of water (assured tube-well irrigation), chemical fertilizers, and chemical pesticides to achieve maximum yields. Farmers of **Punjab**, **Haryana**, and **Western Uttar Pradesh** were the first to adopt modern farming methods in India.",
@@ -2005,7 +2005,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Land Distribution, Labour, and Capital Shortages",
+        "title": "Land Distribution, Labour, and Capital Shortages",
         "points": [
           "**Unequal Land Distribution in Palampur:** Out of 450 families:",
           "(1) 150 families (most of them Dalits) are **landless**.",
@@ -2018,7 +2018,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Non-Farm Economic Activities in Palampur",
+        "title": "Non-Farm Economic Activities in Palampur",
         "points": [
           "Only 25% of the working population in Palampur is engaged in non-farm activities:",
           "(1) **Dairy:** Common activity; buffaloes are fed jowar/bajra, and milk is sold in Raiganj. Two traders from Shahpur set up chilling/collection centres.",
@@ -2028,7 +2028,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on The Story of Village Palampur.",
           "**1. Which of the following is categorized as 'Working Capital' in the factors of production?**",
@@ -2082,7 +2082,7 @@ export const sstNotes9: ChapterNote[] = [
     "overview": "Population is an economic asset rather than a liability; investments in education, vocational training, and healthcare transform human potential into high-yielding human capital that propels national income.",
     "sections": [
       {
-        "title": "1. Human Capital Formation: Population as an Asset",
+        "title": "Human Capital Formation: Population as an Asset",
         "points": [
           "**Concept of People as Resource:** An approach to viewing a country's working population in terms of their existing productive skills and abilities. When existing 'human resource' is developed through education and healthcare, it is termed **Human Capital Formation**.",
           "**Comparative Case Study: Sakal vs Vilas:**",
@@ -2092,7 +2092,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Economic Activities: Sectors, Market & Non-Market Activities",
+        "title": "Economic Activities: Sectors, Market & Non-Market Activities",
         "points": [
           "**Three Main Economic Sectors:**",
           "(1) **Primary Sector:** Activities that extract or harvest natural resources directly: agriculture, forestry, animal husbandry, fishing, poultry farming, mining, and quarrying.",
@@ -2105,7 +2105,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Quality of Population: Education and Health",
+        "title": "Quality of Population: Education and Health",
         "points": [
           "The quality of population depends on the literacy rate, health of a person, and skill acquisition.",
           "**Role of Education:** Education enhances individual knowledge, opens new horizons, improves productivity, and enriches cultural heritage and national governance.",
@@ -2122,7 +2122,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Unemployment: Types and Economic Consequences",
+        "title": "Unemployment: Types and Economic Consequences",
         "points": [
           "**Definition of Unemployment:** Exists when people who are willing to work at going wages cannot find jobs. The workforce population includes people from **15 to 59 years** of age.",
           "**Types of Unemployment in India:**",
@@ -2137,7 +2137,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Employment Generation Across Sectors",
+        "title": "Employment Generation Across Sectors",
         "points": [
           "**Primary Sector Trends:** Agriculture is the most labour-absorbing sector. However, disguised unemployment has prompted surplus labour to migrate out.",
           "**Secondary Sector Trends:** Small-scale manufacturing is the most labour-absorbing within the secondary sector.",
@@ -2145,7 +2145,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on People as Resource.",
           "**1. What is the process of investing in human population through education, training, and healthcare called?**",
@@ -2199,7 +2199,7 @@ export const sstNotes9: ChapterNote[] = [
     "overview": "Poverty is a multidimensional social vulnerability characterized by lack of income, basic healthcare, clean water, and self-respect; overcoming poverty requires targeted social safety programs and broad-based inclusive growth.",
     "sections": [
       {
-        "title": "1. Dimensions of Poverty & Case Studies (Urban vs Rural)",
+        "title": "Dimensions of Poverty & Case Studies (Urban vs Rural)",
         "points": [
           "**Poverty in India:** In India, roughly every fifth person is poor (as per 2011–12 estimates, about 270 million or 27 crore people live in poverty). India has the largest single concentration of the poor in the world.",
           "**Two Representative Cases:**",
@@ -2209,7 +2209,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Social Science Indicators: Social Exclusion and Vulnerability",
+        "title": "Social Science Indicators: Social Exclusion and Vulnerability",
         "points": [
           "Beyond income, modern social scientists analyze poverty using specific concepts:",
           "(1) **Social Exclusion:** A process through which poor individuals are excluded from enjoying facilities, benefits, and opportunities that others enjoy. The poor are forced to live only in poor surroundings with other poor people (e.g., the Indian **caste system** where Dalits are historically excluded from equal social facilities). Social exclusion can be both a cause and a consequence of poverty.",
@@ -2217,7 +2217,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. The Poverty Line: Concept and Determination in India",
+        "title": "The Poverty Line: Concept and Determination in India",
         "points": [
           "**Poverty Line:** A benchmark used to measure poverty based on minimum levels of income or consumption required to satisfy basic human needs.",
           "**Calorific Norms in India:**",
@@ -2230,7 +2230,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Poverty Trends, Vulnerable Groups & Inter-State Disparities",
+        "title": "Poverty Trends, Vulnerable Groups & Inter-State Disparities",
         "points": [
           "**Poverty Trends:** Poverty ratio declined from 45% in 1993–94 to 37.2% in 2004–05 and further to **21.9% in 2011–12**.",
           "**Vulnerable Groups:**",
@@ -2247,7 +2247,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Causes of Poverty and Government Anti-Poverty Strategy",
+        "title": "Causes of Poverty and Government Anti-Poverty Strategy",
         "points": [
           "**Historical & Structural Causes of Poverty:**",
           "(1) British colonial policies ruined traditional Indian handicrafts and discouraged textile industries.",
@@ -2265,7 +2265,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Poverty as a Challenge.",
           "**1. What is the accepted minimum daily calorie requirement per person for rural areas in India?**",
@@ -2319,7 +2319,7 @@ export const sstNotes9: ChapterNote[] = [
     "overview": "National food security requires availability, physical accessibility, and economic affordability of nutritious food for all citizens at all times, managed through buffer stocks, the Public Distribution System (PDS), and cooperative networks.",
     "sections": [
       {
-        "title": "1. What is Food Security? Three Dimensions & The 1943 Famine",
+        "title": "What is Food Security? Three Dimensions & The 1943 Famine",
         "points": [
           "**Definition:** Food security means availability, accessibility, and affordability of food to all people at all times. Poor households are vulnerable to food insecurity whenever there is a crop failure or natural calamity.",
           "**Three Essential Dimensions of Food Security:**",
@@ -2331,7 +2331,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Hunger: Chronic vs Seasonal Hunger",
+        "title": "Hunger: Chronic vs Seasonal Hunger",
         "points": [
           "**Hunger as an Indicator:** Hunger is not merely an expression of poverty; it brings about poverty.",
           "**Two Basic Types of Hunger:**",
@@ -2341,7 +2341,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. India's Self-Sufficiency: Green Revolution & Food Security System",
+        "title": "India's Self-Sufficiency: Green Revolution & Food Security System",
         "points": [
           "**Green Revolution & Foodgrain Self-Sufficiency:** After independence, India adopted all measures to achieve self-sufficiency in food grains. In July 1968, Prime Minister Indira Gandhi released a special commemorative stamp entitled **'The Wheat Revolution'** to celebrate massive production gains.",
           "**The Two Components of India's Food Security System:**",
@@ -2350,7 +2350,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Evolution of the Public Distribution System & Targeted Schemes",
+        "title": "Evolution of the Public Distribution System & Targeted Schemes",
         "points": [
           "**Three Historic Intervention Programmes (mid-1970s):**",
           "(1) PDS strengthened following NSSO poverty reports.",
@@ -2365,7 +2365,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Current Challenges of PDS and Role of Cooperatives",
+        "title": "Current Challenges of PDS and Role of Cooperatives",
         "points": [
           "**Criticisms and Challenges of PDS:**",
           "(1) Granaries of FCI are often overflowing with foodgrains, while stocks rot or are eaten by rats alongside persistent hunger.",
@@ -2381,7 +2381,7 @@ export const sstNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Food Security in India.",
           "**1. What are the three essential pillars of food security recognized internationally?**",

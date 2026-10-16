@@ -16,7 +16,7 @@ export const sstNotes10: ChapterNote[] = [
     "overview": "The nineteenth century witnessed the rise of nationalism as a powerful force that transformed Europe, disintegrating multi-national dynastic empires and replacing them with sovereign nation-states rooted in shared history, language, and collective citizen identity.",
     "sections": [
       {
-        "title": "1. Frédéric Sorrieu's Vision & The French Revolution",
+        "title": "Frédéric Sorrieu's Vision & The French Revolution",
         "points": [
           "In 1848, French artist **Frédéric Sorrieu** prepared a series of four prints visualising a world made up of 'democratic and social Republics'. The first print shows peoples of Europe and America marching past the **Statue of Liberty** (holding the torch of Enlightenment and the Charter of the Rights of Man), with shattered symbols of absolutist institutions lying in the foreground.",
           "The **French Revolution (1789)** was the first clear expression of nationalism. It transferred sovereignty from an absolute monarch to a body of French citizens.",
@@ -24,7 +24,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Napoleon's Administrative Reforms (Civil Code of 1804)",
+        "title": "Napoleon's Administrative Reforms (Civil Code of 1804)",
         "points": [
           "Although Napoleon destroyed political democracy, he incorporated revolutionary principles in the administrative field through the **Civil Code of 1804** (known as the **Napoleonic Code**).",
           "**Key Provisions:** (1) Abolished all privileges based on birth, (2) Established equality before the law, (3) Secured the right to property, (4) Simplified administrative divisions, (5) Abolished the feudal system and freed peasants from serfdom and manorial dues, (6) Removed guild restrictions in towns, (7) Improved transport and communication networks.",
@@ -32,7 +32,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. The Making of Nationalism: Aristocracy, Middle Class & Liberalism",
+        "title": "The Making of Nationalism: Aristocracy, Middle Class & Liberalism",
         "points": [
           "**Social Structure:** The landed aristocracy was the dominant class numerically small but united by a common lifestyle (owned estates, spoke French in high society, intermarried). The vast majority were peasants (tenants and smallholders in the west, serfs on vast estates in eastern Europe).",
           "**Growth of the New Middle Class:** Industrialisation began in Britain in the second half of the 18th century, but in France and German states only during the 19th century. It created new commercial groups: industrialists, merchants, and professionals whose core demand was national unity and the abolition of aristocratic privileges.",
@@ -41,7 +41,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Conservatism after 1815 & The Treaty of Vienna",
+        "title": "Conservatism after 1815 & The Treaty of Vienna",
         "points": [
           "Following the defeat of Napoleon at Waterloo (1815), European governments were driven by **conservatism**—a philosophy that favoured tradition, established institutions (monarchy, Church, social hierarchies, property), and gradual development over quick change.",
           "**Treaty of Vienna (1815):** Hosted by Austrian Chancellor **Duke Metternich** with representatives of Britain, Russia, Prussia, and Austria.",
@@ -50,7 +50,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. The Revolutionaries & Giuseppe Mazzini",
+        "title": "The Revolutionaries & Giuseppe Mazzini",
         "points": [
           "During the years following 1815, fear of repression drove liberal-nationalists underground. Secret societies sprang up in many European states to train revolutionaries and spread ideas.",
           "**Giuseppe Mazzini (1805–1872):** Italian revolutionary born in Genoa; became a member of the secret society of the **Carbonari**. Exiled in 1831 for attempting a revolution in Liguria.",
@@ -59,7 +59,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. The Age of Revolutions (1830–1848) & Romanticism",
+        "title": "The Age of Revolutions (1830–1848) & Romanticism",
         "points": [
           "**July Revolution in France (1830):** Bourbon kings overthrown by liberal revolutionaries who installed a constitutional monarchy under **Louis Philippe**. Metternich remarked: *'When France sneezes, the rest of Europe catches cold.'*",
           "**Uprising in Brussels:** Sparked by the July Revolution, Belgium broke away from the United Kingdom of the Netherlands.",
@@ -69,7 +69,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "7. 1848: The Revolution of the Liberals & Frankfurt Parliament",
+        "title": "1848: The Revolution of the Liberals & Frankfurt Parliament",
         "points": [
           "**Economic Hardship of the 1830s:** Huge population growth, widespread rural-to-urban migration, overcrowding in cities, competition from cheap British machine-made imports, high food prices, and bad harvests. The **Silesian Weavers' Revolt (1845)** erupted when contractors drastically reduced payments for finished textiles.",
           "**February 1848 in France:** Food shortages and widespread unemployment brought the population of Paris onto the barricades. Louis Philippe abdicated; a National Assembly proclaimed a Republic, granted suffrage to all adult males above 21, and guaranteed the right to work through national workshops.",
@@ -79,7 +79,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "8. Unification of Germany and Italy",
+        "title": "Unification of Germany and Italy",
         "points": [
           "**German Unification (1866–1871):** Nationalist sentiments were co-opted by the Prussian monarchy and military. Chief Minister **Otto von Bismarck** was the architect of unification through 'Blood and Iron'. Over seven years, Prussia fought **three wars** against Denmark (1864), Austria (1866), and France (1870–71), winning all three. On **18 January 1871**, in the Hall of Mirrors at Versailles, **Kaiser William I** of Prussia was proclaimed German Emperor.",
           "**Italian Unification (1859–1870):** Italy was divided into seven states; only **Sardinia-Piedmont** was ruled by an Italian princely house under **King Victor Emmanuel II**. The north was under Austrian Habsburgs, centre under the Pope, and south under Bourbon kings of Spain.",
@@ -88,7 +88,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "9. Visualising the Nation & Nationalism and Imperialism",
+        "title": "Visualising the Nation & Nationalism and Imperialism",
         "points": [
           "**Allegories:** Artists personified nations as female figures to give abstract ideas a concrete form. In France, **Marianne** represented the Republic (red cap, tricolour cockade; statues erected in public squares, images on stamps). In Germany, **Germania** wore a crown of oak leaves signifying heroism (*eichenlaub*).",
           "**Symbols & Meanings:** Broken chain = freedom; Breastplate with eagle = strength of German Empire; Crown of oak leaves = heroism; Sword = readiness to fight; Olive branch around sword = willingness to make peace; Black-red-gold tricolour = liberal flag of 1848; Rays of rising sun = dawn of a new era.",
@@ -97,7 +97,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "10. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Test your mastery of the Rise of Nationalism in Europe with board-pattern multiple-choice questions.",
           "**1. Which treaty recognized Greece as an independent nation in 1832?**",
@@ -167,7 +167,7 @@ export const sstNotes10: ChapterNote[] = [
     "overview": "Indian nationalism developed through mass anti-colonial struggles led by Mahatma Gandhi and the Indian National Congress, unifying diverse socio-economic groups through the Non-Cooperation and Civil Disobedience movements, while forging collective identity through shared symbols, literature, and historical reinterpretation.",
     "sections": [
       {
-        "title": "1. First World War, Khilafat and Satyagraha",
+        "title": "First World War, Khilafat and Satyagraha",
         "points": [
           "**Economic and Political Impact of WWI:** Defense expenditure increased massively, financed by war loans and increasing taxes; customs duties were raised and **income tax** was introduced for the first time. Prices doubled between 1913 and 1918, causing extreme hardship. Forced recruitment (**begar**) of rural men into the army caused widespread anger.",
           "In 1918–19 and 1920–21, crops failed in many parts of India, creating acute food shortages, accompanied by an influenza epidemic. According to the 1921 Census, **12 to 13 million people died** as a result of famines and epidemic.",
@@ -176,7 +176,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. The Rowlatt Act & Jallianwala Bagh Massacre",
+        "title": "The Rowlatt Act & Jallianwala Bagh Massacre",
         "points": [
           "**The Rowlatt Act (1919):** Passed hurriedly through the Imperial Legislative Council despite united opposition from Indian members. It gave the colonial government enormous powers to repress political activities and allowed detention of political prisoners without trial for up to **two years**.",
           "Gandhiji called for a nationwide **Rowlatt Satyagraha** starting with a strike (*hartal*) on **6 April 1919**. Rallies were organized, workers went on strike in railway workshops, and shops closed down.",
@@ -186,7 +186,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. The Khilafat Issue & Launch of Non-Cooperation",
+        "title": "The Khilafat Issue & Launch of Non-Cooperation",
         "points": [
           "Gandhiji realized that no broad-based movement could be built without bringing Hindus and Muslims closer together. The **Khilafat issue** provided this opportunity.",
           "The First World War had ended with the defeat of Ottoman Turkey. Rumours spread that a harsh peace treaty was to be imposed on the Ottoman Emperor—the **Khalifa** (the spiritual head of the Islamic world).",
@@ -196,7 +196,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Differing Strands within the Non-Cooperation Movement",
+        "title": "Differing Strands within the Non-Cooperation Movement",
         "points": [
           "**In the Towns:** Thousands of students left government schools and colleges; headmasters and teachers resigned; lawyers gave up legal practice. Council elections were boycotted in most provinces (except Madras, where the **Justice Party** of non-Brahmans participated). Foreign cloth was boycotted, liquor shops picketed, and foreign cloth burnt in huge bonfires. Foreign cloth imports halved between 1921 and 1922 (value dropped from Rs 102 crore to Rs 57 crore).",
           "**Why it slowed in cities:** Khadi cloth was often much more expensive than mass-produced mill cloth and poor people could not afford it. Boycott of British institutions required alternative Indian institutions, which were slow to come up, forcing students and lawyers to return.",
@@ -208,7 +208,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Towards Civil Disobedience & Salt March",
+        "title": "Towards Civil Disobedience & Salt March",
         "points": [
           "**Withdrawal of Non-Cooperation:** In February 1922, at **Chauri Chaura** (Gorakhpur, UP), a peaceful demonstration in the bazaar turned into a violent clash with police. The crowd set fire to the police station, killing 22 policemen. Hearing the news, Mahatma Gandhi called off the Non-Cooperation Movement, stating satyagrahis needed proper training.",
           "**Swaraj Party:** Formed in 1923 within Congress by **C.R. Das** and **Motilal Nehru** to argue for a return to council politics and oppose British policies from within the councils. Younger leaders like Jawaharlal Nehru and Subhas Chandra Bose pressed for more radical mass agitation and full independence.",
@@ -219,7 +219,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Civil Disobedience vs Non-Cooperation & Social Groups",
+        "title": "Civil Disobedience vs Non-Cooperation & Social Groups",
         "points": [
           "**Key Difference:** Non-Cooperation aimed at refusing cooperation with the British administration; Civil Disobedience went a step further by **actively breaking colonial laws** (salt law, forest laws, refusal to pay taxes).",
           "**Participation of Social Groups:**",
@@ -231,7 +231,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "7. The Limits of Civil Disobedience & Collective Belonging",
+        "title": "The Limits of Civil Disobedience & Collective Belonging",
         "points": [
           "**The Dalits / Depressed Classes:** For long, Congress ignored Dalits for fear of offending high-caste conservative Hindus (*Sanatanis*). Gandhiji named them **Harijans** ('children of God'), organized satyagrahas for temple entry and access to public wells, and personally cleaned toilets to dignify scavenging work.",
           "**Dr. B.R. Ambedkar** organized the Dalits into the **Depressed Classes Association (1930)** and clashed with Gandhiji at the Second Round Table Conference demanding **separate electorates** for Dalits. The British granted it; Gandhiji began a fast unto death. Result: **Poona Pact (September 1932)** gave Depressed Classes reserved seats in provincial and central legislative councils, voted by a general joint electorate.",
@@ -244,7 +244,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "8. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-frequency CBSE Board Exam questions with detailed instant evaluation.",
           "**1. In which year and place was the resolution of 'Purna Swaraj' adopted by the Indian National Congress?**",
@@ -314,7 +314,7 @@ export const sstNotes10: ChapterNote[] = [
     "overview": "Globalisation has a profound history spanning centuries—from pre-modern Silk Routes, food migration, and biological conquest, to 19th-century trade flows, colonial indentured labour, the Great Depression, and the post-WWII Bretton Woods financial architecture.",
     "sections": [
       {
-        "title": "1. The Pre-Modern World: Silk Routes & Food Migration",
+        "title": "The Pre-Modern World: Silk Routes & Food Migration",
         "points": [
           "Human societies have steadily become more interconnected through travellers, traders, priests, and pilgrims carrying goods, money, values, skills, ideas, inventions, and even germs and diseases.",
           "**Silk Routes:** Vibrant networks linking vast regions of Asia, and connecting Asia with Europe and northern Africa (existed before Christian era and thrived until the 15th century). Chinese silk cargoes, Chinese pottery, Indian textiles and spices travelled west; in return, precious metals (gold and silver) flowed from Europe to Asia. Buddhism, Christianity, and Islam also travelled along these routes.",
@@ -323,7 +323,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Conquest, Disease and Trade: The Biological Weapon",
+        "title": "Conquest, Disease and Trade: The Biological Weapon",
         "points": [
           "In the 16th century, European sailors found a sea route to Asia and crossed the western ocean to America. The discovery of precious metals, especially silver from the mines of **Potosi** (modern Bolivia) and Mexico, enhanced Europe's wealth and financed its trade with Asia.",
           "**Biological Warfare & Smallpox:** The Portuguese and Spanish conquest and colonization of America was not carried out merely by conventional military firepower. The most powerful weapon was **germs such as smallpox** carried on their person.",
@@ -332,7 +332,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. The 19th Century: Three Economic Flows & World Economy",
+        "title": "The 19th Century: Three Economic Flows & World Economy",
         "points": [
           "Economists identify **three flows** in international economic exchanges: (1) **Flow of trade** (largely goods like wheat and cloth), (2) **Flow of labour** (migration of people in search of employment), (3) **Flow of capital** (short-term and long-term investments over long distances).",
           "**Abolition of the Corn Laws:** Population growth in Britain increased demand for food grains. Under pressure from landed groups, the government restricted the import of corn by laws known as the **Corn Laws**. High food prices led urban industrialists and dwellers to force the abolition of the Corn Laws.",
@@ -342,7 +342,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Late 19th-Century Colonialism, Rinderpest & Indentured Labour",
+        "title": "Late 19th-Century Colonialism, Rinderpest & Indentured Labour",
         "points": [
           "**Berlin Conference (1885):** Major European powers met in Berlin to carve up the African continent among themselves, drawing arbitrary straight borders on maps.",
           "**Rinderpest (Cattle Plague) in Africa:** Arrived in Africa in the late 1880s, carried by infected cattle imported from British Asia to feed Italian soldiers invading Eritrea in East Africa. The disease spread like forest fire across Africa, reaching the Atlantic coast by 1892. It killed **90% of the cattle**, devastating the pastoral livelihoods of Africans. European colonizers successfully monopolized remaining cattle resources, forcing Africans into the wage labour market.",
@@ -352,7 +352,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. The Inter-War Economy & The Great Depression (1929)",
+        "title": "The Inter-War Economy & The Great Depression (1929)",
         "points": [
           "**First World War (1914–1918):** First modern industrial war using machine guns, tanks, aircraft, and chemical weapons on a massive scale. Led to millions of deaths and injuries among working-age men. Economic transformation: Britain borrowed heavily from US banks; the **United States** transformed from an international debtor into an international creditor.",
           "**Mass Production & Henry Ford:** Pioneered in the 1920s by **Henry Ford** at his car plant in Detroit using the **assembly line** technique. Workers repeated a single mechanical task continuously. Result: Model T Ford car produced at record speed and lower cost. Higher wages ($5 a day) allowed workers to buy the very cars they made, creating a consumer boom (cars, refrigerators, washing machines, radios) financed by hire-purchase credit.",
@@ -362,7 +362,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Post-War Settlement, Bretton Woods & Decolonisation",
+        "title": "Post-War Settlement, Bretton Woods & Decolonisation",
         "points": [
           "**Bretton Woods Conference (July 1944):** Held at Bretton Woods, New Hampshire (USA) to ensure economic stability and full employment in the post-war industrial world.",
           "**Bretton Woods Twins:** Established the **International Monetary Fund (IMF)** to deal with external surpluses and deficits of member nations, and the **International Bank for Reconstruction and Development (World Bank)** to finance post-war reconstruction.",
@@ -373,7 +373,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "7. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Check your understanding of the Making of a Global World with board-aligned practice questions.",
           "**1. What was the most powerful biological weapon used by the Spanish to conquer America?**",
@@ -443,7 +443,7 @@ export const sstNotes10: ChapterNote[] = [
     "overview": "Industrialisation was not merely the sudden rise of steam-powered factories; it evolved through rural proto-industrial networks, hand craftsmanship, colonial market disruptions in India, the rise of indigenous entrepreneurs, and clever advertising strategies that created modern consumer culture.",
     "sections": [
       {
-        "title": "1. Proto-Industrialisation: Production Before Factories",
+        "title": "Proto-Industrialisation: Production Before Factories",
         "points": [
           "Even before factories began to dot the landscape in England and Europe, there was large-scale industrial production for an international market. This was not based on factories and is referred to by historians as **proto-industrialisation** ('proto' = early/first form).",
           "**Why Merchants Moved to the Countryside:** In the 17th and 18th centuries, merchants from European towns moved to the countryside, supplying money to peasants and artisans, persuading them to produce for an international market.",
@@ -452,7 +452,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. The Coming Up of the Factory & Pace of Industrial Change",
+        "title": "The Coming Up of the Factory & Pace of Industrial Change",
         "points": [
           "The earliest factories in England came up in the **1730s**, multiplying rapidly in the late 18th century. **Cotton** was the first symbol of the new era.",
           "**Inventions:** A series of technological inventions in the 18th century increased the efficacy of each step of the production process (carding, twisting, spinning, rolling). **Richard Arkwright** created the **cotton mill**: cloth production was brought together under one roof and management, allowing careful supervision and quality control.",
@@ -462,7 +462,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Hand Labour, Steam Power & The Life of the Worker",
+        "title": "Hand Labour, Steam Power & The Life of the Worker",
         "points": [
           "In Victorian Britain, there was **no shortage of human labour**. Poor peasants and vagrants moved to cities in large numbers in search of jobs, keeping wages low. Industrialists did not want to introduce expensive machines that required large capital investment.",
           "**Seasonal Demand:** Many industries (gas works, breweries, bookbinders, ship-repairers) had seasonal demand for labour and preferred hiring hand labour for peak months.",
@@ -472,7 +472,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Industrialisation in the Colonies: The Age of Indian Textiles",
+        "title": "Industrialisation in the Colonies: The Age of Indian Textiles",
         "points": [
           "Before machine industries, silk and cotton goods from India dominated the international market in textiles. Coarser cottons were produced in many countries, but finer Indian varieties were unmatched. Armenian and Persian merchants took goods from Punjab to Afghanistan, eastern Persia, and Central Asia.",
           "Pre-colonial trade operated through vibrant ports: **Surat** on the Gujarat coast linked India to the Gulf and Red Sea; **Hoogly** in Bengal had links with Southeast Asian ports.",
@@ -482,7 +482,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Manchester Comes to India & Early Indian Entrepreneurs",
+        "title": "Manchester Comes to India & Early Indian Entrepreneurs",
         "points": [
           "**Decline of Indian Textile Exports:** As cotton industries developed in England, industrial groups pressured the government to impose import duties on Indian cotton textiles. At the same time, they persuaded the East India Company to sell British manufactured goods in Indian markets.",
           "Cotton piece-goods made up 33% of India's exports in 1811–12; by 1850–51, it was less than 3%. Imports of British cotton goods into India surged: in 1850, cotton imports were 31% of Indian imports; by the 1870s, it exceeded 50%.",
@@ -493,7 +493,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Industrial Growth & Market for Goods",
+        "title": "Industrial Growth & Market for Goods",
         "points": [
           "**Peculiarities of Industrial Growth:** European Managing Agencies (Bird Heiglers, Andrew Yule, Jardine Skinner) controlled tea and coffee plantations, coal mining, and jute mills. Indian businessmen avoided competing with British imports: they produced coarse cotton yarn (thread) for handlooms and exported it to China.",
           "**Swadeshi Movement:** Nationalists mobilized people to boycott foreign cloth. Industrialists pressured the government to increase tariff protection. From 1906, Indian yarn exports to China declined (as Chinese and Japanese mills entered the market), prompting Indian mills to shift from yarn to fabric production.",
@@ -503,7 +503,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "7. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Test your understanding of the Age of Industrialisation with these board exam practice questions.",
           "**1. What is meant by the term 'Proto-industrialisation'?**",
@@ -561,7 +561,7 @@ export const sstNotes10: ChapterNote[] = [
     "overview": "From ancient East Asian woodblock printing to Gutenberg's movable type press, the print revolution shaped religious debate, stimulated Enlightenment ideals, catalyzed the French Revolution, empowered women and workers, and provided the intellectual ammunition for India's freedom struggle.",
     "sections": [
       {
-        "title": "1. The First Printed Books: China, Japan and Korea",
+        "title": "The First Printed Books: China, Japan and Korea",
         "points": [
           "**Woodblock Printing in China:** The earliest print technology was developed in China, Japan, and Korea. From AD 594 onwards, books in China were printed by rubbing paper against the inked surface of carved wooden blocks.",
           "As both sides of thin, porous paper could not be printed, the traditional Chinese **'accordion book'** was folded and stitched at the side. Skilled craftsmen duplicated calligraphy with remarkable accuracy.",
@@ -572,7 +572,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Print Comes to Europe: Marco Polo to Gutenberg",
+        "title": "Print Comes to Europe: Marco Polo to Gutenberg",
         "points": [
           "For centuries, silk and spices from China flowed into Europe along the Silk Route. In the 11th century, Chinese paper reached Europe via the same route, making the production of manuscripts possible.",
           "In **1295, Marco Polo**, a great explorer, returned to Italy after many years of exploration in China, bringing back the technology of woodblock printing. Italians began producing books with woodblocks, and the technology spread across Europe.",
@@ -583,7 +583,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. The Print Revolution and Its Impact",
+        "title": "The Print Revolution and Its Impact",
         "points": [
           "The shift from hand printing to mechanical printing was not just a technical change; it transformed the lives of people, changing their relationship to information and knowledge, and opened up new ways of looking at things.",
           "**A New Reading Public:** Printing reduced the cost of books, slashed production time, and produced multiple copies with ease. Markets were flooded with books.",
@@ -594,7 +594,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. The Reading Mania, Enlightenment & French Revolution",
+        "title": "The Reading Mania, Enlightenment & French Revolution",
         "points": [
           "**The Reading Mania:** In the 17th and 18th centuries, literacy rates went up to 60–80% in parts of Europe as churches set up schools in villages. There was a virtual 'reading mania'.",
           "Printers published new forms of popular literature: **chapbooks** in England (pocket-sized books sold by traveling peddlers called *chapmen* for a penny) and **Bibliothèque Bleue** in France (low-priced small books bound in cheap blue covers). Periodical press, newspapers, journals, maps, and scientific treatises (like those of Isaac Newton) were widely distributed.",
@@ -606,7 +606,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. The Nineteenth Century: Children, Women and Workers",
+        "title": "The Nineteenth Century: Children, Women and Workers",
         "points": [
           "**Children as Readers:** Primary education became compulsory in Europe from the late 19th century. A children's press was set up in France in 1857. In Germany, the **Grimm Brothers** spent years compiling traditional folk tales gathered from peasants, publishing their famous collection in 1812 (editing out anything considered unsuitable for children).",
           "**Women as Readers and Writers:** Penny magazines were published especially for women, containing manuals on etiquette and housekeeping. When novels began to be written in the 19th century, women were seen as important readers. Some of the best-known novelists were women: **Jane Austen, the Brontë sisters, and George Eliot**. Their writings defined a new type of woman: a person with will, strength of personality, determination, and the power to think.",
@@ -615,7 +615,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. India and the World of Print: Manuscripts to Press",
+        "title": "India and the World of Print: Manuscripts to Press",
         "points": [
           "**Handwritten Manuscripts:** India had a rich tradition of handwritten manuscripts in Sanskrit, Arabic, Persian, and vernacular languages. Written on palm leaves or handmade paper, illustrated with beautiful calligraphy. However, manuscripts were expensive, fragile, difficult to read (due to different scripts), and could not be used widely in daily life.",
           "**Arrival of the Printing Press:** The printing press first came to **Goa with Portuguese Jesuit missionaries** in the mid-16th century. By 1674, about 50 books had been printed in Konkani and Kanara languages. Catholic priests printed the first Tamil book in 1579 at Cochin, and the first Malayalam book in 1713.",
@@ -624,7 +624,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "7. Religious Reform, Women, Caste & Censorship in India",
+        "title": "Religious Reform, Women, Caste & Censorship in India",
         "points": [
           "**Religious Reform Debates:** Intense debates between social/religious reformers and Hindu orthodoxy over widow burning (Sati), monotheism, idolatry, and Brahmanical priesthood. **Raja Rammohun Roy** published the **Sambad Kaumudi** from 1821; the Hindu orthodoxy commissioned the **Samachar Chandrika** to oppose his ideas. In 1822, two Persian newspapers were started: *Jam-i-Jahan Numa* and *Shamsul Akhbar*.",
           "In North India, Muslim ulema feared colonial conversion and collapse of Muslim personal laws. The **Deoband Seminary** (founded 1867) published thousands of fatwas guiding Muslim conduct. **Naval Kishore Press** at Lucknow and **Shri Venkateshwar Press** in Bombay published vernacular religious texts like Tulsidas's *Ramcharitmanas*.",
@@ -639,7 +639,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "8. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Print Culture and the Modern World.",
           "**1. The oldest printed book in Japan, printed in AD 868, is the:**",
@@ -705,7 +705,7 @@ export const sstNotes10: ChapterNote[] = [
     "overview": "Resources are everything available in our environment that is technologically accessible, economically feasible, and culturally acceptable to satisfy human needs. Sustainable resource planning, land conservation, and soil management are vital for India's balanced development.",
     "sections": [
       {
-        "title": "1. Classification of Resources",
+        "title": "Classification of Resources",
         "points": [
           "**On the basis of Origin:** (1) **Biotic:** Obtained from the biosphere with life (flora, fauna, human beings, fisheries, livestock). (2) **Abiotic:** Composed of non-living things (rocks, metals, soils).",
           "**On the basis of Exhaustibility:** (1) **Renewable:** Can be renewed or reproduced by physical, chemical or mechanical processes (solar, wind energy, water, forests, wildlife). (2) **Non-Renewable:** Occur over very long geological time (millions of years); minerals and fossil fuels. Metals are recyclable; fossil fuels (coal, petroleum) cannot be recycled and get exhausted with use.",
@@ -714,7 +714,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Development of Resources & Sustainable Development",
+        "title": "Development of Resources & Sustainable Development",
         "points": [
           "Indiscriminate exploitation of resources has led to major global crises: (1) Depletion of resources for satisfying greed of a few individuals, (2) Accumulation of resources in few hands, dividing society into rich and poor, (3) Global ecological crises (global warming, ozone layer depletion, environmental pollution, land degradation).",
           "**Sustainable Development:** Development should take place without damaging the environment, and development in the present should not compromise with the needs of the future generations.",
@@ -723,7 +723,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Resource Planning in India",
+        "title": "Resource Planning in India",
         "points": [
           "Resource planning is essential in a diverse country like India with enormous disparities in resource distribution: (1) Jharkhand, Chhattisgarh, and Madhya Pradesh are rich in minerals and coal deposits, but lack basic infrastructure; (2) Arunachal Pradesh has abundant water resources, but lacks infrastructural development; (3) Rajasthan has abundant solar and wind energy, but lacks water resources; (4) Ladakh has rich cultural heritage, but is isolated and deficient in water, infrastructure, and vital minerals.",
           "**Three Stages of Resource Planning in India:**",
@@ -733,7 +733,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Land Resources & Land Use Pattern in India",
+        "title": "Land Resources & Land Use Pattern in India",
         "points": [
           "**Relief Features:** Plains (43% - agriculture and industry), Mountains (30% - perennial rivers, tourism, ecology), Plateaus (27% - rich reserves of minerals, fossil fuels, forests).",
           "**Land Use Categories:** Forests, Land not available for cultivation (barren, unculturable waste, non-agricultural uses like buildings, roads), Other uncultivated land (permanent pastures, tree crops, culturable waste uncultivated for >5 years), Fallow lands (current fallow left without cultivation for <=1 agricultural year; other than current fallow left uncultivated for 1 to 5 years), **Net Sown Area (NSA)** (physical extent of land on which crops are sown and harvested once a year).",
@@ -742,7 +742,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Soil as a Resource & Major Soil Types of India",
+        "title": "Soil as a Resource & Major Soil Types of India",
         "points": [
           "Soil is the most important renewable natural resource; living system that takes millions of years to form a few centimetres in depth. Factors: parent rock, climate, vegetation, relief, time.",
           "**Detailed Comparative Table of Indian Soil Types:**"
@@ -795,7 +795,7 @@ export const sstNotes10: ChapterNote[] = [
         }
       },
       {
-        "title": "6. Soil Erosion and Soil Conservation Methods",
+        "title": "Soil Erosion and Soil Conservation Methods",
         "points": [
           "**Soil Erosion:** The denudation of the soil cover and subsequent washing down by running water and wind.",
           "**Types of Soil Erosion:**",
@@ -810,7 +810,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "7. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these verified CBSE Class 10 Geography questions with instant validation.",
           "**1. Which soil develops deep cracks during hot weather, helping in proper aeration?**",
@@ -872,7 +872,7 @@ export const sstNotes10: ChapterNote[] = [
     "overview": "India is home to nearly 8% of the world's total species. Conserving biodiversity through legislative measures, Tiger Reserves, forest classifications, and indigenous community movements (Chipko, Beej Bachao, JFM) is crucial for ecological survival.",
     "sections": [
       {
-        "title": "1. Biodiversity and Flora & Fauna in India",
+        "title": "Biodiversity and Flora & Fauna in India",
         "points": [
           "**Biodiversity (Biological Diversity):** Immensely rich in wildlife and cultivated species, diverse in form and function, but closely integrated in a system through multiple networks of interdependencies.",
           "India is one of the world's richest countries in terms of biological diversity: possesses nearly **8% of the total number of species** in the world (estimated to be 1.6 million). Over 81,000 species of fauna and 47,000 species of flora (15,000 flowering plants endemic to India).",
@@ -880,7 +880,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. IUCN Classification of Species",
+        "title": "IUCN Classification of Species",
         "points": [
           "The International Union for Conservation of Nature and Natural Resources (**IUCN**) classifies species based on survival risk:",
           "**1. Normal Species:** Population levels considered normal for survival (cattle, sal, pine, rodents).",
@@ -892,7 +892,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Causes of Depletion of Flora and Fauna",
+        "title": "Causes of Depletion of Flora and Fauna",
         "points": [
           "(1) **Colonial Exploitation:** Expansion of railways, commercial agriculture, scientific forestry, and mining activities during the colonial era.",
           "(2) **Agricultural Expansion:** Between 1951 and 1980, according to the Forest Survey of India, over **26,200 sq km** of forest area was converted into agricultural land.",
@@ -903,7 +903,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Conservation of Forest and Wildlife in India",
+        "title": "Conservation of Forest and Wildlife in India",
         "points": [
           "**Indian Wildlife (Protection) Act (1972):** Implemented with provisions for protecting habitats. All-India list of protected species published. Banned hunting, gave legal protection to habitats, and restricted trade in wildlife.",
           "Established National Parks and Wildlife Sanctuaries. Special projects launched for protecting specific animals facing grave threat: **Project Tiger**, the one-horned rhinoceros, the Kashmir stag (*hangul*), three types of crocodiles (freshwater, saltwater, gharial), and the Asiatic lion.",
@@ -913,7 +913,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Types and Distribution of Forests",
+        "title": "Types and Distribution of Forests",
         "points": [
           "The government classifies Indian forests under three administrative categories:",
           "**1. Reserved Forests:** Regarded as the most valuable as far as the conservation of forest and wildlife resources are concerned. More than half of total forest land. State governments have strict control; common activities (grazing, wood cutting) prohibited unless special permit granted (Madhya Pradesh, Jammu & Kashmir, Andhra Pradesh, Uttarakhand, Kerala, Tamil Nadu, West Bengal, Maharashtra).",
@@ -922,7 +922,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Community and Conservation",
+        "title": "Community and Conservation",
         "points": [
           "Forests are also home to traditional tribal communities. In many areas of India, local communities are fighting alongside government officials to conserve habitats:",
           "(1) **Sariska Tiger Reserve (Rajasthan):** Villagers fought against mining by citing the Wildlife Protection Act.",
@@ -933,7 +933,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "7. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-frequency Board Exam questions on Forest and Wildlife Resources.",
           "**1. In which year was the Asiatic Cheetah declared extinct in India?**",
@@ -991,7 +991,7 @@ export const sstNotes10: ChapterNote[] = [
     "overview": "Three-fourths of the earth's surface is covered with water, but only a tiny fraction is freshwater. Growing water scarcity requires shifting from high-cost mega dams to integrated water management and indigenous rainwater harvesting systems.",
     "sections": [
       {
-        "title": "1. Water Scarcity and The Need for Conservation",
+        "title": "Water Scarcity and The Need for Conservation",
         "points": [
           "**The Paradox:** Water is a renewable resource continually being renewed and recharged through the hydrological cycle. Yet, many countries and regions suffer from acute water scarcity.",
           "**Causes of Water Scarcity:**",
@@ -1002,7 +1002,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Multi-Purpose River Projects (Dams)",
+        "title": "Multi-Purpose River Projects (Dams)",
         "points": [
           "Historically, hydraulic structures were built in India: Sringaverapura near Allahabad had sophisticated water harvesting system channeling flood water of Ganga (1st century BC); Bhopal Lake in 11th century; Iltutmish built tank at Hauz Khas, Delhi in 14th century.",
           "**Multi-Purpose Projects:** Dams built to solve multiple problems simultaneously—irrigation, electricity generation, flood control, water supply for domestic and industrial use, inland navigation, fish breeding, and recreation.",
@@ -1011,7 +1011,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Environmental Critiques & Social Movements against Mega Dams",
+        "title": "Environmental Critiques & Social Movements against Mega Dams",
         "points": [
           "Multi-purpose projects have come under scrutiny and opposition due to adverse ecological and social impacts:",
           "(1) **Regulating natural river flow:** Causes excessive sedimentation at the reservoir bottom, resulting in rockier stream beds and poorer habitats for rivers' aquatic life.",
@@ -1026,7 +1026,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Rainwater Harvesting: Traditional Indigenous Systems",
+        "title": "Rainwater Harvesting: Traditional Indigenous Systems",
         "points": [
           "Rainwater harvesting is a viable socio-economic and ecological alternative to big dams:",
           "(1) **Guls and Kuls:** In hill and mountainous regions like the Western Himalayas, diversion channels called *guls* or *kuls* lead water to circular agricultural fields.",
@@ -1038,7 +1038,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Test your mastery of Water Resources with CBSE board-pattern multiple-choice questions.",
           "**1. Jawaharlal Nehru proudly proclaimed multi-purpose river valley projects as:**",
@@ -1092,7 +1092,7 @@ export const sstNotes10: ChapterNote[] = [
     "overview": "India is an agriculturally important country with two-thirds of its population engaged in agricultural activities. Understanding primitive, intensive, and commercial farming, cropping seasons (Rabi, Kharif, Zaid), food/cash crops, and institutional reforms (Bhoodan-Gramdan, Green Revolution) is fundamental.",
     "sections": [
       {
-        "title": "1. Types of Farming Systems in India",
+        "title": "Types of Farming Systems in India",
         "points": [
           "**1. Primitive Subsistence Farming:** Practised on small patches of land with primitive tools (hoe, dao, digging sticks) and family/community labour. Depends on monsoon, natural soil fertility, and environmental suitability.",
           "Also known as **'slash and burn' / Shifting Agriculture:** Farmers clear a patch of land and produce crops; when soil fertility decreases, they shift and clear a fresh patch, allowing nature to replenish fertility without fertilizers.",
@@ -1103,7 +1103,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Cropping Pattern: Seasons (Rabi, Kharif, Zaid)",
+        "title": "Cropping Pattern: Seasons (Rabi, Kharif, Zaid)",
         "points": [
           "India has three distinct cropping seasons in a year:",
           "**1. Rabi Crops:** Sown in winter from **October to December** and harvested in summer from **April to June**.",
@@ -1117,7 +1117,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Major Food Crops: Grains & Millets",
+        "title": "Major Food Crops: Grains & Millets",
         "points": [
           "**1. Rice (Paddy):** Staple food crop of majority of Indians. India is 2nd largest producer after China.",
           "**Requirements:** Kharif crop, high temperature (>25°C), high humidity, annual rainfall **above 100 cm**. In areas of less rainfall, it grows with irrigation (Punjab, Haryana, Western UP).",
@@ -1129,7 +1129,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Cash Crops: Sugarcane, Oilseeds, Tea & Coffee",
+        "title": "Cash Crops: Sugarcane, Oilseeds, Tea & Coffee",
         "points": [
           "**1. Sugarcane:** Tropical and subtropical crop. Grows in hot and humid climate with 21°C–27°C and 75–100 cm rainfall. India is 2nd largest producer after Brazil. Main source of sugar, gur (jaggery), khandsari, molasses (UP largest, Maharashtra, Karnataka, Tamil Nadu).",
           "**2. Oilseeds:** Cover ~12% of total cropped area. Main oilseeds: Groundnut, mustard, coconut, sesamum (til), soybean, castor seed, cotton seed, linseed, sunflower. Most are edible and used as cooking mediums; some used as raw materials in soap, cosmetics, ointments.",
@@ -1139,7 +1139,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Horticulture & Non-Food / Fibre Crops",
+        "title": "Horticulture & Non-Food / Fibre Crops",
         "points": [
           "**Horticulture:** India is a producer of tropical and temperate fruits: Mangoes (Maharashtra, AP, Telangana, UP, WB), Oranges (Nagpur and Cherrapunjee), Bananas (Kerala, Mizoram, Maharashtra, TN), Lichi and Guava (UP and Bihar), Pineapples (Meghalaya), Grapes (AP, Telangana, Maharashtra), Apples, Pears, Walnuts, Apricots (J&K and Himachal Pradesh).",
           "**Rubber:** Equatorial crop, but under special conditions grown in tropical/subtropical areas. Moist and humid climate with rainfall **>200 cm** and temperature **>25°C**. Important industrial raw material (Kerala, Tamil Nadu, Karnataka, Andaman & Nicobar, Garo hills of Meghalaya).",
@@ -1149,7 +1149,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Institutional and Technological Reforms & Bhoodan",
+        "title": "Institutional and Technological Reforms & Bhoodan",
         "points": [
           "**Post-Independence Institutional Reforms:** Collectivisation, consolidation of landholdings, abolition of zamindari. The first Five Year Plan focused on Land Reforms.",
           "**Technological Reforms (1960s–1970s):** The **Green Revolution** based on package technology (HYV seeds, irrigation, chemicals) and the **White Revolution (Operation Flood)** to increase milk production.",
@@ -1158,7 +1158,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "7. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Test your mastery of CBSE Class 10 Agriculture with verified board questions.",
           "**1. What is the slashing and burning agriculture known as in the North-Eastern states of India?**",
@@ -1216,7 +1216,7 @@ export const sstNotes10: ChapterNote[] = [
     "overview": "Minerals are indispensable building blocks of modern civilisation. Exploring mineral modes of occurrence, ferrous/non-ferrous classifications, conventional coal/petroleum reserves, and renewable solar/wind transitions is crucial for India's industrial future.",
     "sections": [
       {
-        "title": "1. What is a Mineral & Modes of Occurrence",
+        "title": "What is a Mineral & Modes of Occurrence",
         "points": [
           "**Definition:** Geologists define a mineral as a *'homogenous, naturally occurring substance with a definable internal structure'*. Minerals are found in varied forms in nature, ranging from the hardest diamond to the softest talc.",
           "An **ore** is an accumulation of any mineral mixed with other elements; mining is economically viable only when mineral concentration is sufficiently high.",
@@ -1229,7 +1229,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Ferrous Minerals: Iron Ore and Manganese",
+        "title": "Ferrous Minerals: Iron Ore and Manganese",
         "points": [
           "Ferrous minerals account for about three-fourths of the total value of the production of metallic minerals, providing a strong base for metallurgical industries.",
           "**Iron Ore:** The backbone of industrial development. (1) **Magnetite:** Finest iron ore with very high iron content up to **70%**. Excellent magnetic qualities valuable in the electrical industry. (2) **Hematite:** Most important industrial iron ore in terms of quantity used, containing **50% to 60%** iron.",
@@ -1242,7 +1242,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Non-Ferrous Minerals: Copper & Bauxite",
+        "title": "Non-Ferrous Minerals: Copper & Bauxite",
         "points": [
           "India's reserves and production of non-ferrous minerals are critically deficient, except for bauxite.",
           "**1. Copper:** Malleable, ductile, and a good conductor of heat and electricity. Primarily used in electrical cables, electronics, and chemical industries.",
@@ -1252,7 +1252,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Non-Metallic Minerals: Mica & Limestone & Mining Hazards",
+        "title": "Non-Metallic Minerals: Mica & Limestone & Mining Hazards",
         "points": [
           "**Mica:** Made of a series of plates or leaves; splits easily into thin sheets. Excellent dielectric strength, low power loss factor, insulating properties, and resistance to high voltage make it indispensable in electric and electronic industries.",
           "**Deposits:** Northern edge of the Chota Nagpur plateau: **Koderma–Gaya–Hazaribagh belt** of Jharkhand (leading producer), Ajmer in Rajasthan, and Nellore in Andhra Pradesh.",
@@ -1261,7 +1261,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Conventional Energy Resources: Coal, Petroleum & Natural Gas",
+        "title": "Conventional Energy Resources: Coal, Petroleum & Natural Gas",
         "points": [
           "**1. Coal:** Most abundantly available fossil fuel in India; provides a substantial part of the nation's energy needs (power generation and industrial heat).",
           "**Types of Coal:** (1) **Peat:** Low carbon, high moisture, low heating capacity. (2) **Lignite:** Low grade brown coal, soft with high moisture (Neyveli in Tamil Nadu used for electricity). (3) **Bituminous:** Most popular coal in commercial use, buried deep and subjected to increased temperatures; high heating value (metallurgical coal used in blast furnaces). (4) **Anthracite:** Highest quality, hard coal.",
@@ -1274,7 +1274,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Non-Conventional Energy Sources",
+        "title": "Non-Conventional Energy Sources",
         "points": [
           "Growing consumption of fossil fuels creates environmental pollution and shortages, necessitating renewable alternatives:",
           "(1) **Nuclear / Atomic Energy:** Obtained by altering the structure of atoms (uranium and thorium release heat used to generate electric power). **Uranium** found in Jharkhand and Aravalli ranges of Rajasthan; **Thorium** found in Monazite sands of Kerala. Power plants: Tarapur (Maharashtra), Rawatbhata (Rajasthan), Kalpakkam (TN), Narora (UP), Kakrapar (Gujarat), Kaiga (Karnataka).",
@@ -1286,7 +1286,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "7. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Test your mastery of Minerals and Energy Resources with verified CBSE Board questions.",
           "**1. Which is the finest iron ore with a very high iron content up to 70% and excellent magnetic qualities?**",
@@ -1344,7 +1344,7 @@ export const sstNotes10: ChapterNote[] = [
     "overview": "Manufacturing—the processing of raw materials into high-value finished goods in secondary industries—is the backbone of economic strength. Analyzing agro-based (cotton, jute, sugar) and mineral-based (iron & steel, aluminium, chemicals, IT) sectors and pollution mitigation is crucial.",
     "sections": [
       {
-        "title": "1. Importance of Manufacturing & Economic Strength",
+        "title": "Importance of Manufacturing & Economic Strength",
         "points": [
           "**Manufacturing:** Production of goods in large quantities after processing from raw materials to more valuable products (e.g. paper from wood, sugar from sugarcane, iron and steel from iron ore). Belong to the **secondary sector**.",
           "The economic strength of a country is measured by the development of its manufacturing industries.",
@@ -1357,7 +1357,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Industrial Location & Classification of Industries",
+        "title": "Industrial Location & Classification of Industries",
         "points": [
           "**Factors Influencing Industrial Location:** Availability of raw material, labour, capital, power, and market. Industrialization leads to urbanization.",
           "**Agglomeration Economies:** Many industries tend to come together to make use of the advantages offered by the urban centres (banking, transport, insurance, labour, consultants).",
@@ -1370,7 +1370,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Agro-Based Industries: Textiles, Jute & Sugar",
+        "title": "Agro-Based Industries: Textiles, Jute & Sugar",
         "points": [
           "**1. Textile Industry:** Occupies unique position in the Indian economy because it contributes significantly to industrial production, employment generation, and foreign exchange earnings. It is the only industry in India which is **self-reliant and complete in the value chain** (from raw material to highest value-added products).",
           "**Cotton Textiles:** First successful textile mill established in **Bombay in 1854**. Initially concentrated in the cotton growing belt of **Maharashtra and Gujarat** due to availability of raw cotton, market, transport (port facilities), cheap labour, and moist climate (prevents thread breakage).",
@@ -1383,7 +1383,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Mineral-Based Industries: Iron and Steel & Aluminium",
+        "title": "Mineral-Based Industries: Iron and Steel & Aluminium",
         "points": [
           "**1. Iron and Steel Industry:** The basic industry since all other industries (heavy, medium, light) depend on it for their machinery. Production and consumption of steel is regarded as an **index of a country's development**.",
           "Heavy industry because all raw materials as well as finished goods are heavy and bulky, entailing heavy transportation costs. Proportions required: **Iron ore, coking coal, and limestone** in the ratio of approximately **4 : 2 : 1**, plus manganese to harden the steel.",
@@ -1394,7 +1394,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Chemical, Fertilizer, Cement & Electronics/IT Industry",
+        "title": "Chemical, Fertilizer, Cement & Electronics/IT Industry",
         "points": [
           "**1. Chemical Industry:** Rapidly growing and diversifying. Comprises both large and small scale units. (1) **Inorganic chemicals:** Sulphuric acid (used in fertilizers, synthetic fibres, paints), nitric acid, soda ash (used to make glass, soaps, detergents), caustic soda. Widely spread across the country. (2) **Organic chemicals:** Petrochemicals used for manufacturing synthetic fibres, rubber, plastics, dyes. Located near oil refineries.",
           "**2. Fertilizer Industry:** Centred around production of nitrogenous fertilizers (mainly urea), phosphatic fertilizers, and ammonium phosphate (DAP), and complex fertilizers (NPK). Green Revolution expanded industry to Gujarat, Tamil Nadu, UP, Punjab, Kerala.",
@@ -1404,7 +1404,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Industrial Pollution & Environmental Degradation Control",
+        "title": "Industrial Pollution & Environmental Degradation Control",
         "points": [
           "Industries cause four types of pollution:",
           "(1) **Air Pollution:** High proportion of undesirable gases (sulphur dioxide, carbon monoxide) and airborne particulate matter (dust, spray, mist, smoke). Emitted by chemical and paper factories, brick kilns, refineries, smelting plants.",
@@ -1420,7 +1420,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "7. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-frequency CBSE Class 10 Manufacturing Industries questions.",
           "**1. Where was the first successful modern cotton textile mill established in India in 1854?**",
@@ -1478,7 +1478,7 @@ export const sstNotes10: ChapterNote[] = [
     "overview": "The pace of a nation's development depends on the movement of goods, services, and people over space. Transport (road, rail, pipeline, water, air), communication networks, and international trade constitute the vital arteries and lifelines of India's economy.",
     "sections": [
       {
-        "title": "1. Roadways: Network, Merits & Classification",
+        "title": "Roadways: Network, Merits & Classification",
         "points": [
           "India has one of the largest road networks in the world, aggregating to about **62.16 lakh km**. Roadways have preceded railways in India.",
           "**Advantages of Roadways over Railways:**",
@@ -1498,7 +1498,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Railways: Network & Distribution Factors",
+        "title": "Railways: Network & Distribution Factors",
         "points": [
           "Railways are the principal mode of transportation for freight and passengers in India. First train steamed off from **Bombay to Thane in 1853**, covering a distance of **34 km**.",
           "**Factors Influencing the Railway Network Distribution:**",
@@ -1511,7 +1511,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Pipelines & Inland Waterways",
+        "title": "Pipelines & Inland Waterways",
         "points": [
           "**Pipelines:** In the past used to transport water to cities; now used for transporting crude oil, petroleum products, natural gas, and even solids converted into slurry (e.g. iron ore from Kudremukh).",
           "**Merits:** Initial cost of laying is high, but subsequent running costs are minimal; rules out trans-shipment losses or delays.",
@@ -1529,7 +1529,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Major Sea Ports of India",
+        "title": "Major Sea Ports of India",
         "points": [
           "With a long coastline of **7,516.6 km**, India is dotted with 12 major and 200 notified non-major ports. Major ports handle 95% of India's foreign trade.",
           "**Western Coast Ports:**",
@@ -1548,7 +1548,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Airways & Communication Networks",
+        "title": "Airways & Communication Networks",
         "points": [
           "**Airways:** Fastest, most comfortable and prestigious mode of transport. Can cover difficult terrains like high mountains, dreary deserts, dense forests, and oceanic stretches with great ease. Air transport was nationalized in **1953**.",
           "**Pawanhans Helicopters Ltd** provides helicopter services to Oil and Natural Gas Corporation (ONGC) in its offshore operations and to inaccessible areas in the North-Eastern states and interior parts of J&K, Himachal, and Uttarakhand.",
@@ -1560,7 +1560,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. International Trade & Tourism as a Trade",
+        "title": "International Trade & Tourism as a Trade",
         "points": [
           "**International Trade:** The exchange of goods among people, states, and countries. Trade between two countries is called international trade. It is considered an **economic barometer** for a country.",
           "**Balance of Trade:** The difference between the value of exports and imports of a country.",
@@ -1572,7 +1572,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "7. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Test your mastery of Lifelines of National Economy with verified CBSE Board Exam questions.",
           "**1. What is the length of the Golden Quadrilateral Super Highway connecting Delhi, Mumbai, Chennai, and Kolkata?**",
@@ -1630,7 +1630,7 @@ export const sstNotes10: ChapterNote[] = [
     "overview": "Power sharing is the very spirit of democracy. Comparing the contrasting experiences of Belgium (ethnic accommodation) and Sri Lanka (majoritarian conflict) illustrates that sharing power prudentially and morally stabilizes multi-ethnic democracies.",
     "sections": [
       {
-        "title": "1. Case Study: Ethnic Composition of Belgium and Sri Lanka",
+        "title": "Case Study: Ethnic Composition of Belgium and Sri Lanka",
         "points": [
           "**Belgium (Small European country, smaller than Haryana):**",
           "• Total population: ~1 crore. Ethnic breakdown: **59% live in the Flemish region and speak Dutch**, **40% live in the Wallonia region and speak French**, and **1% speak German**.",
@@ -1642,7 +1642,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Majoritarianism in Sri Lanka vs Accommodation in Belgium",
+        "title": "Majoritarianism in Sri Lanka vs Accommodation in Belgium",
         "points": [
           "**Majoritarianism in Sri Lanka:** Independent in 1948. Democratically elected leaders adopted majoritarian policies to establish Sinhala supremacy:",
           "(1) **1956 Official Language Act:** Recognized Sinhala as the only official language, disregarding Tamil.",
@@ -1658,7 +1658,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Why Power Sharing is Desirable: Prudential vs Moral Reasons",
+        "title": "Why Power Sharing is Desirable: Prudential vs Moral Reasons",
         "points": [
           "**1. Prudential Reasons (Based on careful calculation of gains and losses):**",
           "• Power sharing reduces the possibility of conflict between social groups.",
@@ -1671,7 +1671,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Forms of Power Sharing in Modern Democracies",
+        "title": "Forms of Power Sharing in Modern Democracies",
         "points": [
           "**1. Horizontal Distribution of Power (Separation of Powers):**",
           "• Power is shared among different organs of government: **Legislature, Executive, and Judiciary**.",
@@ -1685,7 +1685,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-frequency CBSE Board Exam questions on Power Sharing.",
           "**1. What percentage of Belgium's population lives in the Flemish region and speaks Dutch?**",
@@ -1739,7 +1739,7 @@ export const sstNotes10: ChapterNote[] = [
     "overview": "Federalism divides governmental power between a central authority and constituent state units. Analyzing Indian federalism—the three-fold legislative distribution (Union, State, Concurrent lists), linguistic states, language policy, centre-state coalitions, and 1992 local decentralisation—reveals its vibrant constitutional mechanism.",
     "sections": [
       {
-        "title": "1. What is Federalism? Key Features",
+        "title": "What is Federalism? Key Features",
         "points": [
           "**Definition:** Federalism is a system of government in which power is divided between a central authority and various constituent units of the country.",
           "**Unitary vs Federal:** Under the unitary system, either there is only one level of government or sub-units are subordinate to the central government (e.g. UK, Sri Lanka). In a federal system, the central government cannot order the state government to do something; state governments have powers of their own for which they are not answerable to the central government (e.g. USA, India, Canada).",
@@ -1754,7 +1754,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Two Routes of Federation: Coming Together vs Holding Together",
+        "title": "Two Routes of Federation: Coming Together vs Holding Together",
         "points": [
           "**1. 'Coming Together' Federations:**",
           "• Independent states come together on their own to form a bigger unit, so that by pooling sovereignty and retaining identity they can increase their security.",
@@ -1767,7 +1767,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. What Makes India a Federal Country? Three-Fold Legislative Distribution",
+        "title": "What Makes India a Federal Country? Three-Fold Legislative Distribution",
         "points": [
           "The Constitution clearly provides a three-fold distribution of legislative powers between the Union Government and the State Governments across three lists:",
           "**1. Union List:** Includes subjects of national importance which require a uniform policy throughout the country.",
@@ -1783,7 +1783,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. How is Federalism Practised in India?",
+        "title": "How is Federalism Practised in India?",
         "points": [
           "Constitutional provisions are necessary, but not sufficient. Federalism succeeded in India because of the nature of democratic politics:",
           "**1. Linguistic States (1956):** In 1947, the boundaries of several old states were changed to create new states based on language spoken by people (e.g. Marathi, Telugu, Tamil). Some states like Nagaland, Uttarakhand, and Jharkhand were created based on culture, ethnicity, or geography. Experience showed that linguistic states made the country more united and administration easier.",
@@ -1793,7 +1793,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Decentralisation in India: The 1992 Constitutional Amendment",
+        "title": "Decentralisation in India: The 1992 Constitutional Amendment",
         "points": [
           "**Decentralisation:** When power is taken away from Central and State governments and given to local government.",
           "**Rationale:** A vast country like India cannot be run merely through two tiers. Local people have better knowledge of problems in their localities, better ideas on where to spend money, and how to manage things efficiently. Inculcates habit of democratic participation.",
@@ -1812,7 +1812,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these verified CBSE Class 10 Federalism board questions.",
           "**1. Which of the following is an example of a 'Coming Together' federation?**",
@@ -1870,7 +1870,7 @@ export const sstNotes10: ChapterNote[] = [
     "overview": "Social divisions based on gender, religion, and caste profoundly influence political outcomes. Analyzing how gender inequality is challenged by feminist movements, how communalism threatens secular democracy, and how caste operates in democratic politics is essential.",
     "sections": [
       {
-        "title": "1. Gender and Politics: Sexual Division of Labour & Feminist Movements",
+        "title": "Gender and Politics: Sexual Division of Labour & Feminist Movements",
         "points": [
           "**Sexual Division of Labour:** A system in which all work inside the home is either done by women of the family or organized through domestic helpers, while men work outside to earn income.",
           "It is not that men cannot do housework; they simply think it is for women to attend to these things. When these jobs are paid for, men are ready to take them (most tailors or cooks in hotels are men).",
@@ -1883,7 +1883,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Women's Political Representation",
+        "title": "Women's Political Representation",
         "points": [
           "One way to ensure that women's problems get adequate attention is to have more women as elected representatives.",
           "In India, the proportion of women in the national parliament has historically been less than **14.36% of total strength** (in 2019 Lok Sabha). In state assemblies, it is less than **5%**. India is among the bottom group of nations in female political representation, behind several developing countries of Africa and Latin America.",
@@ -1892,7 +1892,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Religion, Communalism and Politics",
+        "title": "Religion, Communalism and Politics",
         "points": [
           "**Relationship Between Religion & Politics:**",
           "• **Gandhiji** used to say that religion can never be separated from politics. He meant not any particular religion like Hinduism or Islam, but moral values and ethics drawn from all religions.",
@@ -1907,7 +1907,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. India as a Secular State",
+        "title": "India as a Secular State",
         "points": [
           "To counter the challenge of communalism, the makers of the Indian Constitution chose the model of a **Secular State**:",
           "(1) **No Official Religion:** Unlike Sri Lanka (Buddhism), Pakistan (Islam), or England (Christianity), the Constitution does not give special status to any religion.",
@@ -1917,7 +1917,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Caste and Politics: Caste in Politics & Politics in Caste",
+        "title": "Caste and Politics: Caste in Politics & Politics in Caste",
         "points": [
           "**Caste Inequality:** Caste system was based on exclusion and discrimination against 'outcaste' groups subjected to untouchability. Reformers like **Jyotirao Phule, Mahatma Gandhi, Dr. B.R. Ambedkar, and Periyar** advocated a casteless society.",
           "Economic development, urbanization, growth of literacy, occupational mobility, and weakening of zamindari have broken down traditional caste barriers. Yet caste has not disappeared from modern India: endogamy (marrying within caste) persists, and caste groups with access to education historically maintain economic advantages.",
@@ -1937,7 +1937,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-frequency CBSE Board Exam questions on Gender, Religion and Caste.",
           "**1. What is the constitutional status of religion in the Republic of India?**",
@@ -1995,7 +1995,7 @@ export const sstNotes10: ChapterNote[] = [
     "overview": "Political parties are the most visible institutions in a democracy. Analyzing their components, functions, necessity, party systems (one-party, two-party, multi-party), national/state criteria, major Indian parties, internal challenges, and legal/institutional reforms is paramount for civic literacy.",
     "sections": [
       {
-        "title": "1. Meaning, Components & Functions of Political Parties",
+        "title": "Meaning, Components & Functions of Political Parties",
         "points": [
           "**Meaning:** A political party is a group of people who come together to contest elections and hold power in the government. They agree on some policies and programmes for the society with a view to promote the collective good.",
           "**Three Components of a Political Party:** (1) **The leaders**, (2) **The active members**, (3) **The followers**.",
@@ -2010,7 +2010,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Necessity of Political Parties & Party Systems",
+        "title": "Necessity of Political Parties & Party Systems",
         "points": [
           "**Why are Parties Necessary? (What if no parties exist?):**",
           "• Every candidate in the elections would be **independent**. No candidate would be able to make any promises to the people about major policy changes.",
@@ -2023,7 +2023,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. National vs State Parties & Criteria",
+        "title": "National vs State Parties & Criteria",
         "points": [
           "The **Election Commission of India (ECI)** registers all political parties and accords special status and a unique **election symbol** to recognized parties.",
           "**Criteria for Recognition:**",
@@ -2064,7 +2064,7 @@ export const sstNotes10: ChapterNote[] = [
         }
       },
       {
-        "title": "4. Challenges to Political Parties",
+        "title": "Challenges to Political Parties",
         "points": [
           "Public dissatisfaction highlights four major challenges facing political parties worldwide:",
           "(1) **Lack of Internal Democracy:** Power tends to concentrate in the hands of one or a few leaders at the top. Parties do not keep membership registers, do not hold regular organizational meetings, and do not conduct internal elections.",
@@ -2074,7 +2074,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. How Can Political Parties Be Reformed?",
+        "title": "How Can Political Parties Be Reformed?",
         "points": [
           "**Constitutional and Legal Reforms Made:**",
           "(1) **Anti-Defection Law (52nd Amendment, 1985):** The Constitution was amended to prevent elected MLAs and MPs from changing parties after elections for personal ministerial gains or cash. If any legislator changes party, they lose their seat in parliament/assembly.",
@@ -2088,7 +2088,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these verified CBSE Class 10 Political Parties questions.",
           "**1. What percentage of total votes in Lok Sabha or four State Assemblies is required to be recognized as a National Party?**",
@@ -2146,7 +2146,7 @@ export const sstNotes10: ChapterNote[] = [
     "overview": "How do we evaluate democracy's real-world outcomes? Democracy is a better form of government not because it is a magical cure for all ills, but because it ensures accountability, political legitimacy, peaceful conflict resolution, social diversity accommodation, and fundamental human dignity.",
     "sections": [
       {
-        "title": "1. Why Democracy is Better: Principles vs Real-World Experience",
+        "title": "Why Democracy is Better: Principles vs Real-World Experience",
         "points": [
           "We support democracy because it: (1) Promotes equality among citizens, (2) Enhances the dignity of the individual, (3) Improves the quality of decision-making, (4) Provides a method to resolve conflicts, (5) Allows room to correct mistakes.",
           "**The Dilemma:** Democracy is seen to be good in principle, but felt to be not so good in its practice.",
@@ -2155,7 +2155,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Accountable, Responsive and Legitimate Government",
+        "title": "Accountable, Responsive and Legitimate Government",
         "points": [
           "**1. Accountable Government:**",
           "• In a democracy, citizens have the right to choose their rulers and have control over the rulers.",
@@ -2173,7 +2173,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Economic Growth, Development & Reduction of Inequality",
+        "title": "Economic Growth, Development & Reduction of Inequality",
         "points": [
           "**Economic Growth:** If we consider all democracies and all dictatorships for the fifty years between 1950 and 2000, dictatorships have slightly higher rates of economic growth.",
           "However, economic development depends on several factors: country's population size, global situation, cooperation from other countries, economic priorities. The difference in the rates of economic development between less developed countries with dictatorships and democracies is negligible.",
@@ -2186,7 +2186,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Accommodation of Social Diversity & Dignity of Citizens",
+        "title": "Accommodation of Social Diversity & Dignity of Citizens",
         "points": [
           "**Accommodation of Social Diversity:** No society can fully and permanently resolve conflicts among different groups. But democracy provides the best mechanism to negotiate differences and handle social divisions:",
           "**Two Conditions to Achieve This:**",
@@ -2200,7 +2200,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Check your critical thinking on Outcomes of Democracy with these board practice questions.",
           "**1. What unique mechanism ensures that decisions in a democracy are taken through established norms and procedures?**",
@@ -2250,7 +2250,7 @@ export const sstNotes10: ChapterNote[] = [
     "overview": "Development involves aspirations for a better life. Different persons have different—and sometimes conflicting—development goals. Measuring national development requires looking beyond average income (PCI) to holistic human indicators: health, education, public facilities, and ecological sustainability.",
     "sections": [
       {
-        "title": "1. What Development Promises: Different People, Different Goals",
+        "title": "What Development Promises: Different People, Different Goals",
         "points": [
           "Different persons can have different developmental goals. What may be development for one may not be development for another; it may even be **destructive for the other**.",
           "**Examples:**",
@@ -2261,7 +2261,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Income and Other Goals",
+        "title": "Income and Other Goals",
         "points": [
           "While people seek more income (money or material goods), they also seek non-material things that are equally important:",
           "• **Equal treatment, freedom, security, and respect of others.**",
@@ -2271,7 +2271,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. National Development & Comparing Countries by Income",
+        "title": "National Development & Comparing Countries by Income",
         "points": [
           "**National Development:** Refers to the ability of a nation to improve the social, economic, and political well-being of its people.",
           "**How to Compare Different Countries:** Average income (also called **Per Capita Income**) is used as the primary measuring standard.",
@@ -2284,7 +2284,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Income and Other Criteria: Health, Education & HDI",
+        "title": "Income and Other Criteria: Health, Education & HDI",
         "points": [
           "Comparing Indian States (Haryana, Kerala, Bihar):",
           "• **Per Capita Income:** Haryana has higher per capita income than Kerala, making it look more developed purely by income.",
@@ -2298,7 +2298,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Sustainability of Development",
+        "title": "Sustainability of Development",
         "points": [
           "Development in the present must take place without damaging the environment and without exhausting resources for future generations.",
           "**Groundwater Crisis in India:** Groundwater is an example of a renewable resource that is replenished by nature. However, over-exploitation is threatening water security: about one-third of the country is over-pumping its groundwater reserves (especially agricultural plains of Punjab and Western UP and hard rock plateau areas of central/south India).",
@@ -2307,7 +2307,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these verified CBSE Class 10 Economics questions on Development.",
           "**1. What is the primary criterion used by the World Bank in classifying countries in its World Development Reports?**",
@@ -2365,7 +2365,7 @@ export const sstNotes10: ChapterNote[] = [
     "overview": "Economic activities are classified into primary (natural extraction), secondary (manufacturing), and tertiary (services) sectors. Understanding the historical sector transition, the paradox of agricultural underemployment, organised vs unorganised labour, and public vs private ownership is fundamental.",
     "sections": [
       {
-        "title": "1. Classification of Economic Activities: Three Sectors",
+        "title": "Classification of Economic Activities: Three Sectors",
         "points": [
           "**1. Primary Sector:** Activities undertaken by directly exploiting natural resources (agriculture, dairy, fishing, forestry, mining of mineral ores). Forms the base for all other products; also called **Agriculture and related sector**.",
           "**2. Secondary Sector:** Covers activities in which natural products are changed into other forms through ways of manufacturing that we associate with industrial activity (e.g. spinning yarn and weaving cloth from cotton fibre; making sugar or gur from sugarcane; making bricks from earth to build houses). Associated with factories; also called **Industrial sector**.",
@@ -2373,7 +2373,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Gross Domestic Product (GDP) & Historical Changes in Sectors",
+        "title": "Gross Domestic Product (GDP) & Historical Changes in Sectors",
         "points": [
           "**How do we count goods and services? (Gross Domestic Product):**",
           "• To avoid counting the same value multiple times, we include only **final goods and services**, not intermediate goods (e.g. wheat sold to mill to make flour to make biscuits; the value of biscuits already includes the value of flour and wheat).",
@@ -2385,7 +2385,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Rising Importance of the Tertiary Sector in India",
+        "title": "Rising Importance of the Tertiary Sector in India",
         "points": [
           "Over the forty years between 1973–74 and 2013–14, while production in all three sectors increased, it increased the most in the tertiary sector, replacing primary sector as the largest producing sector in India.",
           "**Reasons for Rising Importance of Tertiary Sector:**",
@@ -2397,7 +2397,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Where are Most People Employed? Disguised Unemployment",
+        "title": "Where are Most People Employed? Disguised Unemployment",
         "points": [
           "**The Indian Paradox:** A remarkable fact about India is that while there has been a massive change in the share of the three sectors in GDP, a similar shift has **NOT** taken place in employment!",
           "• The primary sector continues to be the largest employer even today (employing **~44% of workforce**, but contributing only **~15% to GDP**).",
@@ -2409,7 +2409,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. How to Create More Employment & MGNREGA 2005",
+        "title": "How to Create More Employment & MGNREGA 2005",
         "points": [
           "**Strategies to Generate Employment:**",
           "(1) **Agricultural Credit & Irrigation:** Providing cheap bank loans to dig wells or construct canals allows farmers to take a second crop (Rabi), creating farm employment.",
@@ -2423,7 +2423,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Division of Sectors: Organised vs Unorganised & Public vs Private",
+        "title": "Division of Sectors: Organised vs Unorganised & Public vs Private",
         "points": [
           "**1. Organised vs Unorganised Sector:**",
           "• **Organised Sector:** Covers enterprises where the terms of employment are regular and people have assured work. Registered by government and follow formal laws (Factories Act, Minimum Wages Act, Payment of Gratuity Act). Benefits: job security, fixed working hours, overtime pay, paid leave, provident fund, medical benefits, safe working environment.",
@@ -2436,7 +2436,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "7. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-frequency CBSE Class 10 Economics questions on Sectors of the Indian Economy.",
           "**1. In which sector are natural goods directly extracted and produced from the earth?**",
@@ -2494,7 +2494,7 @@ export const sstNotes10: ChapterNote[] = [
     "overview": "Money eliminates the double coincidence of wants inherent in barter trade. Analyzing modern money (currency, demand deposits), bank lending operations, contrasting credit scenarios (productive vs debt-trap), formal vs informal credit sectors, and women's Self-Help Groups (SHGs) is vital.",
     "sections": [
       {
-        "title": "1. Money as a Medium of Exchange & Barter System",
+        "title": "Money as a Medium of Exchange & Barter System",
         "points": [
           "**Barter System:** A system where goods are directly exchanged for goods without the use of money.",
           "**Double Coincidence of Wants:** An essential feature of the barter system: what a person desires to sell must be exactly what the other wishes to buy. (e.g. a shoe manufacturer wants to sell shoes and buy wheat; he must find a wheat farmer who not only wants to sell wheat but also wants to buy shoes). Finding such a match is extremely difficult and cumbersome.",
@@ -2502,7 +2502,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Modern Forms of Money: Currency & Demand Deposits",
+        "title": "Modern Forms of Money: Currency & Demand Deposits",
         "points": [
           "Early forms of money used things like grains and cattle; later, metallic coins of gold, silver, and copper were used.",
           "**Modern Forms of Money:** Paper notes and coins.",
@@ -2516,7 +2516,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Loan Activities of Banks & Two Credit Situations",
+        "title": "Loan Activities of Banks & Two Credit Situations",
         "points": [
           "**How Banks Work:** Banks keep only a small proportion of their deposits as cash with themselves. In India, banks hold about **15% of their deposits as cash** to pay depositors who might come to withdraw money on any given day.",
           "Banks use the major portion of the deposits to extend loans. There is a huge demand for loans for economic activities. Banks charge a higher interest rate on loans than what they offer on deposits. The difference between what is charged from borrowers and what is paid to depositors is the **main source of income for banks**.",
@@ -2527,7 +2527,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Terms of Credit: Interest, Collateral & Documentation",
+        "title": "Terms of Credit: Interest, Collateral & Documentation",
         "points": [
           "Every loan agreement specifies an interest rate which the borrower must pay to the lender along with the repayment of the principal.",
           "**Collateral (Security):** An asset that the borrower owns (such as land, building, vehicle, livestock, deposits with banks) and uses as a guarantee to a lender until the loan is repaid. If the borrower fails to repay the loan, the lender has the legal right to sell the asset or collateral to recover payment.",
@@ -2535,7 +2535,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Formal vs Informal Sector Credit in India",
+        "title": "Formal vs Informal Sector Credit in India",
         "points": [
           "**1. Formal Sector Credit:**",
           "• Loans from **commercial banks and cooperatives**.",
@@ -2551,7 +2551,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Self-Help Groups (SHGs) for the Poor",
+        "title": "Self-Help Groups (SHGs) for the Poor",
         "points": [
           "Poor households are often deprived of bank loans due to **absence of collateral**.",
           "**Self-Help Groups (SHGs):** A typical SHG has **15 to 20 members**, usually belonging to one neighbourhood, who meet and save regularly.",
@@ -2564,7 +2564,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "7. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Test your mastery of Money and Credit with verified CBSE Board Exam questions.",
           "**1. What essential condition in barter trade is eliminated by the introduction of money?**",
@@ -2622,7 +2622,7 @@ export const sstNotes10: ChapterNote[] = [
     "overview": "Globalisation is the rapid integration of national economies through foreign trade and investment. Analyzing Multinational Corporations (MNCs), technological enablers (telecom, containerization), 1991 trade liberalisation, the World Trade Organisation (WTO), unequal domestic impacts, and the struggle for fair globalisation is crucial.",
     "sections": [
       {
-        "title": "1. Production Across Countries & Multinational Corporations (MNCs)",
+        "title": "Production Across Countries & Multinational Corporations (MNCs)",
         "points": [
           "Until the middle of the 20th century, production was largely organized within national borders. Raw materials, foodstuff, and finished goods crossed boundaries.",
           "**Multinational Corporation (MNC):** A company that owns or controls production in more than one nation. MNCs set up offices and factories for production in regions where they can get **cheap labour and other resources**, keeping production costs low and maximizing profits.",
@@ -2635,7 +2635,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Interlinking Production Across Countries",
+        "title": "Interlinking Production Across Countries",
         "points": [
           "**Foreign Direct Investment (FDI):** Investment made by MNCs in lands, buildings, and machines in foreign countries with the hope of earning profits.",
           "**Ways MNCs Control Production Across Countries:**",
@@ -2645,7 +2645,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Foreign Trade and Market Integration",
+        "title": "Foreign Trade and Market Integration",
         "points": [
           "Foreign trade creates an opportunity for producers to reach beyond domestic markets (producers can sell not only in domestic markets, but also compete in international markets).",
           "For buyers, import of goods produced in another country expands the choice of goods beyond what is domestically available.",
@@ -2653,7 +2653,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. What is Globalisation? Factors Enabling Globalisation",
+        "title": "What is Globalisation? Factors Enabling Globalisation",
         "points": [
           "**Definition:** Globalisation is the process of rapid integration or interconnection between countries through foreign trade, foreign investment, and movement of people.",
           "**Major Factors Enabling Globalisation:**",
@@ -2666,7 +2666,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. World Trade Organisation (WTO) & The Impact of Globalisation",
+        "title": "World Trade Organisation (WTO) & The Impact of Globalisation",
         "points": [
           "**World Trade Organisation (WTO):** An international body established in **1995** (headquartered in Geneva) whose aim is to liberalise international trade.",
           "• Started at the initiative of developed countries; sets rules regarding international trade for 164+ member countries.",
@@ -2684,7 +2684,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these verified CBSE Class 10 Globalisation questions.",
           "**1. What is the process of rapid integration or interconnection between countries called?**",
@@ -2742,7 +2742,7 @@ export const sstNotes10: ChapterNote[] = [
     "overview": "Consumers participate in the market as buyers of goods and services, frequently facing exploitation, adulteration, and misleading advertisements. The Consumer Protection Act (COPRA), a three-tier quasi-judicial redressal mechanism, and standard certification marks protect consumer interests.",
     "sections": [
       {
-        "title": "1. The Consumer in the Marketplace & Forms of Exploitation",
+        "title": "The Consumer in the Marketplace & Forms of Exploitation",
         "points": [
           "We participate in the market both as producers and as consumers. While rules and regulations exist to protect workers in the unorganised sector, consumers also require protection in the marketplace.",
           "**Forms of Consumer Exploitation:**",
@@ -2755,7 +2755,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. The Consumer Movement & COPRA (1986 / 2019)",
+        "title": "The Consumer Movement & COPRA (1986 / 2019)",
         "points": [
           "The consumer movement in India originated as a social force in the **1960s** due to rampant food shortages, hoarding, black marketing, and adulteration of edible oil and food.",
           "Consumer groups wrote articles, held exhibitions, formed consumer groups to look into malpractices in ration shops and overcrowding in public transport.",
@@ -2763,7 +2763,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. The Three-Tier Quasi-Judicial Redressal System",
+        "title": "The Three-Tier Quasi-Judicial Redressal System",
         "points": [
           "Under COPRA, a three-tier court system was set up for hearing consumer disputes:",
           "• **District Consumer Disputes Redressal Commission (District Forum):** Deals with consumer claims where the value of goods or services does not exceed **Rs 1 crore** (as per 2019 Act).",
@@ -2773,7 +2773,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Fundamental Consumer Rights",
+        "title": "Fundamental Consumer Rights",
         "points": [
           "**(1) Right to Safety:** Consumers have the right to be protected against the marketing of goods and delivery of services that are hazardous to life and property (e.g. defective pressure cooker valves causing explosion).",
           "**(2) Right to be Informed:** Consumers have the right to be informed about the particulars of goods and services: ingredients used, batch number, date of manufacture, expiry date, directions for proper use, and Maximum Retail Price (MRP). In October 2005, the Government of India enacted the **Right to Information (RTI) Act**, ensuring citizens access to information about the functions of government departments.",
@@ -2784,7 +2784,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Standardisation Logos & Becoming a Conscious Consumer",
+        "title": "Standardisation Logos & Becoming a Conscious Consumer",
         "points": [
           "While buying goods, consumers can look for quality certification logos to ensure safety and quality standards set by government agencies:",
           "• **ISI Mark:** Bureau of Indian Standards (BIS) mark found on industrial products, electrical appliances (switches, irons, heaters), LPG cylinders.",
@@ -2795,7 +2795,7 @@ export const sstNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these verified CBSE Class 10 Consumer Rights questions.",
           "**1. In which year did the Government of India enact the landmark Consumer Protection Act (COPRA)?**",

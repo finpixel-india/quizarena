@@ -6,12 +6,12 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 1,
-    "title": "1. CBSE Class 9 Grammar Blueprint & Sentence Architecture",
+    "title": "CBSE Class 9 Grammar Blueprint & Sentence Architecture",
     "unit": "Unit 1: Foundations & Sentence Mechanics",
     "overview": "An authoritative guide to the CBSE Class 9 English curriculum for the 2026–27 session (covering common R1/R2 core areas). Discover the seven prescribed grammar domains, sentence anatomy, and the master solving protocol.",
     "sections": [
       {
-        "title": "1.1 The Official CBSE Class 9 Grammar Syllabus",
+        "title": "The Official CBSE Class 9 Grammar Syllabus",
         "points": [
           "The CBSE Class 9 English curriculum establishes seven primary grammar competencies assessed in contextual passages:",
           "1. **Sequence of Tenses** in different communicative settings.",
@@ -25,7 +25,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "1.2 Sentence Architecture: Subject, Predicate & Complements",
+        "title": "Sentence Architecture: Subject, Predicate & Complements",
         "points": [
           "A grammatical sentence expresses a complete proposition containing an explicit or understood subject and a finite predicate.",
           "• **Subject:** Identifies the entity performing the action or being described ('The **talented young athlete** won the tournament').",
@@ -58,12 +58,12 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 2,
-    "title": "2. Parts of Speech & Word Classes",
+    "title": "Parts of Speech & Word Classes",
     "unit": "Unit 1: Foundations & Sentence Mechanics",
     "overview": "Detailed functional analysis of the eight parts of speech in English: nouns, pronouns, verbs, adjectives, adverbs, prepositions, conjunctions, and interjections.",
     "sections": [
       {
-        "title": "2.1 Word Classes and Contextual Flexibility",
+        "title": "Word Classes and Contextual Flexibility",
         "points": [
           "Words are categorized into parts of speech based entirely on their syntactical behavior in a sentence. One lexical item can serve multiple functions:",
           "• *Water* as Noun: 'Drink plenty of **water**.'",
@@ -73,7 +73,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2.2 The Eight Parts of Speech Summary",
+        "title": "The Eight Parts of Speech Summary",
         "points": [
           "1. **Noun:** Proper (Kolkata), Common (city), Collective (flock), Abstract (courage), Material (gold). Countable vs Uncountable.",
           "2. **Pronoun:** Personal (I, they), Possessive (mine, hers), Relative (who, which), Demonstrative (this, those), Indefinite (someone, everyone).",
@@ -110,12 +110,12 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 3,
-    "title": "3. Phrases, Clauses & Sentence Structure",
+    "title": "Phrases, Clauses & Sentence Structure",
     "unit": "Unit 1: Foundations & Sentence Mechanics",
     "overview": "Distinguishing phrases from clauses, independent versus dependent clauses, and structural classifications (simple, compound, complex, compound-complex).",
     "sections": [
       {
-        "title": "3.1 Phrase versus Clause",
+        "title": "Phrase versus Clause",
         "points": [
           "• **Phrase:** A group of words lacking a subject–finite verb pair ('after the examination', 'very cautiously').",
           "• **Clause:** A structural unit possessing its own subject and finite verb ('after the examination concluded').",
@@ -124,7 +124,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3.2 Structural Sentence Types",
+        "title": "Structural Sentence Types",
         "points": [
           "1. **Simple Sentence:** Contains one single independent clause: *The train arrived on time.*",
           "2. **Compound Sentence:** Contains two or more independent clauses joined by coordinating conjunctions (FANBOYS: for, and, nor, but, or, yet, so): *The bell rang, **and** the students entered the hall.*",
@@ -157,12 +157,12 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 4,
-    "title": "4. Verbs, Verb Forms, Auxiliaries & Non-Finites",
+    "title": "Verbs, Verb Forms, Auxiliaries & Non-Finites",
     "unit": "Unit 1: Foundations & Sentence Mechanics",
     "overview": "Comprehensive coverage of finite versus non-finite verbs (infinitives, gerunds, participles), primary auxiliaries (be, have, do), and regular versus irregular verb patterns.",
     "sections": [
       {
-        "title": "4.1 Finite versus Non-Finite Verbs",
+        "title": "Finite versus Non-Finite Verbs",
         "points": [
           "• **Finite Verb:** Inflected for tense, person, and number ('She **works**', 'They **worked**'). Every complete clause must contain at least one finite verb.",
           "• **Non-Finite Verb:** Not limited by person or number, and does not independently show tense:",
@@ -172,7 +172,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4.2 Primary Auxiliaries: Be, Have, and Do",
+        "title": "Primary Auxiliaries: Be, Have, and Do",
         "points": [
           "• **Be (am, is, are, was, were, been, being):** Forms continuous tenses and passive voice ('is writing', 'was built').",
           "• **Have (have, has, had):** Forms perfect tenses ('has completed', 'had gone').",
@@ -200,12 +200,12 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 5,
-    "title": "5. Sequence of Tenses in Communication",
+    "title": "Sequence of Tenses in Communication",
     "unit": "Unit 2: Sequence of Tenses & Verb Aspect",
     "overview": "Rules governing the sequence of tenses across connected clauses and extended communicative texts. Main clause and subordinate clause tense relationships.",
     "sections": [
       {
-        "title": "5.1 Meaning and Principles of Sequence of Tenses",
+        "title": "Meaning and Principles of Sequence of Tenses",
         "points": [
           "**Sequence of tenses** refers to the grammatical principle governing the tense of a subordinate clause in relation to the tense of the principal/main clause.",
           "**Rule 1: Past Principal Clause:** If the verb in the main clause is in the past tense, the verb in the subordinate clause must also be in a past tense:",
@@ -215,7 +215,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "5.2 Crucial Exceptions to the Past Sequence Rule",
+        "title": "Crucial Exceptions to the Past Sequence Rule",
         "points": [
           "**Exception A: Universal Truths and Permanent Facts:** A past principal verb is followed by a **present simple** subordinate verb if the subordinate clause expresses a scientific truth, natural law, or habitual fact:",
           "• *The teacher proved that the Earth **revolves** around the Sun.*",
@@ -245,12 +245,12 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 6,
-    "title": "6. Present, Past & Future Tenses in Context",
+    "title": "Present, Past & Future Tenses in Context",
     "unit": "Unit 2: Sequence of Tenses & Verb Aspect",
     "overview": "Practical application of present, past, and future tense forms in contextual passages, narratives, and communicative writing.",
     "sections": [
       {
-        "title": "6.1 Narrative and Descriptive Tense Consistency",
+        "title": "Narrative and Descriptive Tense Consistency",
         "points": [
           "• When writing a narrative or report about a completed event, maintain consistent **past tense** throughout ('Last Saturday, we **visited** the national park. The guide **showed** us ancient caves').",
           "• Do not shift haphazardly between past and present within the same narrative paragraph.",
@@ -258,7 +258,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "6.2 Stative Verb and Finished Past Markers Review",
+        "title": "Stative Verb and Finished Past Markers Review",
         "points": [
           "• Stative verbs (*know, believe, understand, belong, possess*) must be kept in the simple form: 'I **understand**', never 'I am understanding'.",
           "• Definite finished past markers (*yesterday, last year, in 2022, three days ago*) require the **past simple**: 'She **completed** the project yesterday' (never 'has completed')."
@@ -285,12 +285,12 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 7,
-    "title": "7. Time Clauses & Conditional Clauses (Type 1)",
+    "title": "Time Clauses & Conditional Clauses (Type 1)",
     "unit": "Unit 2: Sequence of Tenses & Verb Aspect",
     "overview": "Rules for time clauses (when, until, as soon as) and in-depth study of Conditional Clauses — Type 1 (open, real future conditions).",
     "sections": [
       {
-        "title": "7.1 Future Meaning in Time Clauses",
+        "title": "Future Meaning in Time Clauses",
         "points": [
           "In subordinate time clauses introduced by **when, before, after, until, as soon as, as long as**, future meaning is expressed with the **simple present tense**, never with 'will':",
           "• Correct: *I will call you when I **reach** home.*",
@@ -300,7 +300,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "7.2 Conditional Clauses: Type 1 (Real / Open Future)",
+        "title": "Conditional Clauses: Type 1 (Real / Open Future)",
         "points": [
           "A Type 1 conditional expresses an open, realistic condition that is completely possible or probable in the present or future.",
           "**Formula:** If + Simple Present (V1 / V1-s), will / modal / imperative + Base Verb.",
@@ -311,7 +311,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "7.3 Unless (= If Not)",
+        "title": "Unless (= If Not)",
         "points": [
           "**Unless** means 'except if' or 'if...not'. It is followed by an affirmative present tense verb:",
           "• *Unless you **hurry**, you will miss the train.* (= If you do not hurry...)",
@@ -344,12 +344,12 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 8,
-    "title": "8. Modal Auxiliaries: Ability, Obligation, Permission, Possibility & Advice",
+    "title": "Modal Auxiliaries: Ability, Obligation, Permission, Possibility & Advice",
     "unit": "Unit 3: Modals & Semi-Modals",
     "overview": "Comprehensive coverage of the five prescribed modal functions in CBSE Class 9: ability (can/could), obligation (must/have to), permission (may/can/could), possibility (may/might), and advice (should/ought to).",
     "sections": [
       {
-        "title": "8.1 Form and Function of Modal Auxiliaries",
+        "title": "Form and Function of Modal Auxiliaries",
         "points": [
           "Modal auxiliaries are helping verbs that express mood, capability, duty, or likelihood.",
           "**Core Rules:**",
@@ -359,7 +359,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "8.2 The Five Prescribed Functions Detailed",
+        "title": "The Five Prescribed Functions Detailed",
         "points": [
           "1. **Ability:** 'Can' for present ability (*I can solve this equation*); 'Could' for general past ability (*She could read at age four*); 'Was/were able to' for specific past achievement.",
           "2. **Obligation & Duty:** 'Must' for authoritative internal or legal obligation (*You must wear a helmet*); 'Have to' for external requirements (*We have to submit the forms*); 'Had to' for past obligation.",
@@ -393,12 +393,12 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 9,
-    "title": "9. Modal Contrasts, Prohibition vs No-Necessity & Common Errors",
+    "title": "Modal Contrasts, Prohibition vs No-Necessity & Common Errors",
     "unit": "Unit 3: Modals & Semi-Modals",
     "overview": "High-value contrasts: must not (prohibition) versus do not have to (lack of necessity), common modal errors in editing tasks.",
     "sections": [
       {
-        "title": "9.1 Prohibition versus Absence of Obligation",
+        "title": "Prohibition versus Absence of Obligation",
         "points": [
           "• **Must not / Cannot = Prohibition:** Doing the action is forbidden or against the law: *You **must not** touch the live wire.*",
           "• **Do not have to / Need not = No Necessity:** The action is not required; it is optional: *Tomorrow is Sunday; you **do not have to** wake up early.*",
@@ -406,7 +406,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "9.2 Frequent Modal Errors in Class 9 Papers",
+        "title": "Frequent Modal Errors in Class 9 Papers",
         "points": [
           "• Incorrect: *She can sings.* -> Correct: *She can **sing**.*",
           "• Incorrect: *You should to study.* -> Correct: *You should **study**.*",
@@ -435,12 +435,12 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 10,
-    "title": "10. Subject–Verb Concord: Rules & Compound Subjects",
+    "title": "Subject–Verb Concord: Rules & Compound Subjects",
     "unit": "Unit 4: Subject–Verb Concord",
     "overview": "Core principles of subject-verb concord in Class 9: head noun identification, compound subjects joined by 'and', and proximity rule with either...or / neither...nor.",
     "sections": [
       {
-        "title": "10.1 The Golden Concord Rule and Head Nouns",
+        "title": "The Golden Concord Rule and Head Nouns",
         "points": [
           "A singular subject takes a singular verb ('She **writes**'); a plural subject takes a plural verb ('They **write**').",
           "The verb agrees with the **head noun**, not with intervening prepositional modifiers:",
@@ -450,7 +450,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "10.2 Compound Subjects and Correlative Conjunctions",
+        "title": "Compound Subjects and Correlative Conjunctions",
         "points": [
           "• Two subjects joined by **'and'** take a plural verb: *Rohan and Kabir **are** friends.*",
           "• Exception: If they represent a single unit or dish: *Bread and butter **is** wholesome.*",
@@ -480,12 +480,12 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 11,
-    "title": "11. Difficult Agreement Patterns: Indefinite Pronouns, Distributives & Units",
+    "title": "Difficult Agreement Patterns: Indefinite Pronouns, Distributives & Units",
     "unit": "Unit 4: Subject–Verb Concord",
     "overview": "Challenging concord cases: indefinite pronouns (everyone, someone), each of, a number of vs the number of, measurements, and pair nouns.",
     "sections": [
       {
-        "title": "11.1 Indefinite Pronouns and Distributives",
+        "title": "Indefinite Pronouns and Distributives",
         "points": [
           "• **Always Singular:** *everyone, everybody, someone, somebody, anyone, anybody, no one, nobody, each, every, either, neither* take a **singular verb**:",
           "• *Everyone **has** arrived.* *Each of the boys **was** present.* *Neither answer **is** correct.*",
@@ -494,7 +494,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "11.2 A Number of vs The Number of, and Units",
+        "title": "A Number of vs The Number of, and Units",
         "points": [
           "• **A number of + plural noun + PLURAL verb:** 'A number of students **have** applied.' (means several).",
           "• **The number of + plural noun + SINGULAR verb:** 'The number of applicants **is** rising.' (means the numerical total).",
@@ -523,12 +523,12 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 12,
-    "title": "12. Determiners & Articles (A, An, The & Zero Article)",
+    "title": "Determiners & Articles (A, An, The & Zero Article)",
     "unit": "Unit 5: Determiners & Articles",
     "overview": "Rules for indefinite articles based on initial sounds (a university vs an hour), definite article 'the' for specific and unique references, and zero article rules.",
     "sections": [
       {
-        "title": "12.1 Phonetic Sound Rules for A and An",
+        "title": "Phonetic Sound Rules for A and An",
         "points": [
           "• Use **'a'** before words starting with a **consonant sound**:",
           "• *a university* (sound /juː/)",
@@ -542,7 +542,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "12.2 The Definite Article 'The' and Zero Article",
+        "title": "The Definite Article 'The' and Zero Article",
         "points": [
           "• **Use 'the' for:** already mentioned nouns (*I saw a dog; the dog was black*), unique celestial bodies (*the Sun, the Moon*), superlatives (*the best*), ordinals (*the first*), rivers/oceans/mountain ranges (*the Ganga, the Himalayas*).",
           "• **Zero article for:** plural nouns in general (*Books are friends*), uncountable nouns in general (*Water is life*), proper names (*India, Delhi*), school subjects (*physics, English*)."
@@ -569,12 +569,12 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 13,
-    "title": "13. Quantifiers, Distributives, Demonstratives & Possessives",
+    "title": "Quantifiers, Distributives, Demonstratives & Possessives",
     "unit": "Unit 5: Determiners & Articles",
     "overview": "Quantifiers (much/many, few/a few, little/a little), demonstratives (this, that, these, those), possessives, and distributives.",
     "sections": [
       {
-        "title": "13.1 Quantifier Pairs: Countable vs Uncountable",
+        "title": "Quantifier Pairs: Countable vs Uncountable",
         "points": [
           "• **Many** + plural countable (*many books*) vs **Much** + uncountable (*much sugar*).",
           "• **Few** (hardly any, negative) vs **A few** (some, positive) with plural countables: *Few students passed* (bad result) vs *A few students passed* (some did pass).",
@@ -583,7 +583,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "13.2 Demonstratives and Possessives",
+        "title": "Demonstratives and Possessives",
         "points": [
           "• **This / That** (singular) vs **These / Those** (plural). Must agree in number: *these books*, not *these book*.",
           "• **Its** (possessive determiner: *The dog wagged its tail*) vs **It's** (contraction: *It is raining*)."
@@ -610,12 +610,12 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 14,
-    "title": "14. Noun Clauses: Forms, Functions & Indirect Word Order",
+    "title": "Noun Clauses: Forms, Functions & Indirect Word Order",
     "unit": "Unit 6: Clauses & Sentence Synthesis",
     "overview": "Noun clauses as subjects, objects, and complements. Connectors (that, whether, wh-words) and declarative word order rules.",
     "sections": [
       {
-        "title": "14.1 Definition and Syntactic Functions of Noun Clauses",
+        "title": "Definition and Syntactic Functions of Noun Clauses",
         "points": [
           "A **noun clause** is a dependent subordinate clause that performs the grammatical role of a noun or noun phrase.",
           "It can function as:",
@@ -626,7 +626,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "14.2 Statement Word Order in Noun Clauses",
+        "title": "Statement Word Order in Noun Clauses",
         "points": [
           "In a noun clause introduced by a wh-word or whether/if, the word order **must be declarative (Subject + Verb)**, never inverted like a direct question:",
           "• Incorrect: *I don't know where is he.*",
@@ -656,12 +656,12 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 15,
-    "title": "15. Relative Clauses: Defining & Non-defining Structures",
+    "title": "Relative Clauses: Defining & Non-defining Structures",
     "unit": "Unit 6: Clauses & Sentence Synthesis",
     "overview": "Relative clauses modifying nouns. Relative pronouns (who, whom, whose, which, that). Defining versus non-defining relative clauses.",
     "sections": [
       {
-        "title": "15.1 Relative Pronouns and Antecedents",
+        "title": "Relative Pronouns and Antecedents",
         "points": [
           "A **relative clause** describes or identifies a preceding noun or pronoun called its **antecedent**.",
           "• **Who:** For people as subject (*The girl **who won** the medal is my sister*).",
@@ -672,7 +672,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "15.2 Defining versus Non-Defining Relative Clauses",
+        "title": "Defining versus Non-Defining Relative Clauses",
         "points": [
           "• **Defining (Restrictive):** Essential to identify which person/thing is meant; **no commas**: *Students **who work hard** usually succeed.*",
           "• **Non-defining (Non-restrictive):** Adds extra, non-essential information about an already identified noun; **separated by commas**: *My mother, **who is a doctor**, works at City Hospital.*",
@@ -704,19 +704,19 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 16,
-    "title": "16. Adverb Clauses of Condition, Time, Reason & Contrast",
+    "title": "Adverb Clauses of Condition, Time, Reason & Contrast",
     "unit": "Unit 6: Clauses & Sentence Synthesis",
     "overview": "Comprehensive coverage of adverb clauses of condition (if, unless), time (when, while, until), reason (because, since), contrast (although, though), and result (so that).",
     "sections": [
       {
-        "title": "16.1 What is an Adverb Clause?",
+        "title": "What is an Adverb Clause?",
         "points": [
           "An **adverb clause** is a dependent clause that modifies a verb, adjective, or adverb in the main clause, explaining when, why, how, under what condition, or with what contrast an action occurs.",
           "It is always introduced by a subordinating conjunction."
         ]
       },
       {
-        "title": "16.2 Major Types of Adverb Clauses in Class 9",
+        "title": "Major Types of Adverb Clauses in Class 9",
         "points": [
           "1. **Adverb Clause of Condition:** *If it rains*, we will stay indoors. *Unless you study*, you will not pass.",
           "2. **Adverb Clause of Time:** We left *when the bell rang*. He waited *until the bus arrived*. She reads *while she travels*.",
@@ -746,12 +746,12 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 17,
-    "title": "17. Active and Passive Voice in Class 9 Grammar",
+    "title": "Active and Passive Voice in Class 9 Grammar",
     "unit": "Unit 6: Clauses & Sentence Synthesis",
     "overview": "Active versus passive voice in Class 9: transitive verbs, passive formula (be + V3), tense transformations, and agent inclusion/omission rules.",
     "sections": [
       {
-        "title": "17.1 Active vs Passive Voice Mechanics",
+        "title": "Active vs Passive Voice Mechanics",
         "points": [
           "• **Active Voice:** The subject performs the action: *The chef **prepared** a delicious meal.*",
           "• **Passive Voice:** The object becomes the subject and receives the action: *A delicious meal **was prepared** by the chef.*",
@@ -760,7 +760,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "17.2 Voice Changes Across Tenses",
+        "title": "Voice Changes Across Tenses",
         "points": [
           "• Simple Present: writes -> *is/are written*",
           "• Present Continuous: is writing -> *is/are being written*",
@@ -792,12 +792,12 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 18,
-    "title": "18. Reported Speech: Foundations & Reporting Verbs",
+    "title": "Reported Speech: Foundations & Reporting Verbs",
     "unit": "Unit 7: Reported Speech",
     "overview": "Direct versus indirect speech fundamentals: quotation marks removal, say versus tell, and the core transformation workflow.",
     "sections": [
       {
-        "title": "18.1 Direct and Indirect Speech Overview",
+        "title": "Direct and Indirect Speech Overview",
         "points": [
           "• **Direct Speech:** Exact spoken words enclosed in quotation marks: *Rohan said, 'I am ready.'*",
           "• **Reported Speech:** Indirect reporting without quotation marks: *Rohan said that he was ready.*",
@@ -805,7 +805,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "18.2 Say versus Tell",
+        "title": "Say versus Tell",
         "points": [
           "• **Say:** Used without an indirect personal object: *She **said** that she was tired.* (or *said to me*).",
           "• **Tell:** Must take a personal object: *She **told me** that she was tired.* (Never write 'She told that' or 'She told to me')."
@@ -832,12 +832,12 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 19,
-    "title": "19. Reporting Statements: Pronouns & Tense Backshift",
+    "title": "Reporting Statements: Pronouns & Tense Backshift",
     "unit": "Unit 7: Reported Speech",
     "overview": "Rules for reporting statements: tense backshift sequences, universal truth exceptions, and pronoun transformation guidelines.",
     "sections": [
       {
-        "title": "19.1 Tense Backshift in Statements",
+        "title": "Tense Backshift in Statements",
         "points": [
           "When the reporting verb is in past simple (*said, told*):",
           "• Present Simple -> Past Simple: *'I work' -> worked*",
@@ -848,7 +848,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "19.2 Universal Truths and Pronoun Shifts",
+        "title": "Universal Truths and Pronoun Shifts",
         "points": [
           "• **Universal Truths:** Do not change tense: *The teacher said, 'The Earth revolves around the Sun'* -> *The teacher said that the Earth **revolves** around the Sun.*",
           "• **Pronoun Shifts:** Change according to speaker and listener: *Ravi said, 'I lost my keys'* -> *Ravi said that **he** had lost **his** keys.*"
@@ -875,12 +875,12 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 20,
-    "title": "20. Reporting Questions: Yes/No & Wh-Questions",
+    "title": "Reporting Questions: Yes/No & Wh-Questions",
     "unit": "Unit 7: Reported Speech",
     "overview": "Reporting questions: using if/whether for yes/no questions, retaining wh-words for information questions, and enforcing statement word order.",
     "sections": [
       {
-        "title": "20.1 Yes/No Questions with If / Whether",
+        "title": "Yes/No Questions with If / Whether",
         "points": [
           "• Use **if** or **whether** after reporting verb *asked*:",
           "• Direct: *He asked me, 'Are you ready?'*",
@@ -890,7 +890,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "20.2 Wh-Questions and Statement Word Order",
+        "title": "Wh-Questions and Statement Word Order",
         "points": [
           "• Retain the question word (*who, what, where, when, why, how*):",
           "• Direct: *'Where do you live?' she asked me.*",
@@ -921,12 +921,12 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 21,
-    "title": "21. Reporting Commands, Requests, Advice & Warnings",
+    "title": "Reporting Commands, Requests, Advice & Warnings",
     "unit": "Unit 7: Reported Speech",
     "overview": "Reporting imperatives: using to-infinitives and not-to-infinitives, selecting intentional reporting verbs (order, request, advise, warn), and omitting 'please'.",
     "sections": [
       {
-        "title": "21.1 The To-Infinitive Structure for Imperatives",
+        "title": "The To-Infinitive Structure for Imperatives",
         "points": [
           "• Imperative commands and requests use: **reporting verb + object + to + V1** (or **not to + V1** for negatives):",
           "• Direct: *The teacher said, 'Open your books.'*",
@@ -938,7 +938,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "21.2 Omitting Polite Fillers and Selecting Verbs",
+        "title": "Omitting Polite Fillers and Selecting Verbs",
         "points": [
           "• The word 'please' is omitted because the reporting verb (*requested, asked*) conveys the politeness.",
           "• Choose intentional reporting verbs: *ordered, commanded* (for orders); *requested, pleaded* (for requests); *advised, urged* (for advice); *warned* (for warnings)."
@@ -965,12 +965,12 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 22,
-    "title": "22. Reported Speech in Connected Passages & Extended Dialogues",
+    "title": "Reported Speech in Connected Passages & Extended Dialogues",
     "unit": "Unit 7: Reported Speech",
     "overview": "Handling dialogue completion and multi-turn conversations in CBSE Class 9 examinations. Maintaining consistency in pronouns, tenses, and narrative flow.",
     "sections": [
       {
-        "title": "22.1 Extended Text Reporting Framework",
+        "title": "Extended Text Reporting Framework",
         "points": [
           "The Class 9 syllabus specifies reported speech in **extended texts** (multi-turn dialogues):",
           "1. Identify the speaker and listener for each conversational turn.",
@@ -980,7 +980,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "22.2 Worked Dialogue Transformation Model",
+        "title": "Worked Dialogue Transformation Model",
         "points": [
           "• **Dialogue:**",
           "Ravi: *'I am preparing for the quiz. Can you help me this evening?'*",
@@ -1010,12 +1010,12 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 23,
-    "title": "23. Editing and Omission: Identification & Correction Strategies",
+    "title": "Editing and Omission: Identification & Correction Strategies",
     "unit": "Unit 8: Applied Formats & Writing Support",
     "overview": "Methodology for editing and omission tasks in Class 9: checking concord, tenses, determiners, modals, pronouns, and prepositions.",
     "sections": [
       {
-        "title": "23.1 The Step-by-Step Editing Procedure",
+        "title": "The Step-by-Step Editing Procedure",
         "points": [
           "1. Read the complete passage first to grasp overall meaning and timeline.",
           "2. Inspect each line for common errors in this order: Subject-Verb Concord, Tenses, Modals, Determiners, Pronouns, Prepositions.",
@@ -1024,7 +1024,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "23.2 High-Frequency Class 9 Errors",
+        "title": "High-Frequency Class 9 Errors",
         "points": [
           "• Concord: *Each of the girls have submitted* -> *has submitted*.",
           "• Tense: *She has met him yesterday* -> *met him yesterday*.",
@@ -1054,12 +1054,12 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 24,
-    "title": "24. Paragraph Completion & Contextual Language Use",
+    "title": "Paragraph Completion & Contextual Language Use",
     "unit": "Unit 8: Applied Formats & Writing Support",
     "overview": "Techniques for paragraph completion and cloze passages (R2 assessment pattern): checking grammatical clues, connectors, and semantic coherence.",
     "sections": [
       {
-        "title": "24.1 Five-Step Method for Paragraph Completion",
+        "title": "Five-Step Method for Paragraph Completion",
         "points": [
           "1. Read the full paragraph before choosing options.",
           "2. Identify the timeline and theme.",
@@ -1089,12 +1089,12 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 25,
-    "title": "25. Sentence Rearrangement & Logical Word Order",
+    "title": "Sentence Rearrangement & Logical Word Order",
     "unit": "Unit 8: Applied Formats & Writing Support",
     "overview": "Techniques for solving jumbled word and phrase rearrangements: identifying subject, verb, objects, modifiers, and clause connectors.",
     "sections": [
       {
-        "title": "25.1 Sentence Skeleton Strategy",
+        "title": "Sentence Skeleton Strategy",
         "points": [
           "To rearrange jumbled words into a grammatical sentence:",
           "1. Find the finite verb first.",
@@ -1105,7 +1105,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "25.2 Worked Rearrangement Example",
+        "title": "Worked Rearrangement Example",
         "points": [
           "• Jumbled: *if / you practise / will improve / regularly / you*",
           "• Groups: Condition (*If you practise regularly*) + Result (*you will improve*).",
@@ -1133,12 +1133,12 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 26,
-    "title": "26. Sentence Transformation Strategies",
+    "title": "Sentence Transformation Strategies",
     "unit": "Unit 8: Applied Formats & Writing Support",
     "overview": "Sentence transformation in Class 9: direct to reported speech, conditional combining, active to passive, and clause synthesis.",
     "sections": [
       {
-        "title": "26.1 Golden Rules of Transformation",
+        "title": "Golden Rules of Transformation",
         "points": [
           "• Preserve the core meaning without alteration.",
           "• Follow the specific instruction (e.g., 'Rewrite using if', 'Change into reported speech').",
@@ -1146,7 +1146,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "26.2 High-Yield Class 9 Transformation Patterns",
+        "title": "High-Yield Class 9 Transformation Patterns",
         "points": [
           "• **Imperative to Conditional:** *Study regularly and you will improve* -> *If you study regularly, you will improve.*",
           "• **Relative Clause Combining:** *I bought a laptop. It has long battery life* -> *I bought a laptop that has long battery life.*",
@@ -1174,12 +1174,12 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 27,
-    "title": "27. Punctuation, Mechanics & Common Grammar Traps",
+    "title": "Punctuation, Mechanics & Common Grammar Traps",
     "unit": "Unit 8: Applied Formats & Writing Support",
     "overview": "Punctuation conventions (full stops, commas, apostrophes), high-frequency grammar traps (its vs it's, fewer vs less, much vs many), and preposition collocations.",
     "sections": [
       {
-        "title": "27.1 Punctuation Essentials",
+        "title": "Punctuation Essentials",
         "points": [
           "• **Commas:** Use after introductory dependent clauses (*If it rains, we will stay home*), between list items, and around non-defining relative clauses.",
           "• **Apostrophes:** For possession (*the student's notebook*, *the students' hostel*) and contractions (*don't*, *it's*).",
@@ -1187,7 +1187,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "27.2 High-Frequency Preposition Collocations",
+        "title": "High-Frequency Preposition Collocations",
         "points": [
           "Learn these fixed preposition pairings:",
           "• *interested **in***, *good **at***, *depend **on***, *apologise **for***, *belong **to***, *agree **with** a person*, *responsible **for***, *different **from***, *prefer X **to** Y*."
@@ -1214,12 +1214,12 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 28,
-    "title": "28. Writing-Task Language Support (Notices, Letters, Descriptions, Articles & Essays)",
+    "title": "Writing-Task Language Support (Notices, Letters, Descriptions, Articles & Essays)",
     "unit": "Unit 8: Applied Formats & Writing Support",
     "overview": "Grammar, register, organization, and format guidelines for CBSE Class 9 writing tasks: notices (up to 50 words), informal invitations, posters, letters to editor, formal emails, factual descriptions, articles, speeches, and narrative essays.",
     "sections": [
       {
-        "title": "28.1 Short Writing Formats: Notice, Invitation, Poster",
+        "title": "Short Writing Formats: Notice, Invitation, Poster",
         "points": [
           "• **Notice (up to 50 words):** School name, word NOTICE, date, clear heading, 5 Ws (what, when, where, who, whom to contact), formal closing with designation.",
           "• **Informal Invitation:** Warm, personal tone, clear date/time/venue, occasion details.",
@@ -1227,7 +1227,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "28.2 Long Writing Formats (120–150 words): Letter, Email, Article, Speech",
+        "title": "Long Writing Formats (120–150 words): Letter, Email, Article, Speech",
         "points": [
           "• **Letter to Editor:** Formal sender/receiver address, date, subject line, salutation, 3-paragraph body (intro of issue, effects/examples, constructive suggestions), formal closing.",
           "• **Formal Email:** Professional subject line, clear opening purpose, structured points, polite closing.",
@@ -1237,7 +1237,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "28.3 Extended Composition: Descriptive & Narrative Essays",
+        "title": "Extended Composition: Descriptive & Narrative Essays",
         "points": [
           "• **Narrative Essay (150–250 words):** Clear chronological order, past tense framework, vivid sensory detail, setting, conflict/turning point, resolution."
         ]
@@ -1263,12 +1263,12 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 29,
-    "title": "29. Quick-Reference Tables & 7-Day Revision Mastery Plan",
+    "title": "Quick-Reference Tables & 7-Day Revision Mastery Plan",
     "unit": "Unit 8: Applied Formats & Writing Support",
     "overview": "Comprehensive quick-reference tables for tenses, reported speech, modals, determiners, clauses, concord, and a structured 7-day revision roadmap.",
     "sections": [
       {
-        "title": "29.1 The Master Quick-Reference Summary",
+        "title": "The Master Quick-Reference Summary",
         "points": [
           "• **Tenses:** Present simple in time clauses; past simple with yesterday; past perfect for earlier of two past events; present perfect continuous for duration with since/for.",
           "• **Modals:** Must (obligation), Must not (prohibition), Don't have to (no necessity), May (permission), Might (possibility), Should (advice).",
@@ -1278,7 +1278,7 @@ export const englishNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "29.2 The Seven-Day Revision Plan",
+        "title": "The Seven-Day Revision Plan",
         "points": [
           "• **Day 1:** Verb forms & Sequence of Tenses.",
           "• **Day 2:** Modal auxiliaries and functions.",
@@ -1310,7 +1310,7 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 30,
-    "title": "30. Practice Arena — CBSE Class 9 English Grammar Master Assessment (MCQ)",
+    "title": "Practice Arena — CBSE Class 9 English Grammar Master Assessment (MCQ)",
     "unit": "Unit 9: Practice Arena & Self-Assessment",
     "overview": "A comprehensive 60-question interactive objective assessment covering all Class 9 syllabus areas: Sequence of Tenses, Modals, Concord, Determiners, Reported Speech, Clauses, Conditionals, and Sentence Synthesis with verified feedback.",
     "sections": [

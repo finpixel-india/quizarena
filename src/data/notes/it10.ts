@@ -2,45 +2,11 @@ import type { ChapterNote } from "./types";
 
 export const itNotes10: ChapterNote[] = [
   {
-    "id": "note-it10-1",
-    "subject": "it",
-    "classLevel": 10,
-    "chapterNo": 1,
-    "title": "Introduction",
-    "unit": "CBSE Class 10 IT (402)",
-    "overview": "title: \"CBSE Class 10 Information Technology (402) — Complete Master Notes\"",
-    "sections": [
-      {
-        "title": "Overview & Core Concepts",
-        "points": [
-          "title: \"CBSE Class 10 Information Technology (402) — Complete Master Notes\"",
-          "academic_session: \"2026–2027\"",
-          "format: \"Markdown\"",
-          "language: \"English with key IT terms\""
-        ]
-      }
-    ],
-    "keyTerms": [
-      {
-        "term": "Introduction",
-        "meaning": "title: \"CBSE Class 10 Information Technology (402) — Complete Master Notes\""
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
-      }
-    ],
-    "examTips": [
-      "Master fundamental concepts before attempting complex workflows.",
-      "Verify inputs, outputs, and safety guidelines during practical implementations."
-    ]
-  },
-  {
     "id": "note-it10-2",
     "subject": "it",
     "classLevel": 10,
-    "chapterNo": 2,
-    "title": "How to Use This Guide",
+    "chapterNo": 1,
+    "title": "IT 402 Practical Workflow & Orientation Guide",
     "unit": "Course Overview & Assessment",
     "overview": "1. **Read for understanding.** Start with the concept, then study the vocabulary, example and practical steps.",
     "sections": [
@@ -59,12 +25,20 @@ export const itNotes10: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "How to Use This Guide",
-        "meaning": "1. **Read for understanding.** Start with the concept, then study the vocabulary, example and practical steps."
+        "term": "Read for understanding.",
+        "meaning": "Start with the concept, then study the vocabulary, example and practical steps."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Perform the practical.",
+        "meaning": "Open LibreOffice and carry out the steps on sample data rather than only memorising menu paths."
+      },
+      {
+        "term": "Record evidence.",
+        "meaning": "Save files with meaningful names and keep your practical portfolio organised."
+      },
+      {
+        "term": "Test yourself.",
+        "meaning": "Attempt the questions before opening the answer key."
       }
     ],
     "examTips": [
@@ -75,8 +49,8 @@ export const itNotes10: ChapterNote[] = [
     "id": "note-it10-3",
     "subject": "it",
     "classLevel": 10,
-    "chapterNo": 3,
-    "title": "Official Syllabus Coverage and Assessment",
+    "chapterNo": 2,
+    "title": "Curriculum Blueprint & Examination Scheme",
     "unit": "Course Overview & Assessment",
     "overview": "CBSE Class X Information Technology (402) combines employability skills with applied digital skills. The curriculum identifies its job-role context as Domestic Data Entry Operator in the IT–ITeS industry. Students practise reliable use of office applications, data management and safe workplace habits.",
     "sections": [
@@ -87,7 +61,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "Part A — Employability Skills",
+        "title": "Employability Skills",
         "table": {
           "head": [
             "Unit",
@@ -124,7 +98,7 @@ export const itNotes10: ChapterNote[] = [
         }
       },
       {
-        "title": "Part B — Subject-Specific Skills",
+        "title": "Subject-Specific Skills",
         "table": {
           "head": [
             "Unit",
@@ -242,36 +216,8 @@ export const itNotes10: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Official Syllabus Coverage and Assessment",
+        "term": "Curriculum Blueprint & Examination Scheme",
         "meaning": "CBSE Class X Information Technology (402) combines employability skills with applied digital skills. The curriculum identifies its job-role context as Domestic Data Entry Operator in the IT–ITeS industry. Students practise reliable use of office applications, data management and safe workplace habits."
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
-      }
-    ],
-    "examTips": [
-      "Master fundamental concepts before attempting complex workflows.",
-      "Verify inputs, outputs, and safety guidelines during practical implementations."
-    ]
-  },
-  {
-    "id": "note-it10-4",
-    "subject": "it",
-    "classLevel": 10,
-    "chapterNo": 4,
-    "title": "Part A — Employability Skills",
-    "unit": "CBSE Class 10 IT (402)",
-    "overview": "Part A — Employability Skills — Fundamental concepts, practical guidelines, and key summaries.",
-    "sections": [],
-    "keyTerms": [
-      {
-        "term": "Part A — Employability Skills",
-        "meaning": "Part A — Employability Skills — Fundamental concepts, practical guidelines, and key summaries."
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
       }
     ],
     "examTips": [
@@ -283,13 +229,13 @@ export const itNotes10: ChapterNote[] = [
     "id": "note-it10-5",
     "subject": "it",
     "classLevel": 10,
-    "chapterNo": 5,
-    "title": "Unit A1 — Communication Skills II",
+    "chapterNo": 3,
+    "title": "Advanced Professional Communication & Interpersonal Methods",
     "unit": "Part A — Employability Skills",
     "overview": "Communication is the process of sharing information, ideas, feelings or instructions so that another person can understand them. It is effective when the receiver interprets the intended message accurately enough to respond or act appropriately.",
     "sections": [
       {
-        "title": "1. Meaning of communication",
+        "title": "Meaning of communication",
         "points": [
           "Communication is the process of sharing information, ideas, feelings or instructions so that another person can understand them. It is effective when the receiver interprets the intended message accurately enough to respond or act appropriately."
         ]
@@ -356,7 +302,7 @@ export const itNotes10: ChapterNote[] = [
         }
       },
       {
-        "title": "3. Feedback",
+        "title": "Feedback",
         "points": [
           "Feedback tells a person how their work or behaviour was received. It can reinforce effective actions or help improve a result.",
           "**Descriptive feedback:** names what was observed. “Your report has a title, clear headings and a labelled chart.”",
@@ -367,7 +313,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Barriers to effective communication",
+        "title": "Barriers to effective communication",
         "points": [
           "**Physical:** noise, poor lighting, distance or a failed microphone.",
           "**Language/semantic:** unfamiliar vocabulary, jargon, ambiguous words or language differences.",
@@ -385,7 +331,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. The 7 Cs of effective communication",
+        "title": "The 7 Cs of effective communication",
         "points": [
           "1. **Clear:** purpose is easy to understand.",
           "2. **Concise:** no unnecessary words.",
@@ -497,12 +443,20 @@ export const itNotes10: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Unit A1 — Communication Skills II",
-        "meaning": "Communication is the process of sharing information, ideas, feelings or instructions so that another person can understand them. It is effective when the receiver interprets the intended message accurately enough to respond or act appropriately."
+        "term": "Sender",
+        "meaning": "starts the communication."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Idea/message",
+        "meaning": "the information to be shared."
+      },
+      {
+        "term": "Encoding",
+        "meaning": "turning the idea into words, signs, images or another form."
+      },
+      {
+        "term": "Channel",
+        "meaning": "the route, such as speech, written note, email, phone or visual display."
       }
     ],
     "examTips": [
@@ -514,19 +468,19 @@ export const itNotes10: ChapterNote[] = [
     "id": "note-it10-6",
     "subject": "it",
     "classLevel": 10,
-    "chapterNo": 6,
-    "title": "Unit A2 — Self-Management Skills II",
+    "chapterNo": 4,
+    "title": "Self-Management, Stress Resilience & Emotional Well-Being",
     "unit": "Part A — Employability Skills",
     "overview": "Self-management means organising one's actions, time, feelings, attention and responsibilities to work toward a goal. It is not about never feeling stress; it is about recognising what is happening and responding constructively.",
     "sections": [
       {
-        "title": "1. Meaning of self-management",
+        "title": "Meaning of self-management",
         "points": [
           "Self-management means organising one's actions, time, feelings, attention and responsibilities to work toward a goal. It is not about never feeling stress; it is about recognising what is happening and responding constructively."
         ]
       },
       {
-        "title": "2. Stress and stress management",
+        "title": "Stress and stress management",
         "points": [
           "Stress is the mental or physical response to demands, uncertainty or pressure. Some pressure can help focus, but prolonged or overwhelming stress can affect sleep, attention, mood and health.",
           "**Common causes:** exams/deadlines, conflict, unclear expectations, lack of sleep, poor planning, insufficient activity and too many simultaneous notifications.",
@@ -534,7 +488,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Self-awareness",
+        "title": "Self-awareness",
         "points": [
           "Self-awareness is understanding one's strengths, limitations, values, emotions, habits and learning needs. It can include physical, emotional, social and intellectual aspects."
         ],
@@ -569,7 +523,7 @@ export const itNotes10: ChapterNote[] = [
         }
       },
       {
-        "title": "4. Self-motivation and self-regulation",
+        "title": "Self-motivation and self-regulation",
         "points": [
           "**Self-motivation:** generating a reason to begin or continue.",
           "**Self-regulation:** monitoring and adjusting behaviour, attention or strategy.",
@@ -579,7 +533,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Working independently",
+        "title": "Working independently",
         "points": [
           "Independent work means completing a task responsibly with limited supervision—not refusing help when it is needed. Qualities include initiative, planning, reliability, accountability, resourcefulness, perseverance and knowing when to ask a question."
         ]
@@ -607,12 +561,20 @@ export const itNotes10: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Unit A2 — Self-Management Skills II",
-        "meaning": "Self-management means organising one's actions, time, feelings, attention and responsibilities to work toward a goal. It is not about never feeling stress; it is about recognising what is happening and responding constructively."
+        "term": "Common causes",
+        "meaning": "exams/deadlines, conflict, unclear expectations, lack of sleep, poor planning, insufficient activity and too many simultaneous notifications."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Self-motivation",
+        "meaning": "generating a reason to begin or continue."
+      },
+      {
+        "term": "Self-regulation",
+        "meaning": "monitoring and adjusting behaviour, attention or strategy."
+      },
+      {
+        "term": "Intrinsic motivation",
+        "meaning": "acting because an activity is meaningful/enjoyable."
       }
     ],
     "examTips": [
@@ -623,19 +585,19 @@ export const itNotes10: ChapterNote[] = [
     "id": "note-it10-7",
     "subject": "it",
     "classLevel": 10,
-    "chapterNo": 7,
-    "title": "Unit A3 — ICT Skills II",
+    "chapterNo": 5,
+    "title": "Operating Systems, File Maintenance & Data Security",
     "unit": "Part A — Employability Skills",
     "overview": "An **operating system (OS)** manages hardware and provides services for applications. Examples include Microsoft Windows, Linux distributions, macOS, Android and iOS. Core tasks include managing processor time/memory, organising files, controlling devices, providing a user interface, supporting permissions and helping applications run.",
     "sections": [
       {
-        "title": "1. Operating systems",
+        "title": "Operating systems",
         "points": [
           "An **operating system (OS)** manages hardware and provides services for applications. Examples include Microsoft Windows, Linux distributions, macOS, Android and iOS. Core tasks include managing processor time/memory, organising files, controlling devices, providing a user interface, supporting permissions and helping applications run."
         ]
       },
       {
-        "title": "2. Desktop and file terms",
+        "title": "Desktop and file terms",
         "points": [
           "**Desktop:** the main graphical workspace.",
           "**Icon:** a visual symbol representing an application, file, folder or action.",
@@ -648,7 +610,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. File and folder operations",
+        "title": "File and folder operations",
         "points": [
           "Practise creating, opening, saving, renaming, copying, moving, deleting and restoring files/folders; organising subfolders; and using the recycle bin/trash where available."
         ]
@@ -666,7 +628,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Computer care and maintenance",
+        "title": "Computer care and maintenance",
         "points": [
           "Keep the work area clean, dry and ventilated.",
           "Shut down correctly before cleaning equipment.",
@@ -681,7 +643,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Viruses, malware, spam and temporary files",
+        "title": "Viruses, malware, spam and temporary files",
         "points": [
           "A **computer virus** is malicious code that can attach to files/programs and spread when run or shared. **Malware** is the wider category and includes viruses, worms, spyware, ransomware and trojans. **Spam** is unwanted bulk messaging. **Temporary files** are short-term files created by applications/system; some can be removed with approved tools while others are in use.",
           "Defensive practices: keep software updated, use standard accounts, avoid unknown attachments, verify links, download from trusted sources, scan removable media, keep backups and ask an administrator to investigate repeated warnings. Never disable security protection just because a website requests it.",
@@ -691,12 +653,20 @@ export const itNotes10: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Unit A3 — ICT Skills II",
-        "meaning": "An **operating system (OS)** manages hardware and provides services for applications. Examples include Microsoft Windows, Linux distributions, macOS, Android and iOS. Core tasks include managing processor time/memory, organising files, controlling devices, providing a user interface, supporting permissions and helping applications run."
+        "term": "operating system (OS)",
+        "meaning": "manages hardware and provides services for applications. Examples include Microsoft Windows, Linux distributions, macOS, Android and iOS."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Desktop",
+        "meaning": "the main graphical workspace."
+      },
+      {
+        "term": "Icon",
+        "meaning": "a visual symbol representing an application, file, folder or action."
+      },
+      {
+        "term": "Menu",
+        "meaning": "a list of commands."
       }
     ],
     "examTips": [
@@ -708,27 +678,27 @@ export const itNotes10: ChapterNote[] = [
     "id": "note-it10-8",
     "subject": "it",
     "classLevel": 10,
-    "chapterNo": 8,
-    "title": "Unit A4 — Entrepreneurial Skills II",
+    "chapterNo": 6,
+    "title": "Entrepreneurial Mindset, Business Planning & Innovation",
     "unit": "Part A — Employability Skills",
     "overview": "Entrepreneurs can create employment, solve local problems, introduce innovation, provide services and contribute to communities. Responsible entrepreneurship considers effects on customers, workers, safety and the environment.",
     "sections": [
       {
-        "title": "1. Entrepreneurship and society",
+        "title": "Entrepreneurship and society",
         "points": [
           "**Entrepreneurship** is identifying an opportunity/need, organising resources, taking considered risks and creating value through a product, service or organisation. An **entrepreneur** undertakes this process.",
           "Entrepreneurs can create employment, solve local problems, introduce innovation, provide services and contribute to communities. Responsible entrepreneurship considers effects on customers, workers, safety and the environment."
         ]
       },
       {
-        "title": "2. Qualities and functions of an entrepreneur",
+        "title": "Qualities and functions of an entrepreneur",
         "points": [
           "Useful qualities include initiative, creativity, problem-solving, resilience, communication, willingness to learn, decision-making, leadership, ethical judgement and risk management. Teams may combine different strengths.",
           "Functions can include identifying opportunities, planning, organising resources, arranging finance, making decisions, marketing, managing operations, satisfying customers and reviewing results."
         ]
       },
       {
-        "title": "3. Myths about entrepreneurship",
+        "title": "Myths about entrepreneurship",
         "table": {
           "head": [
             "Myth",
@@ -759,13 +729,13 @@ export const itNotes10: ChapterNote[] = [
         }
       },
       {
-        "title": "4. Entrepreneurship as a career option",
+        "title": "Entrepreneurship as a career option",
         "points": [
           "Entrepreneurship suits people willing to investigate needs, learn from feedback and accept responsibility. It is not always better than employment; the choice depends on interests, resources, circumstances and risk tolerance."
         ]
       },
       {
-        "title": "5. Simple business plan",
+        "title": "Simple business plan",
         "points": [
           "Answer: What need will be addressed? Who are the customers? What product/service is offered? What makes it useful? What resources are needed? What are the likely costs and price? How will customers find it? What legal/privacy/safety/environmental responsibilities apply? What could go wrong? How will success be measured?",
           "**Mini-case:** Students observe that classmates forget stationery. A small team could survey demand, estimate purchase and packaging costs, seek school approval, avoid unnecessary plastic and track sales in Calc. They should not collect personal data unnecessarily or sell prohibited items.",
@@ -775,12 +745,16 @@ export const itNotes10: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Unit A4 — Entrepreneurial Skills II",
-        "meaning": "Entrepreneurs can create employment, solve local problems, introduce innovation, provide services and contribute to communities. Responsible entrepreneurship considers effects on customers, workers, safety and the environment."
+        "term": "Entrepreneurship",
+        "meaning": "is identifying an opportunity/need, organising resources, taking considered risks and creating value through a product, service or organisation. An **entrepreneur** undertakes this process."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Mini-case",
+        "meaning": "Students observe that classmates forget stationery. A small team could survey demand, estimate purchase and packaging costs, seek school approval, avoid unnecessary plastic and track sales in Calc."
+      },
+      {
+        "term": "Activity",
+        "meaning": "Write a one-page business concept with one customer problem, one solution, three startup costs, one environmental consideration and one risk-reduction action."
       }
     ],
     "examTips": [
@@ -792,19 +766,19 @@ export const itNotes10: ChapterNote[] = [
     "id": "note-it10-9",
     "subject": "it",
     "classLevel": 10,
-    "chapterNo": 9,
-    "title": "Unit A5 — Green Skills II",
+    "chapterNo": 7,
+    "title": "Sustainable Development Goals & Environmental Action",
     "unit": "Part A — Employability Skills",
     "overview": "Sustainable development meets present needs while protecting the ability of future generations to meet theirs. It considers environmental protection, economic viability and social wellbeing.",
     "sections": [
       {
-        "title": "1. Sustainable development",
+        "title": "Sustainable development",
         "points": [
           "Sustainable development meets present needs while protecting the ability of future generations to meet theirs. It considers environmental protection, economic viability and social wellbeing."
         ]
       },
       {
-        "title": "2. Why sustainability matters",
+        "title": "Why sustainability matters",
         "points": [
           "Clean air, water, healthy soil, biodiversity and natural resources support life and economic activity. Unsustainable production/consumption can cause pollution, resource depletion, waste, climate impacts and unequal access to resources."
         ],
@@ -842,13 +816,13 @@ export const itNotes10: ChapterNote[] = [
         }
       },
       {
-        "title": "2. Why sustainability matters — Details",
+        "title": "Why sustainability matters — Details",
         "points": [
           "Technology consumes energy and materials. Cloud storage is not impact-free; devices need manufacture, power and end-of-life handling. Use technology where it creates value and manage old equipment responsibly."
         ]
       },
       {
-        "title": "3. Green economy, green jobs and environmental citizenship",
+        "title": "Green economy, green jobs and environmental citizenship",
         "points": [
           "A **green economy** aims to improve wellbeing/equity while reducing environmental risks. **Green jobs** contribute to conserving/restoring the environment, such as renewable energy, efficient buildings, waste management, sustainable agriculture and environmental monitoring.",
           "**Environmental citizenship** means acting responsibly in the community: conserving resources, protecting biodiversity, obeying environmental rules, discussing solutions respectfully and taking practical action.",
@@ -858,67 +832,16 @@ export const itNotes10: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Unit A5 — Green Skills II",
-        "meaning": "Sustainable development meets present needs while protecting the ability of future generations to meet theirs. It considers environmental protection, economic viability and social wellbeing."
+        "term": "green economy",
+        "meaning": "aims to improve wellbeing/equity while reducing environmental risks. **Green jobs** contribute to conserving/restoring the environment, such as renewable energy, efficient buildings, waste management, sustainable agriculture and environmental monitoring."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
-      }
-    ],
-    "examTips": [
-      "Master fundamental concepts before attempting complex workflows.",
-      "Verify inputs, outputs, and safety guidelines during practical implementations."
-    ]
-  },
-  {
-    "id": "note-it10-10",
-    "subject": "it",
-    "classLevel": 10,
-    "chapterNo": 10,
-    "title": "Part B — Subject-Specific Skills",
-    "unit": "CBSE Class 10 IT (402)",
-    "overview": "Part B — Subject-Specific Skills — Fundamental concepts, practical guidelines, and key summaries.",
-    "sections": [],
-    "keyTerms": [
-      {
-        "term": "Part B — Subject-Specific Skills",
-        "meaning": "Part B — Subject-Specific Skills — Fundamental concepts, practical guidelines, and key summaries."
+        "term": "Environmental citizenship",
+        "meaning": "means acting responsibly in the community: conserving resources, protecting biodiversity, obeying environmental rules, discussing solutions respectfully and taking practical action."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
-      }
-    ],
-    "examTips": [
-      "Master fundamental concepts before attempting complex workflows.",
-      "Verify inputs, outputs, and safety guidelines during practical implementations."
-    ]
-  },
-  {
-    "id": "note-it10-11",
-    "subject": "it",
-    "classLevel": 10,
-    "chapterNo": 11,
-    "title": "Unit B1 — Advanced Digital Documentation with Writer",
-    "unit": "Unit B1 — Digital Documentation (Advanced)",
-    "overview": "LibreOffice Writer is a word processor for reports, letters and other documents. Class X focuses on styles, images/drawing objects and advanced document features.",
-    "sections": [
-      {
-        "title": "Overview & Core Concepts",
-        "points": [
-          "LibreOffice Writer is a word processor for reports, letters and other documents. Class X focuses on styles, images/drawing objects and advanced document features."
-        ]
-      }
-    ],
-    "keyTerms": [
-      {
-        "term": "Unit B1 — Advanced Digital Documentation with Writer",
-        "meaning": "LibreOffice Writer is a word processor for reports, letters and other documents. Class X focuses on styles, images/drawing objects and advanced document features."
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Activity",
+        "meaning": "Audit a classroom for electricity, water, paper and waste. Choose one measurable improvement and review the outcome after a week."
       }
     ],
     "examTips": [
@@ -930,13 +853,13 @@ export const itNotes10: ChapterNote[] = [
     "id": "note-it10-12",
     "subject": "it",
     "classLevel": 10,
-    "chapterNo": 12,
-    "title": "Chapter 1 — Introduction to Styles",
+    "chapterNo": 8,
+    "title": "Document Styling, Page Formatting & Templates",
     "unit": "Unit B1 — Digital Documentation (Advanced)",
     "overview": "A **style** is a named collection of formatting settings. It lets the user format content consistently without repeating every manual change.",
     "sections": [
       {
-        "title": "1. What is a style?",
+        "title": "What is a style?",
         "points": [
           "A **style** is a named collection of formatting settings. It lets the user format content consistently without repeating every manual change."
         ],
@@ -974,13 +897,13 @@ export const itNotes10: ChapterNote[] = [
         }
       },
       {
-        "title": "1. What is a style? — Details",
+        "title": "What is a style? — Details",
         "points": [
           "Controls vary slightly by software version, but these categories describe the main jobs."
         ]
       },
       {
-        "title": "2. Why styles are useful",
+        "title": "Why styles are useful",
         "points": [
           "**Consistency:** headings with the same style look alike.",
           "**Efficiency:** one change can update many locations.",
@@ -992,7 +915,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Apply styles",
+        "title": "Apply styles",
         "points": [
           "1. Open a Writer document.",
           "2. Select a paragraph/text/object as appropriate.",
@@ -1003,7 +926,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Create a style from a selection",
+        "title": "Create a style from a selection",
         "points": [
           "1. Format a sample paragraph.",
           "2. Select it or place the cursor in it, depending on the version.",
@@ -1013,20 +936,20 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Drag-and-drop and Fill Format",
+        "title": "Drag-and-drop and Fill Format",
         "points": [
           "Where supported, drag formatted text into the appropriate category in Styles and Formatting to create a new style. Otherwise use the command for creating a style from a selection.",
           "**Fill Format** applies a selected style repeatedly. Open Styles, select the style, activate Fill Format mode, apply it to the target paragraphs/objects and exit the mode to avoid unintended formatting."
         ]
       },
       {
-        "title": "6. Update a style",
+        "title": "Update a style",
         "points": [
           "Change the formatting of a paragraph that uses the style, then use the style-update command or edit the style properties. Confirm other occurrences update as intended. Check for direct formatting that might override the style. Do not redefine a global style if only one paragraph should differ."
         ]
       },
       {
-        "title": "7. Load styles from a template or document",
+        "title": "Load styles from a template or document",
         "points": [
           "Open the destination document, open the style-loading/import command, choose the source document/template, select relevant style categories where available, then apply and verify headings, lists, tables and layout. Check a template for unwanted sample content and incorrect page settings."
         ]
@@ -1045,12 +968,20 @@ export const itNotes10: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 1 — Introduction to Styles",
-        "meaning": "A **style** is a named collection of formatting settings. It lets the user format content consistently without repeating every manual change."
+        "term": "style",
+        "meaning": "is a named collection of formatting settings. It lets the user format content consistently without repeating every manual change."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Consistency",
+        "meaning": "headings with the same style look alike."
+      },
+      {
+        "term": "Efficiency",
+        "meaning": "one change can update many locations."
+      },
+      {
+        "term": "Navigation",
+        "meaning": "heading styles build a navigable outline."
       }
     ],
     "examTips": [
@@ -1062,13 +993,13 @@ export const itNotes10: ChapterNote[] = [
     "id": "note-it10-13",
     "subject": "it",
     "classLevel": 10,
-    "chapterNo": 13,
-    "title": "Chapter 2 — Working with Images and Drawing Objects",
+    "chapterNo": 9,
+    "title": "Graphic Elements, Image Positioning & Visual Layouts",
     "unit": "Unit B1 — Digital Documentation (Advanced)",
     "overview": "The syllabus names four methods: Insert Image command, drag-and-drop, copy-and-paste and linking an image.",
     "sections": [
       {
-        "title": "1. Insert an image",
+        "title": "Insert an image",
         "points": [
           "The syllabus names four methods: Insert Image command, drag-and-drop, copy-and-paste and linking an image."
         ]
@@ -1092,7 +1023,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Modify images",
+        "title": "Modify images",
         "points": [
           "**Resize:** change dimensions; use corner handles where possible to preserve aspect ratio.",
           "**Crop:** hide unwanted outer portions.",
@@ -1102,14 +1033,14 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Arrange, anchor, align and wrap text",
+        "title": "Arrange, anchor, align and wrap text",
         "points": [
           "**Arrangement** determines which object appears in front/behind another. **Anchoring** connects the image/object to a page, paragraph, character or text position. **Alignment** places it relative to a margin, centre or other object. **Text wrapping** decides how nearby text flows around/beside it.",
           "Common anchors include page, paragraph, character and as-character placement (names may vary by version). Common wrapping options include no wrap, parallel/square-like wrapping, optimal wrapping, through/behind text and top-and-bottom layouts. Pick the option that keeps the image's relationship to the text clear."
         ]
       },
       {
-        "title": "4. Drawing objects",
+        "title": "Drawing objects",
         "points": [
           "Drawing objects include shapes, lines, arrows, callouts and vector-like elements used in flowcharts and diagrams.",
           "1. Select a shape/line/arrow tool.",
@@ -1127,7 +1058,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Image/diagram checklist",
+        "title": "Image/diagram checklist",
         "points": [
           "Is the image relevant and legible?",
           "Is aspect ratio preserved?",
@@ -1142,12 +1073,20 @@ export const itNotes10: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 2 — Working with Images and Drawing Objects",
-        "meaning": "The syllabus names four methods: Insert Image command, drag-and-drop, copy-and-paste and linking an image."
+        "term": "Embedded",
+        "meaning": "image data is stored in the document. The file may become larger, but the image normally travels with it."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Linked",
+        "meaning": "the document points to an external file/path. If it is moved or renamed, the image may be missing."
+      },
+      {
+        "term": "Resize",
+        "meaning": "change dimensions; use corner handles where possible to preserve aspect ratio."
+      },
+      {
+        "term": "Crop",
+        "meaning": "hide unwanted outer portions."
       }
     ],
     "examTips": [
@@ -1159,8 +1098,8 @@ export const itNotes10: ChapterNote[] = [
     "id": "note-it10-14",
     "subject": "it",
     "classLevel": 10,
-    "chapterNo": 14,
-    "title": "Chapter 3 — Advanced Features of Writer",
+    "chapterNo": 10,
+    "title": "Table of Contents, Track Changes & Mail Merge Automation",
     "unit": "Unit B1 — Digital Documentation (Advanced)",
     "overview": "Core areas: Table of Contents, heading hierarchy, create/customise/update/delete ToC, templates, Track Changes, comments and comparing documents.",
     "sections": [
@@ -1171,7 +1110,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "1. Heading hierarchy and Table of Contents",
+        "title": "Heading hierarchy and Table of Contents",
         "points": [
           "An automatic **Table of Contents (ToC)** lists sections and page locations/navigation links. It relies on correctly applied heading styles or configured outline levels. Typing a manual list will not keep page numbers synchronised as the document changes."
         ]
@@ -1203,7 +1142,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Templates",
+        "title": "Templates",
         "points": [
           "A **template** is a reusable starting document containing design decisions such as styles, page layout, headers/footers and placeholder content.",
           "Sources include built-in templates, saved user/organisation templates, trusted online templates and imported templates."
@@ -1231,7 +1170,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Track Changes",
+        "title": "Track Changes",
         "points": [
           "Track Changes records edits so a reviewer can accept or reject them. It is useful for proof-reading and collaborative reports.",
           "1. Save a working copy.",
@@ -1246,13 +1185,13 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Comments",
+        "title": "Comments",
         "points": [
           "Comments are annotations attached to text/objects. They ask questions or suggest changes without immediately replacing the content. Make comments specific and polite, edit/delete them when resolved, and never place passwords or sensitive information in comments."
         ]
       },
       {
-        "title": "5. Compare documents",
+        "title": "Compare documents",
         "points": [
           "Comparison finds differences between two versions.",
           "1. Keep a clearly named original and revised copy.",
@@ -1267,12 +1206,20 @@ export const itNotes10: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 3 — Advanced Features of Writer",
-        "meaning": "Core areas: Table of Contents, heading hierarchy, create/customise/update/delete ToC, templates, Track Changes, comments and comparing documents."
+        "term": "Table of Contents (ToC)",
+        "meaning": "lists sections and page locations/navigation links. It relies on correctly applied heading styles or configured outline levels."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "template",
+        "meaning": "is a reusable starting document containing design decisions such as styles, page layout, headers/footers and placeholder content."
+      },
+      {
+        "term": "Import",
+        "meaning": "add a template file to the template manager."
+      },
+      {
+        "term": "Edit",
+        "meaning": "open the template, update styles/layout and save."
       }
     ],
     "examTips": [
@@ -1284,8 +1231,8 @@ export const itNotes10: ChapterNote[] = [
     "id": "note-it10-15",
     "subject": "it",
     "classLevel": 10,
-    "chapterNo": 15,
-    "title": "Unit B2 — Advanced Electronic Spreadsheet with Calc",
+    "chapterNo": 11,
+    "title": "Spreadsheet Foundations & Calc Architecture",
     "unit": "Unit B2 — Electronic Spreadsheet (Advanced)",
     "overview": "LibreOffice Calc is a spreadsheet application. A workbook contains sheets, and each sheet contains cells arranged in rows and columns. Class X focuses on data analysis, scenarios, Goal Seek, Solver, macros, links and collaborative review.",
     "sections": [
@@ -1310,12 +1257,20 @@ export const itNotes10: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Unit B2 — Advanced Electronic Spreadsheet with Calc",
-        "meaning": "LibreOffice Calc is a spreadsheet application. A workbook contains sheets, and each sheet contains cells arranged in rows and columns. Class X focuses on data analysis, scenarios, Goal Seek, Solver, macros, links and collaborative review."
+        "term": "Cell reference",
+        "meaning": "a coordinate such as `B4`."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Range",
+        "meaning": "a group of cells such as `B2:B10`."
+      },
+      {
+        "term": "Formula",
+        "meaning": "an expression beginning with `=`, such as `=SUM(B2:B10)`."
+      },
+      {
+        "term": "Function",
+        "meaning": "a built-in calculation such as `SUM`, `AVERAGE`, `MAX` or `COUNT`."
       }
     ],
     "examTips": [
@@ -1327,13 +1282,13 @@ export const itNotes10: ChapterNote[] = [
     "id": "note-it10-16",
     "subject": "it",
     "classLevel": 10,
-    "chapterNo": 16,
-    "title": "Chapter 4 — Analysing Data with Scenarios and Goal Seek",
+    "chapterNo": 12,
+    "title": "Data Analysis, What-If Scenarios & Goal Seek",
     "unit": "Unit B2 — Electronic Spreadsheet (Advanced)",
     "overview": "1. Check that each source range has a consistent structure and clear labels.",
     "sections": [
       {
-        "title": "1. Consolidating data",
+        "title": "Consolidating data",
         "points": [
           "**Data consolidation** combines summaries from multiple ranges/sheets or data sources into one summary. It is useful when similar categories are reported by different groups, months or branches.",
           "**Example:** Three sheets contain monthly stationery expenses by category. Consolidating matching categories into a summary can show totals across all three months."
@@ -1353,7 +1308,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Groups and subtotals",
+        "title": "Groups and subtotals",
         "points": [
           "Grouping organises rows/columns so sections can be collapsed or expanded. Subtotals calculate summary values for each group, such as total sales by category."
         ]
@@ -1372,7 +1327,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. What-if analysis and scenarios",
+        "title": "What-if analysis and scenarios",
         "points": [
           "**What-if analysis** changes input assumptions to see how a calculated result responds. It supports planning but does not guarantee future outcomes.",
           "A **scenario** stores a set of input values. Compare alternatives such as “Low attendance”, “Expected attendance” and “High attendance”."
@@ -1392,7 +1347,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Goal Seek",
+        "title": "Goal Seek",
         "points": [
           "Goal Seek finds an input value that makes a formula produce a specified target. It is helpful when the output is known but one input is unknown."
         ]
@@ -1418,7 +1373,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Solver",
+        "title": "Solver",
         "points": [
           "Solver is for more complex optimisation problems, often with multiple adjustable cells and constraints. It can maximise, minimise or target an objective. Available solver engines/options vary by installation.",
           "**Example:** maximise expected profit by choosing quantities of two products, subject to raw-material, labour and non-negative production constraints.",
@@ -1429,7 +1384,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Comparison table",
+        "title": "Comparison table",
         "table": {
           "head": [
             "Tool",
@@ -1466,7 +1421,7 @@ export const itNotes10: ChapterNote[] = [
         }
       },
       {
-        "title": "6. Comparison table — Details",
+        "title": "Comparison table — Details",
         "points": [
           "**Practical task:** Create a budget model with attendance, fee and fixed cost. Calculate revenue, costs and profit. Save three scenarios, use Goal Seek to find the fee required for a target profit, and explain why the result depends on assumptions."
         ]
@@ -1474,12 +1429,20 @@ export const itNotes10: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 4 — Analysing Data with Scenarios and Goal Seek",
-        "meaning": "1. Check that each source range has a consistent structure and clear labels."
+        "term": "Data consolidation",
+        "meaning": "combines summaries from multiple ranges/sheets or data sources into one summary. It is useful when similar categories are reported by different groups, months or branches."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Common error",
+        "meaning": "inconsistent labels or shifted categories can cause incorrect groupings. Clean and align source data first."
+      },
+      {
+        "term": "What-if analysis",
+        "meaning": "changes input assumptions to see how a calculated result responds. It supports planning but does not guarantee future outcomes."
+      },
+      {
+        "term": "scenario",
+        "meaning": "stores a set of input values. Compare alternatives such as “Low attendance”, “Expected attendance” and “High attendance”."
       }
     ],
     "examTips": [
@@ -1492,19 +1455,19 @@ export const itNotes10: ChapterNote[] = [
     "id": "note-it10-17",
     "subject": "it",
     "classLevel": 10,
-    "chapterNo": 17,
-    "title": "Chapter 5 — Using Macros in a Spreadsheet",
+    "chapterNo": 13,
+    "title": "Spreadsheet Automation & Macro Programming",
     "unit": "Unit B2 — Electronic Spreadsheet (Advanced)",
     "overview": "A **macro** is a recorded or programmed sequence of actions that automates repetitive work. It can format a report, transform data or perform repeated calculations. Because macros can execute code, they can also be misused: only run macros from trusted sources and follow school policy.",
     "sections": [
       {
-        "title": "1. What is a macro?",
+        "title": "What is a macro?",
         "points": [
           "A **macro** is a recorded or programmed sequence of actions that automates repetitive work. It can format a report, transform data or perform repeated calculations. Because macros can execute code, they can also be misused: only run macros from trusted sources and follow school policy."
         ]
       },
       {
-        "title": "2. Macro recorder",
+        "title": "Macro recorder",
         "points": [
           "The macro recorder captures supported actions performed by the user.",
           "1. Save a backup copy of the spreadsheet.",
@@ -1518,7 +1481,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Running and organising macros",
+        "title": "Running and organising macros",
         "points": [
           "Macros may be stored at application level or inside a document. Organise them into clearly named libraries/modules where supported. Do not place a macro in a shared/public workbook unless recipients understand its behaviour.",
           "Before running a macro:",
@@ -1530,7 +1493,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Arguments and values",
+        "title": "Arguments and values",
         "points": [
           "A macro can accept **arguments** so one procedure can act on different inputs. A formatting function might accept a range or threshold rather than hard-coding the same cell/value every time. An argument value is supplied when the procedure/function is called.",
           "Conceptual example (pseudocode, not exact LibreOffice Basic syntax):",
@@ -1543,7 +1506,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Macros as functions; accessing cells and sorting",
+        "title": "Macros as functions; accessing cells and sorting",
         "points": [
           "A user-defined function returns a result and may be usable in a spreadsheet formula. A procedure can instead carry out actions without returning a cell value. Macros can access cell data and automate sorting, but the target range must be chosen carefully and heading rows preserved.",
           "**Safe practical:** Record a macro that applies consistent formatting to a small sample table; run it on a duplicate sheet. If code editing is demonstrated, modify only the approved macro, document the change and test the output. Do not run unknown downloaded macros."
@@ -1552,12 +1515,16 @@ export const itNotes10: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 5 — Using Macros in a Spreadsheet",
-        "meaning": "A **macro** is a recorded or programmed sequence of actions that automates repetitive work. It can format a report, transform data or perform repeated calculations. Because macros can execute code, they can also be misused: only run macros from trusted sources and follow school policy."
+        "term": "macro",
+        "meaning": "is a recorded or programmed sequence of actions that automates repetitive work. It can format a report, transform data or perform repeated calculations."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "arguments",
+        "meaning": "so one procedure can act on different inputs. A formatting function might accept a range or threshold rather than hard-coding the same cell/value every time."
+      },
+      {
+        "term": "Safe practical",
+        "meaning": "Record a macro that applies consistent formatting to a small sample table; run it on a duplicate sheet. If code editing is demonstrated, modify only the approved macro, document the change and test the output."
       }
     ],
     "examTips": [
@@ -1569,19 +1536,19 @@ export const itNotes10: ChapterNote[] = [
     "id": "note-it10-18",
     "subject": "it",
     "classLevel": 10,
-    "chapterNo": 18,
-    "title": "Chapter 6 — Linking Spreadsheet Data",
+    "chapterNo": 14,
+    "title": "Multi-Sheet Linkages, External Consolidation & Hyperlinks",
     "unit": "CBSE Class 10 IT (402)",
     "overview": "A workbook can hold related sheets such as `January`, `February`, `March` and `Summary`. Use meaningful names and consistent column structures. A formula/link can avoid repeated manual copying.",
     "sections": [
       {
-        "title": "1. Multiple sheets in one workbook",
+        "title": "Multiple sheets in one workbook",
         "points": [
           "A workbook can hold related sheets such as `January`, `February`, `March` and `Summary`. Use meaningful names and consistent column structures. A formula/link can avoid repeated manual copying."
         ]
       },
       {
-        "title": "2. Referencing another sheet",
+        "title": "Referencing another sheet",
         "points": [
           "A formula can refer to a cell on another sheet. Exact syntax depends on the sheet name and application convention; Calc may quote sheet names containing spaces. Use the formula builder or click the source cell while constructing the formula to reduce typing errors."
         ]
@@ -1597,13 +1564,13 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Linking to another document",
+        "title": "Linking to another document",
         "points": [
           "A workbook can reference data in another spreadsheet file. If the source is renamed, moved or unavailable, the link may need updating. Keep linked project files together in an organised folder and move them together. Confirm whether the teacher expects the linked source file to be submitted too."
         ]
       },
       {
-        "title": "4. Hyperlinks",
+        "title": "Hyperlinks",
         "points": [
           "A hyperlink navigates to a web page, email address, file, sheet or another location. Hyperlinks can be created, edited and removed.",
           "**Relative hyperlink:** stores a path relative to the current document/location; it can be portable when linked files move together.",
@@ -1612,7 +1579,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. External and registered data sources",
+        "title": "External and registered data sources",
         "points": [
           "A **registered data source** has been configured for use by the application. Access may depend on drivers, permissions, paths, credentials and availability.",
           "1. Confirm the data source is trusted and authorised.",
@@ -1628,12 +1595,16 @@ export const itNotes10: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 6 — Linking Spreadsheet Data",
-        "meaning": "A workbook can hold related sheets such as `January`, `February`, `March` and `Summary`. Use meaningful names and consistent column structures. A formula/link can avoid repeated manual copying."
+        "term": "Relative hyperlink",
+        "meaning": "stores a path relative to the current document/location; it can be portable when linked files move together."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Absolute hyperlink",
+        "meaning": "specifies a full address/path; it is clear for a fixed location but can break if that location changes."
+      },
+      {
+        "term": "registered data source",
+        "meaning": "has been configured for use by the application. Access may depend on drivers, permissions, paths, credentials and availability."
       }
     ],
     "examTips": [
@@ -1645,19 +1616,19 @@ export const itNotes10: ChapterNote[] = [
     "id": "note-it10-19",
     "subject": "it",
     "classLevel": 10,
-    "chapterNo": 19,
-    "title": "Chapter 7 — Sharing and Reviewing a Spreadsheet",
+    "chapterNo": 15,
+    "title": "Collaborative Reviewing, Version Control & Comment Tracking",
     "unit": "CBSE Class 10 IT (402)",
     "overview": "When several people review a workbook, they need to know what changed, discuss unusual values, resolve competing edits and preserve a reliable final version. Options vary by file type, application version and storage service. If simultaneous editing is not supported, coordinate turns or use clearly named versioned copies.",
     "sections": [
       {
-        "title": "1. Why collaboration features matter",
+        "title": "Why collaboration features matter",
         "points": [
           "When several people review a workbook, they need to know what changed, discuss unusual values, resolve competing edits and preserve a reliable final version. Options vary by file type, application version and storage service. If simultaneous editing is not supported, coordinate turns or use clearly named versioned copies."
         ]
       },
       {
-        "title": "2. Sharing, opening and saving",
+        "title": "Sharing, opening and saving",
         "points": [
           "Store the workbook in the approved location.",
           "Confirm who can view/edit it.",
@@ -1668,7 +1639,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Record and review changes",
+        "title": "Record and review changes",
         "points": [
           "Change tracking can mark edits for inspection, acceptance or rejection.",
           "1. Save a backup.",
@@ -1681,13 +1652,13 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Comments",
+        "title": "Comments",
         "points": [
           "Comments clarify assumptions, flag anomalies or request confirmation. A good comment is brief and actionable: “Please confirm whether units in column D are kilograms or grams.” Avoid personal remarks and sensitive information."
         ]
       },
       {
-        "title": "5. Merge and compare sheets",
+        "title": "Merge and compare sheets",
         "points": [
           "Before merging:",
           "make sure column names and meanings match;",
@@ -1702,43 +1673,8 @@ export const itNotes10: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 7 — Sharing and Reviewing a Spreadsheet",
+        "term": "Collaborative Reviewing, Version Control & Comment Tracking",
         "meaning": "When several people review a workbook, they need to know what changed, discuss unusual values, resolve competing edits and preserve a reliable final version. Options vary by file type, application version and storage service. If simultaneous editing is not supported, coordinate turns or use clearly named versioned copies."
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
-      }
-    ],
-    "examTips": [
-      "Master fundamental concepts before attempting complex workflows.",
-      "Verify inputs, outputs, and safety guidelines during practical implementations."
-    ]
-  },
-  {
-    "id": "note-it10-20",
-    "subject": "it",
-    "classLevel": 10,
-    "chapterNo": 20,
-    "title": "Unit B3 — Database Management System with Base",
-    "unit": "Unit B3 — Database Management System (Base)",
-    "overview": "A database stores related information in an organised form. LibreOffice Base provides tools for creating tables and designing queries, forms and reports. Use fictional data in classroom databases wherever possible.",
-    "sections": [
-      {
-        "title": "Overview & Core Concepts",
-        "points": [
-          "A database stores related information in an organised form. LibreOffice Base provides tools for creating tables and designing queries, forms and reports. Use fictional data in classroom databases wherever possible."
-        ]
-      }
-    ],
-    "keyTerms": [
-      {
-        "term": "Unit B3 — Database Management System with Base",
-        "meaning": "A database stores related information in an organised form. LibreOffice Base provides tools for creating tables and designing queries, forms and reports. Use fictional data in classroom databases wherever possible."
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
       }
     ],
     "examTips": [
@@ -1750,13 +1686,13 @@ export const itNotes10: ChapterNote[] = [
     "id": "note-it10-21",
     "subject": "it",
     "classLevel": 10,
-    "chapterNo": 21,
-    "title": "Chapter 8 — Introduction to DBMS",
+    "chapterNo": 16,
+    "title": "Relational Database Principles, Architecture & Concepts",
     "unit": "Unit B3 — Database Management System (Base)",
     "overview": "Example: `72, 81, 94` are data; “the average score is 82.3” is information derived from them.",
     "sections": [
       {
-        "title": "1. Data and information",
+        "title": "Data and information",
         "points": [
           "**Data:** raw facts such as marks, names, dates or quantities.",
           "**Information:** data organised/interpreted so that it answers a useful question.",
@@ -1764,13 +1700,13 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Database and DBMS",
+        "title": "Database and DBMS",
         "points": [
           "A **database** is an organised collection of related data. A **Database Management System (DBMS)** is software for defining, storing, retrieving, updating and controlling access to that database. Base is the classroom application in this course; its capabilities depend partly on the underlying database engine/configuration."
         ]
       },
       {
-        "title": "3. Advantages of a database",
+        "title": "Advantages of a database",
         "points": [
           "Reduces repeated/inconsistent copies of the same fact.",
           "Supports search, filtering, queries and reports.",
@@ -1782,7 +1718,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Tables, fields and records",
+        "title": "Tables, fields and records",
         "points": [
           "Example `Students` table:"
         ],
@@ -1816,7 +1752,7 @@ export const itNotes10: ChapterNote[] = [
         }
       },
       {
-        "title": "4. Tables, fields and records — Details",
+        "title": "Tables, fields and records — Details",
         "points": [
           "**Table:** `Students`.",
           "**Field/column:** `StudentName` or `Class`.",
@@ -1826,7 +1762,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Data models",
+        "title": "Data models",
         "points": [
           "**Hierarchical model:** records arranged in a tree-like parent–child structure; in the classic model a child generally has one parent.",
           "**Network model:** records can have more complex links, including many-to-many relationships.",
@@ -1835,7 +1771,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Keys",
+        "title": "Keys",
         "points": [
           "**Primary key:** one field or a combination that uniquely identifies each row in its table; it should not be duplicated or missing.",
           "**Foreign key:** field(s) that refer to a key in another table and create a relationship.",
@@ -1848,12 +1784,20 @@ export const itNotes10: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 8 — Introduction to DBMS",
-        "meaning": "Example: `72, 81, 94` are data; “the average score is 82.3” is information derived from them."
+        "term": "Data",
+        "meaning": "raw facts such as marks, names, dates or quantities."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Information",
+        "meaning": "data organised/interpreted so that it answers a useful question."
+      },
+      {
+        "term": "database",
+        "meaning": "is an organised collection of related data. A **Database Management System (DBMS)** is software for defining, storing, retrieving, updating and controlling access to that database."
+      },
+      {
+        "term": "Table",
+        "meaning": "`Students`."
       }
     ],
     "examTips": [
@@ -1864,13 +1808,13 @@ export const itNotes10: ChapterNote[] = [
     "id": "note-it10-22",
     "subject": "it",
     "classLevel": 10,
-    "chapterNo": 22,
-    "title": "Chapter 9 — Creating and Managing Tables",
+    "chapterNo": 17,
+    "title": "Table Design, Primary Keys & Field Data Types",
     "unit": "Unit B3 — Database Management System (Base)",
     "overview": "Identify the entities and the facts to store. For a library, possible tables include Books, Members and Loans. Avoid storing everything in one giant table when that repeats data.",
     "sections": [
       {
-        "title": "1. Plan the table",
+        "title": "Plan the table",
         "points": [
           "Identify the entities and the facts to store. For a library, possible tables include Books, Members and Loans. Avoid storing everything in one giant table when that repeats data."
         ],
@@ -1910,13 +1854,13 @@ export const itNotes10: ChapterNote[] = [
         }
       },
       {
-        "title": "1. Plan the table — Details",
+        "title": "Plan the table — Details",
         "points": [
           "An ID such as `00127` may be better stored as text if leading zeros matter and no arithmetic is performed on it."
         ]
       },
       {
-        "title": "2. Common data types",
+        "title": "Common data types",
         "points": [
           "Exact type names vary by database engine/version.",
           "**Text/VARCHAR:** characters and text.",
@@ -1929,7 +1873,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Create a table with a Wizard",
+        "title": "Create a table with a Wizard",
         "points": [
           "1. Open the database and select Tables.",
           "2. Choose the table wizard.",
@@ -1941,7 +1885,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Create a table in Design View",
+        "title": "Create a table in Design View",
         "points": [
           "1. Create a new table in Design View.",
           "2. Enter each field name.",
@@ -1954,7 +1898,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Keys and field properties",
+        "title": "Keys and field properties",
         "points": [
           "Properties may include field length, default value, required-entry rule, format and auto-value behaviour, depending on the engine. Do not casually change a primary key after related tables reference it.",
           "Avoid duplicate IDs.",
@@ -1965,7 +1909,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Enter, navigate, edit, delete and sort records",
+        "title": "Enter, navigate, edit, delete and sort records",
         "points": [
           "Navigate records using the table interface; enter one row for each entity/transaction; edit values only after verifying the intended correction; delete records carefully if other tables reference them; sort fields ascending/descending; and back up before bulk edits/deletions.",
           "Sorting changes display order, not the correctness of stored values. Deleting a row differs from clearing a field.",
@@ -1975,12 +1919,20 @@ export const itNotes10: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 9 — Creating and Managing Tables",
-        "meaning": "Identify the entities and the facts to store. For a library, possible tables include Books, Members and Loans. Avoid storing everything in one giant table when that repeats data."
+        "term": "Text/VARCHAR",
+        "meaning": "characters and text."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Integer",
+        "meaning": "whole numbers/counts."
+      },
+      {
+        "term": "Decimal/numeric",
+        "meaning": "numbers needing fractional precision."
+      },
+      {
+        "term": "Date/Time",
+        "meaning": "dates or times."
       }
     ],
     "examTips": [
@@ -1992,13 +1944,13 @@ export const itNotes10: ChapterNote[] = [
     "id": "note-it10-23",
     "subject": "it",
     "classLevel": 10,
-    "chapterNo": 23,
-    "title": "Chapter 10 — Working with Multiple Tables",
+    "chapterNo": 18,
+    "title": "Relational Integrity, Foreign Keys & Table Relationships",
     "unit": "Unit B3 — Database Management System (Base)",
     "overview": "A relational database separates distinct types of information and connects them through keys. Store each member once in Members, each book once in Books, and each borrowing event in Loans. This avoids repeating names and titles in every loan row.",
     "sections": [
       {
-        "title": "1. Why multiple tables?",
+        "title": "Why multiple tables?",
         "points": [
           "A relational database separates distinct types of information and connects them through keys. Store each member once in Members, each book once in Books, and each borrowing event in Loans. This avoids repeating names and titles in every loan row."
         ]
@@ -2022,7 +1974,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Example: students and courses",
+        "title": "Example: students and courses",
         "points": [
           "`Students(StudentID, StudentName)`",
           "`Courses(CourseID, CourseName)`",
@@ -2031,7 +1983,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Create relationships in Base",
+        "title": "Create relationships in Base",
         "points": [
           "1. Save the relevant tables.",
           "2. Open the Relationships tool.",
@@ -2044,14 +1996,14 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Referential integrity",
+        "title": "Referential integrity",
         "points": [
           "Referential integrity keeps relationships consistent. A foreign key should refer to an existing related key, or be null only when allowed by the schema. It prevents orphan child records and governs what happens when parent records are updated or deleted.",
           "Possible policies include restricting deletion, cascading changes or setting a foreign key to null; support varies. Use cascade options carefully because they may affect many related records."
         ]
       },
       {
-        "title": "6. Field properties across tables",
+        "title": "Field properties across tables",
         "points": [
           "Use appropriate types, lengths, default values and validation consistently. Matching key fields need compatible types and values. Do not interpret the same key as unrelated text in one table and a numeric measure in another without a deliberate design.",
           "**Practical task:** Create Students, Courses and Enrolments; assign primary and foreign keys; establish the M:N relationship through Enrolments; explain why storing all course names inside one Students field makes search/update difficult."
@@ -2060,12 +2012,8 @@ export const itNotes10: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 10 — Working with Multiple Tables",
+        "term": "Relational Integrity, Foreign Keys & Table Relationships",
         "meaning": "A relational database separates distinct types of information and connects them through keys. Store each member once in Members, each book once in Books, and each borrowing event in Loans. This avoids repeating names and titles in every loan row."
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
       }
     ],
     "examTips": [
@@ -2076,27 +2024,27 @@ export const itNotes10: ChapterNote[] = [
     "id": "note-it10-24",
     "subject": "it",
     "classLevel": 10,
-    "chapterNo": 24,
-    "title": "Chapter 11 — Queries in Base",
+    "chapterNo": 19,
+    "title": "SQL Queries, Criteria Filtering & Data Extraction",
     "unit": "Unit B3 — Database Management System (Base)",
     "overview": "A **query** asks the database for records or calculated results matching criteria. It can select fields, filter records, sort output and perform calculations where supported.",
     "sections": [
       {
-        "title": "1. What is a query?",
+        "title": "What is a query?",
         "points": [
           "A **query** asks the database for records or calculated results matching criteria. It can select fields, filter records, sort output and perform calculations where supported.",
           "**Example question:** “Which students scored at least 80?” A query returns matching records rather than requiring manual inspection of every row."
         ]
       },
       {
-        "title": "2. Query Wizard and Design View",
+        "title": "Query Wizard and Design View",
         "points": [
           "**Query Wizard:** guides users through source table, fields, sort order and criteria; helpful for simpler queries.",
           "**Design View:** offers more direct control over selected fields, criteria, sorting and calculations; useful for more complex work."
         ]
       },
       {
-        "title": "3. General query workflow",
+        "title": "General query workflow",
         "points": [
           "1. Define the question.",
           "2. Identify source table(s) and required fields.",
@@ -2111,21 +2059,21 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Single-field and multi-field criteria",
+        "title": "Single-field and multi-field criteria",
         "points": [
           "Conditions joined by **AND** all must be true; **OR** allows either condition to be true. Section = A AND Marks >= 80 returns only records satisfying both conditions. Class = 9 OR Class = 10 returns records belonging to either class.",
           "Common comparison operators include `=`, `>`, `<`, `>=`, `<=` and `<>` (not equal), depending on the interface/engine."
         ]
       },
       {
-        "title": "5. Wildcards",
+        "title": "Wildcards",
         "points": [
           "A **wildcard** represents unknown character(s) in a pattern search. In Base, symbols depend on the database engine and query mode. In SQL-like pattern matching, `%` commonly means any sequence and `_` means one character; some interfaces/engines use symbols such as `*` and `?` instead.",
           "**Exam-safe principle:** learn the wildcard convention used in your school installation and textbook. Never assume all database systems use the same symbols. A pattern equivalent to `Comp%` may find titles beginning with “Comp” when percent is the active wildcard."
         ]
       },
       {
-        "title": "6. Numerical data and calculations",
+        "title": "Numerical data and calculations",
         "points": [
           "Queries may select numerical values and support calculated/aggregate results depending on tools and engine. A conceptual calculated field may be `Amount = Quantity * UnitPrice`. Check numeric data types, consistent units, missing values, result format and whether row-level/aggregate operations are being mixed.",
           "**Practical task:** Create a query for marks >= 80, a second with criteria on two fields, and a sorted numerical query. Add a calculated field only if supported by the installed Base setup and teacher instructions."
@@ -2134,12 +2082,20 @@ export const itNotes10: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 11 — Queries in Base",
-        "meaning": "A **query** asks the database for records or calculated results matching criteria. It can select fields, filter records, sort output and perform calculations where supported."
+        "term": "query",
+        "meaning": "asks the database for records or calculated results matching criteria. It can select fields, filter records, sort output and perform calculations where supported."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Query Wizard",
+        "meaning": "guides users through source table, fields, sort order and criteria; helpful for simpler queries."
+      },
+      {
+        "term": "Design View",
+        "meaning": "offers more direct control over selected fields, criteria, sorting and calculations; useful for more complex work."
+      },
+      {
+        "term": "AND",
+        "meaning": "all must be true; **OR** allows either condition to be true. Section = A AND Marks >= 80 returns only records satisfying both conditions."
       }
     ],
     "examTips": [
@@ -2150,19 +2106,19 @@ export const itNotes10: ChapterNote[] = [
     "id": "note-it10-25",
     "subject": "it",
     "classLevel": 10,
-    "chapterNo": 25,
-    "title": "Chapter 12 — Forms and Reports",
+    "chapterNo": 20,
+    "title": "Interactive Data Forms & Professional Report Generation",
     "unit": "Unit B3 — Database Management System (Base)",
     "overview": "A **form** is a user-friendly interface for entering, viewing or editing records. Clear labels and suitable controls reduce input mistakes. Use fictional data and avoid unnecessary sensitive information.",
     "sections": [
       {
-        "title": "1. Forms",
+        "title": "Forms",
         "points": [
           "A **form** is a user-friendly interface for entering, viewing or editing records. Clear labels and suitable controls reduce input mistakes. Use fictional data and avoid unnecessary sensitive information."
         ]
       },
       {
-        "title": "2. Create a form using Form Wizard",
+        "title": "Create a form using Form Wizard",
         "points": [
           "1. Select Forms in the database.",
           "2. Choose Form Wizard.",
@@ -2174,7 +2130,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Modify a form and use controls",
+        "title": "Modify a form and use controls",
         "points": [
           "The curriculum includes the Form Controls toolbar and inserting/modifying controls. In design mode, depending on version, fields, labels, buttons, checkboxes, list boxes and other controls can be arranged.",
           "Use clear labels and consistent alignment.",
@@ -2186,7 +2142,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Reports",
+        "title": "Reports",
         "points": [
           "A **report** presents data in organised output for reading, printing or sharing. It can contain titles, headings, grouped fields, date/time and summaries. A form is mainly interactive; a report is primarily for presentation/output."
         ]
@@ -2208,43 +2164,12 @@ export const itNotes10: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 12 — Forms and Reports",
-        "meaning": "A **form** is a user-friendly interface for entering, viewing or editing records. Clear labels and suitable controls reduce input mistakes. Use fictional data and avoid unnecessary sensitive information."
+        "term": "form",
+        "meaning": "is a user-friendly interface for entering, viewing or editing records. Clear labels and suitable controls reduce input mistakes."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
-      }
-    ],
-    "examTips": [
-      "Master fundamental concepts before attempting complex workflows.",
-      "Verify inputs, outputs, and safety guidelines during practical implementations."
-    ]
-  },
-  {
-    "id": "note-it10-26",
-    "subject": "it",
-    "classLevel": 10,
-    "chapterNo": 26,
-    "title": "Unit B4 — Maintaining a Healthy, Safe and Secure Working Environment",
-    "unit": "Unit B4 — Workplace Safety & Health",
-    "overview": "This unit addresses safe workplace behaviour, hazards, quality measures, ergonomics, accident prevention and emergency procedures. These notes are educational. In a real incident, follow the school's/workplace emergency plan and trained responders; never attempt a dangerous electrical rescue or repair without proper training.",
-    "sections": [
-      {
-        "title": "Overview & Core Concepts",
-        "points": [
-          "This unit addresses safe workplace behaviour, hazards, quality measures, ergonomics, accident prevention and emergency procedures. These notes are educational. In a real incident, follow the school's/workplace emergency plan and trained responders; never attempt a dangerous electrical rescue or repair without proper training."
-        ]
-      }
-    ],
-    "keyTerms": [
-      {
-        "term": "Unit B4 — Maintaining a Healthy, Safe and Secure Working Environment",
-        "meaning": "This unit addresses safe workplace behaviour, hazards, quality measures, ergonomics, accident prevention and emergency procedures. These notes are educational. In a real incident, follow the school's/workplace emergency plan and trained responders; never attempt a dangerous electrical rescue or repair without proper training."
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "report",
+        "meaning": "presents data in organised output for reading, printing or sharing. It can contain titles, headings, grouped fields, date/time and summaries."
       }
     ],
     "examTips": [
@@ -2256,13 +2181,13 @@ export const itNotes10: ChapterNote[] = [
     "id": "note-it10-27",
     "subject": "it",
     "classLevel": 10,
-    "chapterNo": 27,
-    "title": "Chapter 13 — Health, Safety and Security at the Workplace",
+    "chapterNo": 21,
+    "title": "Workplace Safety Hazards, Ergonomics & Health Protocols",
     "unit": "Unit B4 — Workplace Safety & Health",
     "overview": "A loose cable is a hazard; the risk concerns how likely someone is to trip over it and how serious the resulting injury could be.",
     "sections": [
       {
-        "title": "1. Definitions",
+        "title": "Definitions",
         "points": [
           "**Health:** physical, mental and social wellbeing.",
           "**Safety:** preventing injury and reducing accident risk.",
@@ -2274,7 +2199,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Policies and procedures",
+        "title": "Policies and procedures",
         "points": [
           "Workplace safety policies describe responsibilities, expected behaviour, reporting steps, equipment use and emergency arrangements. They protect staff/visitors, reduce harm and downtime, and support organisational obligations. A useful policy is accessible, practical, understood and backed by training. A policy that nobody follows does not make a workplace safe by itself."
         ]
@@ -2316,7 +2241,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Slips, trips and falls",
+        "title": "Slips, trips and falls",
         "points": [
           "Keep floors dry and clean.",
           "Route cables away from walking paths or use approved cable management.",
@@ -2327,7 +2252,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Electrical safety",
+        "title": "Electrical safety",
         "points": [
           "Do not use damaged cords or exposed wiring.",
           "Do not overload extension boards.",
@@ -2339,7 +2264,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Fire safety",
+        "title": "Fire safety",
         "points": [
           "Keep escape routes and exits clear.",
           "Know alarm and evacuation procedures.",
@@ -2350,13 +2275,13 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "7. Handling office equipment and objects",
+        "title": "Handling office equipment and objects",
         "points": [
           "Use equipment only for its intended purpose and follow school/manufacturer instructions. Keep hands away from moving parts and hot surfaces. Ask for help with heavy or awkward loads. Never remove guards or bypass safety interlocks."
         ]
       },
       {
-        "title": "8. Working environment and hazard control",
+        "title": "Working environment and hazard control",
         "points": [
           "A safe environment needs lighting, ventilation, clean floors, suitable furniture, manageable workload, maintained equipment and clear emergency instructions. Report hazards promptly instead of assuming someone else has done so.",
           "A simple hazard assessment asks:",
@@ -2369,7 +2294,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "9. Safety checklist",
+        "title": "Safety checklist",
         "points": [
           "Is the floor free of spills and loose cables?",
           "Are electrical cords and sockets undamaged?",
@@ -2385,12 +2310,20 @@ export const itNotes10: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 13 — Health, Safety and Security at the Workplace",
-        "meaning": "A loose cable is a hazard; the risk concerns how likely someone is to trip over it and how serious the resulting injury could be."
+        "term": "Health",
+        "meaning": "physical, mental and social wellbeing."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Safety",
+        "meaning": "preventing injury and reducing accident risk."
+      },
+      {
+        "term": "Security",
+        "meaning": "protecting people, equipment, information and property from threats or unauthorised access."
+      },
+      {
+        "term": "Hazard",
+        "meaning": "a source/situation with the potential to cause harm."
       }
     ],
     "examTips": [
@@ -2402,19 +2335,19 @@ export const itNotes10: ChapterNote[] = [
     "id": "note-it10-28",
     "subject": "it",
     "classLevel": 10,
-    "chapterNo": 28,
-    "title": "Chapter 14 — Workplace Quality Measures",
+    "chapterNo": 22,
+    "title": "Workplace Quality Standards & Hazard Prevention",
     "unit": "Unit B4 — Workplace Safety & Health",
     "overview": "A quality workplace supports health, safety, effective work and responsible resource use. It may include clean air/water, suitable lighting, cleanliness, ergonomics, ventilation, noise control and maintenance.",
     "sections": [
       {
-        "title": "1. Quality of the working environment",
+        "title": "Quality of the working environment",
         "points": [
           "A quality workplace supports health, safety, effective work and responsible resource use. It may include clean air/water, suitable lighting, cleanliness, ergonomics, ventilation, noise control and maintenance."
         ]
       },
       {
-        "title": "2. Air and water quality",
+        "title": "Air and water quality",
         "points": [
           "Poor air can contain dust, smoke, fumes or inadequate ventilation. Water quality can be affected by contamination, unsafe storage or plumbing problems. Monitoring methods must suit the environment and may require authorised professionals or appropriate instruments. Students should understand why monitoring matters, not improvise tests using unknown chemicals."
         ]
@@ -2438,13 +2371,13 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Workplace cleanliness",
+        "title": "Workplace cleanliness",
         "points": [
           "Clean, organised spaces reduce pests, slips, contamination and lost tools. Return equipment after use, dispose of waste correctly, keep walkways clear and store cleaning products securely. Do not mix cleaning chemicals."
         ]
       },
       {
-        "title": "4. Office ergonomics",
+        "title": "Office ergonomics",
         "points": [
           "**Ergonomics** means fitting the task, equipment and environment to the user to reduce strain and support effective work."
         ]
@@ -2464,7 +2397,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Computer-related health problems",
+        "title": "Computer-related health problems",
         "points": [
           "The syllabus mentions occupational overuse syndrome, strain in legs/feet, eye strain, headaches, obesity, stress disorders, laptop-use injuries and sleeping problems. Prolonged repetitive work and poor setup can contribute to musculoskeletal/visual symptoms; long sedentary periods reduce general activity."
         ]
@@ -2482,13 +2415,13 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "6. Stress and healthy work habits",
+        "title": "Stress and healthy work habits",
         "points": [
           "Unclear expectations, sustained time pressure, interruptions and conflict can increase stress. Planning, realistic deadlines, respectful communication, rest breaks, role clarity and help-seeking can reduce strain. Wellbeing is not solely an individual's responsibility; the environment and management practices matter too."
         ]
       },
       {
-        "title": "7. Security as part of workplace quality",
+        "title": "Security as part of workplace quality",
         "points": [
           "Security protects data/equipment as well as people. Use authorised accounts, lock a device when leaving it, keep software updated, do not share passwords and store files in approved locations. A tidy physical workspace and secure digital workspace support each other.",
           "**Activity:** Create an ergonomics checklist for a workstation. Review monitor height, chair support, keyboard/mouse, lighting, cable management, ventilation and breaks. Suggest three safe, inexpensive improvements."
@@ -2497,12 +2430,12 @@ export const itNotes10: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 14 — Workplace Quality Measures",
-        "meaning": "A quality workplace supports health, safety, effective work and responsible resource use. It may include clean air/water, suitable lighting, cleanliness, ergonomics, ventilation, noise control and maintenance."
+        "term": "Ergonomics",
+        "meaning": "means fitting the task, equipment and environment to the user to reduce strain and support effective work."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Activity",
+        "meaning": "Create an ergonomics checklist for a workstation. Review monitor height, chair support, keyboard/mouse, lighting, cable management, ventilation and breaks."
       }
     ],
     "examTips": [
@@ -2513,19 +2446,19 @@ export const itNotes10: ChapterNote[] = [
     "id": "note-it10-29",
     "subject": "it",
     "classLevel": 10,
-    "chapterNo": 29,
-    "title": "Chapter 15 — Preventing Accidents and Emergencies",
+    "chapterNo": 23,
+    "title": "Accident Mitigation, Emergency Evacuation & First Aid",
     "unit": "Unit B4 — Workplace Safety & Health",
     "overview": "An **accident** is an unintended event that causes or may cause injury/damage. An **emergency** requires immediate action to protect people or property. Examples include slips/falls, falling goods, moving-object incidents, fire and electrical emergencies.",
     "sections": [
       {
-        "title": "1. Accident and emergency",
+        "title": "Accident and emergency",
         "points": [
           "An **accident** is an unintended event that causes or may cause injury/damage. An **emergency** requires immediate action to protect people or property. Examples include slips/falls, falling goods, moving-object incidents, fire and electrical emergencies."
         ]
       },
       {
-        "title": "2. General response principles",
+        "title": "General response principles",
         "points": [
           "1. **Protect yourself first.** Do not enter an unsafe area or become another casualty.",
           "2. **Raise the alarm and get help promptly.** Notify designated staff and emergency services according to the local plan.",
@@ -2536,14 +2469,14 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. First-aid awareness",
+        "title": "First-aid awareness",
         "points": [
           "First aid is immediate assistance before professional help arrives. Students should know who the trained first-aiders are, where the approved kit is, how to call for help and how to follow the school's emergency plan.",
           "Do not perform procedures beyond your training. For serious bleeding, unconsciousness, major burns, suspected spinal injury or other severe conditions, seek emergency medical assistance and follow trained instructions. Do not give food or drink to an unconscious person."
         ]
       },
       {
-        "title": "4. Fire prevention and response",
+        "title": "Fire prevention and response",
         "points": [
           "Prevention: avoid overloaded sockets, keep combustibles away from heat, report faulty devices, keep exits accessible and understand the alarm system.",
           "If there is a fire:",
@@ -2556,19 +2489,19 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Electrical emergencies and rescue awareness",
+        "title": "Electrical emergencies and rescue awareness",
         "points": [
           "Electrical emergencies can be fatal. Do not touch a person who may be in contact with a live electrical source. Call emergency services/trained personnel. Only an authorised person should isolate power when safe. Follow the emergency plan and responder instructions. Electrical rescue techniques must be taught by qualified trainers in controlled practice; this guide is not a substitute for certified training."
         ]
       },
       {
-        "title": "6. Evacuation procedures",
+        "title": "Evacuation procedures",
         "points": [
           "Know the alarm signal, safe exit routes, assembly point, reporting process for a missing person/hazard and arrangements for people needing assistance. Walk quickly without pushing, running blindly or blocking routes. Follow staff/responders. Keep fire doors and exits unobstructed."
         ]
       },
       {
-        "title": "7. Common incident types",
+        "title": "Common incident types",
         "table": {
           "head": [
             "Incident",
@@ -2603,7 +2536,7 @@ export const itNotes10: ChapterNote[] = [
         }
       },
       {
-        "title": "7. Common incident types — Details",
+        "title": "Common incident types — Details",
         "points": [
           "**Practical simulation:** Using a classroom map, mark the exit route and assembly point. During a supervised drill, leave calmly and report to the designated person. In a scenario, state whom to call, what information to provide and what actions are outside a student's training/authority."
         ]
@@ -2611,12 +2544,20 @@ export const itNotes10: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Chapter 15 — Preventing Accidents and Emergencies",
-        "meaning": "An **accident** is an unintended event that causes or may cause injury/damage. An **emergency** requires immediate action to protect people or property. Examples include slips/falls, falling goods, moving-object incidents, fire and electrical emergencies."
+        "term": "accident",
+        "meaning": "is an unintended event that causes or may cause injury/damage. An **emergency** requires immediate action to protect people or property."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Protect yourself first.",
+        "meaning": "Do not enter an unsafe area or become another casualty."
+      },
+      {
+        "term": "Raise the alarm and get help promptly.",
+        "meaning": "Notify designated staff and emergency services according to the local plan."
+      },
+      {
+        "term": "Follow trained instructions.",
+        "meaning": "Act only within your training and authority."
       }
     ],
     "examTips": [
@@ -2628,8 +2569,8 @@ export const itNotes10: ChapterNote[] = [
     "id": "note-it10-30",
     "subject": "it",
     "classLevel": 10,
-    "chapterNo": 30,
-    "title": "Part C — Practical Laboratory Manual",
+    "chapterNo": 24,
+    "title": "Hands-On Practical Lab Exercises & Digital Portfolio Guide",
     "unit": "Part C — Practical Laboratory Manual",
     "overview": "These tasks convert written knowledge into evidence. Use the software installed at school and record objective, steps, output, result and learning. Teacher-assigned exercises and the official syllabus take priority.",
     "sections": [
@@ -2796,12 +2737,8 @@ export const itNotes10: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Part C — Practical Laboratory Manual",
+        "term": "Hands-On Practical Lab Exercises & Digital Portfolio Guide",
         "meaning": "These tasks convert written knowledge into evidence. Use the software installed at school and record objective, steps, output, result and learning. Teacher-assigned exercises and the official syllabus take priority."
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
       }
     ],
     "examTips": [
@@ -2813,20 +2750,20 @@ export const itNotes10: ChapterNote[] = [
     "id": "note-it10-31",
     "subject": "it",
     "classLevel": 10,
-    "chapterNo": 31,
-    "title": "Part D — Project Work, Field Visit and Portfolio",
+    "chapterNo": 25,
+    "title": "Real-World IT Projects & Portfolio Presentation",
     "unit": "Part D — Project & Portfolio",
     "overview": "The 2026–27 curriculum asks for an **interdisciplinary real-world case study**. Summarised data reports may be presented in Base; data input should use forms and output should use reports; documentation should be presented using Writer. The practical portfolio should include evidence of at least five problems each for Writer, Calc and Base.",
     "sections": [
       {
-        "title": "1. Official project direction",
+        "title": "Official project direction",
         "points": [
           "The 2026–27 curriculum asks for an **interdisciplinary real-world case study**. Summarised data reports may be presented in Base; data input should use forms and output should use reports; documentation should be presented using Writer. The practical portfolio should include evidence of at least five problems each for Writer, Calc and Base.",
           "The curriculum also describes at least **three field visits/educational tours during the year** to expose learners to workplace activities. Schools organise/supervise visits; students must follow permission and safety rules."
         ]
       },
       {
-        "title": "2. Suggested project: School Library Activity Database",
+        "title": "Suggested project: School Library Activity Database",
         "points": [
           "**Question:** How can a small fictional or approved library dataset organise books, members and loans accurately and produce a useful report?"
         ]
@@ -2864,7 +2801,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Other project ideas",
+        "title": "Other project ideas",
         "points": [
           "1. School equipment inventory.",
           "2. Fictional attendance/activity summary.",
@@ -2877,7 +2814,7 @@ export const itNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Field-visit observation checklist",
+        "title": "Field-visit observation checklist",
         "points": [
           "Under school supervision, observe workplace layout/access, computer systems and approved software, printers/scanners, data-entry workflows, quality checks, ergonomics/cleanliness, electrical safety, exits/evacuation signs, confidentiality/access controls, and job roles/communication. Do not photograph screens or client records unless the organisation and school explicitly permit it; observe processes rather than confidential data."
         ]
@@ -2885,12 +2822,8 @@ export const itNotes10: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Part D — Project Work, Field Visit and Portfolio",
+        "term": "Real-World IT Projects & Portfolio Presentation",
         "meaning": "The 2026–27 curriculum asks for an **interdisciplinary real-world case study**. Summarised data reports may be presented in Base; data input should use forms and output should use reports; documentation should be presented using Writer. The practical portfolio should include evidence of at least five problems each for Writer, Calc and Base."
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
       }
     ],
     "examTips": [
@@ -2902,8 +2835,8 @@ export const itNotes10: ChapterNote[] = [
     "id": "note-it10-32",
     "subject": "it",
     "classLevel": 10,
-    "chapterNo": 32,
-    "title": "High-Yield Revision Tables",
+    "chapterNo": 26,
+    "title": "High-Yield Formula & Concept Comparison Tables",
     "unit": "Unit B3 — Database Management System (Base)",
     "overview": "High-Yield Revision Tables — Fundamental concepts, practical guidelines, and key summaries.",
     "sections": [
@@ -3124,12 +3057,20 @@ export const itNotes10: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "High-Yield Revision Tables",
-        "meaning": "High-Yield Revision Tables — Fundamental concepts, practical guidelines, and key summaries."
+        "term": "Style",
+        "meaning": "Named, reusable formatting rules"
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Template",
+        "meaning": "Reusable document starting point/layout"
+      },
+      {
+        "term": "Heading hierarchy",
+        "meaning": "Structured levels for navigation and ToC"
+      },
+      {
+        "term": "ToC",
+        "meaning": "Generated list of sections and locations"
       }
     ],
     "examTips": [
@@ -3141,8 +3082,8 @@ export const itNotes10: ChapterNote[] = [
     "id": "note-it10-33",
     "subject": "it",
     "classLevel": 10,
-    "chapterNo": 33,
-    "title": "Part F — Practice Arena: 50 Objective Questions",
+    "chapterNo": 27,
+    "title": "IT 402 Board Exam Practice Arena (MCQ)",
     "unit": "Practice & Self-Assessment",
     "overview": "50 high-yield objective questions (35 Multiple Choice + 15 True/False) covering Styles, Mail Merge, Spreadsheets, DBMS, and Web Security.",
     "sections": [
@@ -3262,15 +3203,32 @@ export const itNotes10: ChapterNote[] = [
         ]
       }
     ],
-    "keyTerms": [],
+    "keyTerms": [
+      {
+        "term": "36.",
+        "meaning": "Explain the communication cycle and the role of feedback."
+      },
+      {
+        "term": "37.",
+        "meaning": "Distinguish verbal, non-verbal and visual communication with one example each."
+      },
+      {
+        "term": "38.",
+        "meaning": "List four barriers to effective communication and a way to reduce each."
+      },
+      {
+        "term": "39.",
+        "meaning": "Name the 7 Cs of effective communication used in this guide."
+      }
+    ],
     "examTips": []
   },
   {
     "id": "note-it10-34",
     "subject": "it",
     "classLevel": 10,
-    "chapterNo": 34,
-    "title": "Glossary",
+    "chapterNo": 28,
+    "title": "Essential Information Technology Terminology & Definitions",
     "unit": "Reference & Glossary",
     "overview": "Glossary — Fundamental concepts, practical guidelines, and key summaries.",
     "sections": [
@@ -3320,12 +3278,20 @@ export const itNotes10: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "Glossary",
-        "meaning": "Glossary — Fundamental concepts, practical guidelines, and key summaries."
+        "term": "Absolute hyperlink",
+        "meaning": "link specifying a full address/path."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Anchor",
+        "meaning": "rule connecting an object to a page/text location."
+      },
+      {
+        "term": "Article",
+        "meaning": "a/an/the in English grammar."
+      },
+      {
+        "term": "Candidate key",
+        "meaning": "field/combination that could uniquely identify a record."
       }
     ],
     "examTips": [

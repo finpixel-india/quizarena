@@ -6,12 +6,12 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 1,
-    "title": "1. Understanding IT and computers",
+    "title": "Understanding Information Technology & Modern Computing",
     "unit": "Unit 1: Foundations of IT & Hardware",
     "overview": "Examples of IT in daily life include a school recording attendance, a hospital storing patient records, a shop maintaining inventory, a bank processing digital payments, a student preparing a presentation, and a website delivering a lesson.",
     "sections": [
       {
-        "title": "1.1 What is Information Technology?",
+        "title": "What is Information Technology?",
         "points": [
           "**Information Technology (IT)** is the use of computers, software, networks and digital systems to create, process, store, secure and exchange information. IT includes the devices people use, the programs they run, the data they manage, and the networks and services that connect them.",
           "**Information and Communication Technology (ICT)** is a broad term often used when the communication side of digital technology—such as the Internet, mobile networks, video calls and collaborative tools—is emphasised. In everyday education, IT and ICT overlap substantially.",
@@ -19,7 +19,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "1.2 What is a computer?",
+        "title": "What is a computer?",
         "points": [
           "A **computer** is an electronic, programmable system that accepts input, processes it according to instructions, stores data and produces output. Many systems also communicate with other computers.",
           "A simple model is:",
@@ -36,7 +36,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "1.3 Data, information and knowledge",
+        "title": "Data, information and knowledge",
         "points": [
           "**Data** are recorded facts or symbols. Example: `72, 85, 91`.",
           "**Information** is data organised to answer a question. Example: “The three marks have an average of 82.7.”",
@@ -45,7 +45,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "1.4 Hardware, software, data and people",
+        "title": "Hardware, software, data and people",
         "points": [
           "A complete computer-based system contains more than the machine:",
           "1. **Hardware:** physical parts such as processor, keyboard, screen and storage.",
@@ -58,7 +58,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "1.5 Common uses of computers",
+        "title": "Common uses of computers",
         "points": [
           "Education: lessons, simulations, research, assignments and online assessments.",
           "Science and engineering: modelling, measurement, design and analysis.",
@@ -73,14 +73,14 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "1.6 Characteristics and limitations",
+        "title": "Characteristics and limitations",
         "points": [
           "Computers can perform repeated calculations quickly, follow instructions consistently, store large amounts of information, and communicate rapidly. They do not automatically understand whether input is true or fair. Their results depend on data, software, hardware and the design of the system. Modern systems can perform tasks that appear intelligent, but that is not the same as having human awareness or judgement.",
           "Important limitations include hardware failure, software defects, malicious attacks, incomplete data, energy use, accessibility barriers, privacy risks and dependence on electricity or connectivity."
         ]
       },
       {
-        "title": "1.7 Key terms",
+        "title": "Key terms",
         "table": {
           "head": [
             "Term",
@@ -142,12 +142,20 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "1. Understanding IT and computers",
-        "meaning": "Examples of IT in daily life include a school recording attendance, a hospital storing patient records, a shop maintaining inventory, a bank processing digital payments, a student preparing a presentation, and a website delivering a lesson."
+        "term": "Information Technology (IT)",
+        "meaning": "is the use of computers, software, networks and digital systems to create, process, store, secure and exchange information. IT includes the devices people use, the programs they run, the data they manage, and the networks and services that connect them."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "computer",
+        "meaning": "is an electronic, programmable system that accepts input, processes it according to instructions, stores data and produces output. Many systems also communicate with other computers."
+      },
+      {
+        "term": "Input",
+        "meaning": "data or commands entering the system."
+      },
+      {
+        "term": "Processing",
+        "meaning": "operations performed on the input."
       }
     ],
     "examTips": [
@@ -163,7 +171,7 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 2,
-    "title": "2. Computing by age and stage",
+    "title": "Historical Evolution of Computing & Breakthrough Milestones",
     "unit": "Unit 1: Foundations of IT & Hardware",
     "overview": "This progression is a suggested learning pathway, not an official curriculum for every school. Learners move at different speeds; use the stage descriptions to set expectations rather than treating age as a strict limit.",
     "sections": [
@@ -174,7 +182,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "2.1 Early primary: approximately Classes 1–2",
+        "title": "Early primary: approximately Classes 1–2",
         "points": [
           "**Goal:** recognise devices, practise safe interaction and understand that computers follow instructions.",
           "Topics:",
@@ -191,7 +199,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "2.2 Primary: approximately Classes 3–5",
+        "title": "Primary: approximately Classes 3–5",
         "points": [
           "**Goal:** use common applications and begin organised digital work.",
           "Topics:",
@@ -209,7 +217,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "2.3 Upper primary / middle school: approximately Classes 6–8",
+        "title": "Upper primary / middle school: approximately Classes 6–8",
         "points": [
           "**Goal:** organise information, understand networks and develop logical problem-solving.",
           "Topics:",
@@ -229,7 +237,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "2.4 Secondary: approximately Classes 9–10",
+        "title": "Secondary: approximately Classes 9–10",
         "points": [
           "**Goal:** master digital productivity and foundational programming, networking, databases and cybersecurity.",
           "Topics:",
@@ -246,7 +254,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "2.5 Senior secondary: approximately Classes 11–12",
+        "title": "Senior secondary: approximately Classes 11–12",
         "points": [
           "**Goal:** design complete solutions, reason about algorithms and handle data safely.",
           "Possible topics, depending on the course:",
@@ -267,12 +275,12 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "2. Computing by age and stage",
-        "meaning": "This progression is a suggested learning pathway, not an official curriculum for every school. Learners move at different speeds; use the stage descriptions to set expectations rather than treating age as a strict limit."
+        "term": "Goal",
+        "meaning": "recognise devices, practise safe interaction and understand that computers follow instructions."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Board alignment warning",
+        "meaning": "the exact subjects, unit names, marks and languages required vary by board, school and academic session. This general guide does not replace the current prescribed syllabus."
       }
     ],
     "examTips": [
@@ -284,12 +292,12 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 3,
-    "title": "3. History and types of computers",
+    "title": "Computer System Architectures & Classifications",
     "unit": "Unit 1: Foundations of IT & Hardware",
     "overview": "Computing evolved through many inventions rather than one single “first computer.” Early tools helped people count; mechanical calculators automated arithmetic; electromechanical and electronic machines made more complex processing possible; integrated circuits and microprocessors made computers smaller and more affordable; networked and mobile systems placed computing in everyday objects.",
     "sections": [
       {
-        "title": "3.1 A short timeline",
+        "title": "A short timeline",
         "points": [
           "Computing evolved through many inventions rather than one single “first computer.” Early tools helped people count; mechanical calculators automated arithmetic; electromechanical and electronic machines made more complex processing possible; integrated circuits and microprocessors made computers smaller and more affordable; networked and mobile systems placed computing in everyday objects.",
           "A useful simplified timeline:",
@@ -306,7 +314,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "3.2 Types by size and role",
+        "title": "Types by size and role",
         "table": {
           "head": [
             "Type",
@@ -358,19 +366,19 @@ export const itNotesComp: ChapterNote[] = [
         }
       },
       {
-        "title": "3.2 Types by size and role — Details",
+        "title": "Types by size and role — Details",
         "points": [
           "These types overlap. A powerful workstation can outperform an older server in some tasks, and a “server” may be ordinary hardware configured to deliver a service. Role and workload matter more than the label."
         ]
       },
       {
-        "title": "3.3 General-purpose and special-purpose systems",
+        "title": "General-purpose and special-purpose systems",
         "points": [
           "A **general-purpose computer** can run many kinds of software, such as a laptop. A **special-purpose computer** is designed for a narrower role, such as a digital camera controller or an appliance controller. Many special-purpose devices are programmable even though users do not see a desktop interface."
         ]
       },
       {
-        "title": "3.4 Analog, digital and hybrid systems",
+        "title": "Analog, digital and hybrid systems",
         "points": [
           "**Analog systems** represent quantities through continuous physical values.",
           "**Digital systems** represent data using discrete states, commonly binary digits 0 and 1.",
@@ -379,7 +387,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "3.5 Choosing a computer",
+        "title": "Choosing a computer",
         "points": [
           "Consider the task before the specification:",
           "Basic study and web browsing: a reliable device, suitable display, sufficient memory/storage and secure software updates.",
@@ -394,12 +402,20 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "3. History and types of computers",
-        "meaning": "Computing evolved through many inventions rather than one single “first computer.” Early tools helped people count; mechanical calculators automated arithmetic; electromechanical and electronic machines made more complex processing possible; integrated circuits and microprocessors made computers smaller and more affordable; networked and mobile systems placed computing in everyday objects."
+        "term": "Counting tools and abacus",
+        "meaning": "support manual arithmetic."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Mechanical calculators",
+        "meaning": "gears and mechanisms perform arithmetic operations."
+      },
+      {
+        "term": "Programmable-machine concepts",
+        "meaning": "designs such as Charles Babbage's Analytical Engine introduced ideas resembling memory, processing and instructions."
+      },
+      {
+        "term": "Early electronic computers",
+        "meaning": "used valves/tubes and were large, power-hungry machines."
       }
     ],
     "examTips": [
@@ -412,12 +428,12 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 4,
-    "title": "4. Computer hardware: the physical parts",
+    "title": "Hardware Architecture, CPU Internals & Physical Components",
     "unit": "Unit 1: Foundations of IT & Hardware",
     "overview": "The **system unit** is the main computer enclosure containing key internal components in a desktop. The **motherboard** is the principal circuit board that connects the processor, memory, storage, expansion devices and power distribution. Laptops and small computers integrate many components into a compact board.",
     "sections": [
       {
-        "title": "4.1 The system unit and motherboard",
+        "title": "The system unit and motherboard",
         "points": [
           "The **system unit** is the main computer enclosure containing key internal components in a desktop. The **motherboard** is the principal circuit board that connects the processor, memory, storage, expansion devices and power distribution. Laptops and small computers integrate many components into a compact board.",
           "Motherboard features can include:",
@@ -433,7 +449,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "4.2 Central Processing Unit (CPU)",
+        "title": "Central Processing Unit (CPU)",
         "points": [
           "The **CPU** executes machine instructions and coordinates many general-purpose computational tasks. It contains several components:",
           "**Arithmetic Logic Unit (ALU):** performs arithmetic and logical operations.",
@@ -447,14 +463,14 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "4.3 GPU",
+        "title": "GPU",
         "points": [
           "A **Graphics Processing Unit (GPU)** is designed for highly parallel workloads, especially graphics and image processing. GPUs are also used for scientific computing, video processing and some machine-learning workloads. Integrated GPUs share system memory or system resources; discrete GPUs have their own processor package and often dedicated video memory (VRAM).",
           "GPU suitability depends on the task, software support, memory, power draw and cooling. Not every application benefits from a powerful discrete GPU."
         ]
       },
       {
-        "title": "4.4 RAM, ROM and firmware memory",
+        "title": "RAM, ROM and firmware memory",
         "points": [
           "**RAM (Random Access Memory):** working memory for active programs and data; ordinary system RAM is volatile, so its content is lost when power is removed.",
           "**ROM (Read-Only Memory):** a historical/general term for non-volatile memory that stores information retained without power. Modern systems often use flash memory that can be updated rather than literal factory-written ROM.",
@@ -464,7 +480,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "4.5 Power supply, cooling and enclosure",
+        "title": "Power supply, cooling and enclosure",
         "points": [
           "A desktop power supply unit converts mains electricity into regulated voltages for components. A laptop generally uses an external power adapter and internal power circuitry. Fans, heat sinks, thermal interfaces and sometimes liquid cooling remove heat. Dust blockage, failed fans or poor airflow can lead to thermal throttling, instability or damage.",
           "Safe hardware practice:",
@@ -476,19 +492,19 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "4.6 Buses and interconnection",
+        "title": "Buses and interconnection",
         "points": [
           "A **bus** is a communication pathway used to move data, addresses or control signals. Modern computers use a combination of dedicated and point-to-point links rather than one simple universal bus. Connection speed, protocol and lane count affect throughput. A data bottleneck can occur when a fast component is limited by a slower connection or device."
         ]
       },
       {
-        "title": "4.7 Expansion cards and integrated components",
+        "title": "Expansion cards and integrated components",
         "points": [
           "Expansion cards may provide graphics, extra network ports, sound processing, capture functions or storage controllers. Modern systems often integrate these functions into the motherboard or CPU. Integrated hardware can reduce cost, size and power use; dedicated hardware can offer performance or specialised features."
         ]
       },
       {
-        "title": "4.8 Hardware troubleshooting basics",
+        "title": "Hardware troubleshooting basics",
         "points": [
           "1. Describe the symptom precisely: no power, no display, no sound, slow performance, overheating or a specific error.",
           "2. Check simple external causes: power, charging cable, brightness, mute settings, cable connections and network status.",
@@ -503,12 +519,20 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "4. Computer hardware: the physical parts",
-        "meaning": "The **system unit** is the main computer enclosure containing key internal components in a desktop. The **motherboard** is the principal circuit board that connects the processor, memory, storage, expansion devices and power distribution. Laptops and small computers integrate many components into a compact board."
+        "term": "system unit",
+        "meaning": "is the main computer enclosure containing key internal components in a desktop. The **motherboard** is the principal circuit board that connects the processor, memory, storage, expansion devices and power distribution."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "CPU",
+        "meaning": "executes machine instructions and coordinates many general-purpose computational tasks."
+      },
+      {
+        "term": "Arithmetic Logic Unit (ALU)",
+        "meaning": "performs arithmetic and logical operations."
+      },
+      {
+        "term": "Control unit",
+        "meaning": "directs instruction execution and signals among components."
       }
     ],
     "examTips": [
@@ -521,12 +545,12 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 5,
-    "title": "5. Input, output and communication devices",
+    "title": "Input, Output & Communication Peripherals",
     "unit": "Unit 1: Foundations of IT & Hardware",
     "overview": "An **input device** sends data or commands into a computer.",
     "sections": [
       {
-        "title": "5.1 Input devices",
+        "title": "Input devices",
         "points": [
           "An **input device** sends data or commands into a computer.",
           "Keyboard: text, numbers and shortcuts.",
@@ -543,7 +567,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "5.2 Output devices",
+        "title": "Output devices",
         "points": [
           "An **output device** presents processing results.",
           "Monitor/display: text, pictures, video and interface elements.",
@@ -556,7 +580,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "5.3 Display basics",
+        "title": "Display basics",
         "points": [
           "**Resolution:** number of pixels, often expressed as width × height.",
           "**Pixel:** smallest addressable picture element in a raster image.",
@@ -568,20 +592,20 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "5.4 Printers and scanning",
+        "title": "Printers and scanning",
         "points": [
           "Inkjet printers deposit small droplets of ink; laser printers use an imaging and toner process. Print quality is affected by resolution, paper, colour handling and the source document. Scanning creates an image of a physical document. **Optical Character Recognition (OCR)** attempts to convert image-based text into editable characters; OCR output must be checked, particularly with low-quality scans, tables, mathematical notation and multiple languages."
         ]
       },
       {
-        "title": "5.5 Ports and connectors",
+        "title": "Ports and connectors",
         "points": [
           "Common connection types include USB-A, USB-C, HDMI, DisplayPort, Ethernet (RJ-45), 3.5 mm audio, SD/microSD card slots and power connectors. USB-C describes a connector shape; the capabilities of a particular port may differ (data speed, charging, display output and supported protocols). Inspect device specifications rather than assuming every USB-C port supports every feature.",
           "Wireless connections include Wi-Fi, Bluetooth, NFC and cellular technologies. Wi-Fi usually connects devices to a local network; Bluetooth is commonly used for nearby accessories; NFC works at very short distances; cellular networks support wide-area mobile communication."
         ]
       },
       {
-        "title": "5.6 Accessibility devices and alternative input",
+        "title": "Accessibility devices and alternative input",
         "points": [
           "Computers can be controlled through screen readers, magnifiers, speech input, switch devices, alternative keyboards, eye-tracking and specialised pointing tools. Accessibility is not a bonus added at the end: accessible hardware, settings and software allow more people to learn, communicate and work independently."
         ]
@@ -598,12 +622,20 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "5. Input, output and communication devices",
-        "meaning": "An **input device** sends data or commands into a computer."
+        "term": "input device",
+        "meaning": "sends data or commands into a computer."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "output device",
+        "meaning": "presents processing results."
+      },
+      {
+        "term": "Resolution",
+        "meaning": "number of pixels, often expressed as width × height."
+      },
+      {
+        "term": "Pixel",
+        "meaning": "smallest addressable picture element in a raster image."
       }
     ],
     "examTips": [
@@ -615,12 +647,12 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 6,
-    "title": "6. Memory, storage and data units",
+    "title": "Memory Hierarchies, Storage Media & Data Units",
     "unit": "Unit 1: Foundations of IT & Hardware",
     "overview": "A **bit** is a binary digit: either `0` or `1`. A **byte** is commonly eight bits. Computer systems use bit patterns to represent numbers, text, instructions, images, sound and other data.",
     "sections": [
       {
-        "title": "6.1 Bit and byte",
+        "title": "Bit and byte",
         "points": [
           "A **bit** is a binary digit: either `0` or `1`. A **byte** is commonly eight bits. Computer systems use bit patterns to represent numbers, text, instructions, images, sound and other data.",
           "Common units:"
@@ -667,14 +699,14 @@ export const itNotesComp: ChapterNote[] = [
         }
       },
       {
-        "title": "6.1 Bit and byte — Details",
+        "title": "Bit and byte — Details",
         "points": [
           "Storage manufacturers often use decimal units (GB, TB), while some operating-system tools or technical contexts use binary units (GiB, TiB) or label binary values imprecisely. Always check the unit convention when comparing capacities.",
           "**b vs B:** `Mb/s` means megabits per second, while `MB/s` means megabytes per second. Eight bits make one byte before accounting for protocol overhead; therefore, a 100 megabit-per-second connection has a theoretical raw byte rate of about 12.5 megabytes per second, not 100 MB/s."
         ]
       },
       {
-        "title": "6.2 Primary memory and secondary storage",
+        "title": "Primary memory and secondary storage",
         "points": [
           "**Registers:** tiny, extremely fast CPU storage.",
           "**Cache:** fast memory close to the processor.",
@@ -685,7 +717,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "6.3 HDD, SSD and flash storage",
+        "title": "HDD, SSD and flash storage",
         "points": [
           "**Hard disk drive (HDD):** stores data magnetically on rotating platters with mechanical read/write heads. It can offer large capacity at low cost but is sensitive to physical shocks while operating and generally has higher latency than SSDs.",
           "**Solid-state drive (SSD):** uses flash memory and has no spinning platters. It usually provides faster random access, lower latency and better shock resistance than an HDD. SSD performance and endurance depend on its design, controller, interface, workload and capacity.",
@@ -694,13 +726,13 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "6.4 Volatile and non-volatile storage",
+        "title": "Volatile and non-volatile storage",
         "points": [
           "**Volatile memory** normally loses its contents when power is removed (ordinary RAM). **Non-volatile storage** retains information without continuous power (SSD, HDD, flash memory and many firmware chips). A running program may be loaded from an SSD into RAM; unsaved changes can be lost if the program closes unexpectedly."
         ]
       },
       {
-        "title": "6.5 Storage, capacity and performance",
+        "title": "Storage, capacity and performance",
         "points": [
           "**Capacity:** how much data can be stored.",
           "**Latency:** time before an operation begins returning useful data.",
@@ -712,7 +744,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "6.6 Backups: the essential rule",
+        "title": "Backups: the essential rule",
         "points": [
           "A backup is a separate, recoverable copy of data. Synchronisation is not always the same as backup: if a file is deleted or encrypted and that change syncs everywhere, the other copies may not protect you. A common practical model is the **3-2-1 rule**: keep at least three copies of important data, on two kinds of media, with one copy off-site or otherwise isolated. Adapt the rule to the importance and risk of the data.",
           "A backup plan should answer:",
@@ -736,12 +768,20 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "6. Memory, storage and data units",
-        "meaning": "A **bit** is a binary digit: either `0` or `1`. A **byte** is commonly eight bits. Computer systems use bit patterns to represent numbers, text, instructions, images, sound and other data."
+        "term": "bit",
+        "meaning": "is a binary digit: either `0` or `1`. A **byte** is commonly eight bits."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "b vs B",
+        "meaning": "`Mb/s` means megabits per second, while `MB/s` means megabytes per second. Eight bits make one byte before accounting for protocol overhead; therefore, a 100 megabit-per-second connection has a theoretical raw byte rate of about 12."
+      },
+      {
+        "term": "Registers",
+        "meaning": "tiny, extremely fast CPU storage."
+      },
+      {
+        "term": "Cache",
+        "meaning": "fast memory close to the processor."
       }
     ],
     "examTips": [
@@ -753,12 +793,12 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 7,
-    "title": "7. Software, firmware and licences",
+    "title": "Software Paradigms, Firmware & Open Source Licensing",
     "unit": "Unit 2: Software, OS & Data Representation",
     "overview": "System software manages hardware and provides a platform for applications. Examples include operating systems, device drivers, system libraries and some low-level utilities.",
     "sections": [
       {
-        "title": "7.1 What is software?",
+        "title": "What is software?",
         "points": [
           "**Software** consists of programs, data definitions, configuration and instructions that cause a computing system to perform tasks. Software is intangible, but it is stored on physical media and executed by hardware."
         ]
@@ -800,14 +840,14 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "7.3 Programming language, compiler, interpreter and runtime",
+        "title": "Programming language, compiler, interpreter and runtime",
         "points": [
           "A **programming language** provides rules for expressing computations. A **compiler** translates source code into another form, often machine code or bytecode. An **interpreter** executes program instructions through an implementation that reads and performs operations. Many real languages use a mix of compilation, interpretation and runtime optimisation.",
           "A **runtime** supplies services while a program runs, such as memory management, libraries or a virtual machine. The terminology varies by language and platform; avoid treating “compiled” and “interpreted” as absolute opposites for every implementation."
         ]
       },
       {
-        "title": "7.4 Open-source, free software and proprietary software",
+        "title": "Open-source, free software and proprietary software",
         "points": [
           "**Open-source software:** source code is available under a licence that grants specified rights to inspect, modify and redistribute it.",
           "**Proprietary software:** controlled by an owner under terms that may limit copying, modification or redistribution.",
@@ -818,14 +858,14 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "7.5 Software versions and updates",
+        "title": "Software versions and updates",
         "points": [
           "Updates may patch security issues, fix defects, add features or change compatibility. Install updates from the operating system's built-in updater or an official vendor. On a managed school or work computer, follow administrator instructions. Back up important work before major system changes.",
           "A **version number** helps identify a release. Semantic versioning often uses `MAJOR.MINOR.PATCH`, but not every product follows it. A version number alone does not prove that software is secure or supported."
         ]
       },
       {
-        "title": "7.6 Malware and unwanted software",
+        "title": "Malware and unwanted software",
         "points": [
           "Malware includes viruses, worms, trojans, ransomware, spyware and other malicious code. Potential warning signs include unexpected pop-ups, unknown programs, unusual account activity, disabled security controls or files that suddenly cannot be opened. A warning sign is not proof of infection; investigate carefully.",
           "Safe habits:",
@@ -840,12 +880,20 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "7. Software, firmware and licences",
-        "meaning": "System software manages hardware and provides a platform for applications. Examples include operating systems, device drivers, system libraries and some low-level utilities."
+        "term": "Software",
+        "meaning": "consists of programs, data definitions, configuration and instructions that cause a computing system to perform tasks. Software is intangible, but it is stored on physical media and executed by hardware."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "device driver",
+        "meaning": "lets the operating system communicate with particular hardware. Many devices use standard drivers included with the operating system; specialised hardware may require manufacturer drivers."
+      },
+      {
+        "term": "programming language",
+        "meaning": "provides rules for expressing computations. A **compiler** translates source code into another form, often machine code or bytecode."
+      },
+      {
+        "term": "interpreter",
+        "meaning": "executes program instructions through an implementation that reads and performs operations. Many real languages use a mix of compilation, interpretation and runtime optimisation."
       }
     ],
     "examTips": [
@@ -857,12 +905,12 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 8,
-    "title": "8. Operating systems, files and folders",
+    "title": "Operating Systems, File Systems & Process Management",
     "unit": "Unit 2: Software, OS & Data Representation",
     "overview": "An **operating system (OS)** manages computer resources and offers services to applications and users. It handles processes, memory, files, devices, security, user accounts and interfaces. Common examples include Windows, macOS, Linux distributions, Android, iOS and ChromeOS. Different products have different designs and supported hardware.",
     "sections": [
       {
-        "title": "8.1 What is an operating system?",
+        "title": "What is an operating system?",
         "points": [
           "An **operating system (OS)** manages computer resources and offers services to applications and users. It handles processes, memory, files, devices, security, user accounts and interfaces. Common examples include Windows, macOS, Linux distributions, Android, iOS and ChromeOS. Different products have different designs and supported hardware.",
           "Core responsibilities include:",
@@ -877,7 +925,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "8.2 Graphical user interface (GUI) and command-line interface (CLI)",
+        "title": "Graphical user interface (GUI) and command-line interface (CLI)",
         "points": [
           "A **GUI** uses visual elements such as windows, icons, menus, buttons and pointers. A **CLI** accepts text commands in a terminal or shell. Both are interfaces to system services; a CLI is not inherently more powerful in every task, but it can be efficient for repeatable operations, automation and remote administration.",
           "Essential GUI operations:",
@@ -899,7 +947,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "8.3 Files, folders and paths",
+        "title": "Files, folders and paths",
         "points": [
           "A **file** stores content, such as a document, image or program. A **folder/directory** organises files and other directories. A **path** identifies a location in a file system.",
           "Absolute path: identifies a location from the root or volume, such as `C:\\Users\\Student\\Documents\\notes.txt` on Windows or `/home/student/notes.txt` on many Linux systems.",
@@ -918,7 +966,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "8.4 Common keyboard shortcuts",
+        "title": "Common keyboard shortcuts",
         "table": {
           "head": [
             "Action",
@@ -980,25 +1028,25 @@ export const itNotesComp: ChapterNote[] = [
         }
       },
       {
-        "title": "8.4 Common keyboard shortcuts — Details",
+        "title": "Common keyboard shortcuts — Details",
         "points": [
           "Some applications use different shortcuts. Learn keyboard shortcuts only after understanding their actions; deleting or moving files with a shortcut can still cause data loss."
         ]
       },
       {
-        "title": "8.5 User accounts and permissions",
+        "title": "User accounts and permissions",
         "points": [
           "A user account identifies a person or service to the system. Permissions determine which resources the account may read, change, execute or administer. Use separate accounts where appropriate, lock devices when unattended and avoid sharing administrator credentials. The **principle of least privilege** means giving an account only the access needed for its task."
         ]
       },
       {
-        "title": "8.6 Processes, applications and multitasking",
+        "title": "Processes, applications and multitasking",
         "points": [
           "A **program** is stored instructions; a **process** is a running instance. An application may create several processes or threads. The operating system allocates CPU time and memory. If an app freezes, use the normal close process first; force-quit only when necessary because unsaved work may be lost."
         ]
       },
       {
-        "title": "8.7 File types and compression",
+        "title": "File types and compression",
         "points": [
           "Examples:",
           "Text: `.txt`, `.md`, `.rtf`.",
@@ -1013,7 +1061,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "8.8 Accessibility and localisation settings",
+        "title": "Accessibility and localisation settings",
         "points": [
           "Operating systems may provide screen magnification, screen reading, captions, speech input, high-contrast modes, colour filters, larger text, keyboard navigation, reduced motion, language settings and input methods. Adjust settings to the user's needs and language; good digital education should not assume every learner sees, hears, reads or moves in the same way."
         ]
@@ -1021,12 +1069,20 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "8. Operating systems, files and folders",
-        "meaning": "An **operating system (OS)** manages computer resources and offers services to applications and users. It handles processes, memory, files, devices, security, user accounts and interfaces. Common examples include Windows, macOS, Linux distributions, Android, iOS and ChromeOS. Different products have different designs and supported hardware."
+        "term": "operating system (OS)",
+        "meaning": "manages computer resources and offers services to applications and users. It handles processes, memory, files, devices, security, user accounts and interfaces."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "GUI",
+        "meaning": "uses visual elements such as windows, icons, menus, buttons and pointers. A **CLI** accepts text commands in a terminal or shell."
+      },
+      {
+        "term": "file",
+        "meaning": "stores content, such as a document, image or program. A **folder/directory** organises files and other directories."
+      },
+      {
+        "term": "path",
+        "meaning": "identifies a location in a file system."
       }
     ],
     "examTips": [
@@ -1038,12 +1094,12 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 9,
-    "title": "9. How computers represent data",
+    "title": "Data Representation, Binary Logic & Number Systems",
     "unit": "Unit 2: Software, OS & Data Representation",
     "overview": "Computers represent data using patterns of bits. The binary number system has base 2 and uses digits `0` and `1`. Decimal uses base 10 and digits 0–9.",
     "sections": [
       {
-        "title": "9.1 Binary numbers",
+        "title": "Binary numbers",
         "points": [
           "Computers represent data using patterns of bits. The binary number system has base 2 and uses digits `0` and `1`. Decimal uses base 10 and digits 0–9.",
           "Example: binary `1011₂` equals decimal 11 because:",
@@ -1052,21 +1108,21 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "9.2 Hexadecimal",
+        "title": "Hexadecimal",
         "points": [
           "Hexadecimal is base 16, using `0–9` and `A–F` for values 10–15. It is a compact way to write binary values because one hexadecimal digit represents four bits (a nibble). Example: binary `1111 0000` is hexadecimal `F0`.",
           "Hexadecimal is used in memory addresses, colour codes such as `#3366CC`, debugging and low-level computing. A colour code usually represents channel values under a defined colour model; how it looks depends on display and colour management."
         ]
       },
       {
-        "title": "9.3 Character encoding: ASCII and Unicode",
+        "title": "Character encoding: ASCII and Unicode",
         "points": [
           "A computer must map text characters to numeric code points and encode them as bytes. ASCII is an older character encoding covering a limited set of English letters, digits and symbols. **Unicode** assigns code points to characters from many writing systems and includes symbols and emoji. **UTF-8** is a widely used variable-length encoding for Unicode and is the default choice for many modern text-based systems.",
           "Do not assume one character equals one byte. In UTF-8, different characters may use different numbers of bytes. Some visible symbols are formed from multiple code points. This matters for storage, indexing, sorting and text processing."
         ]
       },
       {
-        "title": "9.4 Representing images",
+        "title": "Representing images",
         "points": [
           "A **raster image** stores pixels. Its file size depends on dimensions, colour depth, compression and metadata. Common raster formats include JPEG, PNG, GIF and WebP. **Vector graphics** describe shapes and paths mathematically and are useful for logos, diagrams and illustrations; SVG is a common vector format.",
           "JPEG is commonly used for photographs and typically uses lossy compression.",
@@ -1078,26 +1134,26 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "9.5 Representing sound",
+        "title": "Representing sound",
         "points": [
           "Digital audio sampling records a signal at regular time intervals. **Sample rate** is samples per second; **bit depth** describes the precision used for sample values in many pulse-code modulation formats; number of channels indicates mono, stereo or more. Higher sample rate or bit depth can increase uncompressed data size, but they do not automatically make a recording sound better if the source and playback system are poor.",
           "WAV commonly stores uncompressed or lightly compressed audio. MP3 and AAC are lossy formats; FLAC is a lossless compressed format. For speech, efficient compressed audio is often adequate; for editing and archival work, lossless formats may be preferred."
         ]
       },
       {
-        "title": "9.6 Video representation",
+        "title": "Video representation",
         "points": [
           "Video is a sequence of frames combined with audio and metadata in many files. **Frame rate** is measured in frames per second. **Resolution** gives frame dimensions. A video container such as MP4 may hold video and audio streams encoded with particular codecs. Container and codec are not the same thing. Compression reduces storage and transmission demands, often using techniques that exploit similarities between frames."
         ]
       },
       {
-        "title": "9.7 Compression and checksums",
+        "title": "Compression and checksums",
         "points": [
           "Compression reduces the amount of data needed to represent information. A **checksum** or **hash** creates a fixed-size value from data and can help detect whether data has changed. Cryptographic hashes such as SHA-256 are designed for stronger properties than simple error-detection checksums, but a hash alone does not prove who created a file or whether it is trustworthy. Digital signatures and trusted delivery channels address authenticity more directly."
         ]
       },
       {
-        "title": "9.8 Data representation and errors",
+        "title": "Data representation and errors",
         "points": [
           "Data may be damaged through transmission errors, defective storage, software bugs or wrong assumptions about encoding. Use suitable file formats, validate input, protect against loss and avoid manually editing binary files as if they were plain text."
         ]
@@ -1105,12 +1161,20 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "9. How computers represent data",
-        "meaning": "Computers represent data using patterns of bits. The binary number system has base 2 and uses digits `0` and `1`. Decimal uses base 10 and digits 0–9."
+        "term": "Unicode",
+        "meaning": "assigns code points to characters from many writing systems and includes symbols and emoji. **UTF-8** is a widely used variable-length encoding for Unicode and is the default choice for many modern text-based systems."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "raster image",
+        "meaning": "stores pixels. Its file size depends on dimensions, colour depth, compression and metadata."
+      },
+      {
+        "term": "Vector graphics",
+        "meaning": "describe shapes and paths mathematically and are useful for logos, diagrams and illustrations; SVG is a common vector format."
+      },
+      {
+        "term": "Sample rate",
+        "meaning": "is samples per second; **bit depth** describes the precision used for sample values in many pulse-code modulation formats; number of channels indicates mono, stereo or more. Higher sample rate or bit depth can increase uncompressed data size, but they do not automatically make a recording sound better if the source and playback system are poor."
       }
     ],
     "examTips": [
@@ -1123,7 +1187,7 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 10,
-    "title": "10. Digital productivity tools",
+    "title": "Digital Productivity Suites & Document Processing",
     "unit": "Unit 3: Productivity Tools & Databases",
     "overview": "Productivity software helps users create, organise, analyse and present information. The skills are transferable across LibreOffice, Microsoft Office, Google Workspace and other packages, although buttons and feature names differ. Learn the concept as well as the interface: an updated app may move a command, but the principle of clear formatting, formula correctness and source checking remains useful.",
     "sections": [
@@ -1134,7 +1198,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "10.1 Word processing",
+        "title": "Word processing",
         "points": [
           "A word processor is used to create and edit text documents. Typical uses include essays, letters, reports, project write-ups and notes.",
           "Core concepts:",
@@ -1176,7 +1240,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "10.2 Spreadsheets",
+        "title": "Spreadsheets",
         "points": [
           "A spreadsheet organises data in a grid. It is useful for marks, budgets, schedules, inventories and basic analysis."
         ]
@@ -1242,7 +1306,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "10.3 Presentations",
+        "title": "Presentations",
         "points": [
           "Presentation software arranges information into slides. A good presentation supports the speaker and audience rather than displaying every word of a report.",
           "Principles:",
@@ -1260,14 +1324,14 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "10.4 Email and collaboration tools",
+        "title": "Email and collaboration tools",
         "points": [
           "Email messages usually contain a recipient, subject, body and optional attachments. Use a clear subject, a suitable greeting, concise paragraphs and a clear request or conclusion. Check recipients before sending. `CC` typically copies people who should be aware; `BCC` hides addresses from other recipients, but should be used transparently and appropriately. Never send confidential material to a large list without a reason.",
           "Collaboration tools may support shared documents, comments, version history, calendars, tasks, video meetings and file sharing. Decide who needs view, comment or edit permission. Remove access when a project ends, avoid public-sharing links for sensitive data, and remember that deleting a local copy may not delete every shared or backed-up copy."
         ]
       },
       {
-        "title": "10.5 Desktop, web and mobile applications",
+        "title": "Desktop, web and mobile applications",
         "points": [
           "**Desktop app:** installed and usually runs on the local operating system.",
           "**Web app:** accessed through a browser and may store data locally, remotely or both.",
@@ -1279,12 +1343,20 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "10. Digital productivity tools",
-        "meaning": "Productivity software helps users create, organise, analyse and present information. The skills are transferable across LibreOffice, Microsoft Office, Google Workspace and other packages, although buttons and feature names differ. Learn the concept as well as the interface: an updated app may move a command, but the principle of clear formatting, formula correctness and source checking remains useful."
+        "term": "Document structure",
+        "meaning": "title, headings, paragraphs, lists, tables, images, references and appendices."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Character formatting",
+        "meaning": "font family, size, bold, italics, underline, colour and highlighting."
+      },
+      {
+        "term": "Paragraph formatting",
+        "meaning": "alignment, indentation, line spacing, space before/after paragraphs and borders."
+      },
+      {
+        "term": "Styles",
+        "meaning": "named sets of formatting applied consistently to headings and body text. Styles enable automatic tables of contents and help accessibility."
       }
     ],
     "examTips": [
@@ -1297,19 +1369,19 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 11,
-    "title": "11. Databases and data management",
+    "title": "Database Foundations, Relational Models & Data Integrity",
     "unit": "Unit 3: Productivity Tools & Databases",
     "overview": "A **database** is an organised collection of related data. A **Database Management System (DBMS)** is software used to define, store, query, update and control access to that data. Examples of database systems include relational DBMSs and document, key-value, graph and other database models.",
     "sections": [
       {
-        "title": "11.1 What is a database?",
+        "title": "What is a database?",
         "points": [
           "A **database** is an organised collection of related data. A **Database Management System (DBMS)** is software used to define, store, query, update and control access to that data. Examples of database systems include relational DBMSs and document, key-value, graph and other database models.",
           "A class library's spreadsheet may be enough for a tiny list. A database becomes more useful when multiple users or applications need reliable searching, constraints, relationships, permissions, concurrent changes and recovery."
         ]
       },
       {
-        "title": "11.2 Relational database concepts",
+        "title": "Relational database concepts",
         "points": [
           "A relational database organises data in tables.",
           "**Table/relation:** records of one general kind.",
@@ -1331,14 +1403,14 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "11.3 Why normalisation helps",
+        "title": "Why normalisation helps",
         "points": [
           "Database normalisation organises information to reduce unnecessary duplication and update problems. If each student row repeats a class teacher's name in many places, changing the teacher requires updating many records. Separating students and classes can reduce inconsistency.",
           "Normalisation is a design tool, not a requirement to split everything into dozens of tables. Good design balances correctness, clarity, query performance and the actual use case."
         ]
       },
       {
-        "title": "11.4 CRUD",
+        "title": "CRUD",
         "points": [
           "Common data operations are known as **CRUD**:",
           "**Create:** add a record.",
@@ -1349,7 +1421,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "11.5 Transactions and reliability",
+        "title": "Transactions and reliability",
         "points": [
           "A transaction groups operations that should succeed or fail together. Relational database systems commonly describe transaction quality using ACID:",
           "**Atomicity:** all-or-nothing for the transaction.",
@@ -1360,7 +1432,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "11.6 Spreadsheet versus database",
+        "title": "Spreadsheet versus database",
         "table": {
           "head": [
             "Spreadsheet",
@@ -1391,7 +1463,7 @@ export const itNotesComp: ChapterNote[] = [
         }
       },
       {
-        "title": "11.6 Spreadsheet versus database — Details",
+        "title": "Spreadsheet versus database — Details",
         "points": [
           "Neither tool replaces the other in every case. Choose according to data volume, reliability, users, risk and required workflow."
         ]
@@ -1399,12 +1471,20 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "11. Databases and data management",
-        "meaning": "A **database** is an organised collection of related data. A **Database Management System (DBMS)** is software used to define, store, query, update and control access to that data. Examples of database systems include relational DBMSs and document, key-value, graph and other database models."
+        "term": "database",
+        "meaning": "is an organised collection of related data. A **Database Management System (DBMS)** is software used to define, store, query, update and control access to that data."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Table/relation",
+        "meaning": "records of one general kind."
+      },
+      {
+        "term": "Row/record/tuple",
+        "meaning": "one instance, such as one student."
+      },
+      {
+        "term": "Column/field/attribute",
+        "meaning": "one property, such as `student_id` or `name`."
       }
     ],
     "examTips": [
@@ -1417,19 +1497,19 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 12,
-    "title": "12. Internet, Web, search and email",
+    "title": "The Internet, Web Protocols & Digital Communication",
     "unit": "Unit 4: Internet, Networks & Cybersecurity",
     "overview": "The **Internet** is a global network of interconnected networks that communicate using common protocols. The **World Wide Web** is a service that uses web technologies to access linked resources, commonly through browsers. Email, online games, voice calls and file transfer may use the Internet without being part of the Web itself.",
     "sections": [
       {
-        "title": "12.1 The Internet and the World Wide Web",
+        "title": "The Internet and the World Wide Web",
         "points": [
           "The **Internet** is a global network of interconnected networks that communicate using common protocols. The **World Wide Web** is a service that uses web technologies to access linked resources, commonly through browsers. Email, online games, voice calls and file transfer may use the Internet without being part of the Web itself.",
           "A **browser** requests and renders web resources. A **search engine** crawls or otherwise discovers content, indexes it and ranks results for a query. A browser and a search engine are not the same thing: the browser is the application; the search engine is a service that may be used inside it."
         ]
       },
       {
-        "title": "12.2 URL anatomy",
+        "title": "URL anatomy",
         "points": [
           "Example:",
           "`https` is the scheme/protocol.",
@@ -1445,21 +1525,21 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "12.3 DNS, IP address and domain names",
+        "title": "DNS, IP address and domain names",
         "points": [
           "The Domain Name System (DNS) helps translate human-friendly host names into records used to locate services. An IP address identifies a network interface or endpoint at a particular level of communication. IPv4 addresses commonly look like `192.0.2.10`; IPv6 addresses use hexadecimal groups separated by colons.",
           "DNS is not a guarantee that a website is trustworthy. Scam sites can have domain names and valid HTTPS certificates. Check the organisation, exact domain, page purpose and how you arrived at it."
         ]
       },
       {
-        "title": "12.4 HTTP and HTTPS",
+        "title": "HTTP and HTTPS",
         "points": [
           "HTTP is a protocol used for web requests and responses. HTTPS uses HTTP over a protected TLS connection, which can encrypt data in transit and help authenticate the server. HTTPS does **not** prove that a site is honest, accurate or free from malware. It protects the connection to the site whose identity is validated; it does not endorse the site's content.",
           "Never assume a site is safe simply because it shows a padlock. Avoid entering payment or personal information into unfamiliar websites, and navigate to sensitive services using bookmarks or their known official address."
         ]
       },
       {
-        "title": "12.5 How a web page loads (simplified)",
+        "title": "How a web page loads (simplified)",
         "points": [
           "1. The user enters a URL or clicks a link.",
           "2. The browser determines the destination and obtains needed DNS information.",
@@ -1473,7 +1553,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "12.6 Effective searching and source evaluation",
+        "title": "Effective searching and source evaluation",
         "points": [
           "Search is a skill. Try a clear key phrase, add the topic and trusted organisation, and refine the query when results are too broad. Quotation marks can help search for an exact phrase on supported engines. A minus sign may exclude a term on some engines. Search features change, so learn the engine's current syntax if exact operators matter.",
           "Evaluate a source by asking:",
@@ -1488,14 +1568,14 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "12.7 Email security",
+        "title": "Email security",
         "points": [
           "Email can carry links and attachments that impersonate trusted people or organisations. Check the full sender address, context, unexpected urgency and destination of links. A display name can be forged. If a message asks for money, password resets or sensitive files unexpectedly, verify through a separate trusted channel.",
           "Use multi-factor authentication on important accounts, maintain recovery options, and do not share one-time passcodes with callers or messages. Be cautious with attachments, macros and archive files, especially when you were not expecting them."
         ]
       },
       {
-        "title": "12.8 Cloud computing and online accounts",
+        "title": "Cloud computing and online accounts",
         "points": [
           "Cloud services provide computing, storage, databases or software over a network. They can make collaboration and remote access easier, but they also create dependencies on account security, service availability, network access, data location and provider terms. “In the cloud” means someone else's or an organisation's remote infrastructure is involved; it does not mean the data has no physical location.",
           "Know which account owns a file, who can access it, whether public links are enabled and how to export a copy. Use approved services for school or work data."
@@ -1504,12 +1584,16 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "12. Internet, Web, search and email",
-        "meaning": "The **Internet** is a global network of interconnected networks that communicate using common protocols. The **World Wide Web** is a service that uses web technologies to access linked resources, commonly through browsers. Email, online games, voice calls and file transfer may use the Internet without being part of the Web itself."
+        "term": "Internet",
+        "meaning": "is a global network of interconnected networks that communicate using common protocols. The **World Wide Web** is a service that uses web technologies to access linked resources, commonly through browsers."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "browser",
+        "meaning": "requests and renders web resources. A **search engine** crawls or otherwise discovers content, indexes it and ranks results for a query."
+      },
+      {
+        "term": "not",
+        "meaning": "prove that a site is honest, accurate or free from malware. It protects the connection to the site whose identity is validated; it does not endorse the site's content."
       }
     ],
     "examTips": [
@@ -1522,18 +1606,18 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 13,
-    "title": "13. Computer networks",
+    "title": "Computer Networks, Topologies, Architecture & OSI Model",
     "unit": "Unit 4: Internet, Networks & Cybersecurity",
     "overview": "A **computer network** connects devices so they can exchange data and share services. Devices may communicate through copper cables, fibre optics, radio signals or other media. Network design includes physical connections, addressing, routing, protocols, access rules, monitoring and security.",
     "sections": [
       {
-        "title": "13.1 What is a network?",
+        "title": "What is a network?",
         "points": [
           "A **computer network** connects devices so they can exchange data and share services. Devices may communicate through copper cables, fibre optics, radio signals or other media. Network design includes physical connections, addressing, routing, protocols, access rules, monitoring and security."
         ]
       },
       {
-        "title": "13.2 Network types",
+        "title": "Network types",
         "table": {
           "head": [
             "Type",
@@ -1572,13 +1656,13 @@ export const itNotesComp: ChapterNote[] = [
         }
       },
       {
-        "title": "13.2 Network types — Details",
+        "title": "Network types — Details",
         "points": [
           "Labels describe different dimensions and are not always mutually exclusive. A VPN is a logical overlay, not necessarily a separate physical network."
         ]
       },
       {
-        "title": "13.3 Network topologies",
+        "title": "Network topologies",
         "points": [
           "A **topology** describes how network links or devices are arranged.",
           "**Star:** devices connect to a central switch or access point. Common in modern LANs.",
@@ -1590,7 +1674,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "13.4 Network devices",
+        "title": "Network devices",
         "points": [
           "**Modem:** adapts signals for a particular access technology; the exact role depends on service type.",
           "**Router:** forwards traffic between IP networks and commonly connects a home network to an Internet service.",
@@ -1603,14 +1687,14 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "13.5 Addressing: MAC and IP",
+        "title": "Addressing: MAC and IP",
         "points": [
           "A **MAC address** is used at a data-link layer to identify a network interface in local communication contexts. An **IP address** supports addressing and routing at the Internet Protocol layer. MAC address behaviour can vary with virtualisation, spoofing and privacy features; it should not be treated as a permanent proof of a person's identity.",
           "IPv4 uses 32-bit addresses. IPv6 uses 128-bit addresses and was developed to provide a much larger address space and other protocol improvements. IP addresses can be public or private, static or dynamically assigned, depending on network design."
         ]
       },
       {
-        "title": "13.6 DHCP, DNS and NAT",
+        "title": "DHCP, DNS and NAT",
         "points": [
           "**DHCP:** automatically provides network configuration such as IP addresses and gateway information to clients.",
           "**DNS:** resolves names to records needed to find services.",
@@ -1619,7 +1703,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "13.7 Protocols",
+        "title": "Protocols",
         "points": [
           "A **protocol** is an agreed set of rules for communicating. Examples include:",
           "Ethernet and Wi-Fi at link/network access layers.",
@@ -1635,7 +1719,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "13.8 Bandwidth, throughput, latency and packet loss",
+        "title": "Bandwidth, throughput, latency and packet loss",
         "points": [
           "**Bandwidth:** a capacity measure of a channel or connection.",
           "**Throughput:** achieved data transfer rate.",
@@ -1646,7 +1730,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "13.9 Home and school Wi-Fi safety",
+        "title": "Home and school Wi-Fi safety",
         "points": [
           "Use modern supported security settings, a strong unique administrator password, current router firmware and a network password that is not shared publicly. Change default management credentials. Use a guest network for visitors or less-trusted devices if supported. Do not bypass school network rules; filtering and monitoring may be part of the school's safety obligations.",
           "Public Wi-Fi is not a reason to panic, but it is a reason to use HTTPS, keep devices updated, avoid unknown certificate warnings, turn off unnecessary sharing and use trusted network services. A VPN can protect traffic between the device and VPN endpoint under its threat model, but it does not make phishing or malware disappear."
@@ -1655,12 +1739,20 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "13. Computer networks",
-        "meaning": "A **computer network** connects devices so they can exchange data and share services. Devices may communicate through copper cables, fibre optics, radio signals or other media. Network design includes physical connections, addressing, routing, protocols, access rules, monitoring and security."
+        "term": "computer network",
+        "meaning": "connects devices so they can exchange data and share services. Devices may communicate through copper cables, fibre optics, radio signals or other media."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "topology",
+        "meaning": "describes how network links or devices are arranged."
+      },
+      {
+        "term": "Star",
+        "meaning": "devices connect to a central switch or access point. Common in modern LANs."
+      },
+      {
+        "term": "Bus",
+        "meaning": "devices share a main communication path; historically important, less common in modern switched Ethernet LANs."
       }
     ],
     "examTips": [
@@ -1674,7 +1766,7 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 14,
-    "title": "14. Cybersecurity and safe computing",
+    "title": "Cybersecurity Essentials, Threat Defense & Cryptography",
     "unit": "Unit 4: Internet, Networks & Cybersecurity",
     "overview": "Cybersecurity protects systems, accounts, networks and data from unauthorised access, misuse, disruption and damage. It is a set of practices and controls, not a single app.",
     "sections": [
@@ -1685,7 +1777,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "14.1 The CIA triad",
+        "title": "The CIA triad",
         "points": [
           "**Confidentiality:** only authorised people or systems can access information.",
           "**Integrity:** information and systems remain accurate and are changed only in authorised ways.",
@@ -1694,7 +1786,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "14.2 Authentication, authorisation and accounting",
+        "title": "Authentication, authorisation and accounting",
         "points": [
           "**Authentication:** verify who or what is requesting access.",
           "**Authorisation:** decide what the authenticated identity can do.",
@@ -1703,7 +1795,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "14.3 Passwords and multi-factor authentication",
+        "title": "Passwords and multi-factor authentication",
         "points": [
           "Use long, unique passwords or passphrases for each account. A password manager can generate and store them. Reusing a password means a breach at one site can put other accounts at risk. Avoid easily guessed facts, common substitutions and passwords shared with friends.",
           "**Multi-factor authentication (MFA)** requires more than one category of evidence, such as something you know, something you have, or something you are. App-based or hardware security keys may resist some attacks better than SMS codes; availability varies by service. Any MFA is often better than password-only access, but users still need to beware of approval-bombing and real-time phishing.",
@@ -1711,7 +1803,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "14.4 Phishing and social engineering",
+        "title": "Phishing and social engineering",
         "points": [
           "**Phishing** uses deceptive messages or sites to persuade people to reveal information, download malware or send money. **Social engineering** manipulates human trust, urgency, authority or curiosity.",
           "Warning signs may include:",
@@ -1725,7 +1817,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "14.5 Malware types",
+        "title": "Malware types",
         "points": [
           "**Virus:** code that attaches to another host or file and can replicate when executed.",
           "**Worm:** malware that can spread between systems without needing to attach to a host file in the traditional sense.",
@@ -1740,7 +1832,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "14.6 Safe response to a suspected infection",
+        "title": "Safe response to a suspected infection",
         "points": [
           "1. Stop entering passwords or sensitive information on the affected device.",
           "2. If an organisational device is involved, tell the responsible IT/security team promptly and follow their instructions.",
@@ -1753,32 +1845,32 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "14.7 Encryption and certificates",
+        "title": "Encryption and certificates",
         "points": [
           "**Encryption** transforms readable data into a form that should be unreadable without the proper key. **Encryption at rest** protects stored data; **encryption in transit** protects data moving across a network. Strong encryption depends on correct algorithms, implementation, key management and endpoints. Malware on an unlocked device may still access data the user can access.",
           "A digital certificate binds information—such as a public key—to an identity under a certification system. Browsers use certificate validation as part of HTTPS. A valid certificate is not a quality rating for the website; scammers can obtain certificates for domains they control."
         ]
       },
       {
-        "title": "14.8 Updates, patches and end-of-life software",
+        "title": "Updates, patches and end-of-life software",
         "points": [
           "Updates close known vulnerabilities as well as fixing defects and adding features. A device that no longer receives security updates becomes harder to protect. Prefer currently supported operating systems and applications. If a school or organisation uses legacy software, its administrators should manage isolation and compensating controls rather than expecting ordinary users to improvise."
         ]
       },
       {
-        "title": "14.9 Least privilege and defence in depth",
+        "title": "Least privilege and defence in depth",
         "points": [
           "The **principle of least privilege** gives each account or process only the access necessary. **Defence in depth** uses multiple safeguards because any single control can fail—for example, updates, MFA, backups, endpoint protection, monitoring and user training."
         ]
       },
       {
-        "title": "14.10 Backups and ransomware resilience",
+        "title": "Backups and ransomware resilience",
         "points": [
           "Backups should be separated from normal write access when practical, protected against unauthorised deletion, and tested through recovery. Synchronised folders alone may copy malicious changes. For crucial data, use versioned or offline/immutable copies and make sure recovery credentials are protected."
         ]
       },
       {
-        "title": "14.11 Safe coding and security boundaries",
+        "title": "Safe coding and security boundaries",
         "points": [
           "When writing software:",
           "Validate and constrain untrusted input.",
@@ -1793,7 +1885,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "14.12 Incident response mindset",
+        "title": "Incident response mindset",
         "points": [
           "A simple incident-response lifecycle is: **prepare → identify → contain → eradicate → recover → learn**. Organisations may use a formal framework, but the central ideas are to detect the issue, limit harm, remove the cause, restore safely and improve controls. Preserve appropriate evidence and communicate promptly."
         ]
@@ -1801,12 +1893,20 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "14. Cybersecurity and safe computing",
-        "meaning": "Cybersecurity protects systems, accounts, networks and data from unauthorised access, misuse, disruption and damage. It is a set of practices and controls, not a single app."
+        "term": "Confidentiality",
+        "meaning": "only authorised people or systems can access information."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Integrity",
+        "meaning": "information and systems remain accurate and are changed only in authorised ways."
+      },
+      {
+        "term": "Availability",
+        "meaning": "authorised users can access systems and data when needed."
+      },
+      {
+        "term": "Authentication",
+        "meaning": "verify who or what is requesting access."
       }
     ],
     "examTips": [
@@ -1819,19 +1919,19 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 15,
-    "title": "15. Digital citizenship, privacy and ethics",
+    "title": "Digital Citizenship, Privacy Laws & Computing Ethics",
     "unit": "Unit 4: Internet, Networks & Cybersecurity",
     "overview": "A digital footprint is the information associated with a person's activity on digital services. Some information is deliberately posted; other information may be generated by browsing, device settings, purchases, app use or service logs. Not all data collection is visible to the user.",
     "sections": [
       {
-        "title": "15.1 Digital footprint",
+        "title": "Digital footprint",
         "points": [
           "A digital footprint is the information associated with a person's activity on digital services. Some information is deliberately posted; other information may be generated by browsing, device settings, purchases, app use or service logs. Not all data collection is visible to the user.",
           "Before posting, ask: Would I be comfortable if a teacher, family member, future employer or the person in the image saw this? Could it reveal someone else's location, identity, private message or schedule? Can I undo the share? Assume that content may be copied or captured even if a platform later removes it."
         ]
       },
       {
-        "title": "15.2 Personal information and privacy",
+        "title": "Personal information and privacy",
         "points": [
           "Sensitive or personal information may include a full name combined with address, phone number, school and schedule, identity document numbers, passwords, financial data, precise location, health information, private photos and account recovery details. The exact legal definitions of personal data vary by jurisdiction.",
           "Practical privacy habits:",
@@ -1845,14 +1945,14 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "15.3 Respectful communication",
+        "title": "Respectful communication",
         "points": [
           "Netiquette means communicating considerately online. Use clear language, respect different opinions, avoid harassment, do not impersonate others, and do not forward private messages or embarrassing media for amusement. Text lacks facial expression and tone; reread a message before sending and ask for clarification instead of assuming intent.",
           "If targeted by bullying or threats, keep relevant evidence, block/report where appropriate, avoid escalating the exchange, and seek help from a trusted adult or responsible authority. Never retaliate by doxxing, hacking or sharing intimate material."
         ]
       },
       {
-        "title": "15.4 Copyright, licensing and plagiarism",
+        "title": "Copyright, licensing and plagiarism",
         "points": [
           "Copyright can protect text, photographs, music, videos, illustrations, code and other creative works. The fact that something is accessible online does not mean it is free to reuse. Follow the applicable licence, obtain permission when required, and attribute sources where requested. Educational exceptions differ by jurisdiction; do not assume every school use is automatically exempt.",
           "**Plagiarism** means presenting someone else's work or ideas as one's own. A good school project states which ideas, data, code or media came from other sources, quotes copied wording appropriately, and distinguishes the student's own work from adapted material.",
@@ -1860,26 +1960,26 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "15.5 Misinformation and manipulated media",
+        "title": "Misinformation and manipulated media",
         "points": [
           "Misinformation is inaccurate information shared regardless of intent; disinformation is generally understood as intentionally deceptive information. Images can be edited, audio cloned, screenshots fabricated and old material presented as new. Verification strategies include checking the original source, date, context, independent corroboration and reputable fact-checking. Reverse-image search and metadata can help but are not conclusive by themselves.",
           "Do not forward shocking claims solely because they provoke strong emotions. An accurate screenshot can still omit crucial context, and a genuine photo can be paired with a false caption."
         ]
       },
       {
-        "title": "15.6 Accessibility and inclusive design",
+        "title": "Accessibility and inclusive design",
         "points": [
           "Digital accessibility aims to make technology usable by people with different abilities, devices, languages and circumstances. Helpful practices include semantic headings, keyboard access, captions/transcripts, alternative text, legible text, sufficient contrast, clear error messages, resizable layouts and avoiding information conveyed only by colour. Accessibility improves usability for many people, not only those who use assistive technology."
         ]
       },
       {
-        "title": "15.7 Environmental impact and responsible use",
+        "title": "Environmental impact and responsible use",
         "points": [
           "Computing requires electricity, materials, manufacturing and transport. Extend device life where safe, repair when reasonable, remove sensitive data before authorised recycling, and use certified e-waste channels where available. Energy-efficient code and infrastructure can reduce unnecessary resource use. Do not put batteries or electronic waste into ordinary recycling unless local rules explicitly allow it."
         ]
       },
       {
-        "title": "15.8 Online payments and fraud awareness",
+        "title": "Online payments and fraud awareness",
         "points": [
           "Use official payment applications and trusted payment channels. Check recipient details before confirming a transaction. Never share UPI PINs, passwords or OTPs with people claiming to be support staff. A QR code or “collect” request may initiate a payment or approval rather than deliver money to you; read the app's confirmation screen carefully. Contact the bank or payment provider through official channels if fraud is suspected."
         ]
@@ -1887,12 +1987,8 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "15. Digital citizenship, privacy and ethics",
-        "meaning": "A digital footprint is the information associated with a person's activity on digital services. Some information is deliberately posted; other information may be generated by browsing, device settings, purchases, app use or service logs. Not all data collection is visible to the user."
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Plagiarism",
+        "meaning": "means presenting someone else's work or ideas as one's own. A good school project states which ideas, data, code or media came from other sources, quotes copied wording appropriately, and distinguishes the student's own work from adapted material."
       }
     ],
     "examTips": [
@@ -1905,12 +2001,12 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 16,
-    "title": "16. Computational thinking and algorithms",
+    "title": "Computational Thinking, Problem Decomposition & Logic",
     "unit": "Unit 5: Computational Thinking & Algorithms",
     "overview": "Computational thinking is a problem-solving approach that uses concepts from computing. It is useful outside programming too.",
     "sections": [
       {
-        "title": "16.1 What is computational thinking?",
+        "title": "What is computational thinking?",
         "points": [
           "Computational thinking is a problem-solving approach that uses concepts from computing. It is useful outside programming too.",
           "Four commonly taught components:",
@@ -1922,7 +2018,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "16.2 What is an algorithm?",
+        "title": "What is an algorithm?",
         "points": [
           "An **algorithm** is a finite, sufficiently precise sequence of steps for solving a problem or performing a task. It should define the required input, produce the expected output, and terminate for the intended inputs. The algorithm can be implemented in different programming languages.",
           "Example algorithm to find the larger of two numbers:",
@@ -1934,7 +2030,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "16.3 Properties of a good algorithm",
+        "title": "Properties of a good algorithm",
         "points": [
           "**Correctness:** produces the expected result for valid inputs.",
           "**Termination:** finishes rather than running forever for the intended inputs.",
@@ -1947,26 +2043,26 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "16.4 Variables and state",
+        "title": "Variables and state",
         "points": [
           "A **variable** names a value or storage location used by a program, according to the language's model. **State** is the information that determines the current condition of a computation. For example, a game may have variables for score, player position, lives and whether the game has ended.",
           "Changing state is powerful but can create bugs. If score must never be negative, define and enforce that rule in the program."
         ]
       },
       {
-        "title": "16.5 Decomposition and modularity",
+        "title": "Decomposition and modularity",
         "points": [
           "Break a project into modules with clear responsibilities. A marks application might have separate pieces for reading inputs, validating marks, calculating the total, calculating a percentage, assigning a grade and displaying results. Each piece can be tested independently, making errors easier to locate."
         ]
       },
       {
-        "title": "16.6 Input validation",
+        "title": "Input validation",
         "points": [
           "**Validation** checks whether input satisfies expected rules. If a marks program expects values from 0 to 100, it should reject or handle a value of 150. Validation should cover type, range, length, allowed choices and relevant relationships. Do not confuse validation with making input trustworthy: an attacker may deliberately send data outside the user interface, so server-side systems must validate too."
         ]
       },
       {
-        "title": "16.7 Edge cases",
+        "title": "Edge cases",
         "points": [
           "An edge case is an unusual but valid or important boundary situation. Examples:",
           "An empty list.",
@@ -1981,7 +2077,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "16.8 Efficiency and growth",
+        "title": "Efficiency and growth",
         "points": [
           "Algorithm complexity describes how resource requirements grow with input size. For example, checking every item in a list of `n` items takes work that grows approximately in proportion to `n` in a simple linear search. A nested comparison loop may perform work that grows roughly with `n²`. Complexity is a useful model, not a prediction of exact running time on every computer."
         ]
@@ -1989,12 +2085,20 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "16. Computational thinking and algorithms",
-        "meaning": "Computational thinking is a problem-solving approach that uses concepts from computing. It is useful outside programming too."
+        "term": "Decomposition",
+        "meaning": "break a large problem into smaller tasks."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Pattern recognition",
+        "meaning": "notice similarities or repeated structures."
+      },
+      {
+        "term": "Abstraction",
+        "meaning": "focus on the relevant details and ignore unnecessary detail for the current task."
+      },
+      {
+        "term": "Algorithm design",
+        "meaning": "create a precise sequence of steps that solves the problem."
       }
     ],
     "examTips": [
@@ -2009,12 +2113,12 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 17,
-    "title": "17. Flowcharts, pseudocode and problem solving",
+    "title": "Flowcharts, Pseudocode & Algorithm Design",
     "unit": "Unit 5: Computational Thinking & Algorithms",
     "overview": "Pseudocode expresses an algorithm using readable, structured statements without requiring exact syntax of a programming language. There is no single universal pseudocode standard. A good pseudocode description is consistent and unambiguous.",
     "sections": [
       {
-        "title": "17.1 Pseudocode",
+        "title": "Pseudocode",
         "points": [
           "Pseudocode expresses an algorithm using readable, structured statements without requiring exact syntax of a programming language. There is no single universal pseudocode standard. A good pseudocode description is consistent and unambiguous.",
           "Example: calculate an average safely.",
@@ -2031,7 +2135,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "17.2 Common flowchart symbols",
+        "title": "Common flowchart symbols",
         "table": {
           "head": [
             "Symbol (conceptual shape)",
@@ -2066,13 +2170,13 @@ export const itNotesComp: ChapterNote[] = [
         }
       },
       {
-        "title": "17.2 Common flowchart symbols — Details",
+        "title": "Common flowchart symbols — Details",
         "points": [
           "Conventions may vary by school or tool. Keep the flow direction clear and label decision branches."
         ]
       },
       {
-        "title": "17.3 Example: even or odd",
+        "title": "Example: even or odd",
         "points": [
           "Pseudocode:",
           "`mod` is the remainder operation. Any integer divisible by 2 has remainder 0. In Python, the equivalent operator is `%`."
@@ -2087,7 +2191,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "17.4 Dry runs and trace tables",
+        "title": "Dry runs and trace tables",
         "points": [
           "A **dry run** means following an algorithm manually with a set of inputs. A trace table records variable values after each step. It helps detect mistakes before running code.",
           "For a loop that adds the numbers 1 through 3:"
@@ -2123,13 +2227,13 @@ export const itNotesComp: ChapterNote[] = [
         }
       },
       {
-        "title": "17.4 Dry runs and trace tables — Details",
+        "title": "Dry runs and trace tables — Details",
         "points": [
           "A trace table forces careful attention to when variables change and when conditions are evaluated."
         ]
       },
       {
-        "title": "17.5 Program design recipe",
+        "title": "Program design recipe",
         "points": [
           "1. Restate the problem in your own words.",
           "2. Identify inputs, outputs and constraints.",
@@ -2146,12 +2250,20 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "17. Flowcharts, pseudocode and problem solving",
-        "meaning": "Pseudocode expresses an algorithm using readable, structured statements without requiring exact syntax of a programming language. There is no single universal pseudocode standard. A good pseudocode description is consistent and unambiguous."
+        "term": "Oval / rounded terminator",
+        "meaning": "Start or end"
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Rectangle",
+        "meaning": "Process or calculation"
+      },
+      {
+        "term": "Parallelogram",
+        "meaning": "Input/output"
+      },
+      {
+        "term": "Diamond",
+        "meaning": "Decision, usually branches such as Yes/No"
       }
     ],
     "examTips": [
@@ -2163,54 +2275,54 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 18,
-    "title": "18. Block-based coding and Scratch-style programming",
+    "title": "Visual Block Programming & Interactive Simulation",
     "unit": "Unit 5: Computational Thinking & Algorithms",
     "overview": "Block-based environments represent programming constructs as visual pieces that fit together. They reduce some punctuation and spelling errors so beginners can concentrate on sequence, events, loops, conditions, variables and decomposing problems. The underlying concepts transfer to text-based languages.",
     "sections": [
       {
-        "title": "18.1 Why blocks help",
+        "title": "Why blocks help",
         "points": [
           "Block-based environments represent programming constructs as visual pieces that fit together. They reduce some punctuation and spelling errors so beginners can concentrate on sequence, events, loops, conditions, variables and decomposing problems. The underlying concepts transfer to text-based languages."
         ]
       },
       {
-        "title": "18.2 Sequence",
+        "title": "Sequence",
         "points": [
           "Sequence means instructions run in order. Example: move a sprite 10 steps, turn 15 degrees and play a sound. Reordering instructions may change the result."
         ]
       },
       {
-        "title": "18.3 Events",
+        "title": "Events",
         "points": [
           "An event starts a script when something happens: clicking the green flag, pressing a key, clicking a sprite or receiving a message. Event-driven thinking appears later in user interfaces, games, web programming and devices."
         ]
       },
       {
-        "title": "18.4 Loops",
+        "title": "Loops",
         "points": [
           "A loop repeats a set of instructions. A repeat-10 block makes an action happen ten times; a forever loop continues until stopped. Infinite loops can be intentional in a game but should have a safe stop mechanism."
         ]
       },
       {
-        "title": "18.5 Conditions",
+        "title": "Conditions",
         "points": [
           "A condition asks a question whose result is true or false, such as `score > 10` or `touching edge?`. An `if` block executes only when its condition is true; `if/else` chooses one of two paths."
         ]
       },
       {
-        "title": "18.6 Variables and lists",
+        "title": "Variables and lists",
         "points": [
           "A variable stores a value such as score or name. A list stores a collection of values, such as the questions in a quiz. A list allows repeated operations on a collection, but students should learn that item positions and index numbering differ across languages and tools."
         ]
       },
       {
-        "title": "18.7 Message passing and multiple sprites",
+        "title": "Message passing and multiple sprites",
         "points": [
           "Programs with multiple sprites or actors can use messages to coordinate actions. This is an introduction to event-driven systems and components communicating through defined signals."
         ]
       },
       {
-        "title": "18.8 Beginner project: quiz game",
+        "title": "Beginner project: quiz game",
         "points": [
           "Requirements:",
           "Show one question at a time.",
@@ -2223,13 +2335,13 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "18.9 Beginner project: animation",
+        "title": "Beginner project: animation",
         "points": [
           "Plan the start position, event, sequence of movement, loop, condition for reaching an edge and the end behaviour. Use a small change at a time. A student should be able to explain how each block affects the animation rather than merely copying a project."
         ]
       },
       {
-        "title": "18.10 Transition from blocks to text",
+        "title": "Transition from blocks to text",
         "points": [
           "Map block concepts to text programming:",
           "“set score to 0” → assignment such as `score = 0`.",
@@ -2243,12 +2355,8 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "18. Block-based coding and Scratch-style programming",
+        "term": "Visual Block Programming & Interactive Simulation",
         "meaning": "Block-based environments represent programming constructs as visual pieces that fit together. They reduce some punctuation and spelling errors so beginners can concentrate on sequence, events, loops, conditions, variables and decomposing problems. The underlying concepts transfer to text-based languages."
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
       }
     ],
     "examTips": [
@@ -2260,18 +2368,18 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 19,
-    "title": "19. Programming concepts before a language",
+    "title": "Universal Programming Constructs & Core Paradigms",
     "unit": "Unit 5: Computational Thinking & Algorithms",
     "overview": "A program is a set of instructions written in a programming language. The development process may involve a source file, compiler or interpreter, runtime, libraries and an execution environment. The details depend on the language and platform.",
     "sections": [
       {
-        "title": "19.1 Source code and execution",
+        "title": "Source code and execution",
         "points": [
           "A program is a set of instructions written in a programming language. The development process may involve a source file, compiler or interpreter, runtime, libraries and an execution environment. The details depend on the language and platform."
         ]
       },
       {
-        "title": "19.2 Syntax and semantics",
+        "title": "Syntax and semantics",
         "points": [
           "**Syntax:** the rules for writing valid code.",
           "**Semantics:** what valid code means or does.",
@@ -2279,21 +2387,21 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "19.3 Variables and data types",
+        "title": "Variables and data types",
         "points": [
           "A variable provides a name used to refer to a value. A data type describes the kind of value and the operations available for it. Common types include integers, floating-point numbers, strings, Booleans and collections.",
           "Different languages handle types differently. Python is dynamically typed: a name can refer to values of different types over time. C and Java generally require type declarations and apply different compile-time and runtime rules."
         ]
       },
       {
-        "title": "19.4 Constants and naming",
+        "title": "Constants and naming",
         "points": [
           "A **constant** represents a value intended not to change. Some languages enforce constants directly; in Python, uppercase names such as `TAX_RATE` are a convention indicating that code should treat the name as constant.",
           "Use descriptive identifiers such as `total_marks` rather than `x` for important values. Naming rules vary by language; identifiers generally cannot contain spaces and must not clash with reserved keywords."
         ]
       },
       {
-        "title": "19.5 Operators and expressions",
+        "title": "Operators and expressions",
         "points": [
           "Operators combine or transform values. Common groups:",
           "Arithmetic: addition, subtraction, multiplication, division and remainder.",
@@ -2305,32 +2413,32 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "19.6 Boolean logic",
+        "title": "Boolean logic",
         "points": [
           "A Boolean has two logical values: true and false. Conditions combine comparisons. Example: a student receives a certificate only if `score >= 80 AND attendance >= 90` under a hypothetical rule. The values and rule are examples only; actual policies must be taken from the responsible authority.",
           "Be careful with `AND` and `OR`: in many languages, `A AND B` is true only when both conditions are true; `A OR B` is true if at least one is true. Some languages short-circuit evaluation, meaning the second expression may not run if the first determines the result."
         ]
       },
       {
-        "title": "19.7 Type conversion",
+        "title": "Type conversion",
         "points": [
           "Type conversion changes a value from one type to another. A number read from a text field may initially be a string. A program must convert and validate it before mathematical operations. Conversion can fail or lose information; converting a decimal to an integer may truncate in some languages rather than round."
         ]
       },
       {
-        "title": "19.8 Scope and lifetime",
+        "title": "Scope and lifetime",
         "points": [
           "Scope describes where a name can be accessed. Lifetime describes how long a value or object exists. Local variables are usually available within a function or block; global/module variables have broader scope. Overusing global state makes code harder to reason about and test."
         ]
       },
       {
-        "title": "19.9 Comments and documentation",
+        "title": "Comments and documentation",
         "points": [
           "Comments explain intent, constraints and non-obvious choices. They should be updated when code changes. Useful documentation describes the purpose, inputs, outputs, assumptions, expected errors and how to run the program."
         ]
       },
       {
-        "title": "19.10 Pseudocode-to-code translation",
+        "title": "Pseudocode-to-code translation",
         "points": [
           "Translate one logical construct at a time. For an `if` algorithm, map the condition and branches; for a loop, identify initialisation, condition, update and termination. Do not translate line-by-line mechanically if the target language's idioms or safety rules differ."
         ]
@@ -2338,12 +2446,16 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "19. Programming concepts before a language",
-        "meaning": "A program is a set of instructions written in a programming language. The development process may involve a source file, compiler or interpreter, runtime, libraries and an execution environment. The details depend on the language and platform."
+        "term": "Syntax",
+        "meaning": "the rules for writing valid code."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Semantics",
+        "meaning": "what valid code means or does."
+      },
+      {
+        "term": "constant",
+        "meaning": "represents a value intended not to change. Some languages enforce constants directly; in Python, uppercase names such as `TAX_RATE` are a convention indicating that code should treat the name as constant."
       }
     ],
     "examTips": [
@@ -2355,7 +2467,7 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 20,
-    "title": "20. Python foundations",
+    "title": "Python Foundations: Syntax, Variables & Dynamic Typing",
     "unit": "Unit 6: Python Programming (Basics to OOP)",
     "overview": "Python is a high-level general-purpose programming language used for education, automation, web services, data work, scientific computing and many other tasks. It has readable syntax and a large standard library. Python versions and library APIs change over time; use the official documentation for the installed version.",
     "sections": [
@@ -2366,7 +2478,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "20.1 Setting up Python",
+        "title": "Setting up Python",
         "points": [
           "Common ways to run Python include:",
           "An official Python installation plus a code editor.",
@@ -2378,7 +2490,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "20.2 Your first Python program",
+        "title": "Your first Python program",
         "points": [
           "`print()` writes a representation of values to standard output. Text is written inside quotes. Python uses indentation to define blocks, so consistent indentation is essential."
         ],
@@ -2387,7 +2499,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "20.3 Comments",
+        "title": "Comments",
         "points": [
           "A comment begins with `#` and continues to the end of that line. Comments are ignored as executable statements. Use them to explain why a choice is made, not to repeat what an obvious line already says."
         ],
@@ -2397,7 +2509,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "20.4 Variables and assignment",
+        "title": "Variables and assignment",
         "points": [
           "The `=` operator assigns a value to a name; it is not the same as a mathematical equality test. To compare values for equality in Python, use `==`.",
           "Variable names may contain letters, digits and underscores, but cannot start with a digit and cannot be a reserved keyword. Names are case-sensitive: `score`, `Score` and `SCORE` are different names."
@@ -2413,7 +2525,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "20.5 Basic data types",
+        "title": "Basic data types",
         "points": [
           "Use `type(value)` when learning the type. Python uses `True`, `False` and `None` with capital letters exactly as shown.",
           "Integers can grow beyond fixed 32-bit ranges in ordinary Python integer arithmetic, subject to available memory. Floating-point values use finite precision; a decimal such as `0.1` is not represented exactly in binary floating point. For money or exact decimal arithmetic, use an appropriate decimal representation or integer minor units rather than assuming all floating-point calculations are exact."
@@ -2427,7 +2539,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "20.6 Input and output",
+        "title": "Input and output",
         "points": [
           "`input()` returns text. Convert it before using it as a number. If the user enters text that cannot be converted by `int()`, Python raises `ValueError`; later chapters show how to handle that case.",
           "Use clear prompts and helpful feedback. Avoid printing confidential information or unnecessary personal details to logs."
@@ -2442,7 +2554,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "20.7 Arithmetic operators",
+        "title": "Arithmetic operators",
         "table": {
           "head": [
             "Operator",
@@ -2497,13 +2609,13 @@ export const itNotesComp: ChapterNote[] = [
         }
       },
       {
-        "title": "20.7 Arithmetic operators — Details",
+        "title": "Arithmetic operators — Details",
         "points": [
           "Floor division rounds toward negative infinity, which surprises learners with negative operands: `-7 // 2` is `-4`. Remainder behaviour follows Python's definition and is consistent with the floor-division relationship."
         ]
       },
       {
-        "title": "20.8 Comparison and logical operators",
+        "title": "Comparison and logical operators",
         "points": [
           "Comparison operators include `==`, `!=`, `<`, `<=`, `>` and `>=`. Logical operators are `and`, `or` and `not`. `is` tests object identity and should not be used as a substitute for `==` when comparing ordinary values. For `None`, `value is None` is the conventional identity check."
         ],
@@ -2516,7 +2628,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "20.9 Type conversion and rounding",
+        "title": "Type conversion and rounding",
         "points": [
           "A conversion must make sense for the input. `int(\"42.5\")` fails; a decimal string is not an integer literal. `round()` follows Python's rounding behaviour, which can differ from some school expectations for exact halfway cases due to binary floating point and tie-breaking rules. If grading requires a particular rounding rule, specify and test it."
         ],
@@ -2530,7 +2642,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "20.10 A complete beginner program",
+        "title": "A complete beginner program",
         "points": [
           "This program demonstrates input, conversion, a list, built-in functions, a conditional expression in a generator, and output. It still needs error handling for non-numeric text; the exception chapter explains that improvement. Avoid claiming the result represents a real school's grading policy unless the policy is specified."
         ],
@@ -2552,7 +2664,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "20.11 String formatting",
+        "title": "String formatting",
         "points": [
           "An **f-string** embeds expressions inside `{}`. Format specifications such as `:.2f` display a floating-point value to two places. Formatting controls presentation; it does not necessarily change the stored numeric value."
         ],
@@ -2564,7 +2676,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "20.12 Naming style and readability",
+        "title": "Naming style and readability",
         "points": [
           "Common Python style conventions include `snake_case` for variable and function names, `PascalCase` for class names and uppercase names for constants. Follow project conventions and the official Python style guidance when working with others. A readable name such as `total_price` is preferable to `tp` when meaning is not obvious."
         ]
@@ -2572,12 +2684,8 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "20. Python foundations",
-        "meaning": "Python is a high-level general-purpose programming language used for education, automation, web services, data work, scientific computing and many other tasks. It has readable syntax and a large standard library. Python versions and library APIs change over time; use the official documentation for the installed version."
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "f-string",
+        "meaning": "embeds expressions inside `{}`. Format specifications such as `:."
       }
     ],
     "examTips": [
@@ -2590,12 +2698,12 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 21,
-    "title": "21. Decisions and conditions in Python",
+    "title": "Control Flow: Conditionals & Logical Branching in Python",
     "unit": "Unit 6: Python Programming (Basics to OOP)",
     "overview": "The example is an invented grading scheme. In an actual system, use the institution's published grade rules. Python evaluates conditions from top to bottom and executes the first branch whose condition is true. The order matters: if `marks >= 60` came before `marks >= 90`, a score of 95 could receive the wrong grade.",
     "sections": [
       {
-        "title": "21.1 `if`, `elif` and `else`",
+        "title": "`if`, `elif` and `else`",
         "points": [
           "The example is an invented grading scheme. In an actual system, use the institution's published grade rules. Python evaluates conditions from top to bottom and executes the first branch whose condition is true. The order matters: if `marks >= 60` came before `marks >= 90`, a score of 95 could receive the wrong grade."
         ],
@@ -2615,13 +2723,13 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "21.2 Indentation",
+        "title": "Indentation",
         "points": [
           "Python blocks are formed by indentation. Standard practice is four spaces per level. Do not mix tabs and spaces inconsistently. An indentation error can stop code from running; incorrect indentation in a language with braces might produce a different logical structure instead."
         ]
       },
       {
-        "title": "21.3 Nested conditions",
+        "title": "Nested conditions",
         "points": [
           "Nested conditions can be hard to follow if they become deep. Combine conditions when it improves clarity, or extract a function with a descriptive name."
         ],
@@ -2639,7 +2747,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "21.4 Truthiness",
+        "title": "Truthiness",
         "points": [
           "In Python, some values are false in conditions: `False`, `None`, numeric zero and empty collections/strings. Many other values are true. Example:",
           "Truthiness is convenient, but an explicit comparison may be clearer when the business rule is complex. Do not confuse the text string `\"False\"` with the Boolean value `False`; a non-empty string is truthy."
@@ -2653,7 +2761,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "21.5 Membership tests",
+        "title": "Membership tests",
         "points": [
           "`in` tests membership in a collection or substring membership for strings. For user-facing choice lists, display the valid choices and normalise input carefully."
         ],
@@ -2668,7 +2776,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "21.6 Conditional expressions",
+        "title": "Conditional expressions",
         "points": [
           "A conditional expression is concise, but do not nest many of them into one line. Readability is usually more important than saving a few lines."
         ],
@@ -2677,7 +2785,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "21.7 Avoiding common condition bugs",
+        "title": "Avoiding common condition bugs",
         "points": [
           "Use `==` for equality comparison, not `=`.",
           "Check the order of `if`/`elif` branches.",
@@ -2691,12 +2799,8 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "21. Decisions and conditions in Python",
+        "term": "Control Flow: Conditionals & Logical Branching in Python",
         "meaning": "The example is an invented grading scheme. In an actual system, use the institution's published grade rules. Python evaluates conditions from top to bottom and executes the first branch whose condition is true. The order matters: if `marks >= 60` came before `marks >= 90`, a score of 95 could receive the wrong grade."
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
       }
     ],
     "examTips": [
@@ -2710,12 +2814,12 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 22,
-    "title": "22. Loops and repetition in Python",
+    "title": "Loops & Iteration: Definite & Indefinite Repetition",
     "unit": "Unit 6: Python Programming (Basics to OOP)",
     "overview": "A `for` loop iterates through items in an iterable.",
     "sections": [
       {
-        "title": "22.1 `for` loops",
+        "title": "`for` loops",
         "points": [
           "A `for` loop iterates through items in an iterable.",
           "A **list** is an ordered collection; a loop processes its elements one by one. The loop variable is assigned each item during iteration."
@@ -2726,7 +2830,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "22.2 `range()`",
+        "title": "`range()`",
         "points": [
           "The output is `0, 1, 2, 3, 4`: the stop value is excluded. `range(start, stop, step)` can define a start and step. Example `range(1, 6)` produces 1 through 5. A zero step is invalid. A negative step can count downward when the boundary is chosen appropriately."
         ],
@@ -2736,7 +2840,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "22.3 `while` loops",
+        "title": "`while` loops",
         "points": [
           "A `while` loop continues while its condition is true. If the condition never becomes false and there is no other exit, the loop may run forever. Check the termination condition before coding and update the variables that affect it."
         ],
@@ -2748,7 +2852,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "22.4 Accumulators and counters",
+        "title": "Accumulators and counters",
         "points": [
           "`total` is an accumulator: it maintains a running result. A counter tracks how many events or items have occurred. Initialise both deliberately, and consider whether zero or a negative starting value makes sense for the problem."
         ],
@@ -2760,7 +2864,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "22.5 `break` and `continue`",
+        "title": "`break` and `continue`",
         "points": [
           "`break` exits the nearest enclosing loop.",
           "`continue` skips the rest of the current iteration and begins the next one.",
@@ -2768,7 +2872,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "22.6 Nested loops",
+        "title": "Nested loops",
         "points": [
           "The inner loop completes its iterations for each iteration of the outer loop. Nested loops are useful for tables, grids and pairwise comparisons. Their work can grow quickly; a loop over 100 items nested inside another 100-item loop may perform about 10,000 inner operations."
         ],
@@ -2779,19 +2883,19 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "22.7 Sentinel-controlled input",
+        "title": "Sentinel-controlled input",
         "points": [
           "A sentinel is a special value that ends input. Example: keep reading non-empty names until the user presses Enter. Choose a sentinel that is not likely to be valid data, or use a clear separate exit command. Do not let an accidental data value terminate a task unexpectedly."
         ]
       },
       {
-        "title": "22.8 Loop invariants: an advanced idea",
+        "title": "Loop invariants: an advanced idea",
         "points": [
           "A **loop invariant** is a condition that should remain true at a defined point during every iteration. For a running total, an invariant might say that `total` equals the sum of all values processed so far. This kind of reasoning helps prove that loops work, especially for searching and sorting algorithms."
         ]
       },
       {
-        "title": "22.9 Common loop mistakes",
+        "title": "Common loop mistakes",
         "points": [
           "Off-by-one errors caused by inclusive/exclusive boundaries.",
           "Forgetting to update a `while` loop variable.",
@@ -2806,12 +2910,12 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "22. Loops and repetition in Python",
-        "meaning": "A `for` loop iterates through items in an iterable."
+        "term": "list",
+        "meaning": "is an ordered collection; a loop processes its elements one by one. The loop variable is assigned each item during iteration."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "loop invariant",
+        "meaning": "is a condition that should remain true at a defined point during every iteration. For a running total, an invariant might say that `total` equals the sum of all values processed so far."
       }
     ],
     "examTips": [
@@ -2823,12 +2927,12 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 23,
-    "title": "23. Python strings and collections",
+    "title": "Data Structures: Lists, Tuples, Dictionaries & Sets",
     "unit": "Unit 6: Python Programming (Basics to OOP)",
     "overview": "A string (`str`) is an immutable sequence of Unicode code points. Common operations:",
     "sections": [
       {
-        "title": "23.1 Strings",
+        "title": "Strings",
         "points": [
           "A string (`str`) is an immutable sequence of Unicode code points. Common operations:",
           "`strip()` removes whitespace at the ends; `lower()` and `upper()` change case for display/comparison in many languages; `replace()` returns a new string; `find()` returns a position or `-1` when not found. Unicode case rules can be more complex than simple English A–Z conversion."
@@ -2843,7 +2947,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "23.2 Indexing and slicing",
+        "title": "Indexing and slicing",
         "points": [
           "Python indexing starts at 0. Negative indices count from the end. In a slice, the stop index is excluded. Indexing outside a string raises an error, while slices are generally clipped to valid boundaries."
         ],
@@ -2858,7 +2962,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "23.3 Splitting and joining",
+        "title": "Splitting and joining",
         "points": [
           "Use `split()` for simple text patterns. CSV files can contain quoted commas and escaping rules, so use Python's `csv` module rather than splitting arbitrary CSV content on commas."
         ],
@@ -2870,7 +2974,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "23.4 Lists",
+        "title": "Lists",
         "points": [
           "A list is an ordered, mutable collection that can contain values of different types, although keeping related values consistent often makes code clearer.",
           "Common operations: `append`, `extend`, `insert`, `remove`, `pop`, `sort`, `reverse` and slicing. `sorted(list)` returns a new sorted list; `list.sort()` changes the existing list and returns `None`.",
@@ -2891,7 +2995,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "23.5 Tuples",
+        "title": "Tuples",
         "points": [
           "A tuple is an ordered immutable sequence. It is useful for fixed groupings such as a point `(x, y)` or a returned pair of values. Immutability applies to the tuple's references, not necessarily to mutable objects contained inside it.",
           "A one-element tuple uses a trailing comma: `(5,)`. Without the comma, `(5)` is just the integer in parentheses."
@@ -2902,7 +3006,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "23.6 Dictionaries",
+        "title": "Dictionaries",
         "points": [
           "A dictionary stores key-value mappings.",
           "Keys must be hashable. Accessing a missing key with square brackets raises `KeyError`; `get()` can provide a default. Dictionaries are useful for records, lookup tables and structured configuration. Avoid storing sensitive personal records in a plain file without appropriate permission and protection."
@@ -2919,7 +3023,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "23.7 Sets",
+        "title": "Sets",
         "points": [
           "A set stores distinct hashable elements and supports membership checks and set operations.",
           "Sets do not represent a guaranteed sequence for position-based access. Common operations include union, intersection, difference and symmetric difference. Use a list or another ordered collection when order is part of the requirement."
@@ -2931,7 +3035,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "23.8 Choosing the right collection",
+        "title": "Choosing the right collection",
         "table": {
           "head": [
             "Collection",
@@ -2980,7 +3084,7 @@ export const itNotesComp: ChapterNote[] = [
         }
       },
       {
-        "title": "23.9 Sorting and custom keys",
+        "title": "Sorting and custom keys",
         "points": [
           "A sorting key defines what should be compared. If records have tied scores, decide whether a secondary rule is necessary and document it. Sorting text may depend on Unicode and locale; simple code-point order is not always the same as dictionary order for a language."
         ],
@@ -2996,7 +3100,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "23.10 Comprehensions",
+        "title": "Comprehensions",
         "points": [
           "Comprehensions create collections concisely. Use them when the transformation is simple; a conventional loop is often clearer for complex logic or multiple side effects."
         ],
@@ -3008,12 +3112,8 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "23. Python strings and collections",
+        "term": "Data Structures: Lists, Tuples, Dictionaries & Sets",
         "meaning": "A string (`str`) is an immutable sequence of Unicode code points. Common operations:"
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
       }
     ],
     "examTips": [
@@ -3026,12 +3126,12 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 24,
-    "title": "24. Functions, modules and reusable code",
+    "title": "Modular Programming: Functions, Scope & Modules",
     "unit": "Unit 6: Python Programming (Basics to OOP)",
     "overview": "A function names a reusable unit of work. It reduces duplication, makes programs easier to test and separates responsibilities. A function should have a clear purpose and inputs/outputs.",
     "sections": [
       {
-        "title": "24.1 Why use functions?",
+        "title": "Why use functions?",
         "points": [
           "A function names a reusable unit of work. It reduces duplication, makes programs easier to test and separates responsibilities. A function should have a clear purpose and inputs/outputs.",
           "`def` defines a function. Parameters (`a`, `b`) receive arguments; `return` sends a result back to the caller. `print()` displays output, while `return` makes a value available to the calling code. They are not interchangeable."
@@ -3046,7 +3146,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "24.2 Parameters and arguments",
+        "title": "Parameters and arguments",
         "points": [
           "Python supports positional arguments, keyword arguments, default values and variable-length argument forms. Choose descriptive parameter names and avoid mutable objects as default parameter values unless the behaviour is intentional and understood.",
           "Arguments should be validated when the function has specific requirements. A type annotation can communicate intent, but Python generally does not enforce annotations automatically at runtime."
@@ -3060,7 +3160,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "24.3 Return values and early exits",
+        "title": "Return values and early exits",
         "points": [
           "A function may return a value, return multiple values grouped as a tuple, or return `None` when no explicit value is returned. `return` ends that function call. Use early returns when they simplify validation and avoid deeply nested branches."
         ],
@@ -3072,13 +3172,13 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "24.4 Scope",
+        "title": "Scope",
         "points": [
           "Names defined inside a function are usually local to that function. Names declared at module level are global to the module. Python resolves names using scope rules (commonly described as local, enclosing, global and built-in). Avoid changing global variables inside functions unnecessarily; passing data explicitly makes dependencies visible and testing easier."
         ]
       },
       {
-        "title": "24.5 Modules and imports",
+        "title": "Modules and imports",
         "points": [
           "A **module** is a Python file or importable unit that provides names. The standard library contains modules for mathematics, dates, JSON, CSV, files, random numbers and much more.",
           "Prefer clear imports and avoid naming your own file after a standard-library module such as `random.py`, `email.py` or `json.py`, because it can shadow the intended module."
@@ -3092,7 +3192,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "24.6 Main guard",
+        "title": "Main guard",
         "points": [
           "The main guard lets a Python file behave differently when run directly versus imported by another module. It becomes useful as a project grows beyond a single small script."
         ],
@@ -3105,13 +3205,13 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "24.7 Packages and dependencies",
+        "title": "Packages and dependencies",
         "points": [
           "A package groups related modules. Third-party packages can extend Python, but adding dependencies adds maintenance and supply-chain risk. Use a virtual environment, install only packages needed, record dependencies, and use trusted package sources. Never copy a secret token or private dataset into a public package or code repository."
         ]
       },
       {
-        "title": "24.8 Recursion",
+        "title": "Recursion",
         "points": [
           "A recursive function calls itself on a smaller subproblem. It needs a **base case** to stop recursion and a step that moves toward that case.",
           "This is a teaching example. Large recursion depth can fail; iteration may be more appropriate for some tasks. In mathematics, `0!` is defined as 1, which the example returns."
@@ -3126,7 +3226,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "24.9 Docstrings and type hints",
+        "title": "Docstrings and type hints",
         "points": [
           "A docstring describes a module, class or function. Type hints communicate intended argument and return types:",
           "The function's behaviour should match the docstring. Type hints help editors and static analysis tools, but input validation may still be needed at runtime."
@@ -3142,12 +3242,12 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "24. Functions, modules and reusable code",
-        "meaning": "A function names a reusable unit of work. It reduces duplication, makes programs easier to test and separates responsibilities. A function should have a clear purpose and inputs/outputs."
+        "term": "module",
+        "meaning": "is a Python file or importable unit that provides names. The standard library contains modules for mathematics, dates, JSON, CSV, files, random numbers and much more."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "base case",
+        "meaning": "to stop recursion and a step that moves toward that case."
       }
     ],
     "examTips": [
@@ -3159,12 +3259,12 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 25,
-    "title": "25. Errors, debugging, testing and exceptions",
+    "title": "Error Handling, Debugging Techniques & Unit Testing",
     "unit": "Unit 6: Python Programming (Basics to OOP)",
     "overview": "Do not fix errors by guessing randomly. Read the message, identify the line or component involved, reduce the example and test one change at a time.",
     "sections": [
       {
-        "title": "25.1 Common error categories",
+        "title": "Common error categories",
         "points": [
           "**Syntax error:** code does not follow the language grammar.",
           "**Runtime error/exception:** an issue occurs during execution, such as converting invalid text to an integer.",
@@ -3175,14 +3275,14 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "25.2 Reading a traceback",
+        "title": "Reading a traceback",
         "points": [
           "Python tracebacks show the chain of calls that led to an exception. Read the final exception type and message first, then inspect the most relevant application frame and surrounding code. The last line may point to where an invalid operation was detected, while the underlying cause may have originated earlier.",
           "Do not post private data, access tokens, database passwords or personal details when asking for help with an error. Remove secrets from logs before sharing them."
         ]
       },
       {
-        "title": "25.3 `try`, `except`, `else` and `finally`",
+        "title": "`try`, `except`, `else` and `finally`",
         "points": [
           "`try`: run code that may raise an expected exception.",
           "`except`: handle a specific exception.",
@@ -3202,13 +3302,13 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "25.4 Assertions",
+        "title": "Assertions",
         "points": [
           "An assertion checks an assumption during development, for example `assert total >= 0`. Assertions are not a replacement for validating user input or enforcing security checks because they can be disabled in some execution modes. Use explicit conditional checks and exceptions for essential runtime guarantees."
         ]
       },
       {
-        "title": "25.5 Debugging methods",
+        "title": "Debugging methods",
         "points": [
           "Reproduce the problem reliably.",
           "Use the smallest input that shows the issue.",
@@ -3222,7 +3322,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "25.6 Testing levels",
+        "title": "Testing levels",
         "points": [
           "**Unit test:** tests a small function or component.",
           "**Integration test:** checks whether components work together.",
@@ -3233,13 +3333,13 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "25.7 Test cases and boundaries",
+        "title": "Test cases and boundaries",
         "points": [
           "For a function that checks whether a mark is pass/fail, test values below, at and above the threshold; also test zero, maximum, invalid text and missing input. Good tests represent expected behaviour, not merely lines executed. A program can achieve high line coverage and still have logical defects."
         ]
       },
       {
-        "title": "25.8 Avoiding silent failure",
+        "title": "Avoiding silent failure",
         "points": [
           "Do not catch an exception and then continue as if the operation worked. If a file could not be saved or an account action failed, make the failure visible and preserve enough information to diagnose it safely. User-facing errors should be useful without exposing internal secrets."
         ]
@@ -3247,12 +3347,20 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "25. Errors, debugging, testing and exceptions",
-        "meaning": "Do not fix errors by guessing randomly. Read the message, identify the line or component involved, reduce the example and test one change at a time."
+        "term": "Syntax error",
+        "meaning": "code does not follow the language grammar."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Runtime error/exception",
+        "meaning": "an issue occurs during execution, such as converting invalid text to an integer."
+      },
+      {
+        "term": "Logic error",
+        "meaning": "code runs but produces an incorrect result."
+      },
+      {
+        "term": "Data/configuration error",
+        "meaning": "a program receives unexpected data or settings."
       }
     ],
     "examTips": [
@@ -3265,12 +3373,12 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 26,
-    "title": "26. Files, CSV, JSON and data processing",
+    "title": "File Operations: Text, CSV, JSON & Stream Processing",
     "unit": "Unit 6: Python Programming (Basics to OOP)",
     "overview": "Use `with` to open files so they close properly even if an error occurs.",
     "sections": [
       {
-        "title": "26.1 Reading and writing text files",
+        "title": "Reading and writing text files",
         "points": [
           "Use `with` to open files so they close properly even if an error occurs.",
           "`Path` helps build portable file paths. The program must have permission to read or write the target location. Do not overwrite important files without checking the path and using backups when appropriate."
@@ -3285,7 +3393,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "26.2 File modes",
+        "title": "File modes",
         "points": [
           "Common text-file modes include:",
           "`\"r\"`: read an existing file.",
@@ -3296,7 +3404,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "26.3 CSV files",
+        "title": "CSV files",
         "points": [
           "CSV (comma-separated values) is a text format for tabular data. Real CSV files may include quoted values, embedded commas, line breaks and escaping. Use the standard-library `csv` module:",
           "When reading CSV, validate field presence and value types. A CSV file is not a database schema; it does not necessarily enforce keys, data types or relationships. Spreadsheet software may also interpret some cell values as formulas—be careful when exporting untrusted text for spreadsheet use."
@@ -3316,7 +3424,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "26.4 JSON",
+        "title": "JSON",
         "points": [
           "JSON (JavaScript Object Notation) is a text data format with objects, arrays, strings, numbers, Booleans and `null`. It is widely used in configuration and web APIs.",
           "Do not assume arbitrary Python objects can be serialised directly to JSON. Do not load data from an untrusted source without validation. Python's JSON parser treats JSON data as data, but other formats or tools may have unsafe behaviours if they execute content."
@@ -3333,7 +3441,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "26.5 Data validation and cleaning",
+        "title": "Data validation and cleaning",
         "points": [
           "Before analysing data:",
           "Check field names and expected types.",
@@ -3347,19 +3455,19 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "26.6 File paths and safe handling",
+        "title": "File paths and safe handling",
         "points": [
           "Do not assume that a path provided by a user is safe to write to. Avoid allowing untrusted input to overwrite arbitrary files or escape the intended project directory. In application code, validate file names, permissions and allowed locations."
         ]
       },
       {
-        "title": "26.7 Binary files and media",
+        "title": "Binary files and media",
         "points": [
           "Binary files contain byte sequences that may not represent readable text. Use file-format libraries rather than treating an image, PDF or executable as a plain text file. When accepting uploads, validate size and file type, store files safely, scan where appropriate and do not execute uploaded files automatically."
         ]
       },
       {
-        "title": "26.8 Automation examples",
+        "title": "Automation examples",
         "points": [
           "Useful beginner automation tasks include renaming files according to a rule, combining permitted CSV files, generating a report from marks, checking whether folders contain required files and converting a text list into a formatted output. Run new automation on sample copies first; scripts can modify or delete many files rapidly."
         ]
@@ -3367,12 +3475,8 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "26. Files, CSV, JSON and data processing",
+        "term": "File Operations: Text, CSV, JSON & Stream Processing",
         "meaning": "Use `with` to open files so they close properly even if an error occurs."
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
       }
     ],
     "examTips": [
@@ -3385,7 +3489,7 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 27,
-    "title": "27. Object-oriented programming",
+    "title": "Object-Oriented Programming: Classes, Objects & Inheritance",
     "unit": "Unit 6: Python Programming (Basics to OOP)",
     "overview": "Object-oriented programming (OOP) organises code around objects that combine data and behaviour. It is one programming approach, not the answer to every problem. Small scripts may be clearer with functions and simple data structures.",
     "sections": [
@@ -3396,7 +3500,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "27.1 Class and object",
+        "title": "Class and object",
         "points": [
           "A **class** defines a structure and behaviour; an **object** is an instance of that class.",
           "`__init__` initialises a new instance. `self` refers to that instance by convention. The example's `passed()` rule is illustrative and should be adapted to the actual assessment system."
@@ -3416,7 +3520,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "27.2 Attributes and methods",
+        "title": "Attributes and methods",
         "points": [
           "**Attribute:** data associated with an object or class.",
           "**Method:** function associated with a class or instance.",
@@ -3426,37 +3530,37 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "27.3 Encapsulation",
+        "title": "Encapsulation",
         "points": [
           "Encapsulation groups data and operations and establishes a clear public interface. Python uses conventions such as a leading underscore to indicate non-public attributes; it does not enforce private access in the same manner as some languages. The important design goal is to protect invariants and reduce unnecessary dependencies between components."
         ]
       },
       {
-        "title": "27.4 Inheritance",
+        "title": "Inheritance",
         "points": [
           "Inheritance allows a class to extend another class. It can represent a genuine “is-a” relationship, but deep inheritance hierarchies are often hard to maintain. Composition—building an object from other objects—can be simpler when the relationship is “has-a.”"
         ]
       },
       {
-        "title": "27.5 Polymorphism",
+        "title": "Polymorphism",
         "points": [
           "Polymorphism means code can work with different objects through a common interface. In Python, different objects may implement the same method name or support the same operation. This can make code flexible, but the expected interface should be documented and tested."
         ]
       },
       {
-        "title": "27.6 Abstraction",
+        "title": "Abstraction",
         "points": [
           "Abstraction exposes the essential operations while hiding unnecessary details. A student may use a `save()` method without needing to know every filesystem operation inside it. Good abstractions reduce cognitive load, but overly complicated abstractions can hide important behaviour."
         ]
       },
       {
-        "title": "27.7 Composition example",
+        "title": "Composition example",
         "points": [
           "A `Course` object might contain a list of `Student` objects. It can compute a report using student methods without inheriting from `Student`. This models a course having students rather than a course being a student."
         ]
       },
       {
-        "title": "27.8 OOP design guidance",
+        "title": "OOP design guidance",
         "points": [
           "Keep classes focused on one coherent responsibility.",
           "Prefer descriptive methods and clear invariants.",
@@ -3470,12 +3574,20 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "27. Object-oriented programming",
-        "meaning": "Object-oriented programming (OOP) organises code around objects that combine data and behaviour. It is one programming approach, not the answer to every problem. Small scripts may be clearer with functions and simple data structures."
+        "term": "class",
+        "meaning": "defines a structure and behaviour; an **object** is an instance of that class."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Attribute",
+        "meaning": "data associated with an object or class."
+      },
+      {
+        "term": "Method",
+        "meaning": "function associated with a class or instance."
+      },
+      {
+        "term": "Instance attribute",
+        "meaning": "usually stores data specific to one object."
       }
     ],
     "examTips": [
@@ -3487,61 +3599,61 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 28,
-    "title": "28. Algorithms, data structures and efficiency",
+    "title": "Data Structures, Algorithm Analysis & Big-O Efficiency",
     "unit": "Unit 7: Data Structures, SQL & Web Development",
     "overview": "A **data structure** organises data for operations such as access, insertion, deletion, search and traversal. The best choice depends on the workload and constraints.",
     "sections": [
       {
-        "title": "28.1 Data structure basics",
+        "title": "Data structure basics",
         "points": [
           "A **data structure** organises data for operations such as access, insertion, deletion, search and traversal. The best choice depends on the workload and constraints."
         ]
       },
       {
-        "title": "28.2 Arrays and dynamic lists",
+        "title": "Arrays and dynamic lists",
         "points": [
           "An array stores a sequence of elements in indexed positions. Fixed-size arrays are common in systems languages; Python's list is a dynamic array-like structure that can grow. Index access is typically fast, while inserting into the middle may require moving later elements. Exact performance depends on implementation."
         ]
       },
       {
-        "title": "28.3 Stack",
+        "title": "Stack",
         "points": [
           "A stack follows **Last In, First Out (LIFO)**. Operations are often called `push`, `pop` and `peek/top`. Uses include undo operations, function-call management and parsing balanced symbols.",
           "Example: books piled on a table. The most recently placed book is the first one removed."
         ]
       },
       {
-        "title": "28.4 Queue",
+        "title": "Queue",
         "points": [
           "A queue follows **First In, First Out (FIFO)**. Operations include enqueue and dequeue. Uses include task scheduling, print queues and processing incoming events. A queue does not mean all tasks receive identical time; scheduling policy may add priorities or fairness rules."
         ]
       },
       {
-        "title": "28.5 Linked lists",
+        "title": "Linked lists",
         "points": [
           "A linked list stores nodes connected by references. In a singly linked list, each node points to the next; a doubly linked list also points backward. Inserting or removing a node can be efficient when its position is already known, but finding a position may require traversal. Linked lists use memory for links and often have poorer cache locality than arrays."
         ]
       },
       {
-        "title": "28.6 Hash tables and dictionaries",
+        "title": "Hash tables and dictionaries",
         "points": [
           "A hash table uses a hash function to place keys in a structure that supports efficient average-case lookup under suitable conditions. Python dictionaries and sets use hash-based designs. Collisions are possible and handled by the implementation. Do not assume every operation is always constant time under every input; average behaviour and worst-case guarantees differ."
         ]
       },
       {
-        "title": "28.7 Trees",
+        "title": "Trees",
         "points": [
           "A tree is a hierarchical structure made of nodes and edges. A binary tree has at most two children per node. A binary search tree follows an ordering rule; a balanced search tree attempts to keep operations efficient. A tree may represent folders, syntax, decision paths or hierarchical categories."
         ]
       },
       {
-        "title": "28.8 Graphs",
+        "title": "Graphs",
         "points": [
           "A graph consists of vertices (nodes) and edges (connections). Edges may be directed or undirected, weighted or unweighted. Graphs model roads, friendships, dependencies, network topology and many other relationships. Breadth-first search (BFS) explores level by level; depth-first search (DFS) explores paths deeply before backtracking. The choice depends on the task and graph properties."
         ]
       },
       {
-        "title": "28.9 Linear search",
+        "title": "Linear search",
         "points": [
           "Linear search checks elements one by one until it finds the target or exhausts the collection. In the worst case, it examines `n` items, so its time grows linearly, often written **O(n)**.",
           "Here `-1` indicates not found, but another API might return `None` or use an exception. Choose a return convention and document it."
@@ -3555,7 +3667,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "28.10 Binary search",
+        "title": "Binary search",
         "points": [
           "Binary search works on a sorted sequence. It compares the target with the middle element and discards half of the remaining range each step. Its time grows logarithmically, often written **O(log n)**. It is not correct on unsorted data unless the data is sorted first according to the same ordering.",
           "Try the algorithm on empty, one-item, first-item, last-item, missing-target and duplicate-value cases. With duplicates, this implementation returns a match but not necessarily the first occurrence."
@@ -3575,7 +3687,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "28.11 Sorting algorithms",
+        "title": "Sorting algorithms",
         "points": [
           "**Bubble sort:** repeatedly compares adjacent items and swaps out-of-order pairs. Simple to learn, inefficient for large inputs in typical use.",
           "**Selection sort:** repeatedly selects the minimum from the unsorted part and places it next.",
@@ -3587,7 +3699,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "28.12 Big-O notation",
+        "title": "Big-O notation",
         "points": [
           "Big-O describes an upper-bound style of growth and is commonly used to discuss how time or space scales with input size."
         ],
@@ -3637,13 +3749,13 @@ export const itNotesComp: ChapterNote[] = [
         }
       },
       {
-        "title": "28.12 Big-O notation — Details",
+        "title": "Big-O notation — Details",
         "points": [
           "These are simplified examples, not universal guarantees. Complexity often ignores constants, hardware effects, memory locality and data distribution. For a small input, a simpler algorithm may be faster and easier to maintain."
         ]
       },
       {
-        "title": "28.13 Recursion and iteration",
+        "title": "Recursion and iteration",
         "points": [
           "Both recursion and iteration can express repetition. Recursion can make tree traversal and divide-and-conquer algorithms natural; iteration can reduce call overhead and avoid recursion-depth limits. Choose according to correctness, clarity, language support and resource limits."
         ]
@@ -3651,12 +3763,20 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "28. Algorithms, data structures and efficiency",
-        "meaning": "A **data structure** organises data for operations such as access, insertion, deletion, search and traversal. The best choice depends on the workload and constraints."
+        "term": "data structure",
+        "meaning": "organises data for operations such as access, insertion, deletion, search and traversal. The best choice depends on the workload and constraints."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Bubble sort",
+        "meaning": "repeatedly compares adjacent items and swaps out-of-order pairs. Simple to learn, inefficient for large inputs in typical use."
+      },
+      {
+        "term": "Selection sort",
+        "meaning": "repeatedly selects the minimum from the unsorted part and places it next."
+      },
+      {
+        "term": "Insertion sort",
+        "meaning": "grows a sorted region by inserting each new item into its position; efficient for small or nearly sorted lists."
       }
     ],
     "examTips": [
@@ -3670,7 +3790,7 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 29,
-    "title": "29. SQL and relational databases",
+    "title": "Relational Databases, Normalization & SQL Mastery",
     "unit": "Unit 7: Data Structures, SQL & Web Development",
     "overview": "SQL (Structured Query Language) is widely used to define, query and modify relational databases. Database systems differ in supported syntax and data types, so examples may need adjustments for a specific DBMS.",
     "sections": [
@@ -3681,7 +3801,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "29.1 A simple table",
+        "title": "A simple table",
         "points": [
           "This example is representative SQL, but the exact data type, constraint syntax and support for `TEXT` may vary. A real schema should include required fields, rules, uniqueness and relationships appropriate to the task."
         ],
@@ -3695,7 +3815,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "29.2 Insert rows",
+        "title": "Insert rows",
         "points": [
           "In applications, use parameterised statements supported by the DB API instead of concatenating raw user input into SQL. Parameterisation prevents user input from being interpreted as query syntax and is a key defence against SQL injection."
         ],
@@ -3705,7 +3825,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "29.3 Select and filter",
+        "title": "Select and filter",
         "points": [
           "`SELECT` chooses columns.",
           "`FROM` identifies tables or sources.",
@@ -3721,7 +3841,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "29.4 Aggregation",
+        "title": "Aggregation",
         "points": [
           "Aggregate functions summarise rows. `COUNT(*)` counts rows; `AVG` and `MAX` behave according to the database's rules for nulls and types. Handle missing values deliberately rather than interpreting every blank as zero."
         ],
@@ -3733,7 +3853,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "29.5 Grouping",
+        "title": "Grouping",
         "points": [
           "`GROUP BY` forms groups for aggregate calculations. Conditions on individual rows are usually placed in `WHERE`; conditions on aggregate groups can use `HAVING`. The exact query rules should follow the selected database standard/version."
         ],
@@ -3745,7 +3865,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "29.6 Update and delete",
+        "title": "Update and delete",
         "points": [
           "Always check the `WHERE` clause before running updates or deletes. Without the intended condition, an operation may affect every row. For important systems, use transactions, backups, authorisation and review steps."
         ],
@@ -3759,7 +3879,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "29.7 Joins",
+        "title": "Joins",
         "points": [
           "A join combines related rows from tables.",
           "Common join types include INNER JOIN, LEFT JOIN, RIGHT JOIN and FULL OUTER JOIN; not every database supports every type in identical ways. A join condition is essential to prevent unintended combinations. A many-to-many relationship commonly uses a junction table."
@@ -3771,19 +3891,19 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "29.8 Primary and foreign keys",
+        "title": "Primary and foreign keys",
         "points": [
           "Primary keys uniquely identify rows. Foreign keys reference related rows. Constraints improve integrity by stopping certain invalid states, such as a mark referring to a student that does not exist. Database schema constraints are a complement to application validation, not an excuse to omit validation."
         ]
       },
       {
-        "title": "29.9 Transactions and parameterised queries",
+        "title": "Transactions and parameterised queries",
         "points": [
           "Transactions group changes so they can be committed or rolled back. Parameterised queries separate SQL syntax from values; this is safer than formatting a query string with user input. Also enforce least privilege, avoid exposing database error details to users, and protect backups and connection credentials."
         ]
       },
       {
-        "title": "29.10 SQL injection: defensive example",
+        "title": "SQL injection: defensive example",
         "points": [
           "Unsafe pattern (do not use): constructing SQL by joining untrusted text directly into a query string. An attacker can make data appear to be executable SQL.",
           "Safer pattern (API varies by library):",
@@ -3795,7 +3915,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "29.11 When databases become important",
+        "title": "When databases become important",
         "points": [
           "Databases are central to learning platforms, shops, social apps, hospital systems, school administration and websites with accounts. Database design should consider privacy, access rights, retention, accuracy, recovery, performance and lawful use—not just whether a query returns the correct rows."
         ]
@@ -3803,12 +3923,8 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "29. SQL and relational databases",
+        "term": "Relational Databases, Normalization & SQL Mastery",
         "meaning": "SQL (Structured Query Language) is widely used to define, query and modify relational databases. Database systems differ in supported syntax and data types, so examples may need adjustments for a specific DBMS."
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
       }
     ],
     "examTips": [
@@ -3821,7 +3937,7 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 30,
-    "title": "30. HTML: structuring web pages",
+    "title": "Web Development: HTML5 Semantic Structure & Forms",
     "unit": "Unit 7: Data Structures, SQL & Web Development",
     "overview": "HTML (HyperText Markup Language) defines the structure and meaning of web content. It is a markup language, not a general-purpose programming language. Browsers parse HTML to build a document structure used to render a page.",
     "sections": [
@@ -3832,7 +3948,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "30.1 A minimum document",
+        "title": "A minimum document",
         "points": [
           "`<!doctype html>` tells the browser to use modern standards mode.",
           "`<html lang=\"en\">` declares the document language; use the appropriate language code for the content.",
@@ -3858,7 +3974,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "30.2 Elements, tags and attributes",
+        "title": "Elements, tags and attributes",
         "points": [
           "An HTML **element** typically consists of a start tag, content and an end tag. Some elements are void elements and do not use a closing tag (such as `<img>` and `<meta>`). **Attributes** provide additional information or configuration.",
           "Attribute values should be quoted. Use meaningful `alt` text for informative images; use empty `alt=\"\"` for purely decorative images when appropriate. A missing or unhelpful `alt` can make content less accessible."
@@ -3869,7 +3985,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "30.3 Semantic HTML",
+        "title": "Semantic HTML",
         "points": [
           "Semantic elements convey the role of content. Common examples include:",
           "`<header>` for introductory content or a section header.",
@@ -3887,33 +4003,33 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "30.4 Links and images",
+        "title": "Links and images",
         "points": [
           "Use descriptive link text that explains the destination. Avoid vague repeated labels such as “click here” when more informative wording is possible. Link to the correct URL and check external destinations.",
           "Images should have suitable dimensions and file sizes. Use responsive techniques so the image does not overflow small screens. Ensure you have the right to use the image and add required attribution."
         ]
       },
       {
-        "title": "30.5 Lists and tables",
+        "title": "Lists and tables",
         "points": [
           "Use `<ul>` for unordered lists, `<ol>` for ordered lists and `<li>` for items. Use table elements for genuinely tabular data, not solely to lay out an entire page. Tables should use meaningful headers and associations so assistive technology can interpret them."
         ]
       },
       {
-        "title": "30.6 Forms",
+        "title": "Forms",
         "points": [
           "Forms collect input such as search queries, feedback or registration fields. Use a visible label for each input, appropriate input types, clear error messages and server-side validation. Browser validation improves usability but can be bypassed, so a server must not trust client-side constraints alone.",
           "Do not collect a student's date of birth, phone number, location or other personal information unless there is a clear, approved need and appropriate privacy protection. Use HTTPS for transmitting sensitive data and suitable access control at the server."
         ]
       },
       {
-        "title": "30.7 HTML entities and escaping",
+        "title": "HTML entities and escaping",
         "points": [
           "Certain characters have special meaning in HTML. Text and attribute values should be handled safely; when rendering user-supplied text, use context-appropriate escaping rather than injecting it as raw HTML. Never assume user-provided strings are safe markup."
         ]
       },
       {
-        "title": "30.8 Validation and debugging",
+        "title": "Validation and debugging",
         "points": [
           "Use browser developer tools to inspect the document, styles, console messages and network requests. HTML validation can detect structural issues, but a validator does not guarantee that a site is secure, accessible or usable. Test in real browsers and on different screen sizes."
         ]
@@ -3921,12 +4037,12 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "30. HTML: structuring web pages",
-        "meaning": "HTML (HyperText Markup Language) defines the structure and meaning of web content. It is a markup language, not a general-purpose programming language. Browsers parse HTML to build a document structure used to render a page."
+        "term": "element",
+        "meaning": "typically consists of a start tag, content and an end tag. Some elements are void elements and do not use a closing tag (such as `<img>` and `<meta>`)."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Attributes",
+        "meaning": "provide additional information or configuration."
       }
     ],
     "examTips": [
@@ -3938,7 +4054,7 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 31,
-    "title": "31. CSS: styling and layout",
+    "title": "Web Styling: Modern CSS, Flexbox & Responsive Layouts",
     "unit": "Unit 7: Data Structures, SQL & Web Development",
     "overview": "CSS (Cascading Style Sheets) controls the appearance and layout of HTML. It can affect fonts, colours, spacing, borders, responsive layout, animation and more.",
     "sections": [
@@ -3949,7 +4065,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "31.1 Ways to apply CSS",
+        "title": "Ways to apply CSS",
         "points": [
           "Inline styles: written directly in an element's `style` attribute; generally not ideal for maintainable site-wide styling.",
           "Internal stylesheet: a `<style>` block in an HTML document; useful for small examples.",
@@ -3970,7 +4086,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "31.2 Selectors",
+        "title": "Selectors",
         "points": [
           "Prefer reusable classes for component styling. IDs should be unique within a document and are often more appropriate for page-specific identifiers or fragment targets than repeated styling."
         ],
@@ -3982,13 +4098,13 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "31.3 The cascade and specificity",
+        "title": "The cascade and specificity",
         "points": [
           "When rules conflict, the browser considers factors including origin, importance, cascade layers, specificity and source order. Avoid solving every conflict by adding `!important`; repeated overrides create styles that are difficult to maintain. Use a clear naming and component strategy."
         ]
       },
       {
-        "title": "31.4 The box model",
+        "title": "The box model",
         "points": [
           "Elements are laid out using content, padding, border and margin. `box-sizing: border-box` makes declared width/height include padding and border, which is often easier for layout calculations:",
           "Margins collapse in some block layout contexts, so spacing may not always add the way beginners expect. Use browser developer tools to inspect the actual box dimensions."
@@ -4000,7 +4116,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "31.5 Units and responsive sizing",
+        "title": "Units and responsive sizing",
         "points": [
           "Common CSS units include:",
           "`px`: CSS pixel unit.",
@@ -4013,13 +4129,13 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "31.6 Flexbox and Grid",
+        "title": "Flexbox and Grid",
         "points": [
           "**Flexbox** is well suited to layout along one primary axis, such as a row of navigation items or cards. **CSS Grid** is useful for two-dimensional row/column layouts. They can be combined. Do not use layout tools mechanically; choose based on the structure and expected screen sizes."
         ]
       },
       {
-        "title": "31.7 Responsive design",
+        "title": "Responsive design",
         "points": [
           "Responsive design allows a page to adapt to varying screen sizes, zoom settings and input devices. Useful practices:",
           "Use a flexible content container.",
@@ -4031,19 +4147,19 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "31.8 Colour, contrast and typography",
+        "title": "Colour, contrast and typography",
         "points": [
           "Use a small, consistent type and spacing system. Ensure text has sufficient contrast and is not too small. Do not communicate error/success only through colour—include text or other cues. Avoid overly long line lengths and all-caps body text. Choose fonts that support the languages and scripts used by your learners."
         ]
       },
       {
-        "title": "31.9 CSS states and interaction",
+        "title": "CSS states and interaction",
         "points": [
           "Pseudo-classes such as `:hover`, `:focus`, `:focus-visible`, `:active` and `:disabled` style states. A control must work with a keyboard as well as a pointer. Do not remove visible focus indication without providing an equivalent accessible indicator."
         ]
       },
       {
-        "title": "31.10 Maintenance",
+        "title": "Maintenance",
         "points": [
           "Keep styles organised, remove obsolete rules, reuse design tokens/custom properties and test changes. CSS frameworks can accelerate work but do not remove the need to understand semantics, responsive layouts, accessibility or the cascade."
         ]
@@ -4051,12 +4167,8 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "31. CSS: styling and layout",
-        "meaning": "CSS (Cascading Style Sheets) controls the appearance and layout of HTML. It can affect fonts, colours, spacing, borders, responsive layout, animation and more."
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Flexbox",
+        "meaning": "is well suited to layout along one primary axis, such as a row of navigation items or cards. **CSS Grid** is useful for two-dimensional row/column layouts."
       }
     ],
     "examTips": [
@@ -4068,7 +4180,7 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 32,
-    "title": "32. JavaScript and browser interactivity",
+    "title": "Client-Side Scripting: JavaScript & DOM Manipulation",
     "unit": "Unit 7: Data Structures, SQL & Web Development",
     "overview": "JavaScript is a programming language used on the Web for interactivity and also used in server-side tools and other environments. It is distinct from Java despite the similar name.",
     "sections": [
@@ -4079,7 +4191,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "32.1 First example",
+        "title": "First example",
         "points": [
           "The script selects elements and listens for a click. It updates `textContent`, which inserts text rather than parsing a string as HTML. In real applications, load scripts responsibly and handle missing elements where the page structure is not guaranteed."
         ],
@@ -4097,13 +4209,13 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "32.2 `let`, `const` and types",
+        "title": "`let`, `const` and types",
         "points": [
           "Use `const` when a binding will not be reassigned and `let` when it will. A `const` object may still have mutable properties; `const` prevents rebinding rather than deeply freezing all content. JavaScript has types such as number, string, Boolean, `null`, `undefined`, BigInt, Symbol and object. Arrays and functions are objects under JavaScript's type model."
         ]
       },
       {
-        "title": "32.3 Functions and arrow functions",
+        "title": "Functions and arrow functions",
         "points": [
           "Arrow functions have different `this` behaviour from ordinary functions. For beginners, focus first on parameters, return values and scope, then learn the detailed binding rules as needed."
         ],
@@ -4116,7 +4228,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "32.4 Arrays and objects",
+        "title": "Arrays and objects",
         "points": [
           "Arrays hold ordered elements; objects hold properties. Do not rely on arbitrary external data having the expected shape; validate API responses and user input before using them."
         ],
@@ -4129,19 +4241,19 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "32.5 The DOM",
+        "title": "The DOM",
         "points": [
           "The Document Object Model (DOM) is the browser's object representation of the page. JavaScript can query elements, update text or attributes, add/remove nodes and respond to events. Prefer safe APIs such as `textContent` for untrusted text. Assigning untrusted input to `innerHTML` can create cross-site scripting vulnerabilities if the content is interpreted as markup."
         ]
       },
       {
-        "title": "32.6 Events and forms",
+        "title": "Events and forms",
         "points": [
           "An event may represent a click, key press, form submission, input change or other interaction. Forms should work with keyboard navigation, show clear validation messages and avoid losing user-entered data unexpectedly. Client-side validation is helpful but not a security boundary: the server must validate submissions too."
         ]
       },
       {
-        "title": "32.7 Asynchronous JavaScript",
+        "title": "Asynchronous JavaScript",
         "points": [
           "Network requests and other operations can finish later. JavaScript provides Promises and `async`/`await` to work with asynchronous results.",
           "This is an example of checking HTTP status, not a complete production data loader. Handle failures in the caller, validate the returned data, and avoid displaying sensitive data to unauthorised users. A successful network request does not mean the returned content is valid for the application."
@@ -4158,13 +4270,13 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "32.8 Browser storage",
+        "title": "Browser storage",
         "points": [
           "Browsers provide storage options such as local storage, session storage, cookies and IndexedDB. Their security properties and lifetimes differ. Do not store passwords, secret API keys or highly sensitive personal information in browser-readable storage without a carefully designed security model. Cookies used for authentication require secure settings and server-side protections."
         ]
       },
       {
-        "title": "32.9 Developer tools",
+        "title": "Developer tools",
         "points": [
           "Browser developer tools support:",
           "Inspecting HTML and computed CSS.",
@@ -4179,12 +4291,8 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "32. JavaScript and browser interactivity",
+        "term": "Client-Side Scripting: JavaScript & DOM Manipulation",
         "meaning": "JavaScript is a programming language used on the Web for interactivity and also used in server-side tools and other environments. It is distinct from Java despite the similar name."
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
       }
     ],
     "examTips": [
@@ -4197,24 +4305,24 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 33,
-    "title": "33. How websites and web apps work",
+    "title": "Web Architectures: Full-Stack Applications & Client-Server Models",
     "unit": "Unit 7: Data Structures, SQL & Web Development",
     "overview": "A static website can deliver prebuilt files with no per-user server-side page generation. A dynamic web application may process user input, query a database, authenticate accounts and generate personalised results. Modern sites often combine static, client-rendered, server-rendered and API-driven parts.",
     "sections": [
       {
-        "title": "33.1 Static website versus web application",
+        "title": "Static website versus web application",
         "points": [
           "A static website can deliver prebuilt files with no per-user server-side page generation. A dynamic web application may process user input, query a database, authenticate accounts and generate personalised results. Modern sites often combine static, client-rendered, server-rendered and API-driven parts."
         ]
       },
       {
-        "title": "33.2 Client and server",
+        "title": "Client and server",
         "points": [
           "The **client** is the system making a request, often a browser. The **server** provides a resource or service. A request/response may travel through DNS, load balancers, caches, application servers and database systems. The client must not be trusted to enforce rules that matter for security or correctness."
         ]
       },
       {
-        "title": "33.3 Front end and back end",
+        "title": "Front end and back end",
         "points": [
           "**Front end:** user-facing interface, commonly HTML/CSS/JavaScript in a browser.",
           "**Back end:** server-side logic, authentication, business rules, database access, jobs and APIs.",
@@ -4224,14 +4332,14 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "33.4 API and JSON",
+        "title": "API and JSON",
         "points": [
           "An **Application Programming Interface (API)** defines how software components interact. A web API commonly accepts HTTP requests and returns data or an outcome. JSON is a common data format, not an API protocol by itself.",
           "An API design should define endpoints, methods, authentication, input rules, status codes, response schemas, rate limits, error behaviour and versioning expectations. Never expose an API key in client-side code if it grants privileged access; users can inspect browser source and network traffic."
         ]
       },
       {
-        "title": "33.5 HTTP methods and status codes",
+        "title": "HTTP methods and status codes",
         "points": [
           "Common methods:",
           "`GET`: retrieve a representation; should not be used for an action that changes state in an unsafe, unexpected way.",
@@ -4243,20 +4351,20 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "33.6 Authentication and authorisation",
+        "title": "Authentication and authorisation",
         "points": [
           "Authentication proves an account or service identity; authorisation checks whether it may perform a particular action. A hidden button in the browser is not an access-control mechanism. The server must enforce permissions for reading, changing or deleting protected records.",
           "A secure login design typically uses established libraries, protected session management, rate limiting and recovery protections. Do not invent your own password storage scheme. Follow current, reputable application-security guidance."
         ]
       },
       {
-        "title": "33.7 Cookies, sessions and tokens",
+        "title": "Cookies, sessions and tokens",
         "points": [
           "A session allows a system to maintain state across multiple requests. Cookies may carry a session identifier or other information. Tokens may represent claims or permissions and may have expiration rules. Secure design considers transport security, expiry, revocation, storage, cookie flags, cross-site request forgery (CSRF), cross-site scripting (XSS) and threat model. Different authentication designs have different trade-offs."
         ]
       },
       {
-        "title": "33.8 Common web security issues",
+        "title": "Common web security issues",
         "points": [
           "**XSS:** untrusted content runs as script in another user's browser context.",
           "**SQL injection:** untrusted input changes the meaning of a database query.",
@@ -4269,14 +4377,14 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "33.9 Deployment and hosting",
+        "title": "Deployment and hosting",
         "points": [
           "Deployment makes a version available to users. Common steps include testing, building assets, configuring environment variables, setting up DNS/TLS, deploying code, applying database migrations, monitoring health and planning rollback. Secrets belong in secure configuration or secret-management systems, not public repositories.",
           "For school websites, establish who owns content, how updates are approved, how user data is collected, how backups work and what to do if the service fails."
         ]
       },
       {
-        "title": "33.10 Performance and reliability",
+        "title": "Performance and reliability",
         "points": [
           "Performance work begins with measurement. Common techniques include compressing images, avoiding unnecessary JavaScript, caching suitable content, reducing slow network calls, indexing database queries and monitoring response times. Optimisations must preserve correctness and privacy. Availability requires monitoring, tested backups, capacity planning and defined recovery procedures."
         ]
@@ -4284,12 +4392,20 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "33. How websites and web apps work",
-        "meaning": "A static website can deliver prebuilt files with no per-user server-side page generation. A dynamic web application may process user input, query a database, authenticate accounts and generate personalised results. Modern sites often combine static, client-rendered, server-rendered and API-driven parts."
+        "term": "client",
+        "meaning": "is the system making a request, often a browser. The **server** provides a resource or service."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Front end",
+        "meaning": "user-facing interface, commonly HTML/CSS/JavaScript in a browser."
+      },
+      {
+        "term": "Back end",
+        "meaning": "server-side logic, authentication, business rules, database access, jobs and APIs."
+      },
+      {
+        "term": "Database layer",
+        "meaning": "persistent structured or unstructured data storage."
       }
     ],
     "examTips": [
@@ -4302,7 +4418,7 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 34,
-    "title": "34. Programming languages and paradigms",
+    "title": "Programming Paradigms: Imperative, Functional & Declarative",
     "unit": "Unit 8: Languages, DevOps, Cloud & Emerging Tech",
     "overview": "There are many programming languages because different tasks, platforms and communities have different needs. Learning one language deeply teaches transferable concepts; learning many languages at once can obscure those concepts if fundamentals are weak.",
     "sections": [
@@ -4313,7 +4429,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "34.1 Low-level and high-level languages",
+        "title": "Low-level and high-level languages",
         "points": [
           "**Machine code:** instructions encoded for a particular processor architecture.",
           "**Assembly language:** symbolic representation of low-level instructions, translated by an assembler.",
@@ -4322,37 +4438,37 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "34.2 Compiled, interpreted and hybrid execution",
+        "title": "Compiled, interpreted and hybrid execution",
         "points": [
           "A compiler translates source code to another representation; an interpreter executes code through an implementation; a virtual machine can execute bytecode; and a runtime may compile frequently used paths while the program runs. Languages can support multiple strategies. C and C++ are commonly compiled to native code; Python implementations commonly execute bytecode in an interpreter/virtual machine; Java commonly compiles to bytecode executed by a JVM with runtime optimisation; JavaScript engines may use several techniques. These are common patterns, not unbreakable rules."
         ]
       },
       {
-        "title": "34.3 Procedural programming",
+        "title": "Procedural programming",
         "points": [
           "Procedural code organises a solution into procedures/functions and explicit step sequences. It is useful for learning algorithms and can be very effective for scripts, numerical processing and many applications."
         ]
       },
       {
-        "title": "34.4 Object-oriented programming",
+        "title": "Object-oriented programming",
         "points": [
           "OOP organises code around objects and interfaces. Concepts include classes, objects, encapsulation, inheritance, polymorphism and composition. Python and Java support OOP in different ways; Python also supports procedural and functional styles."
         ]
       },
       {
-        "title": "34.5 Functional programming",
+        "title": "Functional programming",
         "points": [
           "Functional programming emphasises functions, expression evaluation, transformations of data and, in many styles, limiting mutable state and side effects. Concepts include pure functions, immutability, higher-order functions, map/filter/reduce, recursion and function composition. Some languages are mainly functional; many mainstream languages support functional techniques without requiring a purely functional design."
         ]
       },
       {
-        "title": "34.6 Event-driven programming",
+        "title": "Event-driven programming",
         "points": [
           "Event-driven programs respond to events such as clicks, messages, timers, network input or sensor signals. Common examples include graphical apps, browser scripts and embedded systems. The program's flow is partly determined by when events occur, so testing must consider event order, asynchronous responses and error conditions."
         ]
       },
       {
-        "title": "34.7 C and C++ orientation",
+        "title": "C and C++ orientation",
         "points": [
           "C is a compiled language often used in operating systems, embedded software and performance-sensitive systems. It gives the programmer close control over memory and low-level operations, which requires discipline. C++ extends C with its own type system and features, including classes, templates and modern resource-management idioms; it is not merely “C with classes” in modern practice.",
           "Senior-secondary learners who study C/C++ should learn:",
@@ -4367,25 +4483,25 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "34.8 Java orientation",
+        "title": "Java orientation",
         "points": [
           "Java is a general-purpose language commonly used with the Java Virtual Machine. It has static type checking, classes, interfaces, packages, exceptions and a large ecosystem. Introductory concepts include primitive types, reference types, control flow, methods, arrays, classes, inheritance, interfaces and collection classes. Object references are not the same thing as raw memory pointers exposed as in C."
         ]
       },
       {
-        "title": "34.9 JavaScript orientation",
+        "title": "JavaScript orientation",
         "points": [
           "JavaScript is the main language of browser-side interactivity and also runs in server environments. Important topics include values/types, functions, objects, arrays, modules, Promises, asynchronous operations and event handling. JavaScript is separate from Java; names are historically related but the languages have different designs and ecosystems."
         ]
       },
       {
-        "title": "34.10 SQL orientation",
+        "title": "SQL orientation",
         "points": [
           "SQL is a declarative language for describing data operations. Rather than spelling out every step of how to locate rows, a query states the result needed. SQL is used alongside general-purpose languages in database-backed applications. Its query semantics, transactions and security practices are important even if the student writes most application logic in another language."
         ]
       },
       {
-        "title": "34.11 Other languages to know by category",
+        "title": "Other languages to know by category",
         "points": [
           "**C#:** application development, enterprise software, tooling and game development.",
           "**Go:** systems services, networking and infrastructure tools.",
@@ -4401,7 +4517,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "34.12 Choosing the first text language",
+        "title": "Choosing the first text language",
         "points": [
           "Python is a useful first text language because its syntax is comparatively readable and the standard library supports many small projects. However, a student should also learn the broader concepts: types, control flow, decomposition, testing, data structures and debugging. A language is a tool; problem-solving is the lasting skill."
         ]
@@ -4409,12 +4525,20 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "34. Programming languages and paradigms",
-        "meaning": "There are many programming languages because different tasks, platforms and communities have different needs. Learning one language deeply teaches transferable concepts; learning many languages at once can obscure those concepts if fundamentals are weak."
+        "term": "Machine code",
+        "meaning": "instructions encoded for a particular processor architecture."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Assembly language",
+        "meaning": "symbolic representation of low-level instructions, translated by an assembler."
+      },
+      {
+        "term": "High-level language",
+        "meaning": "uses abstractions that are generally easier for people to read and maintain, such as Python, Java, JavaScript, C# and others."
+      },
+      {
+        "term": "Rust",
+        "meaning": "systems programming with emphasis on memory safety and performance."
       }
     ],
     "examTips": [
@@ -4427,7 +4551,7 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 35,
-    "title": "35. Version control and collaborative development",
+    "title": "Version Control: Git Fundamentals, Branching & Workflows",
     "unit": "Unit 8: Languages, DevOps, Cloud & Emerging Tech",
     "overview": "Version control records changes to files over time. It helps students experiment, compare earlier versions, work with collaborators and understand how a project evolved.",
     "sections": [
@@ -4438,13 +4562,13 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "35.1 Why version control matters",
+        "title": "Why version control matters",
         "points": [
           "Without version control, teams often create copies such as `project-final`, `project-final-v2` and `project-final-latest`. These copies make it difficult to know which is authoritative. Version control provides a history, supports branches and allows controlled merging."
         ]
       },
       {
-        "title": "35.2 Git vocabulary",
+        "title": "Git vocabulary",
         "points": [
           "**Repository (repo):** directory and history tracked by Git.",
           "**Working tree:** current files being edited.",
@@ -4459,7 +4583,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "35.3 A basic Git workflow",
+        "title": "A basic Git workflow",
         "points": [
           "This is an illustrative local workflow. Git must be installed, and identity configuration may be required before committing. In an existing project, use the repository's documented workflow rather than running `git init` without understanding the current folder.",
           "Typical daily cycle:",
@@ -4480,26 +4604,26 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "35.4 Commit messages and atomic changes",
+        "title": "Commit messages and atomic changes",
         "points": [
           "A good commit makes one coherent change and explains its purpose, such as “Validate empty quiz answers.” Large commits mixing formatting, refactoring and behaviour changes are harder to review. Do not include credentials, private user data, caches, build artifacts or enormous generated files unless the project specifically requires them."
         ]
       },
       {
-        "title": "35.5 `.gitignore` and secrets",
+        "title": "`.gitignore` and secrets",
         "points": [
           "A `.gitignore` file excludes paths from ordinary untracked-file reporting. It does not remove files already tracked, and it does not protect a secret that was previously committed. If a credential is published, revoke or rotate it immediately and follow the incident procedure; deleting the line in a later commit may not remove it from repository history or copies.",
           "Common items to ignore include virtual environments, temporary files, build output and local configuration containing secrets. Use a safe configuration example file such as `.env.example` without real secret values where appropriate."
         ]
       },
       {
-        "title": "35.6 Branching and code review",
+        "title": "Branching and code review",
         "points": [
           "Branches permit isolated work. Code review checks correctness, readability, security, tests and alignment with requirements. A review should be respectful and specific. Prefer small changes that can be understood. Resolve conflicts by checking both intentions rather than mechanically choosing one side."
         ]
       },
       {
-        "title": "35.7 Open-source collaboration",
+        "title": "Open-source collaboration",
         "points": [
           "Before contributing, read the repository's contribution guide, licence, code of conduct and issue instructions. Never upload private data or unlicensed third-party content. Respect maintainer decisions and communicate constructively."
         ]
@@ -4507,12 +4631,20 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "35. Version control and collaborative development",
-        "meaning": "Version control records changes to files over time. It helps students experiment, compare earlier versions, work with collaborators and understand how a project evolved."
+        "term": "Repository (repo)",
+        "meaning": "directory and history tracked by Git."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Working tree",
+        "meaning": "current files being edited."
+      },
+      {
+        "term": "Staging area/index",
+        "meaning": "selected changes prepared for a commit."
+      },
+      {
+        "term": "Commit",
+        "meaning": "recorded snapshot with metadata and a message."
       }
     ],
     "examTips": [
@@ -4524,7 +4656,7 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 36,
-    "title": "36. Software engineering and project management",
+    "title": "Software Engineering Lifecycles, Agile & Project Delivery",
     "unit": "Unit 8: Languages, DevOps, Cloud & Emerging Tech",
     "overview": "Software engineering is the disciplined process of planning, designing, building, testing, deploying and maintaining software. The goal is not simply to make code run once; it is to make a solution fit the need and remain understandable, secure and dependable.",
     "sections": [
@@ -4535,7 +4667,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "36.1 Requirements",
+        "title": "Requirements",
         "points": [
           "A requirement states what a system should do or what constraint it must satisfy.",
           "**Functional requirement:** a behaviour, such as a student can search notes by topic.",
@@ -4545,7 +4677,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "36.2 Software development lifecycle",
+        "title": "Software development lifecycle",
         "points": [
           "A simplified development lifecycle includes:",
           "1. Discover the problem and stakeholders.",
@@ -4560,7 +4692,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "36.3 Waterfall, Agile and iterative development",
+        "title": "Waterfall, Agile and iterative development",
         "points": [
           "**Waterfall-style:** phases are planned more sequentially; can suit stable requirements or regulated contexts but makes late change expensive.",
           "**Agile approaches:** emphasise iterative delivery, feedback, collaboration and adapting to learning.",
@@ -4571,25 +4703,25 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "36.4 Architecture and modularity",
+        "title": "Architecture and modularity",
         "points": [
           "Architecture is the high-level organisation of a system and the decisions that affect its structure. Modules should have clear responsibilities and interfaces. A change to one module should not unnecessarily break unrelated parts. Common patterns include layered systems, client-server, monoliths, microservices and event-driven architectures. A small school project generally benefits from simplicity rather than premature microservices."
         ]
       },
       {
-        "title": "36.5 Testing strategy",
+        "title": "Testing strategy",
         "points": [
           "Develop test cases from requirements. Include ordinary cases, boundaries, invalid input, permission boundaries, accessibility checks and failure conditions. Where practical, automate repeated tests and run them after changes. Test environments should not expose real private data unnecessarily."
         ]
       },
       {
-        "title": "36.6 User experience and feedback",
+        "title": "User experience and feedback",
         "points": [
           "Observe users attempting real tasks. Ask where they hesitate, what they misunderstand and whether they can recover from mistakes. A design is not successful because its developer understands it. Usability testing can reveal confusing labels, missing feedback, inaccessible controls and assumptions about users' devices or language."
         ]
       },
       {
-        "title": "36.7 Documentation",
+        "title": "Documentation",
         "points": [
           "Useful documentation includes:",
           "Project purpose and scope.",
@@ -4604,13 +4736,13 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "36.8 Maintenance and technical debt",
+        "title": "Maintenance and technical debt",
         "points": [
           "Software accumulates maintenance needs as requirements, dependencies and environments change. **Technical debt** describes the future cost of shortcuts or design choices that make changes harder. Not all shortcuts are wrong; the key is to understand their cost and plan when to improve them."
         ]
       },
       {
-        "title": "36.9 Risk register",
+        "title": "Risk register",
         "points": [
           "A simple project risk register records each risk, likelihood, impact, owner, mitigation and trigger. Example risks: data loss, late requirements, unavailable team member, dependency vulnerability, hosting outage or inaccessible interface. Risk management should change project actions, not become a paperwork exercise."
         ]
@@ -4618,12 +4750,20 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "36. Software engineering and project management",
-        "meaning": "Software engineering is the disciplined process of planning, designing, building, testing, deploying and maintaining software. The goal is not simply to make code run once; it is to make a solution fit the need and remain understandable, secure and dependable."
+        "term": "Functional requirement",
+        "meaning": "a behaviour, such as a student can search notes by topic."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Non-functional requirement",
+        "meaning": "a quality or constraint, such as the page must load within a target time under specified conditions, be usable by keyboard, protect personal data or operate on agreed devices."
+      },
+      {
+        "term": "Acceptance criterion",
+        "meaning": "observable condition used to decide whether a requirement is met."
+      },
+      {
+        "term": "Waterfall-style",
+        "meaning": "phases are planned more sequentially; can suit stable requirements or regulated contexts but makes late change expensive."
       }
     ],
     "examTips": [
@@ -4635,18 +4775,18 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 37,
-    "title": "37. Cloud computing, virtualisation and DevOps",
+    "title": "Cloud Computing, Virtualization, Containers & DevOps",
     "unit": "Unit 8: Languages, DevOps, Cloud & Emerging Tech",
     "overview": "Cloud computing provides shared configurable computing resources—such as servers, storage, databases, networking and software—through a network. It can offer elasticity and managed services, but introduces provider dependencies, costs, network requirements, configuration risks and questions about data handling.",
     "sections": [
       {
-        "title": "37.1 Cloud computing",
+        "title": "Cloud computing",
         "points": [
           "Cloud computing provides shared configurable computing resources—such as servers, storage, databases, networking and software—through a network. It can offer elasticity and managed services, but introduces provider dependencies, costs, network requirements, configuration risks and questions about data handling."
         ]
       },
       {
-        "title": "37.2 Service models",
+        "title": "Service models",
         "points": [
           "**IaaS (Infrastructure as a Service):** provider supplies virtualised infrastructure; customer often manages operating systems and apps.",
           "**PaaS (Platform as a Service):** provider manages more of the platform so customers can focus on their applications.",
@@ -4655,7 +4795,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "37.3 Deployment models",
+        "title": "Deployment models",
         "points": [
           "**Public cloud:** services delivered using infrastructure made available to multiple customers under provider controls.",
           "**Private cloud:** cloud-style infrastructure dedicated to an organisation.",
@@ -4665,32 +4805,32 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "37.4 Virtual machines",
+        "title": "Virtual machines",
         "points": [
           "A virtual machine (VM) runs a guest operating system in a virtualised environment managed by a hypervisor. VMs support isolation, testing and consolidation. They still require patching, resource allocation and security. A VM is not guaranteed to be perfectly isolated from host or hypervisor vulnerabilities."
         ]
       },
       {
-        "title": "37.5 Containers",
+        "title": "Containers",
         "points": [
           "Containers package an application and its dependencies while sharing the host operating-system kernel in common implementations. They can improve reproducibility and deployment efficiency. Containers are not identical to full virtual machines and do not automatically provide a complete security boundary. Container images should be trusted, scanned/updated and configured with least privilege."
         ]
       },
       {
-        "title": "37.6 Infrastructure as Code",
+        "title": "Infrastructure as Code",
         "points": [
           "Infrastructure as Code (IaC) uses configuration files and automation to provision infrastructure consistently. It makes changes reviewable and repeatable, but a faulty configuration can also be repeated at scale. Store IaC in version control, review permission changes and avoid committing secrets."
         ]
       },
       {
-        "title": "37.7 DevOps and CI/CD",
+        "title": "DevOps and CI/CD",
         "points": [
           "**DevOps** is a set of practices that improves collaboration between software development and operations, often using automation and feedback. **Continuous integration (CI)** runs checks as changes are integrated; **continuous delivery/deployment (CD)** automates ways to prepare or release tested software. Teams may use CI/CD pipelines to run tests, build artefacts, scan dependencies and deploy.",
           "A pipeline should protect secrets, verify where code came from, restrict who can alter deployment settings and provide a rollback/recovery plan."
         ]
       },
       {
-        "title": "37.8 Observability",
+        "title": "Observability",
         "points": [
           "**Logs:** records of events.",
           "**Metrics:** numerical measurements over time.",
@@ -4700,7 +4840,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "37.9 Cost and sustainability",
+        "title": "Cost and sustainability",
         "points": [
           "Cloud usage can be billed by time, storage, requests, data transfer and other dimensions. Set budgets and alerts, remove unused resources, select suitable capacity and protect accounts. Overprovisioning wastes money and energy; underprovisioning affects reliability. Forecasts should reflect actual workloads rather than guesswork."
         ]
@@ -4708,12 +4848,20 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "37. Cloud computing, virtualisation and DevOps",
-        "meaning": "Cloud computing provides shared configurable computing resources—such as servers, storage, databases, networking and software—through a network. It can offer elasticity and managed services, but introduces provider dependencies, costs, network requirements, configuration risks and questions about data handling."
+        "term": "IaaS (Infrastructure as a Service)",
+        "meaning": "provider supplies virtualised infrastructure; customer often manages operating systems and apps."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "PaaS (Platform as a Service)",
+        "meaning": "provider manages more of the platform so customers can focus on their applications."
+      },
+      {
+        "term": "SaaS (Software as a Service)",
+        "meaning": "finished software is accessed as a service, often through a browser or client app."
+      },
+      {
+        "term": "Public cloud",
+        "meaning": "services delivered using infrastructure made available to multiple customers under provider controls."
       }
     ],
     "examTips": [
@@ -4726,7 +4874,7 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 38,
-    "title": "38. Data literacy, statistics and introductory data science",
+    "title": "Data Literacy, Descriptive Statistics & Data Science Foundations",
     "unit": "Unit 8: Languages, DevOps, Cloud & Emerging Tech",
     "overview": "Data literacy is the ability to read, question, analyse and communicate data responsibly. Programming tools are helpful, but analysis also needs domain knowledge, study design, measurement and honest interpretation.",
     "sections": [
@@ -4737,7 +4885,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "38.1 Types of data",
+        "title": "Types of data",
         "points": [
           "**Categorical:** categories such as subject or colour.",
           "**Ordinal:** categories with meaningful order, such as low/medium/high.",
@@ -4748,7 +4896,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "38.2 Mean, median and mode",
+        "title": "Mean, median and mode",
         "points": [
           "For values `2, 3, 3, 4, 18`:",
           "**Mean:** sum divided by count = `30/5 = 6`.",
@@ -4758,43 +4906,43 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "38.3 Range and spread",
+        "title": "Range and spread",
         "points": [
           "The range is maximum minus minimum. Variance and standard deviation describe spread around the mean under different definitions and units. Interquartile range summarises the middle half of sorted values. Do not compare statistics without understanding the units, sample, missing values and calculation method."
         ]
       },
       {
-        "title": "38.4 Visualisation",
+        "title": "Visualisation",
         "points": [
           "Choose a plot that answers a clear question. Bar charts compare categories; line charts show a trend across ordered intervals; histograms show distributions; scatter plots show relationships between pairs of numeric variables. Label axes, units, time periods and source. Avoid deceptive scales, cherry-picked intervals and unsupported causal claims."
         ]
       },
       {
-        "title": "38.5 Correlation and causation",
+        "title": "Correlation and causation",
         "points": [
           "Correlation means two variables vary together in some way; causation means changes in one variable produce changes in another under an appropriate causal interpretation. Correlation alone does not establish causation. Confounding variables, selection bias, reverse direction and coincidence can explain an observed relationship."
         ]
       },
       {
-        "title": "38.6 Sampling and bias",
+        "title": "Sampling and bias",
         "points": [
           "A sample is a subset of a population. A representative sampling method matters when drawing conclusions beyond the observed records. Online polls and voluntary responses may not represent the whole population. Nonresponse, measurement problems and data cleaning choices can introduce bias."
         ]
       },
       {
-        "title": "38.7 Data pipelines",
+        "title": "Data pipelines",
         "points": [
           "A simple pipeline includes collect → validate → clean → transform → analyse → visualise → communicate → preserve provenance. Each stage should preserve appropriate metadata and record assumptions. Do not remove inconvenient results just because they weaken a desired conclusion."
         ]
       },
       {
-        "title": "38.8 Reproducibility",
+        "title": "Reproducibility",
         "points": [
           "Keep a record of data source, version, processing steps, software versions and parameters. Separate raw data from derived files. If data is confidential, share code and synthetic/example data rather than disclosing the real dataset. Reproducibility is not permission to publish personal information."
         ]
       },
       {
-        "title": "38.9 Introductory data science project",
+        "title": "Introductory data science project",
         "points": [
           "Question: “How does study time relate to quiz score in this small sample?” Define variables, record data responsibly, inspect missing entries, create a scatter plot and calculate a correlation using an appropriate method. Explain that the sample may be small and the relationship does not prove that study time alone caused the score. Protect participants' privacy and obtain permission for data collection."
         ]
@@ -4802,12 +4950,20 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "38. Data literacy, statistics and introductory data science",
-        "meaning": "Data literacy is the ability to read, question, analyse and communicate data responsibly. Programming tools are helpful, but analysis also needs domain knowledge, study design, measurement and honest interpretation."
+        "term": "Categorical",
+        "meaning": "categories such as subject or colour."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Ordinal",
+        "meaning": "categories with meaningful order, such as low/medium/high."
+      },
+      {
+        "term": "Numerical",
+        "meaning": "numbers representing quantities."
+      },
+      {
+        "term": "Discrete numerical",
+        "meaning": "countable values such as number of books."
       }
     ],
     "examTips": [
@@ -4820,12 +4976,12 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 39,
-    "title": "39. Electronics, robotics, sensors and IoT",
+    "title": "Embedded Systems, Robotics, Sensors & IoT Architectures",
     "unit": "Unit 8: Languages, DevOps, Cloud & Emerging Tech",
     "overview": "A circuit provides a path for electrical current. A simplified introductory model uses:",
     "sections": [
       {
-        "title": "39.1 Basic electrical ideas",
+        "title": "Basic electrical ideas",
         "points": [
           "A circuit provides a path for electrical current. A simplified introductory model uses:",
           "**Voltage (V):** electrical potential difference.",
@@ -4835,14 +4991,14 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "39.2 Analog and digital signals",
+        "title": "Analog and digital signals",
         "points": [
           "An **analog signal** varies continuously within a range. A **digital signal** represents discrete states. A sensor may output analog voltage; an analog-to-digital converter (ADC) samples it into numeric values. A digital-to-analog converter (DAC) can turn digital values into an analog output where needed.",
           "Sampling rate and resolution influence how accurately a digital system represents a changing signal. A digital measurement is still an approximation of the physical world and may be affected by noise, calibration and sensor limitations."
         ]
       },
       {
-        "title": "39.3 Common electronic components",
+        "title": "Common electronic components",
         "points": [
           "Resistor: limits or sets current/voltage relationships in a circuit.",
           "Capacitor: stores energy in an electric field and has timing/filtering uses.",
@@ -4857,19 +5013,19 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "39.4 Microcontrollers and single-board computers",
+        "title": "Microcontrollers and single-board computers",
         "points": [
           "A **microcontroller** often integrates CPU, memory and input/output peripherals on one chip and is suited to embedded control. A **single-board computer** is a small full computer board that may run a general-purpose operating system. The distinction can blur across products; choose according to timing, power, cost, operating system and I/O requirements."
         ]
       },
       {
-        "title": "39.5 Sensors and actuators",
+        "title": "Sensors and actuators",
         "points": [
           "Sensors measure aspects of the environment: temperature, humidity, light, distance, pressure, acceleration, gyroscopic motion or gas concentration. Actuators cause actions such as rotating a motor, switching a relay, lighting an LED or opening a valve. A feedback-control system measures the result and adjusts its action."
         ]
       },
       {
-        "title": "39.6 Robotics fundamentals",
+        "title": "Robotics fundamentals",
         "points": [
           "A robot combines sensing, computation and actuation to perform tasks. Key concepts include:",
           "Input sensors and their limits.",
@@ -4883,7 +5039,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "39.7 Internet of Things (IoT)",
+        "title": "Internet of Things (IoT)",
         "points": [
           "IoT connects physical objects—sensors, appliances, meters, machinery or environmental monitors—to software services through local or wide-area networks. A common architecture is device → gateway/network → platform/service → dashboard or control application.",
           "Questions for an IoT design:",
@@ -4898,13 +5054,13 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "39.8 Edge computing",
+        "title": "Edge computing",
         "points": [
           "Edge computing processes some data near the device or local network instead of sending everything to a distant server. Benefits may include lower latency, reduced network use and better local operation during outages. Trade-offs include limited local resources, device management and the need to update and secure many distributed endpoints."
         ]
       },
       {
-        "title": "39.9 Practical project: room environment monitor",
+        "title": "Practical project: room environment monitor",
         "points": [
           "Use an approved low-voltage educational sensor kit to measure temperature and light, display readings, and record a small sample for analysis. Document the sensor model, sampling interval, units and known limitations. Do not collect audio, video, location or personal data unnecessarily. Compare readings against a trusted reference if accuracy matters."
         ]
@@ -4912,12 +5068,20 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "39. Electronics, robotics, sensors and IoT",
-        "meaning": "A circuit provides a path for electrical current. A simplified introductory model uses:"
+        "term": "Voltage (V)",
+        "meaning": "electrical potential difference."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Current (A)",
+        "meaning": "rate of charge flow."
+      },
+      {
+        "term": "Resistance (Ω)",
+        "meaning": "opposition to current in an idealised resistive element."
+      },
+      {
+        "term": "analog signal",
+        "meaning": "varies continuously within a range. A **digital signal** represents discrete states."
       }
     ],
     "examTips": [
@@ -4930,24 +5094,24 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 40,
-    "title": "40. Accessibility, user experience and digital design",
+    "title": "UI/UX Design Principles, Accessibility & Human-Centered Design",
     "unit": "Unit 8: Languages, DevOps, Cloud & Emerging Tech",
     "overview": "User experience covers how people perceive and use a product, including task success, clarity, efficiency, accessibility, trust and satisfaction. A site can have technically valid code yet confuse its audience. Good design begins by understanding users and the task they need to complete.",
     "sections": [
       {
-        "title": "40.1 User experience (UX)",
+        "title": "User experience (UX)",
         "points": [
           "User experience covers how people perceive and use a product, including task success, clarity, efficiency, accessibility, trust and satisfaction. A site can have technically valid code yet confuse its audience. Good design begins by understanding users and the task they need to complete."
         ]
       },
       {
-        "title": "40.2 User interface (UI)",
+        "title": "User interface (UI)",
         "points": [
           "The interface includes visible and interactive elements: navigation, buttons, forms, typography, colours, labels, feedback and layout. A good UI makes actions and consequences understandable. Controls should look and behave consistently."
         ]
       },
       {
-        "title": "40.3 Information architecture",
+        "title": "Information architecture",
         "points": [
           "Information architecture organises content, labels and navigation. For a student-learning site, a useful hierarchy may be:",
           "Use predictable naming, clear breadcrumbs, search and meaningful section headings. Do not make a student remember a confusing path to return to a lesson."
@@ -4964,13 +5128,13 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "40.4 Interaction design",
+        "title": "Interaction design",
         "points": [
           "Every action should have an understandable response. A form submission needs a success message or a clear error; saving should not silently fail; destructive actions should be deliberate and offer recovery where possible. Loading, empty, error, success and offline states are part of the design, not afterthoughts."
         ]
       },
       {
-        "title": "40.5 Accessibility essentials",
+        "title": "Accessibility essentials",
         "points": [
           "All functionality should be reachable with a keyboard where appropriate.",
           "Focus should be visible and should follow a logical order.",
@@ -4986,19 +5150,19 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "40.6 Responsive design and mobile-first thinking",
+        "title": "Responsive design and mobile-first thinking",
         "points": [
           "Students may use low-powered phones, small screens, slow networks or shared devices. Build flexible layouts; compress media; support zoom and text scaling; avoid large downloads for basic notes; and preserve the user's position where possible. Test on a real phone and with keyboard-only navigation, not just a large desktop screen."
         ]
       },
       {
-        "title": "40.7 UX research and testing",
+        "title": "UX research and testing",
         "points": [
           "Ask learners to complete a task without coaching, such as “Find the lesson on network devices and complete the first quiz.” Observe where they hesitate. Use their feedback to improve navigation, labels and instructions. Ask consent before recording a session, do not gather more user data than necessary, and do not interpret a tiny sample as proof that every student will behave the same way."
         ]
       },
       {
-        "title": "40.8 Visual design principles",
+        "title": "Visual design principles",
         "points": [
           "Hierarchy: show what matters most first.",
           "Alignment: line elements up consistently.",
@@ -5013,12 +5177,8 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "40. Accessibility, user experience and digital design",
+        "term": "UI/UX Design Principles, Accessibility & Human-Centered Design",
         "meaning": "User experience covers how people perceive and use a product, including task success, clarity, efficiency, accessibility, trust and satisfaction. A site can have technically valid code yet confuse its audience. Good design begins by understanding users and the task they need to complete."
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
       }
     ],
     "examTips": [
@@ -5031,7 +5191,7 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 41,
-    "title": "41. AI and emerging technologies: orientation",
+    "title": "Modern AI, Machine Learning & Emerging Tech Orientation",
     "unit": "Unit 8: Languages, DevOps, Cloud & Emerging Tech",
     "overview": "This chapter gives an orientation only. A separate AI master file should cover artificial intelligence and machine learning in depth, including LLMs, neural networks, generative models, prompt design, retrieval-augmented generation, agents, automation and responsible deployment.",
     "sections": [
@@ -5042,7 +5202,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "41.1 Emerging technology areas",
+        "title": "Emerging technology areas",
         "points": [
           "**Artificial intelligence (AI):** systems that perform tasks associated with capabilities such as perception, prediction, language processing, planning or decision support.",
           "**Machine learning (ML):** methods that use data to fit models for prediction, classification, generation or other tasks.",
@@ -5057,25 +5217,25 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "41.2 Limits of AI tools",
+        "title": "Limits of AI tools",
         "points": [
           "AI-generated outputs can be incorrect, incomplete, biased or fabricated. A confident explanation is not proof. Verify factual claims against reliable sources; test generated code; avoid uploading private records; check ownership/licensing questions; and follow school rules for disclosure of AI assistance. Do not rely on an AI output for high-stakes decisions without appropriate human and professional review."
         ]
       },
       {
-        "title": "41.3 AI in an IT workflow",
+        "title": "AI in an IT workflow",
         "points": [
           "Possible helpful uses include brainstorming project outlines, explaining a concept at different levels, suggesting test cases, drafting documentation or summarising public technical documentation. A student should remain the author and understand submitted work. Treat output as a draft to review, not an unquestionable answer."
         ]
       },
       {
-        "title": "41.4 Automation versus AI",
+        "title": "Automation versus AI",
         "points": [
           "**Automation** runs defined steps according to rules or triggers; **AI** may infer patterns or generate outputs from a model. They can be combined. A scheduled script that renames files is automation without AI; a model that classifies support messages is AI; a workflow that uses the model and then routes a result through approved rules combines both."
         ]
       },
       {
-        "title": "41.5 Responsible use checklist",
+        "title": "Responsible use checklist",
         "points": [
           "Before using an AI service, ask: What data is being sent? Is it allowed? Is a human expected to review the result? Can the result be tested? Could an error harm someone? Does the service retain inputs? Who owns or can reuse the output? The detailed answers depend on service terms and applicable policy."
         ]
@@ -5083,12 +5243,20 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "41. AI and emerging technologies: orientation",
-        "meaning": "This chapter gives an orientation only. A separate AI master file should cover artificial intelligence and machine learning in depth, including LLMs, neural networks, generative models, prompt design, retrieval-augmented generation, agents, automation and responsible deployment."
+        "term": "Artificial intelligence (AI)",
+        "meaning": "systems that perform tasks associated with capabilities such as perception, prediction, language processing, planning or decision support."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Machine learning (ML)",
+        "meaning": "methods that use data to fit models for prediction, classification, generation or other tasks."
+      },
+      {
+        "term": "Generative AI",
+        "meaning": "systems that generate new text, images, audio, video, code or other outputs based on learned patterns or structured procedures."
+      },
+      {
+        "term": "Large language models (LLMs)",
+        "meaning": "neural models trained on large text/code mixtures or other sequences to predict or generate tokens; capabilities and limitations depend on model, training and tool access."
       }
     ],
     "examTips": [
@@ -5101,7 +5269,7 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 42,
-    "title": "42. Practical project ladder",
+    "title": "Progressive Practical Project Ladder",
     "unit": "Unit 9: Projects, Revision & Practice",
     "overview": "A project is an opportunity to use several ideas together. Before beginning, write the problem, users, inputs, outputs, requirements, limitations and tests. Keep the first version small, then add features. Use synthetic data for practice; do not upload real student, health, identity or financial records to a public service.",
     "sections": [
@@ -5341,7 +5509,24 @@ export const itNotesComp: ChapterNote[] = [
         }
       }
     ],
-    "keyTerms": [],
+    "keyTerms": [
+      {
+        "term": "Goal",
+        "meaning": "identify monitor, keyboard, mouse/touchpad, system unit, speakers, printer and power button."
+      },
+      {
+        "term": "Success check",
+        "meaning": "explain which parts take input and which show or produce output."
+      },
+      {
+        "term": "Extension",
+        "meaning": "describe the difference between a pixel image and a vector drawing."
+      },
+      {
+        "term": "dry-run mode",
+        "meaning": "that only reports planned actions. Test on a copy of sample files before enabling actual moves."
+      }
+    ],
     "examTips": []
   },
   {
@@ -5349,12 +5534,12 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 43,
-    "title": "43. Revision sheets and comparison tables",
+    "title": "High-Yield Summary & Quick Revision Comparison Tables",
     "unit": "Unit 9: Projects, Revision & Practice",
     "overview": "Firmware sits near the boundary: it is software stored on hardware to control or initialise a device.",
     "sections": [
       {
-        "title": "43.1 Hardware vs software",
+        "title": "Hardware vs software",
         "table": {
           "head": [
             "Hardware",
@@ -5381,13 +5566,13 @@ export const itNotesComp: ChapterNote[] = [
         }
       },
       {
-        "title": "43.1 Hardware vs software — Details",
+        "title": "Hardware vs software — Details",
         "points": [
           "Firmware sits near the boundary: it is software stored on hardware to control or initialise a device."
         ]
       },
       {
-        "title": "43.2 RAM vs storage",
+        "title": "RAM vs storage",
         "table": {
           "head": [
             "RAM",
@@ -5414,7 +5599,7 @@ export const itNotesComp: ChapterNote[] = [
         }
       },
       {
-        "title": "43.3 Internet vs Web",
+        "title": "Internet vs Web",
         "table": {
           "head": [
             "Internet",
@@ -5437,7 +5622,7 @@ export const itNotesComp: ChapterNote[] = [
         }
       },
       {
-        "title": "43.4 Browser vs search engine",
+        "title": "Browser vs search engine",
         "table": {
           "head": [
             "Browser",
@@ -5460,7 +5645,7 @@ export const itNotesComp: ChapterNote[] = [
         }
       },
       {
-        "title": "43.5 Compiler vs interpreter",
+        "title": "Compiler vs interpreter",
         "table": {
           "head": [
             "Compiler",
@@ -5487,7 +5672,7 @@ export const itNotesComp: ChapterNote[] = [
         }
       },
       {
-        "title": "43.6 Data structure selection",
+        "title": "Data structure selection",
         "table": {
           "head": [
             "Need",
@@ -5539,7 +5724,7 @@ export const itNotesComp: ChapterNote[] = [
         }
       },
       {
-        "title": "43.7 Front end vs back end",
+        "title": "Front end vs back end",
         "table": {
           "head": [
             "Front end",
@@ -5566,19 +5751,19 @@ export const itNotesComp: ChapterNote[] = [
         }
       },
       {
-        "title": "43.8 Authentication vs authorisation",
+        "title": "Authentication vs authorisation",
         "points": [
           "Authentication asks “Who are you?” Authorisation asks “What are you allowed to do?” A person can successfully sign in yet still lack permission to view a particular record."
         ]
       },
       {
-        "title": "43.9 AI vs ordinary automation",
+        "title": "AI vs ordinary automation",
         "points": [
           "Rule-based automation follows explicit programmed logic or triggers. AI systems may use trained models to infer or generate outputs. Both require testing, security and human governance appropriate to the consequences of their actions. A reliable workflow may combine them."
         ]
       },
       {
-        "title": "43.10 Essential formulas and facts",
+        "title": "Essential formulas and facts",
         "points": [
           "One byte is commonly defined as 8 bits.",
           "Decimal value of a binary number is the sum of each bit multiplied by its corresponding power of 2.",
@@ -5592,7 +5777,12 @@ export const itNotesComp: ChapterNote[] = [
         ]
       }
     ],
-    "keyTerms": [],
+    "keyTerms": [
+      {
+        "term": "High-Yield Summary & Quick Revision Comparison Tables",
+        "meaning": "Firmware sits near the boundary: it is software stored on hardware to control or initialise a device."
+      }
+    ],
     "examTips": []
   },
   {
@@ -5600,7 +5790,7 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 44,
-    "title": "44. Competitive IT & CS Practice Arena",
+    "title": "Competitive IT & CS Practice Arena",
     "unit": "Unit 9: Projects, Revision & Practice",
     "overview": "40 diagnostic multiple-choice questions testing core concepts across Computer Hardware, Operating Systems, Networking, Python, and SQL.",
     "sections": [
@@ -5691,7 +5881,12 @@ export const itNotesComp: ChapterNote[] = [
         ]
       }
     ],
-    "keyTerms": [],
+    "keyTerms": [
+      {
+        "term": "Competitive IT & CS Practice Arena",
+        "meaning": "40 diagnostic multiple-choice questions testing core concepts across Computer Hardware, Operating Systems, Networking, Python, and SQL."
+      }
+    ],
     "examTips": []
   },
   {
@@ -5699,7 +5894,7 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 45,
-    "title": "46. Glossary",
+    "title": "Comprehensive IT & Computer Science Glossary",
     "unit": "Unit 10: Advanced Systems, Linux & Careers",
     "overview": "46. Glossary — Fundamental concepts, practical guidelines, and key summaries.",
     "sections": [
@@ -6141,12 +6336,20 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "46. Glossary",
-        "meaning": "46. Glossary — Fundamental concepts, practical guidelines, and key summaries."
+        "term": "Abstraction",
+        "meaning": "Focusing on the details relevant to a problem while hiding unnecessary detail"
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Accessibility",
+        "meaning": "Designing technology so people with different abilities can use it"
+      },
+      {
+        "term": "Algorithm",
+        "meaning": "A finite, precise sequence of steps that solves a problem"
+      },
+      {
+        "term": "ALU",
+        "meaning": "CPU component for arithmetic and logical operations"
       }
     ],
     "examTips": [
@@ -6159,7 +6362,7 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 46,
-    "title": "47. Digital logic and computer arithmetic",
+    "title": "Digital Logic, Boolean Algebra & Computer Arithmetic",
     "unit": "Unit 10: Advanced Systems, Linux & Careers",
     "overview": "Digital logic explains how electronic circuits implement decisions and arithmetic with discrete states. A classroom model treats signals as binary 0 and 1, although real circuits have voltage levels, timing constraints, noise margins and electrical behaviour that are more complex.",
     "sections": [
@@ -6170,7 +6373,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "47.1 Logic gates",
+        "title": "Logic gates",
         "points": [
           "A logic gate takes one or more binary inputs and produces a binary output."
         ],
@@ -6220,7 +6423,7 @@ export const itNotesComp: ChapterNote[] = [
         }
       },
       {
-        "title": "47.1 Logic gates — Details",
+        "title": "Logic gates — Details",
         "points": [
           "Truth table for two inputs:"
         ],
@@ -6275,13 +6478,13 @@ export const itNotesComp: ChapterNote[] = [
         }
       },
       {
-        "title": "47.1 Logic gates — Details — Details",
+        "title": "Logic gates — Details — Details",
         "points": [
           "NAND and NOR are called universal gates because suitable combinations can be used to build any Boolean logic function. The practical circuit design requires electrical and timing considerations beyond the truth table."
         ]
       },
       {
-        "title": "47.2 Boolean algebra",
+        "title": "Boolean algebra",
         "points": [
           "Boolean algebra works with binary variables and logical operations. Common identities include:",
           "`A AND 1 = A`",
@@ -6297,7 +6500,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "47.3 Binary arithmetic",
+        "title": "Binary arithmetic",
         "points": [
           "Binary addition follows familiar place-value rules:",
           "`0 + 0 = 0`; `0 + 1 = 1`; `1 + 0 = 1`; `1 + 1 = 10` in binary (write 0 and carry 1). Subtraction and multiplication also use base-2 place values."
@@ -6310,20 +6513,20 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "47.4 Unsigned and signed integers",
+        "title": "Unsigned and signed integers",
         "points": [
           "An unsigned `n`-bit value can represent integers from 0 through `2^n - 1`. Many systems represent signed integers using two's complement; for an `n`-bit two's-complement representation, the range is `-2^(n-1)` through `2^(n-1)-1`. This range is asymmetric, with one more negative value than positive values.",
           "**Overflow** happens when a result cannot be represented in the chosen fixed-width format. Languages differ in how integer overflow is handled. Python integers expand as needed within memory limits; fixed-width machine types in other languages can behave differently. Never assume every language uses the same overflow rules."
         ]
       },
       {
-        "title": "47.5 Half adders and full adders",
+        "title": "Half adders and full adders",
         "points": [
           "A **half adder** adds two one-bit inputs and produces a sum and carry. Its sum is XOR; its carry is AND. A **full adder** adds two bits and a carry-in, producing a sum and carry-out. Combining such circuits supports multi-bit addition. Real processors use more complex arithmetic circuits and optimisations, but these blocks illustrate how software-visible arithmetic is ultimately implemented in hardware."
         ]
       },
       {
-        "title": "47.6 Boolean logic in programming",
+        "title": "Boolean logic in programming",
         "points": [
           "The same concepts appear in conditions. If a student can access a lesson only when signed in and enrolled, an illustrative condition is:",
           "This condition should still be enforced by the server for a protected online service. A front-end Boolean variable is not a security boundary."
@@ -6335,12 +6538,16 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "47. Digital logic and computer arithmetic",
-        "meaning": "Digital logic explains how electronic circuits implement decisions and arithmetic with discrete states. A classroom model treats signals as binary 0 and 1, although real circuits have voltage levels, timing constraints, noise margins and electrical behaviour that are more complex."
+        "term": "Overflow",
+        "meaning": "happens when a result cannot be represented in the chosen fixed-width format. Languages differ in how integer overflow is handled."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "half adder",
+        "meaning": "adds two one-bit inputs and produces a sum and carry. Its sum is XOR; its carry is AND."
+      },
+      {
+        "term": "full adder",
+        "meaning": "adds two bits and a carry-in, producing a sum and carry-out. Combining such circuits supports multi-bit addition."
       }
     ],
     "examTips": [
@@ -6353,7 +6560,7 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 47,
-    "title": "48. Command line, Linux and system administration",
+    "title": "Linux Shell, Command Line & Systems Administration",
     "unit": "Unit 10: Advanced Systems, Linux & Careers",
     "overview": "A command-line interface can make repeated tasks precise and automatable. Use commands on your own machine or an authorised training environment only. The examples below are introductory; shells and options differ across platforms.",
     "sections": [
@@ -6364,14 +6571,14 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "48.1 Shell basics",
+        "title": "Shell basics",
         "points": [
           "A **shell** reads commands and launches programs. Common environments include Bash and other POSIX-style shells, Windows PowerShell and Windows Command Prompt. A terminal is an interface through which a shell can run; the terminal and the shell are not the same thing.",
           "Common tasks include navigating directories, listing files, searching text, running programs, checking network configuration, viewing processes and managing permissions. Start in a practice directory and learn how to ask a command for help before using destructive options."
         ]
       },
       {
-        "title": "48.2 Safe command-line habits",
+        "title": "Safe command-line habits",
         "points": [
           "Understand the current directory before creating, moving or deleting files.",
           "Read commands in full, especially recursive and force flags.",
@@ -6384,7 +6591,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "48.3 Navigation commands",
+        "title": "Navigation commands",
         "points": [
           "Common examples:",
           "Windows PowerShell supports commands such as `Get-Location`, `Get-ChildItem`, `Set-Location` and `New-Item`; many familiar aliases also exist. Command behaviour can differ between environments."
@@ -6397,39 +6604,39 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "48.4 File searching and text inspection",
+        "title": "File searching and text inspection",
         "points": [
           "Common Unix-like tools include `cat` (display file contents), `less` (page through text), `head`/`tail` (show the beginning/end), `grep` (search text patterns) and `find` (search directory trees). PowerShell provides cmdlets such as `Get-Content`, `Select-String` and `Get-ChildItem` with filters.",
           "Do not print sensitive files to a shared terminal or paste confidential results into a public support forum. Redact personal details and tokens from diagnostic output."
         ]
       },
       {
-        "title": "48.5 Permissions and least privilege",
+        "title": "Permissions and least privilege",
         "points": [
           "Unix-like systems commonly associate read, write and execute permissions with owner, group and others. Windows uses access-control mechanisms with its own permission model. Use the minimum permissions needed; avoid making everything writable or running all tasks as administrator. Broad permissions can expose data or allow malicious code to modify files.",
           "Commands such as `chmod` change permission bits on Unix-like systems. Their effects depend on the path and current configuration, so practise on a disposable file before modifying real data. Never run recursive permission commands on system directories without a legitimate, understood need."
         ]
       },
       {
-        "title": "48.6 Processes and system resources",
+        "title": "Processes and system resources",
         "points": [
           "A process is a running program. Tools such as Task Manager, Activity Monitor, `ps`, `top` or platform-specific process viewers help identify resource use. High CPU, RAM, disk activity or network use can be caused by legitimate work, a misbehaving app, a bug or a security problem. Investigate the process identity and context before terminating it."
         ]
       },
       {
-        "title": "48.7 Environment variables and configuration",
+        "title": "Environment variables and configuration",
         "points": [
           "Environment variables pass configuration into processes. They may hold values such as a development mode flag or a path to an application resource. Secrets should be stored through an appropriate secret-management approach, not committed to public code. Environment variables can be exposed through logs, debugging tools or misconfigured deployments, so they are not magically secret by themselves."
         ]
       },
       {
-        "title": "48.8 Package managers and software installation",
+        "title": "Package managers and software installation",
         "points": [
           "Package managers install and update software from defined repositories. Use official or trusted repositories, understand where packages come from, and review permissions required by installers. In an organisation, administrators may maintain an approved list and update process. Randomly adding repositories or downloading installers can create supply-chain risk."
         ]
       },
       {
-        "title": "48.9 Basic shell automation",
+        "title": "Basic shell automation",
         "points": [
           "A simple Bash script may look like:",
           "This script only prints information. `set -eu` changes handling of certain errors and unset variables, but it is not a universal safety guarantee. More complex scripts need careful quoting, input validation, error handling and review. Never start with a script that recursively deletes files.",
@@ -6444,13 +6651,13 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "48.10 Environment setup for coding",
+        "title": "Environment setup for coding",
         "points": [
           "A development environment commonly consists of an editor/IDE, language runtime/compiler, package dependencies, test tools, version control and project configuration. Document required versions and setup commands. Use virtual environments for Python where practical, and keep dependencies separate from system tools. Do not install packages globally on a managed school system without permission."
         ]
       },
       {
-        "title": "48.11 Safe network diagnostics",
+        "title": "Safe network diagnostics",
         "points": [
           "On your own device or authorised network, useful tools may include:",
           "`ping` to test reachability using ICMP where permitted; a failed ping does not always prove a host is offline.",
@@ -6462,7 +6669,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "48.12 System administration checklist",
+        "title": "System administration checklist",
         "points": [
           "For managed systems, administrators typically track supported software versions, patching, user accounts, access rights, inventory, backups, monitoring, incident response, configuration, licences and recovery procedures. An unmanaged server exposed to the Internet can be compromised even if its application code is correct."
         ]
@@ -6470,12 +6677,8 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "48. Command line, Linux and system administration",
-        "meaning": "A command-line interface can make repeated tasks precise and automatable. Use commands on your own machine or an authorised training environment only. The examples below are introductory; shells and options differ across platforms."
-      },
-      {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "shell",
+        "meaning": "reads commands and launches programs. Common environments include Bash and other POSIX-style shells, Windows PowerShell and Windows Command Prompt."
       }
     ],
     "examTips": [
@@ -6488,12 +6691,12 @@ export const itNotesComp: ChapterNote[] = [
     "subject": "it",
     "classLevel": "competitive",
     "chapterNo": 48,
-    "title": "49. IT services, maintenance, troubleshooting and careers",
+    "title": "IT Service Management, Diagnostics, Troubleshooting & Tech Careers",
     "unit": "Unit 10: Advanced Systems, Linux & Careers",
     "overview": "Common digital services include:",
     "sections": [
       {
-        "title": "49.1 IT and IT-enabled services",
+        "title": "IT and IT-enabled services",
         "points": [
           "**IT services** use technology to deliver a capability, such as hosting, device support, identity management, networking or data backup. **IT-enabled services (ITeS)** use IT to deliver or improve a service or business process—for example, remote customer support, digital document processing, online learning support, telemedicine administration, e-commerce operations or data-processing services.",
           "Common digital services include:",
@@ -6508,7 +6711,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "49.2 IT help desk and service management",
+        "title": "IT help desk and service management",
         "points": [
           "A help desk receives, categorises, investigates and resolves user incidents or requests. A useful ticket records the symptom, affected device/service, time, impact, steps already tried, error messages and what success would look like. Avoid writing passwords or sensitive personal information into a ticket.",
           "**Incident:** unplanned interruption or degradation of a service.",
@@ -6520,7 +6723,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "49.3 A systematic troubleshooting method",
+        "title": "A systematic troubleshooting method",
         "points": [
           "1. **Define the problem:** What exactly happens? What should happen? When did it start?",
           "2. **Collect evidence:** error message, recent changes, device/app version and whether others are affected.",
@@ -6535,7 +6738,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "49.4 Common problem categories",
+        "title": "Common problem categories",
         "points": [
           "**Device does not power on:** check power source, charging, cable, power button and signs of damage. Do not open a power supply or damaged battery.",
           "**Display is blank:** check power/brightness, display selection and cable/monitor connection; listen for boot indicators; follow manufacturer guidance.",
@@ -6547,7 +6750,7 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "49.5 Preventive maintenance",
+        "title": "Preventive maintenance",
         "points": [
           "Keep supported software patched using trusted update channels.",
           "Back up important information and test restores.",
@@ -6562,13 +6765,13 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "49.6 Workplace skills",
+        "title": "Workplace skills",
         "points": [
           "IT work depends on clear communication, documenting changes, asking questions, ethical judgement, time management and collaboration. A technician should explain the impact of a problem in language users understand, distinguish known facts from hypotheses, protect confidential information and know when to escalate."
         ]
       },
       {
-        "title": "49.7 IT roles and pathways",
+        "title": "IT roles and pathways",
         "points": [
           "Potential areas include:",
           "IT support / service desk.",
@@ -6589,13 +6792,13 @@ export const itNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "49.8 Building a portfolio",
+        "title": "Building a portfolio",
         "points": [
           "A useful student portfolio includes a few finished projects rather than dozens of copied examples. For each project, explain the problem, design decisions, code or files, tests, limitations and what was learned. Use synthetic data, include licences and sources, remove secrets, and make installation steps reproducible. Do not claim another person's work as your own."
         ]
       },
       {
-        "title": "49.9 Study and career planning",
+        "title": "Study and career planning",
         "points": [
           "A learner who enjoys devices and practical support may explore hardware, networking or systems administration. A learner who enjoys logic and building tools may explore programming, testing or data work. A learner who enjoys design and communication may explore UX, accessibility, digital media or technical writing. These are starting points, not fixed categories; many IT careers combine several skill sets."
         ]
@@ -6603,12 +6806,20 @@ export const itNotesComp: ChapterNote[] = [
     ],
     "keyTerms": [
       {
-        "term": "49. IT services, maintenance, troubleshooting and careers",
-        "meaning": "Common digital services include:"
+        "term": "IT services",
+        "meaning": "use technology to deliver a capability, such as hosting, device support, identity management, networking or data backup. **IT-enabled services (ITeS)** use IT to deliver or improve a service or business process—for example, remote customer support, digital document processing, online learning support, telemedicine administration, e-commerce operations or data-processing services."
       },
       {
-        "term": "Standard Practice",
-        "meaning": "Industry-standard guidelines and protocols."
+        "term": "Incident",
+        "meaning": "unplanned interruption or degradation of a service."
+      },
+      {
+        "term": "Service request",
+        "meaning": "a standard request such as software access or equipment setup."
+      },
+      {
+        "term": "Problem",
+        "meaning": "underlying cause of one or more incidents."
       }
     ],
     "examTips": [

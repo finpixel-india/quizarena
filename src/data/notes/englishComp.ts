@@ -6,12 +6,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 1,
-    "title": "1. Orthography, Phonetics & Syllabic Stress Mechanics",
+    "title": "Orthography, Phonetics & Syllabic Stress Mechanics",
     "unit": "Unit 1: Foundations of Grammar & Sentence Mechanics",
     "overview": "The structural foundation of the English language: 26 letters versus 44 phonemes (12 monophthongs, 8 diphthongs, 24 consonants), phonetic article selection, and grammatical syllable stress shifts (Noun vs Verb).",
     "sections": [
       {
-        "title": "1.1 Letters versus Speech Sounds (Phonemes)",
+        "title": "Letters versus Speech Sounds (Phonemes)",
         "points": [
           "English uses the Latin alphabet consisting of **26 letters**, but spoken Standard English contains **44 distinct speech sounds (phonemes)**.",
           "• **20 Vowel Sounds:** Comprising **12 Monophthongs** (pure steady vowel sounds: 7 short vowels like /ɪ/ in *sit*, /e/ in *bed*, /æ/ in *cat*, /ɒ/ in *hot*, /ʌ/ in *cup*, /ʊ/ in *put*, /ə/ in *about*; and 5 long vowels like /iː/ in *see*, /ɑː/ in *father*, /ɔː/ in *call*, /uː/ in *food*, /ɜː/ in *bird*) and **8 Diphthongs** (gliding vowel sounds: /eɪ/ in *day*, /aɪ/ in *my*, /ɔɪ/ in *boy*, /aʊ/ in *now*, /əʊ/ in *go*, /ɪə/ in *near*, /eə/ in *hair*, /ʊə/ in *pure*).",
@@ -22,7 +22,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "1.2 Syllable Stress and Grammatical Part-of-Speech Shift",
+        "title": "Syllable Stress and Grammatical Part-of-Speech Shift",
         "points": [
           "A **syllable** is an unbroken unit of pronunciation centered around a single vowel sound. Monosyllabic (1), disyllabic (2), trisyllabic (3), and polysyllabic (4+).",
           "**The Disyllabic Stress Shift Rule:** In many two-syllable English words that share identical spelling, shifting syllable stress changes the word class:",
@@ -60,12 +60,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 2,
-    "title": "2. Morphology: Free & Bound Morphemes, Roots and Affixes",
+    "title": "Morphology: Free & Bound Morphemes, Roots and Affixes",
     "unit": "Unit 1: Foundations of Grammar & Sentence Mechanics",
     "overview": "Morphemic analysis: free vs bound morphemes, derivational vs inflectional affixes, the 8 English inflectional suffixes, and morphological root families.",
     "sections": [
       {
-        "title": "2.1 Morphemes: The Smallest Units of Meaning",
+        "title": "Morphemes: The Smallest Units of Meaning",
         "points": [
           "**Morphology** is the branch of grammar that analyzes the internal structure and formation of words.",
           "A **morpheme** is the smallest meaningful grammatical unit that cannot be further analyzed without losing its semantic identity.",
@@ -74,7 +74,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "2.2 Derivational versus Inflectional Affixes",
+        "title": "Derivational versus Inflectional Affixes",
         "points": [
           "• **Prefixes:** Bound morphemes added before a root, primarily altering meaning (*happy -> unhappy*, *write -> rewrite*, *legal -> illegal*).",
           "• **Derivational Suffixes:** Suffixes that create brand new words, frequently transforming word class (*kind [Adj] -> kindness [Noun]*, *quick [Adj] -> quickly [Adv]*, *modern [Adj] -> modernize [Verb]*).",
@@ -118,12 +118,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 3,
-    "title": "3. The SVOCA Clause Model & 7 Core Sentence Patterns",
+    "title": "The SVOCA Clause Model & 7 Core Sentence Patterns",
     "unit": "Unit 1: Foundations of Grammar & Sentence Mechanics",
     "overview": "Modern Oxford clause architecture: Subject, Verb, Object (Direct, Indirect, Retained, Cognate), Complement (Subject vs Object), Adverbial, and the 7 fundamental clause patterns.",
     "sections": [
       {
-        "title": "3.1 The Five Clause Elements: SVOCA",
+        "title": "The Five Clause Elements: SVOCA",
         "points": [
           "Modern English grammar analyzes clauses using five functional syntactic elements:",
           "• **Subject (S):** Identifies who or what performs the action or is described. Governs concord with the finite verb.",
@@ -140,7 +140,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "3.2 The 7 Fundamental English Clause Patterns",
+        "title": "The 7 Fundamental English Clause Patterns",
         "points": [
           "1. **SV:** *Birds fly.* / *The athlete was resting.*",
           "2. **SVO:** *Newton formulated the laws of motion.*",
@@ -181,12 +181,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 4,
-    "title": "4. Phrases: Structural, Non-Finite & Absolute Constructions",
+    "title": "Phrases: Structural, Non-Finite & Absolute Constructions",
     "unit": "Unit 1: Foundations of Grammar & Sentence Mechanics",
     "overview": "Comprehensive taxonomy of phrases: Noun, Verb, Adjective, Adverb, Prepositional, Infinitive, Gerund, Participial, Appositive, and Nominative Absolute phrases.",
     "sections": [
       {
-        "title": "4.1 Structural Phrases by Head Word",
+        "title": "Structural Phrases by Head Word",
         "points": [
           "A **phrase** is a multi-word grammatical unit functioning as a single part of speech without a subject-finite verb nexus.",
           "• **Noun Phrase (NP):** Headed by a noun or pronoun (*The three ancient manuscripts on the top shelf*).",
@@ -197,7 +197,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "4.2 Non-Finite and Absolute Phrases",
+        "title": "Non-Finite and Absolute Phrases",
         "points": [
           "• **Infinitive Phrase:** Begins with `to + V1`. Functions as Noun (*To master syntax requires diligence*), Adjective (*a sight to behold*), or Adverb of purpose (*worked hard to support his family*).",
           "• **Gerund Phrase:** Begins with `V-ing` and functions strictly as a Noun (*Reading classic literature expands vocabulary*).",
@@ -231,12 +231,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 5,
-    "title": "5. Clauses: Noun, Adjective & Adverbial Functional Analysis",
+    "title": "Clauses: Noun, Adjective & Adverbial Functional Analysis",
     "unit": "Unit 1: Foundations of Grammar & Sentence Mechanics",
     "overview": "Independent vs dependent clauses, the 6 functions of noun clauses, defining vs non-defining relative clauses, contact clauses, and the 9 adverbial clause varieties.",
     "sections": [
       {
-        "title": "5.1 The Three Subordinate Clause Classes",
+        "title": "The Three Subordinate Clause Classes",
         "points": [
           "A **clause** contains a subject and a finite verb. Dependent clauses function as Nouns, Adjectives, or Adverbs:",
           "• **Noun Clause:** Performs the role of a noun. Tests positive with the 'Something' substitution test:",
@@ -252,7 +252,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "5.2 Dual-Function Clause Connectors",
+        "title": "Dual-Function Clause Connectors",
         "points": [
           "Never classify a clause solely by its introductory word:",
           "• *where:* Noun clause (*I know where he lives*); Relative clause (*The town where he lives*); Adverbial (*He travels wherever he likes*).",
@@ -284,12 +284,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 6,
-    "title": "6. Sentence Classification: Functional & Structural Architecture",
+    "title": "Sentence Classification: Functional & Structural Architecture",
     "unit": "Unit 1: Foundations of Grammar & Sentence Mechanics",
     "overview": "Classification by function (Declarative, Interrogative, Imperative, Exclamatory, Optative) and by structure (Simple, Compound, Complex, Compound-Complex) with diagnostic transformation tables.",
     "sections": [
       {
-        "title": "6.1 Classification by Function (5 Types)",
+        "title": "Classification by Function (5 Types)",
         "points": [
           "1. **Declarative (Assertive):** States assertions or facts. Affirmative or Negative.",
           "2. **Interrogative:** Asks questions (Yes/No, Wh-questions, Alternative, Question Tags, Rhetorical).",
@@ -299,7 +299,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "6.2 Classification by Structure (4 Types)",
+        "title": "Classification by Structure (4 Types)",
         "points": [
           "• **Simple Sentence:** Exactly 1 independent clause and 0 dependent clauses (*In spite of his poverty, he is honest*).",
           "• **Compound Sentence:** 2 or more independent clauses joined by coordinating conjunctions (FANBOYS: for, and, nor, but, or, yet, so), correlatives, or semicolons (*He is poor, yet he is honest*).",
@@ -332,12 +332,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 7,
-    "title": "7. Noun Classes, Countability & Partitive Expressions",
+    "title": "Noun Classes, Countability & Partitive Expressions",
     "unit": "Unit 2: Nouns, Determiners & Articles",
     "overview": "Proper, Common, Collective, Material, Abstract, and Compound nouns; mass noun constraints; the golden list of uncountable nouns; and partitive expressions.",
     "sections": [
       {
-        "title": "7.1 Noun Classification and Mass Noun Rules",
+        "title": "Noun Classification and Mass Noun Rules",
         "points": [
           "Nouns are categorized into Proper, Common, Collective, Material, and Abstract.",
           "**Strictly Uncountable Nouns:** In standard English, the following nouns **never take plural -s** and **never take a/an**: *advice, information, furniture, luggage, baggage, equipment, evidence, scenery, poetry, machinery, stationery, crockery, cutlery, jewellery, traffic, knowledge, bread, hair (head of hair), weather, progress, research*.",
@@ -346,7 +346,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "7.2 Partitive Expressions for Counting Mass Nouns",
+        "title": "Partitive Expressions for Counting Mass Nouns",
         "points": [
           "Use partitive noun phrases to express singular or plural countable units of mass nouns:",
           "• *a piece of* advice / information / news / furniture",
@@ -378,12 +378,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 8,
-    "title": "8. Noun Number: Classical, Foreign, Invariant & Compound Plurals",
+    "title": "Noun Number: Classical, Foreign, Invariant & Compound Plurals",
     "unit": "Unit 2: Nouns, Determiners & Articles",
     "overview": "Rules of noun number: Greek/Latin plurals (-us to -i, -um to -a, -is to -es), invariant zero plurals (sheep, deer), pluralia tantum (scissors, trousers), and noun-adjunct hyphenated numbers.",
     "sections": [
       {
-        "title": "8.1 Classical Latin and Greek Plural Matrix",
+        "title": "Classical Latin and Greek Plural Matrix",
         "points": [
           "• **Latin -us -> -i:** *alumnus -> alumni*, *fungus -> fungi*, *nucleus -> nuclei*, *stimulus -> stimuli*, *radius -> radii*, *terminus -> termini* (Note: *campus -> campuses, virus -> viruses*).",
           "• **Latin -a -> -ae:** *alumna -> alumnae*, *formula -> formulae*, *vertebra -> vertebrae*, *larva -> larvae*.",
@@ -393,7 +393,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "8.2 Invariant Plurals, Pluralia Tantum & Numeral Nouns",
+        "title": "Invariant Plurals, Pluralia Tantum & Numeral Nouns",
         "points": [
           "• **Zero Plural (Singular = Plural):** *sheep, deer, swine, fish, series, species, aircraft, spacecraft, offspring, crossroads, headquarters*.",
           "• **Pluralia Tantum (Always Plural):** *scissors, spectacles, binoculars, trousers, pyjamas, alms, archives, credentials, earnings, proceeds, riches, surroundings, thanks*.",
@@ -423,12 +423,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 9,
-    "title": "9. Noun Gender, Personification & Case Dynamics",
+    "title": "Noun Gender, Personification & Case Dynamics",
     "unit": "Unit 2: Nouns, Determiners & Articles",
     "overview": "Natural vs grammatical gender, personification conventions (masculine strength vs feminine grace), the 5 grammatical cases, and vocative address syntax.",
     "sections": [
       {
-        "title": "9.1 English Gender System and Personification",
+        "title": "English Gender System and Personification",
         "points": [
           "English uses **natural semantic gender** (Masculine: he; Feminine: she; Common: doctor, student; Neuter: it).",
           "**Personification Conventions in Rhetoric:**",
@@ -437,7 +437,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "9.2 The Five Grammatical Cases",
+        "title": "The Five Grammatical Cases",
         "points": [
           "1. **Nominative (Subjective):** Subject of the finite verb (*Rohan wrote the essay*).",
           "2. **Accusative (Objective):** Direct Object of a verb or preposition (*Wrote the essay*).",
@@ -467,12 +467,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 10,
-    "title": "10. The Genitive System: Apostrophe Rules & Animacy Hierarchy",
+    "title": "The Genitive System: Apostrophe Rules & Animacy Hierarchy",
     "unit": "Unit 2: Nouns, Determiners & Articles",
     "overview": "Rules of the possessive apostrophe ('s vs '): living vs inanimate animacy hierarchy, joint vs separate possession, double genitives, and elliptical possessives.",
     "sections": [
       {
-        "title": "10.1 Forming the Possessive Case ('s vs ')",
+        "title": "Forming the Possessive Case ('s vs ')",
         "points": [
           "• Singular nouns: Add **'s** (*the boy's book*, *Keats's poetry*).",
           "• Plural nouns ending in -s: Add **only apostrophe (')** (*a boys' hostel*, *teachers' lounge*).",
@@ -483,7 +483,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "10.2 Animacy Hierarchy and Non-Living Noun Exceptions",
+        "title": "Animacy Hierarchy and Non-Living Noun Exceptions",
         "points": [
           "• **Rule:** Inanimate non-living objects do **not** take 's; use `of + Noun` (Incorrect: *the table's leg* -> Correct: *the **leg of the table***).",
           "• **Exceptions where non-living nouns DO take 's:**",
@@ -514,12 +514,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 11,
-    "title": "11. The Complete Article System: 25 Definite & Zero Article Laws",
+    "title": "The Complete Article System: 25 Definite & Zero Article Laws",
     "unit": "Unit 2: Nouns, Determiners & Articles",
     "overview": "Definite article 'the' master rules: geographical proper names, superlatives, double comparatives, class adjectives (the rich), and primary vs secondary institutional purpose.",
     "sections": [
       {
-        "title": "11.1 Key Definite Article Rules (The)",
+        "title": "Key Definite Article Rules (The)",
         "points": [
           "• **Second mention & post-modification:** *The gold of Kolar*; *The boy who won*.",
           "• **Celestial objects & unique items:** *the sun, the moon, the earth, the sky* (Note: *space* outer space takes NO article; *Nature, Parliament, Heaven, Hell* take NO article).",
@@ -533,7 +533,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "11.2 Zero Article and the Institutional Purpose Rule",
+        "title": "Zero Article and the Institutional Purpose Rule",
         "points": [
           "• **Primary vs Secondary Purpose:**",
           "  - **Primary Purpose (NO Article):** Going to *school, college, university, hospital, prison, temple, church, bed* for the exact institutional reason: *He went to hospital* (as a patient); *sent to prison* (as a criminal); *children go to school* (to learn).",
@@ -562,12 +562,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 12,
-    "title": "12. High-Precision Quantifiers & Distributive Determiners",
+    "title": "High-Precision Quantifiers & Distributive Determiners",
     "unit": "Unit 2: Nouns, Determiners & Articles",
     "overview": "Quantifier systems: much vs many, the few series (few, a few, the few), the little series (little, a little, the little), each vs every, either vs neither, and other/another distinctions.",
     "sections": [
       {
-        "title": "12.1 The Few and Little Triads",
+        "title": "The Few and Little Triads",
         "points": [
           "• **The Few Series (Plural Countable Nouns):**",
           "  - *Few:* Negative polarity ('hardly any / almost none'): *Few students passed* (= disappointing result).",
@@ -580,7 +580,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "12.2 Distributives: Each, Every, Either, Neither",
+        "title": "Distributives: Each, Every, Either, Neither",
         "points": [
           "• **Each vs Every:** *Each* applies to 2 or more individuals separately (*Each of the two sisters*); *Every* applies to 3 or more collectively (*Every citizen*). *Each* can be a pronoun; *Every* is strictly a determiner.",
           "• **Either / Neither (Strictly TWO):** *Either* = one or the other of two; *Neither* = not one and not the other of two (*Neither of the two plans is feasible*). For 3 or more, use *Any* / *None* (*None of the five plans is feasible*).",
@@ -608,12 +608,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 13,
-    "title": "13. Pronoun Paradigms, Case Rules & The 2-3-1 vs 1-2-3 Order",
+    "title": "Pronoun Paradigms, Case Rules & The 2-3-1 vs 1-2-3 Order",
     "unit": "Unit 3: Pronouns & Adjectives",
     "overview": "Personal pronoun cases (subjective, objective, possessive), compound pronoun strip-test, pronouns after 'to be', prepositions, 'let', 'than/as', and pronoun order rules (2-3-1 vs 1-2-3).",
     "sections": [
       {
-        "title": "13.1 High-Precision Case Rules",
+        "title": "High-Precision Case Rules",
         "points": [
           "• **Compound Pronoun Strip Test:** Strip away the accompanying noun to test case: *Rohan and (I / me) went* -> *I went*, so *Rohan and I went*.",
           "• **After Finite 'To Be':** Requires the Subjective (Nominative) case in formal/exam grammar: *It is **I** who am responsible* (not *me*); *Was it **she** who called?*",
@@ -626,7 +626,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "13.2 Pronoun Order: 2-3-1 vs 1-2-3",
+        "title": "Pronoun Order: 2-3-1 vs 1-2-3",
         "points": [
           "• **The 2-3-1 Sequence (2nd -> 3rd -> 1st):** Used for **general, positive, or neutral statements** with singular pronouns: ***You, he, and I** are partners.*",
           "• **The 1-2-3 Sequence (1st -> 2nd -> 3rd):** Used when **confessing a fault, crime, blame, or error** (politeness demands blaming yourself first), and when **all pronouns are plural** (*We, you, and they*): ***I, you, and he** are guilty of negligence.*",
@@ -658,12 +658,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 14,
-    "title": "14. Reflexive, Emphatic, Reciprocal & Demonstrative Pronouns",
+    "title": "Reflexive, Emphatic, Reciprocal & Demonstrative Pronouns",
     "unit": "Unit 3: Pronouns & Adjectives",
     "overview": "Reflexive vs emphatic pronouns, verbs taking mandatory reflexives (avail, absent, pride), reciprocal pronouns (each other vs one another), and 'that of' / 'those of' comparison rules.",
     "sections": [
       {
-        "title": "14.1 Reflexive versus Emphatic Pronouns",
+        "title": "Reflexive versus Emphatic Pronouns",
         "points": [
           "• **Reflexive:** Essential object when Subject = Object (*He hurt **himself***). A reflexive can **NEVER be the subject** of a sentence (Incorrect: *Myself Rahul* -> Correct: *I am Rahul*).",
           "• **Mandatory Reflexive Verbs (when no direct object follows):** *avail (oneself of), absent (oneself from), acquit (oneself well), enjoy (oneself), pride (oneself on), resign (oneself to), exert (oneself)*:",
@@ -674,7 +674,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "14.2 Reciprocal & Demonstrative Pronouns",
+        "title": "Reciprocal & Demonstrative Pronouns",
         "points": [
           "• **Reciprocal Pronouns:** *Each other* is strictly for **two** persons/things (*The two sisters love each other*); *One another* is strictly for **three or more** (*The five teammates helped one another*).",
           "• **Avoiding False Comparisons with 'That of' / 'Those of':** Compare like with like:",
@@ -710,12 +710,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 15,
-    "title": "15. Relative Pronouns: Who vs Whom, That vs Which & Omission",
+    "title": "Relative Pronouns: Who vs Whom, That vs Which & Omission",
     "unit": "Unit 3: Pronouns & Adjectives",
     "overview": "The 3-second 'who vs whom' diagnostic test, relative pronoun domains, the 10 mandatory contexts for 'that', and special relatives 'as' and 'but'.",
     "sections": [
       {
-        "title": "15.1 The 3-Second 'Who' versus 'Whom' Test",
+        "title": "The 3-Second 'Who' versus 'Whom' Test",
         "points": [
           "• **Who / Whoever:** Subjective case (acts as the Subject of a verb). Substitute **he / she / they**.",
           "• **Whom / Whomever:** Objective case (acts as the Object of a verb or preposition). Substitute **him / her / them**.",
@@ -726,7 +726,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "15.2 Mandatory Usages of 'That' over 'Who/Which'",
+        "title": "Mandatory Usages of 'That' over 'Who/Which'",
         "points": [
           "Use **that** instead of who or which in these key contexts:",
           "1. After superlative adjectives (*the greatest dramatist that England produced*).",
@@ -757,12 +757,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 16,
-    "title": "16. Adjectives: Syntactic Placement & OSASCOMP Cumulative Order",
+    "title": "Adjectives: Syntactic Placement & OSASCOMP Cumulative Order",
     "unit": "Unit 3: Pronouns & Adjectives",
     "overview": "Attributive vs predicative adjectives, adjectives used only attributively or predicatively, post-positive positions, adjectives that change meaning by position, and OSASCOMP cumulative order.",
     "sections": [
       {
-        "title": "16.1 Syntactic Placement of Adjectives",
+        "title": "Syntactic Placement of Adjectives",
         "points": [
           "• **Attributive Position:** Directly before the noun (*an industrious scholar*).",
           "• **Predicative Position:** Following a linking verb (*The scholar is industrious*).",
@@ -777,7 +777,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "16.2 The OSASCOMP Order of Cumulative Adjectives",
+        "title": "The OSASCOMP Order of Cumulative Adjectives",
         "points": [
           "When stacking multiple adjectives before a head noun, follow the **OSASCOMP** sequence:",
           "**[Determiner] -> 1. Opinion -> 2. Size -> 3. Age -> 4. Shape -> 5. Colour -> 6. Origin -> 7. Material -> 8. Purpose + NOUN**",
@@ -817,12 +817,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 17,
-    "title": "17. The 12 Golden Laws of Comparison & Latin Comparatives",
+    "title": "The 12 Golden Laws of Comparison & Latin Comparatives",
     "unit": "Unit 3: Pronouns & Adjectives",
     "overview": "Degrees of comparison, Latin comparatives ending in -or (senior, superior + to), absolute non-gradables (unique, perfect), double comparatives, comparing two qualities in one person, and 'any other'.",
     "sections": [
       {
-        "title": "17.1 Latin Comparatives and Absolute Adjectives",
+        "title": "Latin Comparatives and Absolute Adjectives",
         "points": [
           "• **Law 1: Latin Comparatives Ending in -or take TO, never THAN:** *Senior, junior, superior, inferior, prior, anterior, posterior* and *prefer / preferable* take **to** and **never take more/most**:",
           "  - *She is **senior to** me by two years* (never *senior than* or *more senior*).",
@@ -833,7 +833,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "17.2 The Rules of Comparative Syntax",
+        "title": "The Rules of Comparative Syntax",
         "points": [
           "• **Law 3: No Double Comparatives:** Never write *more wiser* (write *wiser*) or *most tallest* (write *tallest*).",
           "• **Law 4: Comparing Two Qualities in the SAME Person:** Use `more + Positive + than + Positive`, never the -er form:",
@@ -870,12 +870,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 18,
-    "title": "18. High-Frequency Confusable Adjective Pairs",
+    "title": "High-Frequency Confusable Adjective Pairs",
     "unit": "Unit 3: Pronouns & Adjectives",
     "overview": "Elder/eldest vs older/oldest, farther vs further, later/latter vs latest/last, nearest vs next, economic vs economical, historic vs historical, and alternate vs alternative.",
     "sections": [
       {
-        "title": "18.1 High-Yield Confusable Adjective Pairs",
+        "title": "High-Yield Confusable Adjective Pairs",
         "points": [
           "• **Elder / Eldest vs Older / Oldest:**",
           "  - *Elder / Eldest:* Restricted exclusively to members of the **same family** (siblings). **Never followed by 'than'!** (*my elder brother*).",
@@ -890,7 +890,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "18.2 Vocabulary Precision Adjectives",
+        "title": "Vocabulary Precision Adjectives",
         "points": [
           "• **Economic** (relating to finance/economy) vs **Economical** (frugal, saving money/fuel).",
           "• **Historic** (famous, making history: *a historic treaty*) vs **Historical** (pertaining to the past: *historical documents*).",
@@ -919,12 +919,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 19,
-    "title": "19. Verb Valency, Ergatives & Stative vs Dynamic Verbs",
+    "title": "Verb Valency, Ergatives & Stative vs Dynamic Verbs",
     "unit": "Unit 4: Verbs, Tenses, Modals & Concord",
     "overview": "Syntactic verb valency (intransitive, transitive, ditransitive, complex-transitive), ergative/middle voice verbs, copular linking verbs, and stative verb continuous constraints.",
     "sections": [
       {
-        "title": "19.1 Verb Valency and Ergatives",
+        "title": "Verb Valency and Ergatives",
         "points": [
           "• **Valency Classes:** Intransitive (SV: *slept*), Monotransitive (SVO: *discovered penicillin*), Ditransitive (SVOO: *awarded him a medal*), Complex-Transitive (SVOC: *declared him winner*).",
           "• **Ergative Verbs:** Can be used transitively and intransitively, where the transitive object becomes the intransitive subject: *The pilot flew the plane* -> *The plane flew*.",
@@ -933,7 +933,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "19.2 Stative Verbs and Dual-Nature Verbs",
+        "title": "Stative Verbs and Dual-Nature Verbs",
         "points": [
           "• **Stative Verbs (Involuntary states, cognition, emotion, possession):** Cannot be used in continuous (-ing) tenses in standard grammar: *know, believe, understand, love, hate, own, possess, belong, resemble, seem, matter*.",
           "• **Dual Verbs:** Take -ing ONLY when shifting from an involuntary state to a deliberate dynamic action:",
@@ -967,12 +967,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 20,
-    "title": "20. Confusable Irregular Verbs (Lie/Lay, Rise/Raise, Fall/Fell)",
+    "title": "Confusable Irregular Verbs (Lie/Lay, Rise/Raise, Fall/Fell)",
     "unit": "Unit 4: Verbs, Tenses, Modals & Concord",
     "overview": "High-risk irregular verb triplets: lie/lay/lain vs lay/laid/laid, rise/rose/risen vs raise/raised/raised, fall/fell/fallen vs fell/felled/felled, hang/hung vs hang/hanged, and invariant verbs.",
     "sections": [
       {
-        "title": "20.1 High-Risk Confusable Verb Triplets",
+        "title": "High-Risk Confusable Verb Triplets",
         "points": [
           "• **Lie vs Lay:**",
           "  - **Lie (intransitive — recline/rest, NO object):** *lie -> lay -> lain -> lying*: *He **lay** on the grass yesterday.* *The ruins have **lain** undisturbed.*",
@@ -991,7 +991,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "20.2 Invariant Verbs (V1 = V2 = V3)",
+        "title": "Invariant Verbs (V1 = V2 = V3)",
         "points": [
           "These verbs never add -ed: *broadcast, telecast, forecast, cast, cost, cut, shut, hit, hurt, put, quit, let, set, burst, split, spread, shed*.",
           "• Incorrect: *The match was telecasted.* -> Correct: *The match was **telecast**.*",
@@ -1020,12 +1020,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 21,
-    "title": "21. Causative Verbs (Make, Have, Get, Let, Help) in Active & Passive",
+    "title": "Causative Verbs (Make, Have, Get, Let, Help) in Active & Passive",
     "unit": "Unit 4: Verbs, Tenses, Modals & Concord",
     "overview": "Syntax of causative structures: make + Person + V1 vs be made + to + V1; have + Person + V1 vs have + Thing + V3; get + Person + to + V1 vs get + Thing + V3.",
     "sections": [
       {
-        "title": "21.1 Active and Passive Causative Formulas",
+        "title": "Active and Passive Causative Formulas",
         "points": [
           "Causatives indicate arranging, compelling, or persuading someone else to perform an action:",
           "• **Make (Force / Compulsion):**",
@@ -1062,12 +1062,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 22,
-    "title": "22. The 12-Tense Architecture & High-Precision Sequence Rules",
+    "title": "The 12-Tense Architecture & High-Precision Sequence Rules",
     "unit": "Unit 4: Verbs, Tenses, Modals & Concord",
     "overview": "The complete 12-tense matrix, past simple vs present perfect constraints, the earlier-past (had + V3) rule, and zero-will in subordinate time clauses.",
     "sections": [
       {
-        "title": "22.1 The Master 12-Tense Reference",
+        "title": "The Master 12-Tense Reference",
         "points": [
           "• Present: Simple (V1/V5), Continuous (am/is/are + V-ing), Perfect (has/have + V3), Perfect Continuous (has/have been + V-ing).",
           "• Past: Simple (V2), Continuous (was/were + V-ing), Perfect (had + V3), Perfect Continuous (had been + V-ing).",
@@ -1075,7 +1075,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "22.2 High-Precision Tense Rules and Sequence Constraints",
+        "title": "High-Precision Tense Rules and Sequence Constraints",
         "points": [
           "• **Past Simple vs Present Perfect:** A finished past time marker (*yesterday, in 2010, ago, last week*) strictly forbids present perfect: *I met him yesterday* (not *have met*).",
           "• **Earlier Past (Past Perfect):** When two past actions occurred in sequence, the earlier action takes **had + V3** and the later action takes **V2**: *The train **had left** before we reached the station.*",
@@ -1104,12 +1104,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 23,
-    "title": "23. The Subjunctive Mood & 5 Conditional Archetypes",
+    "title": "The Subjunctive Mood & 5 Conditional Archetypes",
     "unit": "Unit 4: Verbs, Tenses, Modals & Concord",
     "overview": "Present subjunctive (mandative base V1), past subjunctive (counter-factual were), 'It is high time + V2', and the 5 conditional archetypes (0, 1, 2, 3, and mixed).",
     "sections": [
       {
-        "title": "23.1 The Subjunctive Mood in Competitive English",
+        "title": "The Subjunctive Mood in Competitive English",
         "points": [
           "• **Present (Mandative) Subjunctive:** Subordinate clauses after verbs of demanding/suggesting (*demand, insist, suggest, recommend, decree*) or adjectives (*vital, essential, imperative, mandatory*) take the **bare base form (V1)** for all persons (no -s, 'be' instead of is/are):",
           "  - *The committee recommended that the bill **pass** immediately.* (Not *passes*).",
@@ -1120,7 +1120,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "23.2 The 5 Conditional Archetypes & Inversion",
+        "title": "The 5 Conditional Archetypes & Inversion",
         "points": [
           "• **Zero Conditional:** If + Present Simple, Present Simple (*If you heat ice, it melts*).",
           "• **Type 1 (Real Future):** If + Present Simple, will + V1 (*If it rains, we will stay home*).",
@@ -1157,12 +1157,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 24,
-    "title": "24. Central Modals, Semi-Modals & Modal Perfect Deductions",
+    "title": "Central Modals, Semi-Modals & Modal Perfect Deductions",
     "unit": "Unit 4: Verbs, Tenses, Modals & Concord",
     "overview": "Modal rules, could vs was able to, must not (prohibition) vs don't have to (optional), need/dare as modals vs lexical verbs, had better, would rather, and modal perfects.",
     "sections": [
       {
-        "title": "24.1 Modals & Semi-Modals (Need, Dare, Used to)",
+        "title": "Modals & Semi-Modals (Need, Dare, Used to)",
         "points": [
           "• **Could vs Was able to:** *Could* is general past ability; *Was/were able to* is managing a single specific past achievement against obstacles (*The firefighters **were able to** rescue the child*).",
           "• **Must not vs Don't have to:** *Must not* = forbidden/prohibited; *Don't have to / Needn't* = optional/no necessity.",
@@ -1175,7 +1175,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "24.2 Perfect Modals (Modal + Have + V3)",
+        "title": "Perfect Modals (Modal + Have + V3)",
         "points": [
           "• **Must have + V3:** Logical certainty about the past (*The streets are wet; it must have rained*).",
           "• **Can't have + V3:** Logical impossibility about the past (*He was in London, so you can't have seen him in Delhi*).",
@@ -1209,12 +1209,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 25,
-    "title": "25. Non-Finite Verbs: Infinitives, Gerunds & Dangling Participles",
+    "title": "Non-Finite Verbs: Infinitives, Gerunds & Dangling Participles",
     "unit": "Unit 4: Verbs, Tenses, Modals & Concord",
     "overview": "Infinitives (to + V1, bare V1), mandatory gerund verbs, prepositions ending in 'to' taking V-ing (look forward to), and the law of participle attachment.",
     "sections": [
       {
-        "title": "25.1 Infinitives and the Bare Infinitive Rules",
+        "title": "Infinitives and the Bare Infinitive Rules",
         "points": [
           "• **Bare Infinitive (V1 without to) Mandatory After:**",
           "  1. Central modals (*can, must, should*) and modal need/dare.",
@@ -1226,7 +1226,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "25.2 Gerunds and Phrasal Prepositions Ending in 'To'",
+        "title": "Gerunds and Phrasal Prepositions Ending in 'To'",
         "points": [
           "• **Verbs taking Gerunds ONLY:** *admit, avoid, deny, enjoy, finish, postpone, practise, prevent, suggest, can't help, worth*: *avoid making mistakes*, *enjoyed dancing*.",
           "• **The 'To + Gerund' Trap:** When 'to' is a **preposition**, it MUST take `V-ing`:",
@@ -1238,7 +1238,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "25.3 Participles and Fixing Dangling Modifiers",
+        "title": "Participles and Fixing Dangling Modifiers",
         "points": [
           "• **Participle Attachment Law:** The subject after the comma MUST be the entity performing the participle:",
           "  - Dangling: *Being a rainy day, we stayed home.* (Implies 'we' are a rainy day!).",
@@ -1272,12 +1272,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 26,
-    "title": "26. The 30 Golden Laws of Subject–Verb Concord",
+    "title": "The 30 Golden Laws of Subject–Verb Concord",
     "unit": "Unit 4: Verbs, Tenses, Modals & Concord",
     "overview": "Comprehensive breakdown of the 30 Golden Laws of Subject-Verb Agreement: parcel subjects, accompaniment connectors (as well as, along with), proximity rule, 'one of those who', and collective units.",
     "sections": [
       {
-        "title": "26.1 Laws 1–10: Compound Subjects, Accompaniment & Proximity",
+        "title": "Laws 1–10: Compound Subjects, Accompaniment & Proximity",
         "points": [
           "• **Law 1: Two nouns joined by 'and' = Plural:** *Gold and silver are precious.*",
           "• **Law 2: Parcel Subject (Single unit/dish) = Singular:** *Bread and butter **is** his breakfast.* *Slow and steady **wins**.* *Law and order **is** maintained.*",
@@ -1292,7 +1292,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "26.2 Laws 11–20: Distributives, Quantifiers & 'One of' Constructions",
+        "title": "Laws 11–20: Distributives, Quantifiers & 'One of' Constructions",
         "points": [
           "• **Law 11: Many a + Sg Noun = Singular Verb:** *Many a flower **is** born to blush unseen.* (vs *A great many flowers **were***).",
           "• **Law 12: Each of / Either of / Neither of + Plural Noun = Singular Verb:** *Each of these apartments **has** a balcony.* *Neither of the sisters **is** married.* (Exception: When 'each' follows a plural subject: *We each **have** a cabin*).",
@@ -1331,12 +1331,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 27,
-    "title": "27. Question Tags & Short Conversational Additions",
+    "title": "Question Tags & Short Conversational Additions",
     "unit": "Unit 4: Verbs, Tenses, Modals & Concord",
     "overview": "The 4 ironclad laws of question tags, the 15 exam-critical exceptions (aren't I?, negative words, human indefinites, imperatives, let's), and inverted short additions (so do I, neither do I).",
     "sections": [
       {
-        "title": "27.1 The 4 Ironclad Laws of Question Tags",
+        "title": "The 4 Ironclad Laws of Question Tags",
         "points": [
           "A **question tag** is a mini-interrogative (`Auxiliary + Pronoun?`) appended to a statement to seek confirmation.",
           "1. **Polarity Inversion:** Positive statement (+) -> Negative tag (-); Negative statement (-) -> Positive tag (+).",
@@ -1346,7 +1346,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "27.2 The 15 Exam-Critical Exceptions",
+        "title": "The 15 Exam-Critical Exceptions",
         "points": [
           "• **1. 'I am...' -> 'aren't I?':** *I am older than you, **aren't I?*** (Negative *I am not* -> *am I?*).",
           "• **2. Implicitly Negative Words (hardly, scarcely, barely, seldom, rarely, never, few, little):** Make the statement negative, requiring a **POSITIVE tag**: *He seldom smiles, **does he?*** *There is little hope, **is there?*** (Contrast: *A few / A little* are positive -> take negative tag: *A few passed, **didn't they?***).",
@@ -1382,12 +1382,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 28,
-    "title": "28. Active & Passive Voice: Universal 5-Step Engine & Special Passives",
+    "title": "Active & Passive Voice: Universal 5-Step Engine & Special Passives",
     "unit": "Unit 5: Voice, Narration & Modifiers",
     "overview": "Active vs passive voice, intransitive/stative non-passivizable verbs, ditransitives (retained objects), imperatives (let be), infinitives (it is time for), prepositions other than by, and quasi-passives.",
     "sections": [
       {
-        "title": "28.1 Universal Conversion Engine and Non-Passivizable Verbs",
+        "title": "Universal Conversion Engine and Non-Passivizable Verbs",
         "points": [
           "• **Passive Formula:** `Object + Be (in tense of active) + Past Participle (V3) + [by Agent]`.",
           "• **Cannot Form Passive:** Pure intransitive verbs (*sleep, die, arrive, happen, fall*), linking verbs (*become a doctor*), and stative verbs of possession/measure (*have a car, resemble, fit, lack, contain*).",
@@ -1395,7 +1395,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "28.2 Special Passive Syntactic Structures",
+        "title": "Special Passive Syntactic Structures",
         "points": [
           "• **Interrogative Passives:** Maintain question inversion: *Why was your application rejected?*",
           "• **Imperative Commands:** `Let + Object + be + V3` (*Let the door be opened*). Moral advice: `Object + should be + V3` (*The needy should be helped*). Requests: `You are requested to + V1`.",
@@ -1434,12 +1434,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 29,
-    "title": "29. Direct & Indirect Speech: The SON Algorithm & Deictic Shifts",
+    "title": "Direct & Indirect Speech: The SON Algorithm & Deictic Shifts",
     "unit": "Unit 5: Voice, Narration & Modifiers",
     "overview": "Direct to indirect speech shifts: reporting verb dynamics, the SON pronoun algorithm (1-Subject, 2-Object, 3-No change), tense backshifting matrix, the 6 backshift exceptions, and time/place deictic shifts.",
     "sections": [
       {
-        "title": "29.1 The SON Pronoun Algorithm and Tense Backshifting",
+        "title": "The SON Pronoun Algorithm and Tense Backshifting",
         "points": [
           "• **The SON Formula:** 1st person pronouns change according to **Subject** of reporting verb; 2nd person pronouns change according to **Object**; 3rd person pronouns undergo **No change**.",
           "• **Tense Backshift (when reporting verb is past):** Present Simple -> Past Simple; Present Continuous -> Past Continuous; Present Perfect -> Past Perfect; Past Simple -> Past Perfect; Past Continuous -> Past Perfect Continuous; Will -> Would; Can -> Could; May -> Might; Must -> Had to.",
@@ -1453,7 +1453,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "29.2 Deictic Time and Place Shifts",
+        "title": "Deictic Time and Place Shifts",
         "points": [
           "When reported at a later time/place: *now -> then*; *today -> that day*; *tonight -> that night*; *yesterday -> the previous day / day before*; *tomorrow -> the following day / next day*; *ago -> before*; *here -> there*; *this/these -> that/those*."
         ]
@@ -1483,12 +1483,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 30,
-    "title": "30. Advanced Narration: Imperatives, Let, Exclamations & Dialogues",
+    "title": "Advanced Narration: Imperatives, Let, Exclamations & Dialogues",
     "unit": "Unit 5: Voice, Narration & Modifiers",
     "overview": "Reporting interrogatives (declarative order), imperatives (to-infinitive), 4 types of Let sentences, exclamations (exclaimed with joy), optative prayers, and multi-turn dialogue conversion.",
     "sections": [
       {
-        "title": "30.1 Reporting Interrogatives and Imperatives",
+        "title": "Reporting Interrogatives and Imperatives",
         "points": [
           "• **Interrogatives:** Convert to **declarative statement word order (Subject + Verb)** and terminate with a full stop:",
           "  - Yes/No: *asked + if/whether + S + V* (*He asked me if I was ready*).",
@@ -1497,7 +1497,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "30.2 Sentences with 'Let', Exclamations & Optatives",
+        "title": "Sentences with 'Let', Exclamations & Optatives",
         "points": [
           "• **Let us (Proposals):** *proposed / suggested to + Object + that we/they should + V1* (*He proposed to his friends that they should go for a trek*).",
           "• **Let me (Permission):** *requested to allow him to + V1*.",
@@ -1531,19 +1531,19 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 31,
-    "title": "31. Adverbs: Classification, MPT Order & Negative Inversion",
+    "title": "Adverbs: Classification, MPT Order & Negative Inversion",
     "unit": "Unit 5: Voice, Narration & Modifiers",
     "overview": "The 9 classes of adverbs, the MPT placement order (Manner, Place, Time), PMT movement verb exception, subject-auxiliary inversion after negative adverbs (hardly, scarcely, seldom), and confusable adverb pairs.",
     "sections": [
       {
-        "title": "31.1 Adverb Placement and the MPT Rule",
+        "title": "Adverb Placement and the MPT Rule",
         "points": [
           "• **The MPT Rule:** When multiple adverbs follow a verb, arrange in order: **Manner (How) -> Place (Where) -> Time (When)**: *She sang melodiously (M) at the concert (P) last night (T).* Exception: Verbs of motion follow **Place -> Manner -> Time (PMT)**: *Travelled to London (P) by train (M) last week (T).*.",
           "• **Mid-Position Adverbs:** Frequency adverbs (*always, never, seldom, often*) precede the main lexical verb (*always arrives*), but follow forms of 'be' (*is always punctual*)."
         ]
       },
       {
-        "title": "31.2 Subject-Auxiliary Inversion with Negative Adverbs",
+        "title": "Subject-Auxiliary Inversion with Negative Adverbs",
         "points": [
           "When an adverb with negative or restrictive meaning begins a sentence, invert the auxiliary verb before the subject (`Adverb + Aux + Subject + Main Verb`):",
           "• *Hardly / Scarcely... when:* *Hardly **had she entered** the room **when** the phone rang.* (Takes 'when', never 'than'!).",
@@ -1555,7 +1555,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "31.3 Confusable Adverb Pairs",
+        "title": "Confusable Adverb Pairs",
         "points": [
           "• **Hard** (with intense effort: *works hard*) vs **Hardly** (negative: almost not at all: *hardly works*).",
           "• **Late** (after time: *arrived late*) vs **Lately** (recently in perfect tenses: *seen him lately*).",
@@ -1589,12 +1589,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 32,
-    "title": "32. Prepositions: Spatial Matrices & Fixed Preposition Collocations",
+    "title": "Prepositions: Spatial Matrices & Fixed Preposition Collocations",
     "unit": "Unit 5: Voice, Narration & Modifiers",
     "overview": "Spatial and temporal preposition matrices (at, on, in, by, until, into, onto), between vs among, complex prepositions (owing to vs due to), master catalogue of fixed collocations, and words taking no preposition.",
     "sections": [
       {
-        "title": "32.1 Spatial and Temporal Preposition Matrices",
+        "title": "Spatial and Temporal Preposition Matrices",
         "points": [
           "• **Time:** *At* (exact clock time: *at 5 p.m.*, *at noon*, *at dawn*); *On* (days and dates: *on Monday*, *on 15 August*); *In* (months, years, seasons: *in July*, *in 2026*, *in winter*); *By* (deadline: *by Friday*); *Until* (continuous up to point: *stay until Monday*).",
           "• **Place:** *At* (exact point/address: *at the bus stop*, *at 24 MG Road*); *In* (enclosed space, city, country: *in Delhi*, *in the room*); *On* (surface: *on the table*).",
@@ -1604,7 +1604,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "32.2 Master Fixed Collocations & Words Taking NO Preposition",
+        "title": "Master Fixed Collocations & Words Taking NO Preposition",
         "points": [
           "• **High-Yield Fixed Collocations:** *abide by, accuse of, accustomed to, agree with (person) / to (plan), allergic to, angry with (person) / at (thing), blind to (faults) / in (an eye), congratulate on, cope with (never 'cope up with'!), differ from, grateful to (person) for (thing), insist on, jealous of, junior to, prefer to, prevent from, refrain from, rely on, senior to, superior to*.",
           "• **Words that do NOT take prepositions (transitive verbs governing direct objects):** *discuss (no 'about'), describe, order (no 'for'), attack (no 'on'), resemble (no 'to'), enter (no 'into' for physical places), comprise (no 'of' in active voice), demand, marry (in active voice)*.",
@@ -1634,12 +1634,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 33,
-    "title": "33. Coordinating, Correlative & Subordinating Conjunctions",
+    "title": "Coordinating, Correlative & Subordinating Conjunctions",
     "unit": "Unit 5: Voice, Narration & Modifiers",
     "overview": "FANBOYS coordinating conjunctions, balanced correlatives (either...or, not only...but also) with grammatical parallelism, and subordinating conjunctions.",
     "sections": [
       {
-        "title": "33.1 Conjunction Classes & Correlative Parallelism",
+        "title": "Conjunction Classes & Correlative Parallelism",
         "points": [
           "• **Coordinating Conjunctions (FANBOYS):** *For, And, Nor, But, Or, Yet, So* link grammatical units of equal status.",
           "• **Correlative Conjunctions (Balanced Pairs):** *Either...or, neither...nor, not only...but also, both...and, whether...or, hardly...when, no sooner...than*.",
@@ -1675,12 +1675,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 34,
-    "title": "34. Sentence Synthesis & Transformation Masterclass",
+    "title": "Sentence Synthesis & Transformation Masterclass",
     "unit": "Unit 6: Advanced Composition, Transformation & Rhetoric",
     "overview": "Synthesis: combining simple sentences into Simple, Compound, or Complex sentences. Transformation: interchange of degrees of comparison, affirmative-negative, too...to, assertive-interrogative.",
     "sections": [
       {
-        "title": "34.1 Sentence Synthesis (Combining Sentences)",
+        "title": "Sentence Synthesis (Combining Sentences)",
         "points": [
           "• **Combining into a Simple Sentence (1 finite verb):**",
           "  1. Using Participles: *Seeing the tiger, the hunter aimed.*",
@@ -1693,7 +1693,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "34.2 Sentence Transformation (Form Changes, Meaning Unchanged)",
+        "title": "Sentence Transformation (Form Changes, Meaning Unchanged)",
         "points": [
           "• **Too...to <-> So...that...cannot:** *The box is **too heavy for me to lift**.* <-> *The box is **so heavy that I cannot lift it**.*",
           "• **Affirmative <-> Negative (Antonym Pairing):** *Rohan is always punctual.* <-> *Rohan is **never late**.* *Only graduates can apply.* <-> * **None but** graduates can apply.*",
@@ -1729,12 +1729,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 35,
-    "title": "35. Punctuation, Capitalization & Orthographic Spelling Rules",
+    "title": "Punctuation, Capitalization & Orthographic Spelling Rules",
     "unit": "Unit 6: Advanced Composition, Transformation & Rhetoric",
     "overview": "The 14 core punctuation marks (semicolon, colon, apostrophe, em-dash), 10 core capitalization laws, and orthographic spelling rules (i before e except after c, doubling consonants).",
     "sections": [
       {
-        "title": "35.1 The 14 Core Punctuation Marks",
+        "title": "The 14 Core Punctuation Marks",
         "points": [
           "• **Semicolon (;):** Connects closely related independent clauses without coordinating conjunctions (*The experiment concluded; the results were definitive*).",
           "• **Colon (:):** Introduces a formal list, direct quotation, or logical explanation (*Three items are vital: fuel, oxygen, and heat*).",
@@ -1744,7 +1744,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "35.2 Capitalization & Orthographic Spelling Laws",
+        "title": "Capitalization & Orthographic Spelling Laws",
         "points": [
           "• **Capitalization:** First word of sentence, Proper nouns, days/months (*Wednesday, October* - seasons are lowercase!), languages/nationalities (*French*), and compass points only when denoting specific regions (*the American South* vs *drive south*).",
           "• **Spelling Rules:**",
@@ -1775,12 +1775,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 36,
-    "title": "36. Advanced Vocabulary, Morphemic Roots & Figures of Speech",
+    "title": "Advanced Vocabulary, Morphemic Roots & Figures of Speech",
     "unit": "Unit 6: Advanced Composition, Transformation & Rhetoric",
     "overview": "High-yield classical Latin and Greek roots (bene, mal, cred, dict, spec, anthrop, chron), high-frequency academic vocabulary (abate to zenith), and rhetorical figures of speech.",
     "sections": [
       {
-        "title": "36.1 Classical Roots for Rapid Vocabulary Expansion",
+        "title": "Classical Roots for Rapid Vocabulary Expansion",
         "points": [
           "• **bene- / bon-** (well/good): *benevolent, benefactor, bona fide, benediction*.",
           "• **mal- / male-** (bad/ill): *malevolent, malediction, maladroit, malfeasance*.",
@@ -1792,7 +1792,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "36.2 Figures of Speech (Rhetorical Tropes)",
+        "title": "Figures of Speech (Rhetorical Tropes)",
         "points": [
           "• **Simile:** Comparison using 'like' or 'as' (*as brave as a lion*).",
           "• **Metaphor:** Direct identification without 'like/as' (*Life is a journey*).",
@@ -1824,12 +1824,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 37,
-    "title": "37. Translation Principles & Bilingual English Mapping",
+    "title": "Translation Principles & Bilingual English Mapping",
     "unit": "Unit 6: Advanced Composition, Transformation & Rhetoric",
     "overview": "Translating from Indo-Aryan source languages (Hindi) into English: SOV to SVO syntax shift, dummy 'it' and 'there', compulsion structures (has to, had to), and avoiding literal translation calques.",
     "sections": [
       {
-        "title": "37.1 Principles of Sense-for-Sense Translation",
+        "title": "Principles of Sense-for-Sense Translation",
         "points": [
           "• **Literal (Word-for-Word) vs Idiomatic (Sense-for-Sense):** Literal translation creates unnatural Indianisms (*What is your good name?*). Idiomatic translation captures the core proposition and casts it in natural English syntax (*What is your name?*).",
           "• **Syntactic Structural Mapping (SOV to SVO):**",
@@ -1840,7 +1840,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "37.2 High-Frequency Translation Pitfalls",
+        "title": "High-Frequency Translation Pitfalls",
         "points": [
           "• *He is reading since two hours* -> Correct: *He **has been reading** for two hours.*",
           "• *I cut my finger by a knife* -> Correct: *I cut my finger **with** a knife.* (Instruments take with).",
@@ -1869,19 +1869,19 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 38,
-    "title": "38. Academic Reading Comprehension, Précis & Note-Making",
+    "title": "Academic Reading Comprehension, Précis & Note-Making",
     "unit": "Unit 6: Advanced Composition, Transformation & Rhetoric",
     "overview": "Analytical reading strategies (SQ3R, three-pass protocol), the 6 laws of précis writing (1/3 rule, objective 3rd-person tone), and indented hierarchical note-making.",
     "sections": [
       {
-        "title": "38.1 Active Reading Comprehension Strategies",
+        "title": "Active Reading Comprehension Strategies",
         "points": [
           "• **Three-Pass Protocol:** Pass 1: Rapid 60-second skimming (first/last sentences for main theme); Pass 2: Question scanning (pre-reading questions to identify targeted data); Pass 3: Close analytical reading for inference and vocabulary in context.",
           "• **Question Categories:** Factual (directly stated), Inferential (author's tone, unstated assumptions, transitions), and Vocabulary-in-Context."
         ]
       },
       {
-        "title": "38.2 Précis Writing Masterclass (The 1/3 Rule)",
+        "title": "Précis Writing Masterclass (The 1/3 Rule)",
         "points": [
           "A **précis** is a concise, faithful summary of the essential arguments of a text in your own words:",
           "1. **Length:** Exactly **one-third (33%)** of the original word count.",
@@ -1891,7 +1891,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "38.3 Indented Note-Making Framework",
+        "title": "Indented Note-Making Framework",
         "points": [
           "• Use hierarchical indentation: 1. Heading -> 1.1 Sub-heading -> 1.1.1 Sub-sub-heading.",
           "• Use standard abbreviations (*Govt., Dept., vs., &*) and custom shortened forms (*dev., edn*).",
@@ -1919,19 +1919,19 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 39,
-    "title": "39. Professional Correspondence: Letters, Resumes, Emails & Notices",
+    "title": "Professional Correspondence: Letters, Resumes, Emails & Notices",
     "unit": "Unit 6: Advanced Composition, Transformation & Rhetoric",
     "overview": "Full Block format for formal letters (editor, job application with CV, complaints), informal letters, email etiquette, and short compositions (notices, advertisements, posters).",
     "sections": [
       {
-        "title": "39.1 Full Block Layout for Formal Letters & CVs",
+        "title": "Full Block Layout for Formal Letters & CVs",
         "points": [
           "• **Full Block Format:** All elements aligned flush left with no indentation: Sender's address -> Date -> Recipient designation/address -> Subject -> Salutation -> 3-paragraph Body -> Sign-off (*Yours faithfully* / *Yours sincerely*).",
           "• **Job Application Letter:** State position and advertisement reference -> Highlight academic and professional qualifications -> Conclude with interview request -> Enclose CV / Bio-data with academic details, technical skills, and references."
         ]
       },
       {
-        "title": "39.2 Short Compositions: Notices, Ads, Posters",
+        "title": "Short Compositions: Notices, Ads, Posters",
         "points": [
           "• **Notices:** Enclosed in a **box**, stating institution name, word NOTICE, date, heading, 5 Ws, and authority designation.",
           "• **Classified Advertisements:** Enclosed in a box under bold headings (*Situation Vacant, To Let, For Sale*); brief, economical language without full sentences.",
@@ -1959,12 +1959,12 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 40,
-    "title": "40. Extended Composition: Essays, Articles, Reports & Speeches",
+    "title": "Extended Composition: Essays, Articles, Reports & Speeches",
     "unit": "Unit 6: Advanced Composition, Transformation & Rhetoric",
     "overview": "The 5-paragraph essay architecture (hook, context, thesis, PEEL body paragraphs, conclusion), newspaper reports (inverted pyramid), articles, speeches, and debates.",
     "sections": [
       {
-        "title": "40.1 The 5-Paragraph Essay Architecture",
+        "title": "The 5-Paragraph Essay Architecture",
         "points": [
           "• **Introduction:** Hook (compelling opening) -> Background context -> Thesis Statement (core argument roadmap).",
           "• **Body Paragraphs 1 & 2 (PEEL Method):** Point (topic sentence) -> Evidence (data/facts) -> Explanation (analysis) -> Link (transition back to thesis).",
@@ -1973,7 +1973,7 @@ export const englishNotesComp: ChapterNote[] = [
         ]
       },
       {
-        "title": "40.2 Newspaper Reports, Speeches & Debates",
+        "title": "Newspaper Reports, Speeches & Debates",
         "points": [
           "• **Newspaper Report (Inverted Pyramid):** Headline -> Dateline (City, Date) -> Lead paragraph (Who, What, When, Where, Why) -> Supporting details & quotes -> Conclusion.",
           "• **Speech:** Formal audience salutation -> Hook -> Structured arguments with signposting (*Firstly, Furthermore*) -> Gracious closing (*Thank you*).",
@@ -2005,7 +2005,7 @@ export const englishNotesComp: ChapterNote[] = [
     "subject": "english",
     "classLevel": "competitive",
     "chapterNo": 41,
-    "title": "41. Practice Arena — Competitive English Grammar Master Assessment (MCQ)",
+    "title": "Practice Arena — Competitive English Grammar Master Assessment (MCQ)",
     "unit": "Unit 7: Practice Arena & Master Diagnostic Assessment",
     "overview": "A comprehensive 70-question interactive objective assessment covering all competitive exam sections: Error Spotting, Sentence Improvement, Concord, Tenses, Modals, Voice, Narration, Question Tags, and Vocabulary with instant verification and detailed explanations.",
     "sections": [

@@ -13,7 +13,7 @@ export const mathNotes10: ChapterNote[] = [
     "overview": "Real numbers form the foundational bedrock of arithmetic and algebra. This chapter explores the Fundamental Theorem of Arithmetic, prime factorisation for computing HCF and LCM, and rigorous contradiction proofs for the irrationality of radicals.",
     "sections": [
       {
-        "title": "1. The Fundamental Theorem of Arithmetic",
+        "title": "The Fundamental Theorem of Arithmetic",
         "points": [
           "**Statement of the Theorem:** Every composite number can be expressed (factorised) as a product of primes, and this factorisation is unique, apart from the order in which the prime factors occur.",
           "**Canonical Representation:** Any composite number $x$ can be written as $x = p_1^{k_1} \\cdot p_2^{k_2} \\cdots p_n^{k_n}$, where $p_1 < p_2 < \\dots < p_n$ are distinct prime numbers and $k_i$ are positive integers.",
@@ -28,7 +28,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. HCF and LCM by Prime Factorisation Method",
+        "title": "HCF and LCM by Prime Factorisation Method",
         "points": [
           "**Highest Common Factor (HCF):** Product of the smallest power of each common prime factor involved in the numbers.",
           "**Lowest Common Multiple (LCM):** Product of the greatest power of each prime factor involved in the numbers.",
@@ -49,7 +49,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Revisiting Irrational Numbers: Contradiction Proofs",
+        "title": "Revisiting Irrational Numbers: Contradiction Proofs",
         "points": [
           "**Fundamental Theorem on Divisibility by Primes:** Let $p$ be a prime number. If $p$ divides $a^2$, then $p$ divides $a$, where $a$ is a positive integer.",
           "**Standard Proof: Prove that $\\sqrt{2}$ is irrational:**",
@@ -63,7 +63,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Decimal Expansions of Rational Numbers",
+        "title": "Decimal Expansions of Rational Numbers",
         "points": [
           "Let $x = \\frac{p}{q}$ be a rational number in lowest reduced form ($\text{HCF}(p, q) = 1$):",
           "(1) **Terminating Decimal:** $x$ has a terminating decimal expansion if and only if the prime factorisation of $q$ is of the form **$2^n \\cdot 5^m$**, where $n$ and $m$ are non-negative integers.",
@@ -113,7 +113,7 @@ export const mathNotes10: ChapterNote[] = [
         }
       },
       {
-        "title": "5. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Real Numbers.",
           "**1. If two positive integers a and b are written as a = x³y² and b = xy³, where x, y are prime numbers, then HCF(a, b) is:**",
@@ -163,7 +163,7 @@ export const mathNotes10: ChapterNote[] = [
     "overview": "Polynomials bridge geometry and algebra; this chapter focuses on the geometric meaning of zeroes as x-intercepts, symmetric relations between zeroes and coefficients, and constructing polynomials from root properties.",
     "sections": [
       {
-        "title": "1. Degree and Geometrical Meaning of Zeroes",
+        "title": "Degree and Geometrical Meaning of Zeroes",
         "points": [
           "**Polynomial Degree:** For $p(x) = a_n x^n + \\dots + a_1 x + a_0$ ($a_n \neq 0$), the highest power of $x$ is the degree.",
           "• Linear ($n=1$): at most 1 zero; graph is a straight line.",
@@ -177,7 +177,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Relationship Between Zeroes and Coefficients: Quadratic Polynomials",
+        "title": "Relationship Between Zeroes and Coefficients: Quadratic Polynomials",
         "points": [
           "Let $\\alpha$ and $\\beta$ be the zeroes of the quadratic polynomial $p(x) = ax^2 + bx + c$ ($a \\neq 0$).",
           "By the Factor Theorem, $(x - \\alpha)$ and $(x - \\beta)$ are factors of $p(x)$:",
@@ -196,7 +196,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Symmetric Functions and Important Algebraic Manipulations of Zeroes",
+        "title": "Symmetric Functions and Important Algebraic Manipulations of Zeroes",
         "points": [
           "Examiners frequently test expressions involving zeroes $\\alpha$ and $\\beta$ without finding individual roots:",
           "(1) **Sum of Squares:**",
@@ -216,7 +216,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Cubic Polynomials (Relationships for Reference)",
+        "title": "Cubic Polynomials (Relationships for Reference)",
         "points": [
           "For a cubic polynomial $p(x) = ax^3 + bx^2 + cx + d$ ($a \\neq 0$) with zeroes $\\alpha, \\beta, \\gamma$:",
           "(1) **Sum of Zeroes:** $\\alpha + \\beta + \\gamma = -\\frac{b}{a}$",
@@ -226,7 +226,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Polynomials.",
           "**1. If one zero of the quadratic polynomial x² + 3x + k is 2, then the value of k is:**",
@@ -272,7 +272,7 @@ export const mathNotes10: ChapterNote[] = [
     "overview": "Systems of two linear equations model interdependent constraints in two dimensions; this chapter covers consistency conditions via coefficient ratios, algebraic solutions via substitution and elimination, and upstream/downstream word problems.",
     "sections": [
       {
-        "title": "1. General Form and Graphical Interpretation",
+        "title": "General Form and Graphical Interpretation",
         "points": [
           "A pair of linear equations in two variables $x$ and $y$ has the general form:",
           "$$a_1 x + b_1 y + c_1 = 0 \\quad \\text{and} \\quad a_2 x + b_2 y + c_2 = 0$$",
@@ -284,7 +284,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Algebraic Conditions for Consistency and Inconsistency",
+        "title": "Algebraic Conditions for Consistency and Inconsistency",
         "points": [
           "Without plotting graphs, comparing the ratios $\\frac{a_1}{a_2}$, $\\frac{b_1}{b_2}$, and $\\frac{c_1}{c_2}$ directly determines consistency:",
           "(1) **Unique Solution (Consistent System):**",
@@ -327,7 +327,7 @@ export const mathNotes10: ChapterNote[] = [
         }
       },
       {
-        "title": "3. Algebraic Methods: Substitution and Elimination",
+        "title": "Algebraic Methods: Substitution and Elimination",
         "points": [
           "**Method 1: Substitution Method:**",
           "• Step 1: Express one variable (say $y$) in terms of the other variable ($x$) from one equation.",
@@ -340,7 +340,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. High-Yield Word Problem Formulations",
+        "title": "High-Yield Word Problem Formulations",
         "points": [
           "**(A) Upstream and Downstream Boat Problems:**",
           "Let speed of boat in still water $= x\\text{ km/h}$, and speed of stream $= y\\text{ km/h}$ ($x > y$).",
@@ -361,7 +361,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Linear Equations.",
           "**1. For what value of k will the following pair of equations have infinitely many solutions? 2x + 3y = 7 and (k+1)x + (2k-1)y = 4k + 1**",
@@ -415,7 +415,7 @@ export const mathNotes10: ChapterNote[] = [
     "overview": "Quadratic equations model parabolic projectile trajectories, optimized area layouts, and kinetic relationships; this chapter covers standard form, factorisation, the Quadratic Formula, and root nature governed by the discriminant.",
     "sections": [
       {
-        "title": "1. Standard Form and Checking Quadratic Nature",
+        "title": "Standard Form and Checking Quadratic Nature",
         "points": [
           "**Standard Form:** A quadratic equation in the variable $x$ is an equation of the form:",
           "$$ax^2 + bx + c = 0 \\quad (a, b, c \\in \\mathbb{R}, \\; a \\neq 0)$$*",
@@ -426,7 +426,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Solution by Factorisation (Splitting the Middle Term)",
+        "title": "Solution by Factorisation (Splitting the Middle Term)",
         "points": [
           "To solve $ax^2 + bx + c = 0$ by splitting the middle term:",
           "• Step 1: Find two numbers $p$ and $q$ such that $p + q = b$ (the coefficient of $x$) and $p \\times q = ac$ (product of coefficient of $x^2$ and constant term).",
@@ -440,7 +440,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. The Quadratic Formula (Shreedharacharya's Rule)",
+        "title": "The Quadratic Formula (Shreedharacharya's Rule)",
         "points": [
           "For any quadratic equation $ax^2 + bx + c = 0$ ($a \\neq 0$):",
           "$$\\mathbf{x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}}$$",
@@ -458,7 +458,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Discriminant and Nature of Roots",
+        "title": "Discriminant and Nature of Roots",
         "points": [
           "The discriminant $D = b^2 - 4ac$ uniquely determines the nature of the roots:",
           "(1) **Case 1: $D > 0$** $\\implies$ Two distinct, unequal real roots: $x = \\frac{-b + \\sqrt{D}}{2a}$ and $x = \\frac{-b - \\sqrt{D}}{2a}$. (If $a, b, c$ are rational and $D$ is a perfect square, roots are rational).",
@@ -495,7 +495,7 @@ export const mathNotes10: ChapterNote[] = [
         }
       },
       {
-        "title": "5. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Quadratic Equations.",
           "**1. Which of the following is a quadratic equation?**",
@@ -541,7 +541,7 @@ export const mathNotes10: ChapterNote[] = [
     "overview": "Arithmetic Progressions govern linear sequences with constant additive increments. This chapter details general term derivations, sum of n terms formulas, properties of three and four term selections, and real-life financial and spatial applications.",
     "sections": [
       {
-        "title": "1. Definition and General Term of an AP",
+        "title": "Definition and General Term of an AP",
         "points": [
           "**Definition:** An Arithmetic Progression (AP) is a sequence of numbers in which each term is obtained by adding a fixed number $d$ (common difference) to the preceding term, except the first term $a$.",
           "• First term: $a_1 = a$.",
@@ -562,7 +562,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Sum of First $n$ Terms of an AP",
+        "title": "Sum of First $n$ Terms of an AP",
         "points": [
           "**Derivation of Sum Formula (Gauss Method):**",
           "Let $S_n = a + (a+d) + (a+2d) + \\dots + [a+(n-1)d]$.",
@@ -584,7 +584,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Arithmetic Mean & Choosing Terms in AP",
+        "title": "Arithmetic Mean & Choosing Terms in AP",
         "points": [
           "**Arithmetic Mean (AM):** If three numbers $a, b, c$ are in AP, then $b - a = c - b \\implies 2b = a + c \\implies \\mathbf{b = \\frac{a + c}{2}}$. Here, $b$ is the arithmetic mean of $a$ and $c$.",
           "**Convenient Selection of Terms (Symmetry around 0):**",
@@ -594,7 +594,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Arithmetic Progressions.",
           "**1. What is the 11th term from the end of the AP: 10, 7, 4, ..., -62?**",
@@ -640,7 +640,7 @@ export const mathNotes10: ChapterNote[] = [
     "overview": "Geometric similarity formalizes scale preservation independent of size. This chapter details the Basic Proportionality Theorem (Thales Theorem), its converse, similarity criteria (AAA, SSS, SAS), and proportional ratio theorems.",
     "sections": [
       {
-        "title": "1. Similarity of Figures and Triangles",
+        "title": "Similarity of Figures and Triangles",
         "points": [
           "**Congruence vs Similarity:**",
           "• Congruent figures have the **same shape and the same size** (scale factor = 1).",
@@ -654,7 +654,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Basic Proportionality Theorem (BPT / Thales Theorem)",
+        "title": "Basic Proportionality Theorem (BPT / Thales Theorem)",
         "points": [
           "**Theorem 6.1 (BPT):** If a line is drawn parallel to one side of a triangle to intersect the other two sides in distinct points, the other two sides are divided in the same ratio.",
           "**Given:** In $\\triangle ABC$, a line $DE \\parallel BC$ intersects $AB$ at $D$ and $AC$ at $E$.",
@@ -677,7 +677,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Criteria for Similarity of Triangles",
+        "title": "Criteria for Similarity of Triangles",
         "points": [
           "**(1) AAA Similarity Criterion (Theorem 6.3):** If in two triangles, corresponding angles are equal, then their corresponding sides are in the same ratio, and hence the two triangles are similar.",
           "• **AA Similarity Criterion:** If two angles of one triangle are respectively equal to two angles of another triangle, the third angles are automatically equal (angle sum property), so the triangles are similar ($\triangle ABC \\sim \\triangle DEF$).",
@@ -714,7 +714,7 @@ export const mathNotes10: ChapterNote[] = [
         }
       },
       {
-        "title": "4. Key Properties of Similar Triangles",
+        "title": "Key Properties of Similar Triangles",
         "points": [
           "If $\\triangle ABC \\sim \\triangle DEF$ with similarity ratio $k = \\frac{AB}{DE} = \\frac{BC}{EF} = \\frac{AC}{DF}$:",
           "(1) Ratio of perimeters: $\\frac{\\text{Perimeter}(\\triangle ABC)}{\\text{Perimeter}(\\triangle DEF)} = k$.",
@@ -724,7 +724,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Triangles.",
           "**1. In △ABC, DE ∥ BC intersecting AB at D and AC at E. If AD = 3 cm, DB = 4 cm, and AE = 6 cm, then EC is:**",
@@ -770,7 +770,7 @@ export const mathNotes10: ChapterNote[] = [
     "overview": "Coordinate geometry links algebraic expressions to two-dimensional spatial configurations. This chapter explores the distance formula, internal section formula, midpoint and centroid calculations, and geometric figure characterisation.",
     "sections": [
       {
-        "title": "1. The Distance Formula and Its Geometric Applications",
+        "title": "The Distance Formula and Its Geometric Applications",
         "points": [
           "**Distance Formula:** The distance between any two points $P(x_1, y_1)$ and $Q(x_2, y_2)$ in the Cartesian plane is given by the hypotenuse in Pythagoras' theorem:",
           "$$\\mathbf{d = PQ = \\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}}$$",
@@ -793,7 +793,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Section Formula (Internal Division)",
+        "title": "Section Formula (Internal Division)",
         "points": [
           "**Section Formula:** The coordinates of the point $P(x, y)$ which divides the line segment joining points $A(x_1, y_1)$ and $B(x_2, y_2)$ internally in the ratio $m_1 : m_2$ are:",
           "$$\\mathbf{x = \\frac{m_1 x_2 + m_2 x_1}{m_1 + m_2}, \\quad y = \\frac{m_1 y_2 + m_2 y_1}{m_1 + m_2}}$$",
@@ -810,7 +810,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Mid-Point Formula and Centroid of a Triangle",
+        "title": "Mid-Point Formula and Centroid of a Triangle",
         "points": [
           "**Mid-Point Formula:** When $P$ is the exact midpoint of $AB$, $m_1 = m_2 = 1$ ($1 : 1$ ratio):",
           "$$\\mathbf{M = \\left(\\frac{x_1 + x_2}{2}, \\; \\frac{y_1 + y_2}{2}\\right)}$$",
@@ -826,7 +826,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Coordinate Geometry.",
           "**1. The distance of the point P(-6, 8) from the origin is:**",
@@ -872,7 +872,7 @@ export const mathNotes10: ChapterNote[] = [
     "overview": "Trigonometry establishes ratios between the sides and angles of a right-angled triangle. This chapter covers the six fundamental trigonometric ratios, exact values for standard acute angles, and algebraic proofs involving Pythagorean trigonometric identities.",
     "sections": [
       {
-        "title": "1. Trigonometric Ratios of an Acute Angle",
+        "title": "Trigonometric Ratios of an Acute Angle",
         "points": [
           "Consider a right triangle $ABC$, right-angled at $B$. Let $\\angle A = \\theta$ be an acute angle:",
           "• **Hypotenuse ($H$):** Side opposite to the right angle (always the longest side $AC$).",
@@ -894,7 +894,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Trigonometric Ratios of Specific Angles (0°, 30°, 45°, 60°, 90°)",
+        "title": "Trigonometric Ratios of Specific Angles (0°, 30°, 45°, 60°, 90°)",
         "points": [
           "Standard values derived geometrically from equilateral and isosceles right triangles:",
           "• **30° and 60°:** Derived from an equilateral triangle split by an altitude ($P = a, \\; B = a\\sqrt{3}, \\; H = 2a$).",
@@ -962,7 +962,7 @@ export const mathNotes10: ChapterNote[] = [
         }
       },
       {
-        "title": "3. Fundamental Pythagorean Trigonometric Identities",
+        "title": "Fundamental Pythagorean Trigonometric Identities",
         "points": [
           "In right $\\triangle ABC$, by Pythagoras theorem: $P^2 + B^2 = H^2$.",
           "Dividing throughout by $H^2$, $B^2$, and $P^2$ yields the **three fundamental identities**:",
@@ -985,7 +985,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Introduction to Trigonometry.",
           "**1. If cos θ = 4/5, then the value of tan θ is:**",
@@ -1031,7 +1031,7 @@ export const mathNotes10: ChapterNote[] = [
     "overview": "Trigonometric ratios enable non-invasive measurement of inaccessible heights, distances, and celestial baselines. This chapter details angles of elevation and depression, standard geometric sight-triangles, and multi-tier trigonometric problem solving.",
     "sections": [
       {
-        "title": "1. Line of Sight, Angle of Elevation, and Angle of Depression",
+        "title": "Line of Sight, Angle of Elevation, and Angle of Depression",
         "points": [
           "**Line of Sight:** The imaginary straight line drawn from the eye of an observer to the point on the object being viewed.",
           "**Angle of Elevation:** When the object being viewed is **above the horizontal level** (observer looking upwards), the angle formed by the line of sight with the horizontal plane is the **Angle of Elevation**.",
@@ -1043,7 +1043,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Solving One-Triangle and Two-Triangle Problems",
+        "title": "Solving One-Triangle and Two-Triangle Problems",
         "points": [
           "Most board exam questions rely on the standard values: $\\tan 30^\\circ = \\frac{1}{\\sqrt{3}}$, $\\tan 45^\\circ = 1$, and $\\tan 60^\\circ = \\sqrt{3}$.",
           "**Case 1: Single Right Triangle (Direct Calculation):**",
@@ -1067,7 +1067,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Applications of Trigonometry.",
           "**1. If the length of the shadow of a tree is equal to its height, the angle of elevation of the sun is:**",
@@ -1113,7 +1113,7 @@ export const mathNotes10: ChapterNote[] = [
     "overview": "Tangents to circles represent limiting secant configurations where intersection points coincide. This chapter details radius-tangent perpendicularity, external point tangent congruences, and cyclic circumscription theorems.",
     "sections": [
       {
-        "title": "1. Tangent to a Circle and Point of Contact",
+        "title": "Tangent to a Circle and Point of Contact",
         "points": [
           "**Definition of Tangent:** A tangent to a circle is a straight line that intersects the circle at **only one point**. The unique common point between the circle and the tangent line is called the **point of contact**.",
           "• **Secant:** A straight line that intersects a circle in two distinct points.",
@@ -1127,7 +1127,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Theorem 10.1 (Radius-Tangent Perpendicularity)",
+        "title": "Theorem 10.1 (Radius-Tangent Perpendicularity)",
         "points": [
           "**Theorem 10.1:** The tangent at any point of a circle is perpendicular to the radius through the point of contact.",
           "**Given:** A circle with centre $O$ and a tangent $XY$ to the circle at a point $P$.",
@@ -1142,7 +1142,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Theorem 10.2 (Lengths of Tangents from an External Point)",
+        "title": "Theorem 10.2 (Lengths of Tangents from an External Point)",
         "points": [
           "**Theorem 10.2:** The lengths of tangents drawn from an external point to a circle are equal.",
           "**Given:** A circle with centre $O$, an external point $P$, and two tangents $PQ$ and $PR$ touching the circle at $Q$ and $R$.",
@@ -1167,7 +1167,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. High-Yield Circumscribing Theorems",
+        "title": "High-Yield Circumscribing Theorems",
         "points": [
           "**(A) Tangential Quadrilateral Theorem:** If a quadrilateral $ABCD$ circumscribes a circle touching at $P, Q, R, S$, the sum of opposite sides are equal:",
           "$$\\mathbf{AB + CD = AD + BC}$$",
@@ -1179,7 +1179,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Circles.",
           "**1. From a point Q, the length of the tangent to a circle is 24 cm and the distance of Q from the centre is 25 cm. The radius of the circle is:**",
@@ -1229,7 +1229,7 @@ export const mathNotes10: ChapterNote[] = [
     "overview": "Curvilinear planar mensuration relies on circular arc fractions. This chapter details sector areas, segment calculations, arc lengths, and geometric applications to clock hands, pendulums, and combined circular designs.",
     "sections": [
       {
-        "title": "1. Perimeter and Area of a Circle Review",
+        "title": "Perimeter and Area of a Circle Review",
         "points": [
           "**Circumference (Perimeter) of a Circle:** $C = 2\\pi r = \\pi d$, where $r$ is radius and $d$ is diameter.",
           "• The ratio $\\frac{\\text{Circumference}}{\\text{Diameter}} = \\pi$ (constant for all circles). Value $\\pi \\approx \\frac{22}{7}$ or $3.1416$.",
@@ -1241,7 +1241,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Sector of a Circle and Length of an Arc",
+        "title": "Sector of a Circle and Length of an Arc",
         "points": [
           "**Sector:** The portion of the circular region enclosed by two radii and the corresponding arc.",
           "• **Minor Sector:** Sector with central angle $\\theta < 180^\\circ$.",
@@ -1261,7 +1261,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Segment of a Circle and Area Calculations",
+        "title": "Segment of a Circle and Area Calculations",
         "points": [
           "**Segment:** The portion of the circular region enclosed between a chord and the corresponding arc.",
           "• **Minor Segment:** Enclosed by chord and minor arc.",
@@ -1282,7 +1282,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Clock Hand Motions and Real-World Applications",
+        "title": "Clock Hand Motions and Real-World Applications",
         "points": [
           "**Minute Hand of a Clock:**",
           "• Complete rotation ($360^\\circ$) in 60 minutes.",
@@ -1294,7 +1294,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Areas Related to Circles.",
           "**1. If the perimeter and the area of a circle are numerically equal, then the radius of the circle is:**",
@@ -1340,7 +1340,7 @@ export const mathNotes10: ChapterNote[] = [
     "overview": "Spatial mensuration computes envelope boundaries and volumetric capacities of composite three-dimensional geometries. This chapter covers combinations of cylinders, cones, spheres, hemispheres, and cuboids.",
     "sections": [
       {
-        "title": "1. Master Formula Reference for Standard 3D Solids",
+        "title": "Master Formula Reference for Standard 3D Solids",
         "points": [
           "A comprehensive reference table of essential formulas required for composite shapes:"
         ],
@@ -1392,7 +1392,7 @@ export const mathNotes10: ChapterNote[] = [
         }
       },
       {
-        "title": "2. Surface Area of Combinations of Solids",
+        "title": "Surface Area of Combinations of Solids",
         "points": [
           "**Golden Rule for Surface Area:**",
           "$$\\mathbf{\\text{Total Surface Area of Composite Solid} = \\sum (\\text{Exposed Visible Surface Areas})}$$",
@@ -1407,7 +1407,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Volume of Combinations and Melting/Recasting",
+        "title": "Volume of Combinations and Melting/Recasting",
         "points": [
           "**Golden Rule for Volume:**",
           "Unlike surface area, volume is strictly additive: the total volume of a combined solid is simply the sum of the volumes of the constituent components.",
@@ -1420,7 +1420,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Surface Areas and Volumes.",
           "**1. Two cubes each of volume 64 cm³ are joined end to end. The total surface area of the resulting cuboid is:**",
@@ -1466,7 +1466,7 @@ export const mathNotes10: ChapterNote[] = [
     "overview": "Statistics formalizes quantitative data distribution through measures of central tendency. This chapter covers the Direct and Assumed Mean methods, Mode of grouped distributions, Median via cumulative frequencies, and the fundamental empirical formula.",
     "sections": [
       {
-        "title": "1. Mean of Grouped Data: Direct and Assumed Mean Methods",
+        "title": "Mean of Grouped Data: Direct and Assumed Mean Methods",
         "points": [
           "**Class Mark ($x_i$):** Mid-value of each class interval: $\\mathbf{x_i = \\frac{\\text{Upper limit} + \\text{Lower limit}}{2}}$.",
           "**(1) Direct Method:**",
@@ -1487,7 +1487,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Mode of Grouped Data",
+        "title": "Mode of Grouped Data",
         "points": [
           "**Modal Class:** The class interval possessing the **maximum frequency**.",
           "**Formula for Mode:**",
@@ -1502,7 +1502,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Median of Grouped Data",
+        "title": "Median of Grouped Data",
         "points": [
           "**Median Class:** Find $\\frac{n}{2} = \\frac{\\sum f_i}{2}$. The median class is the class interval whose cumulative frequency ($cf$) is **just greater than (or equal to) $\\frac{n}{2}$**.",
           "**Formula for Median:**",
@@ -1521,7 +1521,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Empirical Relationship Between the Three Central Tendencies",
+        "title": "Empirical Relationship Between the Three Central Tendencies",
         "points": [
           "For moderately skewed frequency distributions, Karl Pearson's empirical relation holds:",
           "$$\\mathbf{3 \\times \\text{Median} = \\text{Mode} + 2 \\times \\text{Mean}}$$",
@@ -1531,7 +1531,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Statistics.",
           "**1. If the mode of a data distribution is 24 and the mean is 24, then its median is:**",
@@ -1577,7 +1577,7 @@ export const mathNotes10: ChapterNote[] = [
     "overview": "Probability quantifies the likelihood of occurrence of random events. This chapter covers classical theoretical probability, sample spaces for coins, dice, and playing cards, complementary events, and mutually exclusive outcomes.",
     "sections": [
       {
-        "title": "1. Classical Theoretical Probability and Range",
+        "title": "Classical Theoretical Probability and Range",
         "points": [
           "**Theoretical (Classical) Probability of an Event $E$:**",
           "$$\\mathbf{P(E) = \\frac{\\text{Number of outcomes favourable to } E}{\\text{Number of all possible outcomes of the experiment}} = \\frac{n(E)}{n(S)}}$$",
@@ -1598,7 +1598,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Complementary Events: $P(E) + P(\\bar{E}) = 1$",
+        "title": "Complementary Events: $P(E) + P(\\bar{E}) = 1$",
         "points": [
           "For any event $E$, the event 'Not $E$' is called the **complementary event** of $E$, denoted by $\\bar{E}$ or $E'$:",
           "$$\\mathbf{P(E) + P(\\bar{E}) = 1 \\implies P(\\bar{E}) = 1 - P(E)}$$",
@@ -1606,7 +1606,7 @@ export const mathNotes10: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. High-Yield Sample Spaces: Coins, Dice, and 52-Card Deck",
+        "title": "High-Yield Sample Spaces: Coins, Dice, and 52-Card Deck",
         "points": [
           "**(A) Tossing Coins:**",
           "• One coin: $\\{H, T\\}$, $n(S) = 2^1 = 2$.",
@@ -1667,7 +1667,7 @@ export const mathNotes10: ChapterNote[] = [
         }
       },
       {
-        "title": "4. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Probability.",
           "**1. Which of the following cannot be the probability of an event?**",

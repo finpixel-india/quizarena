@@ -13,7 +13,7 @@ export const mathNotes9: ChapterNote[] = [
     "overview": "Number systems classify the universe of real numbers into rational and irrational subsets, explaining their decimal characterisations, geometric representations on the number line, surd rationalisation, and laws of exponents.",
     "sections": [
       {
-        "title": "1. Classification of Real Numbers",
+        "title": "Classification of Real Numbers",
         "points": [
           "**Hierarchy of Real Numbers (R):**",
           "• **Natural Numbers (N):** Counting numbers $\\{1, 2, 3, \\dots\\}$.",
@@ -25,7 +25,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Decimal Expansions: Rational vs Irrational",
+        "title": "Decimal Expansions: Rational vs Irrational",
         "points": [
           "Every real number has a decimal expansion that uniquely defines its rational or irrational identity:",
           "(1) **Terminating Decimals (Rational):** The division terminates after a finite number of steps (e.g., $7/8 = 0.875$, $1/2 = 0.5$). The denominator in lowest terms has prime factors of only **$2^m \\cdot 5^n$**.",
@@ -38,7 +38,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Operations on Real Numbers & Rationalising the Denominator",
+        "title": "Operations on Real Numbers & Rationalising the Denominator",
         "points": [
           "**Algebraic Properties of Surds:** For positive real numbers $a$ and $b$:",
           "• $\\sqrt{ab} = \\sqrt{a} \\sqrt{b}$ and $\\sqrt{\\frac{a}{b}} = \\frac{\\sqrt{a}}{\\sqrt{b}}$.",
@@ -57,7 +57,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Laws of Rational Exponents",
+        "title": "Laws of Rational Exponents",
         "points": [
           "Let $a > 0$ be a real number and $p, q$ be rational numbers:",
           "(1) **Product of Powers:** $a^p \\cdot a^q = a^{p + q}$",
@@ -78,7 +78,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Number Systems.",
           "**1. Can zero be written in the form p/q, where p and q are integers and q ≠ 0?**",
@@ -124,7 +124,7 @@ export const mathNotes9: ChapterNote[] = [
     "overview": "Polynomials are continuous algebraic functions with whole number exponents. This chapter explores degree classification, Remainder and Factor Theorems, middle-term quadratic factorisation, and universal algebraic identities.",
     "sections": [
       {
-        "title": "1. Definition, Degree and Types of Polynomials",
+        "title": "Definition, Degree and Types of Polynomials",
         "points": [
           "**Definition:** An algebraic expression of the form $p(x) = a_n x^n + a_{n-1}x^{n-1} + \\dots + a_1 x + a_0$ is called a polynomial in one variable $x$, provided all exponents $n, n-1, \\dots$ are **whole numbers ($0, 1, 2, \\dots$)** and coefficients $a_i$ are real numbers.",
           "• Expressions like $\\frac{1}{x} = x^{-1}$, $\\sqrt{x} = x^{1/2}$, or $x + \\frac{2}{x}$ are **NOT polynomials** because exponents are negative or fractional.",
@@ -137,7 +137,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Zeroes of a Polynomial",
+        "title": "Zeroes of a Polynomial",
         "points": [
           "A real number $c$ is a zero of a polynomial $p(x)$ if **$p(c) = 0$**.",
           "• Zeroes are also called the **roots** of the polynomial equation $p(x) = 0$.",
@@ -148,7 +148,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. The Remainder Theorem and Factor Theorem",
+        "title": "The Remainder Theorem and Factor Theorem",
         "points": [
           "**Remainder Theorem:** Let $p(x)$ be any polynomial of degree greater than or equal to 1 and let $a$ be any real number. If $p(x)$ is divided by the linear polynomial $(x - a)$, then the **remainder is $p(a)$**.",
           "• *Corollary:* If divided by $(ax + b)$, the remainder is $p(-b/a)$.",
@@ -162,7 +162,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. The 8 Master Algebraic Identities",
+        "title": "The 8 Master Algebraic Identities",
         "points": [
           "The eight standard algebraic identities indispensable for CBSE examinations:",
           "**(1)** $(x + y)^2 = x^2 + 2xy + y^2$",
@@ -186,7 +186,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Polynomials.",
           "**1. Which of the following expressions is a polynomial in one variable?**",
@@ -232,7 +232,7 @@ export const mathNotes9: ChapterNote[] = [
     "overview": "René Descartes unified algebra and Euclidean geometry through the Cartesian plane. This chapter explores horizontal and vertical axes, coordinates (abscissa and ordinate), sign conventions across quadrants, and plotting point configurations.",
     "sections": [
       {
-        "title": "1. The Cartesian Coordinate System",
+        "title": "The Cartesian Coordinate System",
         "points": [
           "**Origin and Perpendicular Axes:**",
           "• The horizontal number line $X'OX$ is called the **x-axis**.",
@@ -242,7 +242,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Coordinates of a Point: Abscissa and Ordinate",
+        "title": "Coordinates of a Point: Abscissa and Ordinate",
         "points": [
           "Every point $P$ in the Cartesian plane is uniquely represented by an ordered pair of real numbers **$(x, y)$**:",
           "• **Abscissa ($x$-coordinate):** The perpendicular distance of point $P$ from the **y-axis**, measured along the x-axis. (Positive to the right of origin, negative to the left).",
@@ -307,7 +307,7 @@ export const mathNotes9: ChapterNote[] = [
         }
       },
       {
-        "title": "3. Reflections and Distances from Axes",
+        "title": "Reflections and Distances from Axes",
         "points": [
           "**Perpendicular Distances from Axes:**",
           "• The distance of a point $(x, y)$ from the x-axis is **$|y|$**.",
@@ -320,7 +320,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Coordinate Geometry.",
           "**1. The point (-3, 5) lies in which quadrant of the Cartesian plane?**",
@@ -366,7 +366,7 @@ export const mathNotes9: ChapterNote[] = [
     "overview": "Linear equations in two variables characterize straight lines on a Cartesian coordinate plane. This chapter covers standard form, infinite solutions, plotting linear graphs, and equations of lines parallel to coordinate axes.",
     "sections": [
       {
-        "title": "1. Standard Form of a Linear Equation in Two Variables",
+        "title": "Standard Form of a Linear Equation in Two Variables",
         "points": [
           "**Standard Form:** An equation that can be put in the form:",
           "$$\\mathbf{ax + by + c = 0}$$",
@@ -376,7 +376,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Solutions of a Linear Equation in Two Variables",
+        "title": "Solutions of a Linear Equation in Two Variables",
         "points": [
           "A **solution** is an ordered pair of numbers $(\\alpha, \\beta)$ such that substituting $x = \\alpha$ and $y = \\beta$ makes the LHS equal to RHS.",
           "**Fundamental Property:** A linear equation in two variables has **infinitely many solutions**.",
@@ -388,7 +388,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Graph of a Linear Equation in Two Variables",
+        "title": "Graph of a Linear Equation in Two Variables",
         "points": [
           "**Geometrical Nature:** The graph of every linear equation in two variables $ax + by + c = 0$ is a **straight line**.",
           "• Every point $(x, y)$ that lies on the line is a solution of the equation.",
@@ -398,7 +398,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Equations of Lines Parallel to Coordinate Axes",
+        "title": "Equations of Lines Parallel to Coordinate Axes",
         "points": [
           "(1) **Equation of the x-axis:** On the x-axis, the y-coordinate of every point is 0. Hence, equation is **$y = 0$**.",
           "(2) **Equation of the y-axis:** On the y-axis, the x-coordinate of every point is 0. Hence, equation is **$x = 0$**.",
@@ -448,7 +448,7 @@ export const mathNotes9: ChapterNote[] = [
         }
       },
       {
-        "title": "5. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Linear Equations in Two Variables.",
           "**1. The linear equation 2x - 5y = 7 has:**",
@@ -494,7 +494,7 @@ export const mathNotes9: ChapterNote[] = [
     "overview": "Euclidean geometry establishes deductive mathematical reasoning from primitive undefined concepts to self-evident axioms and geometric postulates. This chapter explores Euclid's Elements, his seven axioms, five postulates, and Playfair's parallel axiom.",
     "sections": [
       {
-        "title": "1. Euclid's Definitions and the Undefined Geometric Terms",
+        "title": "Euclid's Definitions and the Undefined Geometric Terms",
         "points": [
           "**Historical Genesis:** Around 300 BCE, **Euclid**, a Greek mathematician teaching at Alexandria in Egypt, collected all known mathematics of his time into 13 books called **The Elements**.",
           "**Euclid's Basic Definitions:**",
@@ -509,7 +509,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Euclid's Seven Axioms (Universal Assumptions)",
+        "title": "Euclid's Seven Axioms (Universal Assumptions)",
         "points": [
           "**Axioms:** Self-evident assumptions used throughout all branches of mathematics (not specific to geometry):",
           "(1) **Things which are equal to the same thing are equal to one another.** (If $a = c$ and $b = c$, then $a = b$).",
@@ -522,7 +522,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Euclid's Five Postulates (Geometric Assumptions)",
+        "title": "Euclid's Five Postulates (Geometric Assumptions)",
         "points": [
           "**Postulates:** Assumptions specific to geometry:",
           "• **Postulate 1:** A straight line may be drawn from any one point to any other point. (*Axiom 5.1:* Given two distinct points, there is a unique line that passes through them).",
@@ -539,7 +539,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Euclid's Geometry.",
           "**1. The number of dimensions of a surface according to Euclid is:**",
@@ -585,7 +585,7 @@ export const mathNotes9: ChapterNote[] = [
     "overview": "Angular relationships govern planar geometry. This chapter covers angle classifications, the Linear Pair Axiom, formal proof of vertically opposite angles, transversal interactions with parallel lines, and angle sum properties.",
     "sections": [
       {
-        "title": "1. Basic Terminology and Types of Angles",
+        "title": "Basic Terminology and Types of Angles",
         "points": [
           "**Collinear Points:** Three or more points lying on the same straight line.",
           "**Angle:** Formed when two rays originate from the same common end point (vertex).",
@@ -600,7 +600,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Linear Pair Axiom and Vertically Opposite Angles Theorem",
+        "title": "Linear Pair Axiom and Vertically Opposite Angles Theorem",
         "points": [
           "**Axiom 6.1 (Linear Pair Axiom):** If a ray stands on a line, then the sum of two adjacent angles so formed is **$180^\\circ$**.",
           "• *Converse (Axiom 6.2):* If the sum of two adjacent angles is $180^\\circ$, then the non-common arms of the angles form a straight line.",
@@ -621,7 +621,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Parallel Lines and a Transversal",
+        "title": "Parallel Lines and a Transversal",
         "points": [
           "**Transversal:** A line which intersects two or more lines at distinct points.",
           "When a transversal $t$ intersects two parallel lines $l$ and $m$ ($l \\parallel m$):",
@@ -660,7 +660,7 @@ export const mathNotes9: ChapterNote[] = [
         }
       },
       {
-        "title": "4. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Lines and Angles.",
           "**1. An angle is equal to one-third of its supplement. The measure of the angle is:**",
@@ -706,7 +706,7 @@ export const mathNotes9: ChapterNote[] = [
     "overview": "Triangles form the fundamental building blocks of polygonal geometry. This chapter covers the five criteria for congruence of triangles (SAS, ASA, AAS, SSS, RHS), the properties of isosceles triangles, and deductive geometric proofs.",
     "sections": [
       {
-        "title": "1. Congruence of Triangles and CPCTC",
+        "title": "Congruence of Triangles and CPCTC",
         "points": [
           "**Congruent Figures:** Two geometric figures are congruent if they have the **same shape and the same size** (superimposing one on the other covers it completely).",
           "**Congruence of Triangles:** $\\triangle ABC \\cong \\triangle PQR$ means:",
@@ -717,7 +717,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Five Criteria for Congruence of Triangles",
+        "title": "Five Criteria for Congruence of Triangles",
         "points": [
           "**(1) SAS Congruence Axiom (Side-Angle-Side):** Two triangles are congruent if two sides and the **included angle** of one triangle are equal to two sides and the included angle of the other triangle.",
           "• *Warning:* The angle MUST be included between the two sides. 'SSA' or 'ASS' is NOT a valid congruence criterion!",
@@ -774,7 +774,7 @@ export const mathNotes9: ChapterNote[] = [
         }
       },
       {
-        "title": "3. Properties of Isosceles Triangles",
+        "title": "Properties of Isosceles Triangles",
         "points": [
           "**Theorem 7.2:** Angles opposite to equal sides of an isosceles triangle are equal.",
           "• **Given:** In $\\triangle ABC$, $AB = AC$.",
@@ -790,7 +790,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Triangles.",
           "**1. Which of the following is NOT a criterion for congruence of triangles?**",
@@ -836,7 +836,7 @@ export const mathNotes9: ChapterNote[] = [
     "overview": "Four-sided planar polygons encompass versatile geometric families. This chapter covers the angle sum property of quadrilaterals, types and properties of parallelograms, rectangles, rhombuses, and squares, and the foundational Mid-Point Theorem.",
     "sections": [
       {
-        "title": "1. Angle Sum Property and Types of Quadrilaterals",
+        "title": "Angle Sum Property and Types of Quadrilaterals",
         "points": [
           "**Angle Sum Property:** The sum of all four interior angles of a quadrilateral is **$360^\\circ$**.",
           "• *Proof:* Draw a diagonal dividing the quadrilateral into two triangles; each triangle has angle sum $180^\\circ$, so $180^\\circ + 180^\\circ = 360^\\circ$.",
@@ -850,7 +850,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Comprehensive Properties of Parallelograms",
+        "title": "Comprehensive Properties of Parallelograms",
         "points": [
           "In a parallelogram $ABCD$:",
           "• **Theorem 8.1:** A diagonal of a parallelogram divides it into two congruent triangles ($\\triangle ABC \\cong \\triangle CDA$).",
@@ -866,7 +866,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Special Parallelograms: Diagonals Comparison",
+        "title": "Special Parallelograms: Diagonals Comparison",
         "points": [
           "Crucial diagonal characteristics tested in board exams:"
         ],
@@ -911,7 +911,7 @@ export const mathNotes9: ChapterNote[] = [
         }
       },
       {
-        "title": "4. The Mid-Point Theorem and Its Converse",
+        "title": "The Mid-Point Theorem and Its Converse",
         "points": [
           "**Theorem 8.8 (The Mid-Point Theorem):** The line segment joining the mid-points of two sides of a triangle is parallel to the third side and is equal to half of it.",
           "• **Given:** In $\\triangle ABC$, $E$ and $F$ are mid-points of $AB$ and $AC$ respectively.",
@@ -925,7 +925,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "5. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Quadrilaterals.",
           "**1. The four angles of a quadrilateral are in the ratio 3 : 5 : 9 : 13. The smallest angle of the quadrilateral is:**",
@@ -971,7 +971,7 @@ export const mathNotes9: ChapterNote[] = [
     "overview": "Circles encompass locus geometry of points equidistant from a centre. This chapter explores perpendicular chord bisections, subtended arc angles at the centre vs circumference, angles in a semicircle, and cyclic quadrilateral properties.",
     "sections": [
       {
-        "title": "1. Chords and Their Distances from the Centre",
+        "title": "Chords and Their Distances from the Centre",
         "points": [
           "**Circle Basics:** A circle is the collection of all points in a plane which are at a fixed distance (radius $r$) from a fixed point (centre $O$).",
           "• **Chord:** A line segment joining any two points on a circle. The longest chord passing through the centre is the **diameter** ($d = 2r$).",
@@ -989,7 +989,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Angle Subtended by an Arc of a Circle",
+        "title": "Angle Subtended by an Arc of a Circle",
         "points": [
           "**Theorem 9.7 (Angle at Centre is Double Angle at Circumference):** The angle subtended by an arc at the centre is **double** the angle subtended by it at any point on the remaining part of the circle.",
           "$$\\mathbf{\\angle AOB = 2 \\times \\angle APB}$$",
@@ -1006,7 +1006,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Cyclic Quadrilaterals",
+        "title": "Cyclic Quadrilaterals",
         "points": [
           "**Definition:** A quadrilateral $ABCD$ is called **cyclic** if all four of its vertices lie on the circumference of a circle.",
           "**Theorem 9.11 (Opposite Angles Sum to 180°):** The sum of either pair of opposite angles of a cyclic quadrilateral is **$180^\\circ$** (supplementary).",
@@ -1016,7 +1016,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Circles.",
           "**1. In the given figure, ∠AOB = 100° where O is the centre of the circle. The measure of ∠APB (where P lies on the major arc) is:**",
@@ -1062,7 +1062,7 @@ export const mathNotes9: ChapterNote[] = [
     "overview": "Heron's formula computes triangular areas purely from three side lengths without requiring an altitude. This chapter covers semi-perimeter definitions, scalene area calculations, and applications to composite polygonal lands.",
     "sections": [
       {
-        "title": "1. Traditional Area vs Heron's Formula",
+        "title": "Traditional Area vs Heron's Formula",
         "points": [
           "**Traditional Formula:** $\\text{Area} = \\frac{1}{2} \\times \\text{base} \\times \\text{height}$.",
           "• Requires calculating or constructing an altitude, which is cumbersome for scalene triangles where altitude is not given.",
@@ -1072,7 +1072,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Heron of Alexandria's Formula",
+        "title": "Heron of Alexandria's Formula",
         "points": [
           "**Heron's Formula:** Let $a, b, c$ be the lengths of the three sides of a triangle.",
           "• Step 1: Calculate the **Semi-Perimeter ($s$)**:",
@@ -1092,7 +1092,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Finding the Altitude to the Longest or Shortest Side",
+        "title": "Finding the Altitude to the Longest or Shortest Side",
         "points": [
           "Once the area is calculated using Heron's formula, the height ($h$) corresponding to any side can be calculated immediately:",
           "$$\\text{Area} = \\frac{1}{2} \\times \\text{base} \\times h \\implies \\mathbf{h = \\frac{2 \\times \\text{Area}}{\\text{base}}}}$$",
@@ -1101,7 +1101,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Heron's Formula.",
           "**1. The sides of a triangle are in the ratio 12 : 17 : 25 and its perimeter is 540 cm. Its area is:**",
@@ -1147,7 +1147,7 @@ export const mathNotes9: ChapterNote[] = [
     "overview": "Curved surface areas and volumetric bounds for right circular solids. This chapter details formulas, derivations, and problem solving for cylinders, cones, spheres, and hemispheres.",
     "sections": [
       {
-        "title": "1. Surface Area and Volume of a Right Circular Cylinder",
+        "title": "Surface Area and Volume of a Right Circular Cylinder",
         "points": [
           "A right circular cylinder of base radius $r$ and height $h$:",
           "• **Curved Surface Area (CSA):** Unrolls into a rectangle of length $2\\pi r$ and width $h$:",
@@ -1168,7 +1168,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Surface Area and Volume of a Right Circular Cone",
+        "title": "Surface Area and Volume of a Right Circular Cone",
         "points": [
           "A right circular cone with base radius $r$, vertical height $h$, and slant height $l$:",
           "• **Pythagorean Slant Height Relation:**",
@@ -1187,7 +1187,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Surface Area and Volume of Sphere and Hemisphere",
+        "title": "Surface Area and Volume of Sphere and Hemisphere",
         "points": [
           "**Sphere (Radius $r$):**",
           "• Surface Area $= \\mathbf{4\\pi r^2}$ (equal to the area of four circles of radius $r$).",
@@ -1234,7 +1234,7 @@ export const mathNotes9: ChapterNote[] = [
         }
       },
       {
-        "title": "4. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Surface Areas and Volumes.",
           "**1. The radius of a sphere is 2r, then its volume will be:**",
@@ -1280,7 +1280,7 @@ export const mathNotes9: ChapterNote[] = [
     "overview": "Descriptive statistics organizes raw data into visual and frequency structures. This chapter details frequency distribution tables, bar graphs, histograms for uniform and varying class intervals, and frequency polygons.",
     "sections": [
       {
-        "title": "1. Collection and Presentation of Data",
+        "title": "Collection and Presentation of Data",
         "points": [
           "**Primary Data:** Data collected by the investigator personally with a definite objective in mind (first-hand, highly reliable).",
           "**Secondary Data:** Data gathered from existing sources, records, published journals, or government archives.",
@@ -1291,7 +1291,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "2. Bar Graphs and Histograms",
+        "title": "Bar Graphs and Histograms",
         "points": [
           "**Bar Graph:** A pictorial representation of data using rectangular bars of uniform width drawn with equal spacing between them. The height of each bar is proportional to the corresponding frequency or value.",
           "**Histogram:** A graphical representation of a continuous frequency distribution where rectangles are erected over adjacent class intervals on the x-axis without any gaps:",
@@ -1307,7 +1307,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "3. Frequency Polygons",
+        "title": "Frequency Polygons",
         "points": [
           "**Frequency Polygon:** A line graph visualising the distribution of frequencies across class intervals.",
           "• **Construction Method 1 (Using Histogram):** Join the mid-points of the top horizontal sides of all adjacent rectangles in a histogram by straight line segments. Complete the polygon by joining the endpoints to the class marks of two hypothetical class intervals with zero frequency at both extremes.",
@@ -1315,7 +1315,7 @@ export const mathNotes9: ChapterNote[] = [
         ]
       },
       {
-        "title": "4. Board Exam & Practice Arena",
+        "title": "Board Exam & Practice Arena",
         "points": [
           "**Instructions:** Practice these high-yield board multiple-choice questions on Statistics.",
           "**1. The class mark of the class interval 130 - 150 is:**",

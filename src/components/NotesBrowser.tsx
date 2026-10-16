@@ -11,6 +11,7 @@ import { HINDI_ANSWERS } from "@/data/notes/hindiAnswers";
 import { IT_ANSWERS } from "@/data/notes/itAnswers";
 import { ENGLISH_ANSWERS } from "@/data/notes/englishAnswers";
 import { SST_ANSWERS } from "@/data/notes/sstAnswers";
+import { MATH_ANSWERS } from "@/data/notes/mathAnswers";
 import { cn, pad2 } from "@/lib/format";
 
 function normalizeKey(k?: string): string {
@@ -225,7 +226,7 @@ function QuestionCard({
   const [showSolution, setShowSolution] = useState(false);
 
   const isHindi = chapterId.startsWith("note-hi");
-  const ans = q.num ? (HINDI_ANSWERS[`${chapterId}-${q.num}`] || IT_ANSWERS[`${chapterId}-${q.num}`] || ENGLISH_ANSWERS[`${chapterId}-${q.num}`] || SST_ANSWERS[`${chapterId}-${q.num}`]) : undefined;
+  const ans = q.num ? (HINDI_ANSWERS[`${chapterId}-${q.num}`] || IT_ANSWERS[`${chapterId}-${q.num}`] || ENGLISH_ANSWERS[`${chapterId}-${q.num}`] || SST_ANSWERS[`${chapterId}-${q.num}`] || MATH_ANSWERS[`${chapterId}-${q.num}`]) : undefined;
   const hasValidation = Boolean(ans?.correctKey);
   const isSelected = Boolean(selectedOpt);
   const isCorrect = hasValidation && isSelected ? normalizeKey(selectedOpt) === normalizeKey(ans?.correctKey) : false;
@@ -461,7 +462,7 @@ function AbhyasArena({ chapter }: { chapter: NoteChapter }) {
       if (!optKey) continue;
       const q = allQuestions.find((item) => item.id === qId);
       if (!q || !q.num) continue;
-      const ans = HINDI_ANSWERS[`${chapter.id}-${q.num}`] || IT_ANSWERS[`${chapter.id}-${q.num}`] || ENGLISH_ANSWERS[`${chapter.id}-${q.num}`] || SST_ANSWERS[`${chapter.id}-${q.num}`];
+      const ans = HINDI_ANSWERS[`${chapter.id}-${q.num}`] || IT_ANSWERS[`${chapter.id}-${q.num}`] || ENGLISH_ANSWERS[`${chapter.id}-${q.num}`] || SST_ANSWERS[`${chapter.id}-${q.num}`] || MATH_ANSWERS[`${chapter.id}-${q.num}`];
       if (ans?.correctKey) {
         if (normalizeKey(optKey) === normalizeKey(ans.correctKey)) {
           correct++;

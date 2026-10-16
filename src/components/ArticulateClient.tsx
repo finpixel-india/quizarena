@@ -591,7 +591,7 @@ export default function ArticulateClient() {
   const activeElocutionType = ELOCUTION_TYPES.find((t) => t.id === elocutionType) ?? ELOCUTION_TYPES[0];
 
   return (
-    <div className="relative flex flex-col justify-between items-center w-full h-[calc(100dvh-4rem)] max-h-[calc(100dvh-4rem)] overflow-hidden select-none px-4 sm:px-6 pt-6 sm:pt-9 pb-8 sm:pb-12">
+    <div className="relative flex flex-col justify-between items-center w-full min-h-[calc(100dvh-4rem)] overflow-y-auto overflow-x-hidden select-none px-4 sm:px-6 pt-5 sm:pt-8 pb-20 sm:pb-10">
 
       {/* ── Atmospheric glows ── */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
@@ -804,10 +804,10 @@ export default function ArticulateClient() {
          ════════════════════════════════════════════════════════════════════════ */}
       <div className="w-full max-w-3xl flex-1 flex flex-col items-center justify-center my-auto px-4 text-center">
         {mode === "elocution" ? (
-          <div className="w-full py-4 animate-fade-in flex items-center justify-center">
+          <div className="w-full py-2 sm:py-3 animate-fade-in flex items-center justify-center">
             <p
               key={elocutionKey}
-              className="font-serif text-xl sm:text-2xl md:text-[1.85rem] font-normal leading-[1.45] tracking-[-0.01em] text-fg/95 select-text animate-prompt-land max-w-[36ch] sm:max-w-[42ch] mx-auto text-balance"
+              className="font-serif text-base sm:text-lg md:text-[1.25rem] font-normal leading-[1.55] tracking-normal text-fg/95 select-text animate-prompt-land max-w-[44ch] sm:max-w-[50ch] md:max-w-[56ch] mx-auto text-balance"
             >
               &ldquo;{currentElocutionItem.text}&rdquo;
             </p>
@@ -838,18 +838,18 @@ export default function ArticulateClient() {
         {mode === "elocution" ? (
           <div className="w-full flex flex-col items-center animate-fade-in">
             {/* Timer and WPM Badge */}
-            <div className="flex flex-col items-center justify-center mb-5 sm:mb-6">
-              <div className="flex items-center justify-center gap-2 font-mono text-3xl sm:text-4xl font-normal tabular-nums tracking-wide text-fg/90">
+            <div className="flex flex-col items-center justify-center mb-2.5 sm:mb-3">
+              <div className="flex items-center justify-center gap-2 font-mono text-2xl sm:text-[1.75rem] font-normal tabular-nums tracking-tight text-fg/90 leading-none">
                 {stopwatchState === "running" && (
-                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping mr-1" />
+                  <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping mr-1" />
                 )}
                 {formatStopwatch(stopwatchElapsed)}
               </div>
 
-              {/* Reserved height (28px) for WPM stats badge so the buttons never jump */}
-              <div className="h-7 flex items-center justify-center mt-2">
+              {/* Reserved height (24px) for WPM stats badge so the buttons never jump */}
+              <div className="h-6 flex items-center justify-center mt-1.5">
                 {stopwatchState === "stopped" ? (
-                  <div className="flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.05] border border-white/[0.1] text-xs font-mono text-fg/80 animate-fade-in shadow-sm">
+                  <div className="flex items-center gap-2 px-3 py-0.5 rounded-full bg-white/[0.05] border border-white/[0.1] text-[11px] sm:text-xs font-mono text-fg/80 animate-fade-in shadow-sm">
                     <span className="text-[#d96b43] font-bold">{elocutionWpm} WPM</span>
                     <span className="text-white/20">·</span>
                     <span className="text-muted">
@@ -861,15 +861,15 @@ export default function ArticulateClient() {
             </div>
 
             {/* Action Buttons (Generous, Symmetrical, Fixed Slots) */}
-            <div className="flex items-center justify-center gap-3 sm:gap-4 w-full max-w-[440px] h-12">
+            <div className="flex items-center justify-center gap-2.5 sm:gap-4 w-full max-w-[440px] h-11 sm:h-12">
               {/* Slot 1: Primary Stopwatch Control (Start / Stop / Retry) */}
               {stopwatchState === "idle" && (
                 <button
                   type="button"
                   onClick={startStopwatch}
-                  className="min-w-[120px] sm:min-w-[130px] h-12 rounded-full bg-[#d96b43] text-white px-6 text-sm sm:text-[15px] font-semibold shadow-[0_4px_20px_-4px_rgba(217,107,67,0.5)] hover:brightness-110 active:scale-95 transition cursor-pointer flex items-center justify-center gap-2 whitespace-nowrap"
+                  className="w-[110px] sm:w-[130px] h-11 sm:h-12 rounded-full bg-[#d96b43] text-white px-4 sm:px-6 text-xs sm:text-[15px] font-semibold shadow-[0_4px_20px_-4px_rgba(217,107,67,0.5)] hover:brightness-110 active:scale-95 transition cursor-pointer flex items-center justify-center gap-2 whitespace-nowrap shrink-0"
                 >
-                  <Play className="w-4 h-4 fill-current" />
+                  <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
                   Start
                 </button>
               )}
@@ -877,9 +877,9 @@ export default function ArticulateClient() {
                 <button
                   type="button"
                   onClick={stopStopwatch}
-                  className="min-w-[120px] sm:min-w-[130px] h-12 rounded-full bg-rose-600 hover:bg-rose-500 text-white px-6 text-sm sm:text-[15px] font-semibold shadow-[0_4px_20px_-4px_rgba(225,29,72,0.5)] active:scale-95 transition cursor-pointer flex items-center justify-center gap-2 animate-pulse whitespace-nowrap"
+                  className="w-[110px] sm:w-[130px] h-11 sm:h-12 rounded-full bg-rose-600 hover:bg-rose-500 text-white px-4 sm:px-6 text-xs sm:text-[15px] font-semibold shadow-[0_4px_20px_-4px_rgba(225,29,72,0.5)] active:scale-95 transition cursor-pointer flex items-center justify-center gap-2 animate-pulse whitespace-nowrap shrink-0"
                 >
-                  <Square className="w-4 h-4 fill-current" />
+                  <Square className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
                   Stop
                 </button>
               )}
@@ -887,9 +887,9 @@ export default function ArticulateClient() {
                 <button
                   type="button"
                   onClick={resetStopwatch}
-                  className="min-w-[120px] sm:min-w-[130px] h-12 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-6 text-sm sm:text-[15px] font-medium transition active:scale-95 cursor-pointer flex items-center justify-center gap-2 whitespace-nowrap"
+                  className="w-[110px] sm:w-[130px] h-11 sm:h-12 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-4 sm:px-6 text-xs sm:text-[15px] font-medium transition active:scale-95 cursor-pointer flex items-center justify-center gap-2 whitespace-nowrap shrink-0"
                 >
-                  <RotateCcw className="w-4 h-4" />
+                  <RotateCcw className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                   Retry
                 </button>
               )}
@@ -900,7 +900,7 @@ export default function ArticulateClient() {
                 onClick={nextElocutionChallenge}
                 disabled={stopwatchState === "running"}
                 className={cn(
-                  "min-w-[165px] sm:min-w-[185px] h-12 rounded-full text-sm sm:text-[15px] transition active:scale-95 flex items-center justify-center gap-1.5 px-6 whitespace-nowrap",
+                  "w-[160px] sm:w-[185px] h-11 sm:h-12 rounded-full text-xs sm:text-[15px] transition active:scale-95 flex items-center justify-center gap-1.5 px-4 sm:px-6 whitespace-nowrap shrink-0",
                   stopwatchState === "stopped"
                     ? "bg-[#d96b43] text-white font-semibold shadow-[0_4px_20px_-4px_rgba(217,107,67,0.5)] hover:brightness-110 cursor-pointer"
                     : stopwatchState === "running"
@@ -915,7 +915,7 @@ export default function ArticulateClient() {
               <button
                 type="button"
                 onClick={() => setSettingsOpen(true)}
-                className="w-12 h-12 shrink-0 rounded-full border border-white/15 text-fg/50 hover:text-fg hover:bg-white/[0.06] transition flex items-center justify-center cursor-pointer"
+                className="w-11 h-11 sm:w-12 sm:h-12 shrink-0 rounded-full border border-white/15 text-fg/50 hover:text-fg hover:bg-white/[0.06] transition flex items-center justify-center cursor-pointer"
                 title="Timer Settings"
               >
                 <Settings2 className="w-4 h-4" />
@@ -924,13 +924,13 @@ export default function ArticulateClient() {
           </div>
         ) : (
           /* Off-the-cuff / Deep-research Action Bar */
-          <div className="flex items-center justify-center gap-3 sm:gap-4 w-full max-w-[440px] h-12 animate-fade-in">
+          <div className="flex items-center justify-center gap-2.5 sm:gap-4 w-full max-w-[440px] h-11 sm:h-12 animate-fade-in">
             {/* Slot 1: Spin */}
             <button
               type="button"
               onClick={doSpin}
               disabled={isSpinning}
-              className="min-w-[120px] sm:min-w-[130px] h-12 rounded-full bg-[#d96b43] text-white px-6 text-sm sm:text-[15px] font-semibold shadow-[0_4px_20px_-4px_rgba(217,107,67,0.5)] hover:brightness-110 active:scale-95 transition disabled:opacity-40 cursor-pointer whitespace-nowrap text-center flex items-center justify-center"
+              className="w-[110px] sm:w-[130px] h-11 sm:h-12 shrink-0 rounded-full bg-[#d96b43] text-white px-4 sm:px-6 text-xs sm:text-[15px] font-semibold shadow-[0_4px_20px_-4px_rgba(217,107,67,0.5)] hover:brightness-110 active:scale-95 transition disabled:opacity-40 cursor-pointer whitespace-nowrap text-center flex items-center justify-center"
             >
               {hasSpun ? "Spin again" : "Spin"}
             </button>
@@ -940,7 +940,7 @@ export default function ArticulateClient() {
               <button
                 type="button"
                 onClick={startOffTheCuff}
-                className="min-w-[165px] sm:min-w-[185px] h-12 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-6 text-sm sm:text-[15px] font-semibold transition active:scale-95 cursor-pointer whitespace-nowrap text-center flex items-center justify-center"
+                className="w-[160px] sm:w-[185px] h-11 sm:h-12 shrink-0 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-4 sm:px-6 text-xs sm:text-[15px] font-semibold transition active:scale-95 cursor-pointer whitespace-nowrap text-center flex items-center justify-center"
               >
                 Start {settings.speechMinutes}m timer
               </button>
@@ -948,7 +948,7 @@ export default function ArticulateClient() {
               <button
                 type="button"
                 onClick={startDeepResearch}
-                className="min-w-[165px] sm:min-w-[185px] h-12 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-6 text-sm sm:text-[15px] font-semibold transition active:scale-95 cursor-pointer whitespace-nowrap text-center flex items-center justify-center"
+                className="w-[160px] sm:w-[185px] h-11 sm:h-12 shrink-0 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-4 sm:px-6 text-xs sm:text-[15px] font-semibold transition active:scale-95 cursor-pointer whitespace-nowrap text-center flex items-center justify-center"
               >
                 Start {settings.researchMinutes}m research
               </button>
@@ -958,7 +958,7 @@ export default function ArticulateClient() {
             <button
               type="button"
               onClick={() => setSettingsOpen(true)}
-              className="w-12 h-12 shrink-0 rounded-full border border-white/15 text-fg/50 hover:text-fg hover:bg-white/[0.06] transition flex items-center justify-center cursor-pointer"
+              className="w-11 h-11 sm:w-12 sm:h-12 shrink-0 rounded-full border border-white/15 text-fg/50 hover:text-fg hover:bg-white/[0.06] transition flex items-center justify-center cursor-pointer"
               title="Timer Settings"
             >
               <Settings2 className="w-4 h-4" />

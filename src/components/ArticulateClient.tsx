@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Check, ChevronDown, ChevronUp, Play, RotateCcw, Settings2, Square, X } from "lucide-react";
+import { Check, ChevronDown, ChevronUp, Flame, Play, RotateCcw, Settings2, Square, X } from "lucide-react";
 import { ARTICULATE_PROMPTS, type ArticulateCategory, type ArticulateMode, type ArticulatePrompt } from "@/data/articulate/prompts";
 import {
   ELOCUTION_ITEMS,
@@ -47,6 +47,18 @@ const DIFFICULTIES: { id: ElocutionDifficulty; label: string; dot: string }[] = 
 interface Settings { speechMinutes: number; researchMinutes: number; muteSounds: boolean; }
 const DEFAULT_SETTINGS: Settings = { speechMinutes: 1, researchMinutes: 5, muteSounds: false };
 const SETTINGS_KEY = "ql-articulate-v3";
+
+/* ─── Persistent Session Flow (Preferences & Streak) ─────────────────────── */
+interface ArticulateFlowState {
+  mode?: ArticulateMode;
+  category?: ArticulateCategory;
+  promptId?: string;
+  elocutionType?: ElocutionType;
+  elocutionDifficulty?: ElocutionDifficulty;
+  elocutionItemId?: string;
+  elocutionStreak?: number;
+}
+const FLOW_STORAGE_KEY = "ql-articulate-flow-v1";
 
 function loadSettings(): Settings {
   if (typeof window === "undefined") return DEFAULT_SETTINGS;
@@ -247,6 +259,8 @@ export default function ArticulateClient() {
   const [elocutionDiffOpen, setElocutionDiffOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [hasSpun, setHasSpun] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
+  const [elocutionStreak, setElocutionStreak] = useState(0);
 
   /* Ref for outside click on dropdowns */
   const catRef = useRef<HTMLDivElement>(null);
@@ -287,16 +301,6 @@ export default function ArticulateClient() {
   const [isSpinning, setIsSpinning] = useState(false);
   const spinTimers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
-  /* ── Randomize default topic on client load so it never remains the same ── */
-  useEffect(() => {
-    const p = ARTICULATE_PROMPTS.filter((x) => x.mode === mode);
-    if (p.length > 0) {
-      const rand = p[Math.floor(Math.random() * p.length)];
-      setCurrentPrompt(rand);
-      setDisplayText(rand.title);
-    }
-  }, []);
-
   /* ─── Elocution State ──────────────────────────────────────────────────── */
   const [elocutionType, setElocutionType] = useState<ElocutionType>("tongue-twister");
   const [elocutionDifficulty, setElocutionDifficulty] = useState<ElocutionDifficulty>("medium");
@@ -306,19 +310,88 @@ export default function ArticulateClient() {
   });
   const [elocutionKey, setElocutionKey] = useState(0);
 
+  /* ── Restore persistent session flow on client mount (preferences & progress) ── */
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(FLOW_STORAGE_KEY);
+      if (raw) {
+        const saved: ArticulateFlowState = JSON.parse(raw);
+        if (saved.mode && ARTICULATE_MODES.some((m) => m.id === saved.mode)) {
+          setMode(saved.mode);
+        }
+        if (saved.category && DISPLAY_CATEGORIES.some((c) => c.id === saved.category)) {
+          setCategory(saved.category);
+        }
+        if (saved.promptId) {
+          const found = ARTICULATE_PROMPTS.find((p) => p.id === saved.promptId);
+          if (found) {
+            setCurrentPrompt(found);
+            setDisplayText(found.title);
+          }
+        }
+        if (saved.elocutionType && ELOCUTION_TYPES.some((t) => t.id === saved.elocutionType)) {
+          setElocutionType(saved.elocutionType);
+        }
+        if (saved.elocutionDifficulty && DIFFICULTIES.some((d) => d.id === saved.elocutionDifficulty)) {
+          setElocutionDifficulty(saved.elocutionDifficulty);
+        }
+        if (saved.elocutionItemId) {
+          const foundItem = ELOCUTION_ITEMS.find((it) => it.id === saved.elocutionItemId);
+          if (foundItem) {
+            setCurrentElocutionItem(foundItem);
+          }
+        }
+        if (typeof saved.elocutionStreak === "number" && saved.elocutionStreak >= 0) {
+          setElocutionStreak(saved.elocutionStreak);
+        }
+      } else {
+        // First visit: pick random initial items so it's fresh
+        const p = ARTICULATE_PROMPTS.filter((x) => x.mode === "off-the-cuff");
+        if (p.length > 0) {
+          const rand = p[Math.floor(Math.random() * p.length)];
+          setCurrentPrompt(rand);
+          setDisplayText(rand.title);
+        }
+        const elList = ELOCUTION_ITEMS.filter((x) => x.type === "tongue-twister" && x.difficulty === "medium");
+        if (elList.length > 0) {
+          setCurrentElocutionItem(elList[Math.floor(Math.random() * elList.length)]);
+        }
+      }
+    } catch {}
+    setIsHydrated(true);
+  }, []);
+
+  /* ── Persist session preferences and progress on any change ── */
+  useEffect(() => {
+    if (!isHydrated) return;
+    try {
+      const state: ArticulateFlowState = {
+        mode,
+        category,
+        promptId: currentPrompt.id,
+        elocutionType,
+        elocutionDifficulty,
+        elocutionItemId: currentElocutionItem.id,
+        elocutionStreak,
+      };
+      localStorage.setItem(FLOW_STORAGE_KEY, JSON.stringify(state));
+    } catch {}
+  }, [
+    isHydrated,
+    mode,
+    category,
+    currentPrompt.id,
+    elocutionType,
+    elocutionDifficulty,
+    currentElocutionItem.id,
+    elocutionStreak,
+  ]);
+
   /* Stopwatch State */
   const [stopwatchState, setStopwatchState] = useState<"idle" | "running" | "stopped">("idle");
   const [stopwatchElapsed, setStopwatchElapsed] = useState(0);
   const stopwatchTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const stopwatchStartRef = useRef(0);
-
-  // Randomize initial elocution item on mount
-  useEffect(() => {
-    const list = ELOCUTION_ITEMS.filter((x) => x.type === "tongue-twister" && x.difficulty === "medium");
-    if (list.length > 0) {
-      setCurrentElocutionItem(list[Math.floor(Math.random() * list.length)]);
-    }
-  }, []);
 
   const resetStopwatch = useCallback(() => {
     if (stopwatchTimerRef.current) {
@@ -383,6 +456,7 @@ export default function ArticulateClient() {
 
   const nextElocutionChallenge = useCallback(() => {
     resetStopwatch();
+    setElocutionStreak((s) => s + 1);
     const pool = ELOCUTION_ITEMS.filter((x) => x.type === elocutionType && x.difficulty === elocutionDifficulty);
     const candidates = pool.filter((x) => x.id !== currentElocutionItem.id);
     const list = candidates.length > 0 ? candidates : pool;
@@ -554,21 +628,25 @@ export default function ArticulateClient() {
     resetStopwatch();
 
     if (m === "elocution") {
-      const pool = ELOCUTION_ITEMS.filter((x) => x.type === elocutionType && x.difficulty === elocutionDifficulty);
-      if (pool.length > 0) {
-        setCurrentElocutionItem(pool[Math.floor(Math.random() * pool.length)]);
+      if (currentElocutionItem.type !== elocutionType || currentElocutionItem.difficulty !== elocutionDifficulty) {
+        const pool = ELOCUTION_ITEMS.filter((x) => x.type === elocutionType && x.difficulty === elocutionDifficulty);
+        if (pool.length > 0) {
+          setCurrentElocutionItem(pool[Math.floor(Math.random() * pool.length)]);
+        }
       }
       return;
     }
 
-    const src = category === "all"
-      ? ARTICULATE_PROMPTS.filter((p) => p.mode === m)
-      : ARTICULATE_PROMPTS.filter((p) => p.mode === m && p.category === category);
-    const cand = src.length > 0 ? src : ARTICULATE_PROMPTS.filter((p) => p.mode === m);
-    if (cand.length) {
-      const rand = cand[Math.floor(Math.random() * cand.length)];
-      setCurrentPrompt(rand);
-      setDisplayText(rand.title);
+    if (currentPrompt.mode !== m) {
+      const src = category === "all"
+        ? ARTICULATE_PROMPTS.filter((p) => p.mode === m)
+        : ARTICULATE_PROMPTS.filter((p) => p.mode === m && p.category === category);
+      const cand = src.length > 0 ? src : ARTICULATE_PROMPTS.filter((p) => p.mode === m);
+      if (cand.length) {
+        const rand = cand[Math.floor(Math.random() * cand.length)];
+        setCurrentPrompt(rand);
+        setDisplayText(rand.title);
+      }
     }
   };
 
@@ -598,6 +676,18 @@ export default function ArticulateClient() {
         <div className="absolute -left-24 top-[5%] h-[65vh] w-[55vw] rounded-full [background:radial-gradient(ellipse_at_center,rgba(165,75,30,0.18),transparent_70%)]" />
         <div className="absolute -right-24 top-0 h-[60vh] w-[50vw] rounded-full [background:radial-gradient(ellipse_at_center,rgba(217,107,67,0.12),transparent_70%)]" />
       </div>
+
+      {/* ─── Elocution Streak Indicator (Only visible in Elocution mode, positioned in top-right) ─── */}
+      {mode === "elocution" && (
+        <div
+          className="absolute right-3.5 top-2.5 sm:right-8 sm:top-6 md:right-10 md:top-8 z-30 flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-amber-500/25 bg-amber-500/10 backdrop-blur-md shadow-[0_2px_12px_rgba(245,158,11,0.15)] text-amber-300 text-xs sm:text-sm font-semibold select-none animate-fade-in"
+          title={`${elocutionStreak} challenges practiced`}
+        >
+          <Flame className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 fill-amber-400/90 shrink-0 animate-pulse" />
+          <span className="tabular-nums font-bold text-amber-200">{elocutionStreak}</span>
+          <span className="hidden xs:inline text-[11px] sm:text-xs text-amber-300/80 font-medium">Practiced</span>
+        </div>
+      )}
 
       {/* ════════════════════════════════════════════════════════════════════════
           ZONE 1: TOP SECTION (Header, Mode Switcher, Category Dropdowns)

@@ -68,14 +68,14 @@ export function CollapsibleSection({
           </span>
           <span
             className={cn(
-              "inline-flex h-7 w-7 items-center justify-center rounded-lg border transition-all duration-200",
+              "inline-flex h-8 w-8 sm:h-7 sm:w-7 items-center justify-center rounded-lg border transition-all duration-200",
               isOpen
                 ? "border-brand/40 bg-brand/10 text-brand-ink"
                 : "border-line bg-card text-subtle group-hover:text-fg group-hover:border-line-2",
             )}
           >
             <ChevronDown
-              className={cn("h-4 w-4 transition-transform duration-300 ease-out", isOpen && "rotate-180")}
+              className={cn("h-4.5 w-4.5 sm:h-4 sm:w-4 transition-transform duration-300 ease-out", isOpen && "rotate-180")}
             />
           </span>
         </div>
@@ -270,7 +270,7 @@ export function Segmented<T extends string | number>({
             aria-pressed={active}
             onClick={() => onChange(o.v)}
             className={cn(
-              "flex-1 min-w-0 sm:flex-initial rounded-lg px-2.5 py-1.5 sm:px-3.5 text-xs sm:text-sm font-medium transition ring-1 ring-inset truncate text-center",
+              "flex-1 min-w-0 sm:flex-initial rounded-lg px-3 py-2 sm:px-3.5 sm:py-1.5 text-xs sm:text-sm font-semibold sm:font-medium transition ring-1 ring-inset truncate text-center",
               active ? "bg-brand/15 text-fg ring-brand/70" : "ring-transparent text-muted hover:bg-fg/[0.04] hover:text-fg",
             )}
           >
@@ -322,19 +322,19 @@ export function Switch({
 
 export const btn = {
   primary:
-    "inline-flex items-center justify-center gap-2 rounded-full grad-cta px-4.5 py-2.5 sm:px-6 sm:py-3 text-sm font-semibold text-white shadow-[0_8px_28px_-10px_rgba(249,115,22,0.8)] transition hover:brightness-110 hover:shadow-[0_12px_40px_-10px_rgba(249,115,22,0.95)] active:scale-[0.98] disabled:pointer-events-none disabled:opacity-40",
+    "inline-flex items-center justify-center gap-2 rounded-full grad-cta px-5 py-3 sm:px-6 sm:py-3 text-sm font-semibold text-white shadow-[0_8px_28px_-10px_rgba(249,115,22,0.8)] transition hover:brightness-110 hover:shadow-[0_12px_40px_-10px_rgba(249,115,22,0.95)] active:scale-[0.98] disabled:pointer-events-none disabled:opacity-40 min-h-[2.75rem] sm:min-h-0",
   secondary:
-    "inline-flex items-center justify-center gap-2 rounded-full border border-line-2 bg-transparent px-4.5 py-2.5 sm:px-6 sm:py-3 text-sm font-semibold text-fg transition hover:border-brand hover:bg-brand/10 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-40",
+    "inline-flex items-center justify-center gap-2 rounded-full border border-line-2 bg-transparent px-5 py-3 sm:px-6 sm:py-3 text-sm font-semibold text-fg transition hover:border-brand hover:bg-brand/10 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-40 min-h-[2.75rem] sm:min-h-0",
   subtle:
-    "inline-flex items-center justify-center gap-2 rounded-full border border-line bg-fg/[0.03] px-4.5 py-2.5 sm:px-6 sm:py-3 text-sm font-medium text-fg transition hover:border-line-2 hover:bg-fg/[0.06] active:scale-[0.98] disabled:pointer-events-none disabled:opacity-40",
+    "inline-flex items-center justify-center gap-2 rounded-full border border-line bg-fg/[0.03] px-5 py-3 sm:px-6 sm:py-3 text-sm font-medium text-fg transition hover:border-line-2 hover:bg-fg/[0.06] active:scale-[0.98] disabled:pointer-events-none disabled:opacity-40 min-h-[2.75rem] sm:min-h-0",
   ghost:
-    "inline-flex items-center justify-center gap-2 rounded-xl px-3 py-2 text-sm font-medium text-muted transition hover:bg-fg/5 hover:text-fg disabled:pointer-events-none disabled:opacity-40",
-  icon: "inline-flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-xl text-muted transition hover:bg-fg/[0.06] hover:text-fg",
+    "inline-flex items-center justify-center gap-2 rounded-xl px-3.5 py-2.5 sm:px-3 sm:py-2 text-sm font-medium text-muted transition hover:bg-fg/5 hover:text-fg disabled:pointer-events-none disabled:opacity-40",
+  icon: "inline-flex h-10 w-10 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-xl text-muted transition hover:bg-fg/[0.06] hover:text-fg",
 };
 
 export function chip(active: boolean) {
   return cn(
-    "min-w-[2.75rem] sm:min-w-[3.25rem] rounded-xl border px-2.5 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-sm font-medium tabular-nums transition active:scale-95 disabled:cursor-not-allowed disabled:opacity-25 text-center shrink-0",
+    "min-w-[3rem] min-h-[2.5rem] sm:min-w-[3.25rem] sm:min-h-0 rounded-xl border px-3 py-2 sm:px-3.5 sm:py-2 text-[13px] sm:text-sm font-semibold sm:font-medium tabular-nums transition active:scale-95 disabled:cursor-not-allowed disabled:opacity-25 text-center shrink-0",
     // Always reserve the glow shadow space — transparent when inactive prevents layout shift
     active
       ? "border-brand bg-brand/10 text-fg shadow-[0_0_0_1px_rgba(249,115,22,0.55),0_0_20px_-6px_rgba(249,115,22,0.45)]"

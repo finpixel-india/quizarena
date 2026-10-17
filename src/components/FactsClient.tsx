@@ -112,14 +112,14 @@ function FactCard({
             onToggleSave(fact.id);
           }}
           className={cn(
-            "absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-xl border backdrop-blur-md transition-all duration-200 active:scale-90",
+            "absolute right-3 top-3 z-10 flex h-10 w-10 sm:h-8 sm:w-8 items-center justify-center rounded-xl border backdrop-blur-md transition-all duration-200 active:scale-90",
             saved
               ? "border-brand/70 bg-brand text-white shadow-[0_0_16px_rgba(249,115,22,0.6)]"
               : "border-white/20 bg-black/60 text-white/80 hover:border-brand/60 hover:text-white",
           )}
           aria-label={saved ? "Remove bookmark" : "Bookmark this fact"}
         >
-          {saved ? <BookmarkCheck className="h-4 w-4" /> : <Bookmark className="h-4 w-4" />}
+          {saved ? <BookmarkCheck className="h-5 w-5 sm:h-4 sm:w-4" /> : <Bookmark className="h-5 w-5 sm:h-4 sm:w-4" />}
         </button>
       </div>
 
@@ -208,7 +208,7 @@ function FullPageFactView({
         <button
           type="button"
           onClick={onBack}
-          className="inline-flex items-center gap-2 rounded-xl border border-line bg-card px-3.5 py-2 text-xs sm:text-sm font-semibold text-fg hover:border-brand hover:text-brand-ink transition active:scale-95"
+          className="inline-flex items-center gap-2 rounded-xl border border-line bg-card px-4 py-2.5 sm:px-3.5 sm:py-2 text-sm sm:text-sm font-semibold text-fg hover:border-brand hover:text-brand-ink transition active:scale-95"
         >
           <ArrowLeft className="h-4 w-4" />
           <span>Back to facts</span>
@@ -224,7 +224,7 @@ function FullPageFactView({
             type="button"
             onClick={() => onToggleSave(fact.id)}
             className={cn(
-              "inline-flex items-center gap-1.5 rounded-xl border px-3 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-sm font-semibold transition active:scale-95",
+              "inline-flex items-center gap-1.5 rounded-xl border px-3.5 py-2.5 sm:px-3.5 sm:py-2 text-sm sm:text-sm font-semibold transition active:scale-95",
               isSaved
                 ? "border-brand bg-brand/20 text-brand-ink"
                 : "border-line bg-card text-muted hover:border-line-2 hover:text-fg",
@@ -237,7 +237,7 @@ function FullPageFactView({
           <button
             type="button"
             onClick={handleShare}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-line bg-card px-3 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-sm font-medium text-muted hover:border-line-2 hover:text-fg transition active:scale-95"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-line bg-card px-3.5 py-2.5 sm:px-3.5 sm:py-2 text-sm sm:text-sm font-medium text-muted hover:border-line-2 hover:text-fg transition active:scale-95"
             title="Copy link"
           >
             <Share2 className="h-4 w-4" />
@@ -501,7 +501,7 @@ export default function FactsClient() {
                   type="button"
                   onClick={loadMoreLiveFacts}
                   disabled={isStreaming}
-                  className="inline-flex items-center gap-2 rounded-full grad-cta px-4.5 py-2.5 text-xs sm:text-sm font-semibold text-white shadow-[0_8px_24px_-10px_rgba(249,115,22,0.8)] transition hover:brightness-110 active:scale-95 disabled:opacity-50"
+                  className="inline-flex items-center gap-2 rounded-full grad-cta px-5 py-3 sm:px-4.5 sm:py-2.5 text-sm sm:text-sm font-semibold text-white shadow-[0_8px_24px_-10px_rgba(249,115,22,0.8)] transition hover:brightness-110 active:scale-95 disabled:opacity-50"
                 >
                   {isStreaming ? (
                     <Loader2 className="h-4 w-4 animate-spin" />
@@ -531,7 +531,7 @@ export default function FactsClient() {
           <button
             type="button"
             onClick={() => setIsCategoryExpanded((prev) => !prev)}
-            className="inline-flex items-center gap-2 rounded-xl border border-line-2 bg-fg/[0.03] px-3.5 py-2 text-xs sm:text-sm font-semibold text-fg hover:border-brand hover:text-brand-ink transition active:scale-95"
+            className="inline-flex items-center gap-2 rounded-xl border border-line-2 bg-fg/[0.03] px-4 py-2.5 sm:px-3.5 sm:py-2 text-sm sm:text-sm font-semibold text-fg hover:border-brand hover:text-brand-ink transition active:scale-95"
             aria-expanded={isCategoryExpanded}
           >
             <ListFilter className="h-4 w-4 text-brand-ink" />

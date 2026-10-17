@@ -84,9 +84,9 @@ export default function HomeClient() {
             {last ? (
               <Link
                 href={quizHref({ topicId: last.topicId, amount: last.totalQuestions, time: last.timePerQuestion, timerMode: last.timerMode, totalTime: last.totalTime, difficulty: last.difficulty, source: last.source })}
-                className="group inline-flex max-w-full items-center gap-2 rounded-full border border-line-2 px-4 py-2 text-xs text-muted transition hover:border-brand hover:text-fg sm:px-5 sm:py-2.5 sm:text-sm"
+                className="group inline-flex max-w-full items-center gap-2 rounded-full border border-line-2 px-4.5 py-2.5 text-xs text-muted transition hover:border-brand hover:text-fg sm:px-5 sm:py-2.5 sm:text-sm"
               >
-                <RotateCcw className="h-3.5 w-3.5 shrink-0 text-brand-ink sm:h-4 sm:w-4" />
+                <RotateCcw className="h-4 w-4 shrink-0 text-brand-ink sm:h-4 sm:w-4" />
                 <span className="truncate">
                   Replay last quiz · <span className="font-medium text-fg">{splitLabel(last.topicLabel).title}</span>
                 </span>
@@ -95,17 +95,17 @@ export default function HomeClient() {
 
             <Link
               href="/history"
-              className="inline-flex items-center gap-2 rounded-full border border-line bg-card/60 px-4 py-2 text-xs font-semibold text-muted transition hover:border-brand hover:bg-brand/[0.06] hover:text-fg sm:px-5 sm:py-2.5 sm:text-sm"
+              className="inline-flex items-center gap-2 rounded-full border border-line bg-card/60 px-4.5 py-2.5 text-xs font-semibold text-muted transition hover:border-brand hover:bg-brand/[0.06] hover:text-fg sm:px-5 sm:py-2.5 sm:text-sm"
             >
-              <History className="h-3.5 w-3.5 text-brand-ink sm:h-4 sm:w-4" />
+              <History className="h-4 w-4 text-brand-ink sm:h-4 sm:w-4" />
               <span>History</span>
             </Link>
 
             <Link
               href="/stats"
-              className="inline-flex items-center gap-2 rounded-full border border-line bg-card/60 px-4 py-2 text-xs font-semibold text-muted transition hover:border-brand hover:bg-brand/[0.06] hover:text-fg sm:px-5 sm:py-2.5 sm:text-sm"
+              className="inline-flex items-center gap-2 rounded-full border border-line bg-card/60 px-4.5 py-2.5 text-xs font-semibold text-muted transition hover:border-brand hover:bg-brand/[0.06] hover:text-fg sm:px-5 sm:py-2.5 sm:text-sm"
             >
-              <BarChart3 className="h-3.5 w-3.5 text-brand-ink sm:h-4 sm:w-4" />
+              <BarChart3 className="h-4 w-4 text-brand-ink sm:h-4 sm:w-4" />
               <span>Stats</span>
             </Link>
           </div>
@@ -140,16 +140,16 @@ export default function HomeClient() {
           <div className="flex items-center gap-2">
             <Link
               href="/history"
-              className="inline-flex items-center gap-1.5 rounded-full border border-line px-3 py-1.5 text-xs font-medium text-muted transition hover:border-brand hover:text-fg"
+              className="inline-flex items-center gap-1.5 rounded-full border border-line px-3.5 py-2 sm:px-3 sm:py-1.5 text-xs font-medium text-muted transition hover:border-brand hover:text-fg"
             >
-              <History className="h-3.5 w-3.5 text-brand-ink" />
+              <History className="h-4 w-4 sm:h-3.5 sm:w-3.5 text-brand-ink" />
               <span className="hidden sm:inline">Quiz</span> History
             </Link>
             <Link
               href="/stats"
-              className="inline-flex items-center gap-1.5 rounded-full border border-line px-3 py-1.5 text-xs font-medium text-muted transition hover:border-brand hover:text-fg"
+              className="inline-flex items-center gap-1.5 rounded-full border border-line px-3.5 py-2 sm:px-3 sm:py-1.5 text-xs font-medium text-muted transition hover:border-brand hover:text-fg"
             >
-              <BarChart3 className="h-3.5 w-3.5 text-brand-ink" />
+              <BarChart3 className="h-4 w-4 sm:h-3.5 sm:w-3.5 text-brand-ink" />
               <span className="hidden sm:inline">High</span> Stats
             </Link>
           </div>

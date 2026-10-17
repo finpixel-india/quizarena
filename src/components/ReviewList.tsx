@@ -93,7 +93,7 @@ export default function ReviewList({ questions }: { questions: AttemptQuestion[]
               aria-selected={active}
               onClick={() => setFilter(t.id)}
               className={cn(
-                "shrink-0 rounded-full border px-4 py-1.5 text-sm font-medium transition",
+                "shrink-0 rounded-full border px-4.5 py-2.5 sm:px-4 sm:py-1.5 text-sm font-semibold sm:font-medium transition",
                 active ? "border-brand bg-brand/10 text-fg glow" : "border-line text-muted hover:border-line-2 hover:text-fg",
               )}
             >

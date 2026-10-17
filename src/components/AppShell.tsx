@@ -74,7 +74,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
               aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
               title={isDark ? "Light mode" : "Dark mode"}
             >
-              {isDark ? <Sun className="h-[18px] w-[18px]" /> : <Moon className="h-[18px] w-[18px]" />}
+              {isDark ? <Sun className="h-5 w-5 sm:h-[18px] sm:w-[18px]" /> : <Moon className="h-5 w-5 sm:h-[18px] sm:w-[18px]" />}
             </button>
             {fs.supported ? (
               <button
@@ -84,14 +84,14 @@ export default function AppShell({ children }: { children: ReactNode }) {
                 aria-label={fs.isFullscreen ? "Exit full screen" : "Enter full screen"}
                 title={fs.isFullscreen ? "Exit full screen" : "Full screen"}
               >
-                {fs.isFullscreen ? <Minimize className="h-[18px] w-[18px]" /> : <Maximize className="h-[18px] w-[18px]" />}
+                {fs.isFullscreen ? <Minimize className="h-5 w-5 sm:h-[18px] sm:w-[18px]" /> : <Maximize className="h-5 w-5 sm:h-[18px] sm:w-[18px]" />}
               </button>
             ) : null}
           </div>
         </div>
       </header>
 
-      <main key={pathname} className={cn("flex-1 animate-fade-up", pathname === "/articulate" ? "flex flex-col pb-20 md:pb-0" : "pb-20 md:pb-0")}>
+      <main key={pathname} className={cn("flex-1 animate-fade-up", pathname === "/articulate" ? "flex flex-col pb-16 md:pb-0" : "pb-20 md:pb-0")}>
         {children}
       </main>
 

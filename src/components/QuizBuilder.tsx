@@ -329,16 +329,16 @@ export default function QuizBuilder({
                     }}
                     aria-pressed={active}
                     className={cn(
-                      "flex items-center gap-2.5 rounded-xl border p-2.5 sm:p-3 text-left transition-all duration-200 active:scale-[0.98]",
+                      "flex items-center gap-2.5 rounded-xl border p-3 sm:p-3 text-left transition-all duration-200 active:scale-[0.98]",
                       active
                         ? "border-brand bg-brand/15 text-brand-ink shadow-[0_0_12px_rgba(249,115,22,0.25)] font-semibold"
                         : "border-line bg-card text-muted hover:border-line-2 hover:bg-fg/[0.03] hover:text-fg",
                     )}
                   >
-                    <SubjectIcon subject={s.id} size="sm" active={active} className="h-7 w-7 rounded-lg shrink-0" />
+                    <SubjectIcon subject={s.id} size="sm" active={active} className="h-8 w-8 sm:h-7 sm:w-7 rounded-lg shrink-0" />
                     <div className="min-w-0 flex-1">
-                      <p className="text-xs sm:text-sm font-semibold truncate text-fg">{s.short}</p>
-                      <p className="text-[10px] sm:text-[11px] text-subtle truncate">{s.tagline}</p>
+                      <p className="text-[13px] sm:text-sm font-semibold truncate text-fg">{s.short}</p>
+                      <p className="text-[11px] sm:text-[11px] text-subtle truncate">{s.tagline}</p>
                     </div>
                     {active && <Check className="h-4 w-4 text-brand-ink shrink-0" />}
                   </button>
@@ -379,14 +379,14 @@ export default function QuizBuilder({
                       }}
                       aria-pressed={active}
                       className={cn(
-                        "flex flex-col items-center justify-center rounded-xl border p-2.5 sm:p-3 text-center transition-all duration-200 active:scale-[0.98]",
+                        "flex flex-col items-center justify-center rounded-xl border p-3 sm:p-3 text-center transition-all duration-200 active:scale-[0.98]",
                         active
                           ? "border-brand bg-brand/15 text-fg ring-1 ring-brand shadow-[0_0_12px_rgba(249,115,22,0.25)] font-semibold"
                           : "border-line bg-card text-muted hover:border-line-2 hover:bg-fg/[0.03] hover:text-fg",
                       )}
                     >
-                      <span className="text-xs sm:text-sm font-bold text-fg">{label}</span>
-                      <span className="text-[10px] sm:text-[11px] text-subtle mt-0.5">{hint}</span>
+                      <span className="text-sm sm:text-sm font-bold text-fg">{label}</span>
+                      <span className="text-[11px] sm:text-[11px] text-subtle mt-0.5">{hint}</span>
                     </button>
                   );
                 })}
@@ -552,7 +552,7 @@ export default function QuizBuilder({
                             if (match) selectTopic(match.id);
                           }}
                           className={cn(
-                            "rounded-lg border px-2 py-0.5 text-[11px] font-medium transition",
+                            "rounded-lg border px-2.5 py-1 sm:px-2 sm:py-0.5 text-xs sm:text-[11px] font-medium transition",
                             customTopic.toLowerCase() === tag.toLowerCase()
                               ? "border-brand bg-brand/15 text-brand-ink"
                               : "border-line bg-card text-muted hover:border-line-2 hover:text-fg",
@@ -650,14 +650,14 @@ export default function QuizBuilder({
                       aria-pressed={active}
                       title={sItem.hint}
                       className={cn(
-                        "flex items-center justify-center gap-1 rounded-lg py-1.5 px-0.5 sm:py-2 sm:px-1 text-[11px] sm:text-xs font-semibold transition-all duration-200 ring-1 ring-inset truncate",
+                        "flex items-center justify-center gap-1.5 rounded-lg py-2.5 px-1 sm:py-2 sm:px-1 text-xs sm:text-xs font-semibold transition-all duration-200 ring-1 ring-inset truncate",
                         active
                           ? "bg-brand/15 text-fg ring-brand/60 shadow-[0_0_10px_-3px_rgba(249,115,22,0.35)]"
                           : "ring-transparent text-muted hover:bg-fg/[0.04] hover:text-fg",
                         !isAllowed && !active ? "opacity-40" : "",
                       )}
                     >
-                      <span className="text-[10px] sm:text-[11px] shrink-0">{sItem.badge}</span>
+                      <span className="text-xs sm:text-[11px] shrink-0">{sItem.badge}</span>
                       <span className="truncate">{sItem.label}</span>
                     </button>
                   );
@@ -1009,7 +1009,7 @@ export default function QuizBuilder({
           </p>
           <p className="mt-0.5 font-mono text-xs text-subtle">{summary}</p>
         </div>
-        {startButton("w-full sm:w-auto px-8 py-3 text-sm sm:text-base shrink-0 shadow-[0_8px_24px_-8px_rgba(249,115,22,0.6)]")}
+        {startButton("w-full sm:w-auto px-8 py-3.5 sm:py-3 text-base sm:text-base font-bold sm:font-semibold shrink-0 shadow-[0_8px_24px_-8px_rgba(249,115,22,0.6)]")}
       </div>
     </div>
   );

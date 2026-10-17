@@ -310,7 +310,7 @@ function QuestionCard({
               >
                 <span
                   className={cn(
-                    "inline-flex h-6.5 w-6.5 sm:h-6 sm:w-6 shrink-0 items-center justify-center rounded-full border font-mono text-[13px] sm:text-xs font-bold transition mt-0.5",
+                    "inline-flex h-7 w-7 sm:h-6 sm:w-6 shrink-0 items-center justify-center rounded-full border font-mono text-xs sm:text-xs font-bold transition mt-0.5",
                     isSelected && hasValidation
                       ? isOptionCorrect
                         ? "border-emerald-500 bg-emerald-500 text-white"
@@ -529,7 +529,7 @@ function AbhyasArena({ chapter }: { chapter: NoteChapter }) {
             type="button"
             onClick={() => setActiveSectionIdx("all")}
             className={cn(
-              "rounded-full border px-4 py-2 sm:px-3.5 sm:py-1.5 text-sm sm:text-xs font-semibold transition",
+              "rounded-full border px-4.5 py-2.5 sm:px-3.5 sm:py-1.5 text-sm sm:text-xs font-semibold transition",
               activeSectionIdx === "all"
                 ? "border-brand bg-brand/[0.1] text-fg glow"
                 : "border-line text-muted hover:border-line-2 hover:text-fg"
@@ -543,7 +543,7 @@ function AbhyasArena({ chapter }: { chapter: NoteChapter }) {
               type="button"
               onClick={() => setActiveSectionIdx(s.index)}
               className={cn(
-                "rounded-full border px-4 py-2 sm:px-3.5 sm:py-1.5 text-sm sm:text-xs font-semibold transition",
+                "rounded-full border px-4.5 py-2.5 sm:px-3.5 sm:py-1.5 text-sm sm:text-xs font-semibold transition",
                 activeSectionIdx === s.index
                   ? "border-brand bg-brand/[0.1] text-fg glow"
                   : "border-line text-muted hover:border-line-2 hover:text-fg"
@@ -868,7 +868,7 @@ export default function NotesBrowser() {
                       type="button"
                       onClick={() => chooseClass(c)}
                       className={cn(
-                        "rounded-full border px-4.5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-sm font-semibold transition",
+                        "rounded-full border px-5 py-3 sm:px-6 sm:py-3 text-sm sm:text-sm font-semibold transition",
                         active ? "border-brand bg-brand/[0.1] text-fg glow" : "border-line text-muted hover:border-line-2 hover:text-fg"
                       )}
                     >

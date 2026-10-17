@@ -591,7 +591,7 @@ export default function ArticulateClient() {
   const activeElocutionType = ELOCUTION_TYPES.find((t) => t.id === elocutionType) ?? ELOCUTION_TYPES[0];
 
   return (
-    <div className="relative flex flex-col justify-between items-center w-full min-h-[calc(100dvh-8.5rem)] md:h-auto md:min-h-[calc(100dvh-4rem)] select-none px-3 sm:px-6 pt-2.5 sm:pt-8 pb-3 sm:pb-10 overflow-x-hidden">
+    <div className="relative flex flex-col justify-evenly sm:justify-between items-center w-full min-h-[calc(100dvh-7.5rem)] md:h-auto md:min-h-[calc(100dvh-4rem)] select-none px-3 sm:px-6 pt-1 sm:pt-8 pb-2 sm:pb-10 overflow-x-hidden">
 
       {/* ── Atmospheric glows ── */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
@@ -607,16 +607,16 @@ export default function ArticulateClient() {
 
         {/* ─── HEADER ─── */}
         <div className="text-center mb-1.5 sm:mb-4">
-          <h1 className="font-serif text-[1.85rem] sm:text-[3rem] font-normal tracking-tight text-fg leading-none">
+          <h1 className="font-serif text-2xl xs:text-[1.85rem] sm:text-[3rem] font-normal tracking-tight text-fg leading-none">
             Articulate
           </h1>
-          <div className="flex items-center justify-center gap-1.5 mt-1 sm:mt-2 text-[11px] sm:text-xs text-muted">
+          <div className="flex items-center justify-center gap-1.5 mt-1 sm:mt-2 text-xs sm:text-xs text-muted">
             <span>made by</span>
             <a
               href="https://instagram.com/ur.spideey"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[10.5px] sm:text-[11px] text-fg/80 hover:text-fg hover:border-white/20 transition"
+              className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[11px] sm:text-[11px] text-fg/80 hover:text-fg hover:border-white/20 transition"
             >
               <IgIcon />
               @ur.spideey
@@ -634,12 +634,12 @@ export default function ArticulateClient() {
                 type="button"
                 onClick={() => switchMode(m.id)}
                 className={cn(
-                  "flex items-center gap-1 sm:gap-2 rounded-full px-2.5 py-1 sm:px-5 sm:py-2 text-[11.5px] sm:text-[14px] font-semibold transition-all duration-300 cursor-pointer whitespace-nowrap",
+                  "flex items-center gap-1.5 sm:gap-2 rounded-full px-3.5 py-1.5 sm:px-5 sm:py-2 text-xs xs:text-[13px] sm:text-[14px] font-semibold transition-all duration-300 cursor-pointer whitespace-nowrap",
                   active ? "bg-[#d96b43] text-white shadow-[0_2px_16px_-4px_rgba(217,107,67,0.7)]" : "text-fg/45 hover:text-fg/70",
                 )}
               >
                 <span className={cn(
-                  "w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full shrink-0 transition-all duration-300",
+                  "w-2 h-2 sm:w-2 sm:h-2 rounded-full shrink-0 transition-all duration-300",
                   active ? m.dot : "bg-current opacity-40"
                 )} />
                 {m.label}
@@ -661,16 +661,16 @@ export default function ArticulateClient() {
                     setElocutionCatOpen((v) => !v);
                     setElocutionDiffOpen(false);
                   }}
-                  className="flex items-center justify-between gap-1.5 sm:gap-2 rounded-full border border-white/[0.12] bg-white/[0.04] px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-[14px] font-medium text-fg hover:bg-white/[0.08] transition cursor-pointer min-w-[135px] sm:min-w-[170px]"
+                  className="flex items-center justify-between gap-2 sm:gap-2 rounded-full border border-white/[0.12] bg-white/[0.04] px-3.5 sm:px-4 py-2 sm:py-2 text-[13px] sm:text-[14px] font-medium text-fg hover:bg-white/[0.08] transition cursor-pointer min-w-[145px] sm:min-w-[170px]"
                 >
                   <span className="flex items-center gap-1.5 sm:gap-2 truncate">
                     <span className="text-sm sm:text-base leading-none">{activeElocutionType.emoji}</span>
                     <span className="truncate">{activeElocutionType.label}</span>
                   </span>
                   {elocutionCatOpen ? (
-                    <ChevronUp className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-muted shrink-0" />
+                    <ChevronUp className="w-4 h-4 sm:w-4 sm:h-4 text-muted shrink-0" />
                   ) : (
-                    <ChevronDown className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-muted shrink-0" />
+                    <ChevronDown className="w-4 h-4 sm:w-4 sm:h-4 text-muted shrink-0" />
                   )}
                 </button>
 
@@ -712,19 +712,19 @@ export default function ArticulateClient() {
                     setElocutionDiffOpen((v) => !v);
                     setElocutionCatOpen(false);
                   }}
-                  className="flex items-center justify-between gap-1.5 sm:gap-2 rounded-full border border-white/[0.12] bg-white/[0.04] px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-xs sm:text-[14px] font-medium text-fg hover:bg-white/[0.08] transition cursor-pointer min-w-[95px] sm:min-w-[115px]"
+                  className="flex items-center justify-between gap-1.5 sm:gap-2 rounded-full border border-white/[0.12] bg-white/[0.04] px-3 sm:px-3.5 py-2 sm:py-2 text-[13px] sm:text-[14px] font-medium text-fg hover:bg-white/[0.08] transition cursor-pointer min-w-[100px] sm:min-w-[115px]"
                 >
                   <span className="flex items-center gap-1.5 sm:gap-2">
                     <span className={cn(
-                      "w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full shrink-0",
+                      "w-2 h-2 sm:w-2 sm:h-2 rounded-full shrink-0",
                       elocutionDifficulty === "easy" ? "bg-emerald-400" : elocutionDifficulty === "medium" ? "bg-amber-400" : "bg-rose-400"
                     )} />
                     <span className="capitalize">{elocutionDifficulty}</span>
                   </span>
                   {elocutionDiffOpen ? (
-                    <ChevronUp className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-muted shrink-0" />
+                    <ChevronUp className="w-4 h-4 sm:w-4 sm:h-4 text-muted shrink-0" />
                   ) : (
-                    <ChevronDown className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-muted shrink-0" />
+                    <ChevronDown className="w-4 h-4 sm:w-4 sm:h-4 text-muted shrink-0" />
                   )}
                 </button>
 
@@ -761,13 +761,13 @@ export default function ArticulateClient() {
               <button
                 type="button"
                 onClick={() => setCategoryOpen((v) => !v)}
-                className="flex items-center justify-between w-full gap-2 rounded-full border border-white/[0.12] bg-white/[0.04] px-3.5 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-[14px] font-medium text-fg hover:bg-white/[0.08] transition cursor-pointer"
+                className="flex items-center justify-between w-full gap-2 rounded-full border border-white/[0.12] bg-white/[0.04] px-4 sm:px-4 py-2 sm:py-2 text-[13px] sm:text-[14px] font-medium text-fg hover:bg-white/[0.08] transition cursor-pointer"
               >
                 <span className="flex items-center gap-2">
                   <span className="text-sm sm:text-base leading-none">{activeCat.emoji}</span>
                   <span>{activeCat.label}</span>
                 </span>
-                {categoryOpen ? <ChevronUp className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-muted shrink-0" /> : <ChevronDown className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-muted shrink-0" />}
+                {categoryOpen ? <ChevronUp className="w-4 h-4 sm:w-4 sm:h-4 text-muted shrink-0" /> : <ChevronDown className="w-4 h-4 sm:w-4 sm:h-4 text-muted shrink-0" />}
               </button>
 
               {categoryOpen && (
@@ -802,25 +802,25 @@ export default function ArticulateClient() {
           ZONE 2: CENTER STAGE (Topic Title or Elocution Sentence)
           Floats comfortably in visual center with generous, spacious air
          ════════════════════════════════════════════════════════════════════════ */}
-      <div className="w-full max-w-3xl flex-1 flex flex-col items-center justify-center my-auto px-2 sm:px-4 text-center py-2 sm:py-4">
+      <div className="w-full max-w-3xl flex-none py-6 sm:flex-1 sm:my-auto sm:py-4 flex flex-col items-center justify-center px-3 sm:px-4 text-center">
         {mode === "elocution" ? (
-          <div className="w-full py-1 sm:py-3 animate-fade-in flex items-center justify-center">
+          <div className="w-full py-2 sm:py-3 animate-fade-in flex items-center justify-center">
             <p
               key={elocutionKey}
-              className="font-serif text-sm sm:text-lg md:text-[1.25rem] font-normal leading-[1.45] sm:leading-[1.55] tracking-normal text-fg/95 select-text animate-prompt-land max-w-[44ch] sm:max-w-[50ch] md:max-w-[56ch] mx-auto text-balance"
+              className="font-serif text-[1.125rem] xs:text-[1.25rem] sm:text-lg md:text-[1.25rem] font-medium sm:font-normal leading-relaxed sm:leading-[1.55] tracking-normal text-fg select-text animate-prompt-land max-w-[34ch] xs:max-w-[40ch] sm:max-w-[50ch] md:max-w-[56ch] mx-auto text-balance"
             >
               &ldquo;{currentElocutionItem.text}&rdquo;
             </p>
           </div>
         ) : (
-          <div className="w-full py-1 sm:py-4 animate-fade-in flex flex-col items-center justify-center">
-            <span className="text-[10px] sm:text-xs font-mono font-bold tracking-[0.22em] sm:tracking-[0.25em] text-[#d96b43]/90 uppercase mb-1.5 sm:mb-3">
+          <div className="w-full py-2 sm:py-4 animate-fade-in flex flex-col items-center justify-center">
+            <span className="text-xs sm:text-xs font-mono font-bold tracking-[0.25em] text-[#d96b43]/90 uppercase mb-2 sm:mb-3">
               READY
             </span>
             <h2
               key={tickKey}
               className={cn(
-                "font-serif font-normal text-fg leading-[1.12] sm:leading-[1.1] tracking-[-0.015em] max-w-[16ch] mx-auto text-[1.75rem] xs:text-[2.1rem] sm:text-[3.6rem] md:text-[4.4rem]",
+                "font-serif font-normal text-fg leading-[1.15] sm:leading-[1.1] tracking-[-0.015em] max-w-[16ch] mx-auto text-[2.4rem] xs:text-[2.85rem] sm:text-[3.6rem] md:text-[4.4rem]",
                 isSpinning ? "animate-slot-in" : "animate-prompt-land",
               )}
             >
@@ -838,8 +838,8 @@ export default function ArticulateClient() {
         {mode === "elocution" ? (
           <div className="w-full flex flex-col items-center animate-fade-in">
             {/* Timer and WPM Badge */}
-            <div className="flex flex-col items-center justify-center mb-1.5 sm:mb-3">
-              <div className="flex items-center justify-center gap-2 font-mono text-xl sm:text-[1.75rem] font-normal tabular-nums tracking-tight text-fg/90 leading-none">
+            <div className="flex flex-col items-center justify-center mb-2 sm:mb-3">
+              <div className="flex items-center justify-center gap-2 font-mono text-2xl sm:text-[1.75rem] font-normal tabular-nums tracking-tight text-fg/90 leading-none">
                 {stopwatchState === "running" && (
                   <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping mr-1" />
                 )}
@@ -847,9 +847,9 @@ export default function ArticulateClient() {
               </div>
 
               {/* Reserved height (20px mobile / 24px desktop) for WPM stats badge so the buttons never jump */}
-              <div className="h-5 sm:h-6 flex items-center justify-center mt-1 sm:mt-1.5">
+              <div className="h-6 sm:h-6 flex items-center justify-center mt-1.5 sm:mt-1.5">
                 {stopwatchState === "stopped" ? (
-                  <div className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-0.5 rounded-full bg-white/[0.05] border border-white/[0.1] text-[10.5px] sm:text-xs font-mono text-fg/80 animate-fade-in shadow-sm">
+                  <div className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3 py-1 sm:py-0.5 rounded-full bg-white/[0.05] border border-white/[0.1] text-xs sm:text-xs font-mono text-fg/80 animate-fade-in shadow-sm">
                     <span className="text-[#d96b43] font-bold">{elocutionWpm} WPM</span>
                     <span className="text-white/20">·</span>
                     <span className="text-muted">
@@ -861,15 +861,15 @@ export default function ArticulateClient() {
             </div>
 
             {/* Action Buttons (Generous, Symmetrical, Fixed Slots) */}
-            <div className="flex items-center justify-center gap-2 sm:gap-4 w-full max-w-[340px] sm:max-w-[440px] h-11 sm:h-12 px-1">
+            <div className="flex items-center justify-center gap-2.5 sm:gap-4 w-full max-w-[360px] sm:max-w-[440px] h-12 sm:h-12 px-1">
               {/* Slot 1: Primary Stopwatch Control (Start / Stop / Retry) */}
               {stopwatchState === "idle" && (
                 <button
                   type="button"
                   onClick={startStopwatch}
-                  className="flex-1 sm:flex-initial sm:w-[130px] h-11 sm:h-12 rounded-full bg-[#d96b43] text-white px-3 sm:px-6 text-xs sm:text-[15px] font-semibold shadow-[0_4px_20px_-4px_rgba(217,107,67,0.5)] hover:brightness-110 active:scale-95 transition cursor-pointer flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap shrink-0"
+                  className="flex-1 sm:flex-initial sm:w-[130px] h-12 sm:h-12 rounded-full bg-[#d96b43] text-white px-4 sm:px-6 text-sm sm:text-[15px] font-semibold shadow-[0_4px_20px_-4px_rgba(217,107,67,0.5)] hover:brightness-110 active:scale-95 transition cursor-pointer flex items-center justify-center gap-2 sm:gap-2 whitespace-nowrap shrink-0"
                 >
-                  <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
+                  <Play className="w-4 h-4 sm:w-4 sm:h-4 fill-current" />
                   Start
                 </button>
               )}
@@ -877,9 +877,9 @@ export default function ArticulateClient() {
                 <button
                   type="button"
                   onClick={stopStopwatch}
-                  className="flex-1 sm:flex-initial sm:w-[130px] h-11 sm:h-12 rounded-full bg-rose-600 hover:bg-rose-500 text-white px-3 sm:px-6 text-xs sm:text-[15px] font-semibold shadow-[0_4px_20px_-4px_rgba(225,29,72,0.5)] active:scale-95 transition cursor-pointer flex items-center justify-center gap-1.5 sm:gap-2 animate-pulse whitespace-nowrap shrink-0"
+                  className="flex-1 sm:flex-initial sm:w-[130px] h-12 sm:h-12 rounded-full bg-rose-600 hover:bg-rose-500 text-white px-4 sm:px-6 text-sm sm:text-[15px] font-semibold shadow-[0_4px_20px_-4px_rgba(225,29,72,0.5)] active:scale-95 transition cursor-pointer flex items-center justify-center gap-2 sm:gap-2 animate-pulse whitespace-nowrap shrink-0"
                 >
-                  <Square className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" />
+                  <Square className="w-4 h-4 sm:w-4 sm:h-4 fill-current" />
                   Stop
                 </button>
               )}
@@ -887,9 +887,9 @@ export default function ArticulateClient() {
                 <button
                   type="button"
                   onClick={resetStopwatch}
-                  className="flex-1 sm:flex-initial sm:w-[130px] h-11 sm:h-12 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-3 sm:px-6 text-xs sm:text-[15px] font-medium transition active:scale-95 cursor-pointer flex items-center justify-center gap-1.5 sm:gap-2 whitespace-nowrap shrink-0"
+                  className="flex-1 sm:flex-initial sm:w-[130px] h-12 sm:h-12 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-4 sm:px-6 text-sm sm:text-[15px] font-semibold transition active:scale-95 cursor-pointer flex items-center justify-center gap-2 sm:gap-2 whitespace-nowrap shrink-0"
                 >
-                  <RotateCcw className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  <RotateCcw className="w-4 h-4 sm:w-4 sm:h-4" />
                   Retry
                 </button>
               )}
@@ -900,12 +900,12 @@ export default function ArticulateClient() {
                 onClick={nextElocutionChallenge}
                 disabled={stopwatchState === "running"}
                 className={cn(
-                  "flex-[1.4] sm:flex-initial sm:w-[185px] h-11 sm:h-12 rounded-full text-xs sm:text-[15px] transition active:scale-95 flex items-center justify-center gap-1 sm:gap-1.5 px-3 sm:px-6 whitespace-nowrap shrink-0",
+                  "flex-[1.4] sm:flex-initial sm:w-[185px] h-12 sm:h-12 rounded-full text-sm sm:text-[15px] font-semibold transition active:scale-95 flex items-center justify-center gap-1.5 sm:gap-1.5 px-4 sm:px-6 whitespace-nowrap shrink-0",
                   stopwatchState === "stopped"
-                    ? "bg-[#d96b43] text-white font-semibold shadow-[0_4px_20px_-4px_rgba(217,107,67,0.5)] hover:brightness-110 cursor-pointer"
+                    ? "bg-[#d96b43] text-white shadow-[0_4px_20px_-4px_rgba(217,107,67,0.5)] hover:brightness-110 cursor-pointer"
                     : stopwatchState === "running"
                     ? "border border-white/10 bg-white/[0.02] text-fg/30 cursor-not-allowed font-medium"
-                    : "border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg font-medium cursor-pointer"
+                    : "border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg cursor-pointer"
                 )}
               >
                 Next challenge {stopwatchState === "stopped" ? "→" : ""}
@@ -915,22 +915,22 @@ export default function ArticulateClient() {
               <button
                 type="button"
                 onClick={() => setSettingsOpen(true)}
-                className="w-11 h-11 sm:w-12 sm:h-12 shrink-0 rounded-full border border-white/15 text-fg/50 hover:text-fg hover:bg-white/[0.06] transition flex items-center justify-center cursor-pointer"
+                className="w-12 h-12 sm:w-12 sm:h-12 shrink-0 rounded-full border border-white/15 text-fg/60 hover:text-fg hover:bg-white/[0.06] transition flex items-center justify-center cursor-pointer"
                 title="Timer Settings"
               >
-                <Settings2 className="w-4 h-4" />
+                <Settings2 className="w-5 h-5 sm:w-4 sm:h-4" />
               </button>
             </div>
           </div>
         ) : (
           /* Off-the-cuff / Deep-research Action Bar */
-          <div className="flex items-center justify-center gap-2 sm:gap-4 w-full max-w-[340px] sm:max-w-[440px] h-11 sm:h-12 animate-fade-in px-1">
+          <div className="flex items-center justify-center gap-2.5 sm:gap-4 w-full max-w-[360px] sm:max-w-[440px] h-12 sm:h-12 animate-fade-in px-1">
             {/* Slot 1: Spin */}
             <button
               type="button"
               onClick={doSpin}
               disabled={isSpinning}
-              className="flex-1 sm:flex-initial sm:w-[130px] h-11 sm:h-12 shrink-0 rounded-full bg-[#d96b43] text-white px-3 sm:px-6 text-xs sm:text-[15px] font-semibold shadow-[0_4px_20px_-4px_rgba(217,107,67,0.5)] hover:brightness-110 active:scale-95 transition disabled:opacity-40 cursor-pointer whitespace-nowrap text-center flex items-center justify-center"
+              className="flex-1 sm:flex-initial sm:w-[130px] h-12 sm:h-12 shrink-0 rounded-full bg-[#d96b43] text-white px-4 sm:px-6 text-sm sm:text-[15px] font-semibold shadow-[0_4px_20px_-4px_rgba(217,107,67,0.5)] hover:brightness-110 active:scale-95 transition disabled:opacity-40 cursor-pointer whitespace-nowrap text-center flex items-center justify-center"
             >
               {hasSpun ? "Spin again" : "Spin"}
             </button>
@@ -940,7 +940,7 @@ export default function ArticulateClient() {
               <button
                 type="button"
                 onClick={startOffTheCuff}
-                className="flex-[1.4] sm:flex-initial sm:w-[185px] h-11 sm:h-12 shrink-0 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-3 sm:px-6 text-xs sm:text-[15px] font-semibold transition active:scale-95 cursor-pointer whitespace-nowrap text-center flex items-center justify-center"
+                className="flex-[1.4] sm:flex-initial sm:w-[185px] h-12 sm:h-12 shrink-0 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-4 sm:px-6 text-sm sm:text-[15px] font-semibold transition active:scale-95 cursor-pointer whitespace-nowrap text-center flex items-center justify-center"
               >
                 Start {settings.speechMinutes}m timer
               </button>
@@ -948,7 +948,7 @@ export default function ArticulateClient() {
               <button
                 type="button"
                 onClick={startDeepResearch}
-                className="flex-[1.4] sm:flex-initial sm:w-[185px] h-11 sm:h-12 shrink-0 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-3 sm:px-6 text-xs sm:text-[15px] font-semibold transition active:scale-95 cursor-pointer whitespace-nowrap text-center flex items-center justify-center"
+                className="flex-[1.4] sm:flex-initial sm:w-[185px] h-12 sm:h-12 shrink-0 rounded-full border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] text-fg px-4 sm:px-6 text-sm sm:text-[15px] font-semibold transition active:scale-95 cursor-pointer whitespace-nowrap text-center flex items-center justify-center"
               >
                 Start {settings.researchMinutes}m research
               </button>
@@ -958,10 +958,10 @@ export default function ArticulateClient() {
             <button
               type="button"
               onClick={() => setSettingsOpen(true)}
-              className="w-11 h-11 sm:w-12 sm:h-12 shrink-0 rounded-full border border-white/15 text-fg/50 hover:text-fg hover:bg-white/[0.06] transition flex items-center justify-center cursor-pointer"
+              className="w-12 h-12 sm:w-12 sm:h-12 shrink-0 rounded-full border border-white/15 text-fg/60 hover:text-fg hover:bg-white/[0.06] transition flex items-center justify-center cursor-pointer"
               title="Timer Settings"
             >
-              <Settings2 className="w-4 h-4" />
+              <Settings2 className="w-5 h-5 sm:w-4 sm:h-4" />
             </button>
           </div>
         )}

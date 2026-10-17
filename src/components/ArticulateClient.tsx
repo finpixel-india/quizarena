@@ -56,9 +56,16 @@ interface ArticulateFlowState {
   elocutionType?: ElocutionType;
   elocutionDifficulty?: ElocutionDifficulty;
   elocutionItemId?: string;
-  elocutionStreak?: number;
+  elocutionStreak?: number; // legacy backward compatibility
+  elocutionStreaks?: Record<ElocutionType, number>;
 }
 const FLOW_STORAGE_KEY = "ql-articulate-flow-v1";
+
+const DEFAULT_ELOCUTION_STREAKS: Record<ElocutionType, number> = {
+  "tongue-twister": 0,
+  "hard-sentence": 0,
+  "vocab-dense": 0,
+};
 
 function loadSettings(): Settings {
   if (typeof window === "undefined") return DEFAULT_SETTINGS;
@@ -260,7 +267,7 @@ export default function ArticulateClient() {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [hasSpun, setHasSpun] = useState(false);
   const [isHydrated, setIsHydrated] = useState(false);
-  const [elocutionStreak, setElocutionStreak] = useState(0);
+  const [elocutionStreaks, setElocutionStreaks] = useState<Record<ElocutionType, number>>(DEFAULT_ELOCUTION_STREAKS);
 
   /* Ref for outside click on dropdowns */
   const catRef = useRef<HTMLDivElement>(null);
@@ -310,6 +317,9 @@ export default function ArticulateClient() {
   });
   const [elocutionKey, setElocutionKey] = useState(0);
 
+  /* Active streak for currently selected elocution type */
+  const currentStreak = elocutionStreaks[elocutionType] ?? 0;
+
   /* ── Restore persistent session flow on client mount (preferences & progress) ── */
   useEffect(() => {
     try {
@@ -341,8 +351,20 @@ export default function ArticulateClient() {
             setCurrentElocutionItem(foundItem);
           }
         }
-        if (typeof saved.elocutionStreak === "number" && saved.elocutionStreak >= 0) {
-          setElocutionStreak(saved.elocutionStreak);
+        if (saved.elocutionStreaks) {
+          setElocutionStreaks({
+            "tongue-twister": Math.max(0, Number(saved.elocutionStreaks["tongue-twister"]) || 0),
+            "hard-sentence": Math.max(0, Number(saved.elocutionStreaks["hard-sentence"]) || 0),
+            "vocab-dense": Math.max(0, Number(saved.elocutionStreaks["vocab-dense"]) || 0),
+          });
+        } else if (typeof saved.elocutionStreak === "number" && saved.elocutionStreak >= 0) {
+          const typeKey: ElocutionType = saved.elocutionType && ELOCUTION_TYPES.some((t) => t.id === saved.elocutionType)
+            ? saved.elocutionType
+            : "tongue-twister";
+          setElocutionStreaks({
+            ...DEFAULT_ELOCUTION_STREAKS,
+            [typeKey]: saved.elocutionStreak,
+          });
         }
       } else {
         // First visit: pick random initial items so it's fresh
@@ -372,7 +394,7 @@ export default function ArticulateClient() {
         elocutionType,
         elocutionDifficulty,
         elocutionItemId: currentElocutionItem.id,
-        elocutionStreak,
+        elocutionStreaks,
       };
       localStorage.setItem(FLOW_STORAGE_KEY, JSON.stringify(state));
     } catch {}
@@ -384,7 +406,7 @@ export default function ArticulateClient() {
     elocutionType,
     elocutionDifficulty,
     currentElocutionItem.id,
-    elocutionStreak,
+    elocutionStreaks,
   ]);
 
   /* Stopwatch State */
@@ -456,7 +478,10 @@ export default function ArticulateClient() {
 
   const nextElocutionChallenge = useCallback(() => {
     resetStopwatch();
-    setElocutionStreak((s) => s + 1);
+    setElocutionStreaks((prev) => ({
+      ...prev,
+      [elocutionType]: (prev[elocutionType] ?? 0) + 1,
+    }));
     const pool = ELOCUTION_ITEMS.filter((x) => x.type === elocutionType && x.difficulty === elocutionDifficulty);
     const candidates = pool.filter((x) => x.id !== currentElocutionItem.id);
     const list = candidates.length > 0 ? candidates : pool;
@@ -677,14 +702,15 @@ export default function ArticulateClient() {
         <div className="absolute -right-24 top-0 h-[60vh] w-[50vw] rounded-full [background:radial-gradient(ellipse_at_center,rgba(217,107,67,0.12),transparent_70%)]" />
       </div>
 
-      {/* ─── Elocution Streak Indicator (Only visible in Elocution mode, positioned in top-right) ─── */}
+      {/* ─── Elocution Streak Indicator (Only visible in Elocution mode, displays streak for selected type) ─── */}
       {mode === "elocution" && (
         <div
+          key={elocutionType}
           className="absolute right-3.5 top-2.5 sm:right-8 sm:top-6 md:right-10 md:top-8 z-30 flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-amber-500/25 bg-amber-500/10 backdrop-blur-md shadow-[0_2px_12px_rgba(245,158,11,0.15)] text-amber-300 text-xs sm:text-sm font-semibold select-none animate-fade-in"
-          title={`${elocutionStreak} challenges practiced`}
+          title={`${currentStreak} ${activeElocutionType.label} challenges practiced`}
         >
           <Flame className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 fill-amber-400/90 shrink-0 animate-pulse" />
-          <span className="tabular-nums font-bold text-amber-200">{elocutionStreak}</span>
+          <span className="tabular-nums font-bold text-amber-200">{currentStreak}</span>
           <span className="hidden xs:inline text-[11px] sm:text-xs text-amber-300/80 font-medium">Practiced</span>
         </div>
       )}

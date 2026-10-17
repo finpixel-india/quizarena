@@ -8,49 +8,76 @@ export const englishNotes9: ChapterNote[] = [
     "chapterNo": 1,
     "title": "CBSE Class 9 Grammar Blueprint & Sentence Architecture",
     "unit": "Unit 1: Foundations & Sentence Mechanics",
-    "overview": "An authoritative guide to the CBSE Class 9 English curriculum for the 2026–27 session (covering common R1/R2 core areas). Discover the seven prescribed grammar domains, sentence anatomy, and the master solving protocol.",
+    "overview": "An authoritative, comprehensive roadmap for CBSE Class 9 English Grammar according to the latest NCERT and CBSE curriculum. Master sentence anatomy, the 7 prescribed core areas, and the step-by-step diagnostic problem-solving protocol.",
     "sections": [
       {
-        "title": "The Official CBSE Class 9 Grammar Syllabus",
+        "title": "The Official CBSE Class 9 Grammar Syllabus & Marking Scheme",
         "points": [
-          "The CBSE Class 9 English curriculum establishes seven primary grammar competencies assessed in contextual passages:",
-          "1. **Sequence of Tenses** in different communicative settings.",
-          "2. **Modal Auxiliaries** (ability, obligation, permission, possibility, advice).",
-          "3. **Reported Speech** in extended texts (statements, questions, commands, requests).",
-          "4. **Conditional Clauses:** Type 1.",
-          "5. **Subject–Verb Concord.**",
-          "6. **Determiners** (articles, quantifiers, demonstratives, possessives).",
-          "7. **Clauses:** Noun clauses and relative clauses.",
-          "The testing formats comprise **editing & omission** (R1 pattern), **paragraph completion** (R2 pattern), **sentence rearrangement**, and **sentence transformation**."
+          "The CBSE Class 9 English Language and Literature examination tests grammar entirely in **applied, contextual formats** rather than isolated theoretical definitions.",
+          "• **The 7 Core Prescribed Competencies:**",
+          "  1. **Tenses:** Full functional grasp of Present, Past, and Future forms in narration and descriptions.",
+          "  2. **Modals:** Expressing ability, possibility, obligation, permission, request, and advice.",
+          "  3. **Subject–Verb Concord:** Strict agreement rules for complex and compound subjects.",
+          "  4. **Reported Speech:** Reporting statements, inquiries, imperative commands, requests, and dialogue turns.",
+          "  5. **Commands and Requests:** Converting directives using to-infinitives.",
+          "  6. **Statements:** Tense backshift, pronoun adjustment, and temporal shifts.",
+          "  7. **Questions:** Interrogative conversion for Yes/No and Wh- questions.",
+          "• **The Standard Testing Formats in Question Papers:**",
+          "  - **Editing Passages:** Identifying a single grammatical error in every line and supplying the correct word.",
+          "  - **Omission Passages:** Spotting the missing grammatical word (often a preposition, article, or auxiliary) and identifying words before and after.",
+          "  - **Gap-Filling / Cloze:** Selecting the precise determiner, tense, or connector to complete an authentic paragraph.",
+          "  - **Dialogue Completion / Transformation:** Recasting direct speech conversations into reported indirect paragraphs."
         ]
       },
       {
-        "title": "Sentence Architecture: Subject, Predicate & Complements",
+        "title": "Sentence Architecture: Subject, Predicate, Head Word & Complements",
         "points": [
-          "A grammatical sentence expresses a complete proposition containing an explicit or understood subject and a finite predicate.",
-          "• **Subject:** Identifies the entity performing the action or being described ('The **talented young athlete** won the tournament').",
-          "• **Predicate:** Contains the finite verb phrase and expresses the action, state, or complement ('**won the tournament**').",
-          "• **Head Word Identification:** The core noun in a multi-word subject governs agreement: In 'The *box* of assorted stationery *is* heavy', the head noun is 'box'."
+          "Every grammatically complete English sentence consists of two fundamental pillars:",
+          "• **1. The Complete Subject:** Names the person, entity, or idea performing the action or being discussed.",
+          "  - *Simple Subject (Head Word):* The core noun or pronoun that governs grammatical agreement.",
+          "  - *Example:* 'The **leader** [Head Word] of the five participating schools **is** arriving.' (Verb agrees with 'leader', NOT 'schools').",
+          "• **2. The Complete Predicate:** The entire remainder of the sentence containing the finite verb, objects, and adverbial modifiers:",
+          "  - *Action:* 'The young scientist **developed an innovative filtration apparatus last month**.'",
+          "• **3. The Object:** Receives the action of a transitive verb:",
+          "  - *Direct Object:* Answers 'What?' or 'Whom?' after the verb (*She read **the novel***).",
+          "  - *Indirect Object:* Answers 'To whom?' or 'For whom?' (*She gave **her sister** the novel*).",
+          "• **4. Subject Complements vs Object Complements:**",
+          "  - *Subject Complement:* Follows a linking verb to rename or describe the subject (*Dr. Roy is **a neurologist**; The soup tastes **delicious***).",
+          "  - *Object Complement:* Follows a direct object to describe or rename it (*The club elected Rohan **secretary**; The news made everyone **happy***)."
+        ]
+      },
+      {
+        "title": "Diagnostic Protocol for CBSE Grammar Questions",
+        "points": [
+          "When solving an editing, gap-filling, or reported speech question in Class 9, follow this 4-step diagnostic protocol:",
+          "• **Step 1 — Read the Entire Passage Once:** Never solve sentence-by-sentence in isolation! Identify the dominant narrative tense (is the passage talking about a past historical event or an ongoing present situation?).",
+          "• **Step 2 — Identify the True Grammatical Subject:** Strip away prepositional phrases (e.g., 'of the students', 'in the bags') to isolate the real head word.",
+          "• **Step 3 — Inspect Tense Harmony:** Check whether a past main clause is clashing with an unjustified present tense verb.",
+          "• **Step 4 — Verify Collocations and Fixed Structures:** Look for prepositions following specific adjectives ('interested in', 'good at') or paired conjunctions ('neither...nor', 'hardly...when')."
         ]
       }
     ],
     "keyTerms": [
       {
-        "term": "Subject",
-        "meaning": "The person, entity, or idea that a sentence is about and that governs finite verb agreement."
+        "term": "Head Word",
+        "meaning": "The central noun in a complex subject noun phrase controlling finite verb agreement."
       },
       {
         "term": "Predicate",
-        "meaning": "The portion of a clause containing the verb and saying something about the subject."
+        "meaning": "The portion of a clause containing the finite verb and asserting an action, condition, or complement."
       },
       {
-        "term": "Head Word",
-        "meaning": "The central noun in a subject phrase that controls grammatical number."
+        "term": "Subject Complement",
+        "meaning": "A noun or adjective following a copular linking verb that describes or identifies the subject."
+      },
+      {
+        "term": "Editing Protocol",
+        "meaning": "The analytical reading procedure to detect and correct syntactic discrepancies in CBSE passages."
       }
     ],
     "examTips": [
-      "Always separate the complete subject from its predicate before checking subject-verb concord.",
-      "Do not let long descriptive prepositional phrases between the subject and verb confuse your choice of verb."
+      "In editing passages, isolate the head noun by eliminating intervening prepositional phrases before deciding singular or plural.",
+      "Always check the opening sentence to set the baseline narrative tense (past vs present) for the whole passage."
     ]
   },
   {
@@ -58,51 +85,70 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 2,
-    "title": "Parts of Speech & Word Classes",
+    "title": "Parts of Speech & Word Classes in Context",
     "unit": "Unit 1: Foundations & Sentence Mechanics",
-    "overview": "Detailed functional analysis of the eight parts of speech in English: nouns, pronouns, verbs, adjectives, adverbs, prepositions, conjunctions, and interjections.",
+    "overview": "A thorough functional exploration of the eight parts of speech. Learn how grammatical word classes operate in contextual communication, how words switch roles depending on sentence position, and how to spot parts-of-speech errors in CBSE exams.",
     "sections": [
       {
-        "title": "Word Classes and Contextual Flexibility",
+        "title": "The Eight Word Classes: Forms, Roles & Functions",
         "points": [
-          "Words are categorized into parts of speech based entirely on their syntactical behavior in a sentence. One lexical item can serve multiple functions:",
-          "• *Water* as Noun: 'Drink plenty of **water**.'",
-          "• *Water* as Verb: 'Please **water** the potted plants.'",
-          "• *Fast* as Adjective: 'She is a **fast** runner.'",
-          "• *Fast* as Adverb: 'She runs **fast**.'"
+          "In the CBSE Class 9 syllabus, words are categorized into eight parts of speech based strictly on their syntactic duty inside a sentence:",
+          "• **1. Nouns:** Name persons (*Kalam*), places (*Bengaluru*), entities (*telescope*), qualities (*integrity*), or mass concepts (*pollution*).",
+          "• **2. Pronouns:** Stand in for nouns to sustain discourse cohesion (*he, she, they, who, which, someone*).",
+          "• **3. Verbs:** Express actions (*launch*), mental processes (*ponder*), states (*resemble*), or possession (*possess*).",
+          "• **4. Adjectives:** Limit, qualify, or describe nominal referents (*solar, renewable, innovative, five, third*).",
+          "• **5. Adverbs:** Modify verbs (*diligently*), adjectives (*exceptionally good*), or other adverbs (*quite easily*).",
+          "• **6. Prepositions:** Mark temporal, spatial, or logical relationships between nominal elements (*beneath, amidst, during, prior to*).",
+          "• **7. Conjunctions:** Join clauses or phrases into coordinated or subordinated units (*whereas, lest, nevertheless, although*).",
+          "• **8. Interjections:** Stand syntactically independent to mark emotional stance (*Alas!, Bravo!, Behold!*)."
         ]
       },
       {
-        "title": "The Eight Parts of Speech Summary",
+        "title": "Functional Flexibility: How Words Change Classes in Context",
         "points": [
-          "1. **Noun:** Proper (Kolkata), Common (city), Collective (flock), Abstract (courage), Material (gold). Countable vs Uncountable.",
-          "2. **Pronoun:** Personal (I, they), Possessive (mine, hers), Relative (who, which), Demonstrative (this, those), Indefinite (someone, everyone).",
-          "3. **Verb:** Expresses dynamic action (leap) or state of being (belong, seem).",
-          "4. **Adjective:** Describes, restricts, or limits a noun (positive, comparative, superlative).",
-          "5. **Adverb:** Modifies verbs, adjectives, or other adverbs (manner, time, frequency, place, degree).",
-          "6. **Preposition:** Connects nouns to other words indicating time, place, direction, or relation (at, on, in, into, under).",
-          "7. **Conjunction:** Coordinates or subordinates clauses and phrases (and, but, although, because, unless).",
-          "8. **Interjection:** Expresses sudden emotion (Alas!, Bravo!)."
+          "A cardinal rule in Class 9 English: **No word belongs permanently to one part of speech!** Its function in a particular sentence defines its classification:",
+          "• **The Word 'ROUND':**",
+          "  - *Adjective:* 'A **round** wooden table stood in the hall.' (Describes 'table').",
+          "  - *Noun:* 'The boxer won the final **round** with ease.' (Object of 'won').",
+          "  - *Verb:* 'The yacht **rounded** the Cape of Good Hope.' (Past action).",
+          "  - *Adverb:* 'The merry-go-round spun **round** and round.' (Modifies 'spun').",
+          "  - *Preposition:* 'The Earth moves **round** the Sun.' (Shows spatial relation).",
+          "• **The Word 'BETTER':**",
+          "  - *Adjective:* 'This essay is **better** than the previous one.'",
+          "  - *Adverb:* 'She understands the algorithm **better** than anyone.'",
+          "  - *Verb:* 'We must work to **better** our community.'",
+          "  - *Noun:* 'Respect your **betters** in the trade.'"
+        ]
+      },
+      {
+        "title": "Class 9 Error Patterns: Confusing Parts of Speech",
+        "points": [
+          "• **Adjective vs Adverb Confusion:** Verbs of perception and sensation (*look, sound, taste, smell, feel*) take ADJECTIVES, not adverbs:",
+          "  - *Incorrect:* The dish smells deliciously. -> **Correct:** *The dish smells **delicious**.*",
+          "  - *Incorrect:* She felt badly about the blunder. -> **Correct:** *She felt **bad** about the blunder.*",
+          "• **Noun vs Adjective Form Mismatches:**",
+          "  - *Incorrect:* His courageously acts saved lives. -> **Correct:** *His **courageous** acts saved lives.*",
+          "  - *Incorrect:* The importance news reached us late. -> **Correct:** *The **important** news reached us late.*"
         ]
       }
     ],
     "keyTerms": [
       {
-        "term": "Countable Noun",
-        "meaning": "A noun with distinct singular and plural forms (pencil/pencils)."
+        "term": "Syntactic Role",
+        "meaning": "The specific functional position and relationship a word maintains within a sentence structure."
       },
       {
-        "term": "Uncountable Noun",
-        "meaning": "A mass noun lacking regular plural form (advice, furniture)."
+        "term": "Conversion (Zero Derivation)",
+        "meaning": "The process by which a word enters a new part of speech without altering its spelling (e.g., 'water' noun to 'water' verb)."
       },
       {
-        "term": "Prepositional Phrase",
-        "meaning": "A preposition followed by its noun phrase complement (in the room)."
+        "term": "Copula Verb",
+        "meaning": "A linking verb requiring an adjective complement rather than an adverbial modifier."
       }
     ],
     "examTips": [
-      "Remember that 'advice' is a noun, while 'advise' is a verb.",
-      "'Friendly' and 'lovely' are adjectives, not adverbs, despite ending in -ly."
+      "Before correcting a word in an editing passage, identify the part of speech required by its surrounding grammar.",
+      "Remember that linking verbs (feel, seem, appear) describe the subject and must take adjectives, not -ly adverbs."
     ]
   },
   {
@@ -112,44 +158,69 @@ export const englishNotes9: ChapterNote[] = [
     "chapterNo": 3,
     "title": "Phrases, Clauses & Sentence Structure",
     "unit": "Unit 1: Foundations & Sentence Mechanics",
-    "overview": "Distinguishing phrases from clauses, independent versus dependent clauses, and structural classifications (simple, compound, complex, compound-complex).",
+    "overview": "Master the structural hierarchy of English: from individual words to Phrases, Clauses, and Full Sentences. Learn how to distinguish Independent from Dependent clauses, and master Simple, Compound, and Complex sentence structures.",
     "sections": [
       {
-        "title": "Phrase versus Clause",
+        "title": "Phrases vs Clauses: The Critical Difference",
         "points": [
-          "• **Phrase:** A group of words lacking a subject–finite verb pair ('after the examination', 'very cautiously').",
-          "• **Clause:** A structural unit possessing its own subject and finite verb ('after the examination concluded').",
-          "• **Independent Clause:** Can stand alone as a syntactically complete sentence ('The rain stopped').",
-          "• **Dependent Clause:** Begins with a subordinator and cannot stand alone ('because the rain stopped')."
+          "Understanding the structural difference between a Phrase and a Clause is essential for mastering CBSE transformation and clause questions:",
+          "• **What is a Phrase?**",
+          "  - A group of related words that lacks both a subject and a finite predicate. It does not convey a complete thought by itself:",
+          "  - *Prepositional Phrase:* **in the morning**, **under the bridge**, **with great enthusiasm**.",
+          "  - *Noun Phrase:* **a very intelligent young scholar**.",
+          "  - *Verb Phrase:* **has been diligently working**.",
+          "• **What is a Clause?**",
+          "  - A group of related words that **CONTAINS its own subject and finite verb**:",
+          "  - *Independent (Principal) Clause:* Expresses a complete proposition and can stand alone as a sentence (*The monsoon arrived on schedule*).",
+          "  - *Dependent (Subordinate) Clause:* Contains a subject and verb but starts with a subordinator (*because the monsoon arrived on schedule*) and cannot stand alone."
         ]
       },
       {
-        "title": "Structural Sentence Types",
+        "title": "Simple, Compound and Complex Sentences",
         "points": [
-          "1. **Simple Sentence:** Contains one single independent clause: *The train arrived on time.*",
-          "2. **Compound Sentence:** Contains two or more independent clauses joined by coordinating conjunctions (FANBOYS: for, and, nor, but, or, yet, so): *The bell rang, **and** the students entered the hall.*",
-          "3. **Complex Sentence:** Contains one independent clause and at least one dependent subordinate clause: *We reached the station early **because the highway was clear**.*",
-          "4. **Compound-Complex Sentence:** Contains two independent clauses and at least one dependent clause."
+          "Sentences are classified structurally into three fundamental categories:",
+          "• **1. Simple Sentence:** Contains **one independent clause** with one finite verb:",
+          "  - *The dedicated volunteers planted over five hundred saplings yesterday.*",
+          "  - Even if it has a compound subject (*Ravi and Aman planted saplings*), it remains simple because there is only one finite predicate.",
+          "• **2. Compound Sentence:** Contains **two or more independent clauses** joined by a coordinating conjunction (FANBOYS) or semicolon:",
+          "  - *The bell rang loudly [Clause 1], **and** the students vacated the classrooms [Clause 2].*",
+          "  - *He prepared thoroughly [Clause 1], **yet** he felt nervous before the interview [Clause 2].*",
+          "• **3. Complex Sentence:** Contains **one independent main clause** and **one or more dependent subordinate clauses** joined by subordinating connectors (*although, because, since, if, when, which*):",
+          "  - *Although he prepared thoroughly [Dependent Clause], he felt nervous during the initial session [Independent Main Clause].*",
+          "  - *The boy who cracked the national olympiad [Relative Clause] was felicitated by the principal [Main Clause].*"
+        ]
+      },
+      {
+        "title": "Coordination vs Subordination in Writing Tasks",
+        "points": [
+          "• In Class 9 formal writing (descriptive paragraphs, diary entries, letters), relying solely on simple sentences makes prose sound childish.",
+          "• Combining simple thoughts using subordination creates maturity:",
+          "  - *Childish:* The rain was heavy. The river overflowed. We could not cross.",
+          "  - *Mature Complex:* *Because the torrential rain caused the river to overflow, we were unable to cross the valley.*"
         ]
       }
     ],
     "keyTerms": [
       {
+        "term": "Phrase",
+        "meaning": "A syntactic unit of two or more words functioning as a single part of speech without a subject-predicate core."
+      },
+      {
         "term": "Independent Clause",
-        "meaning": "A clause expressing a complete thought that can stand alone as a sentence."
+        "meaning": "A clause containing a subject and finite verb capable of existing autonomously as a complete sentence."
       },
       {
         "term": "Subordinate Clause",
-        "meaning": "A dependent clause introduced by a subordinating conjunction."
+        "meaning": "A clause structurally dependent upon a matrix main clause introduced by a subordinating conjunction."
       },
       {
-        "term": "FANBOYS",
-        "meaning": "Mnemonic for coordinating conjunctions: for, and, nor, but, or, yet, so."
+        "term": "Complex Sentence",
+        "meaning": "A sentence comprising one main independent clause and at least one embedded dependent clause."
       }
     ],
     "examTips": [
-      "Count the number of finite verbs to determine how many clauses exist in a complex sentence.",
-      "Never connect two independent clauses with only a comma (avoid comma splices)."
+      "Count the finite verbs in a sentence: 1 finite verb = Simple sentence; 2 independent finite verbs with 'and/but' = Compound sentence.",
+      "Never use both 'although' and 'but' in the same sentence: write 'Although he is rich, he is humble', NOT 'Although he is rich, but he is humble'."
     ]
   },
   {
@@ -158,41 +229,70 @@ export const englishNotes9: ChapterNote[] = [
     "classLevel": 9,
     "chapterNo": 4,
     "title": "Verbs, Verb Forms, Auxiliaries & Non-Finites",
-    "unit": "Unit 1: Foundations & Sentence Mechanics",
-    "overview": "Comprehensive coverage of finite versus non-finite verbs (infinitives, gerunds, participles), primary auxiliaries (be, have, do), and regular versus irregular verb patterns.",
+    "unit": "Unit 2: Verbs, Tenses & Modals",
+    "overview": "Master the dynamic verb system for Class 9. Understand finite versus non-finite verbs (infinitives, gerunds, participles), master transitive and intransitive mechanics, and learn the rules of primary and modal auxiliaries.",
     "sections": [
       {
-        "title": "Finite versus Non-Finite Verbs",
+        "title": "Finite Verbs vs Non-Finite Verbs",
         "points": [
-          "• **Finite Verb:** Inflected for tense, person, and number ('She **works**', 'They **worked**'). Every complete clause must contain at least one finite verb.",
-          "• **Non-Finite Verb:** Not limited by person or number, and does not independently show tense:",
-          "1. *Infinitive:* Base form with 'to' ('to study') or bare infinitive ('study' after modals).",
-          "2. *Gerund:* Verb ending in -ing functioning as a noun ('**Reading** improves eloquence').",
-          "3. *Participle:* Present participle ('the **blooming** flowers') and past participle ('the **broken** vase')."
+          "• **Finite Verbs:** Bound by the person, number, and tense of the subject. A clause MUST have at least one finite verb:",
+          "  - *She **speaks** fluent Spanish.* (Present singular).",
+          "  - *They **spoke** fluent Spanish.* (Past plural).",
+          "• **Non-Finite Verbs:** Do NOT change their form based on the subject's number or tense. They function as nouns, adjectives, or adverbs:",
+          "  - *She wants **to speak**.* -> *They wanted **to speak**.* ('To speak' is an invariable non-finite infinitive).",
+          "• **The Three Classes of Non-Finites:**",
+          "  1. **The Infinitive:** Base verb with 'to' (*to write, to discover*) or without 'to' (Bare Infinitive: *let him go*).",
+          "  2. **The Gerund:** Verb ending in -ing functioning as a **verbal noun** (* **Exercising** daily improves stamina*).",
+          "  3. **The Participle:** Verb ending in -ing (Present Participle) or -ed/-en (Past Participle) functioning as an **adjective** (*a **blooming** garden*, *a **written** agreement*)."
         ]
       },
       {
-        "title": "Primary Auxiliaries: Be, Have, and Do",
+        "title": "The Bare Infinitive in Class 9 Grammar",
         "points": [
-          "• **Be (am, is, are, was, were, been, being):** Forms continuous tenses and passive voice ('is writing', 'was built').",
-          "• **Have (have, has, had):** Forms perfect tenses ('has completed', 'had gone').",
-          "• **Do (do, does, did):** Forms negatives, interrogatives, and emphatic statements in simple tenses ('Do you understand?', 'She does not agree')."
+          "In certain constructions, the particle 'to' must be omitted, leaving the **Bare Infinitive (V1)**:",
+          "• **1. After Modal Auxiliaries:** *can, could, may, might, shall, should, will, would, must*:",
+          "  - *You must **submit** the portfolio today.* (NOT 'must to submit').",
+          "• **2. After Verbs of Causation & Perception (Active Voice):** *make, let, bid, watch, see, hear, feel*:",
+          "  - *The strict proctor made the student **leave** the hall.* (NOT 'made him to leave').",
+          "  - *Please let me **explain** the hypothesis.* (NOT 'let me to explain').",
+          "  - *I heard the nightingale **sing**.*",
+          "• *Passive Exception:* In the passive voice, 'make' requires 'to': *The student was made **to leave** the hall.*"
+        ]
+      },
+      {
+        "title": "Gerunds after Prepositions & Fixed Expressions",
+        "points": [
+          "• **Preposition + Gerund Rule:** Any verb placed immediately following a preposition must be in the **-ing (Gerund)** form:",
+          "  - *She is interested **in joining** the astronomy club.*",
+          "  - *He was disqualified **for violating** the safety code.*",
+          "• **Expressions ending in 'to' followed by a Gerund:**",
+          "  - *look forward to* + V-ing: *I look forward to **receiving** your confirmation.*",
+          "  - *used to / accustomed to* + V-ing: *She is accustomed to **working** late.*",
+          "  - *with a view to* + V-ing: *He attended the seminar with a view to **expanding** his professional network.*"
         ]
       }
     ],
     "keyTerms": [
       {
-        "term": "Non-Finite Verb",
-        "meaning": "A verb form (infinitive, gerund, participle) that does not indicate tense or person."
+        "term": "Finite Verb",
+        "meaning": "A verb constrained by grammatical person, number, and chronological tense."
       },
       {
-        "term": "Primary Auxiliary",
-        "meaning": "Be, have, do used to construct aspect, voice, questions, and negatives."
+        "term": "Infinitive",
+        "meaning": "The uninflected base verb, typically preceded by the infinitive particle 'to'."
+      },
+      {
+        "term": "Bare Infinitive",
+        "meaning": "A root infinitive lacking the particle 'to', required after modals and causative verbs like 'make' and 'let'."
+      },
+      {
+        "term": "Gerund",
+        "meaning": "A non-finite verbal noun terminating in -ing and fulfilling noun roles in clause syntax."
       }
     ],
     "examTips": [
-      "Prepositions are followed by gerunds, not infinitives: 'interested in learning', not 'interested to learn'.",
-      "After do, does, and did, the following verb must always be in the bare base form."
+      "In editing passages, watch for 'look forward to meet' and correct it to 'look forward to meeting'.",
+      "After 'let' and 'make' in active voice, never insert 'to': write 'made him wait', not 'made him to wait'."
     ]
   },
   {
@@ -201,43 +301,64 @@ export const englishNotes9: ChapterNote[] = [
     "classLevel": 9,
     "chapterNo": 5,
     "title": "Sequence of Tenses in Communication",
-    "unit": "Unit 2: Sequence of Tenses & Verb Aspect",
-    "overview": "Rules governing the sequence of tenses across connected clauses and extended communicative texts. Main clause and subordinate clause tense relationships.",
+    "unit": "Unit 2: Verbs, Tenses & Modals",
+    "overview": "Learn the vital principles governing the Sequence of Tenses in complex sentences and connected narrative prose. Understand how principal clause past verbs govern subordinate clauses, and master the two critical exceptions for universal truths.",
     "sections": [
       {
-        "title": "Meaning and Principles of Sequence of Tenses",
+        "title": "The Fundamental Principle of Tense Harmony",
         "points": [
-          "**Sequence of tenses** refers to the grammatical principle governing the tense of a subordinate clause in relation to the tense of the principal/main clause.",
-          "**Rule 1: Past Principal Clause:** If the verb in the main clause is in the past tense, the verb in the subordinate clause must also be in a past tense:",
-          "• *He said that he **was** tired.* (Not: that he is tired).",
-          "• *We knew that she **had succeeded**.* (Not: has succeeded).",
-          "• *I thought that it **would** rain.* (Not: will rain)."
+          "In multi-clause complex sentences, the tense of the subordinate clause is logically governed by the tense of the principal clause:",
+          "• **Rule 1 — Past in Principal Clause enforces Past in Subordinate Clause:**",
+          "  - *Direct:* He said, 'I am preparing for the tournament.'",
+          "  - *Complex Sentence:* *He said that he **was preparing** for the tournament.*",
+          "  - *Incorrect:* She told me that she will assist us tomorrow.",
+          "  - *Correct:* She told me that she **would assist** us the following day.",
+          "  - *Incorrect:* We discovered that the bridge is closed for repairs.",
+          "  - *Correct:* We discovered that the bridge **was closed** for repairs.",
+          "• **Rule 2 — Present or Future in Principal Clause allows ANY Tense in Subordinate:**",
+          "  - If the main verb is in the present (*says, believes*) or future (*will confirm*), the subordinate clause takes whatever tense reflects factual reality:",
+          "  - *The weather report says that it **will rain** tomorrow.*",
+          "  - *The historian believes that ancient trade routes **were** highly sophisticated.*"
         ]
       },
       {
-        "title": "Crucial Exceptions to the Past Sequence Rule",
+        "title": "The Two Universal Exceptions to Tense Backshift",
         "points": [
-          "**Exception A: Universal Truths and Permanent Facts:** A past principal verb is followed by a **present simple** subordinate verb if the subordinate clause expresses a scientific truth, natural law, or habitual fact:",
-          "• *The teacher proved that the Earth **revolves** around the Sun.*",
-          "• *Newton demonstrated that gravity **attracts** physical bodies.*",
-          "**Exception B: Comparison Clauses:** When a subordinate clause expresses a comparison introduced by 'than' or 'as', any tense demanded by the intended meaning is acceptable:",
-          "• *He liked me more than he **likes** you now.*"
+          "• **Exception 1 — Immutable Scientific Laws, Universal Truths & Geographic Facts:**",
+          "  - When the subordinate clause expresses an eternal physical truth, scientific constant, or moral proverb, **its tense NEVER backshifts to past** even after a past reporting verb:",
+          "  - *The physics teacher demonstrated that light **travels** in a straight line.* (Not 'traveled').",
+          "  - *Ancient philosophers knew that the Earth **is** spherical.* (Not 'was').",
+          "  - *The moralist argued that honesty **remains** the supreme virtue.*",
+          "• **Exception 2 — Subordinate Clauses of Comparison Introduced by 'Than' or 'As':**",
+          "  - *He respected the former principal more than he **respects** the incumbent head.* (Present comparison is valid)."
+        ]
+      },
+      {
+        "title": "Paragraph Tense Consistency in Writing Tasks",
+        "points": [
+          "• A major deduction in Class 9 writing (descriptive paragraphs, story writing) occurs when students oscillate erratically between past and present:",
+          "  - *Erratic:* 'The explorer *walked* towards the cavern. Suddenly a wild beast *jumps* out. He *was* terrified.' (Clash of walked/jumps/was).",
+          "  - *Consistent:* *The explorer **walked** towards the cavern. Suddenly a wild beast **jumped** out. He **was** terrified.*"
         ]
       }
     ],
     "keyTerms": [
       {
-        "term": "Sequence of Tenses",
-        "meaning": "The rule coordinating the tense of a subordinate clause with its governing main clause."
+        "term": "Tense Sequence",
+        "meaning": "The grammatical principle dictating that the subordinate clause tense corresponds with the governing matrix clause."
       },
       {
-        "term": "Principal Clause",
-        "meaning": "The independent governing clause of a complex sentence."
+        "term": "Scientific Constant Exemption",
+        "meaning": "Preserving simple present tense for physical laws irrespective of past matrix verbs."
+      },
+      {
+        "term": "Narrative Consistency",
+        "meaning": "Maintaining a uniform chronological tense baseline throughout an extended composition."
       }
     ],
     "examTips": [
-      "If the main clause verb is in the past, subordinate verbs generally shift into the past.",
-      "Do not shift universal scientific facts into the past: write 'revolves', not 'revolved'."
+      "In story writing and diary entries, maintain past tense consistency across all paragraphs.",
+      "Do not backshift proverbs or scientific laws: write 'The teacher explained that copper is a good conductor'."
     ]
   },
   {
@@ -246,38 +367,54 @@ export const englishNotes9: ChapterNote[] = [
     "classLevel": 9,
     "chapterNo": 6,
     "title": "Present, Past & Future Tenses in Context",
-    "unit": "Unit 2: Sequence of Tenses & Verb Aspect",
-    "overview": "Practical application of present, past, and future tense forms in contextual passages, narratives, and communicative writing.",
+    "unit": "Unit 2: Verbs, Tenses & Modals",
+    "overview": "A comprehensive functional masterclass on the 12 tenses in CBSE Class 9. Understand signal adverbs, past vs present perfect distinctions, and future projection structures in connected paragraphs.",
     "sections": [
       {
-        "title": "Narrative and Descriptive Tense Consistency",
+        "title": "The Four Present Tenses in Daily Communication",
         "points": [
-          "• When writing a narrative or report about a completed event, maintain consistent **past tense** throughout ('Last Saturday, we **visited** the national park. The guide **showed** us ancient caves').",
-          "• Do not shift haphazardly between past and present within the same narrative paragraph.",
-          "• Use **past continuous** for ongoing background actions and **past simple** for foreground point events: 'While we **were walking**, it **began** to rain.'"
+          "• **1. Simple Present (Sub + V1/V5):** Expresses habits, routines, universal laws, and scheduled events (*The school bus arrives at 7:30 AM*).",
+          "• **2. Present Continuous (Sub + is/am/are + V4):** Ongoing actions happening right now (*The team is assembling the model*); Planned near-future events (*We are departing tonight*).",
+          "• **3. Present Perfect (Sub + has/have + V3):** Past action with vital present relevance (*The delegates have signed the memorandum*); Actions completed recently (*The results have just been announced*).",
+          "• **4. Present Perfect Continuous (Sub + has/have + been + V4 + since/for):** Action started in past and actively continuing (*The scientists have been monitoring seismic activity since Monday*)."
         ]
       },
       {
-        "title": "Stative Verb and Finished Past Markers Review",
+        "title": "The Four Past Tenses & The 'Past of the Past'",
         "points": [
-          "• Stative verbs (*know, believe, understand, belong, possess*) must be kept in the simple form: 'I **understand**', never 'I am understanding'.",
-          "• Definite finished past markers (*yesterday, last year, in 2022, three days ago*) require the **past simple**: 'She **completed** the project yesterday' (never 'has completed')."
+          "• **1. Simple Past (Sub + V2):** Terminated historical action tied to a past time marker (*The team submitted the report yesterday*).",
+          "• **2. Past Continuous (Sub + was/were + V4):** Action in progress during a past timeframe (*While we were inspecting the laboratory, an alarm sounded*).",
+          "• **3. Past Perfect (Sub + had + V3):** The earlier of two sequential past events (*The train **had departed** before they reached the platform*).",
+          "• **4. Past Perfect Continuous (Sub + had been + V4):** Ongoing action preceding another past event (*He had been driving for four hours before he noticed the flat tire*)."
+        ]
+      },
+      {
+        "title": "The Four Future Tenses & Deadlines",
+        "points": [
+          "• **1. Simple Future (will/shall + V1):** Spontaneous decisions or general predictions (*Artificial intelligence will transform healthcare*).",
+          "• **2. Future Continuous (will be + V4):** Action in progress at a specified future moment (*At 10 AM tomorrow, we will be writing the examination*).",
+          "• **3. Future Perfect (will have + V3):** Action completed prior to a designated future time (*By next October, the administration will have completed the auditorium*).",
+          "• **4. Future Perfect Continuous (will have been + V4):** Ongoing duration leading up to a future point (*By 2028, she will have been teaching for twenty years*)."
         ]
       }
     ],
     "keyTerms": [
       {
-        "term": "Narrative Consistency",
-        "meaning": "Maintaining consistent past tense framework in storytelling and reports."
+        "term": "Aspect",
+        "meaning": "The grammatical category expressing whether an action is ongoing, habitual, or perfected."
       },
       {
-        "term": "Foreground Event",
-        "meaning": "The main punctual action in past simple interrupting a background continuous action."
+        "term": "Signal Word",
+        "meaning": "An adverbial time marker that uniquely triggers a particular tense form (e.g., 'already' triggers perfect aspect)."
+      },
+      {
+        "term": "Future Projection",
+        "meaning": "Constructing future deadlines using 'By + time marker' with Future Perfect."
       }
     ],
     "examTips": [
-      "Look for time markers like 'yesterday' and 'last week'—they always take simple past.",
-      "Use present perfect with 'since' and 'for' when the action continues to the present."
+      "Whenever 'since' or 'for' accompanies a duration, choose Present Perfect Continuous, not simple continuous.",
+      "Use Simple Past with definite past years: 'India launched Chandrayaan-1 in 2008', not 'has launched'."
     ]
   },
   {
@@ -286,57 +423,66 @@ export const englishNotes9: ChapterNote[] = [
     "classLevel": 9,
     "chapterNo": 7,
     "title": "Time Clauses & Conditional Clauses (Type 1)",
-    "unit": "Unit 2: Sequence of Tenses & Verb Aspect",
-    "overview": "Rules for time clauses (when, until, as soon as) and in-depth study of Conditional Clauses — Type 1 (open, real future conditions).",
+    "unit": "Unit 2: Verbs, Tenses & Modals",
+    "overview": "Master Type 1 Conditional Clauses and dependent Time Clauses—a core prescribed grammar competency in the CBSE Class 9 syllabus. Understand real conditions, future projections, and why 'will' is prohibited in condition clauses.",
     "sections": [
       {
-        "title": "Future Meaning in Time Clauses",
+        "title": "The Architecture of Type 1 Conditional Sentences",
         "points": [
-          "In subordinate time clauses introduced by **when, before, after, until, as soon as, as long as**, future meaning is expressed with the **simple present tense**, never with 'will':",
-          "• Correct: *I will call you when I **reach** home.*",
-          "• Incorrect: *I will call you when I will reach home.*",
-          "• Correct: *We will wait until the rain **stops**.*",
-          "• Correct: *As soon as the bell **rings**, students will assemble.*"
+          "Type 1 Conditionals deal with **real, plausible future situations** where a specific condition has a realistic chance of occurring:",
+          "• **The Standard Formula:**",
+          "  - **If-Clause (Condition):** **Simple Present Tense (V1 / V5)**",
+          "  - **Main Clause (Result):** **will / can / may / must + Base Verb (V1)**",
+          "• **Authentic Examples:**",
+          "  - *If the rainfall **remains** [Present] deficient, agricultural yields **will decline** [Future].*",
+          "  - *If you **verify** [Present] your calculations carefully, you **will eliminate** [Future] arithmetic errors.*",
+          "  - *If the weather **improves** [Present], the rescue helicopter **can take off** [Modal].*",
+          "• **Reversing Clause Order:**",
+          "  - The main clause can precede the if-clause without any comma: *The agricultural yields will decline if the rainfall remains deficient.*"
         ]
       },
       {
-        "title": "Conditional Clauses: Type 1 (Real / Open Future)",
+        "title": "The Iron Law: No 'Will' Inside the Condition Clause",
         "points": [
-          "A Type 1 conditional expresses an open, realistic condition that is completely possible or probable in the present or future.",
-          "**Formula:** If + Simple Present (V1 / V1-s), will / modal / imperative + Base Verb.",
-          "• *If it **rains** tomorrow, we **will stay** indoors.*",
-          "• *If she **studies** diligently, she **will pass** with distinction.*",
-          "• *If you feel unwell, you **should consult** a physician.* (Modal in result clause).",
-          "• *If the fire alarm sounds, **evacuate** the building.* (Imperative in result clause)."
+          "This is one of the most frequently corrected errors in Class 9 editing passages:",
+          "• **Rule:** Even though the condition refers chronologically to future time, **NEVER USE 'WILL' OR 'SHALL' inside the if-clause!**",
+          "  - *Incorrect:* If it **will rain** tomorrow, the athletic meet will be postponed.",
+          "  - *Correct:* If it **rains** tomorrow, the athletic meet will be postponed.",
+          "  - *Incorrect:* If you **will study** diligently, you will score high marks.",
+          "  - *Correct:* If you **study** diligently, you will score high marks."
         ]
       },
       {
-        "title": "Unless (= If Not)",
+        "title": "Dependent Time Clauses (When, As Soon As, Unless)",
         "points": [
-          "**Unless** means 'except if' or 'if...not'. It is followed by an affirmative present tense verb:",
-          "• *Unless you **hurry**, you will miss the train.* (= If you do not hurry...)",
-          "• Never write 'Unless you do not hurry' (avoid double negatives)."
-        ],
-        "tip": "Formula: In Type 1 conditionals, the IF-clause uses Simple Present; the main clause uses WILL + Base Verb."
+          "The exact same 'No-Will' rule applies to **Time Clauses** introduced by temporal subordinators:",
+          "• **When:** *I will notify the administration **when the results arrive**.* (Not 'when the results will arrive').",
+          "• **As soon as:** *We will initiate the seminar **as soon as the speaker arrives**.*",
+          "• **Before / After:** *Check the equipment **before you begin** the experiment.*",
+          "• **Unless (Means 'If Not'):**",
+          "  - 'Unless' already contains a negative meaning. **Never use a negative word like 'not' inside an unless-clause!**",
+          "  - *Incorrect:* Unless you do not submit the project, you will lose marks.",
+          "  - *Correct:* **Unless you submit** the project, you will lose marks."
+        ]
       }
     ],
     "keyTerms": [
       {
         "term": "Type 1 Conditional",
-        "meaning": "A conditional structure representing an open, possible condition and its likely future consequence."
+        "meaning": "A syntactic structure expressing an authentic, achievable future condition and its probable outcome."
       },
       {
-        "term": "Subordinate Time Clause",
-        "meaning": "A clause introduced by when, before, or as soon as using present tense for future time."
+        "term": "Temporal Subordinator",
+        "meaning": "Conjunctions like 'as soon as', 'until', and 'when' introducing dependent time clauses."
       },
       {
         "term": "Unless",
-        "meaning": "A negative conditional conjunction meaning 'if not'."
+        "meaning": "A conditional subordinator signifying 'except if' or 'if not', precluding negative particles in its clause."
       }
     ],
     "examTips": [
-      "Never use 'will' in the if-clause of a Type 1 conditional in board examinations.",
-      "Do not add 'not' inside an 'unless' clause—'unless' is already negative."
+      "In editing passages, look out for 'If he will come' and immediately correct it to 'If he comes'.",
+      "Never write 'unless you do not'—'unless' already means 'if not'."
     ]
   },
   {
@@ -344,48 +490,67 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 8,
-    "title": "Modal Auxiliaries: Ability, Obligation, Permission, Possibility & Advice",
-    "unit": "Unit 3: Modals & Semi-Modals",
-    "overview": "Comprehensive coverage of the five prescribed modal functions in CBSE Class 9: ability (can/could), obligation (must/have to), permission (may/can/could), possibility (may/might), and advice (should/ought to).",
+    "title": "Modal Auxiliaries: Ability, Obligation, Permission & Advice",
+    "unit": "Unit 2: Verbs, Tenses & Modals",
+    "overview": "Master the functional roles of Modal Auxiliaries in CBSE Class 9. Learn how to accurately choose between Can, Could, May, Might, Shall, Should, Will, Would, and Must based on communicative context and social politeness.",
     "sections": [
       {
-        "title": "Form and Function of Modal Auxiliaries",
+        "title": "Modals Expressing Ability and Capacity",
         "points": [
-          "Modal auxiliaries are helping verbs that express mood, capability, duty, or likelihood.",
-          "**Core Rules:**",
-          "1. Followed by bare base verb (V1): *She can speak German.* (No -s, no -ed).",
-          "2. Do not take 'to' before the main verb (except *ought to*).",
-          "3. Invert directly with subject in questions: *Can I help you?*"
+          "• **CAN (Present Ability / Capacity):**",
+          "  - Expresses physical, mental, or legal competence in the present:",
+          "  - *She **can** solve complex quadratic equations without a calculator.*",
+          "  - *The modern laboratory **can** process two hundred blood samples an hour.*",
+          "• **COULD (Past Ability / Polite Request):**",
+          "  - Expresses past general capacity (*When my grandfather was young, he **could** run ten miles*).",
+          "  - Expresses a polite request in the present (* **Could** you please furnish the relevant documents?*)."
         ]
       },
       {
-        "title": "The Five Prescribed Functions Detailed",
+        "title": "Modals Expressing Permission and Possibility",
         "points": [
-          "1. **Ability:** 'Can' for present ability (*I can solve this equation*); 'Could' for general past ability (*She could read at age four*); 'Was/were able to' for specific past achievement.",
-          "2. **Obligation & Duty:** 'Must' for authoritative internal or legal obligation (*You must wear a helmet*); 'Have to' for external requirements (*We have to submit the forms*); 'Had to' for past obligation.",
-          "3. **Permission:** 'May' for formal permission (*May I enter?*); 'Can' for informal permission (*Can I borrow your pen?*); 'Could' for polite requests (*Could I speak to the manager?*).",
-          "4. **Possibility:** 'May' for realistic possibility (*It may rain*); 'Might' for remote/tentative possibility (*We might visit Jaipur*).",
-          "5. **Advice & Recommendation:** 'Should' for sensible advice (*You should sleep early*); 'Ought to' for moral duty (*We ought to respect elders*); 'Had better' for urgent advice with consequence."
+          "• **Permission:**",
+          "  - **MAY (Formal & Respectful):** Standard in teacher-student or institutional communication (* **May** I enter the laboratory, Sir?* *You **may** present your credentials*).",
+          "  - **CAN (Informal):** Standard between peers and friends (* **Can** I use your stylus, Rohan?*).",
+          "• **Degrees of Possibility & Probability:**",
+          "  - **MAY (Fair / Moderate Possibility ~50%):** *The weather forecast indicates it **may** rain tonight.*",
+          "  - **MIGHT (Remote / Weak Possibility ~20%):** *He has missed several rehearsals, but he **might** still qualify.*",
+          "  - **MUST (Logical Certainty / Inescapable Deduction ~95%):** *The light is on in the office; the principal **must** be inside.*"
+        ]
+      },
+      {
+        "title": "Modals Expressing Advice, Duty and Compulsion",
+        "points": [
+          "• **SHOULD (Moral Advice / Strong Recommendation):**",
+          "  - Expresses desirable behavior or ethical recommendations:",
+          "  - *Every student **should** develop disciplined study habits.*",
+          "  - *We **should** preserve indigenous biodiversity.*",
+          "• **OUGHT TO (Moral / Civic Obligation):**",
+          "  - Conveys a sense of duty based on societal or ethical values (always followed by 'to'):",
+          "  - *Citizens **ought to** respect the constitutional provisions.*",
+          "• **MUST (Compulsory Law / Uncompromising Duty):**",
+          "  - Inescapable requirement imposed by authority or extreme necessity:",
+          "  - *All motorists **must** wear helmets.* *Candidates **must** sign the attendance roll.*"
         ]
       }
     ],
     "keyTerms": [
       {
-        "term": "Ability Modals",
-        "meaning": "Can and could denoting mental or physical capacity."
+        "term": "Modal Auxiliary",
+        "meaning": "A secondary verb characterizing the modality (epistemic, deontic) of the main predicate."
       },
       {
-        "term": "Obligation Modals",
-        "meaning": "Must and have to denoting compulsory duty or requirement."
+        "term": "Deontic Modality",
+        "meaning": "Modals expressing permission, obligation, duty, or prohibition (must, should, may)."
       },
       {
-        "term": "Permission Modals",
-        "meaning": "May, can, could used to request or grant authorization."
+        "term": "Epistemic Modality",
+        "meaning": "Modals expressing possibility, probability, or logical deduction (might, may, must)."
       }
     ],
     "examTips": [
-      "Choose the modal by intended meaning, not by simple translation.",
-      "After any modal, verify that the main verb has no 'to' and no -s attached."
+      "In school or formal exam settings, always use 'May I' for permission, not 'Can I'.",
+      "Use 'must' for official mandatory requirements: 'Students must submit homework on Monday'."
     ]
   },
   {
@@ -394,40 +559,70 @@ export const englishNotes9: ChapterNote[] = [
     "classLevel": 9,
     "chapterNo": 9,
     "title": "Modal Contrasts, Prohibition vs No-Necessity & Common Errors",
-    "unit": "Unit 3: Modals & Semi-Modals",
-    "overview": "High-value contrasts: must not (prohibition) versus do not have to (lack of necessity), common modal errors in editing tasks.",
+    "unit": "Unit 2: Verbs, Tenses & Modals",
+    "overview": "Learn subtle modal contrasts in CBSE Class 9: Prohibition (Must not) versus Lack of Necessity (Need not), Past modals (should have, could have), and common error-spotting traps involving modal auxiliaries.",
     "sections": [
       {
-        "title": "Prohibition versus Absence of Obligation",
+        "title": "Prohibition (Must Not) vs Absence of Obligation (Need Not)",
         "points": [
-          "• **Must not / Cannot = Prohibition:** Doing the action is forbidden or against the law: *You **must not** touch the live wire.*",
-          "• **Do not have to / Need not = No Necessity:** The action is not required; it is optional: *Tomorrow is Sunday; you **do not have to** wake up early.*",
-          "• Confusing these two alters the meaning from 'it is forbidden' to 'it is optional'."
+          "A critical distinction heavily assessed in Class 9 gap-filling and cloze exercises:",
+          "• **MUST NOT (Prohibition / Forbidden):**",
+          "  - Indicates that an action is strictly against the rules, illegal, or dangerous:",
+          "  - *Visitors **must not** touch the ancient manuscripts.* (Strictly forbidden).",
+          "  - *You **must not** park in the emergency ambulance bay.*",
+          "• **NEED NOT / DO NOT HAVE TO (Absence of Necessity / Optional):**",
+          "  - Indicates that an action is not required; the subject has the freedom to choose:",
+          "  - *You **need not** purchase a ticket; entry is completely free.* (No obligation).",
+          "  - *We have plenty of time; we **need not** hurry.*",
+          "  - *Contrast:* 'You must not eat in the library' (Forbidden) vs 'You need not eat everything on your plate' (Optional)."
         ]
       },
       {
-        "title": "Frequent Modal Errors in Class 9 Papers",
+        "title": "Past Modal Deductions: Should Have, Could Have, Must Have",
         "points": [
-          "• Incorrect: *She can sings.* -> Correct: *She can **sing**.*",
-          "• Incorrect: *You should to study.* -> Correct: *You should **study**.*",
-          "• Incorrect: *He ought study.* -> Correct: *He ought **to study**.*",
-          "• Incorrect: *We must to obey.* -> Correct: *We must **obey**.*"
+          "Modals combined with **have + V3** reflect on past actions with regret, lost opportunities, or retrospective deductions:",
+          "• **SHOULD HAVE + V3 (Unfulfilled Past Duty / Regret):**",
+          "  - The action was desirable, but it was NOT done:",
+          "  - *You **should have informed** the proctor about the discrepancy earlier.* (You failed to do so).",
+          "• **COULD HAVE + V3 (Unrealized Past Capacity):**",
+          "  - The subject possessed the ability to act, but did not:",
+          "  - *With his exceptional intellect, he **could have cracked** the exam with ease.*",
+          "• **MUST HAVE + V3 (Past Logical Certainty):**",
+          "  - High certainty about something in the past:",
+          "  - *The tracks are completely fresh; the tiger **must have passed** through this clearing minutes ago.*"
+        ]
+      },
+      {
+        "title": "Common Modal Errors in CBSE Class 9 Exams",
+        "points": [
+          "• **Trap 1 — Adding 'to' after core modals:** Modals take the bare infinitive V1:",
+          "  - *Incorrect:* She can to play the sitar. -> **Correct:** *She **can play** the sitar.*",
+          "• **Trap 2 — Adding tense suffixes to modals:** Modals never take -s or -ed:",
+          "  - *Incorrect:* He musts study. -> **Correct:** *He **must** study.*",
+          "• **Trap 3 — The 'Lest... Should' Rule:**",
+          "  - 'Lest' is followed exclusively by **should**, and NEVER takes a negative particle:",
+          "  - *Incorrect:* Walk carefully lest you might not slip.",
+          "  - *Correct:* **Walk carefully lest you should slip.**"
         ]
       }
     ],
     "keyTerms": [
       {
         "term": "Prohibition",
-        "meaning": "Authoritative ban expressed by 'must not'."
+        "meaning": "An explicit interdiction forbidding an action, expressed by 'must not'."
       },
       {
-        "term": "Absence of Necessity",
-        "meaning": "Optional nature expressed by 'don't have to' or 'need not'."
+        "term": "Absence of Obligation",
+        "meaning": "A condition where no compulsion exists, expressed by 'need not' or 'do not have to'."
+      },
+      {
+        "term": "Counterfactual Modal",
+        "meaning": "A construction ('should have + V3') expressing an unfulfilled past moral expectation."
       }
     ],
     "examTips": [
-      "In dialogue completion, if someone says 'lunch is provided', use 'don't have to bring lunch', not 'mustn't'.",
-      "Remember: 'ought' is the only central-like modal that requires 'to'."
+      "Use 'must not' when something is forbidden by law or rule; use 'need not' when something is simply unnecessary.",
+      "Remember that 'lest' is always followed by 'should': 'Run fast lest you should miss the train'."
     ]
   },
   {
@@ -436,43 +631,68 @@ export const englishNotes9: ChapterNote[] = [
     "classLevel": 9,
     "chapterNo": 10,
     "title": "Subject–Verb Concord: Rules & Compound Subjects",
-    "unit": "Unit 4: Subject–Verb Concord",
-    "overview": "Core principles of subject-verb concord in Class 9: head noun identification, compound subjects joined by 'and', and proximity rule with either...or / neither...nor.",
+    "unit": "Unit 3: Subject–Verb Concord & Determiners",
+    "overview": "Master the core rules of Subject-Verb Concord for CBSE Class 9. Understand compound subjects joined by 'and', parenthetical connectors (as well as, along with), and the proximity rule for either/neither.",
     "sections": [
       {
-        "title": "The Golden Concord Rule and Head Nouns",
+        "title": "The Core Law of Concord in Class 9 Syntax",
         "points": [
-          "A singular subject takes a singular verb ('She **writes**'); a plural subject takes a plural verb ('They **write**').",
-          "The verb agrees with the **head noun**, not with intervening prepositional modifiers:",
-          "• *The **box** of pencils **is** on the table.* (Subject is 'box', not 'pencils').",
-          "• *The **bouquet** of roses **smells** fragrant.* (Subject is 'bouquet').",
-          "• *The **students** in the laboratory **are** attentive.*"
+          "• **The Core Law:** A singular grammatical subject requires a singular finite verb; a plural subject requires a plural verb:",
+          "  - *The innovative apparatus **operates** efficiently.* (Singular Subject + Singular Verb).",
+          "  - *The innovative apparatuses **operate** efficiently.* (Plural Subject + Plural Verb).",
+          "• **The Intervening Phrase Trap:** Prepositional phrases between the subject and verb do NOT alter subject number:",
+          "  - *The **box** of antique mathematical instruments **is** remarkably heavy.* (Head noun = 'box', singular -> 'is').",
+          "  - *The **quality** of these organic mangoes **was** exceptional.* (Head noun = 'quality', singular -> 'was')."
         ]
       },
       {
-        "title": "Compound Subjects and Correlative Conjunctions",
+        "title": "Compound Subjects with 'And' and Single Concepts",
         "points": [
-          "• Two subjects joined by **'and'** take a plural verb: *Rohan and Kabir **are** friends.*",
-          "• Exception: If they represent a single unit or dish: *Bread and butter **is** wholesome.*",
-          "• With **either...or** and **neither...nor**, the verb agrees with the **nearer subject**:",
-          "• *Neither the coach nor the **players were** ready.*",
-          "• *Neither the players nor the **coach was** ready.*"
+          "• **Standard Rule:** Two or more nouns joined by 'and' take a **plural verb** (*Ravi and Sohan **are** collaborating*).",
+          "• **Single Unified Concept Exception:**",
+          "  - When two nouns connected by 'and' represent a single unified item, food, or thought, the verb is **SINGULAR**:",
+          "  - * **Bread and butter** **is** considered a wholesome breakfast.*",
+          "  - * **Time and tide** **waits** for no man.*",
+          "  - * **Slow and steady** **wins** the race.*",
+          "• **Article Placement for Two Titles:**",
+          "  - Determiner before the first noun only = One person -> **Singular Verb**:",
+          "    - * **The** headmaster and secretary **has** approved the holiday.* (One individual holding both roles).",
+          "  - Determiner before both nouns = Two distinct persons -> **Plural Verb**:",
+          "    - * **The** headmaster and **the** secretary **have** approved the holiday.* (Two distinct individuals)."
+        ]
+      },
+      {
+        "title": "Parenthetical Connectors & The First Subject Rule",
+        "points": [
+          "When subjects are linked by parenthetical phrases such as **as well as, along with, together with, in addition to, accompanied by, with, like, unlike, besides**:",
+          "• **The Verb Agrees STRICTLY with the FIRST Subject:**",
+          "  - *The captain, **along with his teammates**, **was** greeted with thunderous applause.* ('Captain' is singular).",
+          "  - *The teachers, **as well as the principal**, **were** present at the convocation.* ('Teachers' is plural).",
+          "  - *Iron, **in addition to copper**, **is** produced in large quantities.*",
+          "• **The Proximity Rule (Either...Or / Neither...Nor):**",
+          "  - When joined by **either...or**, **neither...nor**, or **not only...but also**, the verb agrees with the **NEAREST subject**:",
+          "  - *Neither the coach nor the **athletes were** satisfied with the track.* ('Athletes' is closer -> plural).",
+          "  - *Neither the athletes nor the **coach was** satisfied.* ('Coach' is closer -> singular)."
         ]
       }
     ],
     "keyTerms": [
       {
         "term": "Concord",
-        "meaning": "Agreement between subject and verb in number and person."
+        "meaning": "Syntactic agreement in number and person between the subject head word and its finite verb."
       },
       {
-        "term": "Proximity Rule",
-        "meaning": "Agreement with the subject closest to the verb in either/or sentences."
+        "term": "Intervening Modifier",
+        "meaning": "A descriptive phrase situated between the subject and verb that must not influence verb number."
+      },
+      {
+        "term": "Disjunctive Concord",
+        "meaning": "Agreement with the nearer subject in structures coordinated by 'or' or 'nor'."
       }
     ],
     "examTips": [
-      "Ignore prepositional phrases like 'of pencils' or 'in the room' when checking subject-verb concord.",
-      "In neither...nor questions, locate the subject right before the verb to decide singular or plural."
+      "In sentences with 'as well as' or 'along with', mentally cross out everything between the commas to find the real subject.",
+      "With 'neither...nor', look ONLY at the noun directly preceding the verb to decide singular or plural."
     ]
   },
   {
@@ -481,41 +701,64 @@ export const englishNotes9: ChapterNote[] = [
     "classLevel": 9,
     "chapterNo": 11,
     "title": "Difficult Agreement Patterns: Indefinite Pronouns, Distributives & Units",
-    "unit": "Unit 4: Subject–Verb Concord",
-    "overview": "Challenging concord cases: indefinite pronouns (everyone, someone), each of, a number of vs the number of, measurements, and pair nouns.",
+    "unit": "Unit 3: Subject–Verb Concord & Determiners",
+    "overview": "Master complex subject-verb agreement patterns frequently tested in Class 9 exams: indefinite pronouns (each, everyone, neither), measurements of distance and currency, and fractional collective expressions.",
     "sections": [
       {
-        "title": "Indefinite Pronouns and Distributives",
+        "title": "Indefinite Pronouns and Distributive Agreement",
         "points": [
-          "• **Always Singular:** *everyone, everybody, someone, somebody, anyone, anybody, no one, nobody, each, every, either, neither* take a **singular verb**:",
-          "• *Everyone **has** arrived.* *Each of the boys **was** present.* *Neither answer **is** correct.*",
-          "• **Always Plural:** *many, few, several, both* take a **plural verb**:",
-          "• *Many **were** absent.*"
+          "• **Singular Indefinite Pronouns (Take SINGULAR Verbs):**",
+          "  - Pronouns ending in **-body**, **-one**, and **-thing** (*everybody, everyone, somebody, someone, nobody, no one, anybody, anyone, everything, something, nothing*):",
+          "  - *Everyone **has** submitted the annual assignment.* (NOT 'have').",
+          "  - *Nobody **is** permitted to leave the examination room early.*",
+          "  - *Nothing **was** recovered from the debris.*",
+          "• **Distributives (Each, Either, Neither):**",
+          "  - When used as pronouns followed by 'of + plural noun', the verb is strictly **SINGULAR**:",
+          "  - *Each of the twenty participating delegates **was** given a souvenir.*",
+          "  - *Either of the two proposed routes **leads** directly to the observatory.*",
+          "  - *Neither of the two solutions **is** viable.*"
         ]
       },
       {
-        "title": "A Number of vs The Number of, and Units",
+        "title": "Measurements, Distances, Currency & Time Units",
         "points": [
-          "• **A number of + plural noun + PLURAL verb:** 'A number of students **have** applied.' (means several).",
-          "• **The number of + plural noun + SINGULAR verb:** 'The number of applicants **is** rising.' (means the numerical total).",
-          "• **Measurements as Units:** 'Ten kilometres **is** a long distance.' 'Fifty rupees **is** enough.'",
-          "• **Pair Nouns:** 'The scissors **are** sharp.' vs 'A pair of scissors **is** on the desk.'"
+          "• When a plural noun denotes a specific **quantity, sum of money, duration of time, or distance** considered as a single unified whole, it requires a **SINGULAR VERB**:",
+          "  - *Ten kilometers **is** a considerable distance to trek on foot.*",
+          "  - *Fifty thousand rupees **was** allocated for the science fair.*",
+          "  - *Three hours **is** the official duration for the final examination.*",
+          "• *Contrast:* When individual currency units or coins are considered separately, the verb is plural: *Fifty silver coins **were** scattered across the carpet.*"
+        ]
+      },
+      {
+        "title": "A Number of vs The Number of & Fractional Expressions",
+        "points": [
+          "• **A number of vs The number of:**",
+          "  - **A number of** + plural noun = **PLURAL VERB** (*A number of migratory birds **have** arrived at the sanctuary*).",
+          "  - **The number of** + plural noun = **SINGULAR VERB** (*The number of endangered species **is** increasing*).",
+          "• **Fractions and Percentages (The Noun-Governed Rule):**",
+          "  - The verb agrees with the noun that follows 'of':",
+          "  - Uncountable noun -> Singular verb: *Two-thirds of the agricultural land **is** cultivated.*",
+          "  - Countable plural noun -> Plural verb: *Two-thirds of the students **are** participating in sports.*"
         ]
       }
     ],
     "keyTerms": [
       {
-        "term": "Indefinite Pronoun",
-        "meaning": "A pronoun referring to an unspecified person (everyone, someone) taking a singular verb."
+        "term": "Distributive Pronoun",
+        "meaning": "A pronoun considering members of a group individually, requiring singular concord."
       },
       {
-        "term": "Unit of Measurement",
-        "meaning": "A distance, sum, or time treated as a single composite quantity taking a singular verb."
+        "term": "Unified Measure",
+        "meaning": "Treating a plural measurement of distance or money as an indivisible singular entity."
+      },
+      {
+        "term": "Fractional Concord",
+        "meaning": "Agreement governed by the nominal complement of the preposition 'of' in fractional constructions."
       }
     ],
     "examTips": [
-      "'Each of the [plural noun]' ALWAYS takes a singular verb in Class 9 English grammar.",
-      "'The news is', 'Mathematics is', 'Physics is'—these end in -s but are singular."
+      "Remember: 'A number of' takes a plural verb, while 'The number of' takes a singular verb.",
+      "Always use a singular verb with 'Each of the': 'Each of the books was praised'."
     ]
   },
   {
@@ -524,44 +767,65 @@ export const englishNotes9: ChapterNote[] = [
     "classLevel": 9,
     "chapterNo": 12,
     "title": "Determiners & Articles (A, An, The & Zero Article)",
-    "unit": "Unit 5: Determiners & Articles",
-    "overview": "Rules for indefinite articles based on initial sounds (a university vs an hour), definite article 'the' for specific and unique references, and zero article rules.",
+    "unit": "Unit 3: Subject–Verb Concord & Determiners",
+    "overview": "Master Determiners and Articles in Class 9 English. Learn the sound-based rules for A and An, master the definite article The for geographical and institutional referents, and understand Zero Article omissions.",
     "sections": [
       {
-        "title": "Phonetic Sound Rules for A and An",
+        "title": "Indefinite Articles: A and An Mechanics",
         "points": [
-          "• Use **'a'** before words starting with a **consonant sound**:",
-          "• *a university* (sound /juː/)",
-          "• *a European* (sound /j/)",
-          "• *a one-rupee coin* (sound /w/)",
-          "• *a union*, *a uniform*, *a book*",
-          "• Use **'an'** before words starting with a **vowel sound**:",
-          "• *an honest man* (silent 'h', sound /ɒ/)",
-          "• *an hour* (silent 'h')",
-          "• *an umbrella*, *an apple*, *an MBA student*"
+          "• The choice between 'A' and 'An' is determined **100% by the initial phonetic sound**, not alphabet spelling:",
+          "• **Use 'A' before Consonant Sounds:**",
+          "  - *a telescope, a laboratory, a scholar*.",
+          "  - *Words with initial vowel letters but consonant sounds (/j/ and /w/):*",
+          "    - **a university** (/juː/ sound), **a European** (/jʊə/), **a unique design**, **a uniform**.",
+          "    - **a one-rupee coin** (/wʌn/ sound), **a one-day seminar**.",
+          "• **Use 'An' before Vowel Sounds:**",
+          "  - *an apparatus, an experiment, an observatory*.",
+          "  - *Words with silent initial 'H':*",
+          "    - **an hour**, **an honest evaluation**, **an heir**, **an honorable guest**.",
+          "  - *Initialisms starting with vowel phonemes:* **an FIR** (/ef/), **an MLA** (/em/), **an MP**, **an NCC officer**."
         ]
       },
       {
-        "title": "The Definite Article 'The' and Zero Article",
+        "title": "The Definite Article 'The': Key Situations in CBSE Texts",
         "points": [
-          "• **Use 'the' for:** already mentioned nouns (*I saw a dog; the dog was black*), unique celestial bodies (*the Sun, the Moon*), superlatives (*the best*), ordinals (*the first*), rivers/oceans/mountain ranges (*the Ganga, the Himalayas*).",
-          "• **Zero article for:** plural nouns in general (*Books are friends*), uncountable nouns in general (*Water is life*), proper names (*India, Delhi*), school subjects (*physics, English*)."
+          "• **1. Unique Celestial & Geographic Entities:** *the Sun, the Moon, the equator, the ozone layer*.",
+          "• **2. Mountain Ranges & Island Groups:** *the Himalayas, the Alps, the Andamans* (Never before single peaks like *Mount Everest*).",
+          "• **3. Water Bodies:** *the Indian Ocean, the Arabian Sea, the Ganga, the Brahmaputra*.",
+          "• **4. Holy Books & Press:** *the Vedas, the Quran, the Times of India*.",
+          "• **5. Superlatives & Ordinals:** *the fastest runner, the most critical parameter, the second session*.",
+          "• **6. Specific Reference:** When a noun is modified by an identifying relative clause: * **The** scientist who formulated this hypothesis received the award.*"
+        ]
+      },
+      {
+        "title": "Omission of Articles (Zero Article Laws)",
+        "points": [
+          "• **Rule 1 — Before Proper Nouns:** *New Delhi, Dr. Kalam, India* (Never 'the New Delhi').",
+          "• **Rule 2 — Before Languages and Subjects:** *She speaks German fluently* (Not 'the German'); *He excels in Chemistry*.",
+          "• **Rule 3 — Before Names of Meals:** *We had breakfast at dawn* (Not 'the breakfast').",
+          "• **Rule 4 — Primary Purpose Rule for Institutions:**",
+          "  - *The injured athlete was taken to **hospital**.* (For treatment -> No article).",
+          "  - *His coach went to **the hospital** to visit him.* (As a visitor -> Use 'the')."
         ]
       }
     ],
     "keyTerms": [
       {
-        "term": "Phonetic Sound Rule",
-        "meaning": "Selecting 'a' or 'an' based on spoken sound rather than written letter."
+        "term": "Phonetic Selection",
+        "meaning": "Selecting articles strictly based on opening phoneme sound rather than grapheme spelling."
+      },
+      {
+        "term": "Definite Reference",
+        "meaning": "Using 'the' to signal an entity uniquely known to both author and reader."
       },
       {
         "term": "Zero Article",
-        "meaning": "Omitting the article before generalized plural, mass, or proper nouns."
+        "meaning": "The deliberate absence of an article preceding non-specific mass nouns and proper nouns."
       }
     ],
     "examTips": [
-      "Say the word aloud: 'honest' starts with an 'o' sound, so use 'an'. 'University' starts with a 'y' sound, so use 'a'.",
-      "Do not use 'the' before abstract nouns used generally: write 'Honesty is key', not 'The honesty'."
+      "Write 'a European' and 'a university', but 'an hour' and 'an honest man'.",
+      "Never use 'the' before individual mountain peaks: say 'Mount Everest', not 'the Mount Everest'."
     ]
   },
   {
@@ -570,39 +834,63 @@ export const englishNotes9: ChapterNote[] = [
     "classLevel": 9,
     "chapterNo": 13,
     "title": "Quantifiers, Distributives, Demonstratives & Possessives",
-    "unit": "Unit 5: Determiners & Articles",
-    "overview": "Quantifiers (much/many, few/a few, little/a little), demonstratives (this, that, these, those), possessives, and distributives.",
+    "unit": "Unit 3: Subject–Verb Concord & Determiners",
+    "overview": "Master the complete spectrum of non-article determiners. Understand Much vs Many, Little vs Few, Each vs Every, and the subtle differences between Demonstratives and Possessives in contextual Class 9 passages.",
     "sections": [
       {
-        "title": "Quantifier Pairs: Countable vs Uncountable",
+        "title": "Quantifiers: Much, Many, Little, Few",
         "points": [
-          "• **Many** + plural countable (*many books*) vs **Much** + uncountable (*much sugar*).",
-          "• **Few** (hardly any, negative) vs **A few** (some, positive) with plural countables: *Few students passed* (bad result) vs *A few students passed* (some did pass).",
-          "• **Little** (hardly any, negative) vs **A little** (some, positive) with uncountables: *Little hope* (almost none) vs *A little hope* (some hope).",
-          "• **Fewer** for countables (*fewer errors*) vs **Less** for uncountables (*less waste*)."
+          "• **Much vs Many:**",
+          "  - **MUCH:** Modifies **uncountable nouns** in negative statements and questions: *We do not have **much** time; How **much** water remains?*",
+          "  - **MANY:** Modifies **plural countable nouns**: * **Many** delegates attended the summit; How **many** experiments failed?*",
+          "• **Little (Uncountable) vs Few (Countable):**",
+          "  - *Little / Few (Negative connotation):* Means scarcely any, almost none (*He has **little** patience*; *He has **few** friends*).",
+          "  - *A Little / A Few (Positive connotation):* Means a small, helpful quantity (*There is **a little** water left*; *He has **a few** close allies*).",
+          "  - *The Little / The Few:* Means all of the small amount available (*He spent **the little** money he possessed*)."
         ]
       },
       {
-        "title": "Demonstratives and Possessives",
+        "title": "Distributive Determiners: Each, Every, Either, Neither",
         "points": [
-          "• **This / That** (singular) vs **These / Those** (plural). Must agree in number: *these books*, not *these book*.",
-          "• **Its** (possessive determiner: *The dog wagged its tail*) vs **It's** (contraction: *It is raining*)."
+          "• **Each vs Every:**",
+          "  - **Each:** Focuses on individual members of a group; used for **two or more**: * **Each** student received an interactive kit.*",
+          "  - **Every:** Focuses on the collection as a whole; used **only for three or more**: * **Every** citizen must uphold the law.*",
+          "  - Both 'Each' and 'Every' require a **SINGULAR NOUN and SINGULAR VERB**.",
+          "• **Either vs Neither:**",
+          "  - Restricted strictly to choices between **TWO items**:",
+          "  - *You may board **either** of the two coaches.* (One or the other).",
+          "  - * **Neither** of the two proposals was approved.* (Not one and not the other)."
+        ]
+      },
+      {
+        "title": "Demonstrative & Possessive Determiners",
+        "points": [
+          "• **Demonstratives (This, That, These, Those):**",
+          "  - Singular/Near: *This instrument* | Plural/Near: *These instruments*.",
+          "  - Singular/Distant: *That peak* | Plural/Distant: *Those constellations*.",
+          "• **Possessive Determiners vs Possessive Pronouns:**",
+          "  - *Possessive Determiner (Precedes a noun):* **my, your, his, her, its, our, their** (*This is **my** project*).",
+          "  - *Possessive Pronoun (Stands alone):* **mine, yours, his, hers, ours, theirs** (*This project is **mine***)."
         ]
       }
     ],
     "keyTerms": [
       {
-        "term": "Few vs A Few",
-        "meaning": "Few = negative (almost none); A few = positive (some) for countable nouns."
+        "term": "Quantifier",
+        "meaning": "A determiner indicating the indefinite quantity or numerical amount of a noun."
       },
       {
-        "term": "Little vs A Little",
-        "meaning": "Little = negative (almost none); A little = positive (some) for uncountable nouns."
+        "term": "Distributive Determiner",
+        "meaning": "A determiner focusing upon individual components of a collective aggregate."
+      },
+      {
+        "term": "Possessive Determiner",
+        "meaning": "A noun-modifying possessive form like 'their' or 'our', distinct from stand-alone possessive pronouns."
       }
     ],
     "examTips": [
-      "Check whether the noun is countable or uncountable before choosing many/much or few/little.",
-      "Possessive 'its' NEVER has an apostrophe."
+      "In editing passages, check countability: do not allow 'much books' (use 'many') or 'many sugar' (use 'much').",
+      "Remember: 'Either' and 'Neither' refer strictly to two options; for 3 or more, use 'any' or 'none'."
     ]
   },
   {
@@ -611,44 +899,62 @@ export const englishNotes9: ChapterNote[] = [
     "classLevel": 9,
     "chapterNo": 14,
     "title": "Noun Clauses: Forms, Functions & Indirect Word Order",
-    "unit": "Unit 6: Clauses & Sentence Synthesis",
-    "overview": "Noun clauses as subjects, objects, and complements. Connectors (that, whether, wh-words) and declarative word order rules.",
+    "unit": "Unit 4: Clauses & Sentence Synthesis",
+    "overview": "Master Noun Clauses in the CBSE Class 9 curriculum. Learn how noun clauses function as subjects, objects, and complements, and understand the vital declarative word-order rule in embedded interrogatives.",
     "sections": [
       {
-        "title": "Definition and Syntactic Functions of Noun Clauses",
+        "title": "What is a Noun Clause?",
         "points": [
-          "A **noun clause** is a dependent subordinate clause that performs the grammatical role of a noun or noun phrase.",
-          "It can function as:",
-          "• **Subject of a verb:** * **What she said** surprised the entire class.*",
-          "• **Object of a transitive verb:** *I know **that she is honest**.* *Nobody knows **where he went**.*",
-          "• **Subject complement:** *The truth is **that we need more time**.*",
-          "• **Complement of a preposition:** *We discussed **what we should do next**.*"
+          "• **Definition:** A Noun Clause is a subordinate dependent clause that performs the exact same grammatical job that a single noun performs in a sentence.",
+          "• It usually begins with connectors like **that, what, whatever, who, whoever, whether, if, why, where, how**.",
+          "• **Syntactic Functions of Noun Clauses:**",
+          "  1. **Subject of a Finite Verb:** * **What he declared at the podium** surprised the entire gathering.*",
+          "  2. **Direct Object of a Transitive Verb:** *The proctor announced **that the session had concluded**.*",
+          "  3. **Object of a Preposition:** *Pay strict attention **to what the instructor explains**.*",
+          "  4. **Subject Complement (after 'be'):** *My conviction is **that hard work always yields results**.*",
+          "  5. **In Apposition to a Noun:** *The rumor **that the examination was postponed** proved baseless.*"
         ]
       },
       {
-        "title": "Statement Word Order in Noun Clauses",
+        "title": "Embedded Questions: The Declarative Word Order Trap",
         "points": [
-          "In a noun clause introduced by a wh-word or whether/if, the word order **must be declarative (Subject + Verb)**, never inverted like a direct question:",
-          "• Incorrect: *I don't know where is he.*",
-          "• Correct: *I don't know **where he is**.*",
-          "• Incorrect: *Tell me why did you leave.*",
-          "• Correct: *Tell me **why you left**.*"
+          "When an indirect question functions as a noun clause inside another sentence, **it ceases to be an inverted interrogative**:",
+          "• **Rule:** In an embedded noun clause, the **SUBJECT MUST PRECEDE THE VERB (S + V)**, and question auxiliaries (*do, does, did*) must be eliminated!",
+          "• **Incorrect vs Correct Examples:**",
+          "  - *Incorrect:* I do not know where does he live.",
+          "  - *Correct:* I do not know **where he lives**.",
+          "  - *Incorrect:* Can you explain why were you absent yesterday?",
+          "  - *Correct:* Can you explain **why you were absent** yesterday?",
+          "  - *Incorrect:* Tell me what is your designation.",
+          "  - *Correct:* Tell me **what your designation is**."
+        ]
+      },
+      {
+        "title": "Noun Clauses with 'That' vs 'What'",
+        "points": [
+          "• **'That'** introduces a statement of fact: *She knows **that** the climate is changing.*",
+          "• **'What'** represents 'the thing which': *I cannot understand **what** he is trying to prove.*",
+          "• *Class 9 Trap:* Avoid writing 'that what' together: *He repeated that what he had said* -> **Correct:** *He repeated **what** he had said.*"
         ]
       }
     ],
     "keyTerms": [
       {
         "term": "Noun Clause",
-        "meaning": "A dependent clause functioning as a subject, object, or complement."
+        "meaning": "A dependent clause fulfilling the nominal role of subject, object, or complement in a matrix sentence."
       },
       {
-        "term": "Declarative Word Order",
-        "meaning": "Placing the subject before the verb in an embedded subordinate clause."
+        "term": "Embedded Question",
+        "meaning": "An interrogative clause transformed into an embedded noun clause using statement word order (S + V)."
+      },
+      {
+        "term": "Apposition",
+        "meaning": "A noun clause positioned directly adjacent to a noun to explain or define it."
       }
     ],
     "examTips": [
-      "To test if a clause is a noun clause, replace it with 'something' or 'it': 'I know [that she is honest]' -> 'I know [it]'.",
-      "Never invert subject and verb inside a noun clause: write 'where she lives', not 'where does she live'."
+      "In embedded noun clauses, never use question word order: write 'I wonder why she left', not 'why did she leave'.",
+      "Never combine 'that' and 'what' side-by-side: write 'what he said', not 'that what he said'."
     ]
   },
   {
@@ -657,46 +963,67 @@ export const englishNotes9: ChapterNote[] = [
     "classLevel": 9,
     "chapterNo": 15,
     "title": "Relative Clauses: Defining & Non-defining Structures",
-    "unit": "Unit 6: Clauses & Sentence Synthesis",
-    "overview": "Relative clauses modifying nouns. Relative pronouns (who, whom, whose, which, that). Defining versus non-defining relative clauses.",
+    "unit": "Unit 4: Clauses & Sentence Synthesis",
+    "overview": "Master Relative (Adjective) Clauses prescribed in the CBSE Class 9 syllabus. Understand Defining versus Non-defining relative clauses, punctuation mechanics (commas), and relative pronoun selection (who, whom, whose, which, that).",
     "sections": [
       {
-        "title": "Relative Pronouns and Antecedents",
+        "title": "What is a Relative (Adjective) Clause?",
         "points": [
-          "A **relative clause** describes or identifies a preceding noun or pronoun called its **antecedent**.",
-          "• **Who:** For people as subject (*The girl **who won** the medal is my sister*).",
-          "• **Whom:** For people as object in formal English (*The scholar **whom we met** was humble*).",
-          "• **Whose:** Shows possession (*The writer **whose book** won the award*).",
-          "• **Which:** For animals and inanimate objects (*The computer **which I bought** works fast*).",
-          "• **That:** For people or things in defining clauses (*The book **that you lent me** was thrilling*)."
+          "• **Definition:** A Relative Clause is a dependent clause that modifies a preceding noun or pronoun (called its **Antecedent**), telling us which person, place, or thing is meant.",
+          "• Introduced by **Relative Pronouns** (*who, whom, whose, which, that*) or **Relative Adverbs** (*where, when, why*):",
+          "  - *The author **who penned this monograph** was awarded the Pulitzer Prize.* (Modifies 'author').",
+          "  - *The telescope **that sits on the observatory terrace** was imported from Germany.* (Modifies 'telescope')."
         ]
       },
       {
-        "title": "Defining versus Non-Defining Relative Clauses",
+        "title": "Defining (Restrictive) vs Non-defining (Non-restrictive) Clauses",
         "points": [
-          "• **Defining (Restrictive):** Essential to identify which person/thing is meant; **no commas**: *Students **who work hard** usually succeed.*",
-          "• **Non-defining (Non-restrictive):** Adds extra, non-essential information about an already identified noun; **separated by commas**: *My mother, **who is a doctor**, works at City Hospital.*",
-          "• **Rule:** Never use 'that' in a non-defining relative clause (do not write 'My mother, that is a doctor...')."
+          "This distinction governs both meaning and comma punctuation in formal English:",
+          "• **1. Defining Relative Clauses (No Commas):**",
+          "  - Provides **essential information** needed to identify the exact person or object. If removed, the sentence loses its intended meaning:",
+          "  - *The students **who completed the laboratory module** were awarded bonus credits.*",
+          "  - (Only those specific students were awarded credits; no commas are used!).",
+          "  - 'That' can be freely used in defining clauses: *The report **that you submitted** is flawless.*",
+          "• **2. Non-defining Relative Clauses (Enclosed in Commas):**",
+          "  - Provides **extra, non-essential information** about a person or entity that is already uniquely identified:",
+          "  - *Dr. A.P.J. Abdul Kalam, **who served as the President of India**, was a renowned missile scientist.*",
+          "  - (Even if you remove the clause, we know exactly who Dr. Kalam is!).",
+          "  - **The Comma Rule:** Non-defining clauses MUST be enclosed within commas.",
+          "  - **The 'That' Prohibition:** You **CANNOT use 'that'** in a non-defining clause! (Use 'who' for humans, 'which' for objects)."
+        ]
+      },
+      {
+        "title": "Selecting the Correct Relative Pronoun in Class 9",
+        "points": [
+          "• **Who:** Subject pronoun for people (*The boy **who** won*).",
+          "• **Whom:** Object pronoun for people (*The teacher **whom** we met*).",
+          "• **Whose:** Possessive marker for people and animals (*The girl **whose** notebook was lost*).",
+          "• **Which:** Used for animals and inanimate objects (*The device **which** was repaired*).",
+          "• **That:** Mandatory after superlatives, 'all', 'the only', 'the same': *This is the **best** book **that** I have read.*"
         ]
       }
     ],
     "keyTerms": [
       {
-        "term": "Antecedent",
-        "meaning": "The noun or pronoun modified by a subsequent relative clause."
+        "term": "Relative Clause",
+        "meaning": "A subordinate clause functioning adjectivally to describe an antecedent noun."
       },
       {
         "term": "Defining Clause",
-        "meaning": "A relative clause essential to identifying the antecedent, written without commas."
+        "meaning": "An indispensable relative clause restricting noun reference, written without commas."
       },
       {
         "term": "Non-Defining Clause",
-        "meaning": "A relative clause adding parenthetical extra info, enclosed by commas."
+        "meaning": "A supplementary descriptive relative clause surrounded by parenthetical commas."
+      },
+      {
+        "term": "Antecedent",
+        "meaning": "The nominal entity preceding and modified by a relative clause."
       }
     ],
     "examTips": [
-      "Use 'who' for people and 'which/that' for objects. Never use 'which' for a person in editing tasks.",
-      "If a relative clause is enclosed by commas, do not use 'that'—use 'who' or 'which'."
+      "Never use 'that' inside a clause surrounded by commas: write 'Mumbai, which is on the coast', NOT 'Mumbai, that is'.",
+      "Use 'whose' to show possession in relative clauses: 'The student whose project won first prize'."
     ]
   },
   {
@@ -705,40 +1032,66 @@ export const englishNotes9: ChapterNote[] = [
     "classLevel": 9,
     "chapterNo": 16,
     "title": "Adverb Clauses of Condition, Time, Reason & Contrast",
-    "unit": "Unit 6: Clauses & Sentence Synthesis",
-    "overview": "Comprehensive coverage of adverb clauses of condition (if, unless), time (when, while, until), reason (because, since), contrast (although, though), and result (so that).",
+    "unit": "Unit 4: Clauses & Sentence Synthesis",
+    "overview": "Learn how Adverb Clauses modify verbs, adjectives, and other adverbs in complex sentences. Master the four primary types tested in CBSE Class 9: Condition, Time, Reason, and Contrast with precise conjunction usage.",
     "sections": [
       {
         "title": "What is an Adverb Clause?",
         "points": [
-          "An **adverb clause** is a dependent clause that modifies a verb, adjective, or adverb in the main clause, explaining when, why, how, under what condition, or with what contrast an action occurs.",
-          "It is always introduced by a subordinating conjunction."
+          "• **Definition:** An Adverb Clause is a dependent subordinate clause that acts as an adverb, indicating **when, where, why, under what condition, or with what contrast** the main action takes place.",
+          "• It is always introduced by a subordinating conjunction and contains its own subject and finite verb."
         ]
       },
       {
-        "title": "Major Types of Adverb Clauses in Class 9",
+        "title": "The Four Core Types of Adverb Clauses in Class 9",
         "points": [
-          "1. **Adverb Clause of Condition:** *If it rains*, we will stay indoors. *Unless you study*, you will not pass.",
-          "2. **Adverb Clause of Time:** We left *when the bell rang*. He waited *until the bus arrived*. She reads *while she travels*.",
-          "3. **Adverb Clause of Reason / Cause:** She succeeded *because she worked diligently*. *Since it was late*, we took a taxi.",
-          "4. **Adverb Clause of Contrast / Concession:** *Although he was tired*, he finished the assignment. (Never combine 'although' and 'but').",
-          "5. **Adverb Clause of Result / Purpose:** He spoke clearly *so that everyone could understand*."
+          "• **1. Adverb Clauses of Time (When?):**",
+          "  - Connectors: *when, whenever, while, as, before, after, since, until, as soon as*:",
+          "  - * **As soon as the alarm sounded**, the building was safely evacuated.*",
+          "  - *He had finished his homework **before the guests arrived**.*",
+          "• **2. Adverb Clauses of Reason / Cause (Why?):**",
+          "  - Connectors: *because, since, as*:",
+          "  - *The expedition was halted **because the blizzards obstructed visibility**.*",
+          "  - * **Since you were absent yesterday**, you must consult your classmate's notes.*",
+          "• **3. Adverb Clauses of Condition (Under what circumstances?):**",
+          "  - Connectors: *if, unless, provided that, in case*:",
+          "  - *We will depart at dawn **provided that the weather remains clear**.*",
+          "  - * **Unless you practice consistently**, you cannot master coding.*",
+          "• **4. Adverb Clauses of Contrast / Concession (Unexpected outcome):**",
+          "  - Connectors: *although, though, even though, whereas, while*:",
+          "  - * **Although the problem was intricate**, the students formulated an elegant solution.*",
+          "  - * **Though he was exhausted**, he completed the marathon.*"
+        ]
+      },
+      {
+        "title": "Common Conjunction Clashes in Exam Questions",
+        "points": [
+          "• **Clash 1 — 'Although... but':** Never pair 'although' with 'but'! Use 'yet' or simply a comma:",
+          "  - *Incorrect:* Although he worked hard, but he failed.",
+          "  - *Correct:* **Although he worked hard, he failed.**",
+          "• **Clash 2 — 'Because... therefore':** Never combine 'because' with 'therefore' or 'so':",
+          "  - *Incorrect:* Because it was raining, therefore the match was cancelled.",
+          "  - *Correct:* **Because it was raining, the match was cancelled.**"
         ]
       }
     ],
     "keyTerms": [
       {
         "term": "Adverb Clause",
-        "meaning": "A subordinate clause modifying a verb, adjective, or adverb."
+        "meaning": "A subordinate clause modifying a verb, adjective, or main clause expressing circumstances like time, reason, or condition."
       },
       {
-        "term": "Concession",
-        "meaning": "Expressing contrast using although, though, or even though."
+        "term": "Clause of Concession",
+        "meaning": "An adverb clause introduced by 'although/though' acknowledging a contrasting reality."
+      },
+      {
+        "term": "Conjunction Pairing Error",
+        "meaning": "The faulty syntactic duplication of correlative conjunctions like 'although... but'."
       }
     ],
     "examTips": [
-      "Never pair 'although' with 'but' in the same sentence: write 'Although he was tired, he worked', not 'Although he was tired, but he worked'.",
-      "Adverb clauses of time use simple present when referring to the future."
+      "In editing passages, immediately eliminate 'but' if the sentence already begins with 'Although'.",
+      "Remember that 'Since' at the beginning of a sentence can denote reason: 'Since it was late, we returned home'."
     ]
   },
   {
@@ -747,44 +1100,63 @@ export const englishNotes9: ChapterNote[] = [
     "classLevel": 9,
     "chapterNo": 17,
     "title": "Active and Passive Voice in Class 9 Grammar",
-    "unit": "Unit 6: Clauses & Sentence Synthesis",
-    "overview": "Active versus passive voice in Class 9: transitive verbs, passive formula (be + V3), tense transformations, and agent inclusion/omission rules.",
+    "unit": "Unit 5: Voice & Reported Speech",
+    "overview": "Master Active and Passive Voice for Class 9 sentence transformation, editing, and factual reporting. Learn the step-by-step conversion process across all prescribed tenses, and understand when passive voice is preferred.",
     "sections": [
       {
-        "title": "Active vs Passive Voice Mechanics",
+        "title": "When and Why We Use Passive Voice",
         "points": [
-          "• **Active Voice:** The subject performs the action: *The chef **prepared** a delicious meal.*",
-          "• **Passive Voice:** The object becomes the subject and receives the action: *A delicious meal **was prepared** by the chef.*",
-          "**Formula:** Object becomes Subject + appropriate form of **BE** + **Past Participle (V3)** + (by + agent).",
-          "Only **transitive verbs** (verbs with an object) can be converted into passive voice. Intransitive verbs (*The baby slept*) cannot form a passive."
+          "• In Class 9, Passive Voice is essential for **scientific reports, news bulletins, notices, and formal descriptions** where the focus belongs on the action or recipient:",
+          "  - *Action focus:* 'The telescope **was calibrated** prior to the celestial observation.'",
+          "  - *Unknown agent:* 'The historical inscription **was discovered** during archaeological excavation.'",
+          "  - *Obvious agent:* 'The traffic violator **was penalized**.' (Naturally by traffic police)."
         ]
       },
       {
-        "title": "Voice Changes Across Tenses",
+        "title": "The Step-by-Step Tense Conversion Engine",
         "points": [
-          "• Simple Present: writes -> *is/are written*",
-          "• Present Continuous: is writing -> *is/are being written*",
-          "• Present Perfect: has written -> *has/have been written*",
-          "• Simple Past: wrote -> *was/were written*",
-          "• Past Continuous: was writing -> *was/were being written*",
-          "• Simple Future: will write -> *will be written*",
-          "• Modals: can write -> *can be written*"
+          "• **Simple Present:** *Sub + is/am/are + V3* (*The technician repairs the monitor* -> *The monitor **is repaired** by the technician*).",
+          "• **Present Continuous:** *Sub + is/am/are + being + V3* (*She is evaluating the data* -> *The data **are being evaluated** by her*).",
+          "• **Present Perfect:** *Sub + has/have + been + V3* (*They have finalized the roster* -> *The roster **has been finalized** by them*).",
+          "• **Simple Past:** *Sub + was/were + V3* (*The architect designed the pavilion* -> *The pavilion **was designed** by the architect*).",
+          "• **Past Continuous:** *Sub + was/were + being + V3* (*The crew was repairing the track* -> *The track **was being repaired** by the crew*).",
+          "• **Past Perfect:** *Sub + had + been + V3* (*He had resolved the glitch* -> *The glitch **had been resolved** by him*).",
+          "• **Simple Future:** *Sub + will be + V3* (*The board will publish the syllabus* -> *The syllabus **will be published** by the board*).",
+          "• **Modals:** *Modal + be + V3* (*We must preserve wetlands* -> *Wetlands **must be preserved** *)."
+        ]
+      },
+      {
+        "title": "Imperative and Prepositional Passives",
+        "points": [
+          "• **Imperative Commands (Let + Object + be + V3):**",
+          "  - *Active:* Submit your homework immediately.",
+          "  - *Passive:* **Let your homework be submitted** immediately.",
+          "• **Imperative Advice / Request:**",
+          "  - *Active:* Respect your teachers. -> *Passive:* **Your teachers should be respected.**",
+          "  - *Active:* Please maintain silence. -> *Passive:* **You are requested to maintain silence.**",
+          "• **Prepositional Verbs (Keep the particle attached!):**",
+          "  - *Active:* The committee looked into the matter.",
+          "  - *Passive:* The matter was **looked into by** the committee. (Never drop 'into'!)."
         ]
       }
     ],
     "keyTerms": [
       {
-        "term": "Transitive Verb",
-        "meaning": "A verb that takes an object and can be converted into passive voice."
+        "term": "Voice",
+        "meaning": "The grammatical category expressing whether the subject is the agent or recipient of the verbal action."
       },
       {
-        "term": "Passive Auxiliary",
-        "meaning": "The appropriate form of 'be' preceding the past participle (V3)."
+        "term": "Agent Retention",
+        "meaning": "Preserving the doer of the action using the 'by + agent' phrase when contextually relevant."
+      },
+      {
+        "term": "Continuous Passive",
+        "meaning": "Inserting the auxiliary 'being' before V3 in continuous passive transformations."
       }
     ],
     "examTips": [
-      "Check the original tense before converting to passive voice: maintain the tense accurately.",
-      "Do not add an agent if the original sentence did not identify one (e.g., 'Someone stole my pen' -> 'My pen was stolen')."
+      "In continuous passive transformations, always remember to insert 'being': 'is being written', not 'is written'.",
+      "In perfect passive transformations, always insert 'been': 'has been completed', not 'has completed'."
     ]
   },
   {
@@ -793,38 +1165,69 @@ export const englishNotes9: ChapterNote[] = [
     "classLevel": 9,
     "chapterNo": 18,
     "title": "Reported Speech: Foundations & Reporting Verbs",
-    "unit": "Unit 7: Reported Speech",
-    "overview": "Direct versus indirect speech fundamentals: quotation marks removal, say versus tell, and the core transformation workflow.",
+    "unit": "Unit 5: Voice & Reported Speech",
+    "overview": "Master the foundational mechanics of Direct and Indirect Speech. Understand reporting verbs, reporting clauses, dialogue transcription, and the introductory rules for transforming conversational speech into narrative text.",
     "sections": [
       {
-        "title": "Direct and Indirect Speech Overview",
+        "title": "Direct Speech vs Indirect (Reported) Speech",
         "points": [
-          "• **Direct Speech:** Exact spoken words enclosed in quotation marks: *Rohan said, 'I am ready.'*",
-          "• **Reported Speech:** Indirect reporting without quotation marks: *Rohan said that he was ready.*",
-          "• Core changes: remove quotation marks and speech commas, insert connecting subordinator ('that', 'if', wh-word), backshift verb tenses (if reporting verb is past), and shift pronouns appropriately."
+          "• **Direct Speech:** Exact spoken utterances transcribed verbatim inside quotation marks (\" \"):",
+          "  - *The professor said to the scholars, \"We will commence the experiment at noon.\"*",
+          "• **Indirect Speech:** Reporting the substance of a conversation from the reporter's vantage point without quotation marks:",
+          "  - *The professor told the scholars that they would commence the experiment at noon.*",
+          "• In CBSE Class 9 questions, you are given a conversational comic strip or two-speaker dialogue and asked to complete the reported paragraph!"
         ]
       },
       {
-        "title": "Say versus Tell",
+        "title": "Reporting Verbs: Rules for Said, Told and Specialized Verbs",
         "points": [
-          "• **Say:** Used without an indirect personal object: *She **said** that she was tired.* (or *said to me*).",
-          "• **Tell:** Must take a personal object: *She **told me** that she was tired.* (Never write 'She told that' or 'She told to me')."
+          "• **The 'Said' vs 'Told' Rule:**",
+          "  - **Said:** Used when no indirect object (listener) is mentioned: *Ravi said that he was ready.*",
+          "  - **Said to -> Told:** Used when followed by a direct listener object: *Ravi **said to me** -> Ravi **told me**.*",
+          "  - **Iron Rule:** 'Told' NEVER takes the preposition 'to'! Write *He told me*, NOT *He told to me*.",
+          "• **Specialized Reporting Verbs that Elevate Language:**",
+          "  - Inquiries: *asked, enquired of, questioned*.",
+          "  - Directives: *ordered, instructed, commanded, directed*.",
+          "  - Politeness: *requested, pleaded, urged, begged*.",
+          "  - Recommendations: *advised, suggested, warned, recommended*."
+        ]
+      },
+      {
+        "title": "Reporting Verb Collocations and Indirect Objects",
+        "points": [
+          "• **Reporting Verbs Requiring an Indirect Object:** *told, reminded, informed, warned, assured* MUST have a listener object (*She informed us that the lecture was rescheduled*).",
+          "• **Reporting Verbs that DO NOT Take an Indirect Object directly:** *said, explained, remarked, mentioned* take a that-clause without an object (*She explained that...*, NOT *She explained us that...*)."
+        ]
+      },
+      {
+        "title": "The Present Reporting Verb Exception",
+        "points": [
+          "• When the reporting verb is in the **PRESENT TENSE (says, tells)** or **FUTURE TENSE (will say)**:",
+          "• **THE TENSE OF THE REPORTED SPEECH DOES NOT CHANGE AT ALL!**",
+          "  - *Direct:* The headmaster says, \"The school remains committed to excellence.\"",
+          "  - *Reported:* The headmaster says that the school **remains** committed to excellence. (Not 'remained').",
+          "  - *Direct:* He will say, \"I cannot attend the meet.\"",
+          "  - *Reported:* He will say that he **cannot attend** the meet."
         ]
       }
     ],
     "keyTerms": [
       {
-        "term": "Direct Speech",
-        "meaning": "Quoted exact words of a speaker."
+        "term": "Reporting Clause",
+        "meaning": "The clause containing the reporting verb (e.g., 'She said to me') that frames the reported utterance."
       },
       {
-        "term": "Reported Speech",
-        "meaning": "Indirect paraphrase of a speaker's message."
+        "term": "Reported Clause",
+        "meaning": "The clause containing the actual message or propositional content of the speaker."
+      },
+      {
+        "term": "Present Reporting Exception",
+        "meaning": "The rule precluding tense backshift when the reporting verb is in the present or future."
       }
     ],
     "examTips": [
-      "Never write 'He told that' in an exam; 'tell' requires a person being told: 'He told me that'.",
-      "If the reporting verb is in present ('She says'), do not backshift the tense."
+      "In dialogue completion, never write 'He told to him'—always write 'He told him'.",
+      "Notice whether the reporting verb is 'says' or 'said': if 'says', keep the exact same tense!"
     ]
   },
   {
@@ -833,41 +1236,70 @@ export const englishNotes9: ChapterNote[] = [
     "classLevel": 9,
     "chapterNo": 19,
     "title": "Reporting Statements: Pronouns & Tense Backshift",
-    "unit": "Unit 7: Reported Speech",
-    "overview": "Rules for reporting statements: tense backshift sequences, universal truth exceptions, and pronoun transformation guidelines.",
+    "unit": "Unit 5: Voice & Reported Speech",
+    "overview": "Learn the step-by-step methodology for converting assertive statements into indirect speech. Master the SON pronoun algorithm, tense backshift rules, and spatial-temporal deictic shifts.",
     "sections": [
       {
-        "title": "Tense Backshift in Statements",
+        "title": "The SON Pronoun Algorithm in Practice",
         "points": [
-          "When the reporting verb is in past simple (*said, told*):",
-          "• Present Simple -> Past Simple: *'I work' -> worked*",
-          "• Present Continuous -> Past Continuous: *'I am working' -> was working*",
-          "• Present Perfect -> Past Perfect: *'I have worked' -> had worked*",
-          "• Past Simple -> Past Perfect: *'I worked' -> had worked*",
-          "• Will -> Would; Can -> Could; May -> Might; Must -> Had to."
+          "Personal pronouns shift according to the logical identity of the speaker and listener:",
+          "• **S — First Person Pronouns (I, me, my, we, us, our):**",
+          "  - Shift according to the **SUBJECT** of the reporting verb:",
+          "  - *Aman said, \"**I** have misplaced **my** notes.\"*",
+          "  - *Reported:* Aman said that **he** had misplaced **his** notes.",
+          "• **O — Second Person Pronouns (you, your):**",
+          "  - Shift according to the **OBJECT (Listener)** of the reporting verb:",
+          "  - *The mentor said to **Priya**, \"**You** have performed admirably.\"*",
+          "  - *Reported:* The mentor told Priya that **she** had performed admirably.",
+          "• **N — Third Person Pronouns (he, she, it, they, him, her, them, their):**",
+          "  - Suffer **NO CHANGE** in reported speech:",
+          "  - *Ravi said, \"**They** have achieved international recognition.\"*",
+          "  - *Reported:* Ravi said that **they** had achieved international recognition."
         ]
       },
       {
-        "title": "Universal Truths and Pronoun Shifts",
+        "title": "The Systematic Tense Backshift Rules",
         "points": [
-          "• **Universal Truths:** Do not change tense: *The teacher said, 'The Earth revolves around the Sun'* -> *The teacher said that the Earth **revolves** around the Sun.*",
-          "• **Pronoun Shifts:** Change according to speaker and listener: *Ravi said, 'I lost my keys'* -> *Ravi said that **he** had lost **his** keys.*"
+          "When the reporting verb is in the past tense (*said, told, remarked*):",
+          "• **Simple Present (V1) -> Simple Past (V2):** *writes -> wrote*",
+          "• **Present Continuous (is/am/are) -> Past Continuous (was/were):** *is writing -> was writing*",
+          "• **Present Perfect (has/have) -> Past Perfect (had):** *has written -> had written*",
+          "• **Simple Past (V2) -> Past Perfect (had + V3):** *wrote -> had written*",
+          "• **Past Continuous (was/were + ing) -> Past Perfect Continuous (had been + ing):** *was writing -> had been writing*",
+          "• **Modals:** *will -> would*, *can -> could*, *may -> might*, *shall -> should/would*.",
+          "• **Invariant Modals:** *would, could, should, might, must* generally remain unchanged."
+        ]
+      },
+      {
+        "title": "Deictic Shifts: Time and Place Expressions",
+        "points": [
+          "Words denoting proximity shift to words denoting psychological or physical distance:",
+          "• *now* -> **then** | *today* -> **that day** | *tonight* -> **that night**",
+          "• *yesterday* -> **the previous day** or **the day before**",
+          "• *tomorrow* -> **the following day** or **the next day**",
+          "• *last week / month* -> **the previous week / month**",
+          "• *next week / month* -> **the following week / month**",
+          "• *here* -> **there** | *this / these* -> **that / those** | *ago* -> **before**"
         ]
       }
     ],
     "keyTerms": [
       {
-        "term": "Backshift",
-        "meaning": "Moving direct tenses one step into the past when reporting."
+        "term": "Tense Backshift",
+        "meaning": "Chronologically shifting verb tense one level into the past when reporting after a past verb."
       },
       {
-        "term": "Universal Truth",
-        "meaning": "A permanent scientific or ethical fact that retains present simple in reported speech."
+        "term": "SON Rule",
+        "meaning": "First Person -> Subject; Second Person -> Object; Third Person -> No Change."
+      },
+      {
+        "term": "Deictic Shift",
+        "meaning": "Transforming spatial and temporal indicators (here->there, tomorrow->the following day) relative to the reporter."
       }
     ],
     "examTips": [
-      "Never change the tense of a scientific fact in reported speech: keep 'revolves', 'boils', 'rises'.",
-      "Check pronouns carefully: ensure 'my' and 'your' match the actual speaker and listener."
+      "In reported statements, remember that Simple Past backshifts to Past Perfect: 'He saw' -> 'He had seen'.",
+      "Always check 'tomorrow' and 'yesterday': write 'the following day' and 'the previous day'."
     ]
   },
   {
@@ -876,44 +1308,64 @@ export const englishNotes9: ChapterNote[] = [
     "classLevel": 9,
     "chapterNo": 20,
     "title": "Reporting Questions: Yes/No & Wh-Questions",
-    "unit": "Unit 7: Reported Speech",
-    "overview": "Reporting questions: using if/whether for yes/no questions, retaining wh-words for information questions, and enforcing statement word order.",
+    "unit": "Unit 5: Voice & Reported Speech",
+    "overview": "Master reported questions for Class 9 examinations. Learn how to transform direct interrogatives using if/whether for Yes/No questions and retained wh-words, master declarative word order, and eliminate question marks.",
     "sections": [
       {
-        "title": "Yes/No Questions with If / Whether",
+        "title": "The Three Universal Rules for Reporting Questions",
         "points": [
-          "• Use **if** or **whether** after reporting verb *asked*:",
-          "• Direct: *He asked me, 'Are you ready?'*",
-          "• Reported: *He asked me **if I was ready**.* (Not: 'if was I ready').",
-          "• Direct: *She asked, 'Do you know the answer?'*",
-          "• Reported: *She asked **whether I knew** the answer.* (Auxiliary 'do' drops; verb takes past simple)."
+          "Whenever an interrogative sentence is transformed into indirect reported speech:",
+          "1. The reporting verb transforms into **asked, enquired of, wondered, or demanded**.",
+          "2. The interrogative clause **ceases to be a question and becomes a DECLARATIVE STATEMENT** (Subject comes BEFORE Verb).",
+          "3. The terminal question mark (?) is **permanently replaced by a FULL STOP (.)**."
         ]
       },
       {
-        "title": "Wh-Questions and Statement Word Order",
+        "title": "Type 1: Reporting Yes/No Questions with 'If' or 'Whether'",
         "points": [
-          "• Retain the question word (*who, what, where, when, why, how*):",
-          "• Direct: *'Where do you live?' she asked me.*",
-          "• Reported: *She asked me **where I lived**.*",
-          "• Direct: *'Why are you late?' the teacher asked.*",
-          "• Reported: *The teacher asked **why I was late**.*",
-          "• **Never invert subject and verb** in reported questions; end with a full stop, never a question mark."
+          "• Questions starting with helping verbs (*is, am, are, was, were, do, does, did, has, have, had, can, will*) are introduced by **if** or **whether**:",
+          "• **Formula:** Reporting Subject + asked + (object) + **if / whether** + Subject + Verb + Complement.",
+          "• **Examples:**",
+          "  - *Direct:* The examiner said to me, \"Are you carrying your admit card?\"",
+          "  - *Reported:* The examiner asked me **if I was carrying my admit card**.",
+          "  - *Direct:* She said, \"Do you know the conductor?\"",
+          "  - *Reported:* She enquired **whether I knew the conductor**.",
+          "  - *Direct:* Father said to Rohan, \"Did you lock the main gate?\"",
+          "  - *Reported:* Father asked Rohan **if he had locked the main gate**."
+        ]
+      },
+      {
+        "title": "Type 2: Reporting Wh-Questions (Who, Where, Why, How)",
+        "points": [
+          "• Questions starting with question words (**who, whom, whose, what, which, where, when, why, how**) retain the exact same question word as the clause connector:",
+          "• **The 'No-That' Iron Rule:** NEVER use 'that' or 'if' with a Wh-question in reported speech (do not write 'asked that where'!).",
+          "• **Elimination of Question Auxiliaries (Do, Does, Did):** In positive statements, 'do/does/did' disappear and the main verb absorbs the appropriate past tense:",
+          "  - *Direct:* The teacher asked, \"Why are you late today?\"",
+          "  - *Reported:* The teacher asked **why I was late that day**.",
+          "  - *Direct:* She asked, \"Where do you reside?\"",
+          "  - *Reported:* She asked **where I resided**.",
+          "  - *Direct:* The policeman asked, \"What did you witness at the scene?\"",
+          "  - *Reported:* The policeman enquired **what I had witnessed at the scene**."
         ]
       }
     ],
     "keyTerms": [
       {
-        "term": "Reported Interrogative",
-        "meaning": "A direct question transformed into an embedded declarative clause."
+        "term": "Indirect Interrogative",
+        "meaning": "A question converted into an embedded declarative noun clause punctuated with a period."
       },
       {
-        "term": "Whether / If",
-        "meaning": "Subordinators introducing reported yes/no questions."
+        "term": "Declarative Inversion Reversal",
+        "meaning": "Restoring standard Subject-before-Verb word order and eliminating question auxiliaries."
+      },
+      {
+        "term": "Wh-Connector",
+        "meaning": "Retaining interrogative pronouns/adverbs as conjunctions in reported wh-questions."
       }
     ],
     "examTips": [
-      "Remember: In reported questions, Subject comes BEFORE Verb (e.g., 'where I was', not 'where was I').",
-      "Never use a question mark at the end of a reported question."
+      "In reported questions, Subject ALWAYS precedes Verb: write 'where I was going', NEVER 'where was I going'.",
+      "Never use 'that' before wh-words: write 'asked why', NOT 'asked that why'."
     ]
   },
   {
@@ -922,42 +1374,66 @@ export const englishNotes9: ChapterNote[] = [
     "classLevel": 9,
     "chapterNo": 21,
     "title": "Reporting Commands, Requests, Advice & Warnings",
-    "unit": "Unit 7: Reported Speech",
-    "overview": "Reporting imperatives: using to-infinitives and not-to-infinitives, selecting intentional reporting verbs (order, request, advise, warn), and omitting 'please'.",
+    "unit": "Unit 5: Voice & Reported Speech",
+    "overview": "Master reported imperative sentences in CBSE Class 9. Learn how to transform orders, polite requests, warnings, and advice using to-infinitives, understand 'not to', and master negative prohibitions with 'forbade'.",
     "sections": [
       {
-        "title": "The To-Infinitive Structure for Imperatives",
+        "title": "The Imperative Conversion Formula (To + V1)",
         "points": [
-          "• Imperative commands and requests use: **reporting verb + object + to + V1** (or **not to + V1** for negatives):",
-          "• Direct: *The teacher said, 'Open your books.'*",
-          "• Reported: *The teacher told us **to open** our books.*",
-          "• Direct: *Mother said, 'Please clean your room.'*",
-          "• Reported: *Mother requested me **to clean** my room.*",
-          "• Direct: *The guard said, 'Do not touch the wire.'*",
-          "• Reported: *The guard warned us **not to touch** the wire.*"
+          "Direct imperative sentences do not take the conjunction 'that'. Instead, the main verb is converted into an **Infinitive (to + Base Verb V1)**:",
+          "• **Formula:** Reporting Subject + **ordered / requested / advised / warned** + Object (Listener) + **to + V1** + Complement.",
+          "• **Polite Words Removal:** Words like **'please'** and **'kindly'** are completely eliminated because the reporting verb (*requested*) already communicates politeness:",
+          "  - *Direct:* The doctor said to the patient, \"Exercise for thirty minutes daily.\"",
+          "  - *Reported:* The doctor **advised the patient to exercise** for thirty minutes daily.",
+          "  - *Direct:* The passenger said to the driver, \"Please stop at the next intersection.\"",
+          "  - *Reported:* The passenger **requested the driver to stop** at the next intersection.",
+          "  - *Direct:* The officer said to the soldiers, \"March forward!\"",
+          "  - *Reported:* The officer **commanded the soldiers to march** forward."
         ]
       },
       {
-        "title": "Omitting Polite Fillers and Selecting Verbs",
+        "title": "Reporting Negative Directives (Not to + V1 vs Forbade)",
         "points": [
-          "• The word 'please' is omitted because the reporting verb (*requested, asked*) conveys the politeness.",
-          "• Choose intentional reporting verbs: *ordered, commanded* (for orders); *requested, pleaded* (for requests); *advised, urged* (for advice); *warned* (for warnings)."
+          "When reporting negative commands (*Do not...*):",
+          "• **Method 1 — Using 'Ordered / Warned / Advised + NOT TO + V1':**",
+          "  - *Direct:* The librarian said to the boys, \"Do not whisper in the reference section.\"",
+          "  - *Reported:* The librarian **warned the boys not to whisper** in the reference section.",
+          "  - *Direct:* Father said, \"Do not play with electrical sockets.\"",
+          "  - *Reported:* Father **advised me not to play** with electrical sockets.",
+          "• **Method 2 — Using 'FORBADE' (The Double Negative Trap!):**",
+          "  - 'Forbade' (past of forbid) already means 'ordered not to'. Therefore, **NEVER USE 'NOT' after forbade**:",
+          "  - *Incorrect:* The librarian forbade the boys not to whisper.",
+          "  - *Correct:* The librarian **forbade the boys to whisper** in the reference section."
+        ]
+      },
+      {
+        "title": "Reporting Suggestions with 'Let's'",
+        "points": [
+          "• When direct speech starts with **'Let's' (Let us)**, it expresses a proposal or suggestion:",
+          "• The reporting verb becomes **suggested / proposed** followed by **that + we/they + should + V1** or a **Gerund**:",
+          "  - *Direct:* Rohan said, \"Let us organize a cleanliness drive.\"",
+          "  - *Reported:* Rohan **suggested that they should organize** a cleanliness drive. (OR *Rohan suggested organizing a cleanliness drive*).",
+          "  - *Note:* Never write 'suggested to organize' or 'suggested me to organize'!"
         ]
       }
     ],
     "keyTerms": [
       {
         "term": "Imperative Reporting",
-        "meaning": "Using to + base verb or not to + base verb to report commands and requests."
+        "meaning": "Transforming direct directives into infinitive clauses introduced by verbs like 'ordered', 'requested', or 'advised'."
       },
       {
-        "term": "Politeness Absorption",
-        "meaning": "Omitting 'please' because the reporting verb encodes the courteous tone."
+        "term": "Polite Particle Deletion",
+        "meaning": "Omitting conversational markers like 'please' upon shifting to indirect discourse."
+      },
+      {
+        "term": "Forbade",
+        "meaning": "An inherently negative reporting verb meaning 'ordered not to', requiring an affirmative to-infinitive."
       }
     ],
     "examTips": [
-      "Never write 'told that do not': write 'told us not to'.",
-      "Never keep 'please' in the reported sentence after using 'requested'."
+      "In Class 9 dialogue tasks, eliminate 'please' and use 'requested him to'.",
+      "Never use 'not' with 'forbade': write 'He forbade me to enter', NOT 'He forbade me not to enter'."
     ]
   },
   {
@@ -966,43 +1442,71 @@ export const englishNotes9: ChapterNote[] = [
     "classLevel": 9,
     "chapterNo": 22,
     "title": "Reported Speech in Connected Passages & Extended Dialogues",
-    "unit": "Unit 7: Reported Speech",
-    "overview": "Handling dialogue completion and multi-turn conversations in CBSE Class 9 examinations. Maintaining consistency in pronouns, tenses, and narrative flow.",
+    "unit": "Unit 5: Voice & Reported Speech",
+    "overview": "Learn the professional methodology for tackling multi-turn dialogue completion and conversational passage reporting in CBSE Class 9 examinations. Master cohesive narrative connectors, pronoun clarity, and mixed sentence types.",
     "sections": [
       {
-        "title": "Extended Text Reporting Framework",
+        "title": "The CBSE Dialogue Completion Pattern",
         "points": [
-          "The Class 9 syllabus specifies reported speech in **extended texts** (multi-turn dialogues):",
-          "1. Identify the speaker and listener for each conversational turn.",
-          "2. Note whether the turn is an assertion, question, or request.",
-          "3. Connect consecutive sentences smoothly using transitional phrases: *'and added that', 'then enquired whether', 'to which she replied that'*.",
-          "4. Maintain strict pronoun consistency so the reader knows who is speaking."
+          "In Class 9 English papers, a dialogue between two characters is presented, followed by a reported narrative paragraph containing numbered blanks (a), (b), (c):",
+          "• **Standard Worked Example:**",
+          "  - **Doctor:** What is troubling you, young man?",
+          "  - **Patient:** I have been suffering from severe headaches for three days.",
+          "  - **Doctor:** Do you spend prolonged hours staring at screens?",
+          "• **Step-by-step Transformation:**",
+          "  - *Turn 1 (Wh-question):* The doctor asked the patient **what was troubling him**.",
+          "  - *Turn 2 (Statement):* The patient replied that **he had been suffering from severe headaches for three days**.",
+          "  - *Turn 3 (Yes/No question):* The doctor further enquired **whether he spent prolonged hours staring at screens**."
         ]
       },
       {
-        "title": "Worked Dialogue Transformation Model",
+        "title": "Cohesive Transitional Connectors for Extended Passages",
         "points": [
-          "• **Dialogue:**",
-          "Ravi: *'I am preparing for the quiz. Can you help me this evening?'*",
-          "Tara: *'I have finished my homework. Come to my house at six.'*",
-          "• **Reported Paragraph:**",
-          "*Ravi told Tara that he was preparing for the quiz and asked whether she could help him that evening. Tara replied that she had finished her homework and told him to come to her house at six.*"
+          "When reporting consecutive sentences from the same speaker, avoid monotonously repeating 'and said that':",
+          "• Use elegant transitional connectors:",
+          "  - *...and added that...*",
+          "  - *...further inquired if...*",
+          "  - *...to which he responded that...*",
+          "  - *...and explained that...*",
+          "  - *...reassured him that...*",
+          "• **Handling Mixed Sentences from One Speaker:**",
+          "  - *Direct:* \"Sit down. Why did you not attend yesterday?\"",
+          "  - *Reported:* *The teacher **ordered him to sit down and asked why he had not attended the previous day**.*"
+        ]
+      },
+      {
+        "title": "Authentic Dialogue Transformation Worked Model",
+        "points": [
+          "• **Sample Passage Transformation:**",
+          "  - Direct: *Teacher: 'Why have you not submitted your science portfolio yet?' Student: 'Sir, I was down with high fever all last week.'*",
+          "  - Reported: *The teacher enquired of the student why he had not submitted his science portfolio yet, to which the student respectfully replied that he had been down with high fever all the previous week.*"
+        ]
+      },
+      {
+        "title": "Pronoun Disambiguation in Multi-Character Texts",
+        "points": [
+          "• When reporting conversations between two individuals of the same gender (e.g., two boys or two girls), ambiguous pronouns must be clarified:",
+          "  - If 'he' could refer to either character, insert the character's name in parentheses if necessary: *Ravi told Sohan that he (Sohan) was selected.*"
         ]
       }
     ],
     "keyTerms": [
       {
-        "term": "Dialogue Reporting",
-        "meaning": "Converting conversational speech between two people into a cohesive reported paragraph."
+        "term": "Extended Dialogue Reporting",
+        "meaning": "Converting a multi-turn conversation into a cohesive reported narrative paragraph."
       },
       {
-        "term": "Transitional Reporting Tag",
-        "meaning": "Phrases like 'further added that' connecting consecutive utterances."
+        "term": "Signposting Connectors",
+        "meaning": "Phrases like 'and further enquired', 'to which he replied' that maintain narrative flow."
+      },
+      {
+        "term": "Disambiguation",
+        "meaning": "Clarifying third-person pronouns when reporting dialogues between individuals of identical gender."
       }
     ],
     "examTips": [
-      "In dialogue completion, read the given text carefully to see what part is already written in the question paper.",
-      "Ensure time markers like 'this evening' shift to 'that evening' in past reporting."
+      "In dialogue completion blanks, carefully check whether the utterance was a statement, question, or request before selecting connectors.",
+      "Always maintain narrative tense harmony across all blanks in a reported dialogue."
     ]
   },
   {
@@ -1010,43 +1514,62 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 23,
-    "title": "Editing and Omission: Identification & Correction Strategies",
-    "unit": "Unit 8: Applied Formats & Writing Support",
-    "overview": "Methodology for editing and omission tasks in Class 9: checking concord, tenses, determiners, modals, pronouns, and prepositions.",
+    "title": "Editing and Omission: Systematic Error Detection Strategies",
+    "unit": "Unit 6: Applied Grammar & Writing Tasks",
+    "overview": "Master the art of solving Editing and Omission passages in CBSE Class 9. Understand the 4-pass scanning method, master the most frequently tested error categories, and learn how to present error and correction tables accurately.",
     "sections": [
       {
-        "title": "The Step-by-Step Editing Procedure",
+        "title": "The Editing Protocol (Identifying the Single Flaw)",
         "points": [
-          "1. Read the complete passage first to grasp overall meaning and timeline.",
-          "2. Inspect each line for common errors in this order: Subject-Verb Concord, Tenses, Modals, Determiners, Pronouns, Prepositions.",
-          "3. Write the exact incorrect word and its correction in the required table format.",
-          "4. Reread the corrected passage to confirm that the text flows naturally."
+          "In CBSE editing exercises, a short passage of 4 to 6 lines is given, with one grammatical error in each line:",
+          "• **The 4-Pass Diagnostic Strategy:**",
+          "  1. **Pass 1 — General Timeline:** Skim to identify whether the passage is talking about a past historical narrative or a present scientific explanation.",
+          "  2. **Pass 2 — Concord & Tense Scan:** Inspect every subject-verb pair. Does a singular subject have a plural verb? Is there an unjustified present verb in a past story?",
+          "  3. **Pass 3 — Determiner & Preposition Scan:** Check every article (a/an/the) and preposition (in/at/on/between/among).",
+          "  4. **Pass 4 — Modals & Connectors:** Check for double comparatives, double negatives, or erroneous conjunction pairings (*although...but*)."
         ]
       },
       {
-        "title": "High-Frequency Class 9 Errors",
+        "title": "Top 8 Error Categories Tested in Class 9 Editing",
         "points": [
-          "• Concord: *Each of the girls have submitted* -> *has submitted*.",
-          "• Tense: *She has met him yesterday* -> *met him yesterday*.",
-          "• Modal: *You should to study* -> *should study*.",
-          "• Determiner: *much books* -> *many books*; *an useful* -> *a useful*.",
-          "• Relative: *The girl which won* -> *who won*."
+          "• **1. Verb Form after Auxiliaries:** Look for 'did not went' (Correction: *go*) or 'has wrote' (Correction: *written*).",
+          "• **2. Subject–Verb Concord:** Look for 'A bouquet of yellow roses were presented' (Correction: *was*).",
+          "• **3. Confusing Prepositions:** Look for 'good in English' (Correction: *good at*) or 'married with' (Correction: *married to*).",
+          "• **4. Countability of Nouns:** Look for 'many informations' (Correction: *much information*).",
+          "• **5. Article Phonetics:** Look for 'a honest leader' (Correction: *an*) or 'an European' (Correction: *a*).",
+          "• **6. Conjunction Clashes:** Look for 'Although it rained but he played' (Correction: omit *but*).",
+          "• **7. Pronoun Case:** Look for 'Between you and I' (Correction: *me*).",
+          "• **8. Modals + V1:** Look for 'must to study' (Correction: *must study*)."
+        ]
+      },
+      {
+        "title": "Omission Passages: Finding the Missing Word",
+        "points": [
+          "In omission passages, one grammatical word has been dropped from every line:",
+          "• Identify where the syntactic rhythm breaks or where a noun lacks a mandatory determiner:",
+          "  - *Line:* 'Dr. Kalam was great scientist.' -> **Missing:** *a* (Word before: *was*, Missing: *a*, Word after: *great*).",
+          "  - *Line:* 'He interested in aeronautics.' -> **Missing:** *was* (Word before: *He*, Missing: *was*, Word after: *interested*).",
+          "• Always record your answer in the 3-column CBSE format: **Word Before | Missing Word | Word After**."
         ]
       }
     ],
     "keyTerms": [
       {
         "term": "Editing",
-        "meaning": "Detecting and correcting a grammatical error in each line of a passage."
+        "meaning": "The process of identifying and correcting a single syntactic or morphological error per line."
       },
       {
         "term": "Omission",
-        "meaning": "Identifying an omitted word that is necessary for grammatical completeness."
+        "meaning": "Detecting a dropped function word (article, preposition, auxiliary) and recording adjacent words."
+      },
+      {
+        "term": "Diagnostic Scan",
+        "meaning": "Systematic evaluation of subject-verb agreement, tense consistency, and collocations."
       }
     ],
     "examTips": [
-      "Always write your answer in two columns: Error and Correction.",
-      "Look out for singular distributives like 'each' and 'every' paired with plural verbs—this is a classic error."
+      "In editing tables, never rewrite the full sentence; write only the 'Error' and its 'Correction'.",
+      "In omission questions, always supply the exact word immediately preceding and following the omitted word."
     ]
   },
   {
@@ -1055,33 +1578,66 @@ export const englishNotes9: ChapterNote[] = [
     "classLevel": 9,
     "chapterNo": 24,
     "title": "Paragraph Completion & Contextual Language Use",
-    "unit": "Unit 8: Applied Formats & Writing Support",
-    "overview": "Techniques for paragraph completion and cloze passages (R2 assessment pattern): checking grammatical clues, connectors, and semantic coherence.",
+    "unit": "Unit 6: Applied Grammar & Writing Tasks",
+    "overview": "Learn how to master Paragraph Completion and Cloze gap-filling exercises in CBSE Class 9. Understand structural slot analysis, eliminate unviable grammatical distractors, and achieve seamless semantic coherence.",
     "sections": [
       {
-        "title": "Five-Step Method for Paragraph Completion",
+        "title": "The Anatomy of a Paragraph Completion Task",
         "points": [
-          "1. Read the full paragraph before choosing options.",
-          "2. Identify the timeline and theme.",
-          "3. Check grammar around each blank: subject, verb form, preposition, connector.",
-          "4. Verify logical connection: cause (because), contrast (although), condition (if), result (so).",
-          "5. Reread the completed paragraph to ensure seamless coherence."
+          "Paragraph completion evaluates a student's intuitive grasp of grammar within connected prose:",
+          "• Each blank represents a specific structural slot requiring either:",
+          "  - A **Determiner / Article** (*a, an, the, some, each*),",
+          "  - A **Preposition** (*during, across, upon, into*),",
+          "  - A **Relative Pronoun / Connector** (*who, which, although, unless*),",
+          "  - A **Tense Form / Auxiliary** (*was, had been, will*).",
+          "• The correct word must satisfy both local syntax (words immediately before and after) and global narrative flow."
+        ]
+      },
+      {
+        "title": "The 3-Step Cloze Elimination Technique",
+        "points": [
+          "• **Step 1 — Read for Topic and Baseline Timeline:**",
+          "  - Never attempt to fill blank #1 before reading to the final period! Know the story first.",
+          "• **Step 2 — Inspect Collocational Dependencies:**",
+          "  - Look at the preceding word: If it is a modal (*can*), the blank must be a base verb V1.",
+          "  - Look at the succeeding word: If it is a singular countable noun (*experiment*), the blank must be a singular determiner (*an, this*).",
+          "• **Step 3 — Elimination of Distractors:**",
+          "  - Eliminate options that cause countability mismatches (e.g., 'many' before an uncountable noun).",
+          "  - Eliminate options that violate the global past or present narrative timeline."
+        ]
+      },
+      {
+        "title": "High-Yield Cloze Determinant Categories",
+        "points": [
+          "• **Prepositional Triggers:** Look for verbs that demand specific prepositions (*congratulate on, prevent from, interested in, rely on*).",
+          "• **Relative Pronoun Triggers:** Check whether the antecedent noun is human (*who*), animal/object (*which/that*), or possessive (*whose*)."
+        ]
+      },
+      {
+        "title": "Rereading for Cohesive Flow",
+        "points": [
+          "• Once all blanks are filled, read the completed passage out loud in your head:",
+          "• If any sentence feels awkward, stumble-inducing, or disjointed, re-inspect that blank for a missing preposition or wrong article."
         ]
       }
     ],
     "keyTerms": [
       {
-        "term": "Paragraph Completion",
-        "meaning": "Selecting words or phrases that make a passage grammatically and logically coherent."
+        "term": "Cloze Passage",
+        "meaning": "A prose text with systematically deleted words used to assess grammatical and lexical comprehension."
       },
       {
-        "term": "Logical Connector",
-        "meaning": "Words like because, although, so, therefore signaling relationships between ideas."
+        "term": "Syntactic Slot",
+        "meaning": "The structural position within a sentence that requires a specific word class to be well-formed."
+      },
+      {
+        "term": "Collocational Dependency",
+        "meaning": "The grammatical constraint imposed by adjacent words on an empty slot."
       }
     ],
     "examTips": [
-      "Check whether the blank follows a preposition—if it's a verb, it usually needs -ing (gerund).",
-      "Ensure tense matches the rest of the paragraph."
+      "Always reread the completed paragraph from start to finish to ensure uninterrupted narrative continuity.",
+      "Verify that every inserted verb agrees in number and person with its subject."
     ]
   },
   {
@@ -1090,42 +1646,66 @@ export const englishNotes9: ChapterNote[] = [
     "classLevel": 9,
     "chapterNo": 25,
     "title": "Sentence Rearrangement & Logical Word Order",
-    "unit": "Unit 8: Applied Formats & Writing Support",
-    "overview": "Techniques for solving jumbled word and phrase rearrangements: identifying subject, verb, objects, modifiers, and clause connectors.",
+    "unit": "Unit 6: Applied Grammar & Writing Tasks",
+    "overview": "Master Sentence Rearrangement (Jumbled Words) in Class 9 English. Learn the universal SVO architecture, positioning modifiers and prepositional phrases, and systematic assembling strategies.",
     "sections": [
       {
-        "title": "Sentence Skeleton Strategy",
+        "title": "The Universal SVO Architecture for Jumbled Words",
         "points": [
-          "To rearrange jumbled words into a grammatical sentence:",
-          "1. Find the finite verb first.",
-          "2. Find the subject performing that verb.",
-          "3. Find the object or complement.",
-          "4. Group modifiers: determiners before nouns, adjectives before nouns, adverbs near verbs.",
-          "5. Assemble chunks and verify that the sentence makes logical sense."
+          "In Class 9 exams, students are given scrambled word chunks separated by slashes (/):",
+          "• **The Core Skeleton:** **Subject + Verb + Object / Complement (S - V - O)**",
+          "• **Step-by-step Assembly Strategy:**",
+          "  1. **Identify the Finite Verb:** Find the main action word (e.g., *discovered, transform, was built*).",
+          "  2. **Ask 'Who?' or 'What?' before the Verb:** This reveals your **Subject** noun phrase.",
+          "  3. **Ask 'What?' or 'Whom?' after the Verb:** This reveals your **Direct Object**.",
+          "  4. **Attach Modifiers and Prepositional Phrases:** Place adjectives directly before their nouns, and adverbial phrases of time/place at the natural end or beginning."
         ]
       },
       {
-        "title": "Worked Rearrangement Example",
+        "title": "Worked Assembly Models",
         "points": [
-          "• Jumbled: *if / you practise / will improve / regularly / you*",
-          "• Groups: Condition (*If you practise regularly*) + Result (*you will improve*).",
-          "• Solution: *If you practise regularly, you will improve.*"
+          "• **Model 1:**",
+          "  - *Scrambled:* / of modern medicine / penicillin / discovery of / transformed / the / the field /",
+          "  - *Step 1 (Verb):* transformed",
+          "  - *Step 2 (Subject):* The discovery of penicillin",
+          "  - *Step 3 (Object):* the field of modern medicine",
+          "  - *Final Sentence:* **The discovery of penicillin transformed the field of modern medicine.**",
+          "• **Model 2:**",
+          "  - *Scrambled:* / daily / exercise / our / stamina / improves / mental and physical /",
+          "  - *Final Sentence:* **Daily exercise improves our mental and physical stamina.**",
+          "• **Model 3:**",
+          "  - *Scrambled:* / must / rules / traffic / citizens / every / adhere to / responsible /",
+          "  - *Final Sentence:* **Every responsible citizen must adhere to traffic rules.**"
+        ]
+      },
+      {
+        "title": "Common Word Order Traps",
+        "points": [
+          "• **Adverb Placement:** Do not place adverbs between a transitive verb and its direct object:",
+          "  - *Incorrect:* He read carefully the instructions.",
+          "  - *Correct:* He read the instructions **carefully**.",
+          "• **Question Word Order:** In interrogative jumbles, place auxiliary before subject:",
+          "  - *Why did you arrive late?* (Auxiliary 'did' precedes subject 'you')."
         ]
       }
     ],
     "keyTerms": [
       {
         "term": "Sentence Rearrangement",
-        "meaning": "Putting jumbled words or phrases into correct grammatical order."
+        "meaning": "Reconstructing scrambled lexical segments into grammatically well-formed sentences."
       },
       {
         "term": "SVO Order",
-        "meaning": "Subject-Verb-Object, the standard declarative word order of English."
+        "meaning": "Subject-Verb-Object, the foundational linear syntax of English clauses."
+      },
+      {
+        "term": "Modifier Attachment",
+        "meaning": "Positioning descriptive adjectival and adverbial phrases adjacent to the elements they qualify."
       }
     ],
     "examTips": [
-      "Always check that every single jumbled word is used and no extra word is added.",
-      "Make sure the first word is capitalised and the sentence ends with a full stop or question mark."
+      "Always count the number of words in the scrambled prompt to ensure no word has been omitted in your final sentence.",
+      "Ensure the first letter of your reconstructed sentence is capitalized and it concludes with appropriate terminal punctuation."
     ]
   },
   {
@@ -1133,40 +1713,69 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 26,
-    "title": "Sentence Transformation Strategies",
-    "unit": "Unit 8: Applied Formats & Writing Support",
-    "overview": "Sentence transformation in Class 9: direct to reported speech, conditional combining, active to passive, and clause synthesis.",
+    "title": "Sentence Transformation Strategies (Degrees, Voice, Negatives)",
+    "unit": "Unit 6: Applied Grammar & Writing Tasks",
+    "overview": "Master sentence transformation techniques in Class 9 English without altering meaning. Learn how to interchange Affirmative and Negative sentences, convert Degrees of Comparison, and transform Simple, Compound, and Complex structures.",
     "sections": [
       {
-        "title": "Golden Rules of Transformation",
+        "title": "Transforming Affirmative to Negative (Meaning Preserved)",
         "points": [
-          "• Preserve the core meaning without alteration.",
-          "• Follow the specific instruction (e.g., 'Rewrite using if', 'Change into reported speech').",
-          "• Check subject-verb concord and tense harmony after rewriting."
+          "In Class 9 examinations, transformation requires altering grammatical form **WITHOUT altering the underlying meaning**:",
+          "• **1. Using Antonyms with 'Not':**",
+          "  - *Affirmative:* Man is mortal. -> *Negative:* **Man is not immortal.**",
+          "  - *Affirmative:* Rohan is always punctual. -> *Negative:* **Rohan is never late.**",
+          "  - *Affirmative:* She rejected my proposal. -> *Negative:* **She did not accept my proposal.**",
+          "• **2. Transforming 'As soon as' to 'No sooner... than':**",
+          "  - *Affirmative:* As soon as the bell rang, the students departed.",
+          "  - *Negative:* **No sooner did the bell ring than the students departed.**",
+          "• **3. Transforming 'Too... to' to 'So... that... cannot':**",
+          "  - *Affirmative:* The box is too heavy for him to lift.",
+          "  - *Negative:* **The box is so heavy that he cannot lift it.**"
         ]
       },
       {
-        "title": "High-Yield Class 9 Transformation Patterns",
+        "title": "Interchange of Degrees of Comparison",
         "points": [
-          "• **Imperative to Conditional:** *Study regularly and you will improve* -> *If you study regularly, you will improve.*",
-          "• **Relative Clause Combining:** *I bought a laptop. It has long battery life* -> *I bought a laptop that has long battery life.*",
-          "• **Noun Clause Combining:** *She is honest. I believe this* -> *I believe that she is honest.*"
+          "Transforming comparative statements across positive, comparative, and superlative degrees:",
+          "• **Model 1 (Superlative to Comparative & Positive):**",
+          "  - *Superlative:* Mount Everest is the highest mountain peak in the world.",
+          "  - *Comparative:* Mount Everest is **higher than any other mountain peak** in the world.",
+          "  - *Positive:* **No other mountain peak in the world is as high as** Mount Everest.",
+          "• **Model 2 ('One of the' Superlative):**",
+          "  - *Superlative:* Iron is one of the most useful metals.",
+          "  - *Comparative:* Iron is **more useful than most other metals**.",
+          "  - *Positive:* **Very few metals are as useful as** iron."
+        ]
+      },
+      {
+        "title": "Interchange of Simple, Compound and Complex Sentences",
+        "points": [
+          "• **Simple to Compound:** Replace a participial or prepositional phrase with an independent clause + coordinating conjunction:",
+          "  - *Simple:* Besides being intelligent, he is hardworking.",
+          "  - *Compound:* **He is not only intelligent but also hardworking.**",
+          "• **Simple to Complex:** Expand a phrase into a subordinate clause:",
+          "  - *Simple:* He confessed his guilt.",
+          "  - *Complex:* **He confessed that he was guilty.**"
         ]
       }
     ],
     "keyTerms": [
       {
-        "term": "Clause Combining",
-        "meaning": "Synthesizing two simple sentences into a complex sentence using noun, relative, or adverb clauses."
+        "term": "Sentence Transformation",
+        "meaning": "Rewriting a sentence in a different grammatical structure while preserving 100% of its original meaning."
       },
       {
-        "term": "Meaning Preservation",
-        "meaning": "Ensuring the rewritten sentence expresses the exact same message as the prompt."
+        "term": "Degree Interchange",
+        "meaning": "Recasting comparative statements among positive, comparative, and superlative forms."
+      },
+      {
+        "term": "Semantic Invariance",
+        "meaning": "Ensuring the propositional truth value of a transformed sentence remains unchanged."
       }
     ],
     "examTips": [
-      "Compare your rewritten sentence with the original to verify no detail was lost or added.",
-      "Do not alter the tense unless the transformation explicitly requires it (e.g., reported speech)."
+      "In 'too... to' transformations, check the tense: use 'cannot' for present ('is too weak') and 'could not' for past ('was too weak').",
+      "When using 'any other' in comparative degree, never omit 'other': write 'taller than any other boy', NOT 'taller than any boy'."
     ]
   },
   {
@@ -1175,38 +1784,68 @@ export const englishNotes9: ChapterNote[] = [
     "classLevel": 9,
     "chapterNo": 27,
     "title": "Punctuation, Mechanics & Common Grammar Traps",
-    "unit": "Unit 8: Applied Formats & Writing Support",
-    "overview": "Punctuation conventions (full stops, commas, apostrophes), high-frequency grammar traps (its vs it's, fewer vs less, much vs many), and preposition collocations.",
+    "unit": "Unit 6: Applied Grammar & Writing Tasks",
+    "overview": "Master punctuation mechanics, apostrophe usage, and capitalization rules for CBSE Class 9. Eliminate the 10 most common spelling and punctuation blunders in written examinations.",
     "sections": [
       {
-        "title": "Punctuation Essentials",
+        "title": "Punctuation Mechanics in Formal Writing",
         "points": [
-          "• **Commas:** Use after introductory dependent clauses (*If it rains, we will stay home*), between list items, and around non-defining relative clauses.",
-          "• **Apostrophes:** For possession (*the student's notebook*, *the students' hostel*) and contractions (*don't*, *it's*).",
-          "• Never confuse **its** (possessive) with **it's** (it is / it has)."
+          "Accurate punctuation is heavily evaluated in Class 9 descriptive writing, letters, and diary entries:",
+          "• **1. The Comma (,):**",
+          "  - Introductory clauses: *Having completed the experiment, the team logged the results.*",
+          "  - Compound sentence separator: *The alarm sounded, but nobody panicked.*",
+          "  - Items in a series: *We packed rations, drinking water, first-aid kits, and flashlights.*",
+          "• **2. The Semicolon (;):**",
+          "  - Joins two independent clauses that are closely linked without a coordinating conjunction:",
+          "  - *The evidence was overwhelming; the jury delivered a swift verdict.*",
+          "• **3. The Colon (:):**",
+          "  - Introduces an enumerated list or formal quotation:",
+          "  - *The committee identified three fundamental objectives: sustainability, affordability, and scalability.*"
         ]
       },
       {
-        "title": "High-Frequency Preposition Collocations",
+        "title": "The Apostrophe: Possession vs Contraction Traps",
         "points": [
-          "Learn these fixed preposition pairings:",
-          "• *interested **in***, *good **at***, *depend **on***, *apologise **for***, *belong **to***, *agree **with** a person*, *responsible **for***, *different **from***, *prefer X **to** Y*."
+          "• **Its vs It's:**",
+          "  - **Its:** Possessive pronoun indicating ownership (*The cat licked **its** paw*). Has NO apostrophe!",
+          "  - **It's:** Contraction of 'It is' or 'It has' (* **It's** a wonderful morning*).",
+          "• **Plural Nouns Possessive:**",
+          "  - Regular plural ending in 's' adds only an apostrophe: *the boys' hostel*, *the birds' nests*.",
+          "  - Irregular plural not ending in 's' adds 's: *children's literature*, *women's empowerment*.",
+          "• **Greengrocer's Apostrophe Error:**",
+          "  - Never use an apostrophe to form a simple plural noun!",
+          "  - *Incorrect:* Apple's and orange's for sale. -> **Correct:** *Apples and oranges for sale.*"
+        ]
+      },
+      {
+        "title": "Capitalization Rules for Class 9 Exams",
+        "points": [
+          "• Always capitalize:",
+          "  - 1. The first word of every sentence.",
+          "  - 2. The personal pronoun **'I'**.",
+          "  - 3. Proper nouns (*Mahatma Gandhi, Bay of Bengal, Mount Everest*).",
+          "  - 4. Nationalities and languages (*Indian, Sanskrit, French*).",
+          "  - 5. Days, months, and official holidays (*Monday, September, Republic Day*)."
         ]
       }
     ],
     "keyTerms": [
       {
-        "term": "Prepositional Collocation",
-        "meaning": "A natural, fixed combination of an adjective or verb with a specific preposition."
+        "term": "Contraction",
+        "meaning": "Shortened word form where an apostrophe indicates omitted letters (e.g., 'don't')."
       },
       {
-        "term": "Apostrophe Trap",
-        "meaning": "Confusing possessive determiners (its, your) with contractions (it's, you're)."
+        "term": "Possessive Inflection",
+        "meaning": "Adding 's or an apostrophe to denote legal, biological, or spatial ownership."
+      },
+      {
+        "term": "Orthographic Mechanics",
+        "meaning": "The normative conventions of spelling, capitalization, and punctuation in formal written English."
       }
     ],
     "examTips": [
-      "Never write 'senior than' or 'prefer than'—use 'to': 'senior to me', 'prefer tea to coffee'.",
-      "Always check whether 'it's' or 'its' is needed: expand to 'it is' to test."
+      "Never put an apostrophe in 'yours sincerely' or 'its tail'—possessive pronouns never take apostrophes.",
+      "Ensure direct speech quotations open with a capital letter inside quotation marks."
     ]
   },
   {
@@ -1214,48 +1853,62 @@ export const englishNotes9: ChapterNote[] = [
     "subject": "english",
     "classLevel": 9,
     "chapterNo": 28,
-    "title": "Writing-Task Language Support (Notices, Letters, Descriptions, Articles & Essays)",
-    "unit": "Unit 8: Applied Formats & Writing Support",
-    "overview": "Grammar, register, organization, and format guidelines for CBSE Class 9 writing tasks: notices (up to 50 words), informal invitations, posters, letters to editor, formal emails, factual descriptions, articles, speeches, and narrative essays.",
+    "title": "Writing-Task Language Support (Notices, Letters, Descriptions, Articles)",
+    "unit": "Unit 6: Applied Grammar & Writing Tasks",
+    "overview": "Master the grammatical register and format conventions required for CBSE Class 9 Section B Writing tasks: Descriptive Paragraphs (Person, Event, Situation), Diary Entries, Formal Letters, and Story Writing.",
     "sections": [
       {
-        "title": "Short Writing Formats: Notice, Invitation, Poster",
+        "title": "Descriptive Paragraphs: Person, Place and Event",
         "points": [
-          "• **Notice (up to 50 words):** School name, word NOTICE, date, clear heading, 5 Ws (what, when, where, who, whom to contact), formal closing with designation.",
-          "• **Informal Invitation:** Warm, personal tone, clear date/time/venue, occasion details.",
-          "• **Poster Creation (R2):** Attention-catching slogan, visual layout, concise bulleted details, call to action, issuing authority."
+          "• **1. Describing a Person:**",
+          "  - Use rich sensory adjectives, physical attributes, personality traits, and notable achievements.",
+          "  - Register: Present tense for living figures; Past tense for historical personalities.",
+          "  - Key vocabulary: *charismatic, benevolent, meticulous, visionary, inspiring, tenacious*.",
+          "• **2. Describing an Event / Experience:**",
+          "  - Chronological past tense narrative using sequential connectors (*initially, subsequently, soon afterwards, eventually*).",
+          "  - Passive voice structures for institutional procedures (*The exhibition was inaugurated at 10 AM*)."
         ]
       },
       {
-        "title": "Long Writing Formats (120–150 words): Letter, Email, Article, Speech",
+        "title": "Diary Entries & Story Writing Grammar",
         "points": [
-          "• **Letter to Editor:** Formal sender/receiver address, date, subject line, salutation, 3-paragraph body (intro of issue, effects/examples, constructive suggestions), formal closing.",
-          "• **Formal Email:** Professional subject line, clear opening purpose, structured points, polite closing.",
-          "• **Factual Description:** Objective, precise details, present tense for static features, past tense for events.",
-          "• **Magazine Article:** Catchy title, byline, engaging opening, developed points, thoughtful conclusion.",
-          "• **Speech Writing:** Courteous greeting to audience, clear thesis, rhetorical signposting, strong closing call to action."
+          "• **1. Diary Entry Mechanics:**",
+          "  - **Header Format:** Day, Date, Time (aligned to left margin).",
+          "  - Tone: Intimate, reflective, first-person (*I, my*); expressive past and present perfect tenses.",
+          "  - Emotional signposting: *I felt an overwhelming surge of joy; Today proved to be a turning point.*",
+          "• **2. Story Writing Architecture:**",
+          "  - **Title:** Catchy, thematic heading centered at the top.",
+          "  - Plot structure: Exposition (setting/character introduction) -> Rising Action -> Climax -> Falling Action -> Resolution.",
+          "  - Verb usage: Predominantly **Simple Past** and **Past Continuous** for vivid action."
         ]
       },
       {
-        "title": "Extended Composition: Descriptive & Narrative Essays",
+        "title": "Formal Letters (Enquiry, Complaint, Editor)",
         "points": [
-          "• **Narrative Essay (150–250 words):** Clear chronological order, past tense framework, vivid sensory detail, setting, conflict/turning point, resolution."
+          "• **Full Block Format (Left-aligned):** Sender's address -> Date -> Receiver's designation & address -> Subject (brief and underlined) -> Salutation (*Sir/Madam*) -> 3-paragraph Body -> Subscription (*Yours faithfully*).",
+          "• **Formal Letter Idioms:**",
+          "  - *Opening:* 'Through the esteemed columns of your widely circulated daily, I wish to draw the attention of the authorities towards...'",
+          "  - *Closing:* 'I earnestly hope this matter receives prompt intervention from the concerned officials.'"
         ]
       }
     ],
     "keyTerms": [
       {
-        "term": "Formal Register",
-        "meaning": "Objective, polite language free from slang or conversational contractions."
+        "term": "Register",
+        "meaning": "The level of formality, tone, and vocabulary choice appropriate to a specific communicative medium."
       },
       {
-        "term": "Chronological Sequence",
-        "meaning": "Arranging narrative events in temporal order using transitional connectors."
+        "term": "Full Block Layout",
+        "meaning": "A formal correspondence format where all layout components align flush with the left margin."
+      },
+      {
+        "term": "Diary Entry",
+        "meaning": "A reflective, first-person autobiographical composition documenting personal responses to significant events."
       }
     ],
     "examTips": [
-      "Stay strictly within the prescribed word limit (e.g., 50 words for notices; 120-150 words for letters).",
-      "Use proper paragraphs with distinct topic sentences in all extended writing tasks."
+      "In formal letters, write 'Yours faithfully' if you do not know the recipient by name; never write 'Your's'.",
+      "In descriptive paragraphs, organize thoughts into clear opening, developmental, and concluding sentences."
     ]
   },
   {
@@ -1264,45 +1917,62 @@ export const englishNotes9: ChapterNote[] = [
     "classLevel": 9,
     "chapterNo": 29,
     "title": "Quick-Reference Tables & 7-Day Revision Mastery Plan",
-    "unit": "Unit 8: Applied Formats & Writing Support",
-    "overview": "Comprehensive quick-reference tables for tenses, reported speech, modals, determiners, clauses, concord, and a structured 7-day revision roadmap.",
+    "unit": "Unit 6: Applied Grammar & Writing Tasks",
+    "overview": "The ultimate quick-revision companion for CBSE Class 9 English Grammar. Master high-density comparative tables for Concord, Modals, Tenses, and Prepositions, and follow the strategic 7-day exam countdown plan.",
     "sections": [
       {
-        "title": "The Master Quick-Reference Summary",
+        "title": "High-Density Master Comparison Tables",
         "points": [
-          "• **Tenses:** Present simple in time clauses; past simple with yesterday; past perfect for earlier of two past events; present perfect continuous for duration with since/for.",
-          "• **Modals:** Must (obligation), Must not (prohibition), Don't have to (no necessity), May (permission), Might (possibility), Should (advice).",
-          "• **Concord:** Each/everyone = singular; Either...or = nearer subject; Head noun governs; Measurements = singular unit.",
-          "• **Determiners:** A (consonant sound), An (vowel sound); Much/Little (uncountable); Many/Few (countable).",
-          "• **Reported Speech:** Invert order to S+V; remove 'please'; universal truths stay present."
+          "• **Table 1: Concord Quick-Check:**",
+          "  - *As well as / Along with:* Governed by **1st Subject** (*The captain, along with players, **was** present*).",
+          "  - *Either...or / Neither...nor:* Governed by **Nearest Subject** (*Neither he nor they **were** ready*).",
+          "  - *Each of / One of / Neither of:* Strictly **Singular Verb** (*Each of the books **is** valuable*).",
+          "  - *A number of:* **Plural Verb** | *The number of:* **Singular Verb**.",
+          "• **Table 2: Modal Auxiliaries in a Nutshell:**",
+          "  - *May:* Formal permission / 50% possibility.",
+          "  - *Might:* Remote / weak possibility (~20%).",
+          "  - *Must:* Mandatory law / 95% logical deduction.",
+          "  - *Should:* Advice / moral duty.",
+          "  - *Need not:* Absence of obligation / optional.",
+          "• **Table 3: Reported Speech Pronoun SON Rule:**",
+          "  - 1st Person -> Subject | 2nd Person -> Object | 3rd Person -> No Change."
         ]
       },
       {
-        "title": "The Seven-Day Revision Plan",
+        "title": "Essential Exam Day Sanity Checks",
         "points": [
-          "• **Day 1:** Verb forms & Sequence of Tenses.",
-          "• **Day 2:** Modal auxiliaries and functions.",
-          "• **Day 3:** Reported speech statements and questions.",
-          "• **Day 4:** Reported commands, requests & dialogues.",
-          "• **Day 5:** Conditional Type 1, Concord & Determiners.",
-          "• **Day 6:** Noun clauses, relative clauses & editing.",
-          "• **Day 7:** Practice Arena timed test and error log review."
+          "• **Check 1:** Did you remove the question mark and inverted commas in all reported speech answers?",
+          "• **Check 2:** Did you eliminate 'not' after 'unless', 'until', and 'forbade'?",
+          "• **Check 3:** Did you check singular vs plural after 'each of' and 'neither of'?",
+          "• **Check 4:** Is the baseline narrative past tense maintained across your whole story or diary entry?"
+        ]
+      },
+      {
+        "title": "The Strategic 7-Day Class 9 Grammar Revision Plan",
+        "points": [
+          "• **Day 1 (Tenses):** Review 12 tenses, past time indicators (*yesterday, ago*), and Present Perfect vs Simple Past.",
+          "• **Day 2 (Modals):** Practice ability, obligation (*must* vs *need not*), permission (*may* vs *can*), and *lest... should*.",
+          "• **Day 3 (Subject-Verb Concord):** Solve 30 concord sentences focusing on *along with*, *neither...nor*, and measurement units.",
+          "• **Day 4 (Determiners):** Master *a/an* phonetics (*an hour*, *a university*), *the* rules, and *much/many/little/few*.",
+          "• **Day 5 (Reported Speech):** Practice statement conversion, Yes/No questions with *if/whether*, and dialogue completion passages.",
+          "• **Day 6 (Clauses):** Review Noun clauses (declarative word order) and Relative clauses (*who* vs *whom*, *which* vs *that*).",
+          "• **Day 7 (Mock Assessment):** Solve full-length CBSE Class 9 grammar practice arenas under timed 30-minute exam conditions."
         ]
       }
     ],
     "keyTerms": [
       {
-        "term": "Error Log",
-        "meaning": "A personal record of grammar mistakes with rules and corrected examples."
+        "term": "Revision Table",
+        "meaning": "A consolidated reference summary summarizing key grammatical rules for rapid pre-exam review."
       },
       {
-        "term": "Revision Plan",
-        "meaning": "A systematic 7-day structured schedule covering all syllabus competencies."
+        "term": "Timed Practice",
+        "meaning": "Simulating authentic CBSE board exam conditions by answering grammar sections within strict time allocations."
       }
     ],
     "examTips": [
-      "Maintain a personal error notebook: write the rule behind every mistake you make in mock tests.",
-      "Review your error notebook the morning of the exam for a quick refresher."
+      "Use the 7-day schedule in the final week before term examinations to systematically review all 7 prescribed areas.",
+      "Read error-spotting questions twice: once for overall sentence meaning, and once specifically checking verbs and determiners."
     ]
   },
   {

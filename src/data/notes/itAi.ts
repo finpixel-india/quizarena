@@ -151,7 +151,12 @@ export const itNotesAi: ChapterNote[] = [
           "**2017:** The Transformer architecture introduced an attention-based approach that became central to many modern language and multimodal models. See the original paper in the resource list.",
           "**2020s:** Foundation models and generative systems expanded into chat, code, image, audio, video, retrieval, assistants and agentic workflows.",
           "**History lesson:** AI progress does not move in a straight line. Advances depend on algorithms, computing resources, data, evaluation methods, infrastructure, product design and social acceptance."
-        ]
+        ,
+          "• **The Foundation Model & Agentic Paradigm (2020s–Present):**",
+          "  - **Transformer Architecture Revolution:** Self-attention mechanisms enabled massive parameter scaling (100B+ parameters), zero-shot reasoning, and in-context multi-task generalization.",
+          "  - **Generative AI & LLMs:** Breakthroughs like GPT-4, Gemini, Claude, and LLaMA unified vision, audio, text, and multimodal reasoning into consolidated foundational architectures.",
+          "  - **Agentic Workflows:** Modern AI transitioned from static single-turn query responses to autonomous multi-step reasoning, dynamic tool usage, code execution environments, and self-correcting feedback loops."
+          ]
       }
     ],
     "keyTerms": [
@@ -689,7 +694,17 @@ export const itNotesAi: ChapterNote[] = [
         "title": "Why normal code still matters in AI systems",
         "points": [
           "Use deterministic code for validation, access control, calculations, transaction limits, required fields, file operations and business invariants. Ask the model to interpret ambiguous language if useful, then validate its proposed action with ordinary code."
-        ]
+        ,
+          "• **Algorithmic Complexity & Big-O Notation:**",
+          "  - Understanding runtime complexity ($O(1)$ constant, $O(\log n)$ logarithmic, $O(n)$ linear, $O(n \log n)$ linearithmic, $O(n^2)$ quadratic) is essential for handling big data arrays in AI.",
+          "  - Space complexity analysis guarantees models avoid Out-Of-Memory (OOM) GPU allocation errors during distributed batch training.",
+          "• **Vectorization vs Python Iterative Loops:**",
+          "  - Pure Python loops operate with significant overhead due to dynamic type checking at every iteration step.",
+          "  - **NumPy SIMD Vectorization:** Leverages Single Instruction Multiple Data (SIMD) CPU registers and C-level memory contiguity to execute numerical operations up to $100\times$ faster than standard native loops.",
+          "• **Data Structures for ML:**",
+          "  - Hash Maps (Dictionaries) for $O(1)$ fast key-value metadata retrieval.",
+          "  - Multidimensional Tensors (PyTorch/TensorFlow) representing batch size, channels, height, and width ($B \times C \times H \times W$) stored in contiguous memory blocks."
+          ]
       }
     ],
     "keyTerms": [
@@ -960,42 +975,41 @@ export const itNotesAi: ChapterNote[] = [
     "overview": "A rule-based system uses explicit conditions and actions.",
     "sections": [
       {
-        "title": "Overview & Core Concepts",
+        "title": "Architecture of Classical Expert Systems",
         "points": [
-          "A rule-based system uses explicit conditions and actions."
-        ],
-        "formula": [
-          "def triage_message(text):",
-          "    text = text.lower()",
-          "    if \"reset password\" in text:",
-          "        return \"password_help\"",
-          "    if \"refund\" in text:",
-          "        return \"billing_support\"",
-          "    return \"human_review\""
+          "A **Rule-Based System** or **Expert System** is an artificial intelligence program that emulates the decision-making ability of a human expert within a specific, well-defined domain using formal IF-THEN rules.",
+          "• **Core Architectural Components:**",
+          "  1. **Knowledge Base (KB):** The long-term domain memory containing factual domain knowledge and heuristic rules represented as `IF <condition> THEN <action/conclusion>`.",
+          "  2. **Working Memory (Fact Base):** The dynamic short-term database storing current observations, user inputs, and intermediate inferences.",
+          "  3. **Inference Engine:** The reasoning brain of the system that matches facts from working memory against rules in the knowledge base to infer new conclusions.",
+          "  4. **Explanation Facility (Justifier):** Provides explainability by tracing the exact chain of rules executed (answers 'WHY' a question is asked and 'HOW' a conclusion was reached).",
+          "  5. **User Interface:** Facilitates interactive consultation and dialog with non-expert users."
         ]
       },
       {
-        "title": "Advantages",
+        "title": "Inference Engine Reasoning: Forward vs Backward Chaining",
         "points": [
-          "Predictable and easy to test for defined conditions.",
-          "Usually inexpensive to run.",
-          "Decisions can be inspected as explicit rules.",
-          "Good for stable policies and exact constraints."
+          "The inference engine executes one of two primary logical deduction strategies:",
+          "• **1. Forward Chaining (Data-Driven / Bottom-Up Reasoning):**",
+          "  - Starts with known **facts** in working memory and applies rules to deduce new facts until a goal is reached or no more rules apply.",
+          "  - *Workflow:* Collect symptoms -> Fire rules -> Infer diagnosis.",
+          "  - *Use Cases:* Real-time industrial monitoring, alarm systems, sensor telemetry interpretation.",
+          "• **2. Backward Chaining (Goal-Driven / Top-Down Reasoning):**",
+          "  - Starts with a hypothesized **goal** and searches backward through the rules to find supporting evidence or facts.",
+          "  - *Workflow:* Hypothesize disease -> Look for required symptoms -> Query user if symptom is present.",
+          "  - *Use Cases:* Medical diagnostic consultation, financial loan eligibility auditing.",
+          "• **Conflict Resolution:** When multiple rules match working memory simultaneously, conflict resolution strategies select the winning rule: **Specificity** (most detailed rule fires first), **Recency** (rule matching newest facts fires first), or **Explicit Priority Weights**."
         ]
       },
       {
-        "title": "Limitations",
+        "title": "Landmark Historical Expert Systems & Modern Hybridization",
         "points": [
-          "Rules must anticipate the cases they handle.",
-          "Large rule sets become difficult to maintain.",
-          "Natural language can express one intent in many ways.",
-          "Rules do not generalise automatically from examples."
-        ]
-      },
-      {
-        "title": "Hybrid approach",
-        "points": [
-          "An LLM may classify an ambiguous request into a small set of intents, but ordinary code should validate the classification and route only to permitted actions. A deterministic fallback handles low-confidence or unknown cases."
+          "• **Landmark Historical Systems:**",
+          "  - **DENDRAL (1965, Stanford):** First major expert system; inferred organic chemical structures from mass spectrometry data.",
+          "  - **MYCIN (1972, Stanford):** Diagnosed blood infections (bacteremia and meningitis) and recommended targeted antibiotic dosages with confidence factors.",
+          "  - **XCON / R1 (1978, CMU & DEC):** Commercial rule-based system for configuring VAX computer hardware orders.",
+          "• **The Knowledge Engineering Bottleneck:** Creating classical expert systems required manual interviews with human domain experts to write thousands of rules. These systems proved brittle when encountering novel situations outside their rule sets.",
+          "• **Modern Hybrid AI Systems:** Contemporary enterprise AI combines statistical LLMs and neural nets with deterministic rule engines. Neural models handle natural language perception and ambiguity, while deterministic business rule engines enforce compliance, safety guardrails, and statutory calculations."
         ]
       }
     ],
@@ -1146,7 +1160,15 @@ export const itNotesAi: ChapterNote[] = [
         "title": "Class imbalance",
         "points": [
           "If only 1% of transactions are fraudulent, a model that always predicts “not fraud” obtains 99% accuracy while detecting none of the fraud. Look at precision, recall, PR-AUC and the operational consequences, not accuracy alone."
-        ]
+        ,
+          "• **Decision Tree Splitting Metrics & Information Theory:**",
+          "  - **Entropy:** Quantifies disorder/impurity in a distribution: $H(S) = - \sum p_i \log_2(p_i)$. A pure leaf node has an entropy of $0.0$.",
+          "  - **Information Gain:** The reduction in entropy achieved by partitioning a dataset according to an attribute: $IG(S, A) = H(S) - \sum \frac{|S_v|}{|S|} H(S_v)$ (used in ID3 and C4.5).",
+          "  - **Gini Impurity:** Fast computational metric used in CART: $Gini = 1 - \sum p_i^2$, measuring the probability of incorrect classification if labeled randomly.",
+          "• **Overfitting Mitigation in Trees:**",
+          "  - **Pre-Pruning (Early Stopping):** Restricting `max_depth`, setting `min_samples_split`, or requiring `min_samples_leaf` before splitting occurs.",
+          "  - **Post-Pruning (Cost-Complexity Pruning):** Growing the tree fully and subsequently pruning subtrees that add negligible generalization power based on a penalty parameter $\alpha$."
+          ]
       }
     ],
     "keyTerms": [
@@ -1285,7 +1307,15 @@ export const itNotesAi: ChapterNote[] = [
         "title": "Risks and limitations",
         "points": [
           "RL can be sample-inefficient, unstable, sensitive to reward design and difficult to evaluate safely. Real-world exploration may cause harm; use simulations, constraints and human oversight for physical or consequential systems."
-        ]
+        ,
+          "• **Exploration vs Exploitation Dilemma:**",
+          "  - **Exploitation:** Selecting the action known to yield the highest expected reward according to current estimates.",
+          "  - **Exploration:** Trying untried or uncertain actions to gather information and potentially discover superior long-term rewards.",
+          "  - **$\epsilon$-Greedy Policy:** Balances the trade-off by taking the optimal greedy action with probability $1 - \epsilon$, and a completely random action with probability $\epsilon$ (with $\epsilon$ decaying gradually over training episodes).",
+          "• **Bellman Optimality Equation & Deep Q-Networks (DQN):**",
+          "  - **Bellman Equation:** Decomposes value functions into immediate reward plus discounted expected future returns: $Q^*(s, a) = R(s, a) + \gamma \max_{a'} Q^*(s', a')$.",
+          "  - **DQN Innovations:** Uses Experience Replay buffers (to break temporal correlation between successive samples) and a separate Target Network (to stabilize gradient descent during weight updates)."
+          ]
       }
     ],
     "keyTerms": [
@@ -1436,7 +1466,12 @@ export const itNotesAi: ChapterNote[] = [
         "title": "Reproducibility",
         "points": [
           "Record data versions, code commits, model versions, random seeds where applicable, configuration, dependency versions, evaluation results and known limitations. Reproducibility is not guaranteed merely because a seed is set, especially across hardware and library versions."
-        ]
+        ,
+          "• **Cross-Validation Strategies Across Diverse Data Modalities:**",
+          "  - **Stratified K-Fold:** Guarantees that each fold contains the identical percentage of target classes as the complete dataset—vital for highly imbalanced classification datasets.",
+          "  - **Group K-Fold:** Ensures that records belonging to the same subject, patient, or hospital do not appear concurrently in both train and validation splits, preventing severe subject leakage.",
+          "  - **Time-Series / Rolling Window Splits:** Uses forward-chaining evaluation where past data trains models that predict solely on subsequent future chronological blocks, strictly preventing temporal look-ahead leakage."
+          ]
       }
     ],
     "keyTerms": [
@@ -1594,7 +1629,14 @@ export const itNotesAi: ChapterNote[] = [
         "title": "Human review",
         "points": [
           "Human review is helpful when the reviewer has sufficient expertise, time, context and authority to disagree with the model. A rushed reviewer who merely approves automated suggestions is not meaningful oversight."
-        ]
+        ,
+          "• **Explainable AI (XAI) Frameworks: SHAP & LIME:**",
+          "  - **SHAP (SHapley Additive exPlanations):** Grounded in cooperative game theory; calculates the exact marginal contribution of each feature across all possible feature combinations to guarantee fair, additive attribution values.",
+          "  - **LIME (Local Interpretable Model-agnostic Explanations):** Explains individual predictions by perturbing the input sample, collecting model outputs, and fitting an interpretable surrogate model (e.g., sparse linear regression) locally around that specific instance.",
+          "• **Fairness Metrics in Machine Learning:**",
+          "  - **Demographic Parity:** Requires that the acceptance rate is identical across all protected demographic groups ($P(\hat{Y}=1 | A=0) = P(\hat{Y}=1 | A=1)$).",
+          "  - **Equalized Odds:** Requires both True Positive Rates and False Positive Rates to be equal across protected groups, ensuring accuracy is equitable."
+          ]
       }
     ],
     "keyTerms": [
@@ -1630,33 +1672,42 @@ export const itNotesAi: ChapterNote[] = [
     "overview": "Collect and send only the information necessary for the task. Remove secrets and unnecessary identifiers from prompts and logs. Consider whether a hosted service is permitted for a particular dataset.",
     "sections": [
       {
-        "title": "Data minimisation",
+        "title": "Privacy-Preserving Machine Learning Paradigms",
         "points": [
-          "Collect and send only the information necessary for the task. Remove secrets and unnecessary identifiers from prompts and logs. Consider whether a hosted service is permitted for a particular dataset."
+          "Deploying machine learning models in sensitive sectors (healthcare, banking, education) requires mathematical guarantees protecting training participant data:",
+          "• **Privacy Threats in Trained Models:**",
+          "  - **Membership Inference Attacks:** An adversary queries a trained model to determine whether a specific individual's record was in the training dataset.",
+          "  - **Model Inversion / Reconstruction Attacks:** Extracting training images or private records by reconstructing model weights or gradient updates.",
+          "• **Differential Privacy (DP):**",
+          "  - The rigorous mathematical standard providing quantifiable privacy guarantees.",
+          "  - **Core Definition:** An algorithm is $(\epsilon, \delta)$-differentially private if the presence or absence of any single individual in the dataset alters the output probability distribution by at most $e^\epsilon$.",
+          "  - **Mechanism:** Adds calibrated stochastic noise (Laplace or Gaussian mechanism) to gradients during training (DP-SGD)."
         ]
       },
       {
-        "title": "Access control",
+        "title": "Federated Learning: Collaborative Training at the Edge",
         "points": [
-          "Use least privilege: a component should have only the permissions required for its job. Separate read and write permissions, restrict tools to approved resources, and isolate environments for code execution."
+          "• **Core Principle:** Instead of aggregating sensitive user data onto a centralized server, **the algorithm travels to the data**, keeping raw records on local edge devices (smartphones, hospital servers).",
+          "• **The Federated Averaging (FedAvg) Workflow:**",
+          "  1. Central server initializes and broadcasts a global base model to participating edge clients.",
+          "  2. Each client trains the model locally on private on-device data for several epochs.",
+          "  3. Clients transmit only parameter updates (gradients/weights) back to the server—raw private data never leaves the device.",
+          "  4. Central server computes a federated average of all client updates to produce an improved global model.",
+          "• **Secure Aggregation:** Cryptographic protocols ensure the central server cannot inspect individual client gradient updates, preventing reconstruction attacks."
         ]
       },
       {
-        "title": "Secrets management",
+        "title": "Global AI Governance Frameworks & Regulatory Compliance",
         "points": [
-          "Never place API keys or passwords in public code, browser bundles, model prompts, logs, screenshots or version control. Use a secrets manager or secure environment configuration, rotate exposed credentials, and apply spending/rate limits."
-        ]
-      },
-      {
-        "title": "Retention and deletion",
-        "points": [
-          "Document what data is stored, for how long, for what reason, where it is stored, and how deletion requests are handled. Verify vendor and infrastructure behaviour rather than assuming data disappears when a conversation ends."
-        ]
-      },
-      {
-        "title": "Threat modelling",
-        "points": [
-          "Ask: What are we protecting? From whom? Through which entry points? What damage could occur? What controls reduce likelihood and impact? Include malicious users, compromised tools, supply-chain risks, data leakage, accidental misuse and operational failures."
+          "• **The European Union AI Act (Risk-Tiered Hierarchy):**",
+          "  1. *Unacceptable Risk (Prohibited):* Social scoring, cognitive behavioral manipulation, biometric categorization of sensitive traits.",
+          "  2. *High Risk (Strict Conformity):* Medical devices, critical infrastructure, educational admissions, employment evaluation, credit scoring.",
+          "  3. *Limited Risk:* Conversational chatbots, deepfakes (requires transparent disclosure that content is AI-generated).",
+          "  4. *Minimal / Low Risk:* Spam filters, AI-enabled gaming (permitted without regulatory burdens).",
+          "• **India's Digital Personal Data Protection (DPDP) Act 2023:**",
+          "  - Mandates explicit, informed consent for personal data processing.",
+          "  - Enforces purpose limitation, data minimization, and statutory rights to data erasure.",
+          "  - Restricts targeted profiling and behavioural monitoring of minors."
         ]
       }
     ],
@@ -1915,7 +1966,15 @@ export const itNotesAi: ChapterNote[] = [
         "title": "Language generation",
         "points": [
           "Many language models generate by repeatedly selecting the next token according to a learned distribution conditioned on prior context. This can produce coherent language without guaranteeing factual verification, causal reasoning or a source for each statement."
-        ]
+        ,
+          "• **Subword Tokenization Algorithms:**",
+          "  - **Byte Pair Encoding (BPE):** Iteratively merges the most frequent pairs of characters or byte sequences; forms the tokenization backbone of GPT and modern LLMs.",
+          "  - **WordPiece:** Selects subword merges that maximize the language model likelihood of the training corpus (used in BERT).",
+          "  - **SentencePiece:** Treats input text as a raw stream of unicode characters (including whitespace markers), eliminating language-specific pre-tokenizers.",
+          "• **Distributed Word Representations (Static vs Contextual):**",
+          "  - **Static Embeddings (Word2Vec, GloVe):** Map each vocabulary word to a fixed dimensional vector regardless of context, failing to capture polysemy (e.g., 'bank' of a river vs 'bank' financial institution).",
+          "  - **Contextual Embeddings (BERT, ELMo):** Compute dynamic token vector representations conditioned on all surrounding tokens across the complete sentence."
+          ]
       }
     ],
     "keyTerms": [
@@ -1939,34 +1998,42 @@ export const itNotesAi: ChapterNote[] = [
     "overview": "Audio AI works with waveforms or learned representations of sound.",
     "sections": [
       {
-        "title": "Overview & Core Concepts",
+        "title": "Digital Audio Signal Processing & Feature Extraction",
         "points": [
-          "Audio AI works with waveforms or learned representations of sound."
+          "Audio processing transforms continuous acoustic pressure waves into numerical feature representations suitable for machine learning models:",
+          "• **Analog-to-Digital Conversion (ADC):**",
+          "  - **Sampling Rate:** The frequency at which sound pressure is measured per second (standard speech uses 16 kHz; high-fidelity audio uses 44.1 kHz).",
+          "  - **Nyquist-Shannon Sampling Theorem:** To reconstruct a sound wave without aliasing, the sampling rate must be at least twice the maximum frequency component ($f_s \ge 2 \cdot f_{max}$).",
+          "  - **Bit Depth:** Number of bits allocated per sample (16-bit audio provides 96 dB of dynamic range).",
+          "• **Spectral Feature Representations:**",
+          "  - **Short-Time Fourier Transform (STFT):** Breaks non-stationary audio into overlapping 20–30 ms frames to compute frequency content over time.",
+          "  - **Mel Spectrogram:** Warps linear frequency onto the non-linear human auditory **Mel Scale**, which exhibits higher perceptual resolution at low frequencies.",
+          "  - **MFCCs (Mel-Frequency Cepstral Coefficients):** Compact representation derived from log Mel filterbank energies using Discrete Cosine Transform (DCT); standard in classical speech processing."
         ]
       },
       {
-        "title": "Common tasks",
+        "title": "Automatic Speech Recognition (ASR) Pipelines: HMMs to Transformers",
         "points": [
-          "**Speech recognition / ASR:** Speech audio to text.",
-          "**Text-to-speech (TTS):** Text to synthetic speech.",
-          "**Speaker diarisation:** Estimate who spoke when.",
-          "**Voice activity detection:** Find speech-containing segments.",
-          "**Speech translation:** Convert spoken content between languages.",
-          "**Audio event classification:** Detect events such as alarms or traffic.",
-          "**Music information retrieval:** Identify or classify audio/music attributes.",
-          "**Audio generation:** Produce speech, music or sound effects."
+          "• **Classical ASR Pipeline (Three Distinct Models):**",
+          "  1. **Acoustic Model (HMM-GMM / HMM-DNN):** Predicts the probability of phonetic states given acoustic features.",
+          "  2. **Pronunciation Lexicon:** Maps spoken phonemes to dictionary words (e.g., `/k/ /æ/ /t/` -> *cat*).",
+          "  3. **Language Model (N-gram):** Assigns prior probability to word sequences, ensuring 'recognize speech' is favored over 'wreck a nice beach'.",
+          "• **Modern End-to-End Deep Learning ASR:**",
+          "  - Replaces modular pipelines with a single unified neural network trained directly from audio to text.",
+          "  - **Connectionist Temporal Classification (CTC):** Loss function that aligns variable-length audio frames to text without requiring frame-level phonetic alignments.",
+          "  - **Conformer & Transformer Encoders (e.g., OpenAI Whisper):** Combines multi-head self-attention with depthwise convolutional layers to capture both global long-range context and local acoustic patterns across multilingual speech with high robustness to background noise."
         ]
       },
       {
-        "title": "Important challenges",
+        "title": "Text-to-Speech (TTS) Synthesis & Neural Vocoders",
         "points": [
-          "Background noise, accents, code-switching, microphone quality, overlapping speakers, names and uncommon vocabulary can reduce performance. Transcripts must be checked when used for legal, medical, financial or disciplinary decisions."
-        ]
-      },
-      {
-        "title": "Voice cloning and consent",
-        "points": [
-          "Synthetic voices can impersonate real people. Obtain appropriate permission, use disclosure/provenance where suitable, protect voice samples and do not use voice systems for fraud, harassment or unauthorised imitation."
+          "Modern neural Text-to-Speech (TTS) pipelines convert written prose into natural-sounding speech across two distinct architectural stages:",
+          "• **Stage 1 — Acoustic Modeling (Text to Mel Spectrogram):**",
+          "  - Normalizes raw text (expands abbreviations, numbers, dates) and maps graphemes to phonemes.",
+          "  - Models like **Tacotron 2** (autoregressive) and **FastSpeech 2** (non-autoregressive, duration-based) predict intermediate Mel spectrogram frames from phoneme inputs.",
+          "• **Stage 2 — Neural Vocoding (Spectrogram to Time-Domain Audio Waveform):**",
+          "  - Reconstructs raw time-domain audio samples from predicted spectrograms with realistic timbre and phase.",
+          "  - Architectures: **WaveNet** (dilated causal convolutions), **HiFi-GAN** (generative adversarial network enabling faster-than-real-time high-fidelity waveform generation)."
         ]
       }
     ],
@@ -2037,7 +2104,12 @@ export const itNotesAi: ChapterNote[] = [
           "**Hybrid approaches:** Combine content, collaborative signals and business rules.",
           "**Context-aware recommendations:** Include time, location, device or current intent where appropriate and permitted.",
           "Challenges include cold-start users/items, feedback loops, popularity bias, privacy, manipulation, diversity and measuring long-term user benefit rather than only clicks."
-        ]
+        ,
+          "• **Collaborative Filtering & Modern Recommender Architectures:**",
+          "  - **Matrix Factorization (SVD):** Decomposes a sparse User-Item interaction matrix into low-rank dense user and item latent factor matrices ($R \approx U \cdot V^T$).",
+          "  - **Two-Tower Neural Networks:** Separates recommendation into a **Query / User Tower** and a **Candidate / Item Tower**. Both towers output dense 128D embeddings into a shared vector space, allowing millions of items to be retrieved in milliseconds via Approximate Nearest Neighbor (ANN) search engines (FAISS, ScaNN, Milvus).",
+          "  - **Cold-Start Problem:** Overcome by combining collaborative signals with item content features (text, tags, images) and user demographic metadata in hybrid models."
+          ]
       }
     ],
     "keyTerms": [
@@ -2546,7 +2618,12 @@ export const itNotesAi: ChapterNote[] = [
         "title": "Extraction should preserve uncertainty",
         "points": [
           "If a document contains no invoice date, the system should return `null` or “not found” rather than inventing one. Distinguish explicit evidence, inferred values and missing information. Use source spans or citations if auditability matters."
-        ]
+        ,
+          "• **Grammar-Constrained Decoding & Structured Generation:**",
+          "  - **Grammar Masking (Outlines / Guidance):** Restricts the model's token sampling distribution during decoding at each token step by dynamically masking out tokens that violate formal context-free grammars (CFGs) or JSON schema specifications, guaranteeing 100% syntactically valid JSON.",
+          "  - **Pydantic Validation & Type Safety:** Enterprise extraction pipelines pass generated JSON into strict Pydantic data schemas in Python to enforce type validation, range constraints, and structural consistency.",
+          "  - **Self-Correction & Retry Loops:** When output validation fails, programmatic retry loops inject the exact validation error back into the LLM prompt to trigger self-healing corrective generation in real time."
+          ]
       }
     ],
     "keyTerms": [
@@ -4124,7 +4201,12 @@ export const itNotesAi: ChapterNote[] = [
         "title": "AI in cyber-physical systems",
         "points": [
           "Use deterministic safety controllers, independent limits, emergency stops and validated sensor logic where appropriate. Generative models should not bypass safety interlocks or autonomously control hazardous equipment without a rigorously engineered safety case."
-        ]
+        ,
+          "• **Robot Operating Systems & Embodied AI Architectures:**",
+          "  - **ROS 2 (Robot Operating System):** Distributed middleware utilizing Data Distribution Service (DDS) for real-time, deterministic inter-process communication between sensors, motor controllers, and neural perception modules.",
+          "  - **Sim-to-Real Transfer:** Training robotic policies inside physics simulation engines (Isaac Sim, MuJoCo) with Domain Randomization (varying friction, mass, lighting) before zero-shot transfer onto real-world physical hardware.",
+          "  - **Vision-Language-Action (VLA) Models:** End-to-end models (such as RT-2 and OpenVLA) that process natural language commands alongside camera imagery to directly output low-level robotic motor joint trajectories and gripper actions."
+          ]
       }
     ],
     "keyTerms": [

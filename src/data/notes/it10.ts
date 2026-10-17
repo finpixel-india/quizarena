@@ -11,16 +11,45 @@ export const itNotes10: ChapterNote[] = [
     "overview": "1. **Read for understanding.** Start with the concept, then study the vocabulary, example and practical steps.",
     "sections": [
       {
-        "title": "Overview & Core Concepts",
+        "title": "Course Overview & Examination Architecture",
         "points": [
-          "1. **Read for understanding.** Start with the concept, then study the vocabulary, example and practical steps.",
-          "2. **Perform the practical.** Open LibreOffice and carry out the steps on sample data rather than only memorising menu paths.",
-          "3. **Record evidence.** Save files with meaningful names and keep your practical portfolio organised.",
-          "4. **Test yourself.** Attempt the questions before opening the answer key.",
-          "5. **Prioritise your registered subject.** This guide follows IT (402), not a different subject code.",
-          "6. **Check teacher instructions.** Software versions and school practical-file formats may differ.",
-          "A useful file-naming convention is `Class10_IT402_Unit_Task_Date.odt` for Writer, `.ods` for Calc and `.odb` for Base. Keep a backup. Never store private passwords or real sensitive records in a school practical example."
+          "CBSE Class X Information Technology (Subject Code 402) is designed to cultivate both core **Employability Skills** and specialized **Domestic Data Entry Operator (DDEO)** competencies for the IT-ITeS industry.",
+          "• **Total Assessment Breakdown (100 Marks):**",
+          "  - **Theory Examination:** **50 Marks** (Duration: 2 Hours).",
+          "  - **Practical Assessment & Portfolio:** **50 Marks** (Evaluated in school computer laboratories).",
+          "• **Theory Examination Blueprint (50 Marks):**",
+          "  - **Part A — Employability Skills (10 Marks):** Covers Communication Skills, Self-Management, ICT Skills, Entrepreneurship, and Green Skills. Tests objective MCQs and short-answer questions.",
+          "  - **Part B — Subject-Specific Skills (40 Marks):** Covers Digital Documentation (8 Marks), Electronic Spreadsheet Advanced (10 Marks), Database Management System (12 Marks), and Workplace Safety & Health (10 Marks).",
+          "• **Practical Examination Blueprint (50 Marks):**",
+          "  - **Practical Examination (30 Marks):** Hands-on tasks in LibreOffice Writer, Calc, and Base.",
+          "  - **Viva Voce (10 Marks):** Oral examination based on syllabus practical applications.",
+          "  - **Practical File / Student Portfolio (10 Marks):** Documentation of minimum 15 practical assignments with printouts and outputs."
         ]
+      },
+      {
+        "title": "Employability Skills (Part A) Master Breakdown",
+        "table": {
+          "head": ["Unit Code", "Official Unit Title", "Key Examination Competencies"],
+          "rows": [
+            ["Unit 1", "Communication Skills–II", "Methods of communication, communication cycle, feedback types, 7 Cs of communication, overcoming barriers, and paragraph writing mechanics."],
+            ["Unit 2", "Self-Management Skills–II", "Stress management techniques (yoga, physical exercise, meditation), emotional intelligence, self-motivation, setting SMART goals, and working independently."],
+            ["Unit 3", "ICT Skills–II", "Operating system functions, GUI vs CUI, file and folder hierarchy, safe computing habits, antivirus installation, disk cleanup, and temporary file purging."],
+            ["Unit 4", "Entrepreneurial Skills–II", "Characteristics of successful entrepreneurs, distinguishing entrepreneurship from wage employment, debunking entrepreneurship myths, and societal contributions."],
+            ["Unit 5", "Green Skills–II", "The 17 Sustainable Development Goals (SDGs), ecological conservation, green economy fundamentals, 4Rs (Reduce, Reuse, Recycle, Refuse), and energy auditing."]
+          ]
+        }
+      },
+      {
+        "title": "Subject-Specific Skills (Part B) Master Breakdown",
+        "table": {
+          "head": ["Unit Code", "Subject-Specific Domain", "Software Platform & Key Topics"],
+          "rows": [
+            ["Unit 1", "Digital Documentation (Advanced)", "LibreOffice Writer: Applying and creating styles (paragraph, character, page), inserting and cropping images, drawing tools, automatic Table of Contents (ToC), custom templates, Track Changes, comments, and document merging."],
+            ["Unit 2", "Electronic Spreadsheet (Advanced)", "LibreOffice Calc: Data consolidation across multiple sheets, grouping and subtotals, What-If scenarios, Goal Seek, Solver, recording and running macros, cell linking, and relative/absolute hyperlinks."],
+            ["Unit 3", "Database Management System (DBMS)", "LibreOffice Base: Relational database concepts, primary and foreign keys, table design view and wizard, field data types, establishing 1:1 and 1:M relationships, SQL queries (SELECT, INSERT, UPDATE, DELETE), design-view queries, forms, and report generation."],
+            ["Unit 4", "Maintain Workplace Safety & Health", "Ergonomics of data entry work, prevention of repetitive strain injuries (RSI), electrical and fire hazard protocols, emergency evacuation drills, first aid administration, and cyber safety policies."]
+          ]
+        }
       }
     ],
     "keyTerms": [
@@ -1237,21 +1266,50 @@ export const itNotes10: ChapterNote[] = [
     "overview": "LibreOffice Calc is a spreadsheet application. A workbook contains sheets, and each sheet contains cells arranged in rows and columns. Class X focuses on data analysis, scenarios, Goal Seek, Solver, macros, links and collaborative review.",
     "sections": [
       {
-        "title": "Overview & Core Concepts",
+        "title": "Overview & Calc Interface Architecture",
         "points": [
-          "LibreOffice Calc is a spreadsheet application. A workbook contains sheets, and each sheet contains cells arranged in rows and columns. Class X focuses on data analysis, scenarios, Goal Seek, Solver, macros, links and collaborative review."
+          "LibreOffice Calc is an advanced open-source electronic spreadsheet application used for data calculation, tabular organization, statistical forecasting, and analytical charting.",
+          "• **The Calc Application Interface Anatomy:**",
+          "  - **Title Bar:** Displays current document name and application title (`Untitled 1 — LibreOffice Calc`).",
+          "  - **Menu Bar:** Provides categorized menus: File, Edit, View, Insert, Format, Styles, Sheet, Data, Tools, Window, Help.",
+          "  - **Formula Bar:** Situated below toolbars; contains the **Name Box** (displays active cell coordinate like `B4`), **Function Wizard button (fx)**, **Select Function (=)**, and the **Input Line** (displays raw formula content).",
+          "  - **Sheet Tabs:** Located at the bottom left; allows navigation between sheets (`Sheet1`, `Sheet2`), inserting new sheets, and renaming tabs.",
+          "  - **Status Bar:** Bottom bar showing current sheet number, page style, zoom slider, selection mode, and instant calculation sum/average."
         ]
       },
       {
-        "title": "Calc foundations",
+        "title": "Fundamental Concepts: Cells, Ranges, Formulas & Functions",
         "points": [
-          "**Cell reference:** a coordinate such as `B4`.",
-          "**Range:** a group of cells such as `B2:B10`.",
-          "**Formula:** an expression beginning with `=`, such as `=SUM(B2:B10)`.",
-          "**Function:** a built-in calculation such as `SUM`, `AVERAGE`, `MAX` or `COUNT`.",
-          "**Workbook:** the complete spreadsheet file, usually saved as `.ods` in LibreOffice.",
-          "**Sheet:** one page/tab inside the workbook.",
-          "Use meaningful sheet names and labels. A calculation is only as reliable as the inputs and assumptions behind it."
+          "• **Cell & Coordinates:** The fundamental intersection of a vertical column (labeled with letters A, B, C...) and a horizontal row (numbered 1, 2, 3...). Coordinate: `ColumnLetter + RowNumber` (e.g., `D15`).",
+          "• **Range of Cells:** A rectangular block of adjacent cells defined by the upper-left coordinate and lower-right coordinate separated by a colon: `B2:D10`.",
+          "• **Formulas:** A user-defined mathematical expression. **An absolute rule in spreadsheets: Every formula MUST begin with an equal sign (=)**: `=B2 + C2 * 0.18`.",
+          "• **Functions:** Pre-programmed built-in mathematical, statistical, or logical algorithms: `=SUM(A1:A50)`, `=AVERAGE(B2:B20)`, `=MAX(C1:C100)`, `=COUNT(D1:D30)`.",
+          "• **Workbook vs Sheet:** A workbook is the entire `.ods` file; a sheet is an individual ledger tab within that workbook."
+        ]
+      },
+      {
+        "title": "Cell Referencing: Relative, Absolute & Mixed",
+        "points": [
+          "A fundamental concept tested heavily in board exams is how cell coordinates adjust when copied across rows or columns:",
+          "• **1. Relative Cell Reference (e.g., `A1`):**",
+          "  - Changes automatically relative to the destination cell when copied or dragged with the fill handle.",
+          "  - *Example:* If `=A1+B1` in cell `C1` is copied down to `C2`, it automatically adapts to `=A2+B2`.",
+          "• **2. Absolute Cell Reference (e.g., `$A$1`):**",
+          "  - Remains strictly locked to the exact cell coordinate regardless of where the formula is copied. Marked by dollar signs (`$`) before both column and row.",
+          "  - *Example:* If calculating GST tax using rate in `$E$1`, formula `=B2*$E$1` copied to row 3 becomes `=B3*$E$1` ($E$1 stays frozen!).",
+          "• **3. Mixed Cell Reference (e.g., `$A1` or `A$1`):**",
+          "  - Locks either only the column (`$A1`) or only the row (`A$1`).",
+          "• **Shortcut to Toggle Referencing:** Press **Shift + F4** (or `F4`) while editing a formula in Calc."
+        ]
+      },
+      {
+        "title": "Spreadsheet Error Indicators & Troubleshooting",
+        "points": [
+          "• **`###` (Column Width Error):** The column is too narrow to display the complete numerical value. *Fix:* Double-click the column boundary header to auto-fit.",
+          "• **`#DIV/0!`:** Attempting to divide a number by zero or an empty cell.",
+          "• **`#VALUE!`:** An incompatible data type is used in an arithmetic operation (e.g., multiplying text by a number).",
+          "• **`#REF!` (Invalid Reference):** The cell referenced by the formula has been deleted.",
+          "• **`#NAME?`:** The function name is misspelled (e.g., writing `=SUMM(A1:A10)` instead of `=SUM`)."
         ]
       }
     ],

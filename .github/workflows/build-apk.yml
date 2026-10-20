@@ -22,16 +22,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
 
       - name: Set up Java JDK 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: "temurin"
           java-version: "17"
 
       - name: Install Node Dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build Static Web App
         run: npm run build:static

@@ -49,9 +49,31 @@ jobs:
           cd android
           ./gradlew assembleDebug --no-daemon --stacktrace
 
+      - name: Prepare QuizLab.apk
+        run: |
+          mkdir -p dist-apk
+          find android/app/build/outputs/apk -name "*.apk" -exec cp {} dist-apk/QuizLab.apk \;
+          ls -la dist-apk/
+
       - name: Upload APK as Artifact
         uses: actions/upload-artifact@v4
         with:
           name: QuizLab-Android-APK
-          path: android/app/build/outputs/apk/debug/*.apk
+          path: dist-apk/QuizLab.apk
           retention-days: 30
+
+      - name: Publish GitHub Release (Direct APK Download)
+        uses: softprops/action-gh-release@v2
+        if: github.ref == 'refs/heads/main'
+        continue-on-error: true
+        with:
+          tag_name: latest
+          name: "QuizLab Android App"
+          body: |
+            ### 📱 QuizLab Offline Android App
+            Download **`QuizLab.apk`** directly below to install on your Android device!
+            - 100% Offline (all quizzes, notes, articulate cards included)
+            - Lightweight (~6 MB)
+          files: dist-apk/QuizLab.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

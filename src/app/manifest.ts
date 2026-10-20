@@ -4,6 +4,7 @@ export const dynamic = "force-static";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
+    id: "/",
     name: "QuizLab — Science, SST, Math & IT Practice",
     short_name: "QuizLab",
     description: "Chapter-wise Class 9 & 10 Science and SST quizzes, Basic Math and IT — with timers, hints, history and high scores stored on your device.",
@@ -15,8 +16,10 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: "#0C0A09",
     categories: ["education"],
     icons: [
+      { src: "/icon-192.png", sizes: "192x192", type: "image/png", purpose: "any" },
+      { src: "/icon-512.png", sizes: "512x512", type: "image/png", purpose: "any" },
+      { src: "/icon-maskable.png", sizes: "512x512", type: "image/png", purpose: "maskable" },
       { src: "/icon.svg", sizes: "any", type: "image/svg+xml", purpose: "any" },
-      { src: "/apple-icon.png", sizes: "512x512", type: "image/png", purpose: "any" },
     ],
   };
 }

@@ -7,6 +7,7 @@ import { ArrowUpRight, BookOpenText, FlaskConical, Lightbulb, Maximize, Mic, Min
 import { btn } from "@/components/ui";
 import { useFullscreen, useTheme } from "@/lib/client-hooks";
 import { cn } from "@/lib/format";
+import { haptic } from "@/lib/haptics";
 
 const NAV = [
   { href: "/", label: "Quiz", icon: Zap },
@@ -113,6 +114,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={() => haptic("light")}
                 aria-current={active ? "page" : undefined}
                 className={cn(
                   "flex flex-col items-center gap-1 rounded-xl py-2 px-1 text-[11px] font-medium transition active:scale-95",

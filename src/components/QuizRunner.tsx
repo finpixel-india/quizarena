@@ -15,6 +15,7 @@ import { SOURCE_META } from "@/lib/settings";
 import { generateQuiz } from "@/lib/generate";
 import { saveAttempt } from "@/lib/storage";
 import { getTopicInfo } from "@/lib/topics";
+import { haptic } from "@/lib/haptics";
 import type { AnswerStatus, QuizConfig, QuizMode, QuizQuestion, SourceId, TopicInfo } from "@/lib/types";
 
 type Phase = "loading" | "error" | "playing" | "saving" | "save-error";
@@ -235,6 +236,7 @@ export default function QuizRunner({ topic, config, mode }: { topic: TopicInfo; 
       finishEarly(answers);
       return;
     }
+    haptic("light");
     setIndex(index + 1);
     setPicked(null);
     setHintShown(false);
@@ -256,10 +258,19 @@ export default function QuizRunner({ topic, config, mode }: { topic: TopicInfo; 
     setAnswers(next);
     setNow(t);
     setPicked(selected);
+
+    if (correct) {
+      haptic("success");
+    } else if (selected !== null) {
+      haptic("error");
+    } else {
+      haptic("light");
+    }
   }
 
   function takeHint() {
     if (!canHint || !q) return;
+    haptic("medium");
     const wrong = q.options.map((_, i) => i).filter((i) => i !== q.correctIndex);
     const removeCount = q.hint ? 1 : Math.min(2, wrong.length - 1);
     setEliminated(shuffle(wrong).slice(0, removeCount));

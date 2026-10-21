@@ -114,7 +114,7 @@ export default function HomeClient() {
         {rows.length ? (
           <Link
             href="/stats"
-            className="group grid shrink-0 grid-cols-3 overflow-hidden rounded-2xl border border-line bg-card card-shadow animate-fade-up md:backdrop-blur-xl transition hover:border-brand/60"
+            className="group grid shrink-0 grid-cols-3 overflow-hidden rounded-2xl border border-line bg-card card-shadow md:backdrop-blur-xl transition hover:border-brand/60"
             title="View complete stats and high scores"
           >
             {[

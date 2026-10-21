@@ -65,7 +65,7 @@ function FactCard({
     <article
       onClick={onOpen}
       style={style}
-      className="group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-line bg-card card-shadow transition-all duration-300 hover:-translate-y-1 hover:border-line-2 hover:shadow-[0_24px_48px_-16px_rgba(0,0,0,0.6)] cursor-pointer select-none animate-fade-up"
+      className="group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-line bg-card card-shadow transition-all duration-300 hover:-translate-y-1 hover:border-line-2 hover:shadow-[0_24px_48px_-16px_rgba(0,0,0,0.6)] cursor-pointer select-none"
     >
       {/* ── Fixed aspect-ratio image container ── */}
       <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden bg-surface">

@@ -328,8 +328,8 @@ export const btn = {
   subtle:
     "inline-flex items-center justify-center gap-2 rounded-full border border-line bg-fg/[0.03] px-5 py-3 sm:px-6 sm:py-3 text-sm font-medium text-fg transition hover:border-line-2 hover:bg-fg/[0.06] active:scale-[0.98] disabled:pointer-events-none disabled:opacity-40 min-h-[2.75rem] sm:min-h-0",
   ghost:
-    "inline-flex items-center justify-center gap-2 rounded-xl px-3.5 py-2.5 sm:px-3 sm:py-2 text-sm font-medium text-muted transition hover:bg-fg/5 hover:text-fg disabled:pointer-events-none disabled:opacity-40",
-  icon: "inline-flex h-10 w-10 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-xl text-muted transition hover:bg-fg/[0.06] hover:text-fg",
+    "inline-flex items-center justify-center gap-2 rounded-xl px-3.5 py-2.5 sm:px-3 sm:py-2 text-sm font-medium text-muted transition duration-100 hover:bg-fg/5 hover:text-fg active:scale-95 disabled:pointer-events-none disabled:opacity-40",
+  icon: "inline-flex h-10 w-10 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-xl text-muted transition duration-100 hover:bg-fg/[0.06] hover:text-fg active:scale-95",
 };
 
 export function chip(active: boolean) {

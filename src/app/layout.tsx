@@ -42,8 +42,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           </defs>
         </svg>
 
-        {/* Subtle aurora + grid backdrop */}
-        <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+        {/* Subtle aurora + grid backdrop with GPU layer isolation */}
+        <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0 overflow-hidden [transform:translateZ(0)] [contain:strict]">
           <div className="grid-lines absolute inset-0 [mask-image:radial-gradient(ellipse_75%_55%_at_50%_0%,#000_20%,transparent_75%)]" />
           <div className="absolute -left-48 -top-64 h-[40rem] w-[40rem] rounded-full [background:radial-gradient(closest-side,var(--aurora-1),transparent)]" />
           <div className="absolute -right-48 -top-48 h-[42rem] w-[42rem] rounded-full [background:radial-gradient(closest-side,var(--aurora-2),transparent)]" />

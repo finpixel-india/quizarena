@@ -91,7 +91,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
         </div>
       </header>
 
-      <main key={pathname} className={cn("flex-1 animate-fade-up", pathname === "/articulate" ? "flex flex-col pb-16 md:pb-0" : "pb-20 md:pb-0")}>
+      <main className={cn("flex-1", pathname === "/articulate" ? "flex flex-col pb-16 md:pb-0" : "pb-20 md:pb-0")}>
         {children}
       </main>
 

@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@capacitor/core": "^7.6.9",
+    "@emnapi/core": "^1.11.3",
+    "@emnapi/runtime": "^1.11.3",
     "geist": "^1.7.2",
     "lucide-react": "^1.47.0",
     "next": "16.2.6",

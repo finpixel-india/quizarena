@@ -37,7 +37,7 @@ export function CollapsibleSection({
   return (
     <div
       className={cn(
-        "rounded-2xl border transition-colors duration-200 overflow-hidden [transform:translateZ(0)]",
+        "rounded-2xl border transition-colors duration-200 overflow-hidden",
         isOpen
           ? "border-brand/60 bg-card shadow-[0_2px_12px_-4px_rgba(249,115,22,0.12)]"
           : "border-line bg-fg/[0.02] hover:border-line-2 hover:bg-fg/[0.035]",
@@ -51,7 +51,7 @@ export function CollapsibleSection({
           onToggle();
         }}
         aria-expanded={isOpen}
-        className="flex w-full items-center justify-between gap-3 p-3.5 sm:p-4 text-left transition select-none cursor-pointer group active:scale-[0.99] touch-manipulation"
+        className="flex w-full items-center justify-between gap-3 p-3.5 sm:p-4 text-left select-none cursor-pointer group touch-manipulation hover:bg-fg/[0.02] transition-colors"
       >
         <div className="flex items-center gap-2 sm:gap-2.5 min-w-0 flex-1">
           {stepNumber ? (
@@ -79,7 +79,10 @@ export function CollapsibleSection({
             )}
           >
             <ChevronDown
-              className={cn("h-4.5 w-4.5 sm:h-4 sm:w-4 transition-transform duration-200 ease-[cubic-bezier(0.16,1,0.3,1)]", isOpen && "rotate-180")}
+              className={cn(
+                "h-4.5 w-4.5 sm:h-4 sm:w-4 transition-transform duration-250 ease-[cubic-bezier(0.2,0,0,1)]",
+                isOpen && "rotate-180",
+              )}
             />
           </span>
         </div>
@@ -87,8 +90,8 @@ export function CollapsibleSection({
 
       <div
         className={cn(
-          "grid transition-[grid-template-rows,opacity] duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-[grid-template-rows,opacity]",
-          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0 pointer-events-none",
+          "grid transition-[grid-template-rows] duration-250 ease-[cubic-bezier(0.2,0,0,1)]",
+          isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
         )}
       >
         <div className="overflow-hidden min-h-0">

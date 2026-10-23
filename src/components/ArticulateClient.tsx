@@ -693,7 +693,7 @@ export default function ArticulateClient() {
   const activeElocutionType = ELOCUTION_TYPES.find((t) => t.id === elocutionType) ?? ELOCUTION_TYPES[0];
 
   return (
-    <div className="relative flex flex-col justify-between items-center w-full h-full md:h-auto md:min-h-[calc(100dvh-4rem)] select-none px-3 sm:px-6 pt-1.5 sm:pt-6 pb-2 sm:pb-8 overflow-hidden">
+    <div className="relative flex flex-col justify-between items-center w-full min-h-[calc(100dvh-3.5rem-4.5rem)] md:min-h-[calc(100dvh-4rem)] select-none px-4 sm:px-6 pt-2 sm:pt-8 pb-3 sm:pb-8">
 
       {/* ── Atmospheric glows ── */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
@@ -942,7 +942,7 @@ export default function ArticulateClient() {
             <h2
               key={tickKey}
               className={cn(
-                "font-serif font-normal text-fg leading-[1.15] sm:leading-[1.1] tracking-[-0.015em] max-w-[16ch] mx-auto text-[2.2rem] xs:text-[2.6rem] sm:text-[3.4rem] md:text-[4.2rem]",
+                "font-serif font-normal text-fg leading-[1.15] sm:leading-[1.1] tracking-[-0.015em] max-w-[16ch] mx-auto text-[2.4rem] xs:text-[2.85rem] sm:text-[3.6rem] md:text-[4.4rem]",
                 isSpinning ? "animate-slot-in" : "animate-prompt-land",
               )}
             >

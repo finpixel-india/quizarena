@@ -545,8 +545,8 @@ export default function FactsClient() {
         {/* Collapsible Panel with CSS Grid Animation (Never clips or glitches) */}
         <div
           className={cn(
-            "grid transition-[grid-template-rows,opacity] duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] border-t border-line/40 will-change-[grid-template-rows,opacity]",
-            isCategoryExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0 pointer-events-none",
+            "grid transition-[grid-template-rows] duration-250 ease-[cubic-bezier(0.2,0,0,1)] border-t border-line/40",
+            isCategoryExpanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
           )}
         >
           <div className="overflow-hidden min-h-0">

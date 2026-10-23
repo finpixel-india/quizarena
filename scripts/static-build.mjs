@@ -12,7 +12,7 @@ if (existsSync(nextDir)) {
 }
 
 function run(cmd, args, env = {}) {
-  const res = spawnSync(cmd, args, { stdio: "inherit", env: { ...process.env, ...env }, shell: process.platform === "win32" });
+  const res = spawnSync(cmd, args, { stdio: "inherit", env: { ...process.env, ...env } });
   if (res.status !== 0) process.exit(res.status ?? 1);
 }
 
@@ -23,8 +23,10 @@ if (existsSync(apiDir)) {
   rmSync(apiDir, { recursive: true, force: true });
 }
 
+const nextBin = path.join(root, "node_modules", "next", "dist", "bin", "next");
+
 try {
-  run("npx", ["next", "build"], { QUIZLAB_STATIC: "1" });
+  run("node", [nextBin, "build"], { QUIZLAB_STATIC: "1" });
 } finally {
   if (existsSync(stash)) {
     mkdirSync(path.dirname(apiDir), { recursive: true });

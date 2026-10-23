@@ -177,11 +177,10 @@ function SettingsOverlay({ settings, onChange, onClose }: { settings: Settings; 
   const done = () => { persistSettings(local); onChange(local); onClose(); };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 select-none" onClick={onClose}>
-      <div className="absolute inset-0 bg-black/65 backdrop-blur-md" />
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 select-none animate-fade-in" onClick={onClose}>
+      <div className="absolute inset-0 bg-black/75" />
       <div
-        className="relative z-10 w-full max-w-[350px] rounded-3xl overflow-hidden border border-white/[0.12] shadow-2xl"
-        style={{ background: "rgba(18,14,12,0.94)", backdropFilter: "blur(32px)" }}
+        className="relative z-10 w-full max-w-[350px] rounded-3xl overflow-hidden border border-white/[0.12] shadow-2xl bg-[#161210] [transform:translateZ(0)]"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="p-6 sm:p-7">

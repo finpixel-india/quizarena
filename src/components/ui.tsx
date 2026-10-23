@@ -1,6 +1,7 @@
 import type { ComponentType, ReactNode } from "react";
 import { Calculator, ChevronDown, Cpu, FlaskConical, GraduationCap, Landmark, SlidersHorizontal } from "lucide-react";
 import { cn } from "@/lib/format";
+import { haptic } from "@/lib/haptics";
 
 type IconType = ComponentType<{ className?: string; strokeWidth?: number }>;
 
@@ -15,7 +16,7 @@ export function Card({ className, children }: { className?: string; children: Re
   return <div className={cn("w-full max-w-full min-w-0 rounded-2xl border border-line bg-card card-shadow md:backdrop-blur-xl", className)}>{children}</div>;
 }
 
-/** Smooth, bug-free collapsible section with CSS Grid animation and live preview */
+/** Smooth, hardware-accelerated collapsible section with spring animation and haptic feedback */
 export function CollapsibleSection({
   stepNumber,
   title,
@@ -36,7 +37,7 @@ export function CollapsibleSection({
   return (
     <div
       className={cn(
-        "rounded-2xl border transition-all duration-200 overflow-hidden",
+        "rounded-2xl border transition-all duration-200 overflow-hidden [transform:translateZ(0)]",
         isOpen
           ? "border-brand/50 bg-card shadow-[0_4px_24px_-8px_rgba(249,115,22,0.18)] ring-1 ring-brand/30"
           : "border-line bg-fg/[0.02] hover:border-line-2 hover:bg-fg/[0.035]",
@@ -45,9 +46,12 @@ export function CollapsibleSection({
     >
       <button
         type="button"
-        onClick={onToggle}
+        onClick={() => {
+          haptic("light");
+          onToggle();
+        }}
         aria-expanded={isOpen}
-        className="flex w-full items-center justify-between gap-3 p-3.5 sm:p-4 text-left transition select-none cursor-pointer group"
+        className="flex w-full items-center justify-between gap-3 p-3.5 sm:p-4 text-left transition select-none cursor-pointer group active:scale-[0.99] touch-manipulation"
       >
         <div className="flex items-center gap-2 sm:gap-2.5 min-w-0 flex-1">
           {stepNumber ? (
@@ -75,7 +79,7 @@ export function CollapsibleSection({
             )}
           >
             <ChevronDown
-              className={cn("h-4.5 w-4.5 sm:h-4 sm:w-4 transition-transform duration-300 ease-out", isOpen && "rotate-180")}
+              className={cn("h-4.5 w-4.5 sm:h-4 sm:w-4 transition-transform duration-200 ease-[cubic-bezier(0.16,1,0.3,1)]", isOpen && "rotate-180")}
             />
           </span>
         </div>
@@ -83,8 +87,8 @@ export function CollapsibleSection({
 
       <div
         className={cn(
-          "grid transition-[grid-template-rows] duration-300 ease-in-out border-line/40",
-          isOpen ? "grid-rows-[1fr] border-t" : "grid-rows-[0fr]",
+          "grid transition-[grid-template-rows,opacity] duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] border-line/40 will-change-[grid-template-rows,opacity]",
+          isOpen ? "grid-rows-[1fr] opacity-100 border-t" : "grid-rows-[0fr] opacity-0 pointer-events-none",
         )}
       >
         <div className="overflow-hidden">
@@ -268,9 +272,12 @@ export function Segmented<T extends string | number>({
             key={String(o.v)}
             type="button"
             aria-pressed={active}
-            onClick={() => onChange(o.v)}
+            onClick={() => {
+              if (value !== o.v) haptic("light");
+              onChange(o.v);
+            }}
             className={cn(
-              "flex-1 min-w-0 sm:flex-initial rounded-lg px-3 py-2 sm:px-3.5 sm:py-1.5 text-xs sm:text-sm font-semibold sm:font-medium transition ring-1 ring-inset truncate text-center",
+              "flex-1 min-w-0 sm:flex-initial rounded-lg px-3 py-2 sm:px-3.5 sm:py-1.5 text-xs sm:text-sm font-semibold sm:font-medium transition ring-1 ring-inset truncate text-center active:scale-95 touch-manipulation",
               active ? "bg-brand/15 text-fg ring-brand/70" : "ring-transparent text-muted hover:bg-fg/[0.04] hover:text-fg",
             )}
           >
@@ -301,8 +308,11 @@ export function Switch({
       role="switch"
       aria-checked={checked}
       disabled={disabled}
-      onClick={() => onChange(!checked)}
-      className="flex w-full items-center justify-between gap-4 text-left disabled:cursor-not-allowed disabled:opacity-50"
+      onClick={() => {
+        haptic("medium");
+        onChange(!checked);
+      }}
+      className="flex w-full items-center justify-between gap-4 text-left disabled:cursor-not-allowed disabled:opacity-50 active:scale-[0.99] transition touch-manipulation cursor-pointer"
     >
       <span className="min-w-0">
         <span className="block text-sm font-medium text-fg">{label}</span>
@@ -314,7 +324,7 @@ export function Switch({
           checked ? "border-brand bg-brand shadow-[0_0_18px_-4px_rgba(249,115,22,0.85)]" : "border-line-2 bg-fg/10",
         )}
       >
-        <span className={cn("absolute left-0.5 top-0.5 h-[18px] w-[18px] rounded-full shadow transition-transform", checked ? "translate-x-5 bg-black" : "bg-white")} />
+        <span className={cn("absolute left-0.5 top-0.5 h-[18px] w-[18px] rounded-full shadow transition-transform duration-150 ease-out", checked ? "translate-x-5 bg-black" : "bg-white")} />
       </span>
     </button>
   );

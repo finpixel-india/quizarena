@@ -93,7 +93,7 @@ export default function HistoryClient() {
             {rows.map((r) => {
               const { context, title } = splitLabel(r.topicLabel);
               return (
-                <div key={r.id} className="flex items-center gap-1 pr-1.5 sm:pr-2 transition hover:bg-fg/[0.03]">
+                <div key={r.id} className="flex items-center gap-1 pr-1.5 sm:pr-2 transition duration-150 hover:bg-fg/[0.03] active:scale-[0.99]">
                   <Link href={`/results?id=${r.id}`} className="flex min-w-0 flex-1 items-center gap-3 p-3 sm:gap-4 sm:p-5">
                     <SubjectIcon subject={r.subject} size="sm" />
                     <div className="min-w-0 flex-1">

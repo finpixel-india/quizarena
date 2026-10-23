@@ -10,6 +10,7 @@ import { quizHref } from "@/lib/links";
 import { MAX_QUESTIONS, MAX_TIME, MAX_TOTAL_TIME, MIN_TIME, MIN_TOTAL_TIME, QUESTION_PRESETS, SOURCE_META, TIME_PRESETS, TOTAL_TIME_PRESETS } from "@/lib/settings";
 import { loadBuilderPrefs, saveBuilderPrefs, type BuilderPreferences } from "@/lib/storage";
 import { SUBJECTS } from "@/lib/subjects";
+import { haptic } from "@/lib/haptics";
 import type { Difficulty, SourceId, SubjectId, TimerMode, TopicInfo, UserSettings } from "@/lib/types";
 
 type ClassSel = 9 | 10 | "general";
@@ -178,6 +179,7 @@ export default function QuizBuilder({
   }
 
   function selectTopic(id: string) {
+    haptic("light");
     setTopicId(id);
     const updatedMemory = { ...memory, [memKey(subject, cls)]: id };
     setMemory(updatedMemory);
@@ -189,6 +191,7 @@ export default function QuizBuilder({
 
   function selectSubject(s: SubjectId) {
     if (s === subject) return;
+    haptic("light");
     setSubject(s);
     const targetCls = classMemory[s] ?? (hasClassesFor(s) ? 10 : "general");
     setCls(targetCls);
@@ -203,6 +206,7 @@ export default function QuizBuilder({
 
   function selectClass(c: ClassSel) {
     if (c === cls) return;
+    haptic("light");
     setCls(c);
     const nextTopicId = defaultTopicId(subject, c);
     setTopicId(nextTopicId);

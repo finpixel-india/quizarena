@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Check, Clock, Lightbulb, Minus, Target, X } from "lucide-react";
 import { Card, btn } from "@/components/ui";
 import { cn, pad2 } from "@/lib/format";
+import { haptic } from "@/lib/haptics";
 import type { AttemptQuestion, QuizQuestion } from "@/lib/types";
 
 type Filter = "all" | "correct" | "wrong" | "skipped";
@@ -91,7 +92,10 @@ export default function ReviewList({ questions }: { questions: AttemptQuestion[]
               type="button"
               role="tab"
               aria-selected={active}
-              onClick={() => setFilter(t.id)}
+              onClick={() => {
+                if (filter !== t.id) haptic("light");
+                setFilter(t.id);
+              }}
               className={cn(
                 "shrink-0 rounded-full border px-4.5 py-2.5 sm:px-4 sm:py-1.5 text-sm font-semibold sm:font-medium transition",
                 active ? "border-brand bg-brand/10 text-fg glow" : "border-line text-muted hover:border-line-2 hover:text-fg",

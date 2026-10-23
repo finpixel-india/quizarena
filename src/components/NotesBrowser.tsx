@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight, BookOpen, BookOpenText, Calculator, Check, Check
 import { DiagramFrame } from "@/components/notes/DiagramKit";
 import { getDiagram } from "@/components/notes";
 import { Badge, Card, Container, Label, btn } from "@/components/ui";
+import { haptic } from "@/lib/haptics";
 import { NOTES_COUNTS, NOTES_SUBJECTS, notesByClass, searchChapters, type ClassLevel, type NoteChapter, type NotesSubjectId } from "@/data/notes";
 import { HINDI_ANSWERS } from "@/data/notes/hindiAnswers";
 import { IT_ANSWERS } from "@/data/notes/itAnswers";
@@ -527,9 +528,12 @@ function AbhyasArena({ chapter }: { chapter: NoteChapter }) {
         <div className="flex flex-wrap items-center gap-2 border-b border-line pb-4">
           <button
             type="button"
-            onClick={() => setActiveSectionIdx("all")}
+            onClick={() => {
+              if (activeSectionIdx !== "all") haptic("light");
+              setActiveSectionIdx("all");
+            }}
             className={cn(
-              "rounded-full border px-4.5 py-2.5 sm:px-3.5 sm:py-1.5 text-sm sm:text-xs font-semibold transition",
+              "rounded-full border px-4.5 py-2.5 sm:px-3.5 sm:py-1.5 text-sm sm:text-xs font-semibold transition active:scale-95 touch-manipulation",
               activeSectionIdx === "all"
                 ? "border-brand bg-brand/[0.1] text-fg glow"
                 : "border-line text-muted hover:border-line-2 hover:text-fg"
@@ -541,9 +545,12 @@ function AbhyasArena({ chapter }: { chapter: NoteChapter }) {
             <button
               key={s.index}
               type="button"
-              onClick={() => setActiveSectionIdx(s.index)}
+              onClick={() => {
+                if (activeSectionIdx !== s.index) haptic("light");
+                setActiveSectionIdx(s.index);
+              }}
               className={cn(
-                "rounded-full border px-4.5 py-2.5 sm:px-3.5 sm:py-1.5 text-sm sm:text-xs font-semibold transition",
+                "rounded-full border px-4.5 py-2.5 sm:px-3.5 sm:py-1.5 text-sm sm:text-xs font-semibold transition active:scale-95 touch-manipulation",
                 activeSectionIdx === s.index
                   ? "border-brand bg-brand/[0.1] text-fg glow"
                   : "border-line text-muted hover:border-line-2 hover:text-fg"

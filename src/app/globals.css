@@ -33,15 +33,15 @@
 }
 
 @theme {
-  --animate-fade-up: fade-up 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
-  --animate-fade-in: fade-in 0.2s ease-out both;
-  --animate-pop: pop 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.15) both;
-  --animate-shake: shake 0.4s ease-in-out both;
-  --animate-sheet: sheet-up 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-fade-up: fade-up 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-fade-in: fade-in 0.18s ease-out both;
+  --animate-pop: pop 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-shake: shake 0.3s ease-in-out both;
+  --animate-sheet: sheet-up 0.24s cubic-bezier(0.16, 1, 0.3, 1) both;
   --animate-shimmer: shimmer 1.3s ease-in-out infinite;
-  --animate-slot-in: slot-in 0.1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-  --animate-mode-in: mode-in 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-  --animate-prompt-land: prompt-land 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-slot-in: slot-in 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-mode-in: mode-in 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-prompt-land: prompt-land 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* ------------------------------- Dark (default) ------------------------------ */
@@ -51,7 +51,7 @@
   --surface: #1a1513;
   --surface-2: #221b17;
   --card: rgba(26, 21, 19, 0.66);
-  --glass: rgba(12, 10, 9, 0.74);
+  --glass: rgba(12, 10, 9, 0.92);
   --fg: #ffffff;
   --muted: #a8a29e;
   --subtle: #78716c;
@@ -79,7 +79,7 @@
   --surface: #ffffff;
   --surface-2: #f4f1ec;
   --card: rgba(255, 255, 255, 0.88);
-  --glass: rgba(247, 245, 241, 0.82);
+  --glass: rgba(247, 245, 241, 0.94);
   --fg: #0c0a09;
   --muted: #57534e;
   --subtle: #78716c;
@@ -183,6 +183,12 @@
   article, .prose, .selectable-text {
     user-select: text;
     -webkit-user-select: text;
+  }
+
+  /* Hardware-accelerated native touch physics */
+  button, a, input, select {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
 
   ::selection {

@@ -58,7 +58,7 @@ export default function HomeClient() {
       <Container className="pb-0 sm:pb-0 w-full max-w-full overflow-hidden">
       {/* ------------------------------- Hero (dark) ------------------------------ */}
       <section className="flex flex-col gap-6 pb-8 sm:gap-10 sm:pb-16 lg:flex-row lg:items-end lg:justify-between lg:pb-20">
-        <div className="max-w-2xl animate-fade-up">
+        <div className="max-w-2xl">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 font-mono text-[10.5px] uppercase tracking-[0.16em] text-subtle sm:text-[11px] sm:tracking-[0.18em]">
             <span className="flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-brand shadow-[0_0_8px_2px_rgba(249,115,22,0.75)]" />

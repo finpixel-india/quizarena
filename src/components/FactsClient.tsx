@@ -202,7 +202,7 @@ function FullPageFactView({
   }, [facts, fact.id, fact.category]);
 
   return (
-    <div className="mx-auto w-full max-w-4xl px-4 py-4 sm:px-8 sm:py-8 animate-fade-up">
+    <div className="mx-auto w-full max-w-4xl px-4 py-4 sm:px-8 sm:py-8 animate-fade-in">
       {/* ── Compact Slim Action Row (Non-sticky, no screen covering) ── */}
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-line pb-4">
         <button
@@ -482,7 +482,7 @@ export default function FactsClient() {
     <Container className="w-full max-w-6xl overflow-hidden pb-16">
       {/* ── Page Header ── */}
       <section className="pb-6 sm:pb-8">
-        <div className="animate-fade-up">
+        <div>
           <Label className="mb-3">Encyclopedic Discoveries</Label>
           <PageHeader
             title="Interesting Facts"

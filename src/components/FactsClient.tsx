@@ -545,11 +545,11 @@ export default function FactsClient() {
         {/* Collapsible Panel with CSS Grid Animation (Never clips or glitches) */}
         <div
           className={cn(
-            "grid transition-[grid-template-rows] duration-300 ease-in-out border-t border-line/40",
-            isCategoryExpanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+            "grid transition-[grid-template-rows,opacity] duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] border-t border-line/40 will-change-[grid-template-rows,opacity]",
+            isCategoryExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0 pointer-events-none",
           )}
         >
-          <div className="overflow-hidden">
+          <div className="overflow-hidden min-h-0">
             <div className="p-3 sm:p-5 grid gap-2.5 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 bg-fg/[0.01]">
               {FACT_CATEGORIES.map((cat) => {
                 const isSelected = activeCategory === cat.id;

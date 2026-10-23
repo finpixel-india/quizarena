@@ -37,9 +37,9 @@ export function CollapsibleSection({
   return (
     <div
       className={cn(
-        "rounded-2xl border transition-all duration-200 overflow-hidden [transform:translateZ(0)]",
+        "rounded-2xl border transition-colors duration-200 overflow-hidden [transform:translateZ(0)]",
         isOpen
-          ? "border-brand/50 bg-card shadow-[0_4px_24px_-8px_rgba(249,115,22,0.18)] ring-1 ring-brand/30"
+          ? "border-brand/60 bg-card shadow-[0_2px_12px_-4px_rgba(249,115,22,0.12)]"
           : "border-line bg-fg/[0.02] hover:border-line-2 hover:bg-fg/[0.035]",
         className,
       )}
@@ -72,7 +72,7 @@ export function CollapsibleSection({
           </span>
           <span
             className={cn(
-              "inline-flex h-8 w-8 sm:h-7 sm:w-7 items-center justify-center rounded-lg border transition-all duration-200",
+              "inline-flex h-8 w-8 sm:h-7 sm:w-7 items-center justify-center rounded-lg border transition-colors duration-200",
               isOpen
                 ? "border-brand/40 bg-brand/10 text-brand-ink"
                 : "border-line bg-card text-subtle group-hover:text-fg group-hover:border-line-2",
@@ -87,11 +87,12 @@ export function CollapsibleSection({
 
       <div
         className={cn(
-          "grid transition-[grid-template-rows,opacity] duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] border-line/40 will-change-[grid-template-rows,opacity]",
-          isOpen ? "grid-rows-[1fr] opacity-100 border-t" : "grid-rows-[0fr] opacity-0 pointer-events-none",
+          "grid transition-[grid-template-rows,opacity] duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-[grid-template-rows,opacity]",
+          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0 pointer-events-none",
         )}
       >
-        <div className="overflow-hidden">
+        <div className="overflow-hidden min-h-0">
+          <div className="h-px w-full bg-line/40" />
           <div className="p-3.5 sm:p-4 bg-fg/[0.015]">
             {children}
           </div>

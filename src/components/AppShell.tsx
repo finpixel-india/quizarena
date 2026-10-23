@@ -92,7 +92,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
         </div>
       </header>
 
-      <main className={cn("flex-1", pathname === "/articulate" ? "flex flex-col pb-16 md:pb-0" : "pb-20 md:pb-0")}>
+      <main className={cn("flex-1", pathname === "/articulate" ? "flex flex-col h-[calc(100dvh-3.5rem)] md:h-auto pb-16 md:pb-0 overflow-hidden" : "pb-20 md:pb-0")}>
         {children}
       </main>
 

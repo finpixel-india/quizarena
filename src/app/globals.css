@@ -176,7 +176,7 @@
     min-height: 100dvh;
     touch-action: manipulation;
     -webkit-font-smoothing: antialiased;
-    overscroll-behavior-y: none;
+    overscroll-behavior-y: contain;
     -webkit-overflow-scrolling: touch;
   }
 

@@ -693,7 +693,7 @@ export default function ArticulateClient() {
   const activeElocutionType = ELOCUTION_TYPES.find((t) => t.id === elocutionType) ?? ELOCUTION_TYPES[0];
 
   return (
-    <div className="relative flex flex-col justify-between items-center w-full min-h-[calc(100dvh-3.5rem-4.5rem)] md:min-h-[calc(100dvh-4rem)] select-none px-4 sm:px-6 pt-2 sm:pt-8 pb-3 sm:pb-8">
+    <div className="relative flex flex-col justify-between items-center w-full min-h-[calc(100dvh-3.5rem-7rem)] md:min-h-[calc(100dvh-4rem)] select-none px-4 sm:px-6 pt-2 sm:pt-8 pb-4 sm:pb-8">
 
       {/* ── Atmospheric glows ── */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
@@ -915,34 +915,34 @@ export default function ArticulateClient() {
 
       {/* ════════════════════════════════════════════════════════════════════════
           ZONE 2: CENTER STAGE (Topic Title or Elocution Sentence)
-          Locked center viewport flex with internal smooth scroll for long sentences
+          Natural fluid vertical centering matching desktop layout
          ════════════════════════════════════════════════════════════════════════ */}
-      <div className="w-full max-w-2xl flex-1 min-h-0 flex flex-col items-center justify-center my-auto px-3 sm:px-4 py-2 sm:py-4 text-center overflow-y-auto overscroll-contain scrollbar-none [transform:translateZ(0)]">
+      <div className="w-full max-w-2xl flex-1 my-auto flex flex-col items-center justify-center px-2 sm:px-4 py-3 sm:py-6 text-center">
         {mode === "elocution" ? (
-          <div className="w-full py-1 sm:py-3 animate-fade-in flex items-center justify-center my-auto">
+          <div className="w-full py-2 sm:py-3 animate-fade-in flex items-center justify-center my-auto">
             <p
               key={elocutionKey}
               className={cn(
-                "font-serif font-medium sm:font-normal leading-relaxed sm:leading-[1.55] tracking-normal text-fg select-text animate-prompt-land mx-auto text-balance",
+                "font-serif font-normal leading-relaxed sm:leading-[1.6] tracking-normal text-fg select-text animate-prompt-land mx-auto text-balance px-2",
                 currentElocutionItem.text.length > 220
-                  ? "text-[0.95rem] xs:text-[1.05rem] sm:text-base max-w-[36ch] xs:max-w-[42ch] sm:max-w-[54ch]"
-                  : currentElocutionItem.text.length > 110
-                  ? "text-[1.05rem] xs:text-[1.15rem] sm:text-lg max-w-[34ch] xs:max-w-[40ch] sm:max-w-[50ch]"
-                  : "text-[1.15rem] xs:text-[1.25rem] sm:text-xl max-w-[32ch] xs:max-w-[38ch] sm:max-w-[48ch]"
+                  ? "text-[15px] xs:text-base sm:text-lg max-w-prose sm:max-w-xl"
+                  : currentElocutionItem.text.length > 100
+                  ? "text-base xs:text-lg sm:text-xl max-w-prose sm:max-w-xl"
+                  : "text-lg xs:text-xl sm:text-2xl max-w-[34ch] sm:max-w-lg"
               )}
             >
               &ldquo;{currentElocutionItem.text}&rdquo;
             </p>
           </div>
         ) : (
-          <div className="w-full py-1 sm:py-4 animate-fade-in flex flex-col items-center justify-center my-auto">
-            <span className="text-xs sm:text-xs font-mono font-bold tracking-[0.25em] text-[#d96b43]/90 uppercase mb-2 sm:mb-3">
+          <div className="w-full py-2 sm:py-4 animate-fade-in flex flex-col items-center justify-center my-auto">
+            <span className="text-[11px] sm:text-xs font-mono font-bold tracking-[0.25em] text-[#d96b43]/90 uppercase mb-2 sm:mb-3">
               READY
             </span>
             <h2
               key={tickKey}
               className={cn(
-                "font-serif font-normal text-fg leading-[1.15] sm:leading-[1.1] tracking-[-0.015em] max-w-[16ch] mx-auto text-[2.4rem] xs:text-[2.85rem] sm:text-[3.6rem] md:text-[4.4rem]",
+                "font-serif font-normal text-fg leading-[1.15] sm:leading-[1.1] tracking-[-0.015em] max-w-[16ch] mx-auto text-3xl xs:text-4xl sm:text-5xl md:text-6xl",
                 isSpinning ? "animate-slot-in" : "animate-prompt-land",
               )}
             >
@@ -954,9 +954,9 @@ export default function ArticulateClient() {
 
       {/* ════════════════════════════════════════════════════════════════════════
           ZONE 3: BOTTOM SECTION (Timer + Symmetrical Action Bar)
-          Anchored at bottom — Fixed slots that never shift or get cut off!
+          Anchored at bottom — Fixed slots with plenty of room above navigation bar!
          ════════════════════════════════════════════════════════════════════════ */}
-      <div className="w-full max-w-xl flex flex-col items-center shrink-0 z-10 pb-1.5 sm:pb-3">
+      <div className="w-full max-w-xl flex flex-col items-center shrink-0 z-10 pt-2 pb-2 sm:pb-4">
         {mode === "elocution" ? (
           <div className="w-full flex flex-col items-center animate-fade-in">
             {/* Timer and WPM Badge */}

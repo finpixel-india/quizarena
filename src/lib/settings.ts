@@ -9,6 +9,9 @@ export const DEFAULT_SETTINGS: UserSettings = {
   timerMode: "per-question",
   defaultDifficulty: "any",
   autoFullscreen: false,
+  notificationsEnabled: true,
+  notificationHour: 19,
+  notificationMinute: 30,
 };
 
 export const MIN_QUESTIONS = 1;
@@ -85,6 +88,9 @@ export function normalizeSettings(input: unknown): UserSettings {
     timerMode: isTimerMode(raw.timerMode) ? raw.timerMode : DEFAULT_SETTINGS.timerMode,
     defaultDifficulty: isDifficulty(raw.defaultDifficulty) ? raw.defaultDifficulty : DEFAULT_SETTINGS.defaultDifficulty,
     autoFullscreen: typeof raw.autoFullscreen === "boolean" ? raw.autoFullscreen : DEFAULT_SETTINGS.autoFullscreen,
+    notificationsEnabled: typeof raw.notificationsEnabled === "boolean" ? raw.notificationsEnabled : DEFAULT_SETTINGS.notificationsEnabled,
+    notificationHour: clampInt(raw.notificationHour, 0, 23, DEFAULT_SETTINGS.notificationHour),
+    notificationMinute: clampInt(raw.notificationMinute, 0, 59, DEFAULT_SETTINGS.notificationMinute),
   };
 }
 

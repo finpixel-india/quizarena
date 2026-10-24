@@ -1,13 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import type { ReactNode } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { ArrowUpRight, BookOpenText, FlaskConical, Lightbulb, Maximize, Mic, Minimize, Moon, Settings2, Sun, Zap } from "lucide-react";
 import { btn } from "@/components/ui";
 import { useFullscreen, useTheme } from "@/lib/client-hooks";
 import { cn } from "@/lib/format";
 import { haptic } from "@/lib/haptics";
+import { initBackButton, subscribeExitToast } from "@/lib/back-button";
+import { initNotifications, scheduleDailyReminders } from "@/lib/notifications";
+import { loadSettings } from "@/lib/storage";
 
 const NAV = [
   { href: "/", label: "Quiz", icon: Zap },
@@ -32,8 +35,41 @@ export function LogoMark({ className }: { className?: string }) {
 
 export default function AppShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
+  const router = useRouter();
   const fs = useFullscreen();
   const { isDark, setPref } = useTheme();
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const pathnameRef = useRef(pathname);
+
+  useEffect(() => {
+    pathnameRef.current = pathname;
+  }, [pathname]);
+
+  // Back button handling on native Android
+  useEffect(() => {
+    const cleanup = initBackButton(router, () => pathnameRef.current);
+    const unsubsToast = subscribeExitToast((msg) => {
+      setToastMessage(msg);
+      window.setTimeout(() => setToastMessage(null), 2000);
+    });
+    return () => {
+      cleanup();
+      unsubsToast();
+    };
+  }, [router]);
+
+  // Local notifications initialization and schedule sync
+  useEffect(() => {
+    initNotifications();
+    try {
+      const s = loadSettings();
+      if (s.notificationsEnabled) {
+        void scheduleDailyReminders(s.notificationHour ?? 19, s.notificationMinute ?? 30);
+      }
+    } catch {
+      // ignore
+    }
+  }, []);
 
   return (
     <div className="flex min-h-dvh flex-col">
@@ -128,6 +164,15 @@ export default function AppShell({ children }: { children: ReactNode }) {
           })}
         </div>
       </nav>
+
+      {toastMessage ? (
+        <div className="fixed bottom-20 md:bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none animate-pop">
+          <div className="flex items-center gap-2 rounded-full border border-line bg-card/95 backdrop-blur-md px-4 py-2 text-xs font-semibold text-fg shadow-xl card-shadow">
+            <span className="h-2 w-2 rounded-full bg-brand animate-pulse" />
+            <span>{toastMessage}</span>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

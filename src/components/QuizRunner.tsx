@@ -16,6 +16,7 @@ import { generateQuiz } from "@/lib/generate";
 import { saveAttempt } from "@/lib/storage";
 import { getTopicInfo } from "@/lib/topics";
 import { haptic } from "@/lib/haptics";
+import { registerBackHandler } from "@/lib/back-button";
 import type { AnswerStatus, QuizConfig, QuizMode, QuizQuestion, SourceId, TopicInfo } from "@/lib/types";
 
 type Phase = "loading" | "error" | "playing" | "saving" | "save-error";
@@ -294,6 +295,23 @@ export default function QuizRunner({ topic, config, mode }: { topic: TopicInfo; 
     }
     setQuitOpen(false);
   }
+
+  // Intercept hardware and gesture back button during an active quiz
+  useEffect(() => {
+    if (phase !== "playing" && !quitOpen) return;
+    return registerBackHandler(
+      "quiz-runner-back",
+      () => {
+        if (quitOpen) {
+          closeQuit();
+          return true;
+        }
+        openQuit();
+        return true;
+      },
+      100,
+    );
+  }, [phase, quitOpen]);
 
   function handleKey(e: KeyboardEvent) {
     const k = e.key.toLowerCase();

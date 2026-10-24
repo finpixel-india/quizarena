@@ -47,6 +47,9 @@ export interface UserSettings {
   timerMode: TimerMode;
   defaultDifficulty: Difficulty;
   autoFullscreen: boolean;
+  notificationsEnabled: boolean;
+  notificationHour: number;
+  notificationMinute: number;
 }
 
 /** Client-safe description of a quiz topic. */

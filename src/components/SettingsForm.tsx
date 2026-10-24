@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { ArrowUpRight, BarChart3, Check, CircleAlert, ExternalLink, History, Loader2, Monitor, Moon, Sun, Trash2 } from "lucide-react";
+import { ArrowUpRight, BarChart3, Bell, BellRing, Check, CircleAlert, ExternalLink, History, Loader2, Monitor, Moon, Send, Sun, Trash2 } from "lucide-react";
 import { Card, CollapsibleSection, Label, Segmented, Switch, chip, inputCls } from "@/components/ui";
 import { useTheme } from "@/lib/client-hooks";
 import { cn } from "@/lib/format";
 import { MAX_QUESTIONS, MAX_TIME, MAX_TOTAL_TIME, MIN_TIME, MIN_TOTAL_TIME, QUESTION_PRESETS, SOURCE_META, TIME_PRESETS, TOTAL_TIME_PRESETS } from "@/lib/settings";
 import { clearAttempts, loadSettings, saveSettings } from "@/lib/storage";
+import { cancelReminders, requestNotificationPermission, scheduleDailyReminders, sendTestNotification } from "@/lib/notifications";
 import type { Difficulty, SourceId, ThemePref, TimerMode, UserSettings } from "@/lib/types";
 import { useAttempts } from "@/lib/use-local-data";
 
@@ -28,7 +29,10 @@ export default function SettingsForm() {
   const [openDefaults, setOpenDefaults] = useState(false);
   const [openGameplay, setOpenGameplay] = useState(false);
   const [openAppearance, setOpenAppearance] = useState(false);
+  const [openNotifications, setOpenNotifications] = useState(false);
   const [openData, setOpenData] = useState(false);
+  const [testSending, setTestSending] = useState(false);
+  const [testSent, setTestSent] = useState(false);
   const timer = useRef<number | undefined>(undefined);
   const hydrated = useRef(false);
 
@@ -68,6 +72,51 @@ export default function SettingsForm() {
       setCount(0);
     } finally {
       setClearing(false);
+    }
+  }
+
+  function formatNotificationTime(h = 19, m = 30) {
+    const ampm = h >= 12 ? "PM" : "AM";
+    const hour12 = h % 12 === 0 ? 12 : h % 12;
+    const padMin = m < 10 ? `0${m}` : `${m}`;
+    return `${hour12}:${padMin} ${ampm}`;
+  }
+
+  async function toggleNotifications(enabled: boolean) {
+    if (enabled) {
+      const ok = await requestNotificationPermission();
+      if (!ok) {
+        alert("Notification permissions are required to receive daily practice reminders. Please allow notifications in device settings.");
+        return;
+      }
+      update({ notificationsEnabled: true });
+      void scheduleDailyReminders(s.notificationHour ?? 19, s.notificationMinute ?? 30);
+    } else {
+      update({ notificationsEnabled: false });
+      void cancelReminders();
+    }
+  }
+
+  async function handleSendTest() {
+    setTestSending(true);
+    setTestSent(false);
+    try {
+      const ok = await sendTestNotification();
+      if (ok) {
+        setTestSent(true);
+        window.setTimeout(() => setTestSent(false), 3000);
+      } else {
+        alert("Please allow notification permissions first.");
+      }
+    } finally {
+      setTestSending(false);
+    }
+  }
+
+  function handleTimePreset(hour: number, minute: number) {
+    update({ notificationHour: hour, notificationMinute: minute });
+    if (s.notificationsEnabled) {
+      void scheduleDailyReminders(hour, minute);
     }
   }
 
@@ -389,9 +438,107 @@ export default function SettingsForm() {
         </div>
       </CollapsibleSection>
 
-      {/* 05 Your data (Collapsible) */}
+      {/* 05 Notifications & Daily Reminders (Collapsible) */}
       <CollapsibleSection
         stepNumber="05"
+        title="Notifications & reminders"
+        isOpen={openNotifications}
+        onToggle={() => setOpenNotifications((prev) => !prev)}
+        preview={
+          <span className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-subtle">
+            {s.notificationsEnabled ? (
+              <span className="text-emerald-500 flex items-center gap-1">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                Active · {formatNotificationTime(s.notificationHour, s.notificationMinute)}
+              </span>
+            ) : (
+              <span className="text-muted">Disabled</span>
+            )}
+          </span>
+        }
+      >
+        <div className="space-y-6">
+          <p className="text-xs sm:text-sm leading-relaxed text-muted">
+            Quiz Lab sends gentle offline notifications to keep your NCERT revision consistent, maintain your daily study streak, and sharpen problem-solving habits.
+          </p>
+
+          {/* Toggle Switch */}
+          <div className="flex items-center justify-between rounded-2xl border border-line bg-fg/[0.02] p-4 sm:p-5">
+            <div className="flex items-center gap-3.5">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand/10 text-brand-ink">
+                {s.notificationsEnabled ? <BellRing className="h-5 w-5" /> : <Bell className="h-5 w-5" />}
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-fg">Daily Study Reminders</p>
+                <p className="text-xs text-muted">Receive a friendly prompt for daily NCERT practice</p>
+              </div>
+            </div>
+            <Switch
+              checked={s.notificationsEnabled}
+              onChange={toggleNotifications}
+              label="Enable daily study reminders"
+            />
+          </div>
+
+          {s.notificationsEnabled ? (
+            <div className="space-y-4 animate-fade-in">
+              <div>
+                <Label>Preferred reminder time</Label>
+                <div className="mt-2.5 grid grid-cols-2 gap-2 sm:grid-cols-4">
+                  {[
+                    { label: "Morning", sub: "8:00 AM", h: 8, m: 0 },
+                    { label: "Afternoon", sub: "2:00 PM", h: 14, m: 0 },
+                    { label: "Evening", sub: "7:30 PM", h: 19, m: 30 },
+                    { label: "Night", sub: "9:00 PM", h: 21, m: 0 },
+                  ].map((preset) => {
+                    const active = (s.notificationHour ?? 19) === preset.h && (s.notificationMinute ?? 30) === preset.m;
+                    return (
+                      <button
+                        key={preset.label}
+                        type="button"
+                        onClick={() => handleTimePreset(preset.h, preset.m)}
+                        className={cn(
+                          "flex flex-col items-center justify-center rounded-xl border p-3 text-center transition active:scale-95",
+                          active
+                            ? "border-brand bg-brand/[0.08] text-fg glow"
+                            : "border-line bg-card text-muted hover:border-line-2 hover:text-fg"
+                        )}
+                      >
+                        <span className={cn("text-xs font-semibold", active ? "text-brand-ink" : "text-fg")}>{preset.label}</span>
+                        <span className="font-mono text-[11px] text-muted">{preset.sub}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Test Notification Button */}
+              <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
+                <span className="text-xs text-subtle">Verify notifications on this smartphone:</span>
+                <button
+                  type="button"
+                  onClick={handleSendTest}
+                  disabled={testSending}
+                  className="inline-flex items-center gap-2 rounded-xl border border-line bg-card px-3.5 py-2 text-xs font-semibold text-fg transition hover:border-brand/50 hover:bg-brand/[0.04] disabled:opacity-50"
+                >
+                  {testSending ? (
+                    <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                  ) : testSent ? (
+                    <Check className="h-3.5 w-3.5 text-emerald-500" />
+                  ) : (
+                    <Send className="h-3.5 w-3.5 text-brand-ink" />
+                  )}
+                  {testSent ? "Test Notification Sent!" : "Send Test Notification"}
+                </button>
+              </div>
+            </div>
+          ) : null}
+        </div>
+      </CollapsibleSection>
+
+      {/* 06 Your data (Collapsible) */}
+      <CollapsibleSection
+        stepNumber="06"
         title="Your data"
         isOpen={openData}
         onToggle={() => setOpenData((prev) => !prev)}

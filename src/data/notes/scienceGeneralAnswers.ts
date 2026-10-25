@@ -149,6 +149,6 @@ export const GENERAL_SCIENCE_ANSWERS: Record<string, ScienceAnswer> = {
   "note-gen-6-5": {
     correctKey: "B",
     explanation:
-      "In 1913, English physicist Henry Moseley showed using characteristic X-ray frequencies that the fundamental property of an element is its Atomic Number (Z, nuclear charge), rather than atomic mass as originally formulated by Mendeleev.",
+      "Inside a tightly sealed pressure cooker, accumulated trapped steam increases internal air pressure to about 2 atmospheres. This elevated pressure raises the boiling point of water from 100°C up to ~120°C, cooking food much faster.",
   },
 };

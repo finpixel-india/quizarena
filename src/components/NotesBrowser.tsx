@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { ArrowLeft, ArrowRight, BookOpen, BookOpenText, Calculator, Check, CheckCircle2, ChevronDown, FlaskConical, HelpCircle, ImageIcon, Landmark, Languages, Lightbulb, ListChecks, Monitor, PenLine, RotateCcw, Search, Sigma, X, XCircle } from "lucide-react";
 import { DiagramFrame } from "@/components/notes/DiagramKit";
 import { getDiagram } from "@/components/notes";
+import { GeneralScienceViewer } from "@/components/notes/GeneralScienceViewer";
 import { Badge, Card, Container, Label, btn } from "@/components/ui";
 import { haptic } from "@/lib/haptics";
 import { NOTES_COUNTS, NOTES_SUBJECTS, notesByClass, searchChapters, type ClassLevel, type NoteChapter, type NotesSubjectId } from "@/data/notes";
@@ -995,15 +996,19 @@ export default function NotesBrowser() {
 
         {isAbhyasChapter ? (
           <AbhyasArena chapter={selected} />
+        ) : selected.classLevel === "general" ? (
+          <div className="mt-10">
+            <GeneralScienceViewer chapter={selected} onSelectChapter={openChapter} />
+          </div>
         ) : (
           <div className="mt-12 space-y-10 sm:mt-16 sm:space-y-12">{selected.sections.map((s, i) => <SectionBlock key={s.title} index={i + 1} section={s} chapterId={selected.id} />)}</div>
         )}
 
-        {!isAbhyasChapter && selected.keyTerms?.length ? (
+        {!isAbhyasChapter && selected.classLevel !== "general" && selected.keyTerms?.length ? (
           <Card className="mt-14 p-6 sm:p-8"><Label className="mb-6">Key terms</Label><dl className="grid gap-3 sm:grid-cols-2">{selected.keyTerms.map((t) => <div key={t.term} className="rounded-xl border border-line bg-fg/[0.02] p-4"><dt className="text-base font-semibold text-fg">{t.term}</dt><dd className="mt-1.5 text-sm leading-relaxed text-muted">{t.meaning}</dd></div>)}</dl></Card>
         ) : null}
 
-        {!isAbhyasChapter && selected.examTips?.length ? (
+        {!isAbhyasChapter && selected.classLevel !== "general" && selected.examTips?.length ? (
           <Card className="mt-6 p-6 sm:p-8"><Label className="mb-6">Exam tips</Label><ul className="space-y-4">{selected.examTips.map((tip, i) => <li key={i} className="flex gap-3.5 text-base leading-7 text-muted"><span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-brand/40 bg-brand/10 font-mono text-[11px] font-semibold text-brand-ink">{i + 1}</span><Rich text={tip} /></li>)}</ul></Card>
         ) : null}
 
@@ -1019,6 +1024,7 @@ export default function NotesBrowser() {
 }
 
 function quizTopicFor(chapter: NoteChapter): string {
+  if (chapter.id.startsWith("note-gen")) return "sci-all-10";
   if (chapter.subject === "sst") return chapter.id.replace("note-", "");
   if (chapter.subject === "science") return `sci${chapter.id.replace("note", "")}`;
   return "math-mixed";

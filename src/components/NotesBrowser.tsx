@@ -14,6 +14,7 @@ import { ENGLISH_ANSWERS } from "@/data/notes/englishAnswers";
 import { SST_ANSWERS } from "@/data/notes/sstAnswers";
 import { MATH_ANSWERS } from "@/data/notes/mathAnswers";
 import { SCIENCE_ANSWERS } from "@/data/notes/scienceAnswers";
+import { GENERAL_SCIENCE_ANSWERS } from "@/data/notes/scienceGeneralAnswers";
 import { cn, pad2 } from "@/lib/format";
 
 function normalizeKey(k?: string): string {
@@ -228,7 +229,7 @@ function QuestionCard({
   const [showSolution, setShowSolution] = useState(false);
 
   const isHindi = chapterId.startsWith("note-hi");
-  const ans = q.num ? (HINDI_ANSWERS[`${chapterId}-${q.num}`] || IT_ANSWERS[`${chapterId}-${q.num}`] || ENGLISH_ANSWERS[`${chapterId}-${q.num}`] || SST_ANSWERS[`${chapterId}-${q.num}`] || MATH_ANSWERS[`${chapterId}-${q.num}`] || SCIENCE_ANSWERS[`${chapterId}-${q.num}`]) : undefined;
+  const ans = q.num ? (HINDI_ANSWERS[`${chapterId}-${q.num}`] || IT_ANSWERS[`${chapterId}-${q.num}`] || ENGLISH_ANSWERS[`${chapterId}-${q.num}`] || SST_ANSWERS[`${chapterId}-${q.num}`] || MATH_ANSWERS[`${chapterId}-${q.num}`] || SCIENCE_ANSWERS[`${chapterId}-${q.num}`] || GENERAL_SCIENCE_ANSWERS[`${chapterId}-${q.num}`]) : undefined;
   const hasValidation = Boolean(ans?.correctKey);
   const isSelected = Boolean(selectedOpt);
   const isCorrect = hasValidation && isSelected ? normalizeKey(selectedOpt) === normalizeKey(ans?.correctKey) : false;
@@ -803,6 +804,8 @@ export default function NotesBrowser() {
       ? "competitive"
       : rawClass === "ai"
       ? "ai"
+      : rawClass === "general"
+      ? "general"
       : 9;
   const validClasses = (NOTES_SUBJECTS.find((s) => s.id === subject)?.classes ?? [9, 10]) as ClassLevel[];
   const classLevel: ClassLevel = validClasses.includes(parsedClass) ? parsedClass : 9;
@@ -868,6 +871,8 @@ export default function NotesBrowser() {
                       ? (subject === "it" ? "Competitive (CS & IT)" : subject === "english" ? "Competitive English" : "Competitive (प्रतियोगी परीक्षा)")
                       : c === "ai"
                       ? "Artificial Intelligence (AI)"
+                      : c === "general"
+                      ? "General Science (Everyday Notes)"
                       : `Class ${c}`;
                   return (
                     <button
@@ -897,6 +902,8 @@ export default function NotesBrowser() {
                   ? (subject === "it" ? "Competitive CS & IT" : subject === "english" ? "Competitive English" : "Competitive Hindi")
                   : classLevel === "ai"
                   ? "Artificial Intelligence (AI)"
+                  : classLevel === "general"
+                  ? "General Science (Everyday Life & Practical Compendium)"
                   : `Class ${classLevel}`}{" "}
                 {NOTES_SUBJECTS.find((s) => s.id === subject)?.name}
               </h2>
@@ -910,7 +917,7 @@ export default function NotesBrowser() {
               { v: NOTES_COUNTS.chapters, k: "Chapters" },
               { v: NOTES_COUNTS.sections, k: "Concept sections" },
               { v: NOTES_COUNTS.diagrams, k: "Science diagrams" },
-              { v: "9, 10, Comp & AI", k: "Levels covered" },
+              { v: "9, 10, General & Comp", k: "Levels covered" },
             ].map((m) => <div key={m.k} className="bg-bg px-6 py-6"><p className="grad-text font-mono text-3xl font-bold tabular-nums">{m.v}</p><p className="mt-2 font-mono text-[10px] uppercase tracking-[0.16em] text-subtle">{m.k}</p></div>)}
           </div>
         </div>
@@ -934,6 +941,8 @@ export default function NotesBrowser() {
       ? (selected.subject === "it" ? "Competitive (CS & IT)" : selected.subject === "english" ? "Competitive English" : "Competitive")
       : selected.classLevel === "ai"
       ? "Artificial Intelligence"
+      : selected.classLevel === "general"
+      ? "General Science"
       : `Class ${selected.classLevel}`;
 
   const meta = isAbhyasChapter

@@ -8,6 +8,7 @@ import { mathNotes9 } from "./math9";
 import { mathNotes10 } from "./math10";
 import { notes9 } from "./science9";
 import { notes10 } from "./science10";
+import { notesGeneralScience } from "./scienceGeneral";
 import { sstNotes9 } from "./sst9";
 import { sstNotes10 } from "./sst10";
 import { itNotes9 } from "./it9";
@@ -24,7 +25,7 @@ function withSubject(notes: ChapterNote[], subject: NotesSubjectId): NoteChapter
   return notes.map((note) => ({ ...note, subject }));
 }
 
-const scienceNotes = withSubject([...notes9, ...notes10], "science");
+const scienceNotes = withSubject([...notes9, ...notes10, ...notesGeneralScience], "science");
 const sstNotes = withSubject([...sstNotes9, ...sstNotes10], "sst");
 const mathsNotes = withSubject([...mathNotes9, ...mathNotes10], "math");
 const englishNotes = withSubject([...englishNotes9, ...englishNotes10, ...englishNotesComp], "english");
@@ -35,7 +36,7 @@ export const ALL_NOTES: NoteChapter[] = [...scienceNotes, ...sstNotes, ...mathsN
 export const SCIENCE_NOTES = scienceNotes;
 
 export const NOTES_SUBJECTS: Array<{ id: NotesSubjectId; name: string; short: string; tagline: string; classes: ClassLevel[] }> = [
-  { id: "science", name: "Science", short: "Science", tagline: "Physics · Chemistry · Biology", classes: [9, 10] },
+  { id: "science", name: "Science", short: "Science", tagline: "Physics · Chemistry · Biology · General Science", classes: [9, 10, "general"] },
   { id: "sst", name: "Social Science", short: "SST", tagline: "History · Geography · Civics · Economics", classes: [9, 10] },
   { id: "math", name: "Mathematics", short: "Math", tagline: "Concepts · Theorems · Formulas", classes: [9, 10] },
   { id: "english", name: "English Grammar", short: "English", tagline: "Tenses · Clauses · Reported Speech", classes: [9, 10, "competitive"] },
@@ -89,6 +90,7 @@ export const NOTES_COUNTS = {
   it: itNotesList.length,
   class9: ALL_NOTES.filter((n) => n.classLevel === 9).length,
   class10: ALL_NOTES.filter((n) => n.classLevel === 10).length,
+  general: ALL_NOTES.filter((n) => n.classLevel === "general").length,
   competitive: ALL_NOTES.filter((n) => n.classLevel === "competitive").length,
   ai: ALL_NOTES.filter((n) => n.classLevel === "ai").length,
   sections: ALL_NOTES.reduce((s, c) => s + c.sections.length, 0),

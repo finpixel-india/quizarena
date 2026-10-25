@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useSyncExternalStore } from "react";
+import { Capacitor } from "@capacitor/core";
 import type { ThemePref } from "./types";
 
 /* ------------------------------- Fullscreen ------------------------------- */
@@ -25,14 +26,21 @@ const noopSubscribe = () => () => {};
 export function useFullscreen() {
   const isFullscreen = useSyncExternalStore(
     subscribeFullscreen,
-    () => Boolean(document.fullscreenElement || (document as FsDocument).webkitFullscreenElement),
+    () => {
+      if (typeof window !== "undefined" && Capacitor.isNativePlatform()) return false;
+      return Boolean(document.fullscreenElement || (document as FsDocument).webkitFullscreenElement);
+    },
     () => false,
   );
-  // Assume support during SSR (most devices); unsupported browsers (e.g. iPhone Safari) hide it after hydration.
+  // Fullscreen button is omitted in the native Android/iOS APK where the app is already fullscreen.
+  // On desktop/mobile web browsers, it checks native browser API support.
   const supported = useSyncExternalStore(
     noopSubscribe,
-    () => Boolean(document.fullscreenEnabled || (document as FsDocument).webkitFullscreenEnabled),
-    () => true,
+    () => {
+      if (typeof window !== "undefined" && Capacitor.isNativePlatform()) return false;
+      return Boolean(document.fullscreenEnabled || (document as FsDocument).webkitFullscreenEnabled);
+    },
+    () => false,
   );
 
   const enter = useCallback(async () => {

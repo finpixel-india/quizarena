@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { ArrowUpRight, BarChart3, Bell, BellRing, Check, CircleAlert, ExternalLink, History, Loader2, Monitor, Moon, Send, Sun, Trash2 } from "lucide-react";
 import { Card, CollapsibleSection, Label, Segmented, Switch, chip, inputCls } from "@/components/ui";
-import { useTheme } from "@/lib/client-hooks";
+import { useFullscreen, useTheme } from "@/lib/client-hooks";
 import { cn } from "@/lib/format";
 import { MAX_QUESTIONS, MAX_TIME, MAX_TOTAL_TIME, MIN_TIME, MIN_TOTAL_TIME, QUESTION_PRESETS, SOURCE_META, TIME_PRESETS, TOTAL_TIME_PRESETS } from "@/lib/settings";
 import { clearAttempts, loadSettings, saveSettings } from "@/lib/storage";
@@ -17,6 +17,7 @@ const totalLabel = (t: number) => (t >= 3600 && t % 3600 === 0 ? `${t / 3600} hr
 
 export default function SettingsForm() {
   const { pref, setPref } = useTheme();
+  const fs = useFullscreen();
   const { summaries } = useAttempts();
   const [s, setS] = useState<UserSettings>(() => loadSettings());
   const [status, setStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
@@ -376,21 +377,23 @@ export default function SettingsForm() {
         onToggle={() => setOpenGameplay((prev) => !prev)}
         preview={
           <span className="inline-flex items-center gap-1.5 rounded-md border border-line bg-card px-2 py-0.5 text-xs font-semibold text-fg">
-            <span>{s.autoFullscreen ? "🖥️ Fullscreen on" : "Windowed"}</span>
+            <span>{fs.supported && s.autoFullscreen ? "🖥️ Fullscreen on" : "Standard"}</span>
           </span>
         }
       >
         <p className="text-xs sm:text-sm leading-relaxed text-muted mb-4">
           Answers, explanations and your score appear only on the results screen after the quiz.
         </p>
-        <div className="space-y-4">
-          <Switch
-            checked={s.autoFullscreen}
-            onChange={(v) => update({ autoFullscreen: v })}
-            label="Full screen by default"
-            description="Pre-enable the full screen option in the quiz builder."
-          />
-        </div>
+        {fs.supported ? (
+          <div className="space-y-4">
+            <Switch
+              checked={s.autoFullscreen}
+              onChange={(v) => update({ autoFullscreen: v })}
+              label="Full screen by default"
+              description="Pre-enable the full screen option in the quiz builder."
+            />
+          </div>
+        ) : null}
         <p className="mt-4 border-t border-line/60 pt-4 font-mono text-[11px] leading-relaxed text-subtle">
           Scoring: +100 per correct · up to +50 speed bonus when a per-question timer is on · −30 when a hint is used
         </p>

@@ -32,6 +32,7 @@ export const FACT_CATEGORIES: FactCategory[] = [
   { id: "wildlife", label: "Wildlife & Beasts", emoji: "🦁", description: "Mammal intelligence, apex predators & survival marvels", accent: "from-amber-500/20 to-yellow-600/20" },
   { id: "birds", label: "Avian Wonders", emoji: "🦅", description: "Quantum navigation, master mimics & extreme migrations", accent: "from-sky-500/20 to-teal-500/20" },
   { id: "celestials", label: "Celestial Mysteries", emoji: "🌌", description: "Magnetars, cosmic voids, quasar jets & rogue anomalies", accent: "from-fuchsia-600/20 to-purple-600/20" },
+  { id: "animals", label: "Animal Kingdom", emoji: "🐾", description: "Instincts, communication, echolocation & biological marvels", accent: "from-emerald-600/20 to-teal-600/20" },
 ];
 
 export const FACTS: Fact[] = [
@@ -2923,5 +2924,246 @@ export const FACTS: Fact[] = [
   "body": "Growing up to 2 metres tall around abyssal volcanic hydrothermal chimneys spewing toxic hydrogen sulphide, giant tube worms (Riftia pachyptila) have zero digestive system. They survive completely on organic sugars manufactured by billions of symbiotic chemosynthetic bacteria living inside a vascular organ called a trophosome.",
   "image": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80",
   "source": "Woods Hole Oceanographic Institution"
+}
+,
+{
+  "id": "an-001",
+  "category": "animals",
+  "title": "Dolphins call each other by unique signature whistle names",
+  "body": "Bottlenose dolphins invent a unique signature whistle within their first year of life. When separated across kilometers of murky water, pod members imitate each other's signature whistles to broadcast their specific identity and coordinate reunion.",
+  "image": "https://images.unsplash.com/photo-1570481662006-a3a1374699e8?w=800&q=80",
+  "source": "Proceedings of the National Academy of Sciences / St Andrews"
+},
+{
+  "id": "an-002",
+  "category": "animals",
+  "title": "Koalas have unique individual fingerprints virtually indistinguishable from human prints",
+  "body": "Even under scanning electron microscopes, a koala's epidermal ridge whorls and loops closely mimic human friction ridges. This rare dermal adaptation evolved through convergent evolution to help them grasp smooth eucalyptus branches.",
+  "image": "https://images.unsplash.com/photo-1548247416-ec66f4900b2e?w=800&q=80",
+  "source": "Academic Forensic Pathology / University of Adelaide"
+},
+{
+  "id": "an-003",
+  "category": "animals",
+  "title": "Dogs detect human psychological stress and cortisol spikes through scent alone",
+  "body": "With 300 million olfactory receptors, dogs detect minute changes in human volatile organic compounds (VOCs) released in sweat and breath during acute psychological stress. Controlled double-blind trials proved dogs identify stressed human samples with 93.75% accuracy.",
+  "image": "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=800&q=80",
+  "source": "PLOS ONE / Queen's University Belfast"
+},
+{
+  "id": "an-004",
+  "category": "animals",
+  "title": "Sea otters hold hands while sleeping to prevent ocean currents drifting them apart",
+  "body": "While resting in offshore waters, sea otters wrap themselves in giant kelp holdfasts and clasp paws with their partners. These bonded groups (called rafts) can number hundreds of otters floating together safely without drifting out to open sea.",
+  "image": "https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?w=800&q=80",
+  "source": "Monterey Bay Aquarium"
+},
+{
+  "id": "an-005",
+  "category": "animals",
+  "title": "Bats calibrate their internal magnetic compasses using twilight polarization patterns",
+  "body": "Greater mouse-eared bats observe the strip of polarized skylight cast across the sky at sunset. They use this optical reference line to recalibrate their internal magnetic mineral compasses before embarking on nocturnal foraging flights across pitch-black caves.",
+  "image": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&q=80",
+  "source": "Nature Communications"
+},
+{
+  "id": "an-006",
+  "category": "animals",
+  "title": "Cows develop best friends and display measurable stress reduction when together",
+  "body": "Biometric research measuring cardiac rhythms and blood cortisol demonstrated that cows possess preferred companions. When housed alongside their best friend, their heart rates are significantly lower and milk yields increase compared to isolation among strangers.",
+  "image": "https://images.unsplash.com/photo-1546445317-29f4545e9d53?w=800&q=80",
+  "source": "Applied Animal Behaviour Science / Univ. of Northampton"
+},
+{
+  "id": "an-007",
+  "category": "animals",
+  "title": "Bees communicate 3D floral coordinates through an intricate waggle dance",
+  "body": "Returning to their pitch-black hives, honeybees perform a figure-eight waggle dance. The angle of the waggle run relative to vertical gravity encodes the sun's azimuth angle, and the duration of abdominal buzz vibrations signals the exact distance with meter-scale accuracy.",
+  "image": "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=800&q=80",
+  "source": "Karl von Frisch / Science Magazine"
+},
+{
+  "id": "an-008",
+  "category": "animals",
+  "title": "Chameleons shift colors using photonic nanocrystal lattices, not pigments",
+  "body": "Beneath their pigmented skin, chameleons possess two layers of iridophore cells containing microscopic guanine nanocrystals. By expanding or contracting these photonic lattices, they change how light wavelengths interfere, shifting instantaneously from camouflage green to incandescent red.",
+  "image": "https://images.unsplash.com/photo-1563281577-a7be47e20db9?w=800&q=80",
+  "source": "Nature Communications / University of Geneva"
+},
+{
+  "id": "an-009",
+  "category": "animals",
+  "title": "Octopuses have three hearts, copper-based blue blood, and 500 million neurons",
+  "body": "Two branchial hearts pump blue copper-rich hemocyanin blood across the gills, while a systemic heart pumps it through the body. Two-thirds of an octopus's neurons are distributed throughout its arms, allowing each tentacle to taste, explore, and solve physical puzzles semi-independently.",
+  "image": "https://images.unsplash.com/photo-1545671913-b89ac1b4ac10?w=800&q=80",
+  "source": "Current Biology / University of Cambridge"
+},
+{
+  "id": "an-010",
+  "category": "animals",
+  "title": "Meerkats teach their young how to hunt safely using gradual prey preparation",
+  "body": "Adult meerkats provide structured pedagogical lessons to their pups. They begin by presenting dead or stingless scorpions, gradually offering live prey with stingers as the young mature, making them one of the few verified non-human mammals to demonstrate active teaching.",
+  "image": "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=800&q=80",
+  "source": "Science Magazine / University of Cambridge"
+},
+{
+  "id": "wl-011",
+  "category": "wildlife",
+  "title": "Tigers have striped skin that exactly mirrors their outer fur pattern",
+  "body": "If a tiger is shaved, its black stripes remain completely visible directly on its skin. The hair follicles produce localized melanin pigmentation that permeates deep into dermal skin layers, meaning every individual tiger's skin pattern is as permanent as a human fingerprint.",
+  "image": "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=800&q=80",
+  "source": "Smithsonian / Wildlife Conservation Society"
+},
+{
+  "id": "wl-012",
+  "category": "wildlife",
+  "title": "Orca pods speak distinct vocal dialects and teach generational hunting strategies",
+  "body": "Different killer whale pods maintain unique acoustic repertoires passed down matrilineally. Matriarchs actively instruct juveniles in specialized pod cultures, such as intentionally hydroplaning onto beaches to grab sea lions or generating coordinated wave-washes to knock seals off ice floes.",
+  "image": "https://images.unsplash.com/photo-1568430462989-44163eb1752f?w=800&q=80",
+  "source": "Marine Mammal Science / NOAA"
+},
+{
+  "id": "wl-013",
+  "category": "wildlife",
+  "title": "Spotted hyenas exert 1,100 PSI jaw pressure to crush and dissolve dense bones",
+  "body": "A spotted hyena's massive sagittal crest and reinforced premolars generate over 7,500 Newtons of crushing force—strong enough to shatter adult giraffe limb bones. Their gastric hydrochloric acid (pH < 1.0) completely dissolves dense bone marrow, horns, and hooves within hours.",
+  "image": "https://images.unsplash.com/photo-1534567153574-2b12153a87f0?w=800&q=80",
+  "source": "Journal of Zoology"
+},
+{
+  "id": "wl-014",
+  "category": "wildlife",
+  "title": "Hippopotamuses secrete red fluid that acts as natural antibiotic sunscreen",
+  "body": "The reddish viscous fluid oozing from a hippo's subdermal glands contains hipposudoric acid and norhipposudoric acid. It absorbs ultraviolet light to prevent sunburn, acts as a potent antibacterial shield against dirty river water, and helps regulate core body temperature.",
+  "image": "https://images.unsplash.com/photo-1534177616072-ef7dc120449d?w=800&q=80",
+  "source": "Nature"
+},
+{
+  "id": "wl-015",
+  "category": "wildlife",
+  "title": "Arctic foxes withstand temperatures of -50°C without metabolic shivering",
+  "body": "Featuring 70% dense insulating underwool, rounded compact ears, and countercurrent circulatory heat exchangers in their footpads, arctic foxes have the most insulating fur of any mammal. Their basal metabolic rate keeps them warm down to -50°C before they need to expend energy shivering.",
+  "image": "https://images.unsplash.com/photo-1517849845537-4d257902454a?w=800&q=80",
+  "source": "Zoological Society of London"
+},
+{
+  "id": "bd-011",
+  "category": "birds",
+  "title": "Wandering albatrosses glide thousands of miles without a single wing flap",
+  "body": "Using dynamic soaring, wandering albatrosses extract mechanical energy from wind speed gradients directly above ocean wave troughs. A specialized biological shoulder tendon locks their 3.5-meter wings horizontally with near-zero muscle exertion, enabling multi-thousand-kilometer circumglobal flights.",
+  "image": "https://images.unsplash.com/photo-1551085254-e96b210df58a?w=800&q=80",
+  "source": "Science / French National Centre for Scientific Research"
+},
+{
+  "id": "bd-012",
+  "category": "birds",
+  "title": "Woodpeckers absorb 1,400g deceleration impacts with zero brain concussions",
+  "body": "Pecking wood at 20 strikes per second produces 1,400 times the force of gravity (a human suffers concussion at 80g). A spongy hyoid bone wraps completely around the woodpecker's skull like an elastic biological seatbelt, safely deflecting mechanical shockwaves away from brain tissue.",
+  "image": "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=800&q=80",
+  "source": "Nature / Bioinspiration & Biomimetics"
+},
+{
+  "id": "bd-013",
+  "category": "birds",
+  "title": "Vultures possess car-battery-grade stomach acid that neutralizes anthrax and cholera",
+  "body": "A vulture's gastric acidity approaches pH 1.0 (equivalent to pure sulfuric battery acid). This biological sterilizer dissolves bone shards and completely neutralizes botulinum toxin, anthrax, rabies, and cholera bacteria on rotten carcasses, halting devastating epidemics.",
+  "image": "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=800&q=80",
+  "source": "National Geographic / University of Copenhagen"
+},
+{
+  "id": "bd-014",
+  "category": "birds",
+  "title": "Homing pigeons navigate using sub-microscopic magnetite compasses in their beaks",
+  "body": "Pigeons navigate across thousands of kilometers through a combination of solar positioning and magnetic sensing. Microscopic iron-oxide magnetite clusters in their upper beaks measure variations in Earth's geomagnetic field intensity, providing a biological GPS map.",
+  "image": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80",
+  "source": "Nature / Max Planck Institute"
+},
+{
+  "id": "bd-015",
+  "category": "birds",
+  "title": "Raven pairs comfort each other with vocal condolences and allopreening",
+  "body": "Cognitive ethologists observed that after aggressive territorial encounters, mated ravens engage in spontaneous post-conflict consolation. The uninvolved partner sits beside the victim, gently preens its neck feathers, and utters soft consolatory notes that measurably lower stress levels.",
+  "image": "https://images.unsplash.com/photo-1520808663317-647b476a81b9?w=800&q=80",
+  "source": "PLOS ONE / University of Vienna"
+},
+{
+  "id": "cl-011",
+  "category": "celestials",
+  "title": "Millisecond pulsars keep time with precision rivaling atomic cesium clocks",
+  "body": "Neutron stars spinning up to 700 times per second emit focused radio beams that sweep past Earth like cosmic lighthouses. Their rotational stability loses less than a single second over 100 million years, enabling astronomers to use them as an astronomical gravitational-wave detector.",
+  "image": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800&q=80",
+  "source": "NANOGrav / Astrophysical Journal"
+},
+{
+  "id": "cl-012",
+  "category": "celestials",
+  "title": "The Pillars of Creation span over 4 light-years of interstellar molecular gas",
+  "body": "Located 6,500 light-years away in the Eagle Nebula, these vast columns of cold hydrogen gas and cosmic dust are massive stellar nurseries. Our entire Solar System, from the Sun past Pluto, could fit inside the fingertip protrusion of the smallest pillar spire.",
+  "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
+  "source": "NASA / James Webb Space Telescope"
+},
+{
+  "id": "cl-013",
+  "category": "celestials",
+  "title": "Rogue planet PSO J318.5-22 wanders through space with clouds of molten iron",
+  "body": "Discovered 80 light-years away, this rogue gas giant orbits no parent star, floating alone in total interstellar darkness. Infrared spectroscopy reveals an 800°C atmosphere battered by hurricane winds carrying glowing vaporized silicate dust and molten iron droplets.",
+  "image": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=800&q=80",
+  "source": "Astrophysical Journal Letters / University of Hawaii"
+},
+{
+  "id": "cl-014",
+  "category": "celestials",
+  "title": "A single teaspoon of neutron star matter weighs as much as Mount Everest",
+  "body": "When massive stars collapse into neutron stars, atomic electron shells collapse directly into protons, packing pure neutrons together at nuclear density. A single sugar-cube volume of this nuclear matter weighs 6 billion tonnes on Earth.",
+  "image": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&q=80",
+  "source": "NASA High-Energy Astrophysics"
+},
+{
+  "id": "cl-015",
+  "category": "celestials",
+  "title": "The Boomerang Nebula is the coldest natural location in the Universe at -272°C",
+  "body": "5,000 light-years away in Centaurus, expanding gas rushing out from a dying central star at 164 km/s creates adiabatic expansion that cools the nebula to 1 Kelvin (-272.15°C)—colder than the 2.7K cosmic microwave background radiation left by the Big Bang.",
+  "image": "https://images.unsplash.com/photo-1447433589675-4aaa569f3e05?w=800&q=80",
+  "source": "Nature Astronomy / ALMA Observatory"
+},
+{
+  "id": "oc-027",
+  "category": "ocean",
+  "title": "Male anglerfish dissolve their own bodies into females as permanent parasitic organs",
+  "body": "In the pitch-black abyss, a miniature male anglerfish bites onto a female and secretes enzymes that melt his mouth and blood vessels into hers. His digestive tract, eyes, and fins atrophy until he becomes a permanent parasitic sperm organ completely sustained by her blood.",
+  "image": "https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?w=800&q=80",
+  "source": "Current Biology"
+},
+{
+  "id": "oc-028",
+  "category": "ocean",
+  "title": "Vampire squids discharge luminous clouds of blue bioluminescent mucus spheres",
+  "body": "Living 900 meters deep where black ink would be useless in the darkness, the vampire squid releases a bioluminescent cloud of glowing blue mucus organs from its arm tips. The dazzling light cloud persists for up to 10 minutes, completely blinding abyssal predators.",
+  "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
+  "source": "Monterey Bay Aquarium Research Institute"
+},
+{
+  "id": "oc-029",
+  "category": "ocean",
+  "title": "The Barreleye fish has a transparent fluid dome head with rotatable glowing eyes",
+  "body": "Macropinna microstoma survives in twilight depths at 800 meters with a clear, liquid-filled cranial shield. Its glowing green cylindrical tubular eyes can rotate upward to spot the silhouettes of prey swimming against surface downwelling light or swivel forward while feeding.",
+  "image": "https://images.unsplash.com/photo-1560275619-4662e36fa65c?w=800&q=80",
+  "source": "MBARI / Current Biology"
+},
+{
+  "id": "oc-030",
+  "category": "ocean",
+  "title": "Hagfish produce micro-fibrous slime that expands 10,000 times in 400 milliseconds",
+  "body": "When bitten by a shark, a hagfish ejects protein threads from slime pores. Within 400 milliseconds of contacting seawater, the mucus expands 10,000 times its original volume, instantly transforming surrounding water into suffocating slime that chokes the shark's gills.",
+  "image": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80",
+  "source": "Current Biology / University of Guelph"
+},
+{
+  "id": "oc-031",
+  "category": "ocean",
+  "title": "Deep-sea glass sponges build silica fiber skeletons that outshine fiber-optic cables",
+  "body": "Living up to 15,000 years in abyssal waters, Hexactinellid glass sponges weave intricate skeletal architectures from pure biosilica glass. Bell Labs researchers demonstrated their natural glass spicules conduct light with flexible fiber-optic efficiency superior to commercial telecom cables.",
+  "image": "https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?w=800&q=80",
+  "source": "Bell Labs / Nature Materials"
 }
 ];

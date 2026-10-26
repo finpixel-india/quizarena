@@ -220,11 +220,16 @@ export default function QuizBuilder({
   }
 
   /* ------------------------------ topic lists ------------------------------ */
-  const classTopics = hasClasses && cls !== "general" ? topics.filter((t) => t.subject === subject && t.classLevel === cls) : [];
-  const allChapters = classTopics.find((t) => t.kind === "class-all" && !t.section);
+  const isGeneralScience = subject === "science" && cls === "general";
+  const classTopics = hasClasses && cls !== "general"
+    ? topics.filter((t) => t.subject === subject && t.classLevel === cls)
+    : isGeneralScience
+    ? topics.filter((t) => t.subject === "science" && (t.kind === "general" || t.id.startsWith("gen-sci-")))
+    : [];
+  const allChapters = classTopics.find((t) => (t.kind === "class-all" || t.id === "sci-general") && !t.section);
   const chapterList = classTopics.filter((t) => t.kind === "chapter");
   const groups: Group[] =
-    subject === "sst"
+    subject === "sst" && cls !== "general"
       ? [
           { items: allChapters ? [allChapters] : [] },
           ...SST_SECTIONS.map((sec) => ({
@@ -248,7 +253,7 @@ export default function QuizBuilder({
   const flatTopics = hasClasses ? [] : topics.filter((t) => t.subject === subject);
 
   /* ------------------------------- derived -------------------------------- */
-  const defaultSource: SourceId = isChapter || subject === "pyq" ? "bank" : "triviaapi";
+  const defaultSource: SourceId = settings.source ?? "bank";
   const source: SourceId = userSource && topic.sources.includes(userSource)
     ? userSource
     : topic.sources.includes(defaultSource)
@@ -405,7 +410,7 @@ export default function QuizBuilder({
           {/* Section: Chapter / Topic (Collapsible) */}
           <CollapsibleSection
             stepNumber="03"
-            title={hasClasses && cls !== "general" ? "Chapter" : "Topic"}
+            title={hasClasses && (cls !== "general" || isGeneralScience) ? "Chapter" : "Topic"}
             isOpen={openChapter}
             onToggle={() => setOpenChapter((prev) => !prev)}
             preview={
@@ -419,7 +424,7 @@ export default function QuizBuilder({
               </div>
             }
           >
-            {hasClasses && cls !== "general" ? (
+            {hasClasses && (cls !== "general" || isGeneralScience) ? (
               <div className="space-y-2.5">
                 <label className="flex items-center gap-2 rounded-xl border border-line bg-card px-3 py-2 transition focus-within:border-brand/70">
                   <Search className="h-4 w-4 shrink-0 text-subtle" />

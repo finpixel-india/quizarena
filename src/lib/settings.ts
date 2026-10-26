@@ -1,7 +1,7 @@
 import type { AppFontFamily, AppFontSize, Difficulty, SourceId, TimerMode, UserSettings } from "./types";
 
 export const DEFAULT_SETTINGS: UserSettings = {
-  source: "triviaapi",
+  source: "bank",
   hintsPerQuiz: 3,
   defaultQuestions: 10,
   defaultTime: 30,

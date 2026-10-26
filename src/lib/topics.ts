@@ -1,5 +1,6 @@
 import { science9 } from "@/data/bank/science9";
 import { science10 } from "@/data/bank/science10";
+import { science_general } from "@/data/bank/science_general";
 import { sst9 } from "@/data/bank/sst9";
 import { sst10 } from "@/data/bank/sst10";
 import { itTopics, mathConcepts } from "@/data/bank/it";
@@ -144,18 +145,36 @@ addClassTopics("science", 10, science10);
 addClassTopics("sst", 9, sst9);
 addClassTopics("sst", 10, sst10);
 
-const scienceAll = fromChapters([...science9, ...science10]);
+const scienceAll = fromChapters([...science9, ...science10, ...science_general]);
+
+for (const ch of science_general) {
+  defs.push({
+    id: ch.id,
+    subject: "science",
+    chapterNo: ch.no,
+    title: ch.title,
+    label: `General Science · ${ch.title}`,
+    kind: "chapter",
+    sources: ["bank", "triviaapi"],
+    bankCount: ch.q.length,
+    bank: { kind: "raw", items: keyed(ch.id, ch.q) },
+    online: { opentdb: 17, triviaapi: { categories: "science" } },
+    description: `Daily life facts, vitamins, diseases, SI units & verified concepts on ${ch.title}`,
+  });
+}
+
+const genSciAll = fromChapters(science_general);
 defs.push({
   id: "sci-general",
   subject: "science",
-  title: "General Science",
-  label: "Science · General Science",
+  title: "General Science (All Chapters)",
+  label: "Science · General Science (All)",
   kind: "general",
-  sources: ["triviaapi", "opentdb", "bank"],
-  bankCount: scienceAll.length,
-  bank: { kind: "raw", items: scienceAll },
+  sources: ["bank", "triviaapi", "opentdb"],
+  bankCount: genSciAll.length,
+  bank: { kind: "raw", items: genSciAll },
   online: { opentdb: 17, triviaapi: { categories: "science" } },
-  description: "Physics, chemistry, biology & nature — from any source",
+  description: "Comprehensive mixed quiz: vitamins, diseases, pH, everyday physics, space & metals",
 });
 
 const sstAll = fromChapters([...sst9, ...sst10]);

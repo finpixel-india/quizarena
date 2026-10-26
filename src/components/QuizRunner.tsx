@@ -330,6 +330,13 @@ export default function QuizRunner({ topic, config, mode }: { topic: TopicInfo; 
       toggleFs();
       return;
     }
+    if (current) {
+      if (k === "enter" || k === " " || k === "arrowright") {
+        e.preventDefault();
+        advance();
+      }
+      return;
+    }
     if (running && q) {
       const n = ["1", "2", "3", "4"].indexOf(k);
       const l = ["a", "b", "c", "d"].indexOf(k);
@@ -348,10 +355,11 @@ export default function QuizRunner({ topic, config, mode }: { topic: TopicInfo; 
     actions.current = { commitAnswer, advance, handleKey };
   });
 
-  // Gentle auto-advance once an answer has been recorded — no feedback, no button.
+  // Auto-advance with enough time to read verified answer feedback
   useEffect(() => {
     if (phase !== "playing" || !current) return;
-    const id = window.setTimeout(() => actions.current.advance(), ADVANCE_MS);
+    const delay = current.status === "correct" ? 900 : 2500;
+    const id = window.setTimeout(() => actions.current.advance(), delay);
     return () => window.clearTimeout(id);
   }, [phase, current, index]);
 
@@ -567,8 +575,12 @@ export default function QuizRunner({ topic, config, mode }: { topic: TopicInfo; 
           <div className={cn("mt-5 sm:mt-7 grid gap-2.5 sm:gap-3", shortOptions && q.options.length > 2 && "sm:grid-cols-2")}>
             {q.options.map((opt, i) => {
               const isElim = eliminated.includes(i);
-              const isSelected = picked === i;
               const locked = !!current;
+              const isSelected = picked === i || current?.selectedIndex === i;
+              const isCorrect = i === q.correctIndex;
+              const showCorrect = locked && isCorrect;
+              const showWrong = locked && isSelected && !isCorrect;
+
               return (
                 <button
                   key={i}
@@ -576,45 +588,149 @@ export default function QuizRunner({ topic, config, mode }: { topic: TopicInfo; 
                   disabled={locked || isElim}
                   onClick={() => commitAnswer(i)}
                   className={cn(
-                    "group flex min-h-[3.5rem] sm:min-h-[3.75rem] w-full items-center gap-3.5 sm:gap-3.5 rounded-xl sm:rounded-2xl border p-4 sm:p-4 text-left text-[15px] font-medium text-fg transition duration-200 sm:text-base",
+                    "group flex min-h-[3.5rem] sm:min-h-[3.75rem] w-full items-center gap-3.5 sm:gap-3.5 rounded-xl sm:rounded-2xl border p-4 sm:p-4 text-left text-[15px] font-medium transition duration-200 sm:text-base",
                     isElim
-                      ? "cursor-not-allowed border-dashed border-line bg-transparent text-subtle line-through opacity-50"
-                      : isSelected
-                        ? "border-brand bg-brand/[0.08] glow"
-                        : "border-line bg-card hover:border-line-2 hover:bg-fg/[0.04] active:scale-[0.99]",
+                      ? "cursor-not-allowed border-dashed border-line bg-transparent text-subtle line-through opacity-40"
+                      : showCorrect
+                        ? "border-emerald-500 bg-emerald-500/15 text-emerald-300 font-semibold ring-1 ring-emerald-500/50 shadow-[0_0_15px_rgba(16,185,129,0.2)]"
+                        : showWrong
+                          ? "border-rose-500 bg-rose-500/15 text-rose-300 font-semibold ring-1 ring-rose-500/50"
+                          : locked
+                            ? "border-line bg-card/60 opacity-45 text-muted"
+                            : "border-line bg-card text-fg hover:border-line-2 hover:bg-fg/[0.04] active:scale-[0.99]",
                   )}
                 >
                   <span
                     className={cn(
                       "inline-flex h-8 w-8 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-lg border font-mono text-xs sm:text-xs font-semibold transition",
-                      isElim ? "border-line text-subtle" : isSelected ? "border-brand text-brand-ink" : "border-line-2 text-muted group-hover:border-brand group-hover:text-brand-ink",
+                      isElim
+                        ? "border-line text-subtle"
+                        : showCorrect
+                          ? "border-emerald-500 bg-emerald-500/25 text-emerald-400"
+                          : showWrong
+                            ? "border-rose-500 bg-rose-500/25 text-rose-400"
+                            : "border-line-2 text-muted group-hover:border-brand group-hover:text-brand-ink",
                     )}
                   >
-                    {isSelected ? <Check className="h-4 w-4 sm:h-4 sm:w-4" /> : LETTERS[i]}
+                    {showCorrect ? (
+                      <Check className="h-4 w-4 sm:h-4 sm:w-4 text-emerald-400" />
+                    ) : showWrong ? (
+                      <X className="h-4 w-4 sm:h-4 sm:w-4 text-rose-400" />
+                    ) : (
+                      LETTERS[i]
+                    )}
                   </span>
                   <span className="flex-1 leading-snug">{opt}</span>
+                  {showCorrect && !showWrong ? (
+                    <span className="shrink-0 rounded-md bg-emerald-500/20 px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-emerald-400">
+                      Correct
+                    </span>
+                  ) : showWrong ? (
+                    <span className="shrink-0 rounded-md bg-rose-500/20 px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-rose-400">
+                      Your answer
+                    </span>
+                  ) : null}
                 </button>
               );
             })}
           </div>
 
+          {/* Real-time Verified Answer Feedback Banner */}
+          {current ? (
+            <div
+              className={cn(
+                "mt-4 sm:mt-5 rounded-2xl border p-4 sm:p-4.5 animate-fade-in transition-all",
+                current.status === "correct"
+                  ? "border-emerald-500/40 bg-emerald-500/[0.08]"
+                  : "border-rose-500/40 bg-rose-500/[0.08]"
+              )}
+            >
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2.5">
+                  <span
+                    className={cn(
+                      "inline-flex h-7 w-7 items-center justify-center rounded-full border",
+                      current.status === "correct"
+                        ? "border-emerald-500/50 bg-emerald-500/20 text-emerald-400"
+                        : "border-rose-500/50 bg-rose-500/20 text-rose-400"
+                    )}
+                  >
+                    {current.status === "correct" ? <Check className="h-4 w-4" /> : <X className="h-4 w-4" />}
+                  </span>
+                  <div>
+                    <p
+                      className={cn(
+                        "text-sm font-bold",
+                        current.status === "correct" ? "text-emerald-400" : "text-rose-400"
+                      )}
+                    >
+                      {current.status === "correct" ? "Correct Answer!" : "Incorrect"}
+                    </p>
+                    {current.points > 0 ? (
+                      <p className="font-mono text-[11px] text-emerald-400/80">+{current.points} points</p>
+                    ) : null}
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => actions.current.advance()}
+                  className="inline-flex items-center gap-1.5 rounded-xl border border-brand/40 bg-brand/15 hover:bg-brand/25 px-4 py-2 font-semibold text-xs sm:text-sm text-brand-ink transition active:scale-95 cursor-pointer"
+                >
+                  Next <ArrowRight className="h-3.5 w-3.5" />
+                </button>
+              </div>
+
+              {q.explanation ? (
+                <div className="mt-3 border-t border-line/40 pt-2.5 text-xs sm:text-[13px] text-muted leading-relaxed">
+                  <span className="font-semibold text-fg">Explanation: </span>
+                  {q.explanation}
+                </div>
+              ) : null}
+            </div>
+          ) : null}
+
           <p className="mt-8 hidden font-mono text-[11px] uppercase tracking-[0.14em] text-subtle md:block">
-            1–4 answer · H hint · S skip · F full screen · Esc pause
+            1–4 answer · H hint · S skip · F full screen · Esc pause · Space/Enter next
           </p>
         </div>
       </main>
 
       <footer className="glass sticky bottom-0 z-20 border-t border-line pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-2.5 sm:py-3">
         <div className="mx-auto flex max-w-3xl items-center gap-2.5 px-4 sm:px-6">
-          {hintBudget ? (
-            <button type="button" onClick={takeHint} disabled={!canHint} className={cn(btn.secondary, "flex-1 sm:flex-none h-12 sm:h-auto text-sm sm:text-sm font-semibold")} title={q.type === "boolean" ? "Hints aren't available for True/False questions" : "Use a hint (H)"}>
-              <Lightbulb className="h-4 w-4 text-warning" />
-              {hintShown ? "Hint used" : hintsLeft > 0 ? `Hint · ${hintsLeft} left` : "No hints left"}
+          {current ? (
+            <button
+              type="button"
+              onClick={() => advance()}
+              className={cn(btn.primary, "w-full h-12 text-sm font-bold flex items-center justify-center gap-2 shadow-lg shadow-brand/20")}
+            >
+              Next Question <ArrowRight className="h-4 w-4" />
             </button>
-          ) : null}
-          <button type="button" onClick={() => commitAnswer(null, "skipped")} disabled={!running} className={cn(btn.subtle, "flex-1 sm:ml-auto sm:flex-none h-12 sm:h-auto text-sm sm:text-sm font-semibold")} title="Skip (S)">
-            <SkipForward className="h-4 w-4" /> Skip
-          </button>
+          ) : (
+            <>
+              {hintBudget ? (
+                <button
+                  type="button"
+                  onClick={takeHint}
+                  disabled={!canHint}
+                  className={cn(btn.secondary, "flex-1 sm:flex-none h-12 sm:h-auto text-sm sm:text-sm font-semibold")}
+                  title={q.type === "boolean" ? "Hints aren't available for True/False questions" : "Use a hint (H)"}
+                >
+                  <Lightbulb className="h-4 w-4 text-warning" />
+                  {hintShown ? "Hint used" : hintsLeft > 0 ? `Hint · ${hintsLeft} left` : "No hints left"}
+                </button>
+              ) : null}
+              <button
+                type="button"
+                onClick={() => commitAnswer(null, "skipped")}
+                disabled={!running}
+                className={cn(btn.subtle, "flex-1 sm:ml-auto sm:flex-none h-12 sm:h-auto text-sm sm:text-sm font-semibold")}
+                title="Skip (S)"
+              >
+                <SkipForward className="h-4 w-4" /> Skip
+              </button>
+            </>
+          )}
         </div>
       </footer>
 

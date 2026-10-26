@@ -1,4 +1,4 @@
-import type { Difficulty, SourceId, TimerMode, UserSettings } from "./types";
+import type { AppFontFamily, AppFontSize, Difficulty, SourceId, TimerMode, UserSettings } from "./types";
 
 export const DEFAULT_SETTINGS: UserSettings = {
   source: "triviaapi",
@@ -12,6 +12,8 @@ export const DEFAULT_SETTINGS: UserSettings = {
   notificationsEnabled: true,
   notificationHour: 19,
   notificationMinute: 30,
+  appFont: "geist",
+  appFontSize: "default",
 };
 
 export const MIN_QUESTIONS = 1;
@@ -76,6 +78,70 @@ export function normalizeTime(value: unknown, fallback = DEFAULT_SETTINGS.defaul
   return Math.max(MIN_TIME, n);
 }
 
+export const APP_FONTS: Array<{
+  id: AppFontFamily;
+  name: string;
+  tag: string;
+  subtitle: string;
+  sample: string;
+}> = [
+  {
+    id: "geist",
+    name: "Geist Sans",
+    tag: "Modern",
+    subtitle: "Clean, high-precision contemporary digital sans",
+    sample: "Quantum physics & atomic structures · 120/80 mmHg",
+  },
+  {
+    id: "system",
+    name: "System UI",
+    tag: "Native",
+    subtitle: "Native smartphone & operating system typeface",
+    sample: "Quantum physics & atomic structures · 120/80 mmHg",
+  },
+  {
+    id: "serif",
+    name: "Newsreader",
+    tag: "Editorial",
+    subtitle: "Elegant, bookish literary serif for study notes",
+    sample: "Quantum physics & atomic structures · 120/80 mmHg",
+  },
+  {
+    id: "mono",
+    name: "Geist Mono",
+    tag: "Code / Math",
+    subtitle: "Fixed-width terminal style for STEM & formulas",
+    sample: "Quantum physics & atomic structures · 120/80 mmHg",
+  },
+  {
+    id: "rounded",
+    name: "Soft Rounded",
+    tag: "Friendly",
+    subtitle: "Gentle curved sans that is easy on the eyes",
+    sample: "Quantum physics & atomic structures · 120/80 mmHg",
+  },
+];
+
+export const APP_FONT_SIZES: Array<{
+  id: AppFontSize;
+  label: string;
+  pct: string;
+  subtitle: string;
+}> = [
+  { id: "small", label: "Compact", pct: "90%", subtitle: "Fits more questions & notes per screen" },
+  { id: "default", label: "Default", pct: "100%", subtitle: "Standard balanced size across devices" },
+  { id: "large", label: "Large", pct: "112%", subtitle: "Comfortable reading with relaxed spacing" },
+  { id: "xlarge", label: "Extra Large", pct: "125%", subtitle: "Maximum visibility & high legibility" },
+];
+
+export function isAppFont(v: unknown): v is AppFontFamily {
+  return typeof v === "string" && ["geist", "system", "serif", "mono", "rounded"].includes(v);
+}
+
+export function isAppFontSize(v: unknown): v is AppFontSize {
+  return typeof v === "string" && ["small", "default", "large", "xlarge"].includes(v);
+}
+
 export function normalizeSettings(input: unknown): UserSettings {
   const raw = (input && typeof input === "object" ? input : {}) as Record<string, unknown>;
   const total = clampInt(raw.defaultTotalTime, MIN_TOTAL_TIME, MAX_TOTAL_TIME, DEFAULT_SETTINGS.defaultTotalTime);
@@ -91,6 +157,8 @@ export function normalizeSettings(input: unknown): UserSettings {
     notificationsEnabled: typeof raw.notificationsEnabled === "boolean" ? raw.notificationsEnabled : DEFAULT_SETTINGS.notificationsEnabled,
     notificationHour: clampInt(raw.notificationHour, 0, 23, DEFAULT_SETTINGS.notificationHour),
     notificationMinute: clampInt(raw.notificationMinute, 0, 59, DEFAULT_SETTINGS.notificationMinute),
+    appFont: isAppFont(raw.appFont) ? raw.appFont : DEFAULT_SETTINGS.appFont,
+    appFontSize: isAppFontSize(raw.appFontSize) ? raw.appFontSize : DEFAULT_SETTINGS.appFontSize,
   };
 }
 

@@ -23,7 +23,8 @@ export const viewport: Viewport = {
 };
 
 // Dark mode first: only switch to light when the user explicitly chose it (or chose "system" on a light OS).
-const themeScript = `(function(){try{var t=localStorage.getItem('ql-theme');if(t!=='light'&&t!=='system')t='dark';var d=t==='dark'||(t==='system'&&window.matchMedia('(prefers-color-scheme: dark)').matches);var r=document.documentElement;r.classList.remove(d?'light':'dark');r.classList.add(d?'dark':'light');r.style.colorScheme=d?'dark':'light';if(!d){var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content','#F7F5F1');}}catch(e){}})();`;
+// Also apply user-selected global typography (font family and rem scale) immediately to prevent visual flash.
+const themeScript = `(function(){try{var t=localStorage.getItem('ql-theme');if(t!=='light'&&t!=='system')t='dark';var d=t==='dark'||(t==='system'&&window.matchMedia('(prefers-color-scheme: dark)').matches);var r=document.documentElement;r.classList.remove(d?'light':'dark');r.classList.add(d?'dark':'light');r.style.colorScheme=d?'dark':'light';if(!d){var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content','#F7F5F1');}var f=localStorage.getItem('ql-app-font');if(f&&['geist','system','serif','mono','rounded'].indexOf(f)!==-1){r.setAttribute('data-font',f);}else{r.setAttribute('data-font','geist');}var fs=localStorage.getItem('ql-app-font-size');if(fs&&['small','default','large','xlarge'].indexOf(fs)!==-1){r.setAttribute('data-font-size',fs);}else{r.setAttribute('data-font-size','default');}}catch(e){}})();`;
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (

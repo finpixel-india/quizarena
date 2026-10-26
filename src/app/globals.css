@@ -1,12 +1,55 @@
-@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
 @custom-variant light (&:where(.light, .light *));
 
+/* ------------------------------- Global Font Scaling (rem-based) ------------------------------- */
+html[data-font-size="small"] {
+  font-size: 14.25px; /* ~89% of 16px */
+}
+html[data-font-size="default"] {
+  font-size: 16px; /* 100% standard */
+}
+html[data-font-size="large"] {
+  font-size: 18px; /* 112.5% */
+}
+html[data-font-size="xlarge"] {
+  font-size: 20px; /* 125% */
+}
+
+/* ------------------------------- Global Font Family ------------------------------- */
+:root {
+  --app-font: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html[data-font="geist"] {
+  --app-font: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html[data-font="system"] {
+  --app-font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html[data-font="serif"] {
+  --app-font: "Newsreader", "Instrument Serif", Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+html[data-font="mono"] {
+  --app-font: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+html[data-font="rounded"] {
+  --app-font: "Plus Jakarta Sans", "Quicksand", "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  font-family: var(--app-font);
+}
+
 /* Semantic design tokens — values switch between dark (default), light theme and cream bands. */
 @theme inline {
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: var(--app-font, var(--font-geist-sans)), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --font-serif: "Instrument Serif", "Newsreader", Georgia, serif;
 

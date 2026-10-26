@@ -2,14 +2,15 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { ArrowUpRight, BarChart3, Bell, BellRing, Check, CircleAlert, ExternalLink, History, Loader2, Monitor, Moon, Send, Sun, Trash2 } from "lucide-react";
+import { ArrowUpRight, BarChart3, Bell, BellRing, Check, CircleAlert, ExternalLink, History, Loader2, Monitor, Moon, Send, Sun, Trash2, Type } from "lucide-react";
 import { Card, CollapsibleSection, Label, Segmented, Switch, chip, inputCls } from "@/components/ui";
-import { useFullscreen, useTheme } from "@/lib/client-hooks";
+import { useAppTypography, useFullscreen, useTheme } from "@/lib/client-hooks";
 import { cn } from "@/lib/format";
-import { MAX_QUESTIONS, MAX_TIME, MAX_TOTAL_TIME, MIN_TIME, MIN_TOTAL_TIME, QUESTION_PRESETS, SOURCE_META, TIME_PRESETS, TOTAL_TIME_PRESETS } from "@/lib/settings";
+import { haptic } from "@/lib/haptics";
+import { APP_FONTS, APP_FONT_SIZES, MAX_QUESTIONS, MAX_TIME, MAX_TOTAL_TIME, MIN_TIME, MIN_TOTAL_TIME, QUESTION_PRESETS, SOURCE_META, TIME_PRESETS, TOTAL_TIME_PRESETS } from "@/lib/settings";
 import { clearAttempts, loadSettings, saveSettings } from "@/lib/storage";
 import { cancelReminders, requestNotificationPermission, scheduleDailyReminders, sendTestNotification } from "@/lib/notifications";
-import type { Difficulty, SourceId, ThemePref, TimerMode, UserSettings } from "@/lib/types";
+import type { AppFontFamily, AppFontSize, Difficulty, SourceId, ThemePref, TimerMode, UserSettings } from "@/lib/types";
 import { useAttempts } from "@/lib/use-local-data";
 
 const timeLabel = (t: number) => (t === 0 ? "No limit" : `${t}s`);
@@ -17,6 +18,7 @@ const totalLabel = (t: number) => (t >= 3600 && t % 3600 === 0 ? `${t / 3600} hr
 
 export default function SettingsForm() {
   const { pref, setPref } = useTheme();
+  const { font, fontSize, setFont, setFontSize } = useAppTypography();
   const fs = useFullscreen();
   const { summaries } = useAttempts();
   const [s, setS] = useState<UserSettings>(() => loadSettings());
@@ -30,6 +32,7 @@ export default function SettingsForm() {
   const [openDefaults, setOpenDefaults] = useState(false);
   const [openGameplay, setOpenGameplay] = useState(false);
   const [openAppearance, setOpenAppearance] = useState(false);
+  const [openTypography, setOpenTypography] = useState(false);
   const [openNotifications, setOpenNotifications] = useState(false);
   const [openData, setOpenData] = useState(false);
   const [testSending, setTestSending] = useState(false);
@@ -441,9 +444,161 @@ export default function SettingsForm() {
         </div>
       </CollapsibleSection>
 
-      {/* 05 Notifications & Daily Reminders (Collapsible) */}
+      {/* 05 App Typography & Font Size (Collapsible) */}
       <CollapsibleSection
         stepNumber="05"
+        title="App font & text size"
+        isOpen={openTypography}
+        onToggle={() => setOpenTypography((prev) => !prev)}
+        preview={
+          <div className="inline-flex items-center gap-1.5 font-mono text-[11px] sm:text-xs font-semibold text-fg">
+            <span>{APP_FONTS.find((f) => f.id === font)?.name ?? "Geist Sans"}</span>
+            <span className="text-line-2">·</span>
+            <span>{APP_FONT_SIZES.find((sz) => sz.id === fontSize)?.pct ?? "100%"}</span>
+          </div>
+        }
+      >
+        <div className="space-y-6">
+          {/* Subheading: Font Family */}
+          <div>
+            <div className="flex items-center justify-between mb-1.5">
+              <p className="text-sm font-semibold text-fg">Font Family</p>
+              <span className="font-mono text-xs text-brand-ink font-semibold">
+                {APP_FONTS.find((f) => f.id === font)?.name}
+              </span>
+            </div>
+            <p className="text-xs sm:text-sm text-muted mb-3.5">
+              Choose your preferred typeface. Changes apply immediately across all quizzes, study notes, and menus.
+            </p>
+
+            <div className="grid gap-2.5 sm:grid-cols-2">
+              {APP_FONTS.map((f) => {
+                const active = font === f.id;
+                return (
+                  <button
+                    key={f.id}
+                    type="button"
+                    onClick={() => {
+                      haptic("light");
+                      setFont(f.id);
+                      update({ appFont: f.id });
+                    }}
+                    aria-pressed={active}
+                    className={cn(
+                      "flex flex-col items-start rounded-2xl border p-3.5 sm:p-4 text-left transition active:scale-98",
+                      active
+                        ? "border-brand bg-brand/[0.06] text-fg glow"
+                        : "border-line bg-card text-muted hover:border-line-2 hover:text-fg"
+                    )}
+                  >
+                    <div className="flex items-center justify-between w-full">
+                      <div className="flex items-center gap-2">
+                        <span
+                          className={cn(
+                            "inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full border",
+                            active ? "border-brand" : "border-line-2"
+                          )}
+                        >
+                          {active ? (
+                            <span className="h-2 w-2 rounded-full bg-brand shadow-[0_0_6px_rgba(249,115,22,0.9)]" />
+                          ) : null}
+                        </span>
+                        <span className="text-sm font-bold text-fg">{f.name}</span>
+                      </div>
+                      <span className="rounded-md border border-line/60 bg-fg/[0.04] px-2 py-0.5 font-mono text-[10px] text-subtle font-semibold uppercase">
+                        {f.tag}
+                      </span>
+                    </div>
+
+                    <p className="mt-1 text-xs text-muted leading-snug">{f.subtitle}</p>
+
+                    {/* Live Preview Sample */}
+                    <div
+                      className="mt-2.5 w-full rounded-xl border border-line/50 bg-fg/[0.02] px-3 py-2 text-xs text-fg leading-relaxed"
+                      style={{
+                        fontFamily:
+                          f.id === "geist"
+                            ? "var(--font-geist-sans), sans-serif"
+                            : f.id === "system"
+                            ? "system-ui, -apple-system, sans-serif"
+                            : f.id === "serif"
+                            ? '"Newsreader", "Instrument Serif", Georgia, serif'
+                            : f.id === "mono"
+                            ? "var(--font-geist-mono), monospace"
+                            : '"Plus Jakarta Sans", "Quicksand", sans-serif',
+                      }}
+                    >
+                      {f.sample}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Subheading: Font Size */}
+          <div className="border-t border-line/60 pt-5">
+            <div className="flex items-center justify-between mb-1.5">
+              <p className="text-sm font-semibold text-fg">App Text Size</p>
+              <span className="font-mono text-xs text-brand-ink font-semibold">
+                {APP_FONT_SIZES.find((sz) => sz.id === fontSize)?.label} ({APP_FONT_SIZES.find((sz) => sz.id === fontSize)?.pct})
+              </span>
+            </div>
+            <p className="text-xs sm:text-sm text-muted mb-3.5">
+              Scales typography across the entire interface.
+            </p>
+
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+              {APP_FONT_SIZES.map((sz) => {
+                const active = fontSize === sz.id;
+                return (
+                  <button
+                    key={sz.id}
+                    type="button"
+                    onClick={() => {
+                      haptic("light");
+                      setFontSize(sz.id);
+                      update({ appFontSize: sz.id });
+                    }}
+                    className={cn(
+                      "flex flex-col items-center justify-center rounded-2xl border p-3 sm:p-3.5 text-center transition active:scale-95",
+                      active
+                        ? "border-brand bg-brand/[0.08] text-fg glow"
+                        : "border-line bg-card text-muted hover:border-line-2 hover:text-fg"
+                    )}
+                  >
+                    <span className="text-sm font-bold text-fg">{sz.label}</span>
+                    <span className="font-mono text-xs text-brand-ink font-bold mt-0.5">{sz.pct}</span>
+                    <span className="text-[10px] text-subtle mt-1 leading-tight">{sz.subtitle}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Live Interactive Preview Card */}
+            <div className="mt-4 rounded-2xl border border-line bg-card p-4 sm:p-5 card-shadow space-y-2">
+              <p className="font-mono text-[10px] uppercase text-subtle font-bold tracking-wider">
+                Live Quiz & Notes Preview
+              </p>
+              <p className="text-base font-bold text-fg leading-snug">
+                Which organelle is universally known as the powerhouse of the cell?
+              </p>
+              <div className="grid grid-cols-2 gap-2 pt-1 text-xs sm:text-sm">
+                <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 font-semibold text-emerald-700 dark:text-emerald-300">
+                  (A) Mitochondria ✓
+                </div>
+                <div className="rounded-xl border border-line bg-fg/[0.02] px-3 py-2 text-muted">
+                  (B) Ribosome
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </CollapsibleSection>
+
+      {/* 06 Notifications & Daily Reminders (Collapsible) */}
+      <CollapsibleSection
+        stepNumber="06"
         title="Notifications & reminders"
         isOpen={openNotifications}
         onToggle={() => setOpenNotifications((prev) => !prev)}
@@ -539,9 +694,9 @@ export default function SettingsForm() {
         </div>
       </CollapsibleSection>
 
-      {/* 06 Your data (Collapsible) */}
+      {/* 07 Your data (Collapsible) */}
       <CollapsibleSection
-        stepNumber="06"
+        stepNumber="07"
         title="Your data"
         isOpen={openData}
         onToggle={() => setOpenData((prev) => !prev)}

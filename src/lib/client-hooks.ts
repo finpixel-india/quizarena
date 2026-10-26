@@ -2,7 +2,7 @@
 
 import { useCallback, useSyncExternalStore } from "react";
 import { Capacitor } from "@capacitor/core";
-import type { ThemePref } from "./types";
+import type { AppFontFamily, AppFontSize, ThemePref } from "./types";
 
 /* ------------------------------- Fullscreen ------------------------------- */
 
@@ -123,4 +123,72 @@ export function useTheme() {
     () => true,
   );
   return { pref, isDark, setPref: applyTheme };
+}
+
+/* ------------------------------- Typography ------------------------------- */
+
+const FONT_KEY = "ql-app-font";
+const FONT_SIZE_KEY = "ql-app-font-size";
+const TYPOGRAPHY_EVENT = "ql-typography-change";
+
+export function readAppFont(): AppFontFamily {
+  try {
+    const v = localStorage.getItem(FONT_KEY);
+    if (v === "system" || v === "serif" || v === "mono" || v === "rounded") return v;
+    return "geist";
+  } catch {
+    return "geist";
+  }
+}
+
+export function readAppFontSize(): AppFontSize {
+  try {
+    const v = localStorage.getItem(FONT_SIZE_KEY);
+    if (v === "small" || v === "large" || v === "xlarge") return v;
+    return "default";
+  } catch {
+    return "default";
+  }
+}
+
+export function applyTypography(options: { font?: AppFontFamily; fontSize?: AppFontSize }) {
+  const root = document.documentElement;
+
+  if (options.font) {
+    try {
+      localStorage.setItem(FONT_KEY, options.font);
+    } catch {}
+    root.setAttribute("data-font", options.font);
+  }
+
+  if (options.fontSize) {
+    try {
+      localStorage.setItem(FONT_SIZE_KEY, options.fontSize);
+    } catch {}
+    root.setAttribute("data-font-size", options.fontSize);
+  }
+
+  window.dispatchEvent(new Event(TYPOGRAPHY_EVENT));
+}
+
+function subscribeTypography(cb: () => void) {
+  window.addEventListener(TYPOGRAPHY_EVENT, cb);
+  return () => {
+    window.removeEventListener(TYPOGRAPHY_EVENT, cb);
+  };
+}
+
+export function useAppTypography() {
+  const font = useSyncExternalStore(subscribeTypography, readAppFont, () => "geist" as AppFontFamily);
+  const fontSize = useSyncExternalStore(subscribeTypography, readAppFontSize, () => "default" as AppFontSize);
+
+  const setFont = useCallback((f: AppFontFamily) => {
+    applyTypography({ font: f });
+  }, []);
+
+  const setFontSize = useCallback((s: AppFontSize) => {
+    applyTypography({ fontSize: s });
+  }, []);
+
+  return { font, fontSize, setFont, setFontSize };
 }

@@ -2,6 +2,8 @@ export type SubjectId = "math" | "it" | "science" | "sst" | "custom" | "pyq";
 export type SourceId = "bank" | "opentdb" | "triviaapi";
 export type Difficulty = "any" | "easy" | "medium" | "hard";
 export type ThemePref = "system" | "light" | "dark";
+export type AppFontFamily = "geist" | "system" | "serif" | "mono" | "rounded";
+export type AppFontSize = "small" | "default" | "large" | "xlarge";
 export type AnswerStatus = "correct" | "wrong" | "skipped" | "timeout";
 export type QuizMode = "standard" | "mistakes";
 export type TimerMode = "per-question" | "total";
@@ -50,6 +52,8 @@ export interface UserSettings {
   notificationsEnabled: boolean;
   notificationHour: number;
   notificationMinute: number;
+  appFont?: AppFontFamily;
+  appFontSize?: AppFontSize;
 }
 
 /** Client-safe description of a quiz topic. */

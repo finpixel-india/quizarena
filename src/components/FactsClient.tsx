@@ -546,9 +546,9 @@ export default function FactsClient() {
                   setIsCategoryExpanded(false);
                 }}
                 className={cn(
-                  "flex items-center justify-between gap-2 rounded-xl border p-3 text-left transition-all duration-200 active:scale-[0.98]",
+                  "flex items-center justify-between gap-2 rounded-xl border p-3 text-left transition-colors duration-150 active:scale-[0.98]",
                   isSelected
-                    ? "border-brand bg-brand/15 text-brand-ink shadow-[0_0_12px_rgba(249,115,22,0.3)] font-semibold"
+                    ? "border-brand bg-brand/15 text-brand-ink ring-1 ring-brand/40 font-semibold"
                     : "border-line bg-card text-muted hover:border-line-2 hover:bg-fg/[0.03] hover:text-fg",
                 )}
               >
@@ -570,9 +570,9 @@ export default function FactsClient() {
               setIsCategoryExpanded(false);
             }}
             className={cn(
-              "flex items-center justify-between gap-2 rounded-xl border p-3 text-left transition-all duration-200 active:scale-[0.98] col-span-2 sm:col-span-1",
+              "flex items-center justify-between gap-2 rounded-xl border p-3 text-left transition-colors duration-150 active:scale-[0.98] col-span-2 sm:col-span-1",
               activeCategory === "saved"
-                ? "border-brand bg-brand/15 text-brand-ink shadow-[0_0_12px_rgba(249,115,22,0.3)] font-semibold"
+                ? "border-brand bg-brand/15 text-brand-ink ring-1 ring-brand/40 font-semibold"
                 : "border-line bg-card text-muted hover:border-line-2 hover:bg-fg/[0.03] hover:text-fg",
             )}
           >
@@ -607,7 +607,10 @@ export default function FactsClient() {
             </button>
           </div>
         ) : (
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr [contain:layout]">
+          <div
+            className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr"
+            style={{ contain: "layout paint" }}
+          >
             {visibleFacts.map((fact, i) => (
               <div key={fact.id} className="h-full">
                 <FactCard

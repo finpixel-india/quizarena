@@ -1,6 +1,6 @@
 "use client";
 
-import type { ComponentType, ReactNode } from "react";
+import { useEffect, useRef, useState, type ComponentType, type ReactNode } from "react";
 import { Calculator, ChevronDown, Cpu, FlaskConical, GraduationCap, Landmark, SlidersHorizontal } from "lucide-react";
 import { cn } from "@/lib/format";
 import { haptic } from "@/lib/haptics";
@@ -18,7 +18,7 @@ export function Card({ className, children }: { className?: string; children: Re
   return <div className={cn("w-full max-w-full min-w-0 rounded-2xl border border-line bg-card card-shadow md:backdrop-blur-xl", className)}>{children}</div>;
 }
 
-/** Smooth, hardware-accelerated collapsible section with spring animation and haptic feedback */
+/** Butter-smooth, hardware-accelerated collapsible section with calibrated height interpolation and haptic feedback */
 export function CollapsibleSection({
   stepNumber,
   title,
@@ -36,6 +36,42 @@ export function CollapsibleSection({
   children: ReactNode;
   className?: string;
 }) {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState<number | string>(isOpen ? "auto" : 0);
+  const isInitial = useRef(true);
+
+  useEffect(() => {
+    if (isInitial.current) {
+      isInitial.current = false;
+      return;
+    }
+
+    const el = contentRef.current;
+    if (!el) return;
+
+    if (isOpen) {
+      // Measure natural pixel height for smooth hardware-accelerated interpolation
+      const fullHeight = el.scrollHeight;
+      setHeight(fullHeight);
+
+      const timer = setTimeout(() => {
+        setHeight("auto");
+      }, 300);
+      return () => clearTimeout(timer);
+    } else {
+      // Lock exact pixel height first so CSS can interpolate smoothly down to 0
+      const fullHeight = el.scrollHeight;
+      setHeight(fullHeight);
+
+      const rAF = requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setHeight(0);
+        });
+      });
+      return () => cancelAnimationFrame(rAF);
+    }
+  }, [isOpen]);
+
   return (
     <div
       className={cn(
@@ -82,7 +118,7 @@ export function CollapsibleSection({
           >
             <ChevronDown
               className={cn(
-                "h-4.5 w-4.5 sm:h-4 sm:w-4 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
+                "h-4.5 w-4.5 sm:h-4 sm:w-4 transition-transform duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]",
                 isOpen && "rotate-180",
               )}
             />
@@ -90,18 +126,21 @@ export function CollapsibleSection({
         </div>
       </button>
 
+      {/* Hardware-accelerated height transition container */}
       <div
-        className={cn(
-          "grid transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-[grid-template-rows]",
-          isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
-        )}
+        style={{
+          height: typeof height === "number" ? `${height}px` : height,
+          transition: "height 300ms cubic-bezier(0.25, 1, 0.5, 1)",
+          overflow: "hidden",
+        }}
+        className="w-full"
       >
-        <div className="overflow-hidden min-h-0">
+        <div ref={contentRef} className="w-full">
           <div className="h-px w-full bg-line/40" />
           <div
             className={cn(
-              "p-3.5 sm:p-4 bg-fg/[0.015] transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
-              isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1.5 pointer-events-none"
+              "p-3.5 sm:p-4 bg-fg/[0.015] transition-opacity duration-240 ease-out",
+              isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
             )}
           >
             {children}

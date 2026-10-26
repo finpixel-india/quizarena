@@ -20,6 +20,7 @@ import {
   X,
 } from "lucide-react";
 import { Card, CollapsibleSection, Container, Label, PageHeader } from "@/components/ui";
+import { FloatingTTSButton, TTSHighlightedText, useCuteTTS } from "@/components/FloatingTTS";
 import { cn } from "@/lib/format";
 import { haptic } from "@/lib/haptics";
 import { FACT_CATEGORIES, FACTS, type Fact } from "@/data/facts";
@@ -172,6 +173,14 @@ function FullPageFactView({
   const [copied, setCopied] = useState(false);
   const [heroLoaded, setHeroLoaded] = useState(false);
 
+  /* ─── Cute TTS Speech Narration inside Fact ─── */
+  const fullFactSpeechText = useMemo(() => {
+    return `${fact.title}. ${fact.body}`;
+  }, [fact.title, fact.body]);
+
+  const tts = useCuteTTS(fullFactSpeechText, fact.id);
+  const bodyOffset = fact.title.length + 2;
+
   // Keyboard navigation
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
@@ -279,7 +288,12 @@ function FullPageFactView({
         {/* Title & Body */}
         <div className="space-y-4">
           <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-fg leading-tight">
-            {fact.title}
+            <TTSHighlightedText
+              text={fact.title}
+              activeCharIndex={tts.activeCharIndex}
+              offset={0}
+              isSpeaking={tts.isPlaying}
+            />
           </h1>
 
           <div className="flex flex-wrap items-center gap-3 pt-2 text-xs font-mono text-subtle border-b border-line pb-4">
@@ -299,7 +313,12 @@ function FullPageFactView({
           </div>
 
           <p className="text-base sm:text-xl leading-relaxed text-fg/90 font-normal">
-            {fact.body}
+            <TTSHighlightedText
+              text={fact.body}
+              activeCharIndex={tts.activeCharIndex}
+              offset={bodyOffset}
+              isSpeaking={tts.isPlaying}
+            />
           </p>
         </div>
 
@@ -378,6 +397,9 @@ function FullPageFactView({
           </div>
         )}
       </article>
+
+      {/* Floating TTS Action Button */}
+      <FloatingTTSButton tts={tts} />
     </div>
   );
 }

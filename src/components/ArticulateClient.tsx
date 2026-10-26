@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Check, ChevronDown, ChevronUp, Flame, Play, RotateCcw, Settings2, Square, Volume2, VolumeX, X } from "lucide-react";
+import { Check, ChevronDown, ChevronUp, Flame, Play, RotateCcw, Settings2, Square, X } from "lucide-react";
+import { FloatingTTSButton, TTSHighlightedText, useCuteTTS } from "@/components/FloatingTTS";
 import { ARTICULATE_PROMPTS, type ArticulateCategory, type ArticulateMode, type ArticulatePrompt } from "@/data/articulate/prompts";
 import {
   ELOCUTION_ITEMS,
@@ -503,131 +504,33 @@ export default function ArticulateClient() {
     };
   }, [elocutionKey, fontScaleIndex]);
 
-  /* ─── Elocution TTS Pronunciation Audio (Web Speech API) ─────────────────── */
-  const [isSpeaking, setIsSpeaking] = useState(false);
-  const activeUtteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
+  /* ─── Cute TTS Speech Narration (All Modes + Word Highlighting + Floating FAB) ─── */
+  const articulateSpeechText = useMemo(() => {
+    if (mode === "elocution") return currentElocutionItem?.text || "";
+    return displayText || currentPrompt?.title || "";
+  }, [mode, currentElocutionItem?.text, displayText, currentPrompt?.title]);
 
-  const stopSpeech = useCallback(() => {
-    if (typeof window !== "undefined" && "speechSynthesis" in window) {
-      try {
-        window.speechSynthesis.cancel();
-      } catch {}
-    }
-    activeUtteranceRef.current = null;
-    setIsSpeaking(false);
-  }, []);
+  const articulateSpeechId = useMemo(() => {
+    if (mode === "elocution") return `elocution-${elocutionKey}-${currentElocutionItem?.id}`;
+    return `${mode}-${tickKey}-${currentPrompt?.id}`;
+  }, [mode, elocutionKey, currentElocutionItem?.id, tickKey, currentPrompt?.id]);
 
-  // Pre-warm voices list for Web Speech API
-  useEffect(() => {
-    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
-    try {
-      window.speechSynthesis.getVoices();
-      const onVoicesChanged = () => {
-        window.speechSynthesis.getVoices();
-      };
-      window.speechSynthesis.addEventListener("voiceschanged", onVoicesChanged);
-      return () => {
-        window.speechSynthesis.removeEventListener("voiceschanged", onVoicesChanged);
-      };
-    } catch {}
-  }, []);
-
-  // Cancel speech on unmount, when leaving elocution mode, or when challenge changes
-  useEffect(() => {
-    stopSpeech();
-    return () => {
-      stopSpeech();
-    };
-  }, [mode, elocutionKey, stopSpeech]);
-
-  const toggleSpeech = useCallback(() => {
-    haptic("light");
-
-    if (typeof window === "undefined" || !("speechSynthesis" in window)) {
-      return;
-    }
-
-    if (isSpeaking) {
-      stopSpeech();
-      return;
-    }
-
-    try {
-      window.speechSynthesis.cancel();
-    } catch {}
-
-    const textToSpeak = currentElocutionItem?.text?.trim();
-    if (!textToSpeak) return;
-
-    const utterance = new SpeechSynthesisUtterance(textToSpeak);
-    utterance.lang = "en-US";
-
-    // Select cute, natural female voice prioritizing index.html priorities
-    try {
-      const voices = window.speechSynthesis.getVoices();
-      if (voices && voices.length > 0) {
-        const priorities = [
-          (v: SpeechSynthesisVoice) => v.name === "Google US English",
-          (v: SpeechSynthesisVoice) => v.name === "Microsoft Zira",
-          (v: SpeechSynthesisVoice) => v.name === "Samantha",
-          (v: SpeechSynthesisVoice) => v.name.includes("Google") && v.lang === "en-US",
-          (v: SpeechSynthesisVoice) => v.name.includes("Female") && v.lang === "en-US",
-          (v: SpeechSynthesisVoice) => /female|natural|jenny|aria|karen|susan|victoria/i.test(v.name) && v.lang.startsWith("en"),
-          (v: SpeechSynthesisVoice) => v.lang === "en-US",
-          (v: SpeechSynthesisVoice) => v.lang.startsWith("en"),
-        ];
-        for (const check of priorities) {
-          const found = voices.find(check);
-          if (found) {
-            utterance.voice = found;
-            break;
-          }
-        }
-      }
-    } catch {}
-
-    // Cute, friendly female tone matching Stacy AI in index.html (pitch ~1.08, rate ~0.95)
-    let pitchMod = 0;
-    if (textToSpeak.includes("!") || textToSpeak.includes("?")) pitchMod = 0.04;
-    utterance.pitch = 1.08 + pitchMod;
-    utterance.rate = 0.95;
-
-    utterance.onstart = () => {
-      setIsSpeaking(true);
-    };
-
-    utterance.onend = () => {
-      setIsSpeaking(false);
-      activeUtteranceRef.current = null;
-    };
-
-    utterance.onerror = () => {
-      setIsSpeaking(false);
-      activeUtteranceRef.current = null;
-    };
-
-    activeUtteranceRef.current = utterance;
-    try {
-      window.speechSynthesis.speak(utterance);
-    } catch {
-      setIsSpeaking(false);
-    }
-  }, [currentElocutionItem?.text, isSpeaking, stopSpeech]);
+  const tts = useCuteTTS(articulateSpeechText, articulateSpeechId);
 
   const stopwatchStartRef = useRef(0);
 
   const resetStopwatch = useCallback(() => {
-    stopSpeech();
+    tts.stop();
     if (stopwatchTimerRef.current) {
       clearInterval(stopwatchTimerRef.current);
       stopwatchTimerRef.current = null;
     }
     setStopwatchElapsed(0);
     setStopwatchState("idle");
-  }, [stopSpeech]);
+  }, [tts]);
 
   const startStopwatch = useCallback(() => {
-    stopSpeech();
+    tts.stop();
     if (stopwatchTimerRef.current) clearInterval(stopwatchTimerRef.current);
     stopwatchStartRef.current = performance.now();
     setStopwatchElapsed(0);
@@ -637,7 +540,7 @@ export default function ArticulateClient() {
     stopwatchTimerRef.current = setInterval(() => {
       setStopwatchElapsed(performance.now() - stopwatchStartRef.current);
     }, 16);
-  }, [settings.muteSounds, stopSpeech]);
+  }, [settings.muteSounds, tts]);
 
   const stopStopwatch = useCallback(() => {
     if (stopwatchTimerRef.current) {
@@ -1186,41 +1089,9 @@ export default function ArticulateClient() {
                   }}
                   className="font-serif font-normal tracking-normal text-fg select-text animate-prompt-land mx-auto text-pretty px-1 sm:px-4 w-full max-w-full sm:max-w-4xl lg:max-w-5xl"
                 >
-                  &ldquo;{currentElocutionItem.text}&rdquo;
+                  &ldquo;<TTSHighlightedText text={currentElocutionItem.text} activeCharIndex={tts.activeCharIndex} isSpeaking={tts.isPlaying} />&rdquo;
                 </p>
               </div>
-            </div>
-
-            {/* Pronunciation TTS Audio Button (Right-side bottom corner) */}
-            <div className="w-full flex justify-end items-center px-2 sm:px-6 mt-1.5 sm:mt-2">
-              <button
-                type="button"
-                onClick={toggleSpeech}
-                title={isSpeaking ? "Stop pronunciation audio" : "Listen to pronunciation"}
-                aria-label={isSpeaking ? "Stop pronunciation audio" : "Listen to pronunciation"}
-                className={cn(
-                  "group inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-3.5 sm:py-1.5 rounded-full border transition-all duration-200 cursor-pointer select-none active:scale-95 shadow-sm touch-manipulation",
-                  isSpeaking
-                    ? "bg-[#d96b43]/20 border-[#d96b43]/60 text-[#d96b43] shadow-[0_0_14px_rgba(217,107,67,0.35)]"
-                    : "bg-white/[0.05] hover:bg-white/[0.1] border-white/10 hover:border-white/20 text-fg/75 hover:text-fg backdrop-blur-md"
-                )}
-              >
-                {isSpeaking ? (
-                  <>
-                    <VolumeX className="w-4 h-4 text-[#d96b43] animate-pulse" />
-                    <span className="text-xs font-mono font-medium tracking-wide text-[#d96b43]">Stop</span>
-                    <span className="flex h-2 w-2 relative">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d96b43] opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-[#d96b43]"></span>
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    <Volume2 className="w-4 h-4 text-fg/75 group-hover:text-fg transition-colors" />
-                    <span className="text-xs font-mono font-medium tracking-wide text-fg/75 group-hover:text-fg">Listen</span>
-                  </>
-                )}
-              </button>
             </div>
           </div>
         ) : (
@@ -1238,7 +1109,11 @@ export default function ArticulateClient() {
                 isSpinning ? "animate-slot-in" : "animate-prompt-land"
               )}
             >
-              {displayText || "\u00A0"}
+              <TTSHighlightedText
+                text={displayText || "\u00A0"}
+                activeCharIndex={tts.activeCharIndex}
+                isSpeaking={tts.isPlaying}
+              />
             </h2>
           </div>
         )}
@@ -1583,6 +1458,9 @@ export default function ArticulateClient() {
           </div>
         );
       })()}
+
+      {/* Floating TTS Action Button */}
+      <FloatingTTSButton tts={tts} />
     </div>
   );
 }

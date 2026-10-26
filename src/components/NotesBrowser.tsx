@@ -7,6 +7,7 @@ import { DiagramFrame } from "@/components/notes/DiagramKit";
 import { getDiagram } from "@/components/notes";
 import { GeneralScienceViewer } from "@/components/notes/GeneralScienceViewer";
 import { Badge, Card, Container, Label, btn } from "@/components/ui";
+import { FloatingTTSButton, TTSHighlightedText, useCuteTTS } from "@/components/FloatingTTS";
 import { haptic } from "@/lib/haptics";
 import { NOTES_COUNTS, NOTES_SUBJECTS, notesByClass, searchChapters, type ClassLevel, type NoteChapter, type NotesSubjectId } from "@/data/notes";
 import { HINDI_ANSWERS } from "@/data/notes/hindiAnswers";
@@ -961,6 +962,24 @@ export default function NotesBrowser() {
       ];
   const subjectName = NOTES_SUBJECTS.find((s) => s.id === subject)?.name ?? subject;
 
+  const chapterSpeechText = useMemo(() => {
+    if (!selected) return "";
+    const parts = [selected.title, selected.overview];
+    if (selected.sections && selected.sections.length > 0) {
+      for (const sec of selected.sections.slice(0, 5)) {
+        if (sec.title) parts.push(sec.title);
+        if (sec.points && sec.points.length > 0) {
+          parts.push(sec.points.slice(0, 2).join(". "));
+        }
+      }
+    }
+    return parts.filter(Boolean).join(". ");
+  }, [selected]);
+
+  const tts = useCuteTTS(chapterSpeechText, selected?.id);
+  const overviewOffset = selected ? selected.title.length + 2 : 0;
+
+
   return (
     <Container>
       <article className="mx-auto max-w-4xl animate-fade-in">
@@ -986,9 +1005,9 @@ export default function NotesBrowser() {
             {isAbhyasChapter ? <Badge tone="neutral">{selected.subject === "hindi" ? "इंटरैक्टिव अभ्यास मोड" : "Interactive Practice Mode"}</Badge> : null}
             {diagram ? <Badge><ImageIcon className="h-3.5 w-3.5 text-brand-ink" /> Labelled diagram</Badge> : null}
           </div>
-          <h1 className="mt-6 text-4xl font-extrabold leading-[1] tracking-tight text-fg sm:text-5xl lg:text-6xl">{selected.title}</h1>
+          <h1 className="mt-6 text-4xl font-extrabold leading-[1] tracking-tight text-fg sm:text-5xl lg:text-6xl"><TTSHighlightedText text={selected.title} activeCharIndex={tts.activeCharIndex} offset={0} isSpeaking={tts.isPlaying} /></h1>
           <p className="mt-4 font-mono text-xs sm:text-[11px] uppercase tracking-[0.16em] text-subtle">{selected.unit}</p>
-          <p className="mt-7 max-w-3xl text-lg leading-8 text-muted sm:text-xl">{selected.overview}</p>
+          <p className="mt-7 max-w-3xl text-lg leading-8 text-muted sm:text-xl"><TTSHighlightedText text={selected.overview} activeCharIndex={tts.activeCharIndex} offset={overviewOffset} isSpeaking={tts.isPlaying} /></p>
           <dl className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-4">{meta.map((m) => <div key={m.k} className="bg-bg px-5 py-4"><dt className="font-mono text-xs sm:text-[10px] uppercase tracking-[0.16em] text-subtle">{m.k}</dt><dd className="mt-1 font-mono text-xl font-semibold text-fg tabular-nums">{m.v}</dd></div>)}</dl>
         </header>
 
@@ -1018,6 +1037,8 @@ export default function NotesBrowser() {
         </nav>
 
         {subject === "science" || subject === "sst" ? <Card className="mt-10 flex flex-col items-start gap-4 p-6 sm:flex-row sm:items-center sm:justify-between"><div><p className="flex items-center gap-2 font-semibold text-fg"><ListChecks className="h-4 w-4 text-brand-ink" /> Finished revising?</p><p className="mt-1 text-sm text-muted">Test this chapter with a short practice quiz.</p></div><button type="button" onClick={() => router.push(`/quiz?topic=${quizTopicFor(selected)}&n=10&t=30&tm=per-question&d=any&src=bank&h=3`)} className={btn.primary}>Practise this chapter <ArrowRight className="h-4 w-4" /></button></Card> : null}
+        {/* Floating TTS Action Button */}
+        <FloatingTTSButton tts={tts} />
       </article>
     </Container>
   );

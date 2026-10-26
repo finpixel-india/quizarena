@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { FloatingTTSButton, TTSHighlightedText, useCuteTTS } from "@/components/FloatingTTS";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowRight, Check, CircleAlert, Clock, Lightbulb, Loader2, Maximize, Minimize, Play, RotateCcw, SkipForward, Timer, X } from "lucide-react";
@@ -137,6 +138,22 @@ export default function QuizRunner({ topic, config, mode }: { topic: TopicInfo; 
 
   /* ---------------------------------- timers ---------------------------------- */
   const q = questions[index];
+
+  const { quizSpeechText, optOffsets } = useMemo(() => {
+    if (!q) return { quizSpeechText: "", optOffsets: [] as number[] };
+    let full = q.question + ".";
+    const offsets: number[] = [];
+    q.options.forEach((opt, idx) => {
+      const prefix = ` Option ${LETTERS[idx] || idx + 1}: `;
+      full += prefix;
+      offsets.push(full.length);
+      full += opt + ".";
+    });
+    return { quizSpeechText: full, optOffsets: offsets };
+  }, [q]);
+
+  const tts = useCuteTTS(phase === "playing" ? quizSpeechText : "", `${index}-${q?.question}`);
+
   const current = answers[index] ?? null;
   const answeredCount = answers.filter(Boolean).length;
   const paused = pauseAt !== null;
@@ -233,6 +250,7 @@ export default function QuizRunner({ topic, config, mode }: { topic: TopicInfo; 
   }
 
   function advance() {
+    tts.stop();
     if (index + 1 >= questions.length) {
       finishEarly(answers);
       return;
@@ -247,6 +265,7 @@ export default function QuizRunner({ topic, config, mode }: { topic: TopicInfo; 
   }
 
   function commitAnswer(selected: number | null, forced?: "skipped" | "timeout") {
+    tts.stop();
     if (phase !== "playing" || !q || answers[index]) return;
     const t = Date.now();
     const elapsed = Math.max(0, (t - qStartAt - pausedQMs) / 1000);
@@ -560,7 +579,14 @@ export default function QuizRunner({ topic, config, mode }: { topic: TopicInfo; 
               </span>
             ) : null}
           </div>
-          <h2 className="mt-2.5 text-xl font-bold leading-snug tracking-tight text-fg sm:mt-3 sm:text-[28px]">{q.question}</h2>
+          <h2 className="mt-2.5 text-xl font-bold leading-snug tracking-tight text-fg sm:mt-3 sm:text-[28px]">
+            <TTSHighlightedText
+              text={q.question}
+              activeCharIndex={tts.activeCharIndex}
+              offset={0}
+              isSpeaking={tts.isPlaying}
+            />
+          </h2>
 
           {hintShown ? (
             <div className="mt-4 flex items-start gap-2.5 rounded-xl border border-warning/30 bg-warning/10 p-3 text-xs sm:mt-5 sm:gap-3 sm:p-3.5 sm:text-sm animate-pop">
@@ -620,7 +646,14 @@ export default function QuizRunner({ topic, config, mode }: { topic: TopicInfo; 
                       LETTERS[i]
                     )}
                   </span>
-                  <span className="flex-1 leading-snug">{opt}</span>
+                  <span className="flex-1 leading-snug">
+                    <TTSHighlightedText
+                      text={opt}
+                      activeCharIndex={tts.activeCharIndex}
+                      offset={optOffsets[i] ?? 0}
+                      isSpeaking={tts.isPlaying}
+                    />
+                  </span>
                   {showCorrect && !showWrong ? (
                     <span className="shrink-0 rounded-md bg-emerald-500/20 px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-emerald-400">
                       Correct
@@ -733,6 +766,8 @@ export default function QuizRunner({ topic, config, mode }: { topic: TopicInfo; 
           )}
         </div>
       </footer>
+
+      {phase === "playing" && <FloatingTTSButton tts={tts} />}
 
       {quitOpen ? (
         <div className="fixed inset-0 z-50 flex items-end justify-center p-4 sm:items-center" role="dialog" aria-modal="true" aria-labelledby="quit-title">

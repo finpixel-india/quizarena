@@ -4,7 +4,7 @@ export interface Fact {
   title: string;
   body: string;
   image: string;
-  source?: string;
+  source: string;
   isLive?: boolean;
 }
 
@@ -17,22 +17,118 @@ export interface FactCategory {
 }
 
 export const FACT_CATEGORIES: FactCategory[] = [
-  { id: "all",       label: "All Facts",            emoji: "🌐", description: "Explore everything across all dimensions", accent: "from-amber-500/20 to-orange-500/20" },
-  { id: "space",     label: "Space & Cosmos",       emoji: "🚀", description: "Black holes, rogue worlds & cosmic anomalies", accent: "from-purple-500/20 to-indigo-500/20" },
-  { id: "quantum",   label: "Quantum & Physics",    emoji: "⚛️", description: "Reality-breaking experiments & particles", accent: "from-cyan-500/20 to-blue-500/20" },
-  { id: "creatures", label: "Alien Creatures",      emoji: "🐙", description: "Bizarre biological marvels on our own planet", accent: "from-emerald-500/20 to-teal-500/20" },
-  { id: "ocean",     label: "Abyss & Deep Ocean",   emoji: "🌊", description: "The crushing, lightless mysteries of the sea", accent: "from-blue-600/20 to-cyan-600/20" },
-  { id: "history",   label: "History Glitches",     emoji: "🏛️", description: "Coincidences & bizarre events lost in time", accent: "from-amber-600/20 to-yellow-600/20" },
-  { id: "human",     label: "Human Mind & Body",    emoji: "🧠", description: "Neurological quirks & bio-mechanical wonders", accent: "from-rose-500/20 to-pink-500/20" },
-  { id: "earth",     label: "Forbidden Earth",      emoji: "🌋", description: "Extreme, surreal & deadly terrestrial locations", accent: "from-orange-600/20 to-red-600/20" },
-  { id: "tech",      label: "Tech & Cyber Lore",    emoji: "💻", description: "Weird computing history & futuristic tech", accent: "from-sky-500/20 to-indigo-500/20" },
-  { id: "paradox",   label: "Paradoxes & Math",     emoji: "🌀", description: "Logical impossibilities & number theory", accent: "from-violet-500/20 to-fuchsia-500/20" },
-  { id: "nature",    label: "Lethal Botany & Flora",emoji: "🌿", description: "Venomous trees, zombie fungi & wild ecology", accent: "from-green-500/20 to-lime-500/20" },
-  { id: "mysteries", label: "Unsolved Mysteries",   emoji: "🛸", description: "Phenomena that science still cannot explain", accent: "from-zinc-500/20 to-stone-500/20" },
-  { id: "wildlife", label: "Wildlife & Beasts", emoji: "🦁", description: "Mammal intelligence, apex predators & survival marvels", accent: "from-amber-500/20 to-yellow-600/20" },
-  { id: "birds", label: "Avian Wonders", emoji: "🦅", description: "Quantum navigation, master mimics & extreme migrations", accent: "from-sky-500/20 to-teal-500/20" },
-  { id: "celestials", label: "Celestial Mysteries", emoji: "🌌", description: "Magnetars, cosmic voids, quasar jets & rogue anomalies", accent: "from-fuchsia-600/20 to-purple-600/20" },
-  { id: "animals", label: "Animal Kingdom", emoji: "🐾", description: "Instincts, communication, echolocation & biological marvels", accent: "from-emerald-600/20 to-teal-600/20" },
+  {
+    "id": "all",
+    "label": "All Facts",
+    "emoji": "🌐",
+    "description": "Explore everything across all dimensions",
+    "accent": "from-amber-500/20 to-orange-500/20"
+  },
+  {
+    "id": "space",
+    "label": "Space & Cosmos",
+    "emoji": "🚀",
+    "description": "Black holes, rogue worlds & cosmic anomalies",
+    "accent": "from-purple-500/20 to-indigo-500/20"
+  },
+  {
+    "id": "quantum",
+    "label": "Quantum & Physics",
+    "emoji": "⚛️",
+    "description": "Reality-breaking experiments & particles",
+    "accent": "from-cyan-500/20 to-blue-500/20"
+  },
+  {
+    "id": "creatures",
+    "label": "Alien Creatures",
+    "emoji": "🐙",
+    "description": "Bizarre biological marvels on our own planet",
+    "accent": "from-emerald-500/20 to-teal-500/20"
+  },
+  {
+    "id": "ocean",
+    "label": "Abyss & Deep Ocean",
+    "emoji": "🌊",
+    "description": "The crushing, lightless mysteries of the sea",
+    "accent": "from-blue-600/20 to-cyan-600/20"
+  },
+  {
+    "id": "history",
+    "label": "History Glitches",
+    "emoji": "🏛️",
+    "description": "Coincidences & bizarre events lost in time",
+    "accent": "from-amber-600/20 to-yellow-600/20"
+  },
+  {
+    "id": "human",
+    "label": "Human Mind & Body",
+    "emoji": "🧠",
+    "description": "Neurological quirks & bio-mechanical wonders",
+    "accent": "from-rose-500/20 to-pink-500/20"
+  },
+  {
+    "id": "earth",
+    "label": "Forbidden Earth",
+    "emoji": "🌋",
+    "description": "Extreme, surreal & deadly terrestrial locations",
+    "accent": "from-orange-600/20 to-red-600/20"
+  },
+  {
+    "id": "tech",
+    "label": "Tech & Cyber Lore",
+    "emoji": "💻",
+    "description": "Weird computing history & futuristic tech",
+    "accent": "from-sky-500/20 to-indigo-500/20"
+  },
+  {
+    "id": "paradox",
+    "label": "Paradoxes & Math",
+    "emoji": "🌀",
+    "description": "Logical impossibilities & number theory",
+    "accent": "from-violet-500/20 to-fuchsia-500/20"
+  },
+  {
+    "id": "nature",
+    "label": "Lethal Botany & Flora",
+    "emoji": "🌿",
+    "description": "Venomous trees, zombie fungi & wild ecology",
+    "accent": "from-green-500/20 to-lime-500/20"
+  },
+  {
+    "id": "mysteries",
+    "label": "Unsolved Mysteries",
+    "emoji": "🛸",
+    "description": "Phenomena that science still cannot explain",
+    "accent": "from-zinc-500/20 to-stone-500/20"
+  },
+  {
+    "id": "wildlife",
+    "label": "Wildlife & Beasts",
+    "emoji": "🦁",
+    "description": "Mammal intelligence, apex predators & survival marvels",
+    "accent": "from-amber-500/20 to-yellow-600/20"
+  },
+  {
+    "id": "birds",
+    "label": "Avian Wonders",
+    "emoji": "🦅",
+    "description": "Quantum navigation, master mimics & extreme migrations",
+    "accent": "from-sky-500/20 to-teal-500/20"
+  },
+  {
+    "id": "celestials",
+    "label": "Celestial Mysteries",
+    "emoji": "🌌",
+    "description": "Magnetars, cosmic voids, quasar jets & rogue anomalies",
+    "accent": "from-fuchsia-600/20 to-purple-600/20"
+  },
+  {
+    "id": "animals",
+    "label": "Animal Kingdom",
+    "emoji": "🐾",
+    "description": "Instincts, communication, echolocation & biological marvels",
+    "accent": "from-emerald-600/20 to-teal-600/20"
+  }
 ];
 
 export const FACTS: Fact[] = [
@@ -48,7 +144,7 @@ export const FACTS: Fact[] = [
     "id": "sp-002",
     "category": "space",
     "title": "The fastest spinning neutron star spins 716 times each second",
-    "body": "Pulsar PSR J1748-2446ad spins 716 revolutions per second. A point on its equator moves at 70,000 km/s \u2014 nearly a quarter the speed of light. Its gravitational pull is so strong that mountains on its surface can be no higher than a few millimeters.",
+    "body": "Pulsar PSR J1748-2446ad spins 716 revolutions per second. A point on its equator moves at 70,000 km/s — nearly a quarter the speed of light. Its gravitational pull is so strong that mountains on its surface can be no higher than a few millimeters.",
     "image": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800&q=80",
     "source": "Science Magazine"
   },
@@ -56,7 +152,7 @@ export const FACTS: Fact[] = [
     "id": "sp-003",
     "category": "space",
     "title": "A day on Venus is longer than its entire year",
-    "body": "Venus has such a sluggish rotation that one day-night cycle on its axis lasts 243 Earth days, while it completes an orbit around the Sun in just 225 Earth days. Even stranger, it rotates clockwise \u2014 opposite to almost all other planets.",
+    "body": "Venus has such a sluggish rotation that one day-night cycle on its axis lasts 243 Earth days, while it completes an orbit around the Sun in just 225 Earth days. Even stranger, it rotates clockwise — opposite to almost all other planets.",
     "image": "https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=800&q=80",
     "source": "NASA Planetary Science"
   },
@@ -104,7 +200,7 @@ export const FACTS: Fact[] = [
     "id": "sp-009",
     "category": "space",
     "title": "Liquid iron rain falls from the sky on exoplanet WASP-76b",
-    "body": "On the ultra-hot Jupiter exoplanet WASP-76b, daytime temperatures reach 2,400\u00b0C, vaporizing iron metal into the atmosphere. Extreme winds carry this vapor to the cooler nightside (1,500\u00b0C), where iron condenses and falls as metallic liquid rain.",
+    "body": "On the ultra-hot Jupiter exoplanet WASP-76b, daytime temperatures reach 2,400°C, vaporizing iron metal into the atmosphere. Extreme winds carry this vapor to the cooler nightside (1,500°C), where iron condenses and falls as metallic liquid rain.",
     "image": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=800&q=80",
     "source": "European Southern Observatory (ESO)"
   },
@@ -112,7 +208,7 @@ export const FACTS: Fact[] = [
     "id": "sp-010",
     "category": "space",
     "title": "The Boomerang Nebula is the coldest natural place in the known universe",
-    "body": "Located 5,000 light-years away, the Boomerang Nebula is expanding so rapidly that adiabatic expansion cools its gas to 1 Kelvin (-272.15\u00b0C) \u2014 colder than the 2.7 Kelvin cosmic microwave background radiation left over from the Big Bang.",
+    "body": "Located 5,000 light-years away, the Boomerang Nebula is expanding so rapidly that adiabatic expansion cools its gas to 1 Kelvin (-272.15°C) — colder than the 2.7 Kelvin cosmic microwave background radiation left over from the Big Bang.",
     "image": "https://images.unsplash.com/photo-1447433819943-74a20887a81e?w=800&q=80",
     "source": "Astrophysical Journal"
   },
@@ -120,7 +216,7 @@ export const FACTS: Fact[] = [
     "id": "sp-011",
     "category": "space",
     "title": "TON 618: An ultramassive black hole containing 66 billion solar masses",
-    "body": "The ultramassive black hole powering the hyperluminous quasar TON 618 has a mass equal to 66 billion Suns. Its event horizon spans 390 billion kilometers in diameter \u2014 over 40 times the distance from Pluto to the Sun.",
+    "body": "The ultramassive black hole powering the hyperluminous quasar TON 618 has a mass equal to 66 billion Suns. Its event horizon spans 390 billion kilometers in diameter — over 40 times the distance from Pluto to the Sun.",
     "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
     "source": "Royal Astronomical Society"
   },
@@ -216,7 +312,7 @@ export const FACTS: Fact[] = [
     "id": "sp-023",
     "category": "space",
     "title": "Titan has liquid methane lakes and cryogenic water-ice volcanoes",
-    "body": "Saturn's moon Titan is the only celestial body besides Earth with stable surface lakes and rain, but its hydrological cycle runs on liquid methane and ethane at -179\u00b0C. Beneath its frozen crust lies a global sub-surface liquid water ocean.",
+    "body": "Saturn's moon Titan is the only celestial body besides Earth with stable surface lakes and rain, but its hydrological cycle runs on liquid methane and ethane at -179°C. Beneath its frozen crust lies a global sub-surface liquid water ocean.",
     "image": "https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=800&q=80",
     "source": "NASA Cassini-Huygens"
   },
@@ -240,15 +336,15 @@ export const FACTS: Fact[] = [
     "id": "sp-026",
     "category": "space",
     "title": "Ganymede is larger than planet Mercury and has its own magnetic field",
-    "body": "Jupiter's moon Ganymede is the largest moon in the Solar System, with a diameter of 5,268 km \u2014 larger than Mercury and Pluto. It is the only known moon with its own internally generated magnetosphere, produced by a convective liquid iron core.",
+    "body": "Jupiter's moon Ganymede is the largest moon in the Solar System, with a diameter of 5,268 km — larger than Mercury and Pluto. It is the only known moon with its own internally generated magnetosphere, produced by a convective liquid iron core.",
     "image": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&q=80",
     "source": "NASA Galileo Mission"
   },
   {
     "id": "sp-027",
     "category": "space",
-    "title": "Mercury has frozen water ice in deep craters despite 430\u00b0C solar heat",
-    "body": "Although surface temperatures on Mercury soar to 430\u00b0C in direct sunlight, its rotational axis has almost zero tilt. Craters at its poles are permanently shielded from sunlight in perpetual shadow at -180\u00b0C, preserving thick beds of pure water ice.",
+    "title": "Mercury has frozen water ice in deep craters despite 430°C solar heat",
+    "body": "Although surface temperatures on Mercury soar to 430°C in direct sunlight, its rotational axis has almost zero tilt. Craters at its poles are permanently shielded from sunlight in perpetual shadow at -180°C, preserving thick beds of pure water ice.",
     "image": "https://images.unsplash.com/photo-1630694093867-4b947d812bf0?w=800&q=80",
     "source": "NASA MESSENGER Mission"
   },
@@ -280,7 +376,7 @@ export const FACTS: Fact[] = [
     "id": "qu-001",
     "category": "quantum",
     "title": "Superfluid Helium climbs up walls and defies gravity",
-    "body": "When cooled below 2.17 Kelvin (-271\u00b0C), liquid helium-4 becomes a superfluid with absolute zero viscosity. It crawls up the inner walls of its beaker in a molecular film just 30 nanometers thick and drips off the bottom outside edge spontaneously.",
+    "body": "When cooled below 2.17 Kelvin (-271°C), liquid helium-4 becomes a superfluid with absolute zero viscosity. It crawls up the inner walls of its beaker in a molecular film just 30 nanometers thick and drips off the bottom outside edge spontaneously.",
     "image": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&q=80",
     "source": "American Physical Society"
   },
@@ -304,7 +400,7 @@ export const FACTS: Fact[] = [
     "id": "qu-004",
     "category": "quantum",
     "title": "One gram of Antimatter holds the destructive energy of a nuclear bomb",
-    "body": "When antimatter meets ordinary matter, they undergo 100% mass-to-energy conversion (E=mc\u00b2). One gram of antimatter reacting with one gram of matter yields 1.8 \u00d7 10\u00b9\u2074 joules \u2014 equivalent to the 43-kiloton bomb dropped on Hiroshima multiplied by two.",
+    "body": "When antimatter meets ordinary matter, they undergo 100% mass-to-energy conversion (E=mc²). One gram of antimatter reacting with one gram of matter yields 1.8 × 10¹⁴ joules — equivalent to the 43-kiloton bomb dropped on Hiroshima multiplied by two.",
     "image": "https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=800&q=80",
     "source": "CERN Particle Laboratory"
   },
@@ -408,7 +504,7 @@ export const FACTS: Fact[] = [
     "id": "qu-017",
     "category": "quantum",
     "title": "Quarks can never exist alone: Pulling them apart creates new matter",
-    "body": "Due to quantum chromodynamics and color confinement, the strong nuclear force holding quarks together does not weaken with distance. Pulling two quarks apart requires so much energy that E=mc\u00b2 creates a new quark-antiquark pair before they can separate.",
+    "body": "Due to quantum chromodynamics and color confinement, the strong nuclear force holding quarks together does not weaken with distance. Pulling two quarks apart requires so much energy that E=mc² creates a new quark-antiquark pair before they can separate.",
     "image": "https://images.unsplash.com/photo-1501139083538-0139583c060f?w=800&q=80",
     "source": "CERN Theoretical Physics"
   },
@@ -416,7 +512,7 @@ export const FACTS: Fact[] = [
     "id": "qu-018",
     "category": "quantum",
     "title": "Bose-Einstein Condensates can slow the speed of light down to 17 meters per second",
-    "body": "In 1999, Harvard physicist Lene Hau cooled a cloud of sodium atoms to billionths of a degree above absolute zero. Passing a laser beam through this Bose-Einstein condensate slowed light from 300,000 km/s down to 17 meters per second \u2014 slower than a bicycle.",
+    "body": "In 1999, Harvard physicist Lene Hau cooled a cloud of sodium atoms to billionths of a degree above absolute zero. Passing a laser beam through this Bose-Einstein condensate slowed light from 300,000 km/s down to 17 meters per second — slower than a bicycle.",
     "image": "https://images.unsplash.com/photo-1494972688394-4cc796f9e4c5?w=800&q=80",
     "source": "Nature / Harvard University"
   },
@@ -424,7 +520,7 @@ export const FACTS: Fact[] = [
     "id": "qu-019",
     "category": "quantum",
     "title": "Gravitational waves distort distance by less than 1/10,000th the width of a proton",
-    "body": "When two colliding black holes rippled spacetime in 2015, the LIGO detector measured a strain of 10\u207b\u00b2\u00b9. Over a 4-kilometer laser arm, this distorted distance by less than 1/10,000th the diameter of a subatomic proton, yet was detected with quantum interferometry.",
+    "body": "When two colliding black holes rippled spacetime in 2015, the LIGO detector measured a strain of 10⁻²¹. Over a 4-kilometer laser arm, this distorted distance by less than 1/10,000th the diameter of a subatomic proton, yet was detected with quantum interferometry.",
     "image": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&q=80",
     "source": "Physical Review Letters / LIGO"
   },
@@ -432,7 +528,7 @@ export const FACTS: Fact[] = [
     "id": "qu-020",
     "category": "quantum",
     "title": "Water expands when it freezes due to rigid tetrahedral hydrogen bonding",
-    "body": "Most liquids become denser and contract when solidifying. Water is a rare anomaly: as it cools below 4\u00b0C, hydrogen bonds organize into an open, hexagonal crystal lattice that spaces molecules farther apart, decreasing ice density so ice floats on water.",
+    "body": "Most liquids become denser and contract when solidifying. Water is a rare anomaly: as it cools below 4°C, hydrogen bonds organize into an open, hexagonal crystal lattice that spaces molecules farther apart, decreasing ice density so ice floats on water.",
     "image": "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=800&q=80",
     "source": "Journal of Chemical Physics"
   },
@@ -440,7 +536,7 @@ export const FACTS: Fact[] = [
     "id": "cr-001",
     "category": "creatures",
     "title": "Pistol Shrimp claw snap creates heat matching the surface of the Sun",
-    "body": "The pistol shrimp snaps its specialized claw at 100 km/h, generating a low-pressure cavitation bubble. When the bubble implodes, it creates temperatures exceeding 4,700\u00b0C (nearly the Sun's surface at 5,500\u00b0C), emitting a flash of light called sonoluminescence and a 218-decibel shockwave.",
+    "body": "The pistol shrimp snaps its specialized claw at 100 km/h, generating a low-pressure cavitation bubble. When the bubble implodes, it creates temperatures exceeding 4,700°C (nearly the Sun's surface at 5,500°C), emitting a flash of light called sonoluminescence and a 218-decibel shockwave.",
     "image": "https://images.unsplash.com/photo-1545671913-b89ac1b4ac10?w=800&q=80",
     "source": "Nature"
   },
@@ -456,7 +552,7 @@ export const FACTS: Fact[] = [
     "id": "cr-003",
     "category": "creatures",
     "title": "Tardigrades can survive the vacuum of space, boil, and freeze",
-    "body": "Water bears (tardigrades) can enter a cryptobiotic state called a 'tun', expelling 99% of body moisture. In this state they endure absolute zero (\u2212273\u00b0C), boiling heat up to 150\u00b0C, 1,000 times human lethal radiation, and 10 days in outer space vacuum.",
+    "body": "Water bears (tardigrades) can enter a cryptobiotic state called a 'tun', expelling 99% of body moisture. In this state they endure absolute zero (−273°C), boiling heat up to 150°C, 1,000 times human lethal radiation, and 10 days in outer space vacuum.",
     "image": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800&q=80",
     "source": "European Space Agency"
   },
@@ -465,7 +561,7 @@ export const FACTS: Fact[] = [
     "category": "creatures",
     "title": "Crows remember human faces and pass grudges to their children",
     "body": "University of Washington researchers wore specific rubber masks while handling crows. For years afterward, crows in the area mobbed individuals wearing that specific mask. Even young crows born years later joined the attack, having learned the enemy's face from the flock.",
-    "image": "https://images.unsplash.com/photo-1559082603-8ad960d1a6fc?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1618331835717-801e976710b2?w=800&q=80",
     "source": "PNAS"
   },
   {
@@ -495,8 +591,8 @@ export const FACTS: Fact[] = [
   {
     "id": "cr-008",
     "category": "creatures",
-    "title": "The Bombardier Beetle shoots boiling chemical toxic spray at 100\u00b0C",
-    "body": "When threatened, the bombardier beetle combines hydroquinone and hydrogen peroxide with catalytic enzymes in an internal reaction chamber. The resulting chemical explosion reaches 100\u00b0C and is discharged through a rotating nozzle in pulsing rapid bursts.",
+    "title": "The Bombardier Beetle shoots boiling chemical toxic spray at 100°C",
+    "body": "When threatened, the bombardier beetle combines hydroquinone and hydrogen peroxide with catalytic enzymes in an internal reaction chamber. The resulting chemical explosion reaches 100°C and is discharged through a rotating nozzle in pulsing rapid bursts.",
     "image": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800&q=80",
     "source": "Science"
   },
@@ -505,14 +601,14 @@ export const FACTS: Fact[] = [
     "category": "creatures",
     "title": "Platypuses glow neon cyan under ultraviolet light and hunt by electricity",
     "body": "The duck-billed platypus is a biological anomaly: an egg-laying mammal with venomous ankle spurs. Under UV blacklight, its brown fur biofluoresces in glowing cyan. Underwater, it closes eyes, ears, and nostrils, navigating purely via 40,000 electroreceptors on its bill.",
-    "image": "https://images.unsplash.com/photo-1559082603-8ad960d1a6fc?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1589656966895-2f33e7653819?w=800&q=80",
     "source": "Mammalia"
   },
   {
     "id": "cr-010",
     "category": "creatures",
     "title": "Mantis shrimp possess 16 color cones and see circular polarized light",
-    "body": "Humans navigate the visual world with 3 color-receptive cones (red, green, blue). The mantis shrimp possesses 16 photoreceptors, perceiving ultraviolet, infrared, and circular polarized light. Their club strikes accelerate at 10,000g \u2014 fast enough to smash aquarium glass.",
+    "body": "Humans navigate the visual world with 3 color-receptive cones (red, green, blue). The mantis shrimp possesses 16 photoreceptors, perceiving ultraviolet, infrared, and circular polarized light. Their club strikes accelerate at 10,000g — fast enough to smash aquarium glass.",
     "image": "https://images.unsplash.com/photo-1545671913-b89ac1b4ac10?w=800&q=80",
     "source": "Journal of Experimental Biology"
   },
@@ -536,7 +632,7 @@ export const FACTS: Fact[] = [
     "id": "cr-013",
     "category": "creatures",
     "title": "Wood frogs freeze solid in winter with zero heartbeat, then thaw alive in spring",
-    "body": "Alaskan wood frogs survive -18\u00b0C temperatures by allowing up to 70% of their body water to freeze solid into ice. Their livers produce astronomical quantities of glucose and urea acting as natural antifreeze inside cells, stopping their heart and breathing for 7 months.",
+    "body": "Alaskan wood frogs survive -18°C temperatures by allowing up to 70% of their body water to freeze solid into ice. Their livers produce astronomical quantities of glucose and urea acting as natural antifreeze inside cells, stopping their heart and breathing for 7 months.",
     "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
     "source": "Journal of Experimental Biology"
   },
@@ -545,7 +641,7 @@ export const FACTS: Fact[] = [
     "category": "creatures",
     "title": "Lyrebirds can mimic chainsaws, car alarms, and camera shutters flawlessly",
     "body": "The Australian superb lyrebird possesses the most acoustically complex syrinx (vocal organ) of any bird. It can accurately mimic over 20 other bird species, human conversations, crying babies, car engines, and timber chainsaws with eerie acoustic fidelity.",
-    "image": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1480044965905-02098d419e96?w=800&q=80",
     "source": "Current Biology"
   },
   {
@@ -553,7 +649,7 @@ export const FACTS: Fact[] = [
     "category": "creatures",
     "title": "Electric eels generate 860 volts of electricity to stun prey and defend themselves",
     "body": "Electrophorus voltai in the Amazon river basin can discharge electrical shocks of up to 860 volts at 1 ampere. Its body contains thousands of specialized electrocytes functioning like biological batteries aligned in series, capable of knocking adult caimans unconscious.",
-    "image": "https://images.unsplash.com/photo-1559082603-8ad960d1a6fc?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=800&q=80",
     "source": "Nature Communications"
   },
   {
@@ -593,7 +689,7 @@ export const FACTS: Fact[] = [
     "category": "creatures",
     "title": "Honey badgers can withstand lethal cobra bites and sleep off neurotoxic venom",
     "body": "The honey badger possesses specialized muscular nicotinic acetylcholine receptors that are immune to snake neurotoxins. When bitten by lethal puff adders or cobras, the badger collapses into a temporary coma for several hours, waking up completely unharmed to eat the snake.",
-    "image": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1545671913-b89ac1b4ac10?w=800&q=80",
     "source": "Toxicon"
   },
   {
@@ -608,7 +704,7 @@ export const FACTS: Fact[] = [
     "id": "oc-002",
     "category": "ocean",
     "title": "There is an underwater waterfall 3 times taller than Angel Falls",
-    "body": "Beneath the Denmark Strait between Greenland and Iceland lies the world's largest waterfall. Dense, frigid arctic water plunges 3,500 meters down a subterranean seabed abyss, flowing at over 5 million cubic meters per second \u2014 roughly 2,000 Niagara Falls combined.",
+    "body": "Beneath the Denmark Strait between Greenland and Iceland lies the world's largest waterfall. Dense, frigid arctic water plunges 3,500 meters down a subterranean seabed abyss, flowing at over 5 million cubic meters per second — roughly 2,000 Niagara Falls combined.",
     "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",
     "source": "NOAA Ocean Exploration"
   },
@@ -616,7 +712,7 @@ export const FACTS: Fact[] = [
     "id": "oc-003",
     "category": "ocean",
     "title": "Fish survive at 8,300 meters under 800 atmospheres of pressure",
-    "body": "In 2023, scientists filmed an unknown Pseudoliparis snailfish swimming at 8,336 meters in the Izu-Ogasawara Trench. At this depth, pressure exceeds 80 megapascals \u2014 enough to crush a steel submarine. Their cells rely on trimethylamine oxide (TMAO) to stop cell membranes from solidifying.",
+    "body": "In 2023, scientists filmed an unknown Pseudoliparis snailfish swimming at 8,336 meters in the Izu-Ogasawara Trench. At this depth, pressure exceeds 80 megapascals — enough to crush a steel submarine. Their cells rely on trimethylamine oxide (TMAO) to stop cell membranes from solidifying.",
     "image": "https://images.unsplash.com/photo-1559827291-72ee739d0d9a?w=800&q=80",
     "source": "Minderoo-UWA Deep-Sea Centre"
   },
@@ -624,15 +720,15 @@ export const FACTS: Fact[] = [
     "id": "oc-004",
     "category": "ocean",
     "title": "The colossal squid has eyes the size of regulation soccer balls",
-    "body": "Living at depths of 1,000 meters in freezing Antarctic waters, the colossal squid has the largest eyes of any known living organism \u2014 measuring roughly 27 to 30 cm across. They act like biological telescope lenses to spot the faint bioluminescence of predatory sperm whales.",
+    "body": "Living at depths of 1,000 meters in freezing Antarctic waters, the colossal squid has the largest eyes of any known living organism — measuring roughly 27 to 30 cm across. They act like biological telescope lenses to spot the faint bioluminescence of predatory sperm whales.",
     "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
     "source": "Current Biology"
   },
   {
     "id": "oc-005",
     "category": "ocean",
-    "title": "Hydrothermal vents spew water at 400\u00b0C without it boiling",
-    "body": "At deep-sea 'black smoker' chimneys, water heated by subterranean magma reaches temperatures exceeding 400\u00b0C. Due to the immense hydrostatic pressure of kilometers of ocean above, the water cannot vaporize into steam and remains an ultra-dense supercritical fluid.",
+    "title": "Hydrothermal vents spew water at 400°C without it boiling",
+    "body": "At deep-sea 'black smoker' chimneys, water heated by subterranean magma reaches temperatures exceeding 400°C. Due to the immense hydrostatic pressure of kilometers of ocean above, the water cannot vaporize into steam and remains an ultra-dense supercritical fluid.",
     "image": "https://images.unsplash.com/photo-1568430462989-44163eb1752f?w=800&q=80",
     "source": "Woods Hole Oceanographic Institution"
   },
@@ -656,7 +752,7 @@ export const FACTS: Fact[] = [
     "id": "oc-008",
     "category": "ocean",
     "title": "The longest animal in the world is a 45-meter-long deep sea siphonophore",
-    "body": "In 2020, researchers off Western Australia discovered a giant Apolemia siphonophore coiled in an underwater spiral measuring an estimated 45 meters (150 feet) long \u2014 far longer than any blue whale. It is actually a colonial organism composed of millions of cloned, specialized zooids.",
+    "body": "In 2020, researchers off Western Australia discovered a giant Apolemia siphonophore coiled in an underwater spiral measuring an estimated 45 meters (150 feet) long — far longer than any blue whale. It is actually a colonial organism composed of millions of cloned, specialized zooids.",
     "image": "https://images.unsplash.com/photo-1559827291-72ee739d0d9a?w=800&q=80",
     "source": "Schmidt Ocean Institute"
   },
@@ -680,7 +776,7 @@ export const FACTS: Fact[] = [
     "id": "oc-011",
     "category": "ocean",
     "title": "The mysterious 'Bloop' sound of 1997 was detected 5,000 km across the Pacific",
-    "body": "In 1997, NOAA hydrophone arrays detected an ultra-low frequency, high-amplitude oceanic sound louder than any known animal vocalization. In 2012, analysis confirmed it was generated by an 'icequake' \u2014 a colossal iceberg cracking and calving off the Antarctic shelf.",
+    "body": "In 1997, NOAA hydrophone arrays detected an ultra-low frequency, high-amplitude oceanic sound louder than any known animal vocalization. In 2012, analysis confirmed it was generated by an 'icequake' — a colossal iceberg cracking and calving off the Antarctic shelf.",
     "image": "https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=800&q=80",
     "source": "NOAA Pacific Marine Environmental Lab"
   },
@@ -711,8 +807,8 @@ export const FACTS: Fact[] = [
   {
     "id": "oc-015",
     "category": "ocean",
-    "title": "Submarine hydrothermal Pompeii worms survive boiling acidic water up to 80\u00b0C",
-    "body": "Alvinella pompejana is an extremophile polychaete worm living directly on the chimneys of deep-sea hydrothermal vents. Its tail can withstand temperatures up to 80\u00b0C (176\u00b0F) while its head rests in cool 20\u00b0C water, protected by a dense fleece of symbiotic heat-absorbing bacteria.",
+    "title": "Submarine hydrothermal Pompeii worms survive boiling acidic water up to 80°C",
+    "body": "Alvinella pompejana is an extremophile polychaete worm living directly on the chimneys of deep-sea hydrothermal vents. Its tail can withstand temperatures up to 80°C (176°F) while its head rests in cool 20°C water, protected by a dense fleece of symbiotic heat-absorbing bacteria.",
     "image": "https://images.unsplash.com/photo-1568430462989-44163eb1752f?w=800&q=80",
     "source": "PNAS"
   },
@@ -721,7 +817,7 @@ export const FACTS: Fact[] = [
     "category": "history",
     "title": "Napoleon Bonaparte was once overwhelmed and routed by hundreds of rabbits",
     "body": "In July 1807, after signing the Treaty of Tilsit, Napoleon hosted an imperial rabbit hunt. His chief of staff bought hundreds of domestic rabbits instead of wild hares. When released, instead of fleeing, the rabbits mistook Napoleon for their feeder and swarmed his carriage, forcing an imperial retreat.",
-    "image": "https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?w=800&q=80",
     "source": "Historical Memoirs of Alexandre Dumas"
   },
   {
@@ -729,7 +825,7 @@ export const FACTS: Fact[] = [
     "category": "history",
     "title": "Tsutomu Yamaguchi survived both the Hiroshima and Nagasaki atomic blasts",
     "body": "On August 6, 1945, Yamaguchi was in Hiroshima on business when 'Little Boy' detonated 3 km away. Though severely burned, he boarded a train home to Nagasaki. On August 9, while describing the first explosion to his supervisor, 'Fat Man' detonated overhead. He survived both and lived to age 93.",
-    "image": "https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&q=80",
     "source": "Official Japanese Government Records"
   },
   {
@@ -737,15 +833,15 @@ export const FACTS: Fact[] = [
     "category": "history",
     "title": "The Dancing Plague of 1518: Hundreds danced until exhaustion and death",
     "body": "In July 1518, a woman named Frau Troffea began dancing frantically in a Strasbourg street. Within a month, about 400 citizens joined in without food or sleep. Physicians prescribed more dancing, building a wooden stage. Dozens suffered heart attacks and collapsed dead from sheer physical exhaustion.",
-    "image": "https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=800&q=80",
     "source": "British Medical Journal (BMJ)"
   },
   {
     "id": "hi-004",
     "category": "history",
     "title": "Cleopatra lived closer to the first iPhone than to the building of the Pyramids",
-    "body": "The Great Pyramid of Giza was completed around 2560 BC. Cleopatra VII reigned in Egypt around 30 BC \u2014 roughly 2,500 years after the pyramid was built. The first iPhone debuted in 2007 AD, approximately 2,037 years after her reign. Chronologically, she is closer to Silicon Valley than to Pharaoh Khufu.",
-    "image": "https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?w=800&q=80",
+    "body": "The Great Pyramid of Giza was completed around 2560 BC. Cleopatra VII reigned in Egypt around 30 BC — roughly 2,500 years after the pyramid was built. The first iPhone debuted in 2007 AD, approximately 2,037 years after her reign. Chronologically, she is closer to Silicon Valley than to Pharaoh Khufu.",
+    "image": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&q=80",
     "source": "Oxford Chronology of Ancient History"
   },
   {
@@ -753,7 +849,7 @@ export const FACTS: Fact[] = [
     "category": "history",
     "title": "The Anglo-Zanzibar war lasted between 38 and 43 minutes",
     "body": "On August 27, 1896, the sultan of Zanzibar died and Khalid bin Barghash seized power without British treaty approval. Royal Navy warships opened fire on the wooden palace at 9:02 AM. By 9:40 AM, the palace was ablaze, 500 Zanzibari defenders were casualties, and the flag was hauled down.",
-    "image": "https://images.unsplash.com/photo-1589825743127-2f4e9ed90a68?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=800&q=80",
     "source": "Guinness World Records"
   },
   {
@@ -761,7 +857,7 @@ export const FACTS: Fact[] = [
     "category": "history",
     "title": "The Great Emu War of 1932: Australia deployed the military with machine guns and lost",
     "body": "In 1932, 20,000 wild emus migrated into western Australian farmland, destroying wheat crops. The Australian government deployed Royal Australian Artillery soldiers armed with Lewis machine guns and 10,000 rounds. The emus scattered in evasive guerilla tactics; the army withdrew in defeat.",
-    "image": "https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800&q=80",
     "source": "Australian War Memorial"
   },
   {
@@ -769,7 +865,7 @@ export const FACTS: Fact[] = [
     "category": "history",
     "title": "Oxford University is older than the entire Aztec Empire",
     "body": "Teaching at the University of Oxford existed in embryonic form by 1096 AD and was formally established by 1167 AD. The Aztec civilization was founded when Tenochtitlan was constructed in 1325 AD. Oxford was already operating for over 150 years before the Aztecs rose.",
-    "image": "https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&q=80",
     "source": "University of Oxford Historical Annals"
   },
   {
@@ -777,7 +873,7 @@ export const FACTS: Fact[] = [
     "category": "history",
     "title": "The London Beer Flood of 1814 sent a 1.4-million-liter tsunami through the city",
     "body": "At Meux & Co's Horse Shoe Brewery on Tottenham Court Road, a massive wooden vat holding 610,000 liters of fermenting porter burst. The chain reaction ruptured adjacent vats, sending a 15-foot tidal wave of beer rushing through the streets, destroying two houses and killing eight people.",
-    "image": "https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=800&q=80",
     "source": "The Times of London (1814)"
   },
   {
@@ -785,14 +881,14 @@ export const FACTS: Fact[] = [
     "category": "history",
     "title": "Ancient Romans imported Portuguese urine to use as teeth-whitening mouthwash",
     "body": "In ancient Rome, urine was collected from public urinals and taxed by Emperor Vespasian. The natural ammonia present in stale urine broke down stains and whitened teeth. Roman upper classes considered aged urine imported from Lusitania (modern Portugal) to be the highest quality dental wash.",
-    "image": "https://images.unsplash.com/photo-1589825743127-2f4e9ed90a68?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&q=80",
     "source": "Catullus Poems / Roman Social History"
   },
   {
     "id": "hi-010",
     "category": "history",
     "title": "Thomas Jefferson and John Adams both died on the exact same day: July 4, 1826",
-    "body": "Founding fathers and political rivals John Adams and Thomas Jefferson both passed away on July 4, 1826 \u2014 the exact 50th anniversary of the signing of the US Declaration of Independence. Adams' famous last words were 'Thomas Jefferson survives', unaware Jefferson had died 5 hours prior.",
+    "body": "Founding fathers and political rivals John Adams and Thomas Jefferson both passed away on July 4, 1826 — the exact 50th anniversary of the signing of the US Declaration of Independence. Adams' famous last words were 'Thomas Jefferson survives', unaware Jefferson had died 5 hours prior.",
     "image": "https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?w=800&q=80",
     "source": "National Archives of the United States"
   },
@@ -809,15 +905,15 @@ export const FACTS: Fact[] = [
     "category": "history",
     "title": "The Boston Molasses Disaster of 1919 killed 21 people with a 56 km/h sugary tidal wave",
     "body": "On January 15, 1919, a steel tank in Boston containing 8.7 million liters of fermented molasses burst open. A 25-foot wave of dense, sticky syrup rushed through the streets at 56 km/h, sweeping freight train cars off tracks and smothering victims. Locals claimed Boston smelled of molasses on hot days for decades.",
-    "image": "https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=800&q=80",
     "source": "Boston Historical Society"
   },
   {
     "id": "hi-013",
     "category": "history",
     "title": "King Tutankhamun's burial dagger was forged from a meteorite from outer space",
-    "body": "When Howard Carter unsealed Tutankhamun's tomb in 1922, he found an iron dagger wrapped in the pharaoh's mummy. In 2016, X-ray fluorescence spectrometry confirmed the blade contains 10% nickel and 0.6% cobalt \u2014 an unmistakable signature of iron-octahedrite meteorites.",
-    "image": "https://images.unsplash.com/photo-1589825743127-2f4e9ed90a68?w=800&q=80",
+    "body": "When Howard Carter unsealed Tutankhamun's tomb in 1922, he found an iron dagger wrapped in the pharaoh's mummy. In 2016, X-ray fluorescence spectrometry confirmed the blade contains 10% nickel and 0.6% cobalt — an unmistakable signature of iron-octahedrite meteorites.",
+    "image": "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800&q=80",
     "source": "Meteoritics & Planetary Science"
   },
   {
@@ -864,7 +960,7 @@ export const FACTS: Fact[] = [
     "id": "hu-004",
     "category": "human",
     "title": "Your stomach produces a completely new lining every 3 to 4 days",
-    "body": "Hydrochloric acid in the human stomach has a pH of 1.5 to 2.0 \u2014 caustic enough to dissolve zinc metal and strip industrial paint. To prevent the stomach from digesting itself, specialized epithelial cells produce a protective bicarbonate mucus that is fully shed and replaced every few days.",
+    "body": "Hydrochloric acid in the human stomach has a pH of 1.5 to 2.0 — caustic enough to dissolve zinc metal and strip industrial paint. To prevent the stomach from digesting itself, specialized epithelial cells produce a protective bicarbonate mucus that is fully shed and replaced every few days.",
     "image": "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=800&q=80",
     "source": "Gastroenterology Journal"
   },
@@ -960,7 +1056,7 @@ export const FACTS: Fact[] = [
     "id": "ea-001",
     "category": "earth",
     "title": "The Kola Superdeep Borehole drilled 12.2 km until rock turned to plastic",
-    "body": "Soviet geologists spent 24 years drilling the Kola Superdeep Borehole. At 12,262 meters, temperatures reached 180\u00b0C instead of expected 100\u00b0C, and rocks became malleable like warm plastic, flowing back into the drill hole like putty. Drilling ceased and the hole remains sealed with a bolted metal cap.",
+    "body": "Soviet geologists spent 24 years drilling the Kola Superdeep Borehole. At 12,262 meters, temperatures reached 180°C instead of expected 100°C, and rocks became malleable like warm plastic, flowing back into the drill hole like putty. Drilling ceased and the hole remains sealed with a bolted metal cap.",
     "image": "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800&q=80",
     "source": "Scientific American"
   },
@@ -968,7 +1064,7 @@ export const FACTS: Fact[] = [
     "id": "ea-002",
     "category": "earth",
     "title": "Lake Natron's caustic waters turn dead birds into calcified stone",
-    "body": "Lake Natron in northern Tanzania has water temperatures reaching 60\u00b0C and a pH as alkaline as 10.5 due to massive sodium carbonate and natron deposits from surrounding volcanoes. Animals that perish in the water become mummified and calcified into intact, eerie stone-like statues.",
+    "body": "Lake Natron in northern Tanzania has water temperatures reaching 60°C and a pH as alkaline as 10.5 due to massive sodium carbonate and natron deposits from surrounding volcanoes. Animals that perish in the water become mummified and calcified into intact, eerie stone-like statues.",
     "image": "https://images.unsplash.com/photo-1518457607834-6e8d80c183c5?w=800&q=80",
     "source": "New Scientist / Nick Brandt"
   },
@@ -992,7 +1088,7 @@ export const FACTS: Fact[] = [
     "id": "ea-005",
     "category": "earth",
     "title": "Kawah Ijen volcano in Indonesia erupts electric neon-blue sulfuric flames",
-    "body": "In eastern Java, the Kawah Ijen volcano discharges immense quantities of high-pressure sulfuric gas at temperatures up to 600\u00b0C. When exposed to air, the liquid sulfur ignites into brilliant electric-blue flames streaming down the rocky caldera walls like glowing neon lava.",
+    "body": "In eastern Java, the Kawah Ijen volcano discharges immense quantities of high-pressure sulfuric gas at temperatures up to 600°C. When exposed to air, the liquid sulfur ignites into brilliant electric-blue flames streaming down the rocky caldera walls like glowing neon lava.",
     "image": "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800&q=80",
     "source": "Smithsonian Global Volcanism"
   },
@@ -1031,8 +1127,8 @@ export const FACTS: Fact[] = [
   {
     "id": "ea-010",
     "category": "earth",
-    "title": "Salar de Uyuni: A 10,000 km\u00b2 salt flat that becomes the world's largest mirror",
-    "body": "Located in southwest Bolivia at 3,656 meters elevation, Salar de Uyuni is the world's largest salt flat. After seasonal rainfall, a millimeter-thin film of calm water covers the blinding white salt, creating a flawless 10,582 km\u00b2 reflection of the sky used by satellites to calibrate orbital sensors.",
+    "title": "Salar de Uyuni: A 10,000 km² salt flat that becomes the world's largest mirror",
+    "body": "Located in southwest Bolivia at 3,656 meters elevation, Salar de Uyuni is the world's largest salt flat. After seasonal rainfall, a millimeter-thin film of calm water covers the blinding white salt, creating a flawless 10,582 km² reflection of the sky used by satellites to calibrate orbital sensors.",
     "image": "https://images.unsplash.com/photo-1518457607834-6e8d80c183c5?w=800&q=80",
     "source": "Geophysical Research Letters"
   },
@@ -1047,7 +1143,7 @@ export const FACTS: Fact[] = [
   {
     "id": "ea-012",
     "category": "earth",
-    "title": "The Danakil Depression in Ethiopia features boiling acid ponds at pH 0 and 50\u00b0C",
+    "title": "The Danakil Depression in Ethiopia features boiling acid ponds at pH 0 and 50°C",
     "body": "Situated 125 meters below sea level at the junction of three tectonic plates, the Danakil Depression is one of the hottest, most hostile environments on Earth. Geothermal water heated by magma dissolves sulfur and chlorine, forming neon-green bubbling pools of boiling pure acid.",
     "image": "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=800&q=80",
     "source": "Nature Scientific Reports"
@@ -1064,7 +1160,7 @@ export const FACTS: Fact[] = [
     "id": "ea-014",
     "category": "earth",
     "title": "The Zone of Silence in Mexico: A desert basin where radio waves mysteriously degrade",
-    "body": "Located within the Mapim\u00ed Biosphere Reserve in Durango, Mexico, this barren desert basin gained global notoriety in 1970 when an Athena rocket crashed there. Unique magnetite and subterranean uranium deposits distort localized electromagnetic signals, compass needles, and high-frequency radio transmissions.",
+    "body": "Located within the Mapimí Biosphere Reserve in Durango, Mexico, this barren desert basin gained global notoriety in 1970 when an Athena rocket crashed there. Unique magnetite and subterranean uranium deposits distort localized electromagnetic signals, compass needles, and high-frequency radio transmissions.",
     "image": "https://images.unsplash.com/photo-1518457607834-6e8d80c183c5?w=800&q=80",
     "source": "Mexican Geological Institute"
   },
@@ -1080,7 +1176,7 @@ export const FACTS: Fact[] = [
     "id": "te-001",
     "category": "tech",
     "title": "Voyager 1 is 24 billion km away running on just 69 KB of memory",
-    "body": "Launched in 1977, Voyager 1 is the farthest human-made object in history, cruising through interstellar space. Its entire flight computer operates with 69.63 kilobytes of memory \u2014 less than the size of a single digital thumbnail icon \u2014 powered by decaying plutonium pellets.",
+    "body": "Launched in 1977, Voyager 1 is the farthest human-made object in history, cruising through interstellar space. Its entire flight computer operates with 69.63 kilobytes of memory — less than the size of a single digital thumbnail icon — powered by decaying plutonium pellets.",
     "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&q=80",
     "source": "NASA Jet Propulsion Laboratory"
   },
@@ -1112,7 +1208,7 @@ export const FACTS: Fact[] = [
     "id": "te-005",
     "category": "tech",
     "title": "The total electrical energy stored on the entire Internet weighs about 50 grams",
-    "body": "All digital data stored on global web servers is represented by electrons held in transistor memory cells. Physicist Russell Seitz calculated that the total electric charge representing all stored Internet information across the globe amounts to approximately 50 grams of mass (E=mc\u00b2) \u2014 roughly the weight of a strawberry.",
+    "body": "All digital data stored on global web servers is represented by electrons held in transistor memory cells. Physicist Russell Seitz calculated that the total electric charge representing all stored Internet information across the globe amounts to approximately 50 grams of mass (E=mc²) — roughly the weight of a strawberry.",
     "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&q=80",
     "source": "Discovery Magazine / Physics Today"
   },
@@ -1184,7 +1280,7 @@ export const FACTS: Fact[] = [
     "id": "te-014",
     "category": "tech",
     "title": "Modern 3-nanometer semiconductor transistors are narrower than a single DNA helix",
-    "body": "Leading-edge computer microchips contain over 150 million transistors per square millimeter. The gate width of a 3-nanometer class transistor is roughly 3 nanometers across \u2014 narrower than human DNA (2.5 nm) and spanning barely a dozen silicon atoms in width.",
+    "body": "Leading-edge computer microchips contain over 150 million transistors per square millimeter. The gate width of a 3-nanometer class transistor is roughly 3 nanometers across — narrower than human DNA (2.5 nm) and spanning barely a dozen silicon atoms in width.",
     "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&q=80",
     "source": "TSMC / IEEE Spectrum"
   },
@@ -1208,7 +1304,7 @@ export const FACTS: Fact[] = [
     "id": "pa-002",
     "category": "paradox",
     "title": "Gabriel's Horn: Finite volume of paint, but infinite surface area",
-    "body": "Gabriel's Horn (formed by rotating y = 1/x for x \u2265 1 around the x-axis) has a mathematically proven finite volume of exactly \u03c0 cubic units, but an infinite surface area. You could completely fill the horn with a can of paint, but you could never paint the outside surface.",
+    "body": "Gabriel's Horn (formed by rotating y = 1/x for x ≥ 1 around the x-axis) has a mathematically proven finite volume of exactly π cubic units, but an infinite surface area. You could completely fill the horn with a can of paint, but you could never paint the outside surface.",
     "image": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&q=80",
     "source": "Calculus / Evangelista Torricelli (1641)"
   },
@@ -1272,7 +1368,7 @@ export const FACTS: Fact[] = [
     "id": "pa-010",
     "category": "paradox",
     "title": "Benford's Law: The number 1 appears as the first digit 30% of the time in nature",
-    "body": "In naturally occurring numerical datasets \u2014 from stock prices and river lengths to population counts and tax returns \u2014 the number 1 appears as the leading first digit approximately 30.1% of the time, while 9 appears barely 4.6% of the time. Forensic accountants use this to catch tax fraud.",
+    "body": "In naturally occurring numerical datasets — from stock prices and river lengths to population counts and tax returns — the number 1 appears as the leading first digit approximately 30.1% of the time, while 9 appears barely 4.6% of the time. Forensic accountants use this to catch tax fraud.",
     "image": "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=800&q=80",
     "source": "Proceedings of the American Philosophical Society"
   },
@@ -1280,7 +1376,7 @@ export const FACTS: Fact[] = [
     "id": "pa-011",
     "category": "paradox",
     "title": "The Shannon Number: There are more possible chess games than atoms in the universe",
-    "body": "Mathematician Claude Shannon calculated that a conservative lower bound on the game-tree complexity of chess is roughly 10\u00b9\u00b2\u2070 unique possible games. The estimated total number of atoms in the entire observable universe is barely 10\u2078\u2070.",
+    "body": "Mathematician Claude Shannon calculated that a conservative lower bound on the game-tree complexity of chess is roughly 10¹²⁰ unique possible games. The estimated total number of atoms in the entire observable universe is barely 10⁸⁰.",
     "image": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&q=80",
     "source": "Philosophical Magazine"
   },
@@ -1295,10 +1391,10 @@ export const FACTS: Fact[] = [
   {
     "id": "pa-013",
     "category": "paradox",
-    "title": "G\u00f6del's Incompleteness Theorem: Mathematics can never prove all true mathematical statements",
-    "body": "In 1931, logician Kurt G\u00f6del proved that in any consistent axiomatic mathematical system capable of basic arithmetic, there are always true mathematical statements that cannot be proven from within the system itself. Mathematics can never be both complete and consistent.",
+    "title": "Gödel's Incompleteness Theorem: Mathematics can never prove all true mathematical statements",
+    "body": "In 1931, logician Kurt Gödel proved that in any consistent axiomatic mathematical system capable of basic arithmetic, there are always true mathematical statements that cannot be proven from within the system itself. Mathematics can never be both complete and consistent.",
     "image": "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=800&q=80",
-    "source": "Monatshefte f\u00fcr Mathematik"
+    "source": "Monatshefte für Mathematik"
   },
   {
     "id": "pa-014",
@@ -1328,7 +1424,7 @@ export const FACTS: Fact[] = [
     "id": "na-003",
     "category": "nature",
     "title": "A single average cumulus cloud weighs approximately 500,000 kilograms",
-    "body": "That fluffy white cloud floating over your head weighs around 500 metric tons (1.1 million pounds) \u2014 equivalent to 100 adult elephants or a fully loaded Boeing 747. It stays aloft because the weight is distributed across billions of microscopic water droplets sustained by warm atmospheric updrafts.",
+    "body": "That fluffy white cloud floating over your head weighs around 500 metric tons (1.1 million pounds) — equivalent to 100 adult elephants or a fully loaded Boeing 747. It stays aloft because the weight is distributed across billions of microscopic water droplets sustained by warm atmospheric updrafts.",
     "image": "https://images.unsplash.com/photo-1534088568595-a066f410bcda?w=800&q=80",
     "source": "NCAR"
   },
@@ -1376,7 +1472,7 @@ export const FACTS: Fact[] = [
     "id": "na-009",
     "category": "nature",
     "title": "Methuselah: A California bristlecone pine tree that sprouted 4,850 years ago",
-    "body": "Growing in the White Mountains of eastern California, the Methuselah pine is 4,855 years old \u2014 having germinated around 2832 BC, before construction began on the Great Pyramid of Giza. Its exact location is kept an official secret by the US Forest Service to protect it from vandalism.",
+    "body": "Growing in the White Mountains of eastern California, the Methuselah pine is 4,855 years old — having germinated around 2832 BC, before construction began on the Great Pyramid of Giza. Its exact location is kept an official secret by the US Forest Service to protect it from vandalism.",
     "image": "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80",
     "source": "US Forest Service"
   },
@@ -1416,7 +1512,7 @@ export const FACTS: Fact[] = [
     "id": "my-002",
     "category": "mysteries",
     "title": "Dark Matter & Dark Energy comprise 95% of everything in the universe",
-    "body": "Everything humans have ever observed \u2014 all stars, planets, nebulae, atoms, elements, and black holes \u2014 constitutes barely 5% of the cosmos. Approximately 27% is mysterious dark matter that holds galaxies together, and 68% is dark energy accelerating the expansion of spacetime.",
+    "body": "Everything humans have ever observed — all stars, planets, nebulae, atoms, elements, and black holes — constitutes barely 5% of the cosmos. Approximately 27% is mysterious dark matter that holds galaxies together, and 68% is dark energy accelerating the expansion of spacetime.",
     "image": "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800&q=80",
     "source": "ESA / Planck Collaboration"
   },
@@ -1439,8 +1535,8 @@ export const FACTS: Fact[] = [
   {
     "id": "my-005",
     "category": "mysteries",
-    "title": "The Tunguska Event flattened 80 million trees across 2,150 km\u00b2 without leaving a crater",
-    "body": "On June 30, 1908, a titanic explosion detonated over the Podkamennaya Tunguska river in remote Siberia with the energy of 12 megatons of TNT (800 times Hiroshima). It flattened 80 million pine trees radially outward across 2,150 square kilometers, yet expeditions found zero impact crater \u2014 likely a stony meteoroid airburst.",
+    "title": "The Tunguska Event flattened 80 million trees across 2,150 km² without leaving a crater",
+    "body": "On June 30, 1908, a titanic explosion detonated over the Podkamennaya Tunguska river in remote Siberia with the energy of 12 megatons of TNT (800 times Hiroshima). It flattened 80 million pine trees radially outward across 2,150 square kilometers, yet expeditions found zero impact crater — likely a stony meteoroid airburst.",
     "image": "https://images.unsplash.com/photo-1608178398319-48f814d0750c?w=800&q=80",
     "source": "Russian Academy of Sciences"
   },
@@ -1479,8 +1575,8 @@ export const FACTS: Fact[] = [
   {
     "id": "my-010",
     "category": "mysteries",
-    "title": "G\u00f6bekli Tepe: Monumental 11,500-year-old stone temple built before agriculture or metal tools",
-    "body": "Excavated in southeastern Turkey, G\u00f6bekli Tepe features massive 20-ton T-shaped limestone pillars carved with predatory beasts, dating back to 9500 BC. This predates Stonehenge by 6,000 years and was erected by hunter-gatherers before the invention of pottery, the wheel, or settled agriculture.",
+    "title": "Göbekli Tepe: Monumental 11,500-year-old stone temple built before agriculture or metal tools",
+    "body": "Excavated in southeastern Turkey, Göbekli Tepe features massive 20-ton T-shaped limestone pillars carved with predatory beasts, dating back to 9500 BC. This predates Stonehenge by 6,000 years and was erected by hunter-gatherers before the invention of pottery, the wheel, or settled agriculture.",
     "image": "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800&q=80",
     "source": "German Archaeological Institute"
   },
@@ -1496,7 +1592,7 @@ export const FACTS: Fact[] = [
     "id": "sp-183",
     "category": "space",
     "title": "A year on Mercury is shorter than two days on Mercury",
-    "body": "Mercury orbits the Sun in 88 Earth days, but rotates on its axis so slowly that one solar day (noon to noon) takes 176 Earth days \u2014 twice as long as its year.",
+    "body": "Mercury orbits the Sun in 88 Earth days, but rotates on its axis so slowly that one solar day (noon to noon) takes 176 Earth days — twice as long as its year.",
     "image": "https://images.unsplash.com/photo-1614314107768-6018061b5b72?w=800&q=80",
     "source": "Verified Knowledge Bank"
   },
@@ -1512,7 +1608,7 @@ export const FACTS: Fact[] = [
     "id": "sp-185",
     "category": "space",
     "title": "Neutron stars possess magnetic fields a trillion times stronger than Earth's",
-    "body": "Magnetars are extreme neutron stars with magnetic fields of 10\u00b9\u00b9 tesla. A magnetar at half the distance to the Moon would wipe every credit card on Earth and dissolve electron orbits in your body atoms.",
+    "body": "Magnetars are extreme neutron stars with magnetic fields of 10¹¹ tesla. A magnetar at half the distance to the Moon would wipe every credit card on Earth and dissolve electron orbits in your body atoms.",
     "image": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&q=80",
     "source": "Verified Knowledge Bank"
   },
@@ -1560,7 +1656,7 @@ export const FACTS: Fact[] = [
     "id": "sp-191",
     "category": "space",
     "title": "Exoplanet 55 Cancri e is a super-Earth thought to be made largely of diamond",
-    "body": "Twice Earth's size and eight times its mass, 55 Cancri e orbits its star so closely that surface temperatures reach 2,000\u00b0C, compressing carbon-rich minerals into pure crystalline diamond.",
+    "body": "Twice Earth's size and eight times its mass, 55 Cancri e orbits its star so closely that surface temperatures reach 2,000°C, compressing carbon-rich minerals into pure crystalline diamond.",
     "image": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800&q=80",
     "source": "Verified Knowledge Bank"
   },
@@ -1584,7 +1680,7 @@ export const FACTS: Fact[] = [
     "id": "qu-194",
     "category": "quantum",
     "title": "Liquid Light can flow around obstacles with zero backscatter or viscosity",
-    "body": "Polaritons \u2014 hybrid quasiparticles of light photons and electron excitons \u2014 can form room-temperature condensates that behave like frictionless liquid light.",
+    "body": "Polaritons — hybrid quasiparticles of light photons and electron excitons — can form room-temperature condensates that behave like frictionless liquid light.",
     "image": "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&q=80",
     "source": "Verified Knowledge Bank"
   },
@@ -1624,7 +1720,7 @@ export const FACTS: Fact[] = [
     "id": "qu-199",
     "category": "quantum",
     "title": "Supercritical carbon dioxide dissolves caffeine from coffee beans with zero toxic residue",
-    "body": "Heated above 31\u00b0C and pressurized to 73 atmospheres, CO2 becomes a supercritical fluid that effuses through solids like a gas while dissolving compounds like a liquid.",
+    "body": "Heated above 31°C and pressurized to 73 atmospheres, CO2 becomes a supercritical fluid that effuses through solids like a gas while dissolving compounds like a liquid.",
     "image": "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=800&q=80",
     "source": "Verified Knowledge Bank"
   },
@@ -1641,7 +1737,7 @@ export const FACTS: Fact[] = [
     "category": "creatures",
     "title": "Colossal squids have swivel hooks on their tentacle suction cups",
     "body": "Unlike giant squids whose suckers have serrated teeth, colossal squids possess three-pronged razor claws on swiveling swivels that slice through whale blubber.",
-    "image": "https://images.unsplash.com/photo-1559082603-8ad960d1a6fc?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1545671913-b89ac1b4ac10?w=800&q=80",
     "source": "Verified Knowledge Bank"
   },
   {
@@ -1721,7 +1817,7 @@ export const FACTS: Fact[] = [
     "category": "history",
     "title": "The Roman Emperor Caligula once made his favorite racehorse a Roman senator",
     "body": "Roman historian Suetonius recorded that Emperor Caligula gave his stallion Incitatus a marble stable, purple blankets, and planned to grant him the official title of consul.",
-    "image": "https://images.unsplash.com/photo-1589825743127-2f4e9ed90a68?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&q=80",
     "source": "Verified Knowledge Bank"
   },
   {
@@ -1973,1197 +2069,531 @@ export const FACTS: Fact[] = [
     "source": "Encyclopedic Curiosities"
   },
   {
-    "id": "sp-243",
-    "category": "space",
-    "title": "Spacecraft traveling at the speed of light would still take 100,000 years to cross our galaxy",
-    "body": "The Milky Way disc spans over 100,000 light-years in diameter. Even at 300,000 km/s, an interstellar vessel would require a hundred millennia to cross from one rim to the other.",
-    "image": "https://images.unsplash.com/photo-1614314107768-6018061b5b72?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
+    "id": "wl-001",
+    "category": "wildlife",
+    "title": "African elephants communicate across miles via infrasonic ground vibrations",
+    "body": "African elephants generate low-frequency rumbles below 20 Hz that travel up to 32 km through the earth. Highly sensitive Pacinian corpuscles in their footpads and trunk tips detect these seismic waves, enabling herds to coordinate movements and detect distant thunderstorms miles away.",
+    "image": "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?w=800&q=80",
+    "source": "Nature / Stanford University"
   },
   {
-    "id": "qu-244",
-    "category": "quantum",
-    "title": "Quantum computers calculate simultaneously using superpositions of 0 and 1",
-    "body": "While classical bits are either 0 or 1, quantum qubits exploit superposition and entanglement to evaluate millions of potential computational paths simultaneously in parallel.",
+    "id": "wl-002",
+    "category": "wildlife",
+    "title": "Cheetahs possess non-retractable claws that function as athletic track spikes",
+    "body": "Unlike almost all other cat species whose claws retract into protective sheaths, a cheetah's claws remain permanently exposed and semi-blunt. They act exactly like athletic running cleats, digging into the savannah turf to provide explosive traction during 112 km/h high-speed zigzag turns.",
+    "image": "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=800&q=80",
+    "source": "Zoological Society of London"
+  },
+  {
+    "id": "wl-003",
+    "category": "wildlife",
+    "title": "Platypuses hunt underwater with eyes and ears closed using electrical sensors",
+    "body": "When diving, a platypus seals its eyes, ears, and nostrils completely. It navigates and catches prey solely through electrolocation: over 40,000 microscopic electroreceptors on its rubbery bill detect the tiny electrical pulses generated by the muscular tail-twitches of swimming shrimp.",
+    "image": "https://images.unsplash.com/photo-1589656966895-2f33e7653819?w=800&q=80",
+    "source": "Scientific American"
+  },
+  {
+    "id": "wl-004",
+    "category": "wildlife",
+    "title": "Grizzly bears suffer zero bone loss during seven months of hibernating immobility",
+    "body": "If a human were bedridden for seven months, they would lose over 30% of their skeletal bone mass. Hibernating grizzly bears experience zero bone density loss; their bodies continuously recycle nitrogenous urine into amino acids that constantly remodel and repair bone osteocytes throughout hibernation.",
+    "image": "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?w=800&q=80",
+    "source": "Journal of Experimental Biology"
+  },
+  {
+    "id": "wl-005",
+    "category": "wildlife",
+    "title": "Wombats produce cube-shaped droppings to build territorial scent boundaries",
+    "body": "Wombats are the only known creatures that produce cubical feces (up to 100 per night). Non-uniform muscular elasticity in the final 8% of their intestinal walls shapes the waste into geometric cubes. The flat edges prevent the droppings from rolling off elevated logs and rocks where wombats mark their territory.",
+    "image": "https://images.unsplash.com/photo-1548247416-ec66f4900b2e?w=800&q=80",
+    "source": "National Geographic / Georgia Tech"
+  },
+  {
+    "id": "wl-006",
+    "category": "wildlife",
+    "title": "A wolf pack's howling harmonies make their numbers sound three times larger",
+    "body": "Each wolf possesses an acoustic voiceprint distinguishable by pack mates up to 16 km away. When howling collectively, wolves deliberately modulate different harmonic overtones and discordant pitches so that rival packs listening from afar perceive a much larger defending force than actually exists.",
+    "image": "https://images.unsplash.com/photo-1564466809058-bf4114d55352?w=800&q=80",
+    "source": "BBC Earth / University of Cambridge"
+  },
+  {
+    "id": "wl-007",
+    "category": "wildlife",
+    "title": "Pangolin scales form a biological armor so tough that lions cannot pierce it",
+    "body": "The pangolin is the only mammal encased in large, overlapping keratin scales that account for up to 20% of its body weight. When threatened, it rolls into an impenetrable sphere with razor-sharp scale edges; even adult lions and leopards gnaw fruitlessly without puncturing the armor.",
+    "image": "https://images.unsplash.com/photo-1563281577-a7be47e20db9?w=800&q=80",
+    "source": "World Wildlife Fund"
+  },
+  {
+    "id": "wl-008",
+    "category": "wildlife",
+    "title": "Giraffes have 25-pound hearts with hydraulic check valves to survive drinking",
+    "body": "To pump blood 2 metres straight up to its head, a giraffe's heart generates 260/160 mmHg blood pressure—over double a human's. When it bends down to drink, a complex network of pressure-regulating jugular valves and an elastic spongy capillary sponge (rete mirabile) prevents fatal brain aneurysms.",
+    "image": "https://images.unsplash.com/photo-1538099130811-745e64318258?w=800&q=80",
+    "source": "Comparative Biochemistry and Physiology"
+  },
+  {
+    "id": "wl-009",
+    "category": "wildlife",
+    "title": "Wolverines crush and digest frozen moose bones in sub-zero blizzards",
+    "body": "Wolverines possess powerful jaw muscles and specialized upper molars rotated 90 degrees inward toward the throat. This unique dental adaptation allows them to shear through rock-solid frozen carrion and crush leg bones of reindeer and moose that no other arctic scavenger can consume.",
+    "image": "https://images.unsplash.com/photo-1575550959106-5a7defe28b56?w=800&q=80",
+    "source": "Smithsonian Wildlife"
+  },
+  {
+    "id": "wl-010",
+    "category": "wildlife",
+    "title": "Snow leopards cannot roar, instead greeting each other with puffing chuffs",
+    "body": "Unlike big cats of the genus Panthera, the snow leopard lacks the thick elastic vocal ligament needed to roar. Instead, it produces a gentle, non-threatening puffing sound called a 'prusten' or 'chuff' by forcing air through its nostrils, accompanied by purring when content.",
+    "image": "https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?w=800&q=80",
+    "source": "Snow Leopard Trust"
+  },
+  {
+    "id": "bd-001",
+    "category": "birds",
+    "title": "The Peregrine Falcon dives at 390 km/h with aerodynamic baffles in its nostrils",
+    "body": "In a terminal hunting dive (stoop), the peregrine falcon exceeds 389 km/h (242 mph). Air pressure at that speed would burst avian lungs, but small bony aerodynamic tubercles inside its nostrils baffle incoming airflow, allowing the falcon to breathe smoothly at speeds matching an F1 racing car.",
+    "image": "https://images.unsplash.com/photo-1611689342806-0863700ce1e4?w=800&q=80",
+    "source": "Guinness World Records / National Geographic"
+  },
+  {
+    "id": "bd-002",
+    "category": "birds",
+    "title": "Bar-tailed Godwits fly 11 days non-stop across the Pacific without once landing",
+    "body": "A satellite-tagged Bar-tailed Godwit flew 13,560 km from Alaska directly across the open Pacific to Tasmania in 11 days without a single pause for food, water, or rest. To fuel the journey, the bird absorbed and shrank its own stomach, liver, and gizzard by 25% to maximize subcutaneous fat fuel.",
+    "image": "https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=800&q=80",
+    "source": "Max Planck Institute of Animal Behavior"
+  },
+  {
+    "id": "bd-003",
+    "category": "birds",
+    "title": "Crows recognize human faces and pass generational grudges to their offspring",
+    "body": "University of Washington researchers wearing rubber masks trapped wild crows; years later, even crows that were never trapped recognized and angrily mobbed people wearing that specific face mask. The parent crows had actively communicated the threat to their fledglings and flock members.",
+    "image": "https://images.unsplash.com/photo-1618331835717-801e976710b2?w=800&q=80",
+    "source": "Proceedings of the Royal Society B"
+  },
+  {
+    "id": "bd-004",
+    "category": "birds",
+    "title": "Migratory birds navigate using quantum entanglement in their retinal photoreceptors",
+    "body": "European robins navigate across continents by literally 'seeing' Earth's geomagnetic lines. Blue photons entering the eye strike Cryptochrome-4 (Cry4) proteins, generating a pair of entangled radical electrons whose quantum spins shift in response to Earth's magnetic tilt angle.",
+    "image": "https://images.unsplash.com/photo-1555169062-013468b47731?w=800&q=80",
+    "source": "Nature / University of Oxford"
+  },
+  {
+    "id": "bd-005",
+    "category": "birds",
+    "title": "The Lyrebird perfectly mimics chainsaws, car alarms, and camera shutter clicks",
+    "body": "Australia's superb lyrebird possesses the most acoustically intricate syrinx (voice box) in the animal kingdom. In addition to flawlessly imitating 20 forest species, wild lyrebirds near logging areas accurately mimic the mechanical scream of chainsaws, car engines, and camera shutters.",
+    "image": "https://images.unsplash.com/photo-1480044965905-02098d419e96?w=800&q=80",
+    "source": "Australian Geographic"
+  },
+  {
+    "id": "bd-006",
+    "category": "birds",
+    "title": "Common Swifts remain continuously in flight for 10 months without touching ground",
+    "body": "Common swifts spend nearly their entire adult lives in mid-air, remaining aloft for 10 consecutive months without ever perching on a tree or roof. They drink raindrops on the wing, catch flying insects, and sleep in the clouds by shutting down one brain hemisphere at a time in unihemispheric sleep.",
+    "image": "https://images.unsplash.com/photo-1525994886773-080587e161c2?w=800&q=80",
+    "source": "Current Biology / Lund University"
+  },
+  {
+    "id": "bd-007",
+    "category": "birds",
+    "title": "Barn owls pinpoint scuttling mice beneath snow in pitch-black darkness by hearing",
+    "body": "A barn owl's ear cavities are vertically asymmetrical—the left ear is placed higher than the right ear. This anatomical disparity allows its brain to calculate elevation and azimuth timing differences down to millionths of a second, triangulating and snatching rodents under heavy snow in zero light.",
+    "image": "https://images.unsplash.com/photo-1543549790-8b5f4a028cfb?w=800&q=80",
+    "source": "Journal of Neuroscience"
+  },
+  {
+    "id": "bd-008",
+    "category": "birds",
+    "title": "Emperor penguins dive to 565 metres and stay submerged for 32 minutes",
+    "body": "Emperor penguins endure crushing hydrostatic pressures 50 times greater than atmospheric pressure while hunting squid in freezing Antarctic abyssal waters. Their pectoral muscles contain astronomical myoglobin concentrations, turning their muscle tissue nearly coal-black with dissolved oxygen.",
+    "image": "https://images.unsplash.com/photo-1598439210625-5067c578f3f6?w=800&q=80",
+    "source": "Antarctic Science"
+  },
+  {
+    "id": "bd-009",
+    "category": "birds",
+    "title": "The Secretarybird delivers a lethal 195-Newton head kick in 15 milliseconds",
+    "body": "To hunt venomous puff adders and cobras without being bitten, the African secretarybird stomps on the reptile's skull with a bone-shattering force of 195 Newtons—roughly five times its own body weight. The lethal strike is executed in just 15 milliseconds, faster than a snake's striking reflex.",
+    "image": "https://images.unsplash.com/photo-1510853675132-58241c941e4f?w=800&q=80",
+    "source": "Current Biology"
+  },
+  {
+    "id": "bd-010",
+    "category": "birds",
+    "title": "Hummingbirds are the only avian creatures capable of sustained backward and inverted flight",
+    "body": "A hummingbird's wing attaches to its body via a ball-and-socket shoulder joint that rotates 180 degrees in any direction, sweeping a figure-eight path that produces lift on both upstroke and downstroke. Their metabolic rate is so intense that their hearts beat up to 1,260 times a minute.",
+    "image": "https://images.unsplash.com/photo-1520808663317-647b476a81b9?w=800&q=80",
+    "source": "Royal Society Interface"
+  },
+  {
+    "id": "cl-001",
+    "category": "celestials",
+    "title": "Magnetars possess magnetic fields so intense they would dissolve human atoms at 1,000 km",
+    "body": "A magnetar is an extreme neutron star with a magnetic field exceeding 100 billion Tesla—a quadrillion times stronger than Earth's. If you ventured within 1,000 kilometres of one, the magnetic gradient would warp and distort the electron clouds of your body's atoms, dissolving all molecular chemistry instantly.",
     "image": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
+    "source": "NASA Astrophysics"
   },
   {
-    "id": "cr-245",
-    "category": "creatures",
-    "title": "Owls have tubular eyes locked in place and must rotate their heads 270 degrees",
-    "body": "Owls cannot move their eyeballs inside their sockets. To look around, their necks have 14 cervical vertebrae (double a human's) allowing them to swivel their heads 270 degrees without cutting off blood flow.",
-    "image": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "oc-246",
-    "category": "ocean",
-    "title": "More humans have walked on the surface of the Moon than have visited the deep ocean trenches",
-    "body": "Twelve Apollo astronauts walked on lunar soil, whereas only a handful of submersibles have successfully descended into the deepest hadal zone abysses.",
-    "image": "https://images.unsplash.com/photo-1630694093867-4b947d812bf0?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "hi-247",
-    "category": "history",
-    "title": "The ancient Library of Alexandria was accidentally burned by Julius Caesar's fleet",
-    "body": "In 48 BC, Julius Caesar set fire to Egyptian ships in the port of Alexandria. The flames spread ashore, destroying warehouses holding thousands of priceless papyrus scrolls.",
-    "image": "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "hu-248",
-    "category": "human",
-    "title": "Your eyes blink approximately 28,000 times every day, totaling an hour in darkness",
-    "body": "Each human blink lasts roughly 100 to 150 milliseconds. Over 16 waking hours, you spend nearly an entire cumulative hour in total darkness while lubricating the cornea.",
-    "image": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "ea-249",
-    "category": "earth",
-    "title": "Antarctica holds 70% of Earth's fresh water and 90% of its ice",
-    "body": "If the entire Antarctic ice sheet melted, global sea levels would surge by roughly 58 meters (190 feet), drowning every coastal city on planet Earth.",
-    "image": "https://images.unsplash.com/photo-1447433819943-74a20887a81e?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "te-250",
-    "category": "tech",
-    "title": "The world's first webcam was created in 1991 to monitor a Trojan room coffee pot",
-    "body": "Researchers in Cambridge University's computer lab set up a video camera pointed at a 12-cup drip coffee pot so programmers wouldn't walk across the building for an empty pot.",
-    "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "pa-251",
-    "category": "paradox",
-    "title": "The Ship of Theseus: If every wooden plank is replaced over time, is it the same ship?",
-    "body": "Greek philosopher Plutarch posed: If a ship has every decayed timber plank replaced piece by piece until zero original wood remains, does identity persist in the structure or the substance?",
+    "id": "cl-002",
+    "category": "celestials",
+    "title": "The Boötes Void: A 330-million-light-year sphere of nearly total cosmic emptiness",
+    "body": "The Boötes Void (the Great Nothing) is an astronomical void spanning 330 million light-years across. While a normal volume of that size should contain roughly 10,000 galaxies, astronomers have detected barely 60 galaxies in its entire interior. If Earth were in its center, we wouldn't have known other galaxies existed until the 1960s.",
     "image": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
+    "source": "The Astrophysical Journal"
   },
   {
-    "id": "na-252",
-    "category": "nature",
-    "title": "Banyan trees can expand across multiple acres using aerial prop roots",
-    "body": "The Great Banyan tree in India spans 14,500 square meters. Its thousands of aerial hanging roots touch ground and thicken into auxiliary trunks, resembling an entire dense forest.",
-    "image": "https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
+    "id": "cl-003",
+    "category": "celestials",
+    "title": "Hypervelocity stars are catapulted through the Milky Way at 2,000 km per second",
+    "body": "When a binary star system strays into the tidal gravitational grasp of Sagittarius A* (the supermassive black hole at the galactic center), one star is captured into an orbit while the other is slingshot outward at relativistic speeds up to 2,000 km/s—fast enough to permanently escape the Milky Way into intergalactic space.",
+    "image": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80",
+    "source": "European Southern Observatory"
   },
   {
-    "id": "my-253",
-    "category": "mysteries",
-    "title": "The Devil's Sea (Dragon's Triangle) off Japan: The Pacific counterpart to the Bermuda Triangle",
-    "body": "Located near Miyake Island south of Tokyo, this region has seen unexplained disappearances of military vessels and fishing fleets, attributed to active submarine methane volcanoes.",
-    "image": "https://images.unsplash.com/photo-1614314107768-6018061b5b72?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "sp-254",
-    "category": "space",
-    "title": "Spacecraft traveling at the speed of light would still take 100,000 years to cross our galaxy",
-    "body": "The Milky Way disc spans over 100,000 light-years in diameter. Even at 300,000 km/s, an interstellar vessel would require a hundred millennia to cross from one rim to the other.",
-    "image": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "qu-255",
-    "category": "quantum",
-    "title": "Quantum computers calculate simultaneously using superpositions of 0 and 1",
-    "body": "While classical bits are either 0 or 1, quantum qubits exploit superposition and entanglement to evaluate millions of potential computational paths simultaneously in parallel.",
-    "image": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "cr-256",
-    "category": "creatures",
-    "title": "Owls have tubular eyes locked in place and must rotate their heads 270 degrees",
-    "body": "Owls cannot move their eyeballs inside their sockets. To look around, their necks have 14 cervical vertebrae (double a human's) allowing them to swivel their heads 270 degrees without cutting off blood flow.",
-    "image": "https://images.unsplash.com/photo-1630694093867-4b947d812bf0?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "oc-257",
-    "category": "ocean",
-    "title": "More humans have walked on the surface of the Moon than have visited the deep ocean trenches",
-    "body": "Twelve Apollo astronauts walked on lunar soil, whereas only a handful of submersibles have successfully descended into the deepest hadal zone abysses.",
+    "id": "cl-004",
+    "category": "celestials",
+    "title": "Relativistic quasar jets blast plasma beams across millions of light-years",
+    "body": "The supermassive black holes powering active galactic nuclei funnel infalling superheated matter through intense magnetic fields into twin relativistic jets traveling at 99.9% the speed of light. These collimated plasma torches shoot across millions of light-years, carving gigantic lobes wider than entire galaxies.",
     "image": "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
+    "source": "Event Horizon Telescope Collaboration"
   },
   {
-    "id": "hi-258",
-    "category": "history",
-    "title": "The ancient Library of Alexandria was accidentally burned by Julius Caesar's fleet",
-    "body": "In 48 BC, Julius Caesar set fire to Egyptian ships in the port of Alexandria. The flames spread ashore, destroying warehouses holding thousands of priceless papyrus scrolls.",
-    "image": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
+    "id": "cl-005",
+    "category": "celestials",
+    "title": "Exoplanet 55 Cancri e is a scorching super-Earth encrusted with crystalline diamond",
+    "body": "Twice the diameter of Earth, 55 Cancri e orbits its star so closely that a full year lasts just 18 hours and its surface temperature surpasses 2,400°C. Composed largely of carbon subjected to crushing interior pressures, astronomers model that a third of the planet's total mass is pure diamond.",
+    "image": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=800&q=80",
+    "source": "Astrophysical Journal Letters"
   },
   {
-    "id": "hu-259",
-    "category": "human",
-    "title": "Your eyes blink approximately 28,000 times every day, totaling an hour in darkness",
-    "body": "Each human blink lasts roughly 100 to 150 milliseconds. Over 16 waking hours, you spend nearly an entire cumulative hour in total darkness while lubricating the cornea.",
-    "image": "https://images.unsplash.com/photo-1447433819943-74a20887a81e?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
+    "id": "cl-006",
+    "category": "celestials",
+    "title": "A rogue stellar black hole was caught wandering freely through the Milky Way",
+    "body": "Using gravitational microlensing from Hubble, astronomers confirmed a solitary stellar-mass black hole drifting through interstellar space 5,000 light-years away at 45 km/s. Weighing 7 solar masses, it glides silently through the galaxy without any companion star to betray its presence.",
+    "image": "https://images.unsplash.com/photo-1506443432602-ac2fcd6f54e0?w=800&q=80",
+    "source": "NASA / Hubble Space Telescope"
   },
   {
-    "id": "ea-260",
-    "category": "earth",
-    "title": "Antarctica holds 70% of Earth's fresh water and 90% of its ice",
-    "body": "If the entire Antarctic ice sheet melted, global sea levels would surge by roughly 58 meters (190 feet), drowning every coastal city on planet Earth.",
+    "id": "cl-007",
+    "category": "celestials",
+    "title": "The Cosmic Web: Trillions of galaxies are woven along dark matter filaments",
+    "body": "Galaxies are not scattered randomly across the cosmos; they trace an intricate cosmic web of dark matter filaments spanning billions of light-years. Supermassive galaxy clusters congregate at the intersections of these filaments like droplets of dew on a colossal spiderweb.",
+    "image": "https://images.unsplash.com/photo-1538370965046-79c0d6907d47?w=800&q=80",
+    "source": "Nature / Millennium Simulation"
+  },
+  {
+    "id": "cl-008",
+    "category": "celestials",
+    "title": "Ultramassive black hole TON 618 contains the mass of 66 billion Suns",
+    "body": "TON 618 is the largest verified black hole known, containing 66 billion times the mass of our Sun. Its event horizon spans 390 billion kilometres—over 40 times the distance from the Sun to Pluto—and its accretion disc shines with the brilliance of 140 trillion suns.",
     "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
+    "source": "Monthly Notices of the Royal Astronomical Society"
   },
   {
-    "id": "te-261",
-    "category": "tech",
-    "title": "The world's first webcam was created in 1991 to monitor a Trojan room coffee pot",
-    "body": "Researchers in Cambridge University's computer lab set up a video camera pointed at a 12-cup drip coffee pot so programmers wouldn't walk across the building for an empty pot.",
-    "image": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
+    "id": "cl-009",
+    "category": "celestials",
+    "title": "Gamma-Ray Bursts radiate more energy in seconds than the Sun will in its entire lifetime",
+    "body": "When massive stars collapse into black holes or when neutron stars collide, they release narrowly focused gamma-ray bursts (GRBs). In just ten seconds, a single GRB unleashes more energetic photons than our Sun will generate over its entire 10-billion-year lifespan, outshining the entire universe.",
+    "image": "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?w=800&q=80",
+    "source": "NASA / Fermi Space Telescope"
   },
   {
-    "id": "pa-262",
-    "category": "paradox",
-    "title": "The Ship of Theseus: If every wooden plank is replaced over time, is it the same ship?",
-    "body": "Greek philosopher Plutarch posed: If a ship has every decayed timber plank replaced piece by piece until zero original wood remains, does identity persist in the structure or the substance?",
-    "image": "https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
+    "id": "cl-010",
+    "category": "celestials",
+    "title": "The CMB Cold Spot may be the quantum scar of a collision with an alternate universe",
+    "body": "In the Cosmic Microwave Background radiation left over from the Big Bang, astronomers discovered a colossal 1.8-billion-light-year cold spot that defies standard cosmological inflation models. Leading cosmologists suggest it could represent the quantum imprint of an ancient collision with another bubble universe.",
+    "image": "https://images.unsplash.com/photo-1447433589675-4aaa569f3e05?w=800&q=80",
+    "source": "Royal Astronomical Society"
   },
   {
-    "id": "na-263",
-    "category": "nature",
-    "title": "Banyan trees can expand across multiple acres using aerial prop roots",
-    "body": "The Great Banyan tree in India spans 14,500 square meters. Its thousands of aerial hanging roots touch ground and thicken into auxiliary trunks, resembling an entire dense forest.",
-    "image": "https://images.unsplash.com/photo-1614314107768-6018061b5b72?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "my-264",
-    "category": "mysteries",
-    "title": "The Devil's Sea (Dragon's Triangle) off Japan: The Pacific counterpart to the Bermuda Triangle",
-    "body": "Located near Miyake Island south of Tokyo, this region has seen unexplained disappearances of military vessels and fishing fleets, attributed to active submarine methane volcanoes.",
-    "image": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "sp-265",
-    "category": "space",
-    "title": "Spacecraft traveling at the speed of light would still take 100,000 years to cross our galaxy",
-    "body": "The Milky Way disc spans over 100,000 light-years in diameter. Even at 300,000 km/s, an interstellar vessel would require a hundred millennia to cross from one rim to the other.",
-    "image": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "qu-266",
-    "category": "quantum",
-    "title": "Quantum computers calculate simultaneously using superpositions of 0 and 1",
-    "body": "While classical bits are either 0 or 1, quantum qubits exploit superposition and entanglement to evaluate millions of potential computational paths simultaneously in parallel.",
-    "image": "https://images.unsplash.com/photo-1630694093867-4b947d812bf0?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "cr-267",
-    "category": "creatures",
-    "title": "Owls have tubular eyes locked in place and must rotate their heads 270 degrees",
-    "body": "Owls cannot move their eyeballs inside their sockets. To look around, their necks have 14 cervical vertebrae (double a human's) allowing them to swivel their heads 270 degrees without cutting off blood flow.",
-    "image": "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "oc-268",
+    "id": "oc-021",
     "category": "ocean",
-    "title": "More humans have walked on the surface of the Moon than have visited the deep ocean trenches",
-    "body": "Twelve Apollo astronauts walked on lunar soil, whereas only a handful of submersibles have successfully descended into the deepest hadal zone abysses.",
-    "image": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
+    "title": "Sperm whale sonar clicks reach 230 dB—powerful enough to vibrate human tissue to death",
+    "body": "A sperm whale's spermaceti organ generates echolocation click pulses reaching 230 decibels underwater (far louder than a jet engine). Free-divers describe the acoustic shockwaves feeling like physical punches against their chest, capable of causing localized acoustic cavitation in human tissue.",
+    "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
+    "source": "Marine Mammal Science / National Geographic"
   },
   {
-    "id": "hi-269",
-    "category": "history",
-    "title": "The ancient Library of Alexandria was accidentally burned by Julius Caesar's fleet",
-    "body": "In 48 BC, Julius Caesar set fire to Egyptian ships in the port of Alexandria. The flames spread ashore, destroying warehouses holding thousands of priceless papyrus scrolls.",
-    "image": "https://images.unsplash.com/photo-1447433819943-74a20887a81e?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "hu-270",
-    "category": "human",
-    "title": "Your eyes blink approximately 28,000 times every day, totaling an hour in darkness",
-    "body": "Each human blink lasts roughly 100 to 150 milliseconds. Over 16 waking hours, you spend nearly an entire cumulative hour in total darkness while lubricating the cornea.",
-    "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "ea-271",
-    "category": "earth",
-    "title": "Antarctica holds 70% of Earth's fresh water and 90% of its ice",
-    "body": "If the entire Antarctic ice sheet melted, global sea levels would surge by roughly 58 meters (190 feet), drowning every coastal city on planet Earth.",
-    "image": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "te-272",
-    "category": "tech",
-    "title": "The world's first webcam was created in 1991 to monitor a Trojan room coffee pot",
-    "body": "Researchers in Cambridge University's computer lab set up a video camera pointed at a 12-cup drip coffee pot so programmers wouldn't walk across the building for an empty pot.",
-    "image": "https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "pa-273",
-    "category": "paradox",
-    "title": "The Ship of Theseus: If every wooden plank is replaced over time, is it the same ship?",
-    "body": "Greek philosopher Plutarch posed: If a ship has every decayed timber plank replaced piece by piece until zero original wood remains, does identity persist in the structure or the substance?",
-    "image": "https://images.unsplash.com/photo-1614314107768-6018061b5b72?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "na-274",
-    "category": "nature",
-    "title": "Banyan trees can expand across multiple acres using aerial prop roots",
-    "body": "The Great Banyan tree in India spans 14,500 square meters. Its thousands of aerial hanging roots touch ground and thicken into auxiliary trunks, resembling an entire dense forest.",
-    "image": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "my-275",
-    "category": "mysteries",
-    "title": "The Devil's Sea (Dragon's Triangle) off Japan: The Pacific counterpart to the Bermuda Triangle",
-    "body": "Located near Miyake Island south of Tokyo, this region has seen unexplained disappearances of military vessels and fishing fleets, attributed to active submarine methane volcanoes.",
-    "image": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "sp-276",
-    "category": "space",
-    "title": "Spacecraft traveling at the speed of light would still take 100,000 years to cross our galaxy",
-    "body": "The Milky Way disc spans over 100,000 light-years in diameter. Even at 300,000 km/s, an interstellar vessel would require a hundred millennia to cross from one rim to the other.",
-    "image": "https://images.unsplash.com/photo-1630694093867-4b947d812bf0?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "qu-277",
-    "category": "quantum",
-    "title": "Quantum computers calculate simultaneously using superpositions of 0 and 1",
-    "body": "While classical bits are either 0 or 1, quantum qubits exploit superposition and entanglement to evaluate millions of potential computational paths simultaneously in parallel.",
-    "image": "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "cr-278",
-    "category": "creatures",
-    "title": "Owls have tubular eyes locked in place and must rotate their heads 270 degrees",
-    "body": "Owls cannot move their eyeballs inside their sockets. To look around, their necks have 14 cervical vertebrae (double a human's) allowing them to swivel their heads 270 degrees without cutting off blood flow.",
-    "image": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "oc-279",
+    "id": "oc-022",
     "category": "ocean",
-    "title": "More humans have walked on the surface of the Moon than have visited the deep ocean trenches",
-    "body": "Twelve Apollo astronauts walked on lunar soil, whereas only a handful of submersibles have successfully descended into the deepest hadal zone abysses.",
-    "image": "https://images.unsplash.com/photo-1447433819943-74a20887a81e?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
+    "title": "The Colossal Squid has soccer-ball-sized eyes to spot glowing whales in the pitch black",
+    "body": "Measuring 27 centimetres (11 inches) across, the colossal squid possesses the largest eyes in the animal kingdom. Their massive pupils gather microscopic traces of bioluminescent light emitted by tiny plankton as approaching sperm whales displace abyssal water, giving the squid early warning.",
+    "image": "https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?w=800&q=80",
+    "source": "Current Biology"
   },
   {
-    "id": "hi-280",
-    "category": "history",
-    "title": "The ancient Library of Alexandria was accidentally burned by Julius Caesar's fleet",
-    "body": "In 48 BC, Julius Caesar set fire to Egyptian ships in the port of Alexandria. The flames spread ashore, destroying warehouses holding thousands of priceless papyrus scrolls.",
-    "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "hu-281",
-    "category": "human",
-    "title": "Your eyes blink approximately 28,000 times every day, totaling an hour in darkness",
-    "body": "Each human blink lasts roughly 100 to 150 milliseconds. Over 16 waking hours, you spend nearly an entire cumulative hour in total darkness while lubricating the cornea.",
-    "image": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "ea-282",
-    "category": "earth",
-    "title": "Antarctica holds 70% of Earth's fresh water and 90% of its ice",
-    "body": "If the entire Antarctic ice sheet melted, global sea levels would surge by roughly 58 meters (190 feet), drowning every coastal city on planet Earth.",
-    "image": "https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "te-283",
-    "category": "tech",
-    "title": "The world's first webcam was created in 1991 to monitor a Trojan room coffee pot",
-    "body": "Researchers in Cambridge University's computer lab set up a video camera pointed at a 12-cup drip coffee pot so programmers wouldn't walk across the building for an empty pot.",
-    "image": "https://images.unsplash.com/photo-1614314107768-6018061b5b72?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "pa-284",
-    "category": "paradox",
-    "title": "The Ship of Theseus: If every wooden plank is replaced over time, is it the same ship?",
-    "body": "Greek philosopher Plutarch posed: If a ship has every decayed timber plank replaced piece by piece until zero original wood remains, does identity persist in the structure or the substance?",
-    "image": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "na-285",
-    "category": "nature",
-    "title": "Banyan trees can expand across multiple acres using aerial prop roots",
-    "body": "The Great Banyan tree in India spans 14,500 square meters. Its thousands of aerial hanging roots touch ground and thicken into auxiliary trunks, resembling an entire dense forest.",
-    "image": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "my-286",
-    "category": "mysteries",
-    "title": "The Devil's Sea (Dragon's Triangle) off Japan: The Pacific counterpart to the Bermuda Triangle",
-    "body": "Located near Miyake Island south of Tokyo, this region has seen unexplained disappearances of military vessels and fishing fleets, attributed to active submarine methane volcanoes.",
-    "image": "https://images.unsplash.com/photo-1630694093867-4b947d812bf0?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "sp-287",
-    "category": "space",
-    "title": "Spacecraft traveling at the speed of light would still take 100,000 years to cross our galaxy",
-    "body": "The Milky Way disc spans over 100,000 light-years in diameter. Even at 300,000 km/s, an interstellar vessel would require a hundred millennia to cross from one rim to the other.",
-    "image": "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "qu-288",
-    "category": "quantum",
-    "title": "Quantum computers calculate simultaneously using superpositions of 0 and 1",
-    "body": "While classical bits are either 0 or 1, quantum qubits exploit superposition and entanglement to evaluate millions of potential computational paths simultaneously in parallel.",
-    "image": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "cr-289",
-    "category": "creatures",
-    "title": "Owls have tubular eyes locked in place and must rotate their heads 270 degrees",
-    "body": "Owls cannot move their eyeballs inside their sockets. To look around, their necks have 14 cervical vertebrae (double a human's) allowing them to swivel their heads 270 degrees without cutting off blood flow.",
-    "image": "https://images.unsplash.com/photo-1447433819943-74a20887a81e?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "oc-290",
+    "id": "oc-023",
     "category": "ocean",
-    "title": "More humans have walked on the surface of the Moon than have visited the deep ocean trenches",
-    "body": "Twelve Apollo astronauts walked on lunar soil, whereas only a handful of submersibles have successfully descended into the deepest hadal zone abysses.",
-    "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
+    "title": "The Immortal Jellyfish resets its specialized adult cells back into baby polyps indefinitely",
+    "body": "When injured, starved, or dying of old age, Turritopsis dohrnii triggers transdifferentiation. Its specialized bell cells transform into primitive stem cells that sink to the seabed, grow into a new polyp colony, and spawn hundreds of genetically identical young jellyfish, achieving biological immortality.",
+    "image": "https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?w=800&q=80",
+    "source": "Proceedings of the National Academy of Sciences"
   },
   {
-    "id": "hi-291",
-    "category": "history",
-    "title": "The ancient Library of Alexandria was accidentally burned by Julius Caesar's fleet",
-    "body": "In 48 BC, Julius Caesar set fire to Egyptian ships in the port of Alexandria. The flames spread ashore, destroying warehouses holding thousands of priceless papyrus scrolls.",
-    "image": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "hu-292",
-    "category": "human",
-    "title": "Your eyes blink approximately 28,000 times every day, totaling an hour in darkness",
-    "body": "Each human blink lasts roughly 100 to 150 milliseconds. Over 16 waking hours, you spend nearly an entire cumulative hour in total darkness while lubricating the cornea.",
-    "image": "https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "ea-293",
-    "category": "earth",
-    "title": "Antarctica holds 70% of Earth's fresh water and 90% of its ice",
-    "body": "If the entire Antarctic ice sheet melted, global sea levels would surge by roughly 58 meters (190 feet), drowning every coastal city on planet Earth.",
-    "image": "https://images.unsplash.com/photo-1614314107768-6018061b5b72?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "te-294",
-    "category": "tech",
-    "title": "The world's first webcam was created in 1991 to monitor a Trojan room coffee pot",
-    "body": "Researchers in Cambridge University's computer lab set up a video camera pointed at a 12-cup drip coffee pot so programmers wouldn't walk across the building for an empty pot.",
-    "image": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "pa-295",
-    "category": "paradox",
-    "title": "The Ship of Theseus: If every wooden plank is replaced over time, is it the same ship?",
-    "body": "Greek philosopher Plutarch posed: If a ship has every decayed timber plank replaced piece by piece until zero original wood remains, does identity persist in the structure or the substance?",
-    "image": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "na-296",
-    "category": "nature",
-    "title": "Banyan trees can expand across multiple acres using aerial prop roots",
-    "body": "The Great Banyan tree in India spans 14,500 square meters. Its thousands of aerial hanging roots touch ground and thicken into auxiliary trunks, resembling an entire dense forest.",
-    "image": "https://images.unsplash.com/photo-1630694093867-4b947d812bf0?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "my-297",
-    "category": "mysteries",
-    "title": "The Devil's Sea (Dragon's Triangle) off Japan: The Pacific counterpart to the Bermuda Triangle",
-    "body": "Located near Miyake Island south of Tokyo, this region has seen unexplained disappearances of military vessels and fishing fleets, attributed to active submarine methane volcanoes.",
-    "image": "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "sp-298",
-    "category": "space",
-    "title": "Spacecraft traveling at the speed of light would still take 100,000 years to cross our galaxy",
-    "body": "The Milky Way disc spans over 100,000 light-years in diameter. Even at 300,000 km/s, an interstellar vessel would require a hundred millennia to cross from one rim to the other.",
-    "image": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "qu-299",
-    "category": "quantum",
-    "title": "Quantum computers calculate simultaneously using superpositions of 0 and 1",
-    "body": "While classical bits are either 0 or 1, quantum qubits exploit superposition and entanglement to evaluate millions of potential computational paths simultaneously in parallel.",
-    "image": "https://images.unsplash.com/photo-1447433819943-74a20887a81e?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "cr-300",
-    "category": "creatures",
-    "title": "Owls have tubular eyes locked in place and must rotate their heads 270 degrees",
-    "body": "Owls cannot move their eyeballs inside their sockets. To look around, their necks have 14 cervical vertebrae (double a human's) allowing them to swivel their heads 270 degrees without cutting off blood flow.",
-    "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "oc-301",
+    "id": "oc-024",
     "category": "ocean",
-    "title": "More humans have walked on the surface of the Moon than have visited the deep ocean trenches",
-    "body": "Twelve Apollo astronauts walked on lunar soil, whereas only a handful of submersibles have successfully descended into the deepest hadal zone abysses.",
-    "image": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
+    "title": "Pistol shrimp generate 4,700°C cavitation bubbles hotter than the surface of the Sun",
+    "body": "Snapping its claw shut at 100 km/h ejects a micro-jet of water that produces a low-pressure acoustic cavitation bubble. When the bubble collapses, it releases a 218 dB sonic shockwave and a flash of sonoluminescence reaching 4,700°C—hotter than the surface of red dwarf stars—stunning small fish instantly.",
+    "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
+    "source": "Science Magazine"
   },
   {
-    "id": "hi-302",
-    "category": "history",
-    "title": "The ancient Library of Alexandria was accidentally burned by Julius Caesar's fleet",
-    "body": "In 48 BC, Julius Caesar set fire to Egyptian ships in the port of Alexandria. The flames spread ashore, destroying warehouses holding thousands of priceless papyrus scrolls.",
-    "image": "https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "hu-303",
-    "category": "human",
-    "title": "Your eyes blink approximately 28,000 times every day, totaling an hour in darkness",
-    "body": "Each human blink lasts roughly 100 to 150 milliseconds. Over 16 waking hours, you spend nearly an entire cumulative hour in total darkness while lubricating the cornea.",
-    "image": "https://images.unsplash.com/photo-1614314107768-6018061b5b72?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "ea-304",
-    "category": "earth",
-    "title": "Antarctica holds 70% of Earth's fresh water and 90% of its ice",
-    "body": "If the entire Antarctic ice sheet melted, global sea levels would surge by roughly 58 meters (190 feet), drowning every coastal city on planet Earth.",
-    "image": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "te-305",
-    "category": "tech",
-    "title": "The world's first webcam was created in 1991 to monitor a Trojan room coffee pot",
-    "body": "Researchers in Cambridge University's computer lab set up a video camera pointed at a 12-cup drip coffee pot so programmers wouldn't walk across the building for an empty pot.",
-    "image": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "pa-306",
-    "category": "paradox",
-    "title": "The Ship of Theseus: If every wooden plank is replaced over time, is it the same ship?",
-    "body": "Greek philosopher Plutarch posed: If a ship has every decayed timber plank replaced piece by piece until zero original wood remains, does identity persist in the structure or the substance?",
-    "image": "https://images.unsplash.com/photo-1630694093867-4b947d812bf0?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "na-307",
-    "category": "nature",
-    "title": "Banyan trees can expand across multiple acres using aerial prop roots",
-    "body": "The Great Banyan tree in India spans 14,500 square meters. Its thousands of aerial hanging roots touch ground and thicken into auxiliary trunks, resembling an entire dense forest.",
-    "image": "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "my-308",
-    "category": "mysteries",
-    "title": "The Devil's Sea (Dragon's Triangle) off Japan: The Pacific counterpart to the Bermuda Triangle",
-    "body": "Located near Miyake Island south of Tokyo, this region has seen unexplained disappearances of military vessels and fishing fleets, attributed to active submarine methane volcanoes.",
-    "image": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "sp-309",
-    "category": "space",
-    "title": "Spacecraft traveling at the speed of light would still take 100,000 years to cross our galaxy",
-    "body": "The Milky Way disc spans over 100,000 light-years in diameter. Even at 300,000 km/s, an interstellar vessel would require a hundred millennia to cross from one rim to the other.",
-    "image": "https://images.unsplash.com/photo-1447433819943-74a20887a81e?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "qu-310",
-    "category": "quantum",
-    "title": "Quantum computers calculate simultaneously using superpositions of 0 and 1",
-    "body": "While classical bits are either 0 or 1, quantum qubits exploit superposition and entanglement to evaluate millions of potential computational paths simultaneously in parallel.",
-    "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "cr-311",
-    "category": "creatures",
-    "title": "Owls have tubular eyes locked in place and must rotate their heads 270 degrees",
-    "body": "Owls cannot move their eyeballs inside their sockets. To look around, their necks have 14 cervical vertebrae (double a human's) allowing them to swivel their heads 270 degrees without cutting off blood flow.",
-    "image": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "oc-312",
+    "id": "oc-025",
     "category": "ocean",
-    "title": "More humans have walked on the surface of the Moon than have visited the deep ocean trenches",
-    "body": "Twelve Apollo astronauts walked on lunar soil, whereas only a handful of submersibles have successfully descended into the deepest hadal zone abysses.",
-    "image": "https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
+    "title": "Greenland sharks live for over 400 years in pitch-black freezing Arctic deep waters",
+    "body": "Radiocarbon dating of lens crystalline proteins in the eyes of Greenland sharks proved they live for roughly 400 years in icy arctic waters, making them the longest-lived vertebrate known. Their metabolic pace is so glacial that females only reach sexual maturity at approximately 150 years of age.",
+    "image": "https://images.unsplash.com/photo-1560275619-4662e36fa65c?w=800&q=80",
+    "source": "Science / University of Copenhagen"
   },
   {
-    "id": "hi-313",
-    "category": "history",
-    "title": "The ancient Library of Alexandria was accidentally burned by Julius Caesar's fleet",
-    "body": "In 48 BC, Julius Caesar set fire to Egyptian ships in the port of Alexandria. The flames spread ashore, destroying warehouses holding thousands of priceless papyrus scrolls.",
-    "image": "https://images.unsplash.com/photo-1614314107768-6018061b5b72?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "hu-314",
-    "category": "human",
-    "title": "Your eyes blink approximately 28,000 times every day, totaling an hour in darkness",
-    "body": "Each human blink lasts roughly 100 to 150 milliseconds. Over 16 waking hours, you spend nearly an entire cumulative hour in total darkness while lubricating the cornea.",
-    "image": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "ea-315",
-    "category": "earth",
-    "title": "Antarctica holds 70% of Earth's fresh water and 90% of its ice",
-    "body": "If the entire Antarctic ice sheet melted, global sea levels would surge by roughly 58 meters (190 feet), drowning every coastal city on planet Earth.",
-    "image": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "te-316",
-    "category": "tech",
-    "title": "The world's first webcam was created in 1991 to monitor a Trojan room coffee pot",
-    "body": "Researchers in Cambridge University's computer lab set up a video camera pointed at a 12-cup drip coffee pot so programmers wouldn't walk across the building for an empty pot.",
-    "image": "https://images.unsplash.com/photo-1630694093867-4b947d812bf0?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "pa-317",
-    "category": "paradox",
-    "title": "The Ship of Theseus: If every wooden plank is replaced over time, is it the same ship?",
-    "body": "Greek philosopher Plutarch posed: If a ship has every decayed timber plank replaced piece by piece until zero original wood remains, does identity persist in the structure or the substance?",
-    "image": "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "na-318",
-    "category": "nature",
-    "title": "Banyan trees can expand across multiple acres using aerial prop roots",
-    "body": "The Great Banyan tree in India spans 14,500 square meters. Its thousands of aerial hanging roots touch ground and thicken into auxiliary trunks, resembling an entire dense forest.",
-    "image": "https://images.unsplash.com/photo-1541185933-ef5d8ed016c2?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "my-319",
-    "category": "mysteries",
-    "title": "The Devil's Sea (Dragon's Triangle) off Japan: The Pacific counterpart to the Bermuda Triangle",
-    "body": "Located near Miyake Island south of Tokyo, this region has seen unexplained disappearances of military vessels and fishing fleets, attributed to active submarine methane volcanoes.",
-    "image": "https://images.unsplash.com/photo-1447433819943-74a20887a81e?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "sp-320",
-    "category": "space",
-    "title": "Spacecraft traveling at the speed of light would still take 100,000 years to cross our galaxy",
-    "body": "The Milky Way disc spans over 100,000 light-years in diameter. Even at 300,000 km/s, an interstellar vessel would require a hundred millennia to cross from one rim to the other.",
-    "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "qu-321",
-    "category": "quantum",
-    "title": "Quantum computers calculate simultaneously using superpositions of 0 and 1",
-    "body": "While classical bits are either 0 or 1, quantum qubits exploit superposition and entanglement to evaluate millions of potential computational paths simultaneously in parallel.",
-    "image": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "cr-322",
-    "category": "creatures",
-    "title": "Owls have tubular eyes locked in place and must rotate their heads 270 degrees",
-    "body": "Owls cannot move their eyeballs inside their sockets. To look around, their necks have 14 cervical vertebrae (double a human's) allowing them to swivel their heads 270 degrees without cutting off blood flow.",
-    "image": "https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
-  },
-  {
-    "id": "oc-323",
+    "id": "oc-026",
     "category": "ocean",
-    "title": "More humans have walked on the surface of the Moon than have visited the deep ocean trenches",
-    "body": "Twelve Apollo astronauts walked on lunar soil, whereas only a handful of submersibles have successfully descended into the deepest hadal zone abysses.",
-    "image": "https://images.unsplash.com/photo-1614314107768-6018061b5b72?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
+    "title": "Hydrothermal vent tube worms survive at 350°C with no mouth, stomach, or digestive tract",
+    "body": "Growing up to 2 metres tall around abyssal volcanic hydrothermal chimneys spewing toxic hydrogen sulphide, giant tube worms (Riftia pachyptila) have zero digestive system. They survive completely on organic sugars manufactured by billions of symbiotic chemosynthetic bacteria living inside a vascular organ called a trophosome.",
+    "image": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80",
+    "source": "Woods Hole Oceanographic Institution"
   },
   {
-    "id": "hi-324",
-    "category": "history",
-    "title": "The ancient Library of Alexandria was accidentally burned by Julius Caesar's fleet",
-    "body": "In 48 BC, Julius Caesar set fire to Egyptian ships in the port of Alexandria. The flames spread ashore, destroying warehouses holding thousands of priceless papyrus scrolls.",
+    "id": "an-001",
+    "category": "animals",
+    "title": "Dolphins call each other by unique signature whistle names",
+    "body": "Bottlenose dolphins invent a unique signature whistle within their first year of life. When separated across kilometers of murky water, pod members imitate each other's signature whistles to broadcast their specific identity and coordinate reunion.",
+    "image": "https://images.unsplash.com/photo-1570481662006-a3a1374699e8?w=800&q=80",
+    "source": "Proceedings of the National Academy of Sciences / St Andrews"
+  },
+  {
+    "id": "an-002",
+    "category": "animals",
+    "title": "Koalas have unique individual fingerprints virtually indistinguishable from human prints",
+    "body": "Even under scanning electron microscopes, a koala's epidermal ridge whorls and loops closely mimic human friction ridges. This rare dermal adaptation evolved through convergent evolution to help them grasp smooth eucalyptus branches.",
+    "image": "https://images.unsplash.com/photo-1548247416-ec66f4900b2e?w=800&q=80",
+    "source": "Academic Forensic Pathology / University of Adelaide"
+  },
+  {
+    "id": "an-003",
+    "category": "animals",
+    "title": "Dogs detect human psychological stress and cortisol spikes through scent alone",
+    "body": "With 300 million olfactory receptors, dogs detect minute changes in human volatile organic compounds (VOCs) released in sweat and breath during acute psychological stress. Controlled double-blind trials proved dogs identify stressed human samples with 93.75% accuracy.",
+    "image": "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=800&q=80",
+    "source": "PLOS ONE / Queen's University Belfast"
+  },
+  {
+    "id": "an-004",
+    "category": "animals",
+    "title": "Sea otters hold hands while sleeping to prevent ocean currents drifting them apart",
+    "body": "While resting in offshore waters, sea otters wrap themselves in giant kelp holdfasts and clasp paws with their partners. These bonded groups (called rafts) can number hundreds of otters floating together safely without drifting out to open sea.",
+    "image": "https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?w=800&q=80",
+    "source": "Monterey Bay Aquarium"
+  },
+  {
+    "id": "an-005",
+    "category": "animals",
+    "title": "Bats calibrate their internal magnetic compasses using twilight polarization patterns",
+    "body": "Greater mouse-eared bats observe the strip of polarized skylight cast across the sky at sunset. They use this optical reference line to recalibrate their internal magnetic mineral compasses before embarking on nocturnal foraging flights across pitch-black caves.",
+    "image": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&q=80",
+    "source": "Nature Communications"
+  },
+  {
+    "id": "an-006",
+    "category": "animals",
+    "title": "Cows develop best friends and display measurable stress reduction when together",
+    "body": "Biometric research measuring cardiac rhythms and blood cortisol demonstrated that cows possess preferred companions. When housed alongside their best friend, their heart rates are significantly lower and milk yields increase compared to isolation among strangers.",
+    "image": "https://images.unsplash.com/photo-1546445317-29f4545e9d53?w=800&q=80",
+    "source": "Applied Animal Behaviour Science / Univ. of Northampton"
+  },
+  {
+    "id": "an-007",
+    "category": "animals",
+    "title": "Bees communicate 3D floral coordinates through an intricate waggle dance",
+    "body": "Returning to their pitch-black hives, honeybees perform a figure-eight waggle dance. The angle of the waggle run relative to vertical gravity encodes the sun's azimuth angle, and the duration of abdominal buzz vibrations signals the exact distance with meter-scale accuracy.",
+    "image": "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=800&q=80",
+    "source": "Karl von Frisch / Science Magazine"
+  },
+  {
+    "id": "an-008",
+    "category": "animals",
+    "title": "Chameleons shift colors using photonic nanocrystal lattices, not pigments",
+    "body": "Beneath their pigmented skin, chameleons possess two layers of iridophore cells containing microscopic guanine nanocrystals. By expanding or contracting these photonic lattices, they change how light wavelengths interfere, shifting instantaneously from camouflage green to incandescent red.",
+    "image": "https://images.unsplash.com/photo-1563281577-a7be47e20db9?w=800&q=80",
+    "source": "Nature Communications / University of Geneva"
+  },
+  {
+    "id": "an-009",
+    "category": "animals",
+    "title": "Octopuses have three hearts, copper-based blue blood, and 500 million neurons",
+    "body": "Two branchial hearts pump blue copper-rich hemocyanin blood across the gills, while a systemic heart pumps it through the body. Two-thirds of an octopus's neurons are distributed throughout its arms, allowing each tentacle to taste, explore, and solve physical puzzles semi-independently.",
+    "image": "https://images.unsplash.com/photo-1545671913-b89ac1b4ac10?w=800&q=80",
+    "source": "Current Biology / University of Cambridge"
+  },
+  {
+    "id": "an-010",
+    "category": "animals",
+    "title": "Meerkats teach their young how to hunt safely using gradual prey preparation",
+    "body": "Adult meerkats provide structured pedagogical lessons to their pups. They begin by presenting dead or stingless scorpions, gradually offering live prey with stingers as the young mature, making them one of the few verified non-human mammals to demonstrate active teaching.",
+    "image": "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=800&q=80",
+    "source": "Science Magazine / University of Cambridge"
+  },
+  {
+    "id": "wl-011",
+    "category": "wildlife",
+    "title": "Tigers have striped skin that exactly mirrors their outer fur pattern",
+    "body": "If a tiger is shaved, its black stripes remain completely visible directly on its skin. The hair follicles produce localized melanin pigmentation that permeates deep into dermal skin layers, meaning every individual tiger's skin pattern is as permanent as a human fingerprint.",
+    "image": "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=800&q=80",
+    "source": "Smithsonian / Wildlife Conservation Society"
+  },
+  {
+    "id": "wl-012",
+    "category": "wildlife",
+    "title": "Orca pods speak distinct vocal dialects and teach generational hunting strategies",
+    "body": "Different killer whale pods maintain unique acoustic repertoires passed down matrilineally. Matriarchs actively instruct juveniles in specialized pod cultures, such as intentionally hydroplaning onto beaches to grab sea lions or generating coordinated wave-washes to knock seals off ice floes.",
+    "image": "https://images.unsplash.com/photo-1570481662006-a3a1374699e8?w=800&q=80",
+    "source": "Marine Mammal Science / NOAA"
+  },
+  {
+    "id": "wl-013",
+    "category": "wildlife",
+    "title": "Spotted hyenas exert 1,100 PSI jaw pressure to crush and dissolve dense bones",
+    "body": "A spotted hyena's massive sagittal crest and reinforced premolars generate over 7,500 Newtons of crushing force—strong enough to shatter adult giraffe limb bones. Their gastric hydrochloric acid (pH < 1.0) completely dissolves dense bone marrow, horns, and hooves within hours.",
+    "image": "https://images.unsplash.com/photo-1534567153574-2b12153a87f0?w=800&q=80",
+    "source": "Journal of Zoology"
+  },
+  {
+    "id": "wl-014",
+    "category": "wildlife",
+    "title": "Hippopotamuses secrete red fluid that acts as natural antibiotic sunscreen",
+    "body": "The reddish viscous fluid oozing from a hippo's subdermal glands contains hipposudoric acid and norhipposudoric acid. It absorbs ultraviolet light to prevent sunburn, acts as a potent antibacterial shield against dirty river water, and helps regulate core body temperature.",
+    "image": "https://images.unsplash.com/photo-1534177616072-ef7dc120449d?w=800&q=80",
+    "source": "Nature"
+  },
+  {
+    "id": "wl-015",
+    "category": "wildlife",
+    "title": "Arctic foxes withstand temperatures of -50°C without metabolic shivering",
+    "body": "Featuring 70% dense insulating underwool, rounded compact ears, and countercurrent circulatory heat exchangers in their footpads, arctic foxes have the most insulating fur of any mammal. Their basal metabolic rate keeps them warm down to -50°C before they need to expend energy shivering.",
+    "image": "https://images.unsplash.com/photo-1516934024742-b461fba47600?w=800&q=80",
+    "source": "Zoological Society of London"
+  },
+  {
+    "id": "bd-011",
+    "category": "birds",
+    "title": "Wandering albatrosses glide thousands of miles without a single wing flap",
+    "body": "Using dynamic soaring, wandering albatrosses extract mechanical energy from wind speed gradients directly above ocean wave troughs. A specialized biological shoulder tendon locks their 3.5-meter wings horizontally with near-zero muscle exertion, enabling multi-thousand-kilometer circumglobal flights.",
+    "image": "https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=800&q=80",
+    "source": "Science / French National Centre for Scientific Research"
+  },
+  {
+    "id": "bd-012",
+    "category": "birds",
+    "title": "Woodpeckers absorb 1,400g deceleration impacts with zero brain concussions",
+    "body": "Pecking wood at 20 strikes per second produces 1,400 times the force of gravity (a human suffers concussion at 80g). A spongy hyoid bone wraps completely around the woodpecker's skull like an elastic biological seatbelt, safely deflecting mechanical shockwaves away from brain tissue.",
+    "image": "https://images.unsplash.com/photo-1520808663317-647b476a81b9?w=800&q=80",
+    "source": "Nature / Bioinspiration & Biomimetics"
+  },
+  {
+    "id": "bd-013",
+    "category": "birds",
+    "title": "Vultures possess car-battery-grade stomach acid that neutralizes anthrax and cholera",
+    "body": "A vulture's gastric acidity approaches pH 1.0 (equivalent to pure sulfuric battery acid). This biological sterilizer dissolves bone shards and completely neutralizes botulinum toxin, anthrax, rabies, and cholera bacteria on rotten carcasses, halting devastating epidemics.",
+    "image": "https://images.unsplash.com/photo-1611689342806-0863700ce1e4?w=800&q=80",
+    "source": "National Geographic / University of Copenhagen"
+  },
+  {
+    "id": "bd-014",
+    "category": "birds",
+    "title": "Homing pigeons navigate using sub-microscopic magnetite compasses in their beaks",
+    "body": "Pigeons navigate across thousands of kilometers through a combination of solar positioning and magnetic sensing. Microscopic iron-oxide magnetite clusters in their upper beaks measure variations in Earth's geomagnetic field intensity, providing a biological GPS map.",
+    "image": "https://images.unsplash.com/photo-1506220926022-cc5c12acdb35?w=800&q=80",
+    "source": "Nature / Max Planck Institute"
+  },
+  {
+    "id": "bd-015",
+    "category": "birds",
+    "title": "Raven pairs comfort each other with vocal condolences and allopreening",
+    "body": "Cognitive ethologists observed that after aggressive territorial encounters, mated ravens engage in spontaneous post-conflict consolation. The uninvolved partner sits beside the victim, gently preens its neck feathers, and utters soft consolatory notes that measurably lower stress levels.",
+    "image": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&q=80",
+    "source": "PLOS ONE / University of Vienna"
+  },
+  {
+    "id": "cl-011",
+    "category": "celestials",
+    "title": "Millisecond pulsars keep time with precision rivaling atomic cesium clocks",
+    "body": "Neutron stars spinning up to 700 times per second emit focused radio beams that sweep past Earth like cosmic lighthouses. Their rotational stability loses less than a single second over 100 million years, enabling astronomers to use them as an astronomical gravitational-wave detector.",
+    "image": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800&q=80",
+    "source": "NANOGrav / Astrophysical Journal"
+  },
+  {
+    "id": "cl-012",
+    "category": "celestials",
+    "title": "The Pillars of Creation span over 4 light-years of interstellar molecular gas",
+    "body": "Located 6,500 light-years away in the Eagle Nebula, these vast columns of cold hydrogen gas and cosmic dust are massive stellar nurseries. Our entire Solar System, from the Sun past Pluto, could fit inside the fingertip protrusion of the smallest pillar spire.",
+    "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
+    "source": "NASA / James Webb Space Telescope"
+  },
+  {
+    "id": "cl-013",
+    "category": "celestials",
+    "title": "Rogue planet PSO J318.5-22 wanders through space with clouds of molten iron",
+    "body": "Discovered 80 light-years away, this rogue gas giant orbits no parent star, floating alone in total interstellar darkness. Infrared spectroscopy reveals an 800°C atmosphere battered by hurricane winds carrying glowing vaporized silicate dust and molten iron droplets.",
     "image": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
+    "source": "Astrophysical Journal Letters / University of Hawaii"
   },
   {
-    "id": "hu-325",
-    "category": "human",
-    "title": "Your eyes blink approximately 28,000 times every day, totaling an hour in darkness",
-    "body": "Each human blink lasts roughly 100 to 150 milliseconds. Over 16 waking hours, you spend nearly an entire cumulative hour in total darkness while lubricating the cornea.",
+    "id": "cl-014",
+    "category": "celestials",
+    "title": "A single teaspoon of neutron star matter weighs as much as Mount Everest",
+    "body": "When massive stars collapse into neutron stars, atomic electron shells collapse directly into protons, packing pure neutrons together at nuclear density. A single sugar-cube volume of this nuclear matter weighs 6 billion tonnes on Earth.",
     "image": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&q=80",
-    "source": "Encyclopedic Curiosities"
+    "source": "NASA High-Energy Astrophysics"
+  },
+  {
+    "id": "cl-015",
+    "category": "celestials",
+    "title": "The Boomerang Nebula is the coldest natural location in the Universe at -272°C",
+    "body": "5,000 light-years away in Centaurus, expanding gas rushing out from a dying central star at 164 km/s creates adiabatic expansion that cools the nebula to 1 Kelvin (-272.15°C)—colder than the 2.7K cosmic microwave background radiation left by the Big Bang.",
+    "image": "https://images.unsplash.com/photo-1447433589675-4aaa569f3e05?w=800&q=80",
+    "source": "Nature Astronomy / ALMA Observatory"
+  },
+  {
+    "id": "oc-027",
+    "category": "ocean",
+    "title": "Male anglerfish dissolve their own bodies into females as permanent parasitic organs",
+    "body": "In the pitch-black abyss, a miniature male anglerfish bites onto a female and secretes enzymes that melt his mouth and blood vessels into hers. His digestive tract, eyes, and fins atrophy until he becomes a permanent parasitic sperm organ completely sustained by her blood.",
+    "image": "https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?w=800&q=80",
+    "source": "Current Biology"
+  },
+  {
+    "id": "oc-028",
+    "category": "ocean",
+    "title": "Vampire squids discharge luminous clouds of blue bioluminescent mucus spheres",
+    "body": "Living 900 meters deep where black ink would be useless in the darkness, the vampire squid releases a bioluminescent cloud of glowing blue mucus organs from its arm tips. The dazzling light cloud persists for up to 10 minutes, completely blinding abyssal predators.",
+    "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
+    "source": "Monterey Bay Aquarium Research Institute"
+  },
+  {
+    "id": "oc-029",
+    "category": "ocean",
+    "title": "The Barreleye fish has a transparent fluid dome head with rotatable glowing eyes",
+    "body": "Macropinna microstoma survives in twilight depths at 800 meters with a clear, liquid-filled cranial shield. Its glowing green cylindrical tubular eyes can rotate upward to spot the silhouettes of prey swimming against surface downwelling light or swivel forward while feeding.",
+    "image": "https://images.unsplash.com/photo-1560275619-4662e36fa65c?w=800&q=80",
+    "source": "MBARI / Current Biology"
+  },
+  {
+    "id": "oc-030",
+    "category": "ocean",
+    "title": "Hagfish produce micro-fibrous slime that expands 10,000 times in 400 milliseconds",
+    "body": "When bitten by a shark, a hagfish ejects protein threads from slime pores. Within 400 milliseconds of contacting seawater, the mucus expands 10,000 times its original volume, instantly transforming surrounding water into suffocating slime that chokes the shark's gills.",
+    "image": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80",
+    "source": "Current Biology / University of Guelph"
+  },
+  {
+    "id": "oc-031",
+    "category": "ocean",
+    "title": "Deep-sea glass sponges build silica fiber skeletons that outshine fiber-optic cables",
+    "body": "Living up to 15,000 years in abyssal waters, Hexactinellid glass sponges weave intricate skeletal architectures from pure biosilica glass. Bell Labs researchers demonstrated their natural glass spicules conduct light with flexible fiber-optic efficiency superior to commercial telecom cables.",
+    "image": "https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?w=800&q=80",
+    "source": "Bell Labs / Nature Materials"
   }
-,
-{
-  "id": "wl-001",
-  "category": "wildlife",
-  "title": "African elephants communicate across miles via infrasonic ground vibrations",
-  "body": "African elephants generate low-frequency rumbles below 20 Hz that travel up to 32 km through the earth. Highly sensitive Pacinian corpuscles in their footpads and trunk tips detect these seismic waves, enabling herds to coordinate movements and detect distant thunderstorms miles away.",
-  "image": "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?w=800&q=80",
-  "source": "Nature / Stanford University"
-},
-{
-  "id": "wl-002",
-  "category": "wildlife",
-  "title": "Cheetahs possess non-retractable claws that function as athletic track spikes",
-  "body": "Unlike almost all other cat species whose claws retract into protective sheaths, a cheetah's claws remain permanently exposed and semi-blunt. They act exactly like athletic running cleats, digging into the savannah turf to provide explosive traction during 112 km/h high-speed zigzag turns.",
-  "image": "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=800&q=80",
-  "source": "Zoological Society of London"
-},
-{
-  "id": "wl-003",
-  "category": "wildlife",
-  "title": "Platypuses hunt underwater with eyes and ears closed using electrical sensors",
-  "body": "When diving, a platypus seals its eyes, ears, and nostrils completely. It navigates and catches prey solely through electrolocation: over 40,000 microscopic electroreceptors on its rubbery bill detect the tiny electrical pulses generated by the muscular tail-twitches of swimming shrimp.",
-  "image": "https://images.unsplash.com/photo-1589656966895-2f33e7653819?w=800&q=80",
-  "source": "Scientific American"
-},
-{
-  "id": "wl-004",
-  "category": "wildlife",
-  "title": "Grizzly bears suffer zero bone loss during seven months of hibernating immobility",
-  "body": "If a human were bedridden for seven months, they would lose over 30% of their skeletal bone mass. Hibernating grizzly bears experience zero bone density loss; their bodies continuously recycle nitrogenous urine into amino acids that constantly remodel and repair bone osteocytes throughout hibernation.",
-  "image": "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?w=800&q=80",
-  "source": "Journal of Experimental Biology"
-},
-{
-  "id": "wl-005",
-  "category": "wildlife",
-  "title": "Wombats produce cube-shaped droppings to build territorial scent boundaries",
-  "body": "Wombats are the only known creatures that produce cubical feces (up to 100 per night). Non-uniform muscular elasticity in the final 8% of their intestinal walls shapes the waste into geometric cubes. The flat edges prevent the droppings from rolling off elevated logs and rocks where wombats mark their territory.",
-  "image": "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=800&q=80",
-  "source": "National Geographic / Georgia Tech"
-},
-{
-  "id": "wl-006",
-  "category": "wildlife",
-  "title": "A wolf pack's howling harmonies make their numbers sound three times larger",
-  "body": "Each wolf possesses an acoustic voiceprint distinguishable by pack mates up to 16 km away. When howling collectively, wolves deliberately modulate different harmonic overtones and discordant pitches so that rival packs listening from afar perceive a much larger defending force than actually exists.",
-  "image": "https://images.unsplash.com/photo-1564466809058-bf4114d55352?w=800&q=80",
-  "source": "BBC Earth / University of Cambridge"
-},
-{
-  "id": "wl-007",
-  "category": "wildlife",
-  "title": "Pangolin scales form a biological armor so tough that lions cannot pierce it",
-  "body": "The pangolin is the only mammal encased in large, overlapping keratin scales that account for up to 20% of its body weight. When threatened, it rolls into an impenetrable sphere with razor-sharp scale edges; even adult lions and leopards gnaw fruitlessly without puncturing the armor.",
-  "image": "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=800&q=80",
-  "source": "World Wildlife Fund"
-},
-{
-  "id": "wl-008",
-  "category": "wildlife",
-  "title": "Giraffes have 25-pound hearts with hydraulic check valves to survive drinking",
-  "body": "To pump blood 2 metres straight up to its head, a giraffe's heart generates 260/160 mmHg blood pressure—over double a human's. When it bends down to drink, a complex network of pressure-regulating jugular valves and an elastic spongy capillary sponge (rete mirabile) prevents fatal brain aneurysms.",
-  "image": "https://images.unsplash.com/photo-1538099130811-745e64318258?w=800&q=80",
-  "source": "Comparative Biochemistry and Physiology"
-},
-{
-  "id": "wl-009",
-  "category": "wildlife",
-  "title": "Wolverines crush and digest frozen moose bones in sub-zero blizzards",
-  "body": "Wolverines possess powerful jaw muscles and specialized upper molars rotated 90 degrees inward toward the throat. This unique dental adaptation allows them to shear through rock-solid frozen carrion and crush leg bones of reindeer and moose that no other arctic scavenger can consume.",
-  "image": "https://images.unsplash.com/photo-1575550959106-5a7defe28b56?w=800&q=80",
-  "source": "Smithsonian Wildlife"
-},
-{
-  "id": "wl-010",
-  "category": "wildlife",
-  "title": "Snow leopards cannot roar, instead greeting each other with puffing chuffs",
-  "body": "Unlike big cats of the genus Panthera, the snow leopard lacks the thick elastic vocal ligament needed to roar. Instead, it produces a gentle, non-threatening puffing sound called a 'prusten' or 'chuff' by forcing air through its nostrils, accompanied by purring when content.",
-  "image": "https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?w=800&q=80",
-  "source": "Snow Leopard Trust"
-},
-{
-  "id": "bd-001",
-  "category": "birds",
-  "title": "The Peregrine Falcon dives at 390 km/h with aerodynamic baffles in its nostrils",
-  "body": "In a terminal hunting dive (stoop), the peregrine falcon exceeds 389 km/h (242 mph). Air pressure at that speed would burst avian lungs, but small bony aerodynamic tubercles inside its nostrils baffle incoming airflow, allowing the falcon to breathe smoothly at speeds matching an F1 racing car.",
-  "image": "https://images.unsplash.com/photo-1611689342806-0863700ce1e4?w=800&q=80",
-  "source": "Guinness World Records / National Geographic"
-},
-{
-  "id": "bd-002",
-  "category": "birds",
-  "title": "Bar-tailed Godwits fly 11 days non-stop across the Pacific without once landing",
-  "body": "A satellite-tagged Bar-tailed Godwit flew 13,560 km from Alaska directly across the open Pacific to Tasmania in 11 days without a single pause for food, water, or rest. To fuel the journey, the bird absorbed and shrank its own stomach, liver, and gizzard by 25% to maximize subcutaneous fat fuel.",
-  "image": "https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=800&q=80",
-  "source": "Max Planck Institute of Animal Behavior"
-},
-{
-  "id": "bd-003",
-  "category": "birds",
-  "title": "Crows recognize human faces and pass generational grudges to their offspring",
-  "body": "University of Washington researchers wearing rubber masks trapped wild crows; years later, even crows that were never trapped recognized and angrily mobbed people wearing that specific face mask. The parent crows had actively communicated the threat to their fledglings and flock members.",
-  "image": "https://images.unsplash.com/photo-1520637736862-4d197d19a31a?w=800&q=80",
-  "source": "Proceedings of the Royal Society B"
-},
-{
-  "id": "bd-004",
-  "category": "birds",
-  "title": "Migratory birds navigate using quantum entanglement in their retinal photoreceptors",
-  "body": "European robins navigate across continents by literally 'seeing' Earth's geomagnetic lines. Blue photons entering the eye strike Cryptochrome-4 (Cry4) proteins, generating a pair of entangled radical electrons whose quantum spins shift in response to Earth's magnetic tilt angle.",
-  "image": "https://images.unsplash.com/photo-1549608276-5786777e6587?w=800&q=80",
-  "source": "Nature / University of Oxford"
-},
-{
-  "id": "bd-005",
-  "category": "birds",
-  "title": "The Lyrebird perfectly mimics chainsaws, car alarms, and camera shutter clicks",
-  "body": "Australia's superb lyrebird possesses the most acoustically intricate syrinx (voice box) in the animal kingdom. In addition to flawlessly imitating 20 forest species, wild lyrebirds near logging areas accurately mimic the mechanical scream of chainsaws, car engines, and camera shutters.",
-  "image": "https://images.unsplash.com/photo-1544717305-2782549b5136?w=800&q=80",
-  "source": "Australian Geographic"
-},
-{
-  "id": "bd-006",
-  "category": "birds",
-  "title": "Common Swifts remain continuously in flight for 10 months without touching ground",
-  "body": "Common swifts spend nearly their entire adult lives in mid-air, remaining aloft for 10 consecutive months without ever perching on a tree or roof. They drink raindrops on the wing, catch flying insects, and sleep in the clouds by shutting down one brain hemisphere at a time in unihemispheric sleep.",
-  "image": "https://images.unsplash.com/photo-1574063413132-355dbfd83e23?w=800&q=80",
-  "source": "Current Biology / Lund University"
-},
-{
-  "id": "bd-007",
-  "category": "birds",
-  "title": "Barn owls pinpoint scuttling mice beneath snow in pitch-black darkness by hearing",
-  "body": "A barn owl's ear cavities are vertically asymmetrical—the left ear is placed higher than the right ear. This anatomical disparity allows its brain to calculate elevation and azimuth timing differences down to millionths of a second, triangulating and snatching rodents under heavy snow in zero light.",
-  "image": "https://images.unsplash.com/photo-1518992028580-6d97bdca06c3?w=800&q=80",
-  "source": "Journal of Neuroscience"
-},
-{
-  "id": "bd-008",
-  "category": "birds",
-  "title": "Emperor penguins dive to 565 metres and stay submerged for 32 minutes",
-  "body": "Emperor penguins endure crushing hydrostatic pressures 50 times greater than atmospheric pressure while hunting squid in freezing Antarctic abyssal waters. Their pectoral muscles contain astronomical myoglobin concentrations, turning their muscle tissue nearly coal-black with dissolved oxygen.",
-  "image": "https://images.unsplash.com/photo-1598439210625-5067c578f3f6?w=800&q=80",
-  "source": "Antarctic Science"
-},
-{
-  "id": "bd-009",
-  "category": "birds",
-  "title": "The Secretarybird delivers a lethal 195-Newton head kick in 15 milliseconds",
-  "body": "To hunt venomous puff adders and cobras without being bitten, the African secretarybird stomps on the reptile's skull with a bone-shattering force of 195 Newtons—roughly five times its own body weight. The lethal strike is executed in just 15 milliseconds, faster than a snake's striking reflex.",
-  "image": "https://images.unsplash.com/photo-1551085254-e96b210df58a?w=800&q=80",
-  "source": "Current Biology"
-},
-{
-  "id": "bd-010",
-  "category": "birds",
-  "title": "Hummingbirds are the only avian creatures capable of sustained backward and inverted flight",
-  "body": "A hummingbird's wing attaches to its body via a ball-and-socket shoulder joint that rotates 180 degrees in any direction, sweeping a figure-eight path that produces lift on both upstroke and downstroke. Their metabolic rate is so intense that their hearts beat up to 1,260 times a minute.",
-  "image": "https://images.unsplash.com/photo-1520808663317-647b476a81b9?w=800&q=80",
-  "source": "Royal Society Interface"
-},
-{
-  "id": "cl-001",
-  "category": "celestials",
-  "title": "Magnetars possess magnetic fields so intense they would dissolve human atoms at 1,000 km",
-  "body": "A magnetar is an extreme neutron star with a magnetic field exceeding 100 billion Tesla—a quadrillion times stronger than Earth's. If you ventured within 1,000 kilometres of one, the magnetic gradient would warp and distort the electron clouds of your body's atoms, dissolving all molecular chemistry instantly.",
-  "image": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=800&q=80",
-  "source": "NASA Astrophysics"
-},
-{
-  "id": "cl-002",
-  "category": "celestials",
-  "title": "The Boötes Void: A 330-million-light-year sphere of nearly total cosmic emptiness",
-  "body": "The Boötes Void (the Great Nothing) is an astronomical void spanning 330 million light-years across. While a normal volume of that size should contain roughly 10,000 galaxies, astronomers have detected barely 60 galaxies in its entire interior. If Earth were in its center, we wouldn't have known other galaxies existed until the 1960s.",
-  "image": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800&q=80",
-  "source": "The Astrophysical Journal"
-},
-{
-  "id": "cl-003",
-  "category": "celestials",
-  "title": "Hypervelocity stars are catapulted through the Milky Way at 2,000 km per second",
-  "body": "When a binary star system strays into the tidal gravitational grasp of Sagittarius A* (the supermassive black hole at the galactic center), one star is captured into an orbit while the other is slingshot outward at relativistic speeds up to 2,000 km/s—fast enough to permanently escape the Milky Way into intergalactic space.",
-  "image": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80",
-  "source": "European Southern Observatory"
-},
-{
-  "id": "cl-004",
-  "category": "celestials",
-  "title": "Relativistic quasar jets blast plasma beams across millions of light-years",
-  "body": "The supermassive black holes powering active galactic nuclei funnel infalling superheated matter through intense magnetic fields into twin relativistic jets traveling at 99.9% the speed of light. These collimated plasma torches shoot across millions of light-years, carving gigantic lobes wider than entire galaxies.",
-  "image": "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?w=800&q=80",
-  "source": "Event Horizon Telescope Collaboration"
-},
-{
-  "id": "cl-005",
-  "category": "celestials",
-  "title": "Exoplanet 55 Cancri e is a scorching super-Earth encrusted with crystalline diamond",
-  "body": "Twice the diameter of Earth, 55 Cancri e orbits its star so closely that a full year lasts just 18 hours and its surface temperature surpasses 2,400°C. Composed largely of carbon subjected to crushing interior pressures, astronomers model that a third of the planet's total mass is pure diamond.",
-  "image": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=800&q=80",
-  "source": "Astrophysical Journal Letters"
-},
-{
-  "id": "cl-006",
-  "category": "celestials",
-  "title": "A rogue stellar black hole was caught wandering freely through the Milky Way",
-  "body": "Using gravitational microlensing from Hubble, astronomers confirmed a solitary stellar-mass black hole drifting through interstellar space 5,000 light-years away at 45 km/s. Weighing 7 solar masses, it glides silently through the galaxy without any companion star to betray its presence.",
-  "image": "https://images.unsplash.com/photo-1506443432602-ac2fcd6f54e0?w=800&q=80",
-  "source": "NASA / Hubble Space Telescope"
-},
-{
-  "id": "cl-007",
-  "category": "celestials",
-  "title": "The Cosmic Web: Trillions of galaxies are woven along dark matter filaments",
-  "body": "Galaxies are not scattered randomly across the cosmos; they trace an intricate cosmic web of dark matter filaments spanning billions of light-years. Supermassive galaxy clusters congregate at the intersections of these filaments like droplets of dew on a colossal spiderweb.",
-  "image": "https://images.unsplash.com/photo-1538370965046-79c0d6907d47?w=800&q=80",
-  "source": "Nature / Millennium Simulation"
-},
-{
-  "id": "cl-008",
-  "category": "celestials",
-  "title": "Ultramassive black hole TON 618 contains the mass of 66 billion Suns",
-  "body": "TON 618 is the largest verified black hole known, containing 66 billion times the mass of our Sun. Its event horizon spans 390 billion kilometres—over 40 times the distance from the Sun to Pluto—and its accretion disc shines with the brilliance of 140 trillion suns.",
-  "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
-  "source": "Monthly Notices of the Royal Astronomical Society"
-},
-{
-  "id": "cl-009",
-  "category": "celestials",
-  "title": "Gamma-Ray Bursts radiate more energy in seconds than the Sun will in its entire lifetime",
-  "body": "When massive stars collapse into black holes or when neutron stars collide, they release narrowly focused gamma-ray bursts (GRBs). In just ten seconds, a single GRB unleashes more energetic photons than our Sun will generate over its entire 10-billion-year lifespan, outshining the entire universe.",
-  "image": "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?w=800&q=80",
-  "source": "NASA / Fermi Space Telescope"
-},
-{
-  "id": "cl-010",
-  "category": "celestials",
-  "title": "The CMB Cold Spot may be the quantum scar of a collision with an alternate universe",
-  "body": "In the Cosmic Microwave Background radiation left over from the Big Bang, astronomers discovered a colossal 1.8-billion-light-year cold spot that defies standard cosmological inflation models. Leading cosmologists suggest it could represent the quantum imprint of an ancient collision with another bubble universe.",
-  "image": "https://images.unsplash.com/photo-1447433589675-4aaa569f3e05?w=800&q=80",
-  "source": "Royal Astronomical Society"
-},
-{
-  "id": "oc-021",
-  "category": "ocean",
-  "title": "Sperm whale sonar clicks reach 230 dB—powerful enough to vibrate human tissue to death",
-  "body": "A sperm whale's spermaceti organ generates echolocation click pulses reaching 230 decibels underwater (far louder than a jet engine). Free-divers describe the acoustic shockwaves feeling like physical punches against their chest, capable of causing localized acoustic cavitation in human tissue.",
-  "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
-  "source": "Marine Mammal Science / National Geographic"
-},
-{
-  "id": "oc-022",
-  "category": "ocean",
-  "title": "The Colossal Squid has soccer-ball-sized eyes to spot glowing whales in the pitch black",
-  "body": "Measuring 27 centimetres (11 inches) across, the colossal squid possesses the largest eyes in the animal kingdom. Their massive pupils gather microscopic traces of bioluminescent light emitted by tiny plankton as approaching sperm whales displace abyssal water, giving the squid early warning.",
-  "image": "https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?w=800&q=80",
-  "source": "Current Biology"
-},
-{
-  "id": "oc-023",
-  "category": "ocean",
-  "title": "The Immortal Jellyfish resets its specialized adult cells back into baby polyps indefinitely",
-  "body": "When injured, starved, or dying of old age, Turritopsis dohrnii triggers transdifferentiation. Its specialized bell cells transform into primitive stem cells that sink to the seabed, grow into a new polyp colony, and spawn hundreds of genetically identical young jellyfish, achieving biological immortality.",
-  "image": "https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?w=800&q=80",
-  "source": "Proceedings of the National Academy of Sciences"
-},
-{
-  "id": "oc-024",
-  "category": "ocean",
-  "title": "Pistol shrimp generate 4,700°C cavitation bubbles hotter than the surface of the Sun",
-  "body": "Snapping its claw shut at 100 km/h ejects a micro-jet of water that produces a low-pressure acoustic cavitation bubble. When the bubble collapses, it releases a 218 dB sonic shockwave and a flash of sonoluminescence reaching 4,700°C—hotter than the surface of red dwarf stars—stunning small fish instantly.",
-  "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
-  "source": "Science Magazine"
-},
-{
-  "id": "oc-025",
-  "category": "ocean",
-  "title": "Greenland sharks live for over 400 years in pitch-black freezing Arctic deep waters",
-  "body": "Radiocarbon dating of lens crystalline proteins in the eyes of Greenland sharks proved they live for roughly 400 years in icy arctic waters, making them the longest-lived vertebrate known. Their metabolic pace is so glacial that females only reach sexual maturity at approximately 150 years of age.",
-  "image": "https://images.unsplash.com/photo-1560275619-4662e36fa65c?w=800&q=80",
-  "source": "Science / University of Copenhagen"
-},
-{
-  "id": "oc-026",
-  "category": "ocean",
-  "title": "Hydrothermal vent tube worms survive at 350°C with no mouth, stomach, or digestive tract",
-  "body": "Growing up to 2 metres tall around abyssal volcanic hydrothermal chimneys spewing toxic hydrogen sulphide, giant tube worms (Riftia pachyptila) have zero digestive system. They survive completely on organic sugars manufactured by billions of symbiotic chemosynthetic bacteria living inside a vascular organ called a trophosome.",
-  "image": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80",
-  "source": "Woods Hole Oceanographic Institution"
-}
-,
-{
-  "id": "an-001",
-  "category": "animals",
-  "title": "Dolphins call each other by unique signature whistle names",
-  "body": "Bottlenose dolphins invent a unique signature whistle within their first year of life. When separated across kilometers of murky water, pod members imitate each other's signature whistles to broadcast their specific identity and coordinate reunion.",
-  "image": "https://images.unsplash.com/photo-1570481662006-a3a1374699e8?w=800&q=80",
-  "source": "Proceedings of the National Academy of Sciences / St Andrews"
-},
-{
-  "id": "an-002",
-  "category": "animals",
-  "title": "Koalas have unique individual fingerprints virtually indistinguishable from human prints",
-  "body": "Even under scanning electron microscopes, a koala's epidermal ridge whorls and loops closely mimic human friction ridges. This rare dermal adaptation evolved through convergent evolution to help them grasp smooth eucalyptus branches.",
-  "image": "https://images.unsplash.com/photo-1548247416-ec66f4900b2e?w=800&q=80",
-  "source": "Academic Forensic Pathology / University of Adelaide"
-},
-{
-  "id": "an-003",
-  "category": "animals",
-  "title": "Dogs detect human psychological stress and cortisol spikes through scent alone",
-  "body": "With 300 million olfactory receptors, dogs detect minute changes in human volatile organic compounds (VOCs) released in sweat and breath during acute psychological stress. Controlled double-blind trials proved dogs identify stressed human samples with 93.75% accuracy.",
-  "image": "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=800&q=80",
-  "source": "PLOS ONE / Queen's University Belfast"
-},
-{
-  "id": "an-004",
-  "category": "animals",
-  "title": "Sea otters hold hands while sleeping to prevent ocean currents drifting them apart",
-  "body": "While resting in offshore waters, sea otters wrap themselves in giant kelp holdfasts and clasp paws with their partners. These bonded groups (called rafts) can number hundreds of otters floating together safely without drifting out to open sea.",
-  "image": "https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?w=800&q=80",
-  "source": "Monterey Bay Aquarium"
-},
-{
-  "id": "an-005",
-  "category": "animals",
-  "title": "Bats calibrate their internal magnetic compasses using twilight polarization patterns",
-  "body": "Greater mouse-eared bats observe the strip of polarized skylight cast across the sky at sunset. They use this optical reference line to recalibrate their internal magnetic mineral compasses before embarking on nocturnal foraging flights across pitch-black caves.",
-  "image": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&q=80",
-  "source": "Nature Communications"
-},
-{
-  "id": "an-006",
-  "category": "animals",
-  "title": "Cows develop best friends and display measurable stress reduction when together",
-  "body": "Biometric research measuring cardiac rhythms and blood cortisol demonstrated that cows possess preferred companions. When housed alongside their best friend, their heart rates are significantly lower and milk yields increase compared to isolation among strangers.",
-  "image": "https://images.unsplash.com/photo-1546445317-29f4545e9d53?w=800&q=80",
-  "source": "Applied Animal Behaviour Science / Univ. of Northampton"
-},
-{
-  "id": "an-007",
-  "category": "animals",
-  "title": "Bees communicate 3D floral coordinates through an intricate waggle dance",
-  "body": "Returning to their pitch-black hives, honeybees perform a figure-eight waggle dance. The angle of the waggle run relative to vertical gravity encodes the sun's azimuth angle, and the duration of abdominal buzz vibrations signals the exact distance with meter-scale accuracy.",
-  "image": "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=800&q=80",
-  "source": "Karl von Frisch / Science Magazine"
-},
-{
-  "id": "an-008",
-  "category": "animals",
-  "title": "Chameleons shift colors using photonic nanocrystal lattices, not pigments",
-  "body": "Beneath their pigmented skin, chameleons possess two layers of iridophore cells containing microscopic guanine nanocrystals. By expanding or contracting these photonic lattices, they change how light wavelengths interfere, shifting instantaneously from camouflage green to incandescent red.",
-  "image": "https://images.unsplash.com/photo-1563281577-a7be47e20db9?w=800&q=80",
-  "source": "Nature Communications / University of Geneva"
-},
-{
-  "id": "an-009",
-  "category": "animals",
-  "title": "Octopuses have three hearts, copper-based blue blood, and 500 million neurons",
-  "body": "Two branchial hearts pump blue copper-rich hemocyanin blood across the gills, while a systemic heart pumps it through the body. Two-thirds of an octopus's neurons are distributed throughout its arms, allowing each tentacle to taste, explore, and solve physical puzzles semi-independently.",
-  "image": "https://images.unsplash.com/photo-1545671913-b89ac1b4ac10?w=800&q=80",
-  "source": "Current Biology / University of Cambridge"
-},
-{
-  "id": "an-010",
-  "category": "animals",
-  "title": "Meerkats teach their young how to hunt safely using gradual prey preparation",
-  "body": "Adult meerkats provide structured pedagogical lessons to their pups. They begin by presenting dead or stingless scorpions, gradually offering live prey with stingers as the young mature, making them one of the few verified non-human mammals to demonstrate active teaching.",
-  "image": "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=800&q=80",
-  "source": "Science Magazine / University of Cambridge"
-},
-{
-  "id": "wl-011",
-  "category": "wildlife",
-  "title": "Tigers have striped skin that exactly mirrors their outer fur pattern",
-  "body": "If a tiger is shaved, its black stripes remain completely visible directly on its skin. The hair follicles produce localized melanin pigmentation that permeates deep into dermal skin layers, meaning every individual tiger's skin pattern is as permanent as a human fingerprint.",
-  "image": "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=800&q=80",
-  "source": "Smithsonian / Wildlife Conservation Society"
-},
-{
-  "id": "wl-012",
-  "category": "wildlife",
-  "title": "Orca pods speak distinct vocal dialects and teach generational hunting strategies",
-  "body": "Different killer whale pods maintain unique acoustic repertoires passed down matrilineally. Matriarchs actively instruct juveniles in specialized pod cultures, such as intentionally hydroplaning onto beaches to grab sea lions or generating coordinated wave-washes to knock seals off ice floes.",
-  "image": "https://images.unsplash.com/photo-1568430462989-44163eb1752f?w=800&q=80",
-  "source": "Marine Mammal Science / NOAA"
-},
-{
-  "id": "wl-013",
-  "category": "wildlife",
-  "title": "Spotted hyenas exert 1,100 PSI jaw pressure to crush and dissolve dense bones",
-  "body": "A spotted hyena's massive sagittal crest and reinforced premolars generate over 7,500 Newtons of crushing force—strong enough to shatter adult giraffe limb bones. Their gastric hydrochloric acid (pH < 1.0) completely dissolves dense bone marrow, horns, and hooves within hours.",
-  "image": "https://images.unsplash.com/photo-1534567153574-2b12153a87f0?w=800&q=80",
-  "source": "Journal of Zoology"
-},
-{
-  "id": "wl-014",
-  "category": "wildlife",
-  "title": "Hippopotamuses secrete red fluid that acts as natural antibiotic sunscreen",
-  "body": "The reddish viscous fluid oozing from a hippo's subdermal glands contains hipposudoric acid and norhipposudoric acid. It absorbs ultraviolet light to prevent sunburn, acts as a potent antibacterial shield against dirty river water, and helps regulate core body temperature.",
-  "image": "https://images.unsplash.com/photo-1534177616072-ef7dc120449d?w=800&q=80",
-  "source": "Nature"
-},
-{
-  "id": "wl-015",
-  "category": "wildlife",
-  "title": "Arctic foxes withstand temperatures of -50°C without metabolic shivering",
-  "body": "Featuring 70% dense insulating underwool, rounded compact ears, and countercurrent circulatory heat exchangers in their footpads, arctic foxes have the most insulating fur of any mammal. Their basal metabolic rate keeps them warm down to -50°C before they need to expend energy shivering.",
-  "image": "https://images.unsplash.com/photo-1517849845537-4d257902454a?w=800&q=80",
-  "source": "Zoological Society of London"
-},
-{
-  "id": "bd-011",
-  "category": "birds",
-  "title": "Wandering albatrosses glide thousands of miles without a single wing flap",
-  "body": "Using dynamic soaring, wandering albatrosses extract mechanical energy from wind speed gradients directly above ocean wave troughs. A specialized biological shoulder tendon locks their 3.5-meter wings horizontally with near-zero muscle exertion, enabling multi-thousand-kilometer circumglobal flights.",
-  "image": "https://images.unsplash.com/photo-1551085254-e96b210df58a?w=800&q=80",
-  "source": "Science / French National Centre for Scientific Research"
-},
-{
-  "id": "bd-012",
-  "category": "birds",
-  "title": "Woodpeckers absorb 1,400g deceleration impacts with zero brain concussions",
-  "body": "Pecking wood at 20 strikes per second produces 1,400 times the force of gravity (a human suffers concussion at 80g). A spongy hyoid bone wraps completely around the woodpecker's skull like an elastic biological seatbelt, safely deflecting mechanical shockwaves away from brain tissue.",
-  "image": "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=800&q=80",
-  "source": "Nature / Bioinspiration & Biomimetics"
-},
-{
-  "id": "bd-013",
-  "category": "birds",
-  "title": "Vultures possess car-battery-grade stomach acid that neutralizes anthrax and cholera",
-  "body": "A vulture's gastric acidity approaches pH 1.0 (equivalent to pure sulfuric battery acid). This biological sterilizer dissolves bone shards and completely neutralizes botulinum toxin, anthrax, rabies, and cholera bacteria on rotten carcasses, halting devastating epidemics.",
-  "image": "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=800&q=80",
-  "source": "National Geographic / University of Copenhagen"
-},
-{
-  "id": "bd-014",
-  "category": "birds",
-  "title": "Homing pigeons navigate using sub-microscopic magnetite compasses in their beaks",
-  "body": "Pigeons navigate across thousands of kilometers through a combination of solar positioning and magnetic sensing. Microscopic iron-oxide magnetite clusters in their upper beaks measure variations in Earth's geomagnetic field intensity, providing a biological GPS map.",
-  "image": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80",
-  "source": "Nature / Max Planck Institute"
-},
-{
-  "id": "bd-015",
-  "category": "birds",
-  "title": "Raven pairs comfort each other with vocal condolences and allopreening",
-  "body": "Cognitive ethologists observed that after aggressive territorial encounters, mated ravens engage in spontaneous post-conflict consolation. The uninvolved partner sits beside the victim, gently preens its neck feathers, and utters soft consolatory notes that measurably lower stress levels.",
-  "image": "https://images.unsplash.com/photo-1520808663317-647b476a81b9?w=800&q=80",
-  "source": "PLOS ONE / University of Vienna"
-},
-{
-  "id": "cl-011",
-  "category": "celestials",
-  "title": "Millisecond pulsars keep time with precision rivaling atomic cesium clocks",
-  "body": "Neutron stars spinning up to 700 times per second emit focused radio beams that sweep past Earth like cosmic lighthouses. Their rotational stability loses less than a single second over 100 million years, enabling astronomers to use them as an astronomical gravitational-wave detector.",
-  "image": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800&q=80",
-  "source": "NANOGrav / Astrophysical Journal"
-},
-{
-  "id": "cl-012",
-  "category": "celestials",
-  "title": "The Pillars of Creation span over 4 light-years of interstellar molecular gas",
-  "body": "Located 6,500 light-years away in the Eagle Nebula, these vast columns of cold hydrogen gas and cosmic dust are massive stellar nurseries. Our entire Solar System, from the Sun past Pluto, could fit inside the fingertip protrusion of the smallest pillar spire.",
-  "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
-  "source": "NASA / James Webb Space Telescope"
-},
-{
-  "id": "cl-013",
-  "category": "celestials",
-  "title": "Rogue planet PSO J318.5-22 wanders through space with clouds of molten iron",
-  "body": "Discovered 80 light-years away, this rogue gas giant orbits no parent star, floating alone in total interstellar darkness. Infrared spectroscopy reveals an 800°C atmosphere battered by hurricane winds carrying glowing vaporized silicate dust and molten iron droplets.",
-  "image": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=800&q=80",
-  "source": "Astrophysical Journal Letters / University of Hawaii"
-},
-{
-  "id": "cl-014",
-  "category": "celestials",
-  "title": "A single teaspoon of neutron star matter weighs as much as Mount Everest",
-  "body": "When massive stars collapse into neutron stars, atomic electron shells collapse directly into protons, packing pure neutrons together at nuclear density. A single sugar-cube volume of this nuclear matter weighs 6 billion tonnes on Earth.",
-  "image": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&q=80",
-  "source": "NASA High-Energy Astrophysics"
-},
-{
-  "id": "cl-015",
-  "category": "celestials",
-  "title": "The Boomerang Nebula is the coldest natural location in the Universe at -272°C",
-  "body": "5,000 light-years away in Centaurus, expanding gas rushing out from a dying central star at 164 km/s creates adiabatic expansion that cools the nebula to 1 Kelvin (-272.15°C)—colder than the 2.7K cosmic microwave background radiation left by the Big Bang.",
-  "image": "https://images.unsplash.com/photo-1447433589675-4aaa569f3e05?w=800&q=80",
-  "source": "Nature Astronomy / ALMA Observatory"
-},
-{
-  "id": "oc-027",
-  "category": "ocean",
-  "title": "Male anglerfish dissolve their own bodies into females as permanent parasitic organs",
-  "body": "In the pitch-black abyss, a miniature male anglerfish bites onto a female and secretes enzymes that melt his mouth and blood vessels into hers. His digestive tract, eyes, and fins atrophy until he becomes a permanent parasitic sperm organ completely sustained by her blood.",
-  "image": "https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?w=800&q=80",
-  "source": "Current Biology"
-},
-{
-  "id": "oc-028",
-  "category": "ocean",
-  "title": "Vampire squids discharge luminous clouds of blue bioluminescent mucus spheres",
-  "body": "Living 900 meters deep where black ink would be useless in the darkness, the vampire squid releases a bioluminescent cloud of glowing blue mucus organs from its arm tips. The dazzling light cloud persists for up to 10 minutes, completely blinding abyssal predators.",
-  "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
-  "source": "Monterey Bay Aquarium Research Institute"
-},
-{
-  "id": "oc-029",
-  "category": "ocean",
-  "title": "The Barreleye fish has a transparent fluid dome head with rotatable glowing eyes",
-  "body": "Macropinna microstoma survives in twilight depths at 800 meters with a clear, liquid-filled cranial shield. Its glowing green cylindrical tubular eyes can rotate upward to spot the silhouettes of prey swimming against surface downwelling light or swivel forward while feeding.",
-  "image": "https://images.unsplash.com/photo-1560275619-4662e36fa65c?w=800&q=80",
-  "source": "MBARI / Current Biology"
-},
-{
-  "id": "oc-030",
-  "category": "ocean",
-  "title": "Hagfish produce micro-fibrous slime that expands 10,000 times in 400 milliseconds",
-  "body": "When bitten by a shark, a hagfish ejects protein threads from slime pores. Within 400 milliseconds of contacting seawater, the mucus expands 10,000 times its original volume, instantly transforming surrounding water into suffocating slime that chokes the shark's gills.",
-  "image": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80",
-  "source": "Current Biology / University of Guelph"
-},
-{
-  "id": "oc-031",
-  "category": "ocean",
-  "title": "Deep-sea glass sponges build silica fiber skeletons that outshine fiber-optic cables",
-  "body": "Living up to 15,000 years in abyssal waters, Hexactinellid glass sponges weave intricate skeletal architectures from pure biosilica glass. Bell Labs researchers demonstrated their natural glass spicules conduct light with flexible fiber-optic efficiency superior to commercial telecom cables.",
-  "image": "https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?w=800&q=80",
-  "source": "Bell Labs / Nature Materials"
-}
 ];

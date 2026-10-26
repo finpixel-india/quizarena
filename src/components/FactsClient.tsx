@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { Card, Container, Label, PageHeader } from "@/components/ui";
 import { cn } from "@/lib/format";
+import { haptic } from "@/lib/haptics";
 import { FACT_CATEGORIES, FACTS, type Fact } from "@/data/facts";
 import { fetchLiveBatch } from "@/data/facts/live";
 
@@ -401,6 +402,7 @@ export default function FactsClient() {
   }, []);
 
   const toggleSave = (id: string) => {
+    haptic("light");
     setSaved((prev) => {
       const next = new Set(prev);
       if (next.has(id)) next.delete(id);
@@ -516,40 +518,71 @@ export default function FactsClient() {
         </div>
       </section>
 
-      {/* ── Collapsible Category Selection Section (Zero glitches, smooth accordion) ── */}
-      <section className="mb-8 rounded-2xl border border-line bg-card/60 backdrop-blur-md overflow-hidden card-shadow">
-        {/* Toggle Bar */}
-        <div className="flex items-center justify-between p-3 sm:p-4">
-          <div className="flex items-center gap-2.5">
-            <span className="text-xl">{activeCategoryObj.emoji}</span>
-            <div>
-              <span className="text-xs font-mono text-subtle uppercase tracking-wider block">Active Realm</span>
-              <span className="text-sm sm:text-base font-bold text-fg">{activeCategoryObj.label}</span>
+      {/* ── Collapsible Category Selection Section (Ultra-smooth accordion) ── */}
+      <section
+        className={cn(
+          "mb-8 rounded-2xl border transition-colors duration-200 overflow-hidden card-shadow",
+          isCategoryExpanded
+            ? "border-brand/60 bg-card shadow-[0_2px_12px_-4px_rgba(249,115,22,0.12)]"
+            : "border-line bg-card hover:border-line-2",
+        )}
+      >
+        {/* Full-width accessible interactive toggle bar */}
+        <button
+          type="button"
+          onClick={() => {
+            haptic("light");
+            setIsCategoryExpanded((prev) => !prev);
+          }}
+          aria-expanded={isCategoryExpanded}
+          className="flex w-full items-center justify-between p-3.5 sm:p-4 text-left select-none cursor-pointer group touch-manipulation hover:bg-fg/[0.02] transition-colors"
+        >
+          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+            <span className="text-xl sm:text-2xl shrink-0 p-1.5 sm:p-2 rounded-xl bg-fg/[0.04] border border-line/40 leading-none">
+              {activeCategoryObj.emoji}
+            </span>
+            <div className="min-w-0">
+              <span className="text-[10px] sm:text-[11px] font-mono text-subtle uppercase tracking-wider block">
+                Active Realm
+              </span>
+              <span className="text-sm sm:text-base font-bold text-fg group-hover:text-brand-ink transition-colors truncate block">
+                {activeCategoryObj.label}
+              </span>
             </div>
           </div>
 
-          <button
-            type="button"
-            onClick={() => setIsCategoryExpanded((prev) => !prev)}
-            className="inline-flex items-center gap-2 rounded-xl border border-line-2 bg-fg/[0.03] px-4 py-2.5 sm:px-3.5 sm:py-2 text-sm sm:text-sm font-semibold text-fg hover:border-brand hover:text-brand-ink transition active:scale-95"
-            aria-expanded={isCategoryExpanded}
-          >
-            <ListFilter className="h-4 w-4 text-brand-ink" />
-            <span>{isCategoryExpanded ? "Close Categories" : "Explore Categories"}</span>
-            <ChevronDown
-              className={cn("h-4 w-4 transition-transform duration-300", isCategoryExpanded && "rotate-180")}
-            />
-          </button>
-        </div>
+          <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+            <span className="hidden xs:inline-flex items-center gap-1.5 text-xs font-semibold text-brand-ink">
+              <ListFilter className="h-3.5 w-3.5" />
+              {isCategoryExpanded ? "Close Categories" : "Explore Categories"}
+            </span>
+            <span
+              className={cn(
+                "inline-flex h-8 w-8 sm:h-8 sm:w-8 items-center justify-center rounded-xl border transition-colors duration-200",
+                isCategoryExpanded
+                  ? "border-brand/40 bg-brand/10 text-brand-ink"
+                  : "border-line bg-card text-subtle group-hover:text-fg group-hover:border-line-2",
+              )}
+            >
+              <ChevronDown
+                className={cn(
+                  "h-4 w-4 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
+                  isCategoryExpanded && "rotate-180",
+                )}
+              />
+            </span>
+          </div>
+        </button>
 
-        {/* Collapsible Panel with CSS Grid Animation (Never clips or glitches) */}
+        {/* Collapsible Panel with CSS Grid Animation (Zero lag, zero clip) */}
         <div
           className={cn(
-            "grid transition-[grid-template-rows] duration-250 ease-[cubic-bezier(0.2,0,0,1)] border-t border-line/40",
+            "grid transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
             isCategoryExpanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
           )}
         >
           <div className="overflow-hidden min-h-0">
+            <div className="h-px w-full bg-line/40" />
             <div className="p-3 sm:p-5 grid gap-2.5 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 bg-fg/[0.01]">
               {FACT_CATEGORIES.map((cat) => {
                 const isSelected = activeCategory === cat.id;
@@ -558,6 +591,7 @@ export default function FactsClient() {
                     key={cat.id}
                     type="button"
                     onClick={() => {
+                      haptic("light");
                       setActiveCategory(cat.id);
                       setIsCategoryExpanded(false);
                     }}
@@ -581,6 +615,7 @@ export default function FactsClient() {
               <button
                 type="button"
                 onClick={() => {
+                  haptic("light");
                   setActiveCategory("saved");
                   setIsCategoryExpanded(false);
                 }}

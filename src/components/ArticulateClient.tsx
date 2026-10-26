@@ -474,6 +474,34 @@ export default function ArticulateClient() {
       window.removeEventListener("resize", check);
     };
   }, [elocutionKey, fontScaleIndex, elocutionType, elocutionDifficulty, currentElocutionItem.text]);
+
+  /* Smart scroll forwarding: ensure scrolling over the text area scrolls the page smoothly when not overflowing or at boundaries */
+  useEffect(() => {
+    const el = elocutionScrollRef.current;
+    if (!el) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      // If content does not overflow, immediately forward the wheel scroll to the page window
+      if (el.scrollHeight <= el.clientHeight) {
+        window.scrollBy({ top: e.deltaY, behavior: "auto" });
+        return;
+      }
+
+      // Check if scroll has reached boundaries
+      const atTop = el.scrollTop <= 1;
+      const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 2;
+
+      // If scrolling up while at top, or scrolling down while at bottom, forward to page window
+      if ((e.deltaY < 0 && atTop) || (e.deltaY > 0 && atBottom)) {
+        window.scrollBy({ top: e.deltaY, behavior: "auto" });
+      }
+    };
+
+    el.addEventListener("wheel", handleWheel, { passive: true });
+    return () => {
+      el.removeEventListener("wheel", handleWheel);
+    };
+  }, [elocutionKey, fontScaleIndex]);
   const stopwatchStartRef = useRef(0);
 
   const resetStopwatch = useCallback(() => {
@@ -1018,7 +1046,10 @@ export default function ArticulateClient() {
         {mode === "elocution" ? (
           <div
             ref={elocutionScrollRef}
-            className="w-full max-h-[46vh] xs:max-h-[50vh] sm:max-h-[60vh] md:max-h-[66vh] overflow-y-auto overscroll-contain py-2 px-1 sm:px-3 animate-fade-in touch-pan-y [webkit-overflow-scrolling:touch]"
+            className={cn(
+              "w-full max-h-[46vh] xs:max-h-[50vh] sm:max-h-[60vh] md:max-h-[66vh] py-2 px-1 sm:px-3 animate-fade-in touch-pan-y [webkit-overflow-scrolling:touch]",
+              isOverflowing ? "overflow-y-auto" : "overflow-y-hidden"
+            )}
           >
             <div
               className={cn(

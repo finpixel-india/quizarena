@@ -82,7 +82,7 @@ export function CollapsibleSection({
           >
             <ChevronDown
               className={cn(
-                "h-4.5 w-4.5 sm:h-4 sm:w-4 transition-transform duration-250 ease-[cubic-bezier(0.2,0,0,1)]",
+                "h-4.5 w-4.5 sm:h-4 sm:w-4 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
                 isOpen && "rotate-180",
               )}
             />
@@ -92,13 +92,18 @@ export function CollapsibleSection({
 
       <div
         className={cn(
-          "grid transition-[grid-template-rows] duration-250 ease-[cubic-bezier(0.2,0,0,1)]",
+          "grid transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-[grid-template-rows]",
           isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
         )}
       >
         <div className="overflow-hidden min-h-0">
           <div className="h-px w-full bg-line/40" />
-          <div className="p-3.5 sm:p-4 bg-fg/[0.015]">
+          <div
+            className={cn(
+              "p-3.5 sm:p-4 bg-fg/[0.015] transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
+              isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1.5 pointer-events-none"
+            )}
+          >
             {children}
           </div>
         </div>

@@ -607,7 +607,7 @@ export default function FactsClient() {
             </button>
           </div>
         ) : (
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr [contain:layout]">
             {visibleFacts.map((fact, i) => (
               <div key={fact.id} className="h-full">
                 <FactCard

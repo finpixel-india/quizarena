@@ -37,6 +37,8 @@ export interface ChapterNote {
   sections: NoteSection[];
   keyTerms: KeyTerm[];
   examTips: string[];
+  /** High-yield rapid revision bullet points / cheat sheet. */
+  summaryPoints?: string[];
 }
 
 export interface DiagramEntry {

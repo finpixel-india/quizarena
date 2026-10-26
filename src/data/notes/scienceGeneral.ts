@@ -102,6 +102,13 @@ export const notesGeneralScience: ChapterNote[] = [
       { term: "Pernicious Anemia", meaning: "A severe form of anemia caused by inability to absorb Vitamin B₁₂ due to lack of stomach intrinsic factor." },
       { term: "Goitre", meaning: "Abnormal enlargement of the thyroid gland visible as a swelling at the front of the neck due to dietary iodine deficiency." }
     ],
+        summaryPoints: [
+      "Vitamins K, E, D, A are fat-soluble (stored in liver/fat); B-complex and C are water-soluble (excreted daily).",
+      "Vitamin A (Retinol) deficiency causes Night Blindness; Vitamin C (Ascorbic acid) causes Scurvy; Vitamin D causes Rickets.",
+      "Vitamin B₁₂ is the only vitamin containing a metal (Cobalt); found only in animal/dairy foods.",
+      "Iron is the core of Hemoglobin; Calcium mineralizes bones and teeth; Iodine synthesizes thyroid hormones.",
+      "Amla is the richest natural source of Vitamin C (20× more than an orange); destroyed by cooking heat."
+    ],
     examTips: [
       "Vitamin B₁₂ is the only vitamin that contains a metal atom (Cobalt).",
       "Vitamin C (Ascorbic acid) is completely destroyed by heating and boiling.",
@@ -193,6 +200,13 @@ export const notesGeneralScience: ChapterNote[] = [
       { term: "Vector", meaning: "An intermediate organism (such as a mosquito, tick, or sandfly) that transmits an infectious disease from one host to another." },
       { term: "BCG Vaccine", meaning: "Bacille Calmette-Guérin, the standard infant vaccine administered to provide immunity against tuberculosis." },
       { term: "Oral Rehydration Salts (ORS)", meaning: "A balanced mixture of glucose and mineral electrolytes in clean water that prevents fatal dehydration from cholera and diarrhea." }
+    ],
+        summaryPoints: [
+      "Bacteria can be killed by antibiotics; viruses replicate inside host cells and are unaffected by antibiotics.",
+      "Tuberculosis is caused by Mycobacterium tuberculosis (prevented by BCG vaccine; diagnosed by Mantoux test).",
+      "Typhoid is caused by Salmonella typhi and diagnosed by the Widal Test; Cholera causes severe rice-water diarrhea.",
+      "Rabies (Hydrophobia) is caused by a bullet-shaped lyssavirus; Dengue is spread by daytime-biting Aedes mosquitoes.",
+      "Malaria is caused by Plasmodium protozoa (transmitted by night-biting female Anopheles mosquitoes)."
     ],
     examTips: [
       "The causative agent of Malaria is a protozoan (Plasmodium), NOT a bacterium or virus.",
@@ -304,6 +318,13 @@ export const notesGeneralScience: ChapterNote[] = [
       { term: "Aqua Regia", meaning: "A fresh fuming 3:1 mixture of concentrated Hydrochloric acid and Nitric acid capable of dissolving noble metals like gold and platinum." },
       { term: "Sublimation", meaning: "The direct transition of a substance from solid to gas without passing through the intermediate liquid phase (e.g. Dry Ice, Camphor, Iodine)." },
       { term: "Indicator", meaning: "A chemical dye (like litmus, phenolphthalein, or turmeric) that changes color in acidic and basic solutions." }
+    ],
+        summaryPoints: [
+      "pH scale runs from 0 to 14 (Sørensen, 1909); blood is strictly 7.35–7.45; stomach acid is 1.2–2.0 (HCl).",
+      "Tooth enamel begins dissolving when oral mouth pH falls below 5.5.",
+      "Baking soda is NaHCO₃; Washing soda is Na₂CO₃ · 10H₂O; Bleaching powder is CaOCl₂.",
+      "Plaster of Paris is CaSO₄ · ½H₂O (made by heating Gypsum CaSO₄ · 2H₂O to 373 K).",
+      "Ant stings inject Formic acid (neutralize with baking soda); Tamarind contains Tartaric acid; Vinegar is 5–8% Acetic acid."
     ],
     examTips: [
       "Phenolphthalein indicator is colorless in acid and turns bright pink/magenta in base.",
@@ -420,6 +441,13 @@ export const notesGeneralScience: ChapterNote[] = [
       { term: "Doppler Effect", meaning: "The apparent shift in observed wave frequency caused by relative motion between the source and observer (e.g. pitch of approaching siren)." },
       { term: "Tyndall Effect", meaning: "The visible scattering of a light beam by colloidal particles in a fine suspension (e.g. sunlight through dusty air)." }
     ],
+        summaryPoints: [
+      "Barometer measures atmospheric pressure (Torricelli); Sphygmomanometer measures blood pressure (120/80 mmHg).",
+      "Lactometer tests milk purity via buoyancy; Pyrometer measures extreme temperatures (>1,500°C) without contact.",
+      "1 Horsepower = 746 Watts; 1 atmospheric pressure = 101,325 Pascals = 760 mmHg.",
+      "Ammeter connects in series (low resistance); Voltmeter connects in parallel (high resistance).",
+      "Pascal's law powers hydraulic brakes; Bernoulli's principle explains airplane wing lift; Newton's 3rd law powers rockets."
+    ],
     examTips: [
       "1 Horsepower (hp) is exactly 746 Watts.",
       "Acceleration due to gravity (g) is maximum at the Poles and minimum at the Equator.",
@@ -522,6 +550,13 @@ export const notesGeneralScience: ChapterNote[] = [
       { term: "Insulin", meaning: "The pancreatic beta-cell hormone that facilitates glucose uptake into cells, keeping blood sugar within normal limits." },
       { term: "Spleen", meaning: "The lymphoid organ adjacent to the stomach that filters blood, stores platelets, and recycles old red blood cells." }
     ],
+        summaryPoints: [
+      "Universal Blood Donor = O Negative (O−); Universal Blood Recipient = AB Positive (AB+).",
+      "Red blood cells live ~120 days and are recycled in the Spleen ('Graveyard of RBCs').",
+      "Stapes in the middle ear is the smallest bone (~3 mm); Femur in the thigh is the longest and strongest (~48 cm).",
+      "Tooth enamel (96% mineral hydroxyapatite) is the hardest substance in the human body.",
+      "Pancreatic Beta cells secrete Insulin to lower blood sugar; Alpha cells secrete Glucagon to raise blood sugar."
+    ],
     examTips: [
       "Universal Donor = O Negative (O−). Universal Recipient = AB Positive (AB+).",
       "Corneal transplants succeed without immunosuppressive drugs because the cornea is completely avascular (has no blood vessels).",
@@ -599,6 +634,13 @@ export const notesGeneralScience: ChapterNote[] = [
       { term: "Total Internal Reflection", meaning: "When light travelling from a denser to rarer medium strikes at an angle greater than the critical angle, completely reflecting back like a mirror." },
       { term: "Anomalous Expansion", meaning: "The unique property of water expanding as it cools from 4°C to 0°C, making solid ice lighter and buoyant on liquid water." },
       { term: "Penicillin", meaning: "The first antibiotic discovered from mold by Sir Alexander Fleming in 1928 that revolutionized modern medicine." }
+    ],
+        summaryPoints: [
+      "The sky is blue due to Rayleigh scattering (short blue wavelengths scatter 10× more than red).",
+      "Sunsets and danger lights are red because red has the longest wavelength and scatters least through fog/dust.",
+      "Stars twinkle due to atmospheric refraction; planets don't twinkle because their disc fluctuations average out.",
+      "Water reaches maximum density at 4°C (anomalous expansion), making ice float and saving fish in winter.",
+      "Alexander Fleming discovered Penicillin (1928); Edward Jenner created the first smallpox vaccine (1796)."
     ],
     examTips: [
       "Danger signals are red because red light has the longest visible wavelength and scatters least in fog and smoke.",
@@ -678,6 +720,13 @@ export const notesGeneralScience: ChapterNote[] = [
       { term: "Shiv Shakti Point", meaning: "The official name given to the landing site of ISRO's Chandrayaan-3 Vikram lander on the lunar South Pole." },
       { term: "Event Horizon", meaning: "The gravitational boundary of a Black Hole beyond which nothing, including light, can escape." },
       { term: "Tidal Locking", meaning: "When a moon's rotational period matches its orbital period, causing the same face to perpetually point toward the planet (e.g. Earth's Moon)." }
+    ],
+        summaryPoints: [
+      "Venus is the hottest planet in the Solar System (~465°C) due to runaway CO₂ greenhouse effect; rotates East to West.",
+      "Saturn has the lowest density (0.687 g/cm³) and would float in a giant ocean of water.",
+      "Ganymede (Jupiter) is the largest moon in the Solar System (larger than Mercury) with its own magnetic field.",
+      "Chandrayaan-3 made India the 1st nation to land near the lunar South Pole (Aug 23 National Space Day; Shiv Shakti Point).",
+      "Aditya-L1 is stationed at Lagrange Point 1 (~1.5 million km from Earth) to observe solar flares and corona 24/7."
     ],
     examTips: [
       "August 23 is celebrated as National Space Day in India to commemorate Chandrayaan-3's lunar landing.",
@@ -782,6 +831,13 @@ export const notesGeneralScience: ChapterNote[] = [
       { term: "Galvanization", meaning: "The process of applying a protective sacrificial Zinc coating to iron or steel to prevent atmospheric rusting." },
       { term: "Vulcanization", meaning: "The chemical process of heating natural latex rubber with sulfur to cross-link polymer chains and enhance durability." },
       { term: "Thermosetting Plastic", meaning: "A polymer (such as Bakelite) that cross-links irreversibly upon heating and cannot be softened or remolded again." }
+    ],
+        summaryPoints: [
+      "Brass is Copper + Zinc; Bronze is Copper + Tin; German Silver contains ZERO silver (Cu + Zn + Ni).",
+      "Stainless steel resists rust due to a self-healing Chromium oxide (Cr₂O₃) passive layer.",
+      "Bauxite is the primary ore of Aluminium; Cinnabar (HgS) is the ore of Mercury; Monazite sand yields Thorium.",
+      "Teflon (PTFE) is frictionless and non-stick; Bakelite is a thermoset plastic that never melts on reheating.",
+      "Gold is the most malleable metal (1 g draws a 2 km wire); Silver is the best conductor of electricity."
     ],
     examTips: [
       "Gold is the most malleable and ductile metal known (1 g can make a 2 km wire).",

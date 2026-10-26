@@ -15,6 +15,14 @@ export const notes10: ChapterNote[] = [
     "unit": "Unit 1 · Chemical Substances",
     "overview": "A chemical reaction involves breaking old chemical bonds and forming new ones to produce substances with entirely distinct chemical and physical properties. This chapter covers writing balanced chemical equations, stoichiometry, classifications of reactions (combination, decomposition, displacement, double displacement, redox), and everyday oxidative degradation (corrosion and rancidity).",
     "diagram": "reaction-types",
+    
+    summaryPoints: [
+      "Chemical reactions involve breaking old bonds and forming new substances with distinct identities.",
+      "Balanced equations obey the Law of Conservation of Mass (atoms of each element are equal on both sides).",
+      "Reaction types: Combination (A+B→AB), Decomposition (heat/light/electricity), Displacement, Double Displacement.",
+      "Precipitation reactions form an insoluble solid (e.g. BaSO₄ white precipitate from Na₂SO₄ + BaCl₂).",
+      "Oxidation is gain of oxygen/loss of electrons; Reduction is loss of oxygen/gain of electrons. Corrosion and rancidity are everyday oxidation."
+],
     "sections": [
       {
         "title": "Chemical Reactions: Observable Indicators & Word Equations",
@@ -224,6 +232,14 @@ export const notes10: ChapterNote[] = [
     "unit": "Unit 1 · Chemical Substances",
     "overview": "Acids and bases are chemical opposites whose interactions define aqueous chemistry. This chapter investigates natural and synthetic indicators, chemical properties of acids and bases, the logarithmic pH scale, universal indicators, acid-base physiology, and industrial synthesis of major sodium salts (chlor-alkali process, bleaching powder, baking soda, washing soda, and plaster of Paris).",
     "diagram": "ph-scale",
+    
+    summaryPoints: [
+      "Acids yield H⁺ (H₃O⁺) in water (pH < 7, sour, blue litmus to red); Bases yield OH⁻ (pH > 7, bitter, red litmus to blue).",
+      "Acid + Metal → Salt + H₂↑ (burns with a pop sound); Acid + Base → Salt + H₂O (Neutralisation).",
+      "pH < 5.6 is acid rain; mouth pH < 5.5 triggers tooth decay (dissolves calcium hydroxyapatite enamel).",
+      "Salts: Bleaching powder (CaOCl₂), Baking soda (NaHCO₃), Washing soda (Na₂CO₃·10H₂O), Plaster of Paris (CaSO₄·½H₂O).",
+      "Ant stings inject Methanoic acid (neutralized by mild base like baking soda); Curd contains Lactic acid."
+],
     "sections": [
       {
         "title": "Indicators: Natural, Synthetic & Olfactory",
@@ -427,6 +443,14 @@ export const notes10: ChapterNote[] = [
     "unit": "Unit 1 · Chemical Substances",
     "overview": "Metals and non-metals form the structural foundation of chemistry. This chapter investigates physical properties and notable anomalies, chemical reactivity with oxygen, water, and acids, the reactivity series, electrovalent (ionic) bond mechanisms, metallurgy (ore extraction, roasting, calcination, thermite process, electrolytic refining), and corrosion prevention through alloying and galvanisation.",
     "diagram": "reactivity-series",
+    
+    summaryPoints: [
+      "Metals are malleable, ductile, sonorous, lustrous and good conductors (Silver is best, followed by Copper).",
+      "Mercury is the only liquid metal at room temp; Bromine is the only liquid non-metal.",
+      "Metals react with oxygen to form basic/amphoteric oxides (Al₂O₃, ZnO react with both acids and bases).",
+      "Reactivity series: K > Na > Ca > Mg > Al > Zn > Fe > Pb > [H] > Cu > Hg > Ag > Au.",
+      "Alloys: Brass (Cu+Zn), Bronze (Cu+Sn), Solder (Pb+Sn), Stainless Steel (Fe+Cr+Ni). Rusting needs both O₂ and H₂O."
+],
     "sections": [
       {
         "title": "Physical Properties & Critical Anomalous Exceptions",
@@ -588,6 +612,14 @@ export const notes10: ChapterNote[] = [
     "unit": "Unit 1 · Chemical Substances",
     "overview": "Carbon forms the chemical backbone of all terrestrial organic life and petrochemicals. This chapter explores covalent bonding, carbon's tetravalency and catenation, allotropes (diamond, graphite, fullerenes), nomenclature and isomerism of hydrocarbons, functional groups, chemical properties (combustion, oxidation, addition, substitution), ethanol, ethanoic acid, and the micellar cleaning mechanics of soaps and detergents.",
     "diagram": "carbon-bonds",
+    
+    summaryPoints: [
+      "Carbon forms covalent bonds (tetravalency & catenation) leading to millions of organic compounds.",
+      "Allotropes of carbon: Diamond (sp³, hardest natural substance), Graphite (sp², conducts electricity), Fullerene (C₆₀).",
+      "Hydrocarbons: Alkanes (CnH2n+2, single bonds), Alkenes (CnH2n, double bond), Alkynes (CnH2n-2, triple bond).",
+      "Functional groups: Alcohol (-OH), Aldehyde (-CHO), Ketone (>C=O), Carboxylic acid (-COOH).",
+      "Soaps are sodium/potassium salts of long-chain fatty acids; clean grease via hydrophobic-tail micelle formation."
+],
     "sections": [
       {
         "title": "Covalent Bonding & Carbon's Unique Versatility",
@@ -744,6 +776,14 @@ export const notes10: ChapterNote[] = [
     "unit": "Unit 2 · World of Living",
     "overview": "Life processes are the essential physiological maintenance functions required to sustain an organism's life and avert molecular breakdown. This chapter provides exhaustive, rigorous coverage of autotrophic and heterotrophic nutrition, human digestive mechanics, aerobic and anaerobic respiration pathways, the human respiratory system, cardiovascular double circulation, plant vascular transport (xylem and phloem), and nephron ultrafiltration in the excretory system.",
     "diagram": "human-heart",
+    
+    summaryPoints: [
+      "Autotrophic nutrition: Photosynthesis converts CO₂ + H₂O + sunlight into glucose and O₂ inside chloroplasts.",
+      "Respiration: Glucose breaks down into pyruvate (cytoplasm); aerobic produces 36–38 ATP in mitochondria; anaerobic produces lactic acid in muscle.",
+      "Human heart has 4 chambers; SA Node is natural pacemaker; deoxygenated blood goes to lungs via pulmonary artery.",
+      "Xylem transports water and minerals unidirectionally; Phloem translocates sucrose bidirectional using ATP.",
+      "Excretion: Kidneys filter blood via ~1 million Nephrons; removes urea and maintains osmoregulation."
+],
     "sections": [
       {
         "title": "Criteria of Living & Modes of Nutrition (Autotrophic & Heterotrophic)",
@@ -914,6 +954,14 @@ export const notes10: ChapterNote[] = [
     "unit": "Unit 2 · World of Living",
     "overview": "Living organisms coordinate rapid responses to environmental stimuli through integrated neural and chemical endocrine mechanisms. This chapter covers the anatomy of a neuron and synaptic transmission, the rapid reflex arc, structural divisions of the human brain (forebrain, midbrain, hindbrain) and spinal cord protection, plant phytohormones (auxins, gibberellins, cytokinins, abscisic acid), plant tropisms, nastic movements, and endocrine glands with hormone feedback loops.",
     "diagram": "reflex-arc",
+    
+    summaryPoints: [
+      "Neurons are functional units of nervous system: Dendrite → Cell body → Axon → Synapse (chemical neurotransmitters).",
+      "Reflex arcs are involuntary rapid actions governed directly by the Spinal Cord.",
+      "Brain: Forebrain (thinking, sensory cerebrum), Midbrain (involuntary reflexes), Hindbrain (cerebellum balance, medulla vitals).",
+      "Plant hormones: Auxin (growth/phototropism), Gibberellins (stem elongation), Cytokinins (cell division), Abscisic acid (wilting).",
+      "Endocrine: Insulin lowers blood sugar (Pancreas Beta cells); Thyroxine regulates BMR (Thyroid, needs Iodine); Adrenaline is fight-or-flight."
+],
     "sections": [
       {
         "title": "Nervous System Architecture: Neurons, Impulse Conduction & Synapses",
@@ -1060,6 +1108,14 @@ export const notes10: ChapterNote[] = [
     "unit": "Unit 2 · World of Living",
     "overview": "Reproduction ensures the continuity of species and the introduction of genetic variation essential for evolutionary adaptability. This chapter covers DNA replication accuracy, asexual reproduction modes (fission, fragmentation, regeneration, budding, vegetative propagation, spore formation), sexual reproduction in angiosperms (flower morphology, pollination, double fertilisation, seed development), human reproductive anatomy, gametogenesis, menstrual cycle, embryonic placenta, and contraceptive methods.",
     "diagram": "flower-parts",
+    
+    summaryPoints: [
+      "Asexual reproduction: Binary fission (Amoeba), Budding (Yeast, Hydra), Regeneration (Planaria), Spore formation (Rhizopus).",
+      "Flower parts: Stamen (anther + filament, male) and Carpel (stigma + style + ovary, female).",
+      "Pollination: Transfer of pollen from anther to stigma (self or cross by wind/insects); ovary matures into fruit, ovule into seed.",
+      "Human male: Testes in scrotum produce sperm and testosterone; Vas deferens carries sperm.",
+      "Human female: Ovaries produce eggs and estrogen/progesterone; fertilization occurs in Fallopian tube; embryo implants in uterus."
+],
     "sections": [
       {
         "title": "DNA Replication, Genetic Variation & Importance of Reproduction",
@@ -1211,6 +1267,14 @@ export const notes10: ChapterNote[] = [
     "unit": "Unit 2 · World of Living",
     "overview": "Heredity is the biological transmission of physical and physiological traits from parents to offspring. This chapter explores Gregor Mendel's seminal experiments with the garden pea, dominant vs recessive alleles, monohybrid and dihybrid genetic crosses, phenotypic and genotypic segregation ratios, the molecular mechanism of gene expression, and human chromosomal sex determination.",
     "diagram": "monohybrid-cross",
+    
+    summaryPoints: [
+      "Gregor Johann Mendel: Father of Genetics; used garden pea (Pisum sativum) with 7 pairs of contrasting traits.",
+      "Monohybrid cross phenotypic ratio is 3:1 (genotypic 1:2:1); Dihybrid phenotypic ratio is 9:3:3:1.",
+      "Law of Segregation: Alleles separate during gamete formation so each gamete carries one allele.",
+      "Sex determination in humans: XX is female, XY is male; biological sex is determined entirely by father's sperm (X or Y).",
+      "Genes are functional segments of DNA located on chromosomes that code for specific proteins."
+],
     "sections": [
       {
         "title": "Heredity, Inherited Traits & Gregor Mendel's Experiments",
@@ -1398,6 +1462,14 @@ export const notes10: ChapterNote[] = [
     "unit": "Unit 3 · Natural Phenomena",
     "overview": "Light is an electromagnetic radiation enabling vision through interactions with matter. This chapter covers the fundamental laws of reflection and refraction, ray trace analysis for spherical mirrors (concave and convex), the New Cartesian Sign Convention, mirror formula, magnification, Snell's law of refraction, absolute and relative refractive indices, lateral displacement, lens formula, power of lenses, and image formation algorithms.",
     "diagram": "mirror-lens-ray",
+    
+    summaryPoints: [
+      "Laws of Reflection: Angle of incidence equals angle of reflection (∠i = ∠r); incident ray, reflected ray and normal lie in same plane.",
+      "Mirror formula: 1/f = 1/v + 1/u; Magnification m = -v/u = h'/h (concave mirror converges, convex mirror diverges).",
+      "Snell's Law of Refraction: sin i / sin r = constant = n₂/n₁ (refractive index).",
+      "Lens formula: 1/f = 1/v - 1/u; Magnification m = v/u = h'/h (convex lens converges, concave lens diverges).",
+      "Power of lens P = 1/f (in metres), measured in Dioptres (D). Convex lens has +P; Concave lens has -P."
+],
     "sections": [
       {
         "title": "Laws of Reflection & Spherical Mirror Terminology",
@@ -1570,6 +1642,14 @@ export const notes10: ChapterNote[] = [
     "unit": "Unit 3 · Natural Phenomena",
     "overview": "The human eye is an extraordinary optical organ functioning as a variable-focal-length camera. This chapter covers the anatomical optics of the eye, power of accommodation, optical vision defects (myopia, hypermetropia, presbyopia, cataract) and their corrective lens mechanics, refraction through glass prisms, dispersion of white light, rainbow formation, atmospheric refraction (twinkling of stars, early sunrise), and the Tyndall scattering effect.",
     "diagram": "human-eye",
+    
+    summaryPoints: [
+      "Eye anatomy: Cornea (refracts light), Iris (controls pupil size), Ciliary muscles (adjust lens accommodation), Retina (photoreceptor screen).",
+      "Myopia (near-sightedness): Image falls before retina; corrected with concave lens (negative power).",
+      "Hypermetropia (far-sightedness): Image falls behind retina; corrected with convex lens (positive power).",
+      "Presbyopia: Aging ciliary muscles lose elasticity; corrected with bifocal lenses.",
+      "Atmospheric phenomena: Blue sky due to Rayleigh scattering; rainbow due to dispersion + TIR in raindrops; twinkling of stars due to refraction."
+],
     "sections": [
       {
         "title": "Anatomy and Optical Function of the Human Eye",
@@ -1742,6 +1822,14 @@ export const notes10: ChapterNote[] = [
     "unit": "Unit 4 · Effects of Current",
     "overview": "Electricity is the technological cornerstone of modern civilization. This chapter covers electric charge, current, potential difference, Ohm's law, electrical resistance and factors governing resistivity, resistors in series and parallel networks, Joule's heating effect and its domestic appliances, electric power, and commercial kilowatt-hour billing calculations.",
     "diagram": "electric-circuit",
+    
+    summaryPoints: [
+      "Electric Current I = Q/t (measured in Amperes); Potential difference V = W/Q (measured in Volts).",
+      "Ohm's Law: V = IR at constant temperature; Resistance R = ρ(L/A), where ρ is resistivity.",
+      "Series circuit: R_total = R₁ + R₂ + R₃ (same current through all resistors).",
+      "Parallel circuit: 1/R_total = 1/R₁ + 1/R₂ + 1/R₃ (same voltage across all branches).",
+      "Joule's Heating Law: H = I²Rt; Electric Power P = VI = I²R = V²/R; 1 commercial unit (kWh) = 3.6 × 10⁶ Joules."
+],
     "sections": [
       {
         "title": "Electric Charge, Electric Current & Circuit Fundamentals",
@@ -1928,6 +2016,14 @@ export const notes10: ChapterNote[] = [
     "unit": "Unit 4 · Effects of Current",
     "overview": "Electricity and magnetism are intrinsically coupled physical phenomena. This chapter covers magnetic fields and continuous field lines, Hans Christian Oersted's discovery, right-hand thumb rule, magnetic fields around straight wires, circular coils, and solenoids, electromagnetism, Lorentz force on a current-carrying conductor, Fleming's left-hand rule, and domestic AC circuits with earthing safety.",
     "diagram": "magnetic-field-wire",
+    
+    summaryPoints: [
+      "Magnetic field lines emerge from North pole and enter South pole outside a magnet; lines never cross each other.",
+      "Right-Hand Thumb Rule: Thumb in current direction, curled fingers show magnetic field circles.",
+      "Solenoid: Helical insulated copper coil behaves like a bar magnet; placing soft iron inside makes an electromagnet.",
+      "Fleming's Left-Hand Rule (Electric Motors): Thumb = Force/Motion, Forefinger = Magnetic Field, Center finger = Current.",
+      "Electromagnetic Induction (Faraday): Moving magnet in coil induces electric current (Fleming's Right-Hand Rule)."
+],
     "sections": [
       {
         "title": "Magnetic Field, Field Lines & Oersted's Discovery",
@@ -2095,6 +2191,14 @@ export const notes10: ChapterNote[] = [
     "unit": "Unit 5 · Natural Resources",
     "overview": "The biosphere is a fragile web of ecological interdependencies. This chapter covers ecosystems (biotic and abiotic components), food chains and food webs, trophic levels, Lindeman's 10% law of unidirectional energy transfer, biological magnification of toxic pesticides, stratospheric ozone formation and CFC-induced depletion, and solid waste management (biodegradable vs non-biodegradable wastes).",
     "diagram": "food-chain",
+    
+    summaryPoints: [
+      "Ecosystem consists of biotic (living plants, animals, decomposers) and abiotic (soil, water, air, temp) components.",
+      "10% Law of Energy Transfer (Lindeman): Only ~10% of chemical energy transfers to next trophic level; 90% lost as heat/metabolism.",
+      "Biological Biomagnification: Non-biodegradable toxins (like pesticides/DDT) accumulate in increasing concentration at higher trophic levels.",
+      "Ozone layer (O₃) in stratosphere absorbs harmful solar UV radiation; depleted by chlorofluorocarbons (CFCs).",
+      "Waste management: Biodegradable (organic waste broken by decomposers) vs Non-biodegradable (plastics, glass, metals)."
+],
     "sections": [
       {
         "title": "Ecosystem Architecture: Biotic & Abiotic Components",

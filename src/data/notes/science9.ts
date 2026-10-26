@@ -14,6 +14,14 @@ export const notes9: ChapterNote[] = [
     "unit": "Unit 1 · Matter — Its Nature and Behaviour",
     "overview": "Matter constitutes everything that possesses mass and occupies physical space. This chapter investigates particulate nature, characteristics of particles (continuous motion, intermolecular spaces, forces of attraction), the three fundamental states of matter (solids, liquids, gases), phase transitions, latent heat of fusion and vaporisation, temperature scales, sublimation, deposition, evaporation mechanisms, and evaporative cooling applications.",
     "diagram": "states-of-matter",
+    
+    summaryPoints: [
+      "Matter has mass and volume. Particles are tiny, have intermolecular spaces, attract each other, and diffuse faster at higher temp.",
+      "Solids have definite shape and volume; liquids have fixed volume but take container shape; gases have neither and are highly compressible.",
+      "Ice floats on water because its hexagonal open cage crystal structure has lower density than liquid water at 0°C to 4°C.",
+      "Latent heat of fusion melts solid without temperature rise; Latent heat of vaporization turns boiling liquid to gas.",
+      "Evaporation is a surface phenomenon occurring below boiling point; causes cooling due to absorption of latent heat (perspiration, earthen pots)."
+],
     "sections": [
       {
         "title": "Particulate Nature & Fundamental Properties of Matter",
@@ -177,6 +185,14 @@ export const notes9: ChapterNote[] = [
     "unit": "Unit 1 · Matter — Its Nature and Behaviour",
     "overview": "Pure substances in chemistry possess invariant chemical composition and uniform properties throughout. This chapter covers the classification of matter into pure substances (elements, compounds) and mixtures (homogeneous, heterogeneous), true solutions, suspensions, colloids, the Tyndall effect, concentration calculations (mass percentage, mass by volume percentage), and physical versus chemical changes.",
     "diagram": "mixtures-classification",
+    
+    summaryPoints: [
+      "Pure substances consist of a single type of particle (Elements or Compounds); Mixtures contain two or more substances in any ratio.",
+      "Solutions are homogeneous mixtures with solute particles < 1 nm (do not scatter light, pass through filter paper).",
+      "Colloids (1–1000 nm) exhibit the Tyndall Effect (scatter visible light beams); Suspensions (> 1000 nm) are heterogeneous and settle down.",
+      "Physical change alters state/appearance without altering chemical composition; Chemical change creates new substances with distinct bonds.",
+      "Separation techniques: Evaporation (salt from water), Sublimation (camphor), Centrifugation (cream from milk), Chromatography (ink dyes)."
+],
     "sections": [
       {
         "title": "Pure Substances vs Mixtures (Homogeneous & Heterogeneous)",
@@ -344,6 +360,14 @@ export const notes9: ChapterNote[] = [
     "unit": "Unit 1 · Matter — Its Nature and Behaviour",
     "overview": "Atoms and molecules are the structural building blocks of all chemical matter. This chapter covers the historical development of atomic theory (Maharishi Kanad, Dalton), the foundational laws of chemical combination (conservation of mass, constant proportions), atomic mass unit, IUPAC symbols, molecules of elements and compounds, ions, valency, the criss-cross method of chemical formula derivation, and molecular/formula unit mass calculations.",
     "diagram": "atom-molecule",
+    
+    summaryPoints: [
+      "Law of Conservation of Mass (Lavoisier): Mass is neither created nor destroyed in a chemical reaction.",
+      "Law of Constant Proportions (Proust): In a chemical substance, elements are always present in definite proportions by mass (H:O in H₂O is 1:8).",
+      "John Dalton proposed the Atomic Theory: All matter is composed of indivisible atoms that combine in simple whole-number ratios.",
+      "Mole concept: 1 mole of any substance = 6.022 × 10²³ particles (Avogadro number NA) = Gram Atomic/Molecular Mass.",
+      "Chemical formula writing requires cross-multiplying valencies of constituent ions/radicals (Criss-Cross rule)."
+],
     "sections": [
       {
         "title": "Laws of Chemical Combination (Mass Conservation & Constant Proportions)",
@@ -484,6 +508,14 @@ export const notes9: ChapterNote[] = [
     "unit": "Unit 1 · Matter — Its Nature and Behaviour",
     "overview": "The atom is not indivisible but consists of subatomic particles. This chapter covers the discovery of the electron, proton, and neutron, Thomson's plum pudding model, Rutherford's alpha-particle scattering experiment and nuclear model, Bohr's discrete energy level model, the Bohr-Bury electron distribution scheme, valency, atomic number, mass number, isotopes, and isobars.",
     "diagram": "bohr-atom",
+    
+    summaryPoints: [
+      "J.J. Thomson discovered the electron (e/m ratio) and proposed the plum pudding atomic model.",
+      "Ernest Rutherford's alpha-scattering gold foil experiment proved atoms have a dense, positively charged nucleus at the center.",
+      "Niels Bohr proposed discrete stationary electron orbits (shells K, L, M, N) where electrons do not radiate energy.",
+      "James Chadwick discovered the neutral neutron in 1932; Mass number A = Protons (Z) + Neutrons (n).",
+      "Isotopes have same atomic number but different mass numbers (¹H, ²H, ³H); Isobars have same mass number but different atomic numbers (⁴⁰Ar and ⁴⁰Ca)."
+],
     "sections": [
       {
         "title": "Subatomic Particles: Electron, Proton & Neutron",
@@ -619,6 +651,14 @@ export const notes9: ChapterNote[] = [
     "unit": "Unit 2 · Organisation in the Living World",
     "overview": "The cell is the structural, functional, and hereditary unit of all biological organisms. This chapter covers the history of cell discovery, Schleiden-Schwann-Virchow cell theory, prokaryotic versus eukaryotic architecture, plasma membrane dynamics, osmosis and tonicity (hypotonic, isotonic, hypertonic), cell wall plasmolysis, nucleus, chromatin and chromosomes, cell organelles (endoplasmic reticulum, Golgi apparatus, lysosomes, mitochondria, plastids, vacuoles), and cell division (mitosis vs meiosis).",
     "diagram": "plant-cell",
+    
+    summaryPoints: [
+      "Robert Hooke discovered the cell in cork (1665); Leeuwenhoek observed living bacteria (1674); Cell theory by Schleiden, Schwann, and Virchow.",
+      "Plasma membrane is a flexible phospholipid bilayer that is selectively permeable; Osmosis is diffusion of water across it.",
+      "Prokaryotic cells lack membrane-bound nucleus and organelles; Eukaryotic cells possess true nucleus and complex organelles.",
+      "Mitochondria is the 'Powerhouse of the Cell' (synthesizes ATP); Ribosomes synthesize proteins; Lysosomes are 'Suicide Bags'.",
+      "Plant cells possess a rigid cellulose cell wall, large central vacuole, and plastids (chloroplasts for photosynthesis), absent in animal cells."
+],
     "sections": [
       {
         "title": "Historical Milestones & The Cell Theory",
@@ -810,6 +850,14 @@ export const notes9: ChapterNote[] = [
     "unit": "Unit 2 · Organisation in the Living World",
     "overview": "Tissues represent structural division of labour in multicellular organisms. This chapter covers plant tissues (meristematic: apical, lateral, intercalary; simple permanent: parenchyma, collenchyma, sclerenchyma, protective epidermis with cutin/suberin; complex permanent vascular tissues: xylem and phloem) and animal tissues (epithelial, connective: blood, bone, ligament, tendon, cartilage, areolar, adipose; muscular: striated, smooth, cardiac; and nervous tissue: neuron).",
     "diagram": "neuron",
+    
+    summaryPoints: [
+      "Meristematic plant tissues (apical, intercalary, lateral) actively divide; Lateral meristem (cambium) increases girth of stem.",
+      "Permanent plant tissues: Simple (Parenchyma for storage, Collenchyma for flexibility, Sclerenchyma for hardness like coconut husk).",
+      "Complex plant tissues: Xylem (tracheids, vessels, xylem parenchyma, fibres) transports water; Phloem transports food.",
+      "Epithelial animal tissue covers organs; Connective tissue includes Bone, Cartilage, Ligament (bone-to-bone), Tendon (muscle-to-bone), Blood.",
+      "Muscular tissue: Striated (voluntary, multinucleated), Smooth (involuntary, spindle), Cardiac (involuntary, branched, rhythmic)."
+],
     "sections": [
       {
         "title": "Concept of Tissue & Division of Labour",
@@ -984,6 +1032,14 @@ export const notes9: ChapterNote[] = [
     "unit": "Unit 3 · Motion, Force and Work",
     "overview": "Motion is the change in position of an object over time relative to a frame of reference. This chapter covers scalar distance versus vector displacement, uniform and non-uniform motion, speed, velocity, acceleration, distance-time and velocity-time graphs, mathematical derivations of the three equations of motion for uniformly accelerated rectilinear motion, and kinematics of uniform circular motion.",
     "diagram": "distance-time-graph",
+    
+    summaryPoints: [
+      "Distance is scalar (actual path length); Displacement is vector (shortest straight-line distance from initial to final position).",
+      "Speed = Distance / Time; Velocity = Displacement / Time (vector quantity with direction).",
+      "Acceleration a = (v - u) / t (rate of change of velocity); uniform acceleration has straight velocity-time graph.",
+      "Three Equations of Motion: (1) v = u + at, (2) s = ut + ½at², (3) v² = u² + 2as.",
+      "Uniform circular motion: Speed is constant but direction changes continuously, so velocity is accelerating toward the center (centripetal)."
+],
     "sections": [
       {
         "title": "Reference Point, Distance & Displacement",
@@ -1124,6 +1180,14 @@ export const notes9: ChapterNote[] = [
     "unit": "Unit 3 · Motion, Force and Work",
     "overview": "Force is the external interaction that alters or attempts to alter the state of rest, motion, or deformation of an object. This chapter covers balanced and unbalanced forces, Galileo's conceptual experiments on inclined planes, Newton's first law of motion (inertia of rest, motion, direction), momentum, mathematical derivation of Newton's second law (F = ma), applications of impulse, Newton's third law (action-reaction pairs), and the law of conservation of linear momentum.",
     "diagram": "forces-free-body",
+    
+    summaryPoints: [
+      "Newton's First Law (Law of Inertia): An object remains at rest or in uniform straight motion unless acted on by an unbalanced external force.",
+      "Newton's Second Law: Force F = ma = (change in momentum Δp) / (time Δt); Cricket fielder pulls hands back to reduce impact force.",
+      "Newton's Third Law: For every action, there is an equal and opposite reaction (acting on two different bodies).",
+      "Law of Conservation of Momentum: Total momentum before collision equals total momentum after collision (m₁u₁ + m₂u₂ = m₁v₁ + m₂v₂).",
+      "Inertia is directly proportional to mass; a heavy truck has far greater inertia than a lightweight bicycle."
+],
     "sections": [
       {
         "title": "Balanced vs Unbalanced Forces & Galileo's Concept of Inertia",
@@ -1271,6 +1335,14 @@ export const notes9: ChapterNote[] = [
     "unit": "Unit 3 · Motion, Force and Work",
     "overview": "Gravity is the universal attractive force binding cosmic structures and terrestrial bodies. This chapter covers Newton's universal law of gravitation, gravitational constant G, free fall, acceleration due to gravity g and its variation across Earth's surface and altitude, mass versus weight, weight on the Moon, thrust and pressure in fluids, buoyant force, Archimedes' principle, and laws of floatation with relative density.",
     "diagram": "buoyancy",
+    
+    summaryPoints: [
+      "Universal Law of Gravitation (Newton): F = G(m₁m₂)/r²; G = 6.673 × 10⁻¹¹ N·m²/kg² (Cavendish).",
+      "Acceleration due to gravity g = GM/R² ≈ 9.8 m/s² on Earth; g is maximum at poles and minimum at equator.",
+      "Weight W = mg is a force measured in Newtons and varies with location; Mass m is constant everywhere.",
+      "Weight of an object on the Moon is 1/6th of its weight on Earth due to weaker lunar gravity.",
+      "Archimedes' Principle: Upward buoyant force equals weight of fluid displaced; Relative density = Density of substance / Density of water."
+],
     "sections": [
       {
         "title": "Newton's Universal Law of Gravitation & Universal Constant G",
@@ -1420,6 +1492,14 @@ export const notes9: ChapterNote[] = [
     "unit": "Unit 3 · Motion, Force and Work",
     "overview": "Work and energy are fundamental scalar quantities governing mechanical transformations. This chapter investigates the rigorous scientific conception of work, positive, negative, and zero work conditions, kinetic energy derivation, potential energy in gravitational fields, the work-energy theorem, universal law of conservation of mechanical energy with free-fall mathematical proof, power, and commercial energy units (kWh).",
     "diagram": "energy-conversion",
+    
+    summaryPoints: [
+      "Work done W = F × s × cos θ (measured in Joules); No work is done if displacement is zero or perpendicular to force (θ = 90°).",
+      "Kinetic Energy KE = ½mv²; Potential Energy PE = mgh (stored due to position/height).",
+      "Law of Conservation of Energy: Energy can neither be created nor destroyed, only transformed from one form to another (KE + PE = constant).",
+      "Power is the rate of doing work P = W/t (measured in Watts); 1 kilowatt (kW) = 1000 W; 1 horsepower = 746 W.",
+      "Commercial unit of electrical energy is 1 kilowatt-hour (1 kWh / unit) = 1000 W × 3600 s = 3.6 × 10⁶ Joules."
+],
     "sections": [
       {
         "title": "Scientific Conception of Work: Definition & Sign Conditions",
@@ -1566,6 +1646,14 @@ export const notes9: ChapterNote[] = [
     "unit": "Unit 3 · Motion, Force and Work",
     "overview": "Sound is a mechanical longitudinal wave produced by vibrating objects requiring a material medium for propagation. This chapter explores wave characteristics (wavelength, frequency, time period, amplitude, wave velocity), sound speed across solids, liquids, and gases, reflection of sound, echo distance calculation, reverberation, audible hearing limits (infrasonic, ultrasonic), industrial applications of ultrasound, SONAR echo-ranging, and the biomechanics of the human ear.",
     "diagram": "sound-wave",
+    
+    summaryPoints: [
+      "Sound is a mechanical longitudinal wave requiring a material medium (cannot travel through outer space vacuum).",
+      "Sound speed is fastest in solids (steel ~5960 m/s), moderate in liquids (water ~1500 m/s), and slowest in air (~343 m/s at 20°C).",
+      "Pitch depends on wave frequency (Hz); Loudness depends on wave amplitude; Quality/Timbre distinguishes different voices.",
+      "Audible human hearing range is 20 Hz to 20,000 Hz; Infrasound is < 20 Hz (elephants, whales); Ultrasound is > 20,000 Hz (bats, medical SONAR).",
+      "Echo requires minimum obstacle distance of 17.2 metres in air for human ear to distinguish sound after 0.1 s persistence of hearing."
+],
     "sections": [
       {
         "title": "Production & Propagation of Sound: Longitudinal Compression Waves",
@@ -1714,6 +1802,14 @@ export const notes9: ChapterNote[] = [
     "unit": "Unit 4 · Food; Food Production",
     "overview": "Sustaining a burgeoning human population demands scientific agricultural and animal husbandry management. This chapter covers crop seasons (Kharif and Rabi), the three fundamental domains of crop enhancement (variety improvement via hybridisation and genetic modification, production management via macronutrients, micronutrients, manures, and fertilisers, cropping patterns: mixed, intercropping, rotation), crop protection against weeds and storage pests, cattle farming (milch and draught), poultry farming, composite fish aquaculture, and apiculture (beekeeping).",
     "diagram": "cropping-patterns",
+    
+    summaryPoints: [
+      "Sustainable agriculture balances crop yields with environmental protection; Green Revolution boosted cereals, White Revolution boosted milk.",
+      "Nutrient management: 16 essential plant nutrients (Air: C, O; Water: H, O; Soil Macronutrients: N, P, K, Ca, Mg, S; Micronutrients: Fe, Mn, B, Zn, Cu, Mo, Cl).",
+      "Manure (organic compost, vermicompost) enriches soil humus; Chemical fertilizers (NPK) provide concentrated nutrients but can degrade soil microbes.",
+      "Cropping patterns: Mixed cropping (wheat+gram), Intercropping (soybean+maize in alternate rows), Crop rotation (legumes fix nitrogen).",
+      "Animal husbandry: Cattle farming (milk and draught), Poultry farming (layers for eggs, broilers for meat), Fish farming (composite pisciculture), Beekeeping (Apis mellifera honey)."
+],
     "sections": [
       {
         "title": "Sustainable Agriculture, Food Revolutions & Crop Seasons",

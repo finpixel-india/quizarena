@@ -26,7 +26,8 @@ if (existsSync(apiDir)) {
 const nextBin = path.join(root, "node_modules", "next", "dist", "bin", "next");
 
 try {
-  run("node", [nextBin, "build"], { QUIZLAB_STATIC: "1" });
+  const args = process.platform === "win32" ? [nextBin, "build", "--webpack"] : [nextBin, "build"];
+  run("node", args, { QUIZLAB_STATIC: "1" });
 } finally {
   if (existsSync(stash)) {
     mkdirSync(path.dirname(apiDir), { recursive: true });

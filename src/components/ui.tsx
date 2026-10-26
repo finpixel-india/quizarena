@@ -1,3 +1,5 @@
+"use client";
+
 import type { ComponentType, ReactNode } from "react";
 import { Calculator, ChevronDown, Cpu, FlaskConical, GraduationCap, Landmark, SlidersHorizontal } from "lucide-react";
 import { cn } from "@/lib/format";

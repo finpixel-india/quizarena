@@ -278,6 +278,8 @@ export default function ArticulateClient() {
   const catRef = useRef<HTMLDivElement>(null);
   const elocutionCatRef = useRef<HTMLDivElement>(null);
   const elocutionDiffRef = useRef<HTMLDivElement>(null);
+  const elocutionScrollRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (catRef.current && !catRef.current.contains(e.target as Node)) {
@@ -451,6 +453,13 @@ export default function ArticulateClient() {
       return next;
     });
   }, []);
+
+  /* Reset scroll position to top whenever challenge, font size, or category changes */
+  useEffect(() => {
+    if (elocutionScrollRef.current) {
+      elocutionScrollRef.current.scrollTop = 0;
+    }
+  }, [elocutionKey, fontScaleIndex, elocutionType, elocutionDifficulty]);
   const stopwatchStartRef = useRef(0);
 
   const resetStopwatch = useCallback(() => {
@@ -987,34 +996,34 @@ export default function ArticulateClient() {
 
       {/* ════════════════════════════════════════════════════════════════════════
           ZONE 2: CENTER STAGE (Topic Title or Elocution Sentence)
-          Natural fluid vertical centering matching desktop layout
+          Natural fluid vertical centering + wide reading bounds + safe scroll
          ════════════════════════════════════════════════════════════════════════ */}
-      <div className="w-full max-w-2xl flex-1 my-auto flex flex-col items-center justify-center px-2 sm:px-4 py-3 sm:py-6 text-center">
+      <div className="w-full max-w-4xl lg:max-w-5xl xl:max-w-6xl flex-1 min-h-0 my-auto flex flex-col items-center justify-center px-3 sm:px-6 md:px-8 py-2 sm:py-4 text-center">
         {mode === "elocution" ? (
-          <div className="w-full max-h-[50vh] sm:max-h-[55vh] overflow-y-auto overscroll-contain py-2 sm:py-3 animate-fade-in flex items-center justify-center my-auto scrollbar-none">
-            <p
-              key={elocutionKey}
-              style={{
-                fontSize: `calc(${
-                  currentElocutionItem.text.length > 220
-                    ? "clamp(0.95rem, 2.2vw, 1.15rem)"
-                    : currentElocutionItem.text.length > 100
-                    ? "clamp(1.05rem, 2.6vw, 1.35rem)"
-                    : "clamp(1.2rem, 3.2vw, 1.65rem)"
-                } * ${FONT_SCALES[fontScaleIndex]})`,
-                lineHeight: 1.6,
-              }}
-              className={cn(
-                "font-serif font-normal tracking-normal text-fg select-text animate-prompt-land mx-auto text-balance px-2",
-                currentElocutionItem.text.length > 220
-                  ? "max-w-prose sm:max-w-xl"
-                  : currentElocutionItem.text.length > 100
-                  ? "max-w-prose sm:max-w-xl"
-                  : "max-w-[34ch] sm:max-w-lg"
-              )}
-            >
-              &ldquo;{currentElocutionItem.text}&rdquo;
-            </p>
+          <div
+            ref={elocutionScrollRef}
+            className="w-full max-h-[58vh] sm:max-h-[64vh] md:max-h-[68vh] overflow-y-auto overscroll-contain py-2 px-1 sm:px-3 animate-fade-in touch-pan-y"
+          >
+            <div className="min-h-full flex flex-col justify-start items-center">
+              <div className="my-auto w-full flex flex-col items-center py-2">
+                <p
+                  key={elocutionKey}
+                  style={{
+                    fontSize: `calc(${
+                      currentElocutionItem.text.length > 220
+                        ? "clamp(0.95rem, 2.2vw, 1.35rem)"
+                        : currentElocutionItem.text.length > 100
+                        ? "clamp(1.05rem, 2.6vw, 1.5rem)"
+                        : "clamp(1.2rem, 3.2vw, 1.8rem)"
+                    } * ${FONT_SCALES[fontScaleIndex]})`,
+                    lineHeight: 1.65,
+                  }}
+                  className="font-serif font-normal tracking-normal text-fg select-text animate-prompt-land mx-auto text-pretty px-2 sm:px-4 w-full max-w-3xl sm:max-w-4xl lg:max-w-5xl"
+                >
+                  &ldquo;{currentElocutionItem.text}&rdquo;
+                </p>
+              </div>
+            </div>
           </div>
         ) : (
           <div className="w-full py-2 sm:py-4 animate-fade-in flex flex-col items-center justify-center my-auto">
@@ -1027,7 +1036,7 @@ export default function ArticulateClient() {
                 fontSize: `calc(clamp(1.75rem, 4.5vw, 3.5rem) * ${FONT_SCALES[fontScaleIndex]})`,
               }}
               className={cn(
-                "font-serif font-normal text-fg leading-[1.15] sm:leading-[1.1] tracking-[-0.015em] max-w-[16ch] mx-auto",
+                "font-serif font-normal text-fg leading-[1.15] sm:leading-[1.1] tracking-[-0.015em] max-w-[28ch] sm:max-w-[34ch] mx-auto",
                 isSpinning ? "animate-slot-in" : "animate-prompt-land"
               )}
             >

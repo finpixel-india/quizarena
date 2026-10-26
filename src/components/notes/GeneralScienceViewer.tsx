@@ -21,18 +21,22 @@ import {
   Lightbulb,
   ListChecks,
   LucideIcon,
+  Moon,
+  Orbit,
+  Rocket,
   Search,
   ShieldAlert,
   ShieldCheck,
   Sparkles,
+  Sun,
   Table as TableIcon,
   Thermometer,
   Zap,
 } from "lucide-react";
 import type { NoteChapter } from "@/data/notes";
-import { GENERAL_SCIENCE_ANSWERS } from "@/data/notes/scienceGeneralAnswers";
 import { cn } from "@/lib/format";
 import { haptic } from "@/lib/haptics";
+import { GeneralSciencePracticeArena } from "./GeneralSciencePracticeArena";
 
 /* -------------------------------------------------------------------------- */
 /*                               DATA INTERFACES                              */
@@ -62,7 +66,7 @@ interface PHRow {
   name: string;
   ph: string;
   phValue: number;
-  category: "Strong Acid" | "Mild Acid" | "Pure Neutral" | "Mild Alkaline" | "Strong Alkaline";
+  category: "Strong Acid" | "Mild Acid" | "Pure Neutral" | "Near Neutral" | "Mild Alkaline" | "Strong Alkaline";
   icon: string;
   fact: string;
 }
@@ -124,6 +128,58 @@ interface PhenomenonRow {
   realLife: string;
 }
 
+interface PlanetRow {
+  name: string;
+  category: "Terrestrial Rocky" | "Gas Giant" | "Ice Giant";
+  icon: string;
+  orbitPeriod: string;
+  dayLength: string;
+  recordFact: string;
+  significance: string;
+}
+
+interface ISROMissionRow {
+  mission: string;
+  year: string;
+  rocket: string;
+  icon: string;
+  achievement: string;
+  significance: string;
+}
+
+interface CelestialMoonRow {
+  name: string;
+  host: string;
+  icon: string;
+  diameter: string;
+  feature: string;
+}
+
+interface AlloyRow {
+  name: string;
+  composition: string;
+  icon: string;
+  properties: string;
+  uses: string;
+}
+
+interface OreRow {
+  ore: string;
+  formula: string;
+  metal: string;
+  icon: string;
+  importance: string;
+}
+
+interface PolymerRow {
+  name: string;
+  chemicalName: string;
+  icon: string;
+  category: "Thermoplastic" | "Thermoset" | "Elastomer" | "Synthetic Fibre";
+  properties: string;
+  uses: string;
+}
+
 /* -------------------------------------------------------------------------- */
 /*                               DATA SETS                                    */
 /* -------------------------------------------------------------------------- */
@@ -152,436 +208,531 @@ const VITAMINS_DATA: VitaminRow[] = [
     chemicalName: "Tocopherol",
     type: "Fat-Soluble",
     icon: "🥑",
-    sources: ["Almonds", "Sunflower Seeds", "Peanuts", "Olive Oil", "Avocados"],
-    benefit: "Powerful antioxidant that shields cell membranes from damage, powers hair & skin health.",
-    deficiency: "Muscle weakness, numbness, premature cell aging, pale skin.",
+    sources: ["Almonds (Badam)", "Sunflower Seeds", "Peanuts", "Olive Oil", "Avocado"],
+    benefit: "Premier antioxidant; shields cell membranes from damage, promotes radiant skin and fertility.",
+    deficiency: "Muscle weakness, numbness in limbs, pale skin, hemolytic anemia.",
   },
   {
     name: "Vitamin K",
     chemicalName: "Phylloquinone",
     type: "Fat-Soluble",
-    icon: "🥬",
-    sources: ["Spinach", "Cabbage", "Broccoli", "Cauliflower", "Gut Bacteria (natural)"],
-    benefit: "Produces prothrombin so blood clots quickly when you get a cut or wound.",
-    deficiency: "Uncontrolled bleeding from minor cuts, easy skin bruising, dangerously slow clotting time.",
+    icon: "🥦",
+    sources: ["Spinach", "Broccoli", "Cabbage", "Kale", "Mustard Greens (Sarson)", "Gut Bacteria"],
+    benefit: "Mandatory for liver synthesis of prothrombin to stop bleeding after minor cuts.",
+    deficiency: "Excessive uncontrolled bleeding from small cuts, frequent nosebleeds, easy bruising.",
   },
   {
     name: "Vitamin C",
-    chemicalName: "Ascorbic Acid",
+    chemicalName: "Ascorbic Acid (Heat-Sensitive)",
     type: "Water-Soluble",
     icon: "🍋",
-    sources: ["Amla (Highest source!)", "Guava", "Lemon & Limes", "Oranges", "Green Chilies"],
-    benefit: "Builds collagen for gums and blood vessels, fights cold infections, accelerates wound healing.",
-    deficiency: "Scurvy: swollen bleeding spongy gums, loose teeth, delayed wound healing, joint pains.",
+    sources: ["Amla (Gooseberry — #1 Source)", "Guava (Amrood)", "Lemon", "Orange", "Kiwi", "Green Chili"],
+    benefit: "Supercharges immunity, synthesizes collagen for gums & skin, accelerates wound healing.",
+    deficiency: "Scurvy: bleeding spongy gums, loose teeth, delayed wound healing, joint pain.",
   },
   {
     name: "Vitamin B₁",
     chemicalName: "Thiamine",
     type: "Water-Soluble",
     icon: "🌾",
-    sources: ["Unpolished Brown Rice", "Whole Wheat", "Pulses & Dal", "Nuts", "Seeds"],
-    benefit: "Powers heart function, nerve signaling, and releases energy from carbohydrates.",
-    deficiency: "Beriberi: severe muscle weakness in legs, extreme fatigue, nerve swelling.",
+    sources: ["Brown Rice (Unpolished)", "Whole Wheat", "Pulses & Lentils", "Peanuts", "Sunflower Seeds"],
+    benefit: "Converts dietary carbohydrates into glucose energy; powers peripheral nerves.",
+    deficiency: "Beriberi: severe leg weakness, nerve pain, loss of appetite, cardiac enlargement.",
   },
   {
     name: "Vitamin B₂",
     chemicalName: "Riboflavin",
     type: "Water-Soluble",
     icon: "🥛",
-    sources: ["Milk & Curd", "Eggs", "Green Leafy Vegetables", "Cheese"],
-    benefit: "Healthy skin tissues, clear eye vision, and cellular energy breakdown.",
-    deficiency: "Cheilosis: painful cracks and sores at corners of the mouth, red swollen tongue.",
+    sources: ["Cow's Milk", "Curd (Dahi)", "Eggs", "Green Leafy Vegetables", "Almonds"],
+    benefit: "Powers cellular energy release; maintains healthy mucous membranes and cornea.",
+    deficiency: "Cheilosis: painful cracks and splits at the corners of the mouth; swollen magenta tongue.",
   },
   {
     name: "Vitamin B₃",
-    chemicalName: "Niacin / Nicotinic Acid",
+    chemicalName: "Niacin",
     type: "Water-Soluble",
     icon: "🥜",
-    sources: ["Peanuts", "Mushrooms", "Chicken", "Fish", "Whole Grains"],
-    benefit: "Maintains healthy digestive tract, glowing skin, and brain metabolism.",
-    deficiency: "Pellagra (the 3 D's: Dermatitis / scaly skin rashes, Diarrhea, and Dementia / brain fog).",
+    sources: ["Roasted Peanuts", "Mushrooms", "Chicken", "Whole Grains", "Green Peas"],
+    benefit: "Governs cellular respiration (NAD/NADP), digestive function, and brain clarity.",
+    deficiency: "Pellagra: the classic 4 D's — Dermatitis (scaly skin rash), Diarrhea, Dementia, Death.",
+  },
+  {
+    name: "Vitamin B₅",
+    chemicalName: "Pantothenic Acid",
+    type: "Water-Soluble",
+    icon: "🌻",
+    sources: ["Sunflower Seeds", "Mushrooms", "Avocados", "Lentils", "Whole Wheat"],
+    benefit: "Cofactor for Coenzyme A; powers fatty acid synthesis and cellular metabolism.",
+    deficiency: "Fatigue, irritability, sleep disturbances, 'burning feet syndrome'.",
+  },
+  {
+    name: "Vitamin B₆",
+    chemicalName: "Pyridoxine",
+    type: "Water-Soluble",
+    icon: "🍌",
+    sources: ["Bananas", "Chickpeas (Chana)", "Potatoes", "Chicken Breast", "Oats"],
+    benefit: "Manufactures neurotransmitters (serotonin, dopamine) and red cell hemoglobin.",
+    deficiency: "Microcytic anemia, peripheral neuropathy, seizures, skin inflammation.",
+  },
+  {
+    name: "Vitamin B₇",
+    chemicalName: "Biotin",
+    type: "Water-Soluble",
+    icon: "🥚",
+    sources: ["Egg Yolk", "Almonds", "Sweet Potatoes", "Oats", "Spinach"],
+    benefit: "Stimulates keratin synthesis for strong hair and nails; converts fats into energy.",
+    deficiency: "Hair thinning, brittle nails, scaly red dermatitis around eyes and mouth.",
   },
   {
     name: "Vitamin B₉",
     chemicalName: "Folic Acid / Folate",
     type: "Water-Soluble",
-    icon: "🌱",
-    sources: ["Spinach & Methi", "Lentils", "Beans", "Oranges", "Beetroot"],
-    benefit: "Forms red blood cells and synthesizes DNA; critical for baby spine development in pregnancy.",
-    deficiency: "Megaloblastic Anemia, persistent fatigue, birth defects in newborn infants.",
+    icon: "🥬",
+    sources: ["Spinach (Palak)", "Methi Leaves", "Lentils (Dal)", "Chickpeas", "Oranges"],
+    benefit: "Essential for DNA synthesis and rapid cell division; crucial for fetal spinal cord development.",
+    deficiency: "Megaloblastic anemia; severe neural tube birth defects (spina bifida) in newborns.",
   },
   {
     name: "Vitamin B₁₂",
-    chemicalName: "Cobalamin (Contains Cobalt)",
+    chemicalName: "Cobalamin (Contains Cobalt Metal)",
     type: "Water-Soluble",
     icon: "🧀",
-    sources: ["Milk, Curd & Paneer", "Eggs", "Fish", "Meat", "Zero in natural plant foods"],
-    benefit: "Builds protective myelin nerve sheath and collaborates with iron to produce red blood cells.",
-    deficiency: "Pernicious Anemia, tingling and 'pins-and-needles' numbness in hands and feet.",
+    sources: ["Milk & Paneer", "Curd (Yogurt)", "Eggs", "Fish", "Zero in plant foods"],
+    benefit: "Maintains myelin sheath around nerves; synthesizes red blood cells with bone marrow.",
+    deficiency: "Pernicious Anemia, numbness and pins-and-needles in hands/feet, memory loss.",
   },
   {
-    name: "Iron (Fe)",
-    chemicalName: "Hemoglobin Core Element",
+    name: "Iron",
+    chemicalName: "Ferrum (Fe)",
     type: "Essential Mineral",
     icon: "🩸",
-    sources: ["Spinach (Palak)", "Jaggery (Gur)", "Beetroot", "Pomegranate", "Lentils (Dal)"],
-    benefit: "Forms the center of Hemoglobin in blood, ferrying oxygen from lungs to every living cell.",
-    deficiency: "Anemia: pale yellowish skin, chronic fatigue, shortness of breath, brittle spoon-shaped nails.",
+    sources: ["Spinach", "Jaggery (Gur)", "Beetroot", "Pomegranate", "Lentils", "Dates"],
+    benefit: "Central atom of Hemoglobin in red blood cells that transports oxygen to muscles.",
+    deficiency: "Iron Deficiency Anemia: persistent fatigue, pale skin, shortness of breath, spoon nails.",
   },
   {
-    name: "Calcium (Ca)",
-    chemicalName: "Bone Mineral",
+    name: "Calcium",
+    chemicalName: "Calcium (Ca)",
     type: "Essential Mineral",
     icon: "🦴",
-    sources: ["Milk & Curd", "Ragi (Finger Millet)", "Sesame Seeds (Til)", "Paneer"],
-    benefit: "Constructs dense bones and teeth, powers heart muscle contractions, and enables blood clotting.",
-    deficiency: "Osteoporosis (brittle porous bones), dental cavities, involuntary muscle cramps and spasms.",
+    sources: ["Cow's Milk", "Curd", "Ragi (Finger Millet)", "Sesame Seeds (Til)", "Paneer"],
+    benefit: "Constructs dense bone matrix and tooth enamel; facilitates muscle and heart contractions.",
+    deficiency: "Osteoporosis (brittle porous bones in seniors), tooth decay, painful muscle cramps.",
   },
   {
-    name: "Iodine (I)",
-    chemicalName: "Thyroid Essential",
+    name: "Iodine",
+    chemicalName: "Iodine (I)",
     type: "Essential Mineral",
     icon: "🧂",
-    sources: ["Iodized Salt", "Seafood", "Seaweed"],
-    benefit: "Synthesizes thyroxine hormone in the neck to control body growth, brain speed, and metabolism.",
-    deficiency: "Goitre: visible swelling in lower neck gland; stunted physical and mental growth in children.",
+    sources: ["Iodized Table Salt", "Marine Fish", "Kelp Seaweed", "Dairy Products"],
+    benefit: "Structural element for thyroid thyroxine hormones (T₄/T₃) that govern body metabolic rate.",
+    deficiency: "Goitre (massive visible swelling in neck gland); cretinism and stunted child brain growth.",
   },
 ];
 
 const DISEASES_DATA: DiseaseRow[] = [
   {
     name: "Tuberculosis (TB)",
-    pathogen: "Mycobacterium tuberculosis (Bacterium)",
+    pathogen: "Mycobacterium tuberculosis (Bacteria)",
     category: "Bacterial",
     icon: "🫁",
-    spread: "Airborne droplets when an infected person coughs, sneezes, or talks",
-    symptoms: ["Persistent cough lasting > 2 weeks", "Coughing up blood (hemoptysis)", "Evening low fever and drenching night sweats", "Unexplained rapid weight loss"],
-    prevention: "BCG vaccine at birth; full 6-month DOTS antibiotic course without skipping",
+    spread: "Aerosolized respiratory cough/sneeze droplets in enclosed spaces",
+    symptoms: ["Chronic cough lasting > 3 weeks", "Coughing up blood (hemoptysis)", "Drenching night sweats", "Rapid unexplained weight loss"],
+    prevention: "BCG Vaccine at birth, well-ventilated rooms, DOTS antibiotic regimen.",
   },
   {
     name: "Typhoid Fever",
-    pathogen: "Salmonella Typhi (Bacterium)",
+    pathogen: "Salmonella typhi (Bacteria)",
     category: "Bacterial",
     icon: "🌡️",
-    spread: "Contaminated street food, untreated water, and houseflies carrying bacteria",
-    symptoms: ["Continuous high step-ladder fever", "Severe headache & abdominal stomach pain", "Loss of appetite", "Weakness and tiredness"],
-    prevention: "Confirmed by Widal blood test; drink boiled or filtered water; Typhoid conjugate vaccine",
+    spread: "Food and drinking water contaminated by carrier fecal matter",
+    symptoms: ["Sustained step-ladder high fever (104°F)", "Severe stomach pain & headache", "Rose-colored skin spots", "Extreme fatigue & weakness"],
+    prevention: "Widal test for diagnosis; Typhoid Conjugate Vaccine (TCV); drinking boiled water.",
   },
   {
     name: "Cholera",
-    pathogen: "Vibrio cholerae (Comma-shaped Bacterium)",
+    pathogen: "Vibrio cholerae (Comma-shaped Bacteria)",
     category: "Bacterial",
     icon: "💧",
-    spread: "Water and food contaminated with human sewage; poor sanitation",
-    symptoms: ["Sudden, continuous 'rice-water' watery loose motions", "Projectile vomiting", "Extreme rapid dehydration", "Sunken eyes and severe muscle cramps"],
-    prevention: "Immediate ORS (Oral Rehydration Solution) to replace lost fluids; clean boiled water",
+    spread: "Consuming water or food polluted with sewage runoff",
+    symptoms: ["Painless, profuse rice-water diarrhea", "Severe persistent vomiting", "Sunken eyes and wrinkled skin", "Hypovolemic shock within hours"],
+    prevention: "Oral Rehydration Salts (ORS), drinking boiled water, cholera vaccination.",
   },
   {
     name: "Tetanus (Lockjaw)",
-    pathogen: "Clostridium tetani (Spore-forming Bacterium)",
+    pathogen: "Clostridium tetani Spores (Bacteria)",
     category: "Bacterial",
     icon: "🔩",
-    spread: "Bacterial spores present in soil, street dust, or rusted metal entering deep cuts",
-    symptoms: ["Lockjaw (stiff painful jaw muscles, unable to open mouth)", "Agonizing involuntary body muscle spasms", "Arching of the back (opisthotonos)"],
-    prevention: "Tetanus Toxoid (TT injection) within 24–48 hours of any cut; DPT vaccine in childhood",
+    spread: "Spores in soil, rusted nails, or animal dung entering open wounds",
+    symptoms: ["Rigid spasm of jaw muscles (lockjaw)", "Painful arching of whole spine (opisthotonos)", "Severe difficulty swallowing", "Violent painful muscle spasms"],
+    prevention: "Tetanus Toxoid (TT / Td) injection within 24 hours of injury; DPT vaccine in childhood.",
   },
   {
-    name: "Dengue Fever",
-    pathogen: "Dengue Flavivirus (DEN-1 to DEN-4)",
-    category: "Viral",
-    icon: "🦟",
-    spread: "Bite of infected female Aedes mosquito (day biter with distinct white-striped legs)",
-    symptoms: ["Sudden high burning fever", "Severe piercing pain behind the eyes", "Intense muscle and joint aches ('breakbone fever')", "Rapid dangerous drop in blood platelet count"],
-    prevention: "Eliminate standing water in coolers, plant pots, and discarded tyres; apply mosquito repellent",
+    name: "Diphtheria",
+    pathogen: "Corynebacterium diphtheriae (Bacteria)",
+    category: "Bacterial",
+    icon: "🗣️",
+    spread: "Airborne respiratory droplets and direct skin contact",
+    symptoms: ["Thick grey membrane coating throat & tonsils", "Severe sore throat & barking cough", "Swollen 'bull-neck' lymph glands", "Suffocation from airway blockage"],
+    prevention: "DPT / Pentavalent vaccine in infancy; diphtheria antitoxin.",
   },
   {
-    name: "Chikungunya",
-    pathogen: "Chikungunya Alphavirus",
-    category: "Viral",
-    icon: "🦵",
-    spread: "Bite of female Aedes mosquito during daytime hours",
-    symptoms: ["Sudden high fever", "Crippling, severe swelling and pain in multiple joints", "Inability to stand or walk straight", "Red skin rash"],
-    prevention: "Prevent mosquito breeding, wear full-sleeved protective clothing, use bed nets",
+    name: "Pertussis (Whooping Cough)",
+    pathogen: "Bordetella pertussis (Bacteria)",
+    category: "Bacterial",
+    icon: "😮‍💨",
+    spread: "Airborne droplets released during intense coughing spells",
+    symptoms: ["Uncontrollable rapid coughing spells", "High-pitched loud 'whoop' intake of breath", "Vomiting during or after coughing fits", "Blue lips from temporary oxygen loss"],
+    prevention: "DPT immunization; macrolide antibiotics.",
   },
   {
-    name: "Malaria",
-    pathogen: "Plasmodium protozoan (P. vivax, P. falciparum)",
-    category: "Mosquito / Parasitic",
-    icon: "🩸",
-    spread: "Bite of infected female Anopheles mosquito (bites predominantly at night and dusk)",
-    symptoms: ["Violent shivering and tooth-chattering chills", "High burning fever repeating in 48–72 hour cycles", "Heavy profuse sweating as fever breaks", "Anemia"],
-    prevention: "Sleep under insecticide-treated bed nets; antimalarial medicines (Artemisinin, Quinine)",
-  },
-  {
-    name: "Rabies",
+    name: "Rabies (Hydrophobia)",
     pathogen: "Rabies Lyssavirus (Bullet-shaped Virus)",
     category: "Viral",
     icon: "🐕",
-    spread: "Saliva from a bite, scratch, or open wound lick by an infected rabid dog, cat, or monkey",
-    symptoms: ["Extreme mental agitation and hallucinations", "Hydrophobia: agonizing throat spasms when attempting to drink or see water", "100% fatal once clinical symptoms begin"],
-    prevention: "Immediately wash wound under running tap water with soap for 15 minutes; prompt Post-Exposure Rabies Vaccine series",
+    spread: "Saliva from bite or scratch of infected rabid dog, monkey, or bat",
+    symptoms: ["Intense pain/tingling at bite site", "Violent throat spasms on seeing water (Hydrophobia)", "Hyper-salivation & agitation", "Fatal encephalomyelitis once symptomatic"],
+    prevention: "Immediate soap and running water wash for 15 minutes; Post-Exposure Rabies Vaccine (PEP).",
   },
   {
     name: "Polio (Poliomyelitis)",
-    pathogen: "Poliovirus (Types 1, 2, 3)",
+    pathogen: "Poliovirus (Enterovirus)",
     category: "Viral",
-    icon: "🩺",
-    spread: "Contaminated food and drinking water via the fecal-oral route",
-    symptoms: ["Virus invades spinal cord motor nerves", "Sudden irreversible limp paralysis, usually in one leg", "Lifelong muscle wasting and deformity"],
-    prevention: "Oral Polio Vaccine (OPV drops — 'Do Boond Zindagi Ki') and Injectable Inactivated Polio Vaccine (IPV)",
+    icon: "🦼",
+    spread: "Fecal-oral route via contaminated drinking water or food",
+    symptoms: ["Destruction of motor neurons in spinal cord", "Acute flaccid paralysis (usually legs)", "Unequal limb growth", "Respiratory paralysis in bulbar polio"],
+    prevention: "Oral Polio Drops (OPV / Sabin) & Inactivated Polio Vaccine (IPV / Salk).",
   },
   {
-    name: "Ringworm (Daad)",
-    pathogen: "Trichophyton & Microsporum (Fungi)",
-    category: "Fungal & Lifestyle",
-    icon: "🍄",
-    spread: "Direct skin contact, sweat, damp clothing, or sharing infected towels and combs",
-    symptoms: ["Circular red, itchy, scaly ring-like patches on skin", "Intense burning and scratching urge", "Common in skin folds, groin, and between toes"],
-    prevention: "Keep skin clean and dry; do not share towels; apply topical antifungal creams (Clotrimazole)",
+    name: "Dengue Fever (Breakbone)",
+    pathogen: "Dengue Flavivirus (Serotypes 1-4)",
+    category: "Viral",
+    icon: "🦟",
+    spread: "Bite of infected female Aedes aegypti mosquito (bites during daytime)",
+    symptoms: ["Excruciating joint and muscle breakbone pain", "Severe headache behind the eyes", "Sudden precipitous drop in blood platelets", "High fever with rash"],
+    prevention: "Eliminate clean stagnant water containers; mosquito repellent nets.",
+  },
+  {
+    name: "Hepatitis B",
+    pathogen: "Hepatitis B Virus (HBV)",
+    category: "Viral",
+    icon: "🟡",
+    spread: "Infected blood transfusion, unsterilized surgical needles, or birth",
+    symptoms: ["Jaundice (deep yellowing of eyes & skin)", "Dark tea-colored urine", "Pale clay-colored stools", "Chronic liver cirrhosis or liver cancer"],
+    prevention: "Recombinant Hepatitis B vaccine; sterile needles; screening blood donations.",
+  },
+  {
+    name: "Malaria",
+    pathogen: "Plasmodium protozoa (P. falciparum / P. vivax)",
+    category: "Mosquito / Parasitic",
+    icon: "🩸",
+    spread: "Bite of infected female Anopheles mosquito (bites during dusk & night)",
+    symptoms: ["Cyclic episodes of intense shivering chills", "Spiking high fever every 48-72 hours", "Drenching sweats as fever breaks", "Enlarged spleen and severe anemia"],
+    prevention: "Artemisinin-based combination therapy (ACT); mosquito nets; draining stagnant ponds.",
+  },
+  {
+    name: "Filariasis (Elephantiasis)",
+    pathogen: "Wuchereria bancrofti (Filarial Worm)",
+    category: "Mosquito / Parasitic",
+    icon: "🐘",
+    spread: "Bite of infected Culex mosquitoes breeding in dirty drain water",
+    symptoms: ["Adult worms lodge in and block lymphatic vessels", "Massive chronic swelling of legs and feet", "Severely thickened, pebbled skin", "Swelling of genital organs (scrotum)"],
+    prevention: "Annual mass drug administration of Diethylcarbamazine (DEC) + Albendazole.",
   },
 ];
 
 const PH_SCALE_DATA: PHRow[] = [
-  { name: "Battery Acid", ph: "0.0 – 0.5", phValue: 0.2, category: "Strong Acid", icon: "⚡", fact: "Concentrated sulfuric acid (H₂SO₄) used inside automotive vehicle batteries." },
-  { name: "Stomach Acid (Gastric Juice)", ph: "1.2 – 2.0", phValue: 1.5, category: "Strong Acid", icon: "🫁", fact: "Dilute hydrochloric acid (HCl) produced by stomach lining; destroys food pathogens and activates pepsin to digest proteins." },
-  { name: "Lemon Juice", ph: "2.2 – 2.4", phValue: 2.3, category: "Strong Acid", icon: "🍋", fact: "Rich in natural citric acid (5–6%); dissolves mineral grease and prevents sliced fruits like apples from browning." },
-  { name: "Vinegar (Sirka)", ph: "2.4 – 3.0", phValue: 2.7, category: "Strong Acid", icon: "🥗", fact: "4% to 8% acetic acid (CH₃COOH); used in Asian culinary cooking and acts as a natural preservative preventing pickles from spoiling." },
-  { name: "Cola / Carbonated Soft Drinks", ph: "2.5 – 3.2", phValue: 2.8, category: "Strong Acid", icon: "🥤", fact: "Contains dissolved carbonic and phosphoric acids; highly corrosive to tooth enamel over prolonged exposure." },
-  { name: "Tomato Juice", ph: "4.1 – 4.4", phValue: 4.2, category: "Mild Acid", icon: "🍅", fact: "Contains gentle natural citric and oxalic acids, giving ripe tomatoes their pleasant tang." },
-  { name: "Black Coffee", ph: "5.0", phValue: 5.0, category: "Mild Acid", icon: "☕", fact: "Naturally mildly acidic due to chlorogenic and caffeic acids released during coffee bean roasting." },
-  { name: "Acid Rain Danger Level", ph: "< 5.6", phValue: 5.2, category: "Mild Acid", icon: "🌧️", fact: "Formed when factory and vehicle smoke (SO₂ and NOₓ) dissolves in cloud moisture; corrodes white marble monuments like the Taj Mahal ('marble cancer')." },
-  { name: "Tooth Decay Danger Point", ph: "< 5.5", phValue: 5.4, category: "Mild Acid", icon: "🦷", fact: "CRITICAL THRESHOLD: Tooth enamel is made of calcium hydroxyapatite. When oral bacteria ferment food sugar and drop mouth pH below 5.5, enamel dissolves and cavities begin." },
-  { name: "Fresh Cow's Milk", ph: "6.5 – 6.8", phValue: 6.6, category: "Pure Neutral", icon: "🥛", fact: "Slightly acidic near neutral; ferments into sour curd (pH ~4.5) when Lactobacillus bacteria convert milk lactose into lactic acid." },
-  { name: "Pure Distilled Water", ph: "7.0", phValue: 7.0, category: "Pure Neutral", icon: "💧", fact: "The exact universal neutral baseline of the pH scale at 25°C, where hydrogen ions (H⁺) perfectly balance hydroxide ions (OH⁻)." },
-  { name: "Human Blood & Tears", ph: "7.35 – 7.45", phValue: 7.4, category: "Pure Neutral", icon: "🩸", fact: "Strictly regulated slightly alkaline fluid; maintained by bicarbonate buffers and lungs. Any shift below 7.2 or above 7.6 is life-threatening." },
-  { name: "Sea Water", ph: "7.8 – 8.3", phValue: 8.0, category: "Mild Alkaline", icon: "🌊", fact: "Slightly basic because oceans hold dissolved bicarbonate, carbonate, and magnesium mineral salts." },
-  { name: "Toothpaste", ph: "8.0 – 9.0", phValue: 8.5, category: "Mild Alkaline", icon: "🪥", fact: "Engineered to be mildly alkaline to immediately neutralize bacterial mouth acids after eating, raising oral pH safely above 5.5." },
-  { name: "Baking Soda Solution", ph: "8.5", phValue: 8.5, category: "Mild Alkaline", icon: "🧁", fact: "Sodium Hydrogen Carbonate (NaHCO₃); a safe kitchen base that leavens cakes, soothes acid heartburn, and neutralizes bee stings." },
-  { name: "Milk of Magnesia", ph: "10.5", phValue: 10.5, category: "Strong Alkaline", icon: "💊", fact: "Magnesium Hydroxide [Mg(OH)₂]; classic medical antacid suspension that neutralizes excess stomach hydrochloric acid without damaging tissue." },
-  { name: "Household Ammonia Cleaner", ph: "11.5", phValue: 11.5, category: "Strong Alkaline", icon: "🧼", fact: "Ammonium hydroxide solution; powerful degreaser used to strip kitchen grease, ovens, and streak-free window glass." },
-  { name: "Drain Cleaner / Caustic Lye", ph: "13.5 – 14.0", phValue: 13.8, category: "Strong Alkaline", icon: "🚰", fact: "Concentrated Sodium Hydroxide (NaOH); highly caustic alkali that dissolves hair, fats, and organic plugs inside blocked plumbing pipes." },
+  { name: "Car Battery Acid", ph: "0.5 to 1.0", phValue: 0.8, category: "Strong Acid", icon: "🔋", fact: "Concentrated sulfuric acid (H₂SO₄); highly corrosive to metals." },
+  { name: "Stomach Gastric Acid", ph: "1.2 to 2.0", phValue: 1.5, category: "Strong Acid", icon: "🥩", fact: "Pure Hydrochloric acid (HCl); kills swallowed bacteria & activates pepsin." },
+  { name: "Lemon Juice", ph: "2.2 to 2.4", phValue: 2.3, category: "Strong Acid", icon: "🍋", fact: "Rich in citric acid; dissolves hard water mineral scale and tarnish." },
+  { name: "Household Vinegar", ph: "2.4 to 2.8", phValue: 2.6, category: "Mild Acid", icon: "🥗", fact: "5% to 8% solution of acetic acid; stops bacterial growth in pickles." },
+  { name: "Carbonated Cola / Soda", ph: "2.8 to 3.2", phValue: 3.0, category: "Mild Acid", icon: "🥤", fact: "Contains carbonic & phosphoric acids; dissolves tooth enamel over time." },
+  { name: "Tomato Juice", ph: "4.0 to 4.4", phValue: 4.2, category: "Mild Acid", icon: "🍅", fact: "Contains oxalic and malic acids; mildly tart flavor." },
+  { name: "Black Coffee", ph: "5.0", phValue: 5.0, category: "Mild Acid", icon: "☕", fact: "Contains chlorogenic acids; mild diuretic effect on kidneys." },
+  { name: "Acid Rain Threshold", ph: "< 5.6", phValue: 5.4, category: "Mild Acid", icon: "🌧️", fact: "Formed by atmospheric SO₂ and NO₂ emissions; damages Taj Mahal marble." },
+  { name: "Cow's Fresh Milk", ph: "6.5 to 6.8", phValue: 6.6, category: "Near Neutral", icon: "🥛", fact: "Slightly acidic due to lactic acid and proteins; turns sour as bacteria grow." },
+  { name: "Pure Distilled Water (25°C)", ph: "7.0", phValue: 7.0, category: "Pure Neutral", icon: "💧", fact: "Concentrations of H⁺ and OH⁻ ions are perfectly balanced at 10⁻⁷ mol/L." },
+  { name: "Human Blood (Arterial)", ph: "7.35 to 7.45", phValue: 7.4, category: "Mild Alkaline", icon: "🩸", fact: "Strictly buffered by bicarbonate ions; any deviation outside 7.35-7.45 is fatal." },
+  { name: "Human Tears & Saliva", ph: "6.8 to 7.4", phValue: 7.2, category: "Near Neutral", icon: "👁️", fact: "Matches eye corneal osmotic pressure; contains lysozyme enzyme." },
+  { name: "Surface Ocean Seawater", ph: "8.1 to 8.4", phValue: 8.2, category: "Mild Alkaline", icon: "🌊", fact: "Alkaline buffer protects calcium carbonate shells of coral reefs and molluscs." },
+  { name: "Baking Soda Solution", ph: "8.4", phValue: 8.4, category: "Mild Alkaline", icon: "🍞", fact: "Sodium bicarbonate (NaHCO₃); neutralizes heartburn acidity safely." },
+  { name: "Milk of Magnesia", ph: "10.5", phValue: 10.5, category: "Mild Alkaline", icon: "💊", fact: "Magnesium hydroxide [Mg(OH)₂]; standard OTC antacid for stomach burn." },
+  { name: "Household Ammonia", ph: "11.5", phValue: 11.5, category: "Strong Alkaline", icon: "🪟", fact: "Ammonium hydroxide solution; cuts through tough glass grease." },
+  { name: "Household Bleach", ph: "12.5 to 13.0", phValue: 12.8, category: "Strong Alkaline", icon: "🧴", fact: "Sodium hypochlorite (NaOCl); oxidizes stains and ruptures bacteria." },
+  { name: "Caustic Soda (Lye)", ph: "14.0", phValue: 14.0, category: "Strong Alkaline", icon: "🧼", fact: "Sodium hydroxide (NaOH); dissolves clogged hair in drains, makes bar soap." },
 ];
 
 const CHEMICALS_DATA: ChemicalRow[] = [
-  { commonName: "Baking Soda", chemicalName: "Sodium Hydrogen Carbonate", formula: "NaHCO₃", icon: "🧁", uses: "Releases CO₂ gas when heated, making cakes and dhoklas soft and fluffy; acts as a mild antacid and fire extinguisher." },
-  { commonName: "Washing Soda", chemicalName: "Sodium Carbonate Decahydrate", formula: "Na₂CO₃·10H₂O", icon: "🧺", uses: "Used in laundry detergents and soaps; permanently softens hard well water by precipitating calcium and magnesium." },
-  { commonName: "Bleaching Powder", chemicalName: "Calcium Oxychloride", formula: "CaOCl₂", icon: "🧽", uses: "Smells of chlorine gas; sterilizes municipal drinking water tanks and swimming pools; bleaches textiles and cotton." },
-  { commonName: "Plaster of Paris (POP)", chemicalName: "Calcium Sulphate Hemihydrate", formula: "CaSO₄·½H₂O", icon: "🦴", uses: "Made by heating Gypsum at 100°C; doctors use it for setting bone fracture casts; sculptors use it for false ceilings and statues." },
-  { commonName: "Gypsum", chemicalName: "Calcium Sulphate Dihydrate", formula: "CaSO₄·2H₂O", icon: "🧱", uses: "Added to cement during manufacturing to slow down its setting time; also the raw material used to manufacture POP." },
-  { commonName: "Quicklime", chemicalName: "Calcium Oxide", formula: "CaO", icon: "🔥", uses: "Vigorously reacts with water releasing intense heat (slaking); used in glassmaking and manufacturing slaked lime." },
-  { commonName: "Slaked Lime", chemicalName: "Calcium Hydroxide", formula: "Ca(OH)₂", icon: "🖌️", uses: "Mixed with water for whitewashing house walls; turns milky when exposed to CO₂; neutralizes overly acidic farm soil." },
-  { commonName: "Marble / Limestone / Chalk", chemicalName: "Calcium Carbonate", formula: "CaCO₃", icon: "🏛️", uses: "Same natural chemical found in eggshells, sea pearls, blackboard chalk, and Taj Mahal marble." },
-  { commonName: "Dry Ice", chemicalName: "Solid Carbon Dioxide", formula: "CO₂ (solid)", icon: "🧊", uses: "Frozen at −78.5°C; sublimes straight into cold smoke without melting into liquid; keeps ice cream frozen during shipment." },
-  { commonName: "Laughing Gas", chemicalName: "Nitrous Oxide", formula: "N₂O", icon: "😄", uses: "Mild medical and dental anesthetic; also used as a booster oxidizer in high-performance sports car racing." },
-  { commonName: "Fitkari (Potash Alum)", chemicalName: "Hydrated Potassium Aluminum Sulfate", formula: "K₂SO₄·Al₂(SO₄)₃·24H₂O", icon: "💎", uses: "Rapidly settles suspended clay dirt in muddy water (coagulation); used as an aftershave to stop razor bleeding." },
+  { commonName: "Baking Soda", chemicalName: "Sodium hydrogen carbonate", formula: "NaHCO₃", icon: "🍞", uses: "Leavening agent in cakes, fire extinguishers, antacid." },
+  { commonName: "Washing Soda", chemicalName: "Sodium carbonate decahydrate", formula: "Na₂CO₃ · 10H₂O", icon: "🧺", uses: "Removes permanent water hardness, laundry detergent, glass manufacture." },
+  { commonName: "Plaster of Paris", chemicalName: "Calcium sulfate hemihydrate", formula: "CaSO₄ · ½H₂O", icon: "🦴", uses: "Orthopedic casts for broken bones, false ceilings, sculpture casts." },
+  { commonName: "Gypsum", chemicalName: "Calcium sulfate dihydrate", formula: "CaSO₄ · 2H₂O", icon: "🧱", uses: "Slows down setting time when added to Portland cement clinker." },
+  { commonName: "Bleaching Powder", chemicalName: "Calcium hypochlorite", formula: "CaOCl₂", icon: "🚰", uses: "Disinfects municipal drinking water, textile bleaching, chlorine source." },
+  { commonName: "Quicklime", chemicalName: "Calcium oxide", formula: "CaO", icon: "🔥", uses: "Manufacture of cement and glass, intensely exothermic slaking with water." },
+  { commonName: "Slaked Lime", chemicalName: "Calcium hydroxide", formula: "Ca(OH)₂", icon: "🏠", uses: "Whitewashing buildings, soil acidity correction, mortar for bricks." },
+  { commonName: "Caustic Soda", chemicalName: "Sodium hydroxide", formula: "NaOH", icon: "🧼", uses: "Saponifies fats into soap, paper pulp production, drain cleaning." },
+  { commonName: "Laughing Gas", chemicalName: "Nitrous oxide", formula: "N₂O", icon: "😄", uses: "Dental anesthetic, analgesic, vehicle nitrous speed booster." },
+  { commonName: "Dry Ice", chemicalName: "Solid Carbon dioxide", formula: "CO₂ (solid at −78.5°C)", icon: "🧊", uses: "Sublimates directly to gas; stage fog effects, vaccine cooling." },
+  { commonName: "Blue Vitriol", chemicalName: "Copper sulfate pentahydrate", formula: "CuSO₄ · 5H₂O", icon: "💎", uses: "Agricultural fungicide (Bordeaux mixture), copper electroplating." },
+  { commonName: "Potash Alum (Fitkari)", chemicalName: "Potassium aluminium sulfate", formula: "K₂SO₄·Al₂(SO₄)₃·24H₂O", icon: "🪒", uses: "Coagulates muddy water colloids, styptic pencil to stop shaving cuts." },
 ];
 
 const NATURAL_ACIDS_DATA: NaturalAcidRow[] = [
-  { source: "Lemon, Lime & Orange", acid: "Citric Acid", icon: "🍋", fact: "Natural antioxidant rich in Vitamin C; prevents enzymatic browning on cut fruit." },
-  { source: "Curd, Yogurt & Sour Milk", acid: "Lactic Acid", icon: "🥛", fact: "Formed when beneficial Lactobacillus bacteria ferment milk lactose sugar." },
-  { source: "Vinegar (Sirka)", acid: "Acetic Acid (Ethanoic Acid)", icon: "🥗", fact: "4–8% solution; gives street chowmein its tang and stops pickle mold from growing." },
-  { source: "Tamarind (Imli) & Raw Mango", acid: "Tartaric Acid", icon: "🥭", fact: "Natural souring agent; mixed with baking soda to manufacture double-acting baking powder." },
-  { source: "Tomatoes & Raw Spinach", acid: "Oxalic Acid", icon: "🍅", fact: "Gentle organic plant acid; gives tomatoes their mild acidity." },
-  { source: "Apples", acid: "Malic Acid", icon: "🍏", fact: "Abundant in crisp green apples; used in sour hard candies." },
-  { source: "Red Ant Sting & Nettle Leaf", acid: "Methanoic Acid (Formic Acid)", icon: "🐜", fact: "Causes a sharp burning skin sting; rubbed with baking soda or soap (mild bases) to neutralize the pain." },
+  { source: "Citrus Fruits (Lemon, Orange)", acid: "Citric acid (C₆H₈O₇)", icon: "🍋", fact: "Natural antioxidant and scale remover; prevents kidney stone crystallization." },
+  { source: "Household Vinegar", acid: "Acetic acid / Ethanoic (CH₃COOH)", icon: "🥗", fact: "5% to 8% solution in water; ancient culinary preservative for pickles." },
+  { source: "Sour Milk & Curd (Dahi)", acid: "Lactic acid (C₃H₆O₃)", icon: "🥛", fact: "Produced by Lactobacillus fermenting lactose; causes muscle fatigue in sprints." },
+  { source: "Tamarind & Grapes", acid: "Tartaric acid (C₄H₆O₆)", icon: "🍇", fact: "Key ingredient in baking powder to neutralize basic sodium carbonate." },
+  { source: "Tomatoes & Spinach", acid: "Oxalic acid (C₂H₂O₄)", icon: "🍅", fact: "Removes rust stains from fabric; binds with calcium to form kidney stones." },
+  { source: "Red Ant Stings & Nettle", acid: "Formic acid / Methanoic (HCOOH)", icon: "🐜", fact: "Injects stinging burn; neutralized by applying calamine or baking soda." },
+  { source: "Crisp Apples & Pears", acid: "Malic acid (C₄H₆O₅)", icon: "🍏", fact: "Gives crisp sourness to green apples; stimulates salivary digestive flow." },
+  { source: "Carbonated Soda Drinks", acid: "Carbonic acid (H₂CO₃)", icon: "🥤", fact: "Formed by dissolving CO₂ under pressure; fizzes when bottle cap opens." },
 ];
 
 const INSTRUMENTS_DATA: InstrumentRow[] = [
-  { name: "Sphygmomanometer", measures: "Arterial Blood Pressure (mmHg)", category: "Medical & Health", icon: "🫀", principle: "Inflatable arm cuff and mercury/aneroid dial. Normal adult reading is 120 mmHg (systolic pumping) over 80 mmHg (diastolic resting)." },
-  { name: "Stethoscope", measures: "Heartbeat Sounds & Lung Respiration", category: "Medical & Health", icon: "🩺", principle: "Amplifies heart 'lub-dub' valve valve closures and lung crackles via acoustic sound reflection. Invented by René Laennec in 1816." },
-  { name: "Barometer", measures: "Atmospheric Air Pressure", category: "Weather & Nature", icon: "🌡️", principle: "Measures weight of air using a mercury column. CRITICAL RULE: A sudden sharp plunge in barometer reading warns of an approaching storm or cyclone!" },
-  { name: "Lactometer", measures: "Purity & Relative Density of Milk", category: "Weather & Nature", icon: "🥛", principle: "A specialized glass hydrometer based on Archimedes' principle. It floats higher in pure thick milk and sinks deeper if water was mixed in." },
-  { name: "Hygrometer", measures: "Air Humidity / Atmospheric Moisture %", category: "Weather & Nature", icon: "💧", principle: "Measures percentage of water vapor moisture in air for meteorology weather forecasting and greenhouse crop climate control." },
-  { name: "Altimeter", measures: "Altitude Above Sea Level", category: "Physics & Aviation", icon: "✈️", principle: "Cockpit gauge in aircraft indicating altitude by measuring the gradual drop in atmospheric pressure as height increases." },
-  { name: "Anemometer", measures: "Wind Speed & Wind Direction", category: "Weather & Nature", icon: "💨", principle: "Spinning three-cup or propeller mechanism at airports and meteorological stations measuring horizontal wind velocity." },
-  { name: "Seismograph", measures: "Earthquake Tremors & Ground Vibrations", category: "Weather & Nature", icon: "📈", principle: "Suspended inertia pendulum that records seismic shockwaves during earthquakes; tremor strength is graded on the logarithmic Richter Scale." },
-  { name: "Pyrometer", measures: "Extremely High Temperatures (>1000°C)", category: "Physics & Aviation", icon: "🔥", principle: "Measures thermal radiation from a distance without physical contact; used for blast furnaces, molten steel, or measuring the Sun's surface." },
-  { name: "SONAR", measures: "Ocean Depth & Submerged Objects", category: "Physics & Aviation", icon: "🌊", principle: "Sound Navigation and Ranging. Naval ships send ultrasonic sound pulses into deep sea and calculate distance via echo time (2d = v × t)." },
+  { name: "Sphygmomanometer", measures: "Arterial Blood Pressure (mmHg)", category: "Medical & Health", icon: "🩺", principle: "Hydraulic cuff occludes brachial artery; measures systolic/diastolic values." },
+  { name: "Barometer", measures: "Atmospheric Air Pressure", category: "Weather & Nature", icon: "📉", principle: "Torricelli mercury column: 760 mmHg at sea level. Sudden drop = incoming storm." },
+  { name: "Lactometer", measures: "Purity & Specific Gravity of Milk", category: "Physics & Aviation", icon: "🥛", principle: "Floatation buoyancy: floats high in pure milk (~1.030 g/cm³), sinks if watered down." },
+  { name: "Hygrometer", measures: "Atmospheric Humidity & Moisture", category: "Weather & Nature", icon: "💧", principle: "Measures water vapor percentage in ambient air (psychrometric wet/dry bulb)." },
+  { name: "Hydrometer", measures: "Specific Gravity / Density of Liquids", category: "Physics & Aviation", icon: "🧪", principle: "Archimedes' floatation: depth of weighted bulb indicates electrolyte liquid density." },
+  { name: "Anemometer", measures: "Wind Speed and Velocity", category: "Weather & Nature", icon: "💨", principle: "Hemispherical spinning cups rotate at rate proportional to wind velocity." },
+  { name: "Altimeter", measures: "Altitude Above Sea Level", category: "Physics & Aviation", icon: "✈️", principle: "Aneroid capsule detects predictable drop in air pressure with increasing altitude." },
+  { name: "Pyrometer", measures: "Extremely High Temperatures (>1,500°C)", category: "Physics & Aviation", icon: "🔥", principle: "Non-contact measurement of emitted infrared radiation (Stefan-Boltzmann Law)." },
+  { name: "Seismograph", measures: "Earthquake Tremors & Seismic Waves", category: "Weather & Nature", icon: "🌋", principle: "Inertial pendulum records P and S ground waves on logarithmic Richter Scale." },
+  { name: "Fathometer", measures: "Depth of the Ocean Floor", category: "Physics & Aviation", icon: "🚢", principle: "Echo-sounding sonar: measures round-trip time delay of ultrasonic sound pulses." },
+  { name: "Ammeter", measures: "Electric Current in Amperes", category: "Physics & Aviation", icon: "⚡", principle: "Connected in SERIES; possesses near-zero internal electrical resistance." },
+  { name: "Voltmeter", measures: "Potential Difference in Volts", category: "Physics & Aviation", icon: "🔌", principle: "Connected in PARALLEL; possesses extremely high internal electrical resistance." },
 ];
 
 const SI_UNITS_DATA: SIUnitRow[] = [
-  { quantity: "Force & Weight", unit: "Newton", symbol: "N", example: "Gravitational pull on a medium apple (~100g) is approximately 1 Newton (W = m × g)." },
-  { quantity: "Work & Energy", unit: "Joule", symbol: "J", example: "Lifting a 1 kg textbook vertically by 1 metre requires roughly 10 Joules of energy." },
-  { quantity: "Electric Power", unit: "Watt", symbol: "W", example: "Rate of energy consumption (1 Joule/sec). LED bulb: 9W; Ceiling fan: 75W; 1 Horsepower (1 HP) = 746 Watts." },
-  { quantity: "Commercial Electrical Energy", unit: "Kilowatt-Hour", symbol: "kWh", example: "1 commercial unit on your home electric meter = 1000W × 3600s = 3,600,000 Joules (3.6 × 10⁶ J)." },
-  { quantity: "Pressure", unit: "Pascal", symbol: "Pa", example: "1 Newton per square metre (N/m²). Standard atmospheric air pressure at sea level is ~101,325 Pa (1.013 bar)." },
-  { quantity: "Voltage / Potential Difference", unit: "Volt", symbol: "V", example: "AA battery: 1.5V; USB phone charger: 5V; Indian household wall socket: 220–240V AC." },
-  { quantity: "Electric Resistance", unit: "Ohm", symbol: "Ω", example: "Opposition to current flow in a wire. Governed by Ohm's Law: V = I × R." },
-  { quantity: "Eyeglass Lens Power", unit: "Dioptre", symbol: "D", example: "Equal to 1 / focal length in metres. Convex lenses have positive power (+D); concave lenses have negative (−D)." },
-  { quantity: "Sound Frequency", unit: "Hertz", symbol: "Hz", example: "Cycles per second. Human audible hearing range spans 20 Hz to 20,000 Hz." },
+  { quantity: "Length", unit: "Metre", symbol: "m", example: "Wavelength of laser light, distance" },
+  { quantity: "Mass", unit: "Kilogram", symbol: "kg", example: "Standard kilogram defined via Planck's constant" },
+  { quantity: "Time", unit: "Second", symbol: "s", example: "9,192,631,770 cycles of Cesium-133 radiation" },
+  { quantity: "Electric Current", unit: "Ampere", symbol: "A", example: "Rate of flow of electric charge (1 Coulomb/sec)" },
+  { quantity: "Thermodynamic Temp", unit: "Kelvin", symbol: "K", example: "Absolute zero is 0 K (−273.15°C); room temp ~298 K" },
+  { quantity: "Luminous Intensity", unit: "Candela", symbol: "cd", example: "Brightness of light emitted by standard candle" },
+  { quantity: "Force", unit: "Newton", symbol: "N", example: "1 N = 1 kg · m / s² (weight of small apple ~1 N)" },
+  { quantity: "Work & Energy", unit: "Joule", symbol: "J", example: "1 J = 1 N · m = 1 Watt · second" },
+  { quantity: "Power", unit: "Watt", symbol: "W", example: "1 W = 1 J / s (1 horsepower = 746 Watts)" },
+  { quantity: "Pressure", unit: "Pascal", symbol: "Pa", example: "1 Pa = 1 N / m² (1 atm = 101,325 Pa = 760 mmHg)" },
+  { quantity: "Electric Resistance", unit: "Ohm", symbol: "Ω", example: "Opposition to current; V = IR" },
+  { quantity: "Radioactivity", unit: "Becquerel", symbol: "Bq", example: "1 Bq = 1 nuclear decay per second" },
 ];
 
 const BLOOD_COMPATIBILITY_DATA: BloodCompatibilityRow[] = [
   {
     group: "O Negative (O−)",
-    antigens: "None (No A, B, or Rh)",
-    antibodies: "Anti-A, Anti-B",
-    canGive: "Universal Red Cell Donor (Everyone: O−, O+, A−, A+, B−, B+, AB−, AB+)",
-    canTake: "O− only",
-    note: "TRUE UNIVERSAL DONOR: Because its red cells carry zero foreign surface antigens, it is transfused in trauma emergencies when the victim's blood type is unknown.",
+    antigens: "None (zero A, B, or Rh)",
+    antibodies: "Anti-A, Anti-B, Anti-Rh",
+    canGive: "UNIVERSAL DONOR (All groups)",
+    canTake: "O Negative only",
+    note: "Emergency red cell donor for trauma patients; zero foreign antigens.",
     highlight: "donor",
   },
   {
     group: "O Positive (O+)",
-    antigens: "Rh factor only",
+    antigens: "Rh(D) only",
     antibodies: "Anti-A, Anti-B",
     canGive: "O+, A+, B+, AB+",
     canTake: "O+, O−",
-    note: "The most common blood group worldwide. Safe for all Rh-positive patients.",
-  },
-  {
-    group: "A Positive (A+)",
-    antigens: "A and Rh",
-    antibodies: "Anti-B",
-    canGive: "A+, AB+",
-    canTake: "A+, A−, O+, O−",
-    note: "Second most common type. Plasma contains anti-B antibodies.",
+    note: "Most common blood group in India (~38% of population).",
   },
   {
     group: "A Negative (A−)",
-    antigens: "A only",
-    antibodies: "Anti-B",
-    canGive: "A+, A−, AB+, AB−",
+    antigens: "A antigen only",
+    antibodies: "Anti-B, Anti-Rh",
+    canGive: "A−, A+, AB−, AB+",
     canTake: "A−, O−",
-    note: "Can donate to both positive and negative A and AB recipients.",
+    note: "Rare blood group; safe for A and AB recipients.",
   },
   {
-    group: "B Positive (B+)",
-    antigens: "B and Rh",
-    antibodies: "Anti-A",
-    canGive: "B+, AB+",
-    canTake: "B+, B−, O+, O−",
-    note: "Very common across South Asia. Plasma contains anti-A antibodies.",
+    group: "A Positive (A+)",
+    antigens: "A and Rh antigens",
+    antibodies: "Anti-B only",
+    canGive: "A+, AB+",
+    canTake: "A+, A−, O+, O−",
+    note: "Very common group; receives from any A or O blood.",
   },
   {
     group: "B Negative (B−)",
-    antigens: "B only",
-    antibodies: "Anti-A",
-    canGive: "B+, B−, AB+, AB−",
+    antigens: "B antigen only",
+    antibodies: "Anti-A, Anti-Rh",
+    canGive: "B−, B+, AB−, AB+",
     canTake: "B−, O−",
-    note: "Rare blood group; can donate to B and AB recipients.",
+    note: "Can donate to B and AB patients.",
   },
   {
-    group: "AB Positive (AB+)",
-    antigens: "A, B, and Rh (All present)",
-    antibodies: "None (Zero antibodies in plasma)",
-    canGive: "AB+ only",
-    canTake: "Universal Recipient (Everyone! A+, A−, B+, B−, AB+, AB−, O+, O−)",
-    note: "TRUE UNIVERSAL RECIPIENT: Because its plasma lacks antibodies to attack donor red cells, AB+ individuals can safely receive blood from any group in the world.",
-    highlight: "recipient",
+    group: "B Positive (B+)",
+    antigens: "B and Rh antigens",
+    antibodies: "Anti-A only",
+    canGive: "B+, AB+",
+    canTake: "B+, B−, O+, O−",
+    note: "Second most common group in India (~32% of population).",
   },
   {
     group: "AB Negative (AB−)",
-    antigens: "A and B",
-    antibodies: "None",
-    canGive: "AB+, AB−",
+    antigens: "A and B antigens",
+    antibodies: "Anti-Rh only",
+    canGive: "AB−, AB+",
     canTake: "AB−, A−, B−, O−",
-    note: "The rarest blood group globally (< 1% of population).",
+    note: "Rarest regular blood type (<1% of population).",
+  },
+  {
+    group: "AB Positive (AB+)",
+    antigens: "A, B, and Rh antigens",
+    antibodies: "NONE (zero antibodies)",
+    canGive: "AB+ only",
+    canTake: "UNIVERSAL RECIPIENT (All groups)",
+    note: "Can receive red blood cells from any blood group safely.",
+    highlight: "recipient",
   },
 ];
 
 const BODY_RECORDS_DATA: BodyRecordRow[] = [
-  { metric: "Largest Organ", value: "Skin", category: "Surface & Barrier", icon: "🛡️", detail: "Covers roughly 1.8 square metres and accounts for 16% of total body weight." },
-  { metric: "Largest Internal Organ & Gland", value: "Liver (1.5 kg)", category: "Metabolism", icon: "🫀", detail: "Produces digestive bile, stores energy glycogen, and purifies medicines and waste." },
-  { metric: "Smallest Bone", value: "Stapes (Stirrup — 3 mm)", category: "Skeleton & Senses", icon: "👂", detail: "Tucked inside the middle ear. Vibrates to pass sound into the fluid of the inner ear." },
-  { metric: "Longest & Strongest Bone", value: "Femur (Thigh bone)", category: "Skeleton", icon: "🦴", detail: "Carries your entire body weight during running, jumping, and standing." },
-  { metric: "Hardest Substance in Body", value: "Tooth Enamel", category: "Dental", icon: "🦷", detail: "Harder than bone (96% mineral hydroxyapatite). Dissolves when mouth pH falls below 5.5." },
-  { metric: "Kidney Filtering Units", value: "1 Million Nephrons", category: "Excretion", icon: "💧", detail: "Microscopic filters in each kidney cleaning about 180 litres of body fluids daily." },
-  { metric: "Normal Body Temperature", value: "37°C (98.6°F)", category: "Vitals", icon: "🌡️", detail: "Maintained by the hypothalamus in the brain to keep cellular enzymes working efficiently." },
-  { metric: "Normal Blood Pressure", value: "120/80 mmHg", category: "Vitals", icon: "💓", detail: "120 is systolic pumping pressure; 80 is diastolic resting pressure between beats." },
-  { metric: "Average Resting Heart Rate", value: "72 beats / min", category: "Vitals", icon: "⚡", detail: "Generated automatically by the SA Node in the heart (the body's natural pacemaker)." },
-  { metric: "Total Adult Bones", value: "206 Bones", category: "Skeleton", icon: "💀", detail: "Infants are born with ~300 soft cartilage bones that fuse together as they mature." },
+  { metric: "Largest Organ Overall", value: "Skin (Integumentary)", category: "Anatomy", icon: "👤", detail: "Covers ~2 square metres, weighs ~4 kg; provides primary barrier against pathogens." },
+  { metric: "Largest Internal Organ & Gland", value: "Liver", category: "Anatomy", icon: "🫀", detail: "Weighs ~1.5 kg; performs over 500 vital functions including bile secretion & urea synthesis." },
+  { metric: "Smallest Bone", value: "Stapes (Stirrup)", category: "Skeleton", icon: "👂", detail: "Measures only 3 mm in the middle ear cavity; transmits sound vibrations into cochlea." },
+  { metric: "Longest & Strongest Bone", value: "Femur (Thigh Bone)", category: "Skeleton", icon: "🦴", detail: "Averages 48 cm in adults; can withstand up to 30 times human body weight." },
+  { metric: "Hardest Biological Substance", value: "Tooth Enamel", category: "Dental", icon: "🦷", detail: "Contains 96% crystalline calcium hydroxyapatite; harder than steel or bone." },
+  { metric: "Total Bones in Adult Skeleton", value: "206 Bones", category: "Skeleton", icon: "🩻", detail: "Infants are born with ~300 soft bones that fuse together during growth." },
+  { metric: "Natural Cardiac Pacemaker", value: "SA Node (Right Atrium)", category: "Cardiology", icon: "❤️", detail: "Self-depolarizes rhythmically ~72 times per minute to trigger coordinated heartbeats." },
+  { metric: "Kidney Filtering Units", value: "Nephrons (~1 Million/Kidney)", category: "Renal", icon: "🫘", detail: "Filters 180 litres of blood fluid daily, condensing it into ~1.5 litres of urine." },
+  { metric: "Normal Arterial Blood Pressure", value: "120 / 80 mmHg", category: "Vitals", icon: "🩺", detail: "120 mmHg is systolic pressure during contraction; 80 mmHg is diastolic at rest." },
+  { metric: "Red Blood Cell Lifespan", value: "120 Days", category: "Hematology", icon: "🩸", detail: "Recycled in Spleen ('Graveyard of RBCs') after ~120 days of continuous circulation." },
 ];
 
 const PHENOMENA_DATA: PhenomenonRow[] = [
   {
     question: "Why is the clear daytime sky blue?",
     law: "Rayleigh Scattering of Light",
+    icon: "🌌",
+    shortAnswer: "Air molecules scatter short blue wavelengths ~10 times more than red wavelengths.",
+    fullReason: "Sunlight is white light composed of all rainbow colors (VIBGYOR). When rays enter Earth's atmosphere, tiny nitrogen and oxygen molecules scatter shorter blue wavelengths (400 nm) in every direction far more than long red wavelengths (700 nm). Because blue light is scattered across the entire hemisphere, our eyes see a blue sky.",
+    realLife: "On the airless Moon, the sky is completely pitch-black even in broad daylight!",
+  },
+  {
+    question: "Why are sunsets and danger signals red?",
+    law: "Rayleigh Scattering & Wavelength",
     icon: "🌅",
-    shortAnswer: "Shallow blue light wavelengths scatter 10 times more intensely than red light.",
-    fullReason: "Sunlight is composed of all rainbow colors. When light enters Earth's atmosphere, tiny nitrogen and oxygen gas molecules scatter short-wavelength blue and violet light in every direction far more than long red waves. Your eyes perceive this widely scattered blue light.",
-    realLife: "On the airless Moon with no atmosphere, the sky looks completely pitch-black even in broad daylight, with stars clearly visible alongside the Sun!",
+    shortAnswer: "Red light has the longest visible wavelength and scatters the least through fog and dust.",
+    fullReason: "At sunset, sunlight must travel through a much thicker slice of atmosphere. Almost all blue and green rays are scattered away before reaching your eyes, leaving only the least-scattered long red and orange rays. Danger lights and brake lights are colored red for the exact same reason: they pierce through smoke, fog, and distance.",
+    realLife: "Lighthouse beacons and car emergency tail-lights are universally red.",
   },
   {
-    question: "Why are sunsets, sunrises, and danger signals red?",
-    law: "Least Scattering of Long Wavelengths",
-    icon: "🌇",
-    shortAnswer: "Red light has the longest wavelength and penetrates through fog and smoke without scattering.",
-    fullReason: "At sunset, sunlight must travel through a much thicker slice of air atmosphere. All blue and green light gets scattered away before reaching your vantage point, leaving only long red and orange rays to reach your eyes. Danger and railway signals use red so drivers can spot them from the maximum distance through winter fog and smoke.",
-    realLife: "Airport runway beacons, lighthouse signals, and automobile brake lights universally use red.",
-  },
-  {
-    question: "Why do stars twinkle while planets shine steadily?",
-    law: "Atmospheric Refraction of Point Light",
+    question: "Why do stars twinkle, but planets don't?",
+    law: "Atmospheric Refraction of Light",
     icon: "✨",
-    shortAnswer: "Turbulent layers of hot and cold air constantly bend tiny pinpoint starlight back and forth.",
-    fullReason: "Stars are trillions of kilometres away and appear as microscopic pinpoint dots of light. Shifting warm and cold air currents in the atmosphere continually refract (bend) that narrow ray, making it flicker. Planets are much closer and appear as larger discs; the refraction from different edges averages out to a steady glow.",
-    realLife: "Looking at objects across a campfire makes them appear to shiver due to rising hot air currents.",
+    shortAnswer: "Turbulent hot and cold air layers continuously bend pinpoint starlight back and forth.",
+    fullReason: "Stars are trillions of kilometres away and appear as pinpoint light sources. As starlight passes through swirling atmospheric layers of varying temperature and density, the ray bends randomly (Atmospheric Refraction), making the star appear to flicker. Planets are much closer and appear as larger discs; fluctuations across the disc average out to a steady glow.",
+    realLife: "The Hubble and James Webb Space Telescopes are placed above the atmosphere to avoid all twinkling blur.",
   },
   {
-    question: "Why does ice float on water instead of sinking?",
-    law: "Anomalous Expansion of Water (Densest at 4°C)",
+    question: "Why does solid ice float on liquid water?",
+    law: "Anomalous Expansion of Water",
     icon: "🧊",
-    shortAnswer: "Water expands as it freezes, making solid ice about 9% lighter (less dense) than liquid water.",
-    fullReason: "Most liquids shrink and become heavier as they freeze. Water is unique: it attains its maximum density at 4°C. As it cools from 4°C down to 0°C, hydrogen bonds lock into an open hexagonal cage structure that expands volume, making ice less dense than water.",
-    realLife: "Floating ice acts as an insulating blanket on freezing lakes, keeping the bottom water at 4°C so fish and turtles survive harsh winters!",
+    shortAnswer: "Water reaches maximum density at 4°C; freezing below 4°C expands into a lighter cage lattice.",
+    fullReason: "Almost all liquids contract and become heavier as they freeze. Water is unique: it contracts until 4°C (maximum density = 1.0 g/cm³). As it cools from 4°C to 0°C, hydrogen bonds lock into an open tetrahedral crystal lattice, making ice less dense (~0.92 g/cm³) than liquid water. Ice floats as an insulating blanket, keeping the pond bottom liquid at 4°C so fish survive freezing winters.",
+    realLife: "Icebergs float in the ocean with 90% underwater and 10% exposed above.",
   },
   {
-    question: "Why does food cook 3 times faster in a pressure cooker?",
-    law: "Higher Pressure Raises Boiling Point of Water",
+    question: "Why does food cook faster in a pressure cooker?",
+    law: "Boiling Point vs Pressure (Gay-Lussac)",
     icon: "🍲",
-    shortAnswer: "Trapped steam builds up 2 atmospheres of pressure, raising water's boiling point from 100°C to 120°C.",
-    fullReason: "In an open kitchen pot, boiling water can never exceed 100°C because steam escapes freely. In a tightly sealed pressure cooker, accumulated trapped steam doubles internal air pressure, forcing water to boil at 120°C. That significantly higher temperature cooks dal and potatoes in a fraction of normal time.",
-    realLife: "Cooking dal on high mountain altitudes takes hours without a pressure cooker because low air pressure causes water to boil at a cooler 90°C.",
+    shortAnswer: "Trapped steam increases internal pressure to 2 atm, elevating water's boiling point to 120°C.",
+    fullReason: "In an open pot, boiling water caps at 100°C because heat escapes with steam. In a sealed pressure cooker, trapped steam pressure builds to 2 atmospheres. Higher ambient pressure forces water molecules to stay liquid up to ~120°C. Cooking at 120°C delivers vastly more thermal energy, cooking pulses and meats in a third of normal time.",
+    realLife: "On high mountain peaks, low atmospheric pressure causes water to boil at 85°C, making cooking dal impossible without a pressure cooker.",
   },
   {
-    question: "What causes a shimmering mirage on hot summer highways?",
-    law: "Total Internal Reflection (TIR) through Heated Air",
+    question: "What causes a shimmering mirage on hot roads?",
+    law: "Total Internal Reflection (TIR)",
     icon: "🏜️",
-    shortAnswer: "Scorching asphalt tarmac heats the air, bending downward light upward like a mirror.",
-    fullReason: "Blazing sunlight heats the dark asphalt road, creating a thin layer of scorching, less dense air directly above the ground. Downward light rays from the sky bend progressively as they travel through these warm layers until they undergo Total Internal Reflection, bouncing up into your eye. Your brain interprets this reflection of the sky as a pool of water.",
-    realLife: "Desert travelers seeing false illusions of shimmering water oases on hot sand dunes.",
+    shortAnswer: "Light from the sky bends continuously upward through hot ground air layers.",
+    fullReason: "Scorching asphalt heats the air layer directly touching it, making it hot and less dense than the cooler air above. As light from the sky travels downward from denser to rarer air, the rays refract progressively away from the normal. When the incident angle exceeds the critical angle, Total Internal Reflection bounces the ray back up into driver eyes, looking like a puddle of water reflecting the sky.",
+    realLife: "Desert travellers hallucinate water oases due to mirage reflection of the blue sky.",
   },
   {
-    question: "How does a rainbow form in the sky?",
-    law: "Dispersion, Refraction & Internal Reflection in Raindrops",
+    question: "How does a natural rainbow form in the sky?",
+    law: "Dispersion, Refraction & Internal Reflection",
     icon: "🌈",
-    shortAnswer: "Millions of suspended raindrops act as miniature prisms, splitting white sunlight into 7 colors.",
-    fullReason: "When sunlight strikes a falling raindrop, it bends (refracts), reflects off the inner back surface of the water droplet, and bends again as it emerges (dispersion), separating white light into Red on the outer edge (42°) and Violet on the inner edge (40°).",
-    realLife: "Spraying a fine water mist from a garden hose with the sun behind you generates an instant rainbow.",
+    shortAnswer: "Millions of spherical raindrops act like miniature prisms, splitting white sunlight into VIBGYOR.",
+    fullReason: "When sunlight shines from behind you onto raindrops after a shower, light enters each spherical droplet (Refraction), separates into its 7 component colors because each color bends at a different angle (Dispersion), reflects off the back interior surface of the droplet (Internal Reflection), and refracts out. Red emerges at 42° and violet at 40°.",
+    realLife: "A rainbow can only be observed when the Sun is directly behind your back.",
   },
   {
     question: "Why can't sound travel in outer space?",
-    law: "Sound is a Mechanical Wave Needing Matter",
-    icon: "🔇",
-    shortAnswer: "Sound travels by vibrating physical air or solid molecules; outer space is an empty vacuum.",
-    fullReason: "Sound is a pressure vibration that requires molecules (air, water, or steel) to transfer energy. Outer space is a near-total vacuum with virtually no particles. Astronauts on spacewalks must speak using radio headsets because radio waves are electromagnetic and travel freely through empty space.",
-    realLife: "Movie scenes with booming explosive sounds during spaceship battles in space are scientifically inaccurate!",
+    law: "Mechanical Nature of Acoustic Waves",
+    icon: "🚀",
+    shortAnswer: "Sound requires physical matter (molecules) to vibrate; outer space is a vacuum.",
+    fullReason: "Sound is a mechanical longitudinal compression wave that propagates only when molecules physically collide and transmit vibrations (in air, liquid, or solids). Outer space is a near-perfect vacuum with virtually zero gas molecules. Astronauts on spacewalks cannot hear each other shouting and must communicate using electromagnetic radio waves.",
+    realLife: "Sci-fi movies with loud space explosions are scientifically inaccurate; real space is dead silent.",
   },
-  {
-    question: "Why does a freshly sliced apple turn brown?",
-    law: "Enzymatic Oxidation (Polyphenol Oxidase)",
-    icon: "🍏",
-    shortAnswer: "Cutting breaks plant cells, allowing iron-rich enzymes to react with atmospheric oxygen.",
-    fullReason: "When an apple is sliced, its inner cells rupture. The enzyme polyphenol oxidase (PPO) reacts with oxygen in the air, converting natural plant phenols into brown melanin pigments.",
-    realLife: "Squeezing a few drops of lemon juice (Vitamin C antioxidant) over apple slices stops browning completely!",
-  },
-  {
-    question: "Why do we cry when cutting fresh onions?",
-    law: "Volatile Sulfur Gas forming Mild Sulfuric Acid",
-    icon: "🧅",
-    shortAnswer: "Cutting mixes onion enzymes, producing a sulfur gas that reacts with eye tears to form mild acid.",
-    fullReason: "Chopping an onion breaks cell membranes, allowing alliinase enzymes to produce a gas called Syn-propanethial-S-oxide. When this gas drifts into your eyes, it reacts with natural tear moisture to create trace sulfuric acid, triggering tear glands to flush it away.",
-    realLife: "Chilling onions in the fridge before cutting or using a razor-sharp knife reduces cell ruptures and tear gas.",
-  },
-  {
-    question: "Why do massive steel ships float while a small iron nail sinks?",
-    law: "Archimedes' Principle & Buoyant Displacement",
-    icon: "🚢",
-    shortAnswer: "A ship's hollow hull displaces a volume of water whose weight is greater than the entire ship.",
-    fullReason: "An iron nail is solid and dense; it displaces very little water, so the upward buoyant force is less than its weight, and it sinks. A steel ship is designed with a massive hollow hull filled with air. Its wide shape displaces huge amounts of water, generating an upward buoyant push greater than the entire ship's weight.",
-    realLife: "Loading cargo causes a ship to sink slightly deeper until the extra water displaced balances the new weight.",
-  },
+];
+
+const PLANETS_DATA: PlanetRow[] = [
+  { name: "Mercury", category: "Terrestrial Rocky", icon: "⚪", orbitPeriod: "88 Earth days", dayLength: "59 Earth days", recordFact: "Fastest orbital speed in Solar System (47 km/s); extreme temp swing (−180°C to 430°C).", significance: "Closest planet to Sun; zero atmosphere to retain heat." },
+  { name: "Venus", category: "Terrestrial Rocky", icon: "🟡", orbitPeriod: "225 Earth days", dayLength: "243 Earth days", recordFact: "Hottest planet in Solar System (~465°C); rotates East to West (retrograde); day longer than year!", significance: "Runaway CO₂ greenhouse effect (96% CO₂); called 'Earth's Twin' & 'Morning Star'." },
+  { name: "Earth", category: "Terrestrial Rocky", icon: "🌍", orbitPeriod: "365.25 days", dayLength: "24 hours", recordFact: "Only known world with liquid water oceans, nitrogen-oxygen air, and life.", significance: "23.5° axial tilt causes seasons; protected by magnetosphere and ozone layer." },
+  { name: "Mars", category: "Terrestrial Rocky", icon: "🔴", orbitPeriod: "687 Earth days", dayLength: "24.6 hours", recordFact: "Hosts Olympus Mons (tallest volcano, ~22 km) and two tiny moons: Phobos and Deimos.", significance: "'The Red Planet' due to iron oxide rust; prime target for human colonization." },
+  { name: "Jupiter", category: "Gas Giant", icon: "🟠", orbitPeriod: "11.86 Earth years", dayLength: "9.9 hours", recordFact: "Largest planet (1,300 Earths volume); famous 300-year-old Great Red Spot anticyclone.", significance: "Massive magnetic field; moon Ganymede is the largest satellite in the Solar System." },
+  { name: "Saturn", category: "Gas Giant", icon: "🪐", orbitPeriod: "29.45 Earth years", dayLength: "10.7 hours", recordFact: "Lowest density of all planets (0.687 g/cm³ - lighter than water, would float in a giant bathtub!).", significance: "Spectacular ring system of ice chunks; moon Titan has liquid methane lakes." },
+  { name: "Uranus", category: "Ice Giant", icon: "🔵", orbitPeriod: "84 Earth years", dayLength: "17.2 hours", recordFact: "Axial tilt of 98° (rolls on its side like a ball around the Sun).", significance: "Pale cyan color from atmospheric methane; coldest planetary atmosphere (−224°C)." },
+  { name: "Neptune", category: "Ice Giant", icon: "🔷", orbitPeriod: "164.8 Earth years", dayLength: "16.1 hours", recordFact: "Windiest planet with supersonic storms reaching 2,100 km/h; longest orbit (165 yrs).", significance: "Deep azure blue methane atmosphere; moon Triton orbits backwards (retrograde)." },
+];
+
+const ISRO_MISSIONS_DATA: ISROMissionRow[] = [
+  { mission: "Aryabhata", year: "1975", rocket: "Kosmos-3M (Soviet)", icon: "🛰️", achievement: "India's first unmanned satellite; initiated Indian space era.", significance: "Built wholly in India under Dr. U.R. Rao; launched April 19, 1975." },
+  { mission: "SLV-3 (Rohini RS-1)", year: "1980", rocket: "SLV-3 (Indigenous)", icon: "🚀", achievement: "First successful domestic satellite launch into orbit; Project Director Dr. APJ Abdul Kalam.", significance: "Made India the 6th nation with independent orbital launch capability." },
+  { mission: "Chandrayaan-1", year: "2008", rocket: "PSLV-C11", icon: "🌕", achievement: "Discovered and confirmed the presence of water molecules (H₂O / OH) on the Moon.", significance: "Carried NASA's M3 spectrometer and India's Moon Impact Probe." },
+  { mission: "Mangalyaan (MOM)", year: "2013-14", rocket: "PSLV-C25", icon: "🔴", achievement: "First Asian nation to reach Mars; first nation in the world to succeed on maiden attempt.", significance: "Ultra-frugal budget of ~$74 million (cheaper than Hollywood space movies!)." },
+  { mission: "104 Satellites Record", year: "2017", rocket: "PSLV-C37", icon: "✨", achievement: "Historic world record: deployed 104 satellites in a single rocket flight.", significance: "Demonstrated ISRO's world-class commercial launch reliability." },
+  { mission: "Chandrayaan-3", year: "2023", rocket: "LVM3-M4 ('Bahubali')", icon: "🏆", achievement: "FIRST soft landing near the lunar South Pole in human history (Aug 23 National Space Day).", significance: "Vikram lander & Pragyan rover; landing spot named 'Shiv Shakti Point'." },
+  { mission: "Aditya-L1", year: "2023", rocket: "PSLV-C57", icon: "☀️", achievement: "India's first solar space observatory, stationed at Sun-Earth Lagrange Point 1 (L1).", significance: "Observes the solar corona, flares, and CMEs continuously with zero eclipses." },
+  { mission: "Gaganyaan", year: "Upcoming", rocket: "Human-rated LVM3", icon: "👨‍🚀", achievement: "First Indian human spaceflight mission carrying 3 astronauts to 400 km Low Earth Orbit.", significance: "Features female AI humanoid robot 'Vyommitra' for uncrewed safety validation." },
+];
+
+const CELESTIAL_MOONS_DATA: CelestialMoonRow[] = [
+  { name: "Ganymede", host: "Moon of Jupiter", icon: "🌑", diameter: "5,268 km", feature: "Largest moon in Solar System (bigger than Mercury); only moon with an intrinsic magnetic field." },
+  { name: "Titan", host: "Moon of Saturn", icon: "🪐", diameter: "5,150 km", feature: "Dense nitrogen atmosphere; rivers and lakes of liquid methane and ethane." },
+  { name: "Europa", host: "Moon of Jupiter", icon: "🧊", diameter: "3,122 km", feature: "Vast liquid saltwater ocean beneath ice crust; prime candidate for extraterrestrial life." },
+  { name: "Io", host: "Moon of Jupiter", icon: "🌋", diameter: "3,643 km", feature: "Most volcanically active body in Solar System; over 400 erupting sulfur volcanoes." },
+  { name: "The Moon", host: "Earth", icon: "🌕", diameter: "3,474 km", feature: "Tidally locked (same face always points to Earth); Apollo 11 manned landing 1969." },
+  { name: "Olympus Mons", host: "Volcano on Mars", icon: "🏔️", diameter: "600 km wide", feature: "Tallest volcano and mountain in Solar System (~22 km tall, 3× Mount Everest)." },
+  { name: "Pluto", host: "Kuiper Belt", icon: "❄️", diameter: "2,376 km", feature: "Dwarf planet with heart-shaped nitrogen glacier; demoted in 2006 for not clearing orbital path." },
+];
+
+const ALLOYS_DATA: AlloyRow[] = [
+  { name: "Brass", composition: "Copper (Cu ~70%) + Zinc (Zn ~30%)", icon: "🎺", properties: "Golden luster, highly malleable, acoustic resonance, non-magnetic.", uses: "Musical instruments (trumpets, saxophones), decorative plumbing taps, locks." },
+  { name: "Bronze", composition: "Copper (Cu ~88%) + Tin (Sn ~12%)", icon: "🥉", properties: "Harder than copper, low friction, resists seawater corrosion.", uses: "Statues, coins, Olympic medals, ship propellers, heavy-duty machine bushings." },
+  { name: "German Silver", composition: "Copper (~50%) + Zinc (~30%) + Nickel (~20%)", icon: "🥈", properties: "CONTAINS ZERO SILVER (0% Ag)! Silvery appearance, corrosion resistant.", uses: "Imitation jewelry, silverware tableware, musical instruments, zippers." },
+  { name: "Solder Wire", composition: "Tin (Sn ~50%) + Lead (Pb ~50%)", icon: "🔌", properties: "Low melting point eutectic (~183°C); bonds copper securely.", uses: "Joining electrical wires, PCB circuit soldering, plumbing pipe joints." },
+  { name: "Stainless Steel", composition: "Iron (Fe) + Chromium (Cr ~18%) + Nickel (Ni ~8%)", icon: "🍴", properties: "Rust-proof via self-healing chromium oxide (Cr₂O₃) passive barrier.", uses: "Kitchen utensils, cutlery, surgical tools, architectural paneling." },
+  { name: "Duralumin", composition: "Aluminium (Al ~95%) + Copper (Cu ~4%) + Mg + Mn", icon: "✈️", properties: "Featherweight with high tensile strength via precipitation hardening.", uses: "Aircraft airframes, racing car engine blocks, helicopter propeller blades." },
+  { name: "Alnico", composition: "Aluminium (Al) + Nickel (Ni) + Cobalt (Co) + Iron", icon: "🧲", properties: "Permanent high magnetic strength and high coercivity.", uses: "Loudspeakers, electric guitar pickups, MRI equipment, magnetic sensors." },
+  { name: "Nichrome", composition: "Nickel (Ni ~80%) + Chromium (Cr ~20%)", icon: "🔥", properties: "High electrical resistance; survives glowing 1,200°C without oxidizing.", uses: "Heating coils in toasters, geysers, hair dryers, electric room heaters." },
+  { name: "22 Karat Gold", composition: "Pure Gold (91.6%) + Copper/Silver (8.4%)", icon: "👑", properties: "Hallmark 916; hardened for jewelry durability (24K is too soft).", uses: "Indian bridal jewelry, bangles, necklaces, rings, gold ornaments." },
+  { name: "Dental Amalgam", composition: "Mercury (Hg ~50%) + Silver (Ag) + Tin + Copper", icon: "🦷", properties: "Liquid metal alloy that hardens inside cavity; stored in iron flasks.", uses: "Dental restorations for filling tooth cavities." },
+];
+
+const ORES_DATA: OreRow[] = [
+  { ore: "Bauxite", formula: "Al₂O₃ · 2H₂O", metal: "Aluminium (Al)", icon: "⛏️", importance: "Primary commercial ore; electrolyzed via Hall-Héroult process (Odisha leads in India)." },
+  { ore: "Hematite", formula: "Fe₂O₃", metal: "Iron (Fe)", icon: "🪨", importance: "Red iron ore; primary blast furnace feedstock to make pig iron and steel." },
+  { ore: "Magnetite", formula: "Fe₃O₄", metal: "Iron (Fe)", icon: "🧲", importance: "Black magnetic lodestone with the highest natural iron content (~72%)." },
+  { ore: "Cinnabar", formula: "HgS", metal: "Mercury (Hg)", icon: "🔴", importance: "Scarlet mercuric sulfide mineral; roasted in air to liberate pure liquid mercury." },
+  { ore: "Galena", formula: "PbS", metal: "Lead (Pb)", icon: "🩶", importance: "Chief lead ore with cubic metallic cleavage; yields silver as a valuable byproduct." },
+  { ore: "Pitchblende", formula: "U₃O₈ / UO₂", metal: "Uranium (U)", icon: "☢️", importance: "Radioactive ore from which Marie Curie discovered Radium; nuclear reactor fuel." },
+  { ore: "Monazite Sand", formula: "(Ce,La,Nd,Th)PO₄", metal: "Thorium (Th)", icon: "🏖️", importance: "Vast beach placers in Kerala, India; key for Stage 3 indigenous nuclear power." },
+  { ore: "Calamine", formula: "ZnCO₃", metal: "Zinc (Zn)", icon: "🧴", importance: "Zinc carbonate ore; historically mined for zinc smelting and soothing skin lotions." },
+];
+
+const POLYMERS_DATA: PolymerRow[] = [
+  { name: "Teflon", chemicalName: "Polytetrafluoroethylene (PTFE)", icon: "🍳", category: "Thermoplastic", properties: "Extremely slippery, non-stick, chemically inert, withstands 260°C.", uses: "Non-stick frying pans, plumbing thread seal tape, waterproof fabrics." },
+  { name: "Bakelite", chemicalName: "Phenol-Formaldehyde Resin", icon: "🔌", category: "Thermoset", properties: "World's first synthetic plastic (1907); never softens on reheating.", uses: "Electrical wall switches, plugs, saucepan handles, automobile distributor caps." },
+  { name: "Vulcanized Rubber", chemicalName: "Cross-linked Polyisoprene (Sulfur)", icon: "🛞", category: "Elastomer", properties: "Resilient elasticity, temperature resistant, high mechanical grip.", uses: "Automobile tires, shoe soles, rubber conveyer belts, industrial hoses." },
+  { name: "PVC", chemicalName: "Polyvinyl Chloride", icon: "🚰", category: "Thermoplastic", properties: "Rigid, waterproof, flame-retardant, cheap, lightweight.", uses: "Plumbing pipes, drainage conduits, electrical wire sheathing, raincoats." },
+  { name: "Nylon-6,6", chemicalName: "Polyamide (Adipic acid + HMD)", icon: "🪢", category: "Synthetic Fibre", properties: "First fully synthetic fiber (1935); exceptional tensile tenacity.", uses: "Toothbrush bristles, parachutes, mountaineering ropes, women's stockings." },
+  { name: "Rayon", chemicalName: "Regenerated Cellulose", icon: "👗", category: "Synthetic Fibre", properties: "'Artificial Silk': soft, lustrous, highly breathable and absorbent.", uses: "Summer clothing, bedsheets, medical gauze surgical dressings." },
+  { name: "Kevlar", chemicalName: "Poly-paraphenylene terephthalamide", icon: "🛡️", category: "Synthetic Fibre", properties: "5× stronger than steel of equal weight; dissipates bullet kinetic shock.", uses: "Bulletproof body armor vests, combat helmets, racing tires, cut-resistant gloves." },
+  { name: "PET", chemicalName: "Polyethylene Terephthalate", icon: "🍶", category: "Thermoplastic", properties: "Clear, shatterproof, gas-impermeable (CO₂ lock), highly recyclable.", uses: "Carbonated soda bottles (recycling code 1), polyester fleece jackets." },
 ];
 
 /* -------------------------------------------------------------------------- */
@@ -593,7 +744,7 @@ export function GeneralScienceViewer({
   onSelectChapter,
 }: {
   chapter: NoteChapter;
-  onSelectChapter: (id: string) => void;
+  onSelectChapter?: (id: string) => void;
 }) {
   const [viewMode, setViewMode] = useState<"table" | "cards" | "practice">("table");
   const [searchQuery, setSearchQuery] = useState("");
@@ -732,6 +883,56 @@ export function GeneralScienceViewer({
     );
   }, [searchQuery]);
 
+  // Chapter 7 Filter (Planets & ISRO)
+  const filteredPlanets = useMemo(() => {
+    const q = searchQuery.toLowerCase().trim();
+    return PLANETS_DATA.filter(
+      (p) =>
+        q === "" ||
+        p.name.toLowerCase().includes(q) ||
+        p.category.toLowerCase().includes(q) ||
+        p.recordFact.toLowerCase().includes(q) ||
+        p.significance.toLowerCase().includes(q)
+    );
+  }, [searchQuery]);
+
+  const filteredMissions = useMemo(() => {
+    const q = searchQuery.toLowerCase().trim();
+    return ISRO_MISSIONS_DATA.filter(
+      (m) =>
+        q === "" ||
+        m.mission.toLowerCase().includes(q) ||
+        m.rocket.toLowerCase().includes(q) ||
+        m.achievement.toLowerCase().includes(q) ||
+        m.significance.toLowerCase().includes(q)
+    );
+  }, [searchQuery]);
+
+  // Chapter 8 Filter (Alloys & Polymers)
+  const filteredAlloys = useMemo(() => {
+    const q = searchQuery.toLowerCase().trim();
+    return ALLOYS_DATA.filter(
+      (a) =>
+        q === "" ||
+        a.name.toLowerCase().includes(q) ||
+        a.composition.toLowerCase().includes(q) ||
+        a.properties.toLowerCase().includes(q) ||
+        a.uses.toLowerCase().includes(q)
+    );
+  }, [searchQuery]);
+
+  const filteredPolymers = useMemo(() => {
+    const q = searchQuery.toLowerCase().trim();
+    return POLYMERS_DATA.filter(
+      (p) =>
+        q === "" ||
+        p.name.toLowerCase().includes(q) ||
+        p.chemicalName.toLowerCase().includes(q) ||
+        p.category.toLowerCase().includes(q) ||
+        p.uses.toLowerCase().includes(q)
+    );
+  }, [searchQuery]);
+
   return (
     <div className="space-y-6 sm:space-y-8 animate-fade-in">
       {/* ─── Top Control Bar: Mode Toggle & Search ─── */}
@@ -780,7 +981,7 @@ export function GeneralScienceViewer({
                 : "text-muted hover:text-fg"
             )}
           >
-            <ListChecks className="h-4 w-4" /> Practice Quiz
+            <ListChecks className="h-4 w-4" /> Practice Quiz (50)
           </button>
         </div>
 
@@ -799,42 +1000,41 @@ export function GeneralScienceViewer({
       </div>
 
       {/* ────────────────────────────────────────────────────────────────────── */}
-      {/* CHAPTER 1: VITAMINS & MINERALS                                        */}
+      {/* 1. STRUCTURED TABLE VIEW (Strictly Tables Only)                        */}
       {/* ────────────────────────────────────────────────────────────────────── */}
-      {chapter.id === "note-gen-1" && (
-        <div className="space-y-8">
-          {/* Filter Pills */}
-          <div className="flex flex-wrap items-center gap-2">
-            {[
-              { id: "all", label: "All Nutrients" },
-              { id: "fat", label: "🥑 Fat-Soluble (A, D, E, K)" },
-              { id: "water", label: "💧 Water-Soluble (B-Complex, C)" },
-              { id: "mineral", label: "⚡ Minerals (Iron, Calcium, Iodine)" },
-            ].map((f) => (
-              <button
-                key={f.id}
-                type="button"
-                onClick={() => {
-                  haptic("light");
-                  setActiveFilter(f.id);
-                }}
-                className={cn(
-                  "rounded-full border px-4 py-1.5 text-xs sm:text-sm font-medium transition active:scale-95",
-                  activeFilter === f.id
-                    ? "border-brand bg-brand/[0.12] text-brand-ink font-semibold"
-                    : "border-line text-muted hover:border-line-2 hover:text-fg"
-                )}
-              >
-                {f.label}
-              </button>
-            ))}
-          </div>
-
-          {/* TABLE VIEW */}
-          {viewMode === "table" && (
+      {viewMode === "table" && (
+        <div className="space-y-8 animate-fade-in">
+          {/* Chapter 1: Vitamins & Minerals Table */}
+          {chapter.id === "note-gen-1" && (
             <div className="space-y-4">
+              <div className="flex flex-wrap items-center gap-2">
+                {[
+                  { id: "all", label: "All Nutrients" },
+                  { id: "fat", label: "🥑 Fat-Soluble (A, D, E, K)" },
+                  { id: "water", label: "💧 Water-Soluble (B-Complex, C)" },
+                  { id: "mineral", label: "⚡ Minerals (Iron, Calcium, Iodine)" },
+                ].map((f) => (
+                  <button
+                    key={f.id}
+                    type="button"
+                    onClick={() => {
+                      haptic("light");
+                      setActiveFilter(f.id);
+                    }}
+                    className={cn(
+                      "rounded-full border px-4 py-1.5 text-xs sm:text-sm font-medium transition active:scale-95",
+                      activeFilter === f.id
+                        ? "border-brand bg-brand/[0.12] text-brand-ink font-semibold"
+                        : "border-line text-muted hover:border-line-2 hover:text-fg"
+                    )}
+                  >
+                    {f.label}
+                  </button>
+                ))}
+              </div>
+
               <div className="overflow-x-auto rounded-2xl border border-line bg-card shadow-sm">
-                <table className="w-full min-w-[44rem] border-collapse text-left text-sm">
+                <table className="w-full min-w-[48rem] border-collapse text-left text-sm">
                   <thead>
                     <tr className="border-b border-line bg-fg/[0.04]">
                       <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-52">
@@ -855,21 +1055,19 @@ export function GeneralScienceViewer({
                     {filteredVitamins.map((v) => (
                       <tr key={v.name} className="hover:bg-fg/[0.02] transition">
                         <td className="px-5 py-4 align-top">
-                          <div className="flex items-start gap-3">
-                            <span className="text-2xl shrink-0 mt-0.5">{v.icon}</span>
+                          <div className="flex items-start gap-2.5">
+                            <span className="text-2xl shrink-0">{v.icon}</span>
                             <div>
-                              <p className="font-bold text-fg text-base">{v.name}</p>
-                              <p className="font-mono text-xs text-brand-ink font-medium mt-0.5">
-                                {v.chemicalName}
-                              </p>
+                              <p className="font-bold text-fg text-sm">{v.name}</p>
+                              <p className="text-xs text-muted font-mono">{v.chemicalName}</p>
                               <span
                                 className={cn(
-                                  "inline-block mt-2 font-mono text-[10px] font-semibold uppercase px-2 py-0.5 rounded-md border",
+                                  "inline-block font-mono text-[10px] uppercase font-semibold px-2 py-0.5 rounded-md mt-1.5 border",
                                   v.type === "Fat-Soluble"
-                                    ? "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/30"
+                                    ? "bg-amber-500/10 text-amber-500 border-amber-500/20"
                                     : v.type === "Water-Soluble"
-                                    ? "bg-sky-500/10 text-sky-600 dark:text-sky-400 border-sky-500/30"
-                                    : "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30"
+                                    ? "bg-sky-500/10 text-sky-500 border-sky-500/20"
+                                    : "bg-emerald-500/10 text-emerald-500 border-emerald-500/20"
                                 )}
                               >
                                 {v.type}
@@ -882,19 +1080,19 @@ export function GeneralScienceViewer({
                             {v.sources.map((s) => (
                               <span
                                 key={s}
-                                className="rounded-lg bg-fg/[0.04] border border-line/70 px-2 py-1 text-xs text-fg font-medium"
+                                className="font-mono text-xs px-2 py-0.5 rounded-md bg-fg/[0.04] text-fg border border-line/60"
                               >
                                 {s}
                               </span>
                             ))}
                           </div>
                         </td>
-                        <td className="px-5 py-4 align-top leading-relaxed text-fg">
+                        <td className="px-5 py-4 align-top text-xs leading-relaxed text-fg/90">
                           {v.benefit}
                         </td>
                         <td className="px-5 py-4 align-top">
-                          <div className="rounded-xl border border-rose-500/25 bg-rose-500/5 p-3 text-xs leading-relaxed text-rose-700 dark:text-rose-300">
-                            <strong>⚠️ Risk:</strong> {v.deficiency}
+                          <div className="rounded-xl border border-rose-500/20 bg-rose-500/[0.05] p-2.5 text-xs text-rose-500 leading-relaxed font-medium">
+                            {v.deficiency}
                           </div>
                         </td>
                       </tr>
@@ -905,373 +1103,890 @@ export function GeneralScienceViewer({
             </div>
           )}
 
-          {/* CARDS VIEW */}
-          {viewMode === "cards" && (
-            <div className="grid gap-4 sm:grid-cols-2">
-              {filteredVitamins.map((v) => (
-                <div
-                  key={v.name}
-                  className="rounded-2xl border border-line bg-card p-5 card-shadow space-y-3.5"
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex items-center gap-3">
-                      <span className="text-3xl">{v.icon}</span>
-                      <div>
-                        <h4 className="text-lg font-bold text-fg">{v.name}</h4>
-                        <p className="font-mono text-xs text-brand-ink">{v.chemicalName}</p>
-                      </div>
-                    </div>
-                    <span
-                      className={cn(
-                        "rounded-md px-2.5 py-1 font-mono text-[10px] font-bold uppercase border",
-                        v.type === "Fat-Soluble"
-                          ? "bg-amber-500/10 text-amber-500 border-amber-500/20"
-                          : v.type === "Water-Soluble"
-                          ? "bg-sky-500/10 text-sky-500 border-sky-500/20"
-                          : "bg-emerald-500/10 text-emerald-500 border-emerald-500/20"
-                      )}
-                    >
-                      {v.type}
-                    </span>
-                  </div>
-
-                  <div>
-                    <p className="font-mono text-[11px] uppercase text-subtle font-semibold">
-                      Best Food Sources:
-                    </p>
-                    <div className="mt-1.5 flex flex-wrap gap-1.5">
-                      {v.sources.map((s) => (
-                        <span
-                          key={s}
-                          className="rounded-lg bg-fg/[0.04] border border-line px-2 py-0.5 text-xs text-fg"
-                        >
-                          {s}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <p className="font-mono text-[11px] uppercase text-subtle font-semibold">
-                      Body Function:
-                    </p>
-                    <p className="mt-1 text-xs text-fg leading-relaxed">{v.benefit}</p>
-                  </div>
-
-                  <div className="rounded-xl border border-rose-500/25 bg-rose-500/5 p-3 text-xs text-rose-700 dark:text-rose-300 leading-relaxed">
-                    <strong>Deficiency:</strong> {v.deficiency}
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* High-Yield Memory Callout */}
-          <div className="rounded-2xl border border-brand/30 bg-brand/[0.04] p-4 sm:p-5 flex items-start gap-3.5">
-            <Lightbulb className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
-            <div className="text-xs sm:text-sm text-fg leading-relaxed space-y-1">
-              <p className="font-bold">Quick Exam Memory Trick:</p>
-              <p>
-                • Fat-soluble vitamins are <strong>K, E, D, and A</strong> (Mnemonic:{" "}
-                <strong>K-E-D-A</strong>). They are stored in liver fat.
-              </p>
-              <p>
-                • Water-soluble vitamins are <strong>B-Complex and C</strong>. They cannot be stored in
-                the body and must be consumed daily.
-              </p>
-              <p>
-                • Adding a squeeze of lemon (Vitamin C) to dal triples plant iron absorption!
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ────────────────────────────────────────────────────────────────────── */}
-      {/* CHAPTER 2: COMMON DISEASES & SYMPTOMS                                 */}
-      {/* ────────────────────────────────────────────────────────────────────── */}
-      {chapter.id === "note-gen-2" && (
-        <div className="space-y-8">
-          {/* Category Filter Pills */}
-          <div className="flex flex-wrap items-center gap-2">
-            {[
-              { id: "all", label: "All Diseases" },
-              { id: "bacterial", label: "🧫 Bacterial (TB, Typhoid, Cholera, Tetanus)" },
-              { id: "viral", label: "🦠 Viral (Dengue, Rabies, Polio)" },
-              { id: "mosquito", label: "🦟 Mosquito-Borne (Malaria, Chikungunya)" },
-              { id: "fungal", label: "🍄 Fungal & Skin" },
-            ].map((f) => (
-              <button
-                key={f.id}
-                type="button"
-                onClick={() => {
-                  haptic("light");
-                  setActiveFilter(f.id);
-                }}
-                className={cn(
-                  "rounded-full border px-4 py-1.5 text-xs sm:text-sm font-medium transition active:scale-95",
-                  activeFilter === f.id
-                    ? "border-brand bg-brand/[0.12] text-brand-ink font-semibold"
-                    : "border-line text-muted hover:border-line-2 hover:text-fg"
-                )}
-              >
-                {f.label}
-              </button>
-            ))}
-          </div>
-
-          {/* TABLE VIEW */}
-          {viewMode === "table" && (
-            <div className="overflow-x-auto rounded-2xl border border-line bg-card shadow-sm">
-              <table className="w-full min-w-[50rem] border-collapse text-left text-sm">
-                <thead>
-                  <tr className="border-b border-line bg-fg/[0.04]">
-                    <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-56">
-                      Disease & Causative Pathogen
-                    </th>
-                    <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-56">
-                      How It Spreads (Transmission)
-                    </th>
-                    <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle">
-                      Key Warning Symptoms to Identify
-                    </th>
-                    <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-64">
-                      Prevention & Vaccines
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-line/60">
-                  {filteredDiseases.map((d) => (
-                    <tr key={d.name} className="hover:bg-fg/[0.02] transition">
-                      <td className="px-5 py-4 align-top">
-                        <div className="flex items-start gap-3">
-                          <span className="text-2xl shrink-0 mt-0.5">{d.icon}</span>
-                          <div>
-                            <p className="font-bold text-fg text-base">{d.name}</p>
-                            <p className="text-xs text-subtle mt-0.5 leading-snug">{d.pathogen}</p>
-                            <span className="inline-block mt-2 font-mono text-[10px] font-semibold uppercase px-2 py-0.5 rounded-md bg-fg/[0.04] border border-line text-brand-ink">
-                              {d.category}
-                            </span>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-5 py-4 align-top text-xs text-muted leading-relaxed">
-                        {d.spread}
-                      </td>
-                      <td className="px-5 py-4 align-top">
-                        <ul className="space-y-1.5 text-xs text-fg">
-                          {d.symptoms.map((s, idx) => (
-                            <li key={idx} className="flex items-start gap-2">
-                              <span className="text-rose-500 font-bold shrink-0 mt-0.5">•</span>
-                              <span>{s}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </td>
-                      <td className="px-5 py-4 align-top">
-                        <div className="rounded-xl border border-emerald-500/25 bg-emerald-500/5 p-3 text-xs leading-relaxed text-emerald-700 dark:text-emerald-300">
-                          <strong>🛡️ Protection:</strong> {d.prevention}
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-
-          {/* CARDS VIEW */}
-          {viewMode === "cards" && (
-            <div className="grid gap-4 sm:grid-cols-2">
-              {filteredDiseases.map((d) => (
-                <div
-                  key={d.name}
-                  className="rounded-2xl border border-line bg-card p-5 card-shadow space-y-3.5"
-                >
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex items-center gap-3">
-                      <span className="text-3xl">{d.icon}</span>
-                      <div>
-                        <h4 className="text-lg font-bold text-fg">{d.name}</h4>
-                        <p className="text-xs text-subtle">{d.pathogen}</p>
-                      </div>
-                    </div>
-                    <span className="rounded-md px-2.5 py-1 font-mono text-[10px] font-bold uppercase bg-fg/[0.04] border border-line text-brand-ink">
-                      {d.category}
-                    </span>
-                  </div>
-
-                  <div className="rounded-xl border border-line/60 bg-fg/[0.02] p-3 text-xs">
-                    <p className="font-mono text-[10px] uppercase text-subtle font-bold">Spread Route:</p>
-                    <p className="text-fg mt-0.5">{d.spread}</p>
-                  </div>
-
-                  <div>
-                    <p className="font-mono text-[11px] uppercase text-subtle font-semibold mb-1">
-                      Key Warning Symptoms:
-                    </p>
-                    <ul className="space-y-1 text-xs text-fg">
-                      {d.symptoms.map((s, idx) => (
-                        <li key={idx} className="flex items-start gap-2">
-                          <span className="text-rose-500 font-bold">•</span>
-                          <span>{s}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="rounded-xl border border-emerald-500/25 bg-emerald-500/5 p-3 text-xs text-emerald-700 dark:text-emerald-300 leading-relaxed">
-                    <strong>🛡️ Prevention:</strong> {d.prevention}
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* ────────────────────────────────────────────────────────────────────── */}
-      {/* CHAPTER 3: EVERYDAY PH VALUES & CHEMICALS                             */}
-      {/* ────────────────────────────────────────────────────────────────────── */}
-      {chapter.id === "note-gen-3" && (
-        <div className="space-y-8">
-          {/* Visual pH Scale Gradient Banner with Key Markers */}
-          <div className="rounded-2xl border border-line bg-card p-4 sm:p-6 card-shadow space-y-4">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <h3 className="text-lg font-bold text-fg flex items-center gap-2">
-                  <FlaskConical className="h-5 w-5 text-brand-ink" /> The Everyday pH Scale (0 to 14)
-                </h3>
-                <p className="text-xs text-muted mt-0.5">
-                  Universal scale from highly corrosive acids to powerful alkaline cleaners.
-                </p>
+          {/* Chapter 2: Diseases Table */}
+          {chapter.id === "note-gen-2" && (
+            <div className="space-y-4">
+              <div className="flex flex-wrap items-center gap-2">
+                {[
+                  { id: "all", label: "All Diseases" },
+                  { id: "bacterial", label: "🦠 Bacterial (TB, Typhoid, Cholera)" },
+                  { id: "viral", label: "🧬 Viral (Rabies, Polio, Dengue)" },
+                  { id: "mosquito", label: "🦟 Mosquito / Parasitic (Malaria)" },
+                ].map((f) => (
+                  <button
+                    key={f.id}
+                    type="button"
+                    onClick={() => {
+                      haptic("light");
+                      setActiveFilter(f.id);
+                    }}
+                    className={cn(
+                      "rounded-full border px-4 py-1.5 text-xs sm:text-sm font-medium transition active:scale-95",
+                      activeFilter === f.id
+                        ? "border-brand bg-brand/[0.12] text-brand-ink font-semibold"
+                        : "border-line text-muted hover:border-line-2 hover:text-fg"
+                    )}
+                  >
+                    {f.label}
+                  </button>
+                ))}
               </div>
-              <span className="font-mono text-xs font-bold px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30">
-                pH 7.0 = Pure Water (Exact Neutral)
-              </span>
-            </div>
 
-            {/* pH Rainbow Spectrum Bar */}
-            <div className="space-y-1.5 pt-1">
-              <div className="h-5 w-full rounded-full bg-gradient-to-r from-rose-600 via-amber-500 via-emerald-500 via-sky-500 to-purple-600 shadow-inner" />
-              <div className="flex justify-between font-mono text-[11px] text-subtle px-1">
-                <span>0 (Strong Acid)</span>
-                <span>3.5 (Mild Acid)</span>
-                <span className="font-bold text-emerald-600 dark:text-emerald-400">7.0 (Neutral)</span>
-                <span>10.5 (Antacid)</span>
-                <span>14 (Strong Base)</span>
-              </div>
-            </div>
-
-            {/* Tappable Filter Pills */}
-            <div className="flex flex-wrap items-center gap-2 pt-2">
-              {[
-                { id: "all", label: "All Items (18)" },
-                { id: "acid-strong", label: "🔴 Strong Acids (0 – 3.0)" },
-                { id: "acid-mild", label: "🟠 Mild Acids (3.1 – 6.9)" },
-                { id: "neutral", label: "🟢 Neutral (7.0 – 7.4)" },
-                { id: "alkaline-mild", label: "🔵 Mild Alkaline (7.5 – 9.0)" },
-                { id: "alkaline-strong", label: "🟣 Strong Alkaline (9.1 – 14.0)" },
-              ].map((btn) => (
-                <button
-                  key={btn.id}
-                  type="button"
-                  onClick={() => {
-                    haptic("light");
-                    setActiveFilter(btn.id);
-                  }}
-                  className={cn(
-                    "rounded-full border px-3.5 py-1 text-xs sm:text-sm font-medium transition active:scale-95",
-                    activeFilter === btn.id
-                      ? "border-brand bg-brand/[0.12] text-brand-ink font-semibold"
-                      : "border-line text-muted hover:border-line-2 hover:text-fg"
-                  )}
-                >
-                  {btn.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* TABLE 1: PH VALUES REFERENCE TABLE */}
-          <div className="space-y-3">
-            <h4 className="text-base font-bold text-fg flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-brand" /> Everyday Liquids & Substances pH Guide
-            </h4>
-
-            {viewMode === "table" ? (
               <div className="overflow-x-auto rounded-2xl border border-line bg-card shadow-sm">
-                <table className="w-full min-w-[44rem] border-collapse text-left text-sm">
+                <table className="w-full min-w-[52rem] border-collapse text-left text-sm">
                   <thead>
                     <tr className="border-b border-line bg-fg/[0.04]">
-                      <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-60">
-                        Substance / Liquid
+                      <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-48">
+                        Disease & Pathogen
                       </th>
-                      <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-36">
-                        Exact pH Value
-                      </th>
-                      <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-44">
-                        Nature / Category
+                      <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-52">
+                        Transmission Mode
                       </th>
                       <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle">
-                        Real-World Science & Daily Significance
+                        Classic Clinical Symptoms
+                      </th>
+                      <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-64">
+                        Vaccine / Treatment
                       </th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-line/60">
-                    {filteredPH.map((item) => {
-                      const isAcid = item.category.includes("Acid");
-                      const isNeutral = item.category === "Pure Neutral";
-                      const isStrongBase = item.category === "Strong Alkaline";
-                      return (
-                        <tr key={item.name} className="hover:bg-fg/[0.02] transition">
-                          <td className="px-5 py-4 align-top">
-                            <div className="flex items-center gap-2.5">
-                              <span className="text-xl">{item.icon}</span>
-                              <span className="font-bold text-fg text-base">{item.name}</span>
+                    {filteredDiseases.map((d) => (
+                      <tr key={d.name} className="hover:bg-fg/[0.02] transition">
+                        <td className="px-5 py-4 align-top">
+                          <div className="flex items-start gap-2.5">
+                            <span className="text-2xl shrink-0">{d.icon}</span>
+                            <div>
+                              <p className="font-bold text-fg text-sm">{d.name}</p>
+                              <p className="text-xs text-muted font-mono italic">{d.pathogen}</p>
+                              <span
+                                className={cn(
+                                  "inline-block font-mono text-[10px] uppercase font-semibold px-2 py-0.5 rounded-md mt-1.5 border",
+                                  d.category === "Bacterial"
+                                    ? "bg-amber-500/10 text-amber-500 border-amber-500/20"
+                                    : d.category === "Viral"
+                                    ? "bg-purple-500/10 text-purple-500 border-purple-500/20"
+                                    : "bg-emerald-500/10 text-emerald-500 border-emerald-500/20"
+                                )}
+                              >
+                                {d.category}
+                              </span>
                             </div>
-                          </td>
-                          <td className="px-5 py-4 align-top">
-                            <span
-                              className={cn(
-                                "inline-block font-mono text-xs font-bold px-3 py-1 rounded-lg border",
-                                isAcid
-                                  ? "bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/30"
-                                  : isNeutral
-                                  ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30"
-                                  : isStrongBase
-                                  ? "bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/30"
-                                  : "bg-sky-500/10 text-sky-600 dark:text-sky-400 border-sky-500/30"
-                              )}
-                            >
-                              pH {item.ph}
-                            </span>
-                          </td>
-                          <td className="px-5 py-4 align-top">
-                            <span
-                              className={cn(
-                                "inline-block font-mono text-[11px] font-semibold uppercase px-2.5 py-0.5 rounded-md",
-                                isAcid
-                                  ? "bg-rose-500/10 text-rose-600 dark:text-rose-400"
-                                  : isNeutral
-                                  ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
-                                  : "bg-sky-500/10 text-sky-600 dark:text-sky-400"
-                              )}
-                            >
-                              {item.category}
-                            </span>
-                          </td>
-                          <td className="px-5 py-4 align-top leading-relaxed text-fg">
-                            {item.fact}
-                          </td>
-                        </tr>
-                      );
-                    })}
+                          </div>
+                        </td>
+                        <td className="px-5 py-4 align-top text-xs text-muted leading-relaxed">
+                          {d.spread}
+                        </td>
+                        <td className="px-5 py-4 align-top">
+                          <ul className="space-y-1 text-xs text-fg/90">
+                            {d.symptoms.map((sym, sIdx) => (
+                              <li key={sIdx} className="flex items-start gap-1.5">
+                                <span className="h-1.5 w-1.5 rounded-full bg-rose-500 shrink-0 mt-1.5" />
+                                <span>{sym}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </td>
+                        <td className="px-5 py-4 align-top">
+                          <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/[0.05] p-2.5 text-xs text-emerald-600 dark:text-emerald-400 leading-relaxed font-medium">
+                            {d.prevention}
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
-            ) : (
-              /* CARDS VIEW FOR PH */
+            </div>
+          )}
+
+          {/* Chapter 3: pH Scale & Household Chemicals Tables */}
+          {chapter.id === "note-gen-3" && (
+            <div className="space-y-8">
+              {/* TABLE 1: PH VALUES */}
+              <div className="space-y-3">
+                <h4 className="text-base font-bold text-fg flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-brand" /> Everyday Liquids & Substances pH Guide
+                </h4>
+                <div className="overflow-x-auto rounded-2xl border border-line bg-card shadow-sm">
+                  <table className="w-full min-w-[44rem] border-collapse text-left text-sm">
+                    <thead>
+                      <tr className="border-b border-line bg-fg/[0.04]">
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-60">
+                          Substance / Liquid
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-36">
+                          Exact pH Value
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-44">
+                          Nature / Category
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle">
+                          Real-World Science & Daily Significance
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-line/60">
+                      {filteredPH.map((item) => {
+                        const isAcid = item.category.includes("Acid");
+                        const isNeutral = item.category === "Pure Neutral";
+                        return (
+                          <tr key={item.name} className="hover:bg-fg/[0.02] transition">
+                            <td className="px-5 py-4 align-top">
+                              <div className="flex items-center gap-2.5">
+                                <span className="text-xl">{item.icon}</span>
+                                <span className="font-bold text-fg text-sm">{item.name}</span>
+                              </div>
+                            </td>
+                            <td className="px-5 py-4 align-top">
+                              <span
+                                className={cn(
+                                  "font-mono text-xs font-bold px-2.5 py-1 rounded-lg border",
+                                  isAcid
+                                    ? "bg-rose-500/10 text-rose-500 border-rose-500/20"
+                                    : isNeutral
+                                    ? "bg-emerald-500/10 text-emerald-500 border-emerald-500/20"
+                                    : "bg-sky-500/10 text-sky-500 border-sky-500/20"
+                                )}
+                              >
+                                pH {item.ph}
+                              </span>
+                            </td>
+                            <td className="px-5 py-4 align-top font-mono text-xs text-subtle font-semibold">
+                              {item.category}
+                            </td>
+                            <td className="px-5 py-4 align-top text-xs text-muted leading-relaxed">
+                              {item.fact}
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* TABLE 2: COMMON HOUSEHOLD CHEMICALS */}
+              <div className="space-y-3">
+                <h4 className="text-base font-bold text-fg flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-brand" /> Common Household Chemicals & Formulas
+                </h4>
+                <div className="overflow-x-auto rounded-2xl border border-line bg-card shadow-sm">
+                  <table className="w-full min-w-[48rem] border-collapse text-left text-sm">
+                    <thead>
+                      <tr className="border-b border-line bg-fg/[0.04]">
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-52">
+                          Common Household Name
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-60">
+                          Scientific Chemical Name
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-44">
+                          Chemical Formula
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle">
+                          Everyday Life Uses & Applications
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-line/60">
+                      {filteredChemicals.map((c) => (
+                        <tr key={c.commonName} className="hover:bg-fg/[0.02] transition">
+                          <td className="px-5 py-4 align-top font-bold text-fg text-sm flex items-center gap-2">
+                            <span>{c.icon}</span> {c.commonName}
+                          </td>
+                          <td className="px-5 py-4 align-top text-xs text-muted font-mono">{c.chemicalName}</td>
+                          <td className="px-5 py-4 align-top">
+                            <span className="font-mono text-xs font-bold px-2 py-0.5 rounded-md bg-fg/[0.06] text-brand-ink border border-line">
+                              {c.formula}
+                            </span>
+                          </td>
+                          <td className="px-5 py-4 align-top text-xs text-muted leading-relaxed">{c.uses}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* TABLE 3: NATURAL ORGANIC ACIDS */}
+              <div className="space-y-3">
+                <h4 className="text-base font-bold text-fg flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-brand" /> Natural Organic Acids in Daily Foods
+                </h4>
+                <div className="overflow-x-auto rounded-2xl border border-line bg-card shadow-sm">
+                  <table className="w-full min-w-[44rem] border-collapse text-left text-sm">
+                    <thead>
+                      <tr className="border-b border-line bg-fg/[0.04]">
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-56">
+                          Daily Food Source
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-64">
+                          Principal Organic Acid
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle">
+                          Everyday Science Significance
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-line/60">
+                      {NATURAL_ACIDS_DATA.map((na) => (
+                        <tr key={na.source} className="hover:bg-fg/[0.02] transition">
+                          <td className="px-5 py-4 align-top font-bold text-fg text-sm flex items-center gap-2">
+                            <span>{na.icon}</span> {na.source}
+                          </td>
+                          <td className="px-5 py-4 align-top font-mono text-xs text-brand-ink font-semibold">
+                            {na.acid}
+                          </td>
+                          <td className="px-5 py-4 align-top text-xs text-muted leading-relaxed">
+                            {na.fact}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Chapter 4: Instruments & SI Units Tables */}
+          {chapter.id === "note-gen-4" && (
+            <div className="space-y-8">
+              {/* TABLE 1: INSTRUMENTS */}
+              <div className="space-y-3">
+                <h4 className="text-base font-bold text-fg flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-brand" /> Famous Scientific Instruments Reference Table
+                </h4>
+                <div className="overflow-x-auto rounded-2xl border border-line bg-card shadow-sm">
+                  <table className="w-full min-w-[48rem] border-collapse text-left text-sm">
+                    <thead>
+                      <tr className="border-b border-line bg-fg/[0.04]">
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-52">
+                          Scientific Instrument
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-56">
+                          Physical Quantity Measured
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-44">
+                          Domain Category
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle">
+                          Underlying Science & Operating Principle
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-line/60">
+                      {filteredInstruments.map((ins) => (
+                        <tr key={ins.name} className="hover:bg-fg/[0.02] transition">
+                          <td className="px-5 py-4 align-top font-bold text-fg text-sm flex items-center gap-2">
+                            <span>{ins.icon}</span> {ins.name}
+                          </td>
+                          <td className="px-5 py-4 align-top font-mono text-xs text-brand-ink font-semibold">
+                            {ins.measures}
+                          </td>
+                          <td className="px-5 py-4 align-top font-mono text-xs text-subtle font-medium">
+                            {ins.category}
+                          </td>
+                          <td className="px-5 py-4 align-top text-xs text-muted leading-relaxed">
+                            {ins.principle}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* TABLE 2: SI UNITS */}
+              <div className="space-y-3">
+                <h4 className="text-base font-bold text-fg flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-brand" /> Standard International (SI) Units Table
+                </h4>
+                <div className="overflow-x-auto rounded-2xl border border-line bg-card shadow-sm">
+                  <table className="w-full min-w-[44rem] border-collapse text-left text-sm">
+                    <thead>
+                      <tr className="border-b border-line bg-fg/[0.04]">
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-52">
+                          Physical Quantity
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-44">
+                          Official SI Unit
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-32">
+                          Unit Symbol
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle">
+                          Definition & Real-World Example
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-line/60">
+                      {SI_UNITS_DATA.map((u) => (
+                        <tr key={u.quantity} className="hover:bg-fg/[0.02] transition">
+                          <td className="px-5 py-4 align-top font-bold text-fg text-sm">{u.quantity}</td>
+                          <td className="px-5 py-4 align-top font-mono text-xs text-brand-ink font-semibold">
+                            {u.unit}
+                          </td>
+                          <td className="px-5 py-4 align-top">
+                            <span className="font-mono text-xs font-bold px-2 py-0.5 rounded-md bg-fg/[0.06] text-fg border border-line">
+                              {u.symbol}
+                            </span>
+                          </td>
+                          <td className="px-5 py-4 align-top text-xs text-muted leading-relaxed">{u.example}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Chapter 5: Blood Transfusion & Anatomy Tables */}
+          {chapter.id === "note-gen-5" && (
+            <div className="space-y-8">
+              {/* TABLE 1: BLOOD COMPATIBILITY */}
+              <div className="space-y-3">
+                <h4 className="text-base font-bold text-fg flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-brand" /> ABO & Rh Blood Transfusion Compatibility Table
+                </h4>
+                <div className="overflow-x-auto rounded-2xl border border-line bg-card shadow-sm">
+                  <table className="w-full min-w-[52rem] border-collapse text-left text-sm">
+                    <thead>
+                      <tr className="border-b border-line bg-fg/[0.04]">
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-40">
+                          Blood Group
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-44">
+                          RBC Antigens
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-44">
+                          Plasma Antibodies
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-52">
+                          Can Safely Donate To
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-52">
+                          Can Safely Receive From
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-line/60">
+                      {BLOOD_COMPATIBILITY_DATA.map((b) => (
+                        <tr
+                          key={b.group}
+                          className={cn(
+                            "hover:bg-fg/[0.02] transition",
+                            b.highlight === "donor"
+                              ? "bg-rose-500/[0.04]"
+                              : b.highlight === "recipient"
+                              ? "bg-emerald-500/[0.04]"
+                              : ""
+                          )}
+                        >
+                          <td className="px-5 py-4 align-top font-bold text-fg text-sm">
+                            <span className="font-mono text-xs px-2.5 py-1 rounded-lg border bg-card text-brand-ink font-bold border-brand/30">
+                              {b.group}
+                            </span>
+                          </td>
+                          <td className="px-5 py-4 align-top text-xs text-muted font-mono">{b.antigens}</td>
+                          <td className="px-5 py-4 align-top text-xs text-muted font-mono">{b.antibodies}</td>
+                          <td className="px-5 py-4 align-top text-xs font-semibold text-fg/90">{b.canGive}</td>
+                          <td className="px-5 py-4 align-top text-xs font-semibold text-fg/90">{b.canTake}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* TABLE 2: BODY RECORDS */}
+              <div className="space-y-3">
+                <h4 className="text-base font-bold text-fg flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-brand" /> Human Body Anatomy & Physiological Records
+                </h4>
+                <div className="overflow-x-auto rounded-2xl border border-line bg-card shadow-sm">
+                  <table className="w-full min-w-[48rem] border-collapse text-left text-sm">
+                    <thead>
+                      <tr className="border-b border-line bg-fg/[0.04]">
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-56">
+                          Anatomical Feature
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-52">
+                          Record Holder / Value
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-36">
+                          Category
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle">
+                          Clinical & Biological Significance
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-line/60">
+                      {BODY_RECORDS_DATA.map((rec) => (
+                        <tr key={rec.metric} className="hover:bg-fg/[0.02] transition">
+                          <td className="px-5 py-4 align-top font-bold text-fg text-sm flex items-center gap-2">
+                            <span>{rec.icon}</span> {rec.metric}
+                          </td>
+                          <td className="px-5 py-4 align-top font-mono text-xs text-brand-ink font-bold">
+                            {rec.value}
+                          </td>
+                          <td className="px-5 py-4 align-top font-mono text-xs text-subtle">{rec.category}</td>
+                          <td className="px-5 py-4 align-top text-xs text-muted leading-relaxed">{rec.detail}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Chapter 6: Everyday Science Wonders Table */}
+          {chapter.id === "note-gen-6" && (
+            <div className="space-y-4">
+              <h4 className="text-base font-bold text-fg flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-brand" /> Everyday Science Mysteries & Core Principles
+              </h4>
+              <div className="overflow-x-auto rounded-2xl border border-line bg-card shadow-sm">
+                <table className="w-full min-w-[50rem] border-collapse text-left text-sm">
+                  <thead>
+                    <tr className="border-b border-line bg-fg/[0.04]">
+                      <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-56">
+                        Everyday Phenomenon
+                      </th>
+                      <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-52">
+                        Governing Scientific Law
+                      </th>
+                      <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-64">
+                        Quick Summary
+                      </th>
+                      <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle">
+                        Deep Real-World Manifestation
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-line/60">
+                    {filteredPhenomena.map((p) => (
+                      <tr key={p.question} className="hover:bg-fg/[0.02] transition">
+                        <td className="px-5 py-4 align-top font-bold text-fg text-sm flex items-center gap-2">
+                          <span>{p.icon}</span> {p.question}
+                        </td>
+                        <td className="px-5 py-4 align-top font-mono text-xs text-brand-ink font-semibold">
+                          {p.law}
+                        </td>
+                        <td className="px-5 py-4 align-top text-xs text-muted leading-relaxed font-medium">
+                          {p.shortAnswer}
+                        </td>
+                        <td className="px-5 py-4 align-top text-xs text-muted leading-relaxed">{p.realLife}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
+          {/* Chapter 7: Solar System & ISRO Missions Tables */}
+          {chapter.id === "note-gen-7" && (
+            <div className="space-y-8">
+              {/* TABLE 1: PLANETS */}
+              <div className="space-y-3">
+                <h4 className="text-base font-bold text-fg flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-brand" /> The 8 Planets of Our Solar System
+                </h4>
+                <div className="overflow-x-auto rounded-2xl border border-line bg-card shadow-sm">
+                  <table className="w-full min-w-[48rem] border-collapse text-left text-sm">
+                    <thead>
+                      <tr className="border-b border-line bg-fg/[0.04]">
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-44">
+                          Planet Name
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-44">
+                          Classification
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-48">
+                          Orbital Revolution
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle">
+                          Extreme Astronomical Record & Significance
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-line/60">
+                      {filteredPlanets.map((pl) => (
+                        <tr key={pl.name} className="hover:bg-fg/[0.02] transition">
+                          <td className="px-5 py-4 align-top font-bold text-fg text-sm flex items-center gap-2">
+                            <span>{pl.icon}</span> {pl.name}
+                          </td>
+                          <td className="px-5 py-4 align-top font-mono text-xs text-subtle">{pl.category}</td>
+                          <td className="px-5 py-4 align-top font-mono text-xs text-brand-ink font-semibold">
+                            {pl.orbitPeriod}
+                          </td>
+                          <td className="px-5 py-4 align-top text-xs text-muted leading-relaxed">
+                            <strong className="text-fg">{pl.recordFact}</strong> {pl.significance}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* TABLE 2: ISRO MISSIONS */}
+              <div className="space-y-3">
+                <h4 className="text-base font-bold text-fg flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-brand" /> Landmark ISRO Space Exploration Missions
+                </h4>
+                <div className="overflow-x-auto rounded-2xl border border-line bg-card shadow-sm">
+                  <table className="w-full min-w-[48rem] border-collapse text-left text-sm">
+                    <thead>
+                      <tr className="border-b border-line bg-fg/[0.04]">
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-48">
+                          ISRO Mission
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-32">
+                          Launch Year
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-48">
+                          Launch Rocket
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle">
+                          Historic Global Space Achievement
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-line/60">
+                      {filteredMissions.map((m) => (
+                        <tr key={m.mission} className="hover:bg-fg/[0.02] transition">
+                          <td className="px-5 py-4 align-top font-bold text-fg text-sm flex items-center gap-2">
+                            <span>{m.icon}</span> {m.mission}
+                          </td>
+                          <td className="px-5 py-4 align-top font-mono text-xs font-bold text-brand-ink">{m.year}</td>
+                          <td className="px-5 py-4 align-top font-mono text-xs text-muted">{m.rocket}</td>
+                          <td className="px-5 py-4 align-top text-xs text-muted leading-relaxed">
+                            <strong className="text-fg">{m.achievement}</strong> {m.significance}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Chapter 8: Alloys, Ores & Polymers Tables */}
+          {chapter.id === "note-gen-8" && (
+            <div className="space-y-8">
+              {/* TABLE 1: ALLOYS */}
+              <div className="space-y-3">
+                <h4 className="text-base font-bold text-fg flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-brand" /> Key Metallic Alloys & Chemical Compositions
+                </h4>
+                <div className="overflow-x-auto rounded-2xl border border-line bg-card shadow-sm">
+                  <table className="w-full min-w-[48rem] border-collapse text-left text-sm">
+                    <thead>
+                      <tr className="border-b border-line bg-fg/[0.04]">
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-44">
+                          Alloy Name
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-60">
+                          Constituent Metals & Composition
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-52">
+                          Key Properties
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle">
+                          Everyday Applications
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-line/60">
+                      {filteredAlloys.map((al) => (
+                        <tr key={al.name} className="hover:bg-fg/[0.02] transition">
+                          <td className="px-5 py-4 align-top font-bold text-fg text-sm flex items-center gap-2">
+                            <span>{al.icon}</span> {al.name}
+                          </td>
+                          <td className="px-5 py-4 align-top font-mono text-xs text-brand-ink font-semibold">
+                            {al.composition}
+                          </td>
+                          <td className="px-5 py-4 align-top text-xs text-muted leading-relaxed">{al.properties}</td>
+                          <td className="px-5 py-4 align-top text-xs text-muted leading-relaxed">{al.uses}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* TABLE 2: MINERAL ORES */}
+              <div className="space-y-3">
+                <h4 className="text-base font-bold text-fg flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-brand" /> Commercial Mineral Ores & Extractions
+                </h4>
+                <div className="overflow-x-auto rounded-2xl border border-line bg-card shadow-sm">
+                  <table className="w-full min-w-[48rem] border-collapse text-left text-sm">
+                    <thead>
+                      <tr className="border-b border-line bg-fg/[0.04]">
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-44">
+                          Mineral Ore
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-48">
+                          Chemical Formula
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-40">
+                          Metal Extracted
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle">
+                          Industrial & Geographical Importance
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-line/60">
+                      {ORES_DATA.map((o) => (
+                        <tr key={o.ore} className="hover:bg-fg/[0.02] transition">
+                          <td className="px-5 py-4 align-top font-bold text-fg text-sm flex items-center gap-2">
+                            <span>{o.icon}</span> {o.ore}
+                          </td>
+                          <td className="px-5 py-4 align-top font-mono text-xs font-bold text-brand-ink">{o.formula}</td>
+                          <td className="px-5 py-4 align-top font-mono text-xs font-semibold text-fg/90">{o.metal}</td>
+                          <td className="px-5 py-4 align-top text-xs text-muted leading-relaxed">{o.importance}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* TABLE 3: POLYMERS */}
+              <div className="space-y-3">
+                <h4 className="text-base font-bold text-fg flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-brand" /> Everyday Polymers & Synthetic Materials
+                </h4>
+                <div className="overflow-x-auto rounded-2xl border border-line bg-card shadow-sm">
+                  <table className="w-full min-w-[48rem] border-collapse text-left text-sm">
+                    <thead>
+                      <tr className="border-b border-line bg-fg/[0.04]">
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-44">
+                          Polymer Name
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-60">
+                          Chemical / Monomer Name
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-44">
+                          Polymer Class
+                        </th>
+                        <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle">
+                          Properties & Everyday Uses
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-line/60">
+                      {filteredPolymers.map((pol) => (
+                        <tr key={pol.name} className="hover:bg-fg/[0.02] transition">
+                          <td className="px-5 py-4 align-top font-bold text-fg text-sm flex items-center gap-2">
+                            <span>{pol.icon}</span> {pol.name}
+                          </td>
+                          <td className="px-5 py-4 align-top font-mono text-xs text-brand-ink font-semibold">
+                            {pol.chemicalName}
+                          </td>
+                          <td className="px-5 py-4 align-top font-mono text-xs text-subtle">{pol.category}</td>
+                          <td className="px-5 py-4 align-top text-xs text-muted leading-relaxed">
+                            <strong className="text-fg">{pol.properties}</strong> {pol.uses}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ────────────────────────────────────────────────────────────────────── */}
+      {/* 2. CARD SHEET VIEW (Strictly Cards Only — Zero Tables)                 */}
+      {/* ────────────────────────────────────────────────────────────────────── */}
+      {viewMode === "cards" && (
+        <div className="space-y-8 animate-fade-in">
+          {/* Chapter 1: Vitamin & Mineral Cards */}
+          {chapter.id === "note-gen-1" && (
+            <div className="space-y-4">
+              <div className="flex flex-wrap items-center gap-2">
+                {[
+                  { id: "all", label: "All Nutrients" },
+                  { id: "fat", label: "🥑 Fat-Soluble (A, D, E, K)" },
+                  { id: "water", label: "💧 Water-Soluble (B-Complex, C)" },
+                  { id: "mineral", label: "⚡ Minerals (Iron, Calcium, Iodine)" },
+                ].map((f) => (
+                  <button
+                    key={f.id}
+                    type="button"
+                    onClick={() => {
+                      haptic("light");
+                      setActiveFilter(f.id);
+                    }}
+                    className={cn(
+                      "rounded-full border px-4 py-1.5 text-xs sm:text-sm font-medium transition active:scale-95",
+                      activeFilter === f.id
+                        ? "border-brand bg-brand/[0.12] text-brand-ink font-semibold"
+                        : "border-line text-muted hover:border-line-2 hover:text-fg"
+                    )}
+                  >
+                    {f.label}
+                  </button>
+                ))}
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                {filteredVitamins.map((v) => (
+                  <div
+                    key={v.name}
+                    className="rounded-2xl border border-line bg-card p-4 sm:p-5 card-shadow space-y-3"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex items-center gap-2.5">
+                        <span className="text-3xl">{v.icon}</span>
+                        <div>
+                          <h4 className="font-bold text-fg text-base">{v.name}</h4>
+                          <span className="font-mono text-xs text-muted">{v.chemicalName}</span>
+                        </div>
+                      </div>
+                      <span
+                        className={cn(
+                          "font-mono text-[10px] uppercase font-bold px-2.5 py-1 rounded-full border",
+                          v.type === "Fat-Soluble"
+                            ? "bg-amber-500/10 text-amber-500 border-amber-500/20"
+                            : v.type === "Water-Soluble"
+                            ? "bg-sky-500/10 text-sky-500 border-sky-500/20"
+                            : "bg-emerald-500/10 text-emerald-500 border-emerald-500/20"
+                        )}
+                      >
+                        {v.type}
+                      </span>
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <p className="text-xs font-mono text-subtle uppercase">Top Food Sources:</p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {v.sources.map((src) => (
+                          <span
+                            key={src}
+                            className="font-mono text-xs px-2 py-0.5 rounded-md bg-fg/[0.04] text-fg border border-line"
+                          >
+                            {src}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="space-y-1">
+                      <p className="text-xs font-mono text-subtle uppercase">Main Benefit:</p>
+                      <p className="text-xs text-fg leading-relaxed">{v.benefit}</p>
+                    </div>
+
+                    <div className="rounded-xl border border-rose-500/20 bg-rose-500/[0.04] p-3 text-xs text-rose-500 leading-relaxed">
+                      <strong>Deficiency Disease:</strong> {v.deficiency}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Chapter 2: Disease Cards */}
+          {chapter.id === "note-gen-2" && (
+            <div className="space-y-4">
+              <div className="flex flex-wrap items-center gap-2">
+                {[
+                  { id: "all", label: "All Diseases" },
+                  { id: "bacterial", label: "🦠 Bacterial" },
+                  { id: "viral", label: "🧬 Viral" },
+                  { id: "mosquito", label: "🦟 Mosquito / Parasitic" },
+                ].map((f) => (
+                  <button
+                    key={f.id}
+                    type="button"
+                    onClick={() => {
+                      haptic("light");
+                      setActiveFilter(f.id);
+                    }}
+                    className={cn(
+                      "rounded-full border px-4 py-1.5 text-xs sm:text-sm font-medium transition active:scale-95",
+                      activeFilter === f.id
+                        ? "border-brand bg-brand/[0.12] text-brand-ink font-semibold"
+                        : "border-line text-muted hover:border-line-2 hover:text-fg"
+                    )}
+                  >
+                    {f.label}
+                  </button>
+                ))}
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                {filteredDiseases.map((d) => (
+                  <div
+                    key={d.name}
+                    className="rounded-2xl border border-line bg-card p-4 sm:p-5 card-shadow space-y-3"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex items-center gap-2.5">
+                        <span className="text-3xl">{d.icon}</span>
+                        <div>
+                          <h4 className="font-bold text-fg text-base">{d.name}</h4>
+                          <span className="font-mono text-xs text-muted italic">{d.pathogen}</span>
+                        </div>
+                      </div>
+                      <span
+                        className={cn(
+                          "font-mono text-[10px] uppercase font-bold px-2.5 py-1 rounded-full border",
+                          d.category === "Bacterial"
+                            ? "bg-amber-500/10 text-amber-500 border-amber-500/20"
+                            : d.category === "Viral"
+                            ? "bg-purple-500/10 text-purple-500 border-purple-500/20"
+                            : "bg-emerald-500/10 text-emerald-500 border-emerald-500/20"
+                        )}
+                      >
+                        {d.category}
+                      </span>
+                    </div>
+
+                    <div className="space-y-1">
+                      <p className="text-xs font-mono text-subtle uppercase">Mode of Spread:</p>
+                      <p className="text-xs text-muted leading-relaxed">{d.spread}</p>
+                    </div>
+
+                    <div className="space-y-1">
+                      <p className="text-xs font-mono text-subtle uppercase">Symptoms:</p>
+                      <ul className="space-y-1 text-xs text-fg/90">
+                        {d.symptoms.map((sym, sIdx) => (
+                          <li key={sIdx} className="flex items-start gap-1.5">
+                            <span className="h-1.5 w-1.5 rounded-full bg-rose-500 shrink-0 mt-1.5" />
+                            <span>{sym}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/[0.04] p-3 text-xs text-emerald-600 dark:text-emerald-400 leading-relaxed">
+                      <strong>Prevention / Vaccine:</strong> {d.prevention}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Chapter 3: pH & Chemical Cards */}
+          {chapter.id === "note-gen-3" && (
+            <div className="space-y-6">
+              <h4 className="text-base font-bold text-fg flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-brand" /> Everyday Substances & pH Levels
+              </h4>
               <div className="grid gap-3 sm:grid-cols-2">
                 {filteredPH.map((item) => {
                   const isAcid = item.category.includes("Acid");
@@ -1309,676 +2024,369 @@ export function GeneralScienceViewer({
                   );
                 })}
               </div>
-            )}
-          </div>
 
-          {/* TABLE 2: COMMON HOUSEHOLD CHEMICALS & FORMULAS */}
-          <div className="space-y-3 pt-4">
-            <h4 className="text-base font-bold text-fg flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-brand" /> Common Household Chemicals & Chemical Formulas
-            </h4>
-
-            <div className="overflow-x-auto rounded-2xl border border-line bg-card shadow-sm">
-              <table className="w-full min-w-[48rem] border-collapse text-left text-sm">
-                <thead>
-                  <tr className="border-b border-line bg-fg/[0.04]">
-                    <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-52">
-                      Common Household Name
-                    </th>
-                    <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-60">
-                      Scientific Chemical Name
-                    </th>
-                    <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-44">
-                      Chemical Formula
-                    </th>
-                    <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle">
-                      Everyday Life Uses & Applications
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-line/60">
-                  {filteredChemicals.map((c) => (
-                    <tr key={c.commonName} className="hover:bg-fg/[0.02] transition">
-                      <td className="px-5 py-4 align-top">
-                        <div className="flex items-center gap-2.5">
-                          <span className="text-xl">{c.icon}</span>
-                          <span className="font-bold text-fg text-base">{c.commonName}</span>
+              <h4 className="text-base font-bold text-fg flex items-center gap-2 pt-4">
+                <span className="h-2 w-2 rounded-full bg-brand" /> Common Household Chemicals
+              </h4>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {filteredChemicals.map((c) => (
+                  <div
+                    key={c.commonName}
+                    className="rounded-2xl border border-line bg-card p-4 sm:p-5 card-shadow space-y-2"
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <span className="text-2xl">{c.icon}</span>
+                        <div>
+                          <h4 className="font-bold text-fg text-sm">{c.commonName}</h4>
+                          <p className="text-xs text-muted font-mono">{c.chemicalName}</p>
                         </div>
-                      </td>
-                      <td className="px-5 py-4 align-top text-fg font-medium">
-                        {c.chemicalName}
-                      </td>
-                      <td className="px-5 py-4 align-top">
-                        <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-md bg-brand/10 text-brand-ink border border-brand/20">
-                          {c.formula}
-                        </span>
-                      </td>
-                      <td className="px-5 py-4 align-top leading-relaxed text-muted text-xs sm:text-sm">
-                        {c.uses}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          {/* TABLE 3: NATURAL FOOD ACIDS */}
-          <div className="space-y-3 pt-4">
-            <h4 className="text-base font-bold text-fg flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-brand" /> Natural Organic Acids in Daily Foods
-            </h4>
-
-            <div className="overflow-x-auto rounded-2xl border border-line bg-card shadow-sm">
-              <table className="w-full min-w-[36rem] border-collapse text-left text-sm">
-                <thead>
-                  <tr className="border-b border-line bg-fg/[0.04]">
-                    <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-64">
-                      Food / Natural Source
-                    </th>
-                    <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-56">
-                      Natural Acid Present
-                    </th>
-                    <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle">
-                      Daily Fact & Remedy
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-line/60">
-                  {NATURAL_ACIDS_DATA.map((na) => (
-                    <tr key={na.source} className="hover:bg-fg/[0.02] transition">
-                      <td className="px-5 py-4 align-top">
-                        <div className="flex items-center gap-2.5">
-                          <span className="text-xl">{na.icon}</span>
-                          <span className="font-bold text-fg">{na.source}</span>
-                        </div>
-                      </td>
-                      <td className="px-5 py-4 align-top">
-                        <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-md bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20">
-                          {na.acid}
-                        </span>
-                      </td>
-                      <td className="px-5 py-4 align-top text-xs sm:text-sm text-muted leading-relaxed">
-                        {na.fact}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ────────────────────────────────────────────────────────────────────── */}
-      {/* CHAPTER 4: SI UNITS & SCIENTIFIC INSTRUMENTS                          */}
-      {/* ────────────────────────────────────────────────────────────────────── */}
-      {chapter.id === "note-gen-4" && (
-        <div className="space-y-8">
-          {/* Category Filter */}
-          <div className="flex flex-wrap items-center gap-2">
-            {[
-              { id: "all", label: "All Instruments" },
-              { id: "medical", label: "🩺 Medical (BP, Heart, Stethoscope)" },
-              { id: "weather", label: "🌡️ Weather (Barometer, Milk, Wind)" },
-              { id: "physics", label: "⚡ Physics & Navigation (SONAR, Pyrometer)" },
-            ].map((f) => (
-              <button
-                key={f.id}
-                type="button"
-                onClick={() => {
-                  haptic("light");
-                  setActiveFilter(f.id);
-                }}
-                className={cn(
-                  "rounded-full border px-4 py-1.5 text-xs sm:text-sm font-medium transition active:scale-95",
-                  activeFilter === f.id
-                    ? "border-brand bg-brand/[0.12] text-brand-ink font-semibold"
-                    : "border-line text-muted hover:border-line-2 hover:text-fg"
-                )}
-              >
-                {f.label}
-              </button>
-            ))}
-          </div>
-
-          {/* TABLE 1: SCIENTIFIC INSTRUMENTS */}
-          <div className="space-y-3">
-            <h4 className="text-base font-bold text-fg flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-brand" /> Essential Scientific Instruments & Gauges
-            </h4>
-
-            {viewMode === "table" ? (
-              <div className="overflow-x-auto rounded-2xl border border-line bg-card shadow-sm">
-                <table className="w-full min-w-[48rem] border-collapse text-left text-sm">
-                  <thead>
-                    <tr className="border-b border-line bg-fg/[0.04]">
-                      <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-56">
-                        Instrument Name
-                      </th>
-                      <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-60">
-                        What It Measures
-                      </th>
-                      <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-44">
-                        Field Category
-                      </th>
-                      <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle">
-                        Working Principle & Everyday Use
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-line/60">
-                    {filteredInstruments.map((ins) => (
-                      <tr key={ins.name} className="hover:bg-fg/[0.02] transition">
-                        <td className="px-5 py-4 align-top">
-                          <div className="flex items-center gap-2.5">
-                            <span className="text-2xl">{ins.icon}</span>
-                            <span className="font-bold text-fg text-base">{ins.name}</span>
-                          </div>
-                        </td>
-                        <td className="px-5 py-4 align-top font-semibold text-fg">
-                          {ins.measures}
-                        </td>
-                        <td className="px-5 py-4 align-top">
-                          <span className="font-mono text-[10px] font-semibold uppercase px-2 py-0.5 rounded bg-fg/[0.04] border border-line text-brand-ink">
-                            {ins.category}
-                          </span>
-                        </td>
-                        <td className="px-5 py-4 align-top text-xs sm:text-sm text-muted leading-relaxed">
-                          {ins.principle}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                      </div>
+                      <span className="font-mono text-xs font-bold px-2 py-0.5 rounded-md bg-fg/[0.06] text-brand-ink border border-line">
+                        {c.formula}
+                      </span>
+                    </div>
+                    <p className="text-xs text-muted leading-relaxed pt-1">{c.uses}</p>
+                  </div>
+                ))}
               </div>
-            ) : (
-              <div className="grid gap-4 sm:grid-cols-2">
+            </div>
+          )}
+
+          {/* Chapter 4: Instrument & SI Unit Cards */}
+          {chapter.id === "note-gen-4" && (
+            <div className="space-y-6">
+              <h4 className="text-base font-bold text-fg flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-brand" /> Scientific Instruments
+              </h4>
+              <div className="grid gap-3 sm:grid-cols-2">
                 {filteredInstruments.map((ins) => (
                   <div
                     key={ins.name}
-                    className="rounded-2xl border border-line bg-card p-5 card-shadow space-y-3"
+                    className="rounded-2xl border border-line bg-card p-4 sm:p-5 card-shadow space-y-2.5"
                   >
-                    <div className="flex items-center gap-3">
-                      <span className="text-3xl">{ins.icon}</span>
-                      <div>
-                        <h4 className="font-bold text-fg text-base">{ins.name}</h4>
-                        <span className="font-mono text-[10px] uppercase text-subtle font-semibold">
-                          {ins.category}
-                        </span>
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <span className="text-2xl">{ins.icon}</span>
+                        <div>
+                          <h4 className="font-bold text-fg text-sm">{ins.name}</h4>
+                          <span className="font-mono text-[10px] text-subtle uppercase">{ins.category}</span>
+                        </div>
                       </div>
-                    </div>
-                    <div className="rounded-xl border border-line/60 bg-fg/[0.02] p-3 text-xs">
-                      <p className="font-mono text-[10px] uppercase text-subtle font-bold">Measures:</p>
-                      <p className="font-bold text-fg mt-0.5">{ins.measures}</p>
+                      <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded-md bg-brand/10 text-brand-ink border border-brand/20">
+                        {ins.measures}
+                      </span>
                     </div>
                     <p className="text-xs text-muted leading-relaxed">{ins.principle}</p>
                   </div>
                 ))}
               </div>
-            )}
-          </div>
 
-          {/* TABLE 2: CORE SI UNITS */}
-          <div className="space-y-3 pt-4">
-            <h4 className="text-base font-bold text-fg flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-brand" /> Core SI Units & Everyday Conversions
-            </h4>
-
-            <div className="overflow-x-auto rounded-2xl border border-line bg-card shadow-sm">
-              <table className="w-full min-w-[42rem] border-collapse text-left text-sm">
-                <thead>
-                  <tr className="border-b border-line bg-fg/[0.04]">
-                    <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-56">
-                      Physical Quantity
-                    </th>
-                    <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-44">
-                      SI Unit Name
-                    </th>
-                    <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-28">
-                      Symbol
-                    </th>
-                    <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle">
-                      Real-Life Example & Formula
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-line/60">
-                  {SI_UNITS_DATA.map((u) => (
-                    <tr key={u.quantity} className="hover:bg-fg/[0.02] transition">
-                      <td className="px-5 py-4 align-top font-bold text-fg">{u.quantity}</td>
-                      <td className="px-5 py-4 align-top font-semibold text-fg">{u.unit}</td>
-                      <td className="px-5 py-4 align-top">
-                        <span className="font-mono text-xs font-bold px-2.5 py-1 rounded bg-brand/10 text-brand-ink border border-brand/20">
-                          {u.symbol}
-                        </span>
-                      </td>
-                      <td className="px-5 py-4 align-top text-xs sm:text-sm text-muted leading-relaxed">
-                        {u.example}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ────────────────────────────────────────────────────────────────────── */}
-      {/* CHAPTER 5: HUMAN BODY QUICK FACTS & BLOOD GROUPS                      */}
-      {/* ────────────────────────────────────────────────────────────────────── */}
-      {chapter.id === "note-gen-5" && (
-        <div className="space-y-8">
-          {/* Interactive Blood Compatibility Checker */}
-          <div className="rounded-2xl border border-line bg-card p-4 sm:p-6 card-shadow space-y-4">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <h3 className="text-lg font-bold text-fg flex items-center gap-2">
-                  <Heart className="h-5 w-5 text-rose-500" /> Interactive Blood Compatibility Checker
-                </h3>
-                <p className="text-xs text-muted mt-0.5">
-                  Tap any blood group to instantly see compatible donors and recipients.
-                </p>
-              </div>
-              <span className="font-mono text-xs font-bold px-3 py-1 rounded-full bg-rose-500/10 text-rose-500 border border-rose-500/20">
-                O− = Universal Donor · AB+ = Universal Recipient
-              </span>
-            </div>
-
-            {/* Blood Group Tappable Selector */}
-            <div className="grid grid-cols-4 gap-2 sm:grid-cols-8 pt-1">
-              {["O-", "O+", "A+", "A-", "B+", "B-", "AB+", "AB-"].map((bg) => (
-                <button
-                  key={bg}
-                  type="button"
-                  onClick={() => {
-                    haptic("light");
-                    setSelectedBlood(bg);
-                  }}
-                  className={cn(
-                    "rounded-xl border py-2.5 text-center font-mono text-sm font-bold transition active:scale-95",
-                    selectedBlood === bg
-                      ? "border-rose-500 bg-rose-500 text-white shadow-md shadow-rose-500/30"
-                      : "border-line bg-fg/[0.02] text-fg hover:border-rose-500/50"
-                  )}
-                >
-                  {bg}
-                </button>
-              ))}
-            </div>
-
-            {/* Result Box */}
-            <div className="rounded-xl border border-rose-500/20 bg-rose-500/[0.03] p-4 text-xs space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-base font-bold text-fg">{activeBloodData.group}</span>
-                {activeBloodData.highlight === "donor" ? (
-                  <span className="font-mono text-[10px] font-bold text-rose-500 uppercase px-2.5 py-0.5 rounded bg-rose-500/10 border border-rose-500/20">
-                    Universal Donor
-                  </span>
-                ) : activeBloodData.highlight === "recipient" ? (
-                  <span className="font-mono text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase px-2.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
-                    Universal Recipient
-                  </span>
-                ) : null}
-              </div>
-
-              <div className="grid gap-2 sm:grid-cols-2 text-xs">
-                <div className="rounded-lg border border-line bg-card p-3">
-                  <p className="font-mono text-[10px] uppercase text-emerald-600 dark:text-emerald-400 font-bold">
-                    ✓ Can Safely Donate To:
-                  </p>
-                  <p className="font-bold text-fg mt-1 text-sm">{activeBloodData.canGive}</p>
-                </div>
-                <div className="rounded-lg border border-line bg-card p-3">
-                  <p className="font-mono text-[10px] uppercase text-sky-600 dark:text-sky-400 font-bold">
-                    ✓ Can Safely Receive From:
-                  </p>
-                  <p className="font-bold text-fg mt-1 text-sm">{activeBloodData.canTake}</p>
-                </div>
-              </div>
-
-              <p className="text-muted text-xs leading-relaxed">{activeBloodData.note}</p>
-            </div>
-          </div>
-
-          {/* TABLE 1: BLOOD GROUP TRANSFUSION MATRIX */}
-          <div className="space-y-3">
-            <h4 className="text-base font-bold text-fg flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-brand" /> Complete ABO & Rh Blood Compatibility Reference
-            </h4>
-
-            <div className="overflow-x-auto rounded-2xl border border-line bg-card shadow-sm">
-              <table className="w-full min-w-[48rem] border-collapse text-left text-sm">
-                <thead>
-                  <tr className="border-b border-line bg-fg/[0.04]">
-                    <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-36">
-                      Blood Group
-                    </th>
-                    <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-44">
-                      Red Cell Antigens
-                    </th>
-                    <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-40">
-                      Plasma Antibodies
-                    </th>
-                    <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle">
-                      Safe To Donate To
-                    </th>
-                    <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-60">
-                      Safe To Receive From
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-line/60">
-                  {BLOOD_COMPATIBILITY_DATA.map((b) => (
-                    <tr
-                      key={b.group}
-                      className={cn(
-                        "hover:bg-fg/[0.02] transition",
-                        b.highlight === "donor"
-                          ? "bg-rose-500/[0.03]"
-                          : b.highlight === "recipient"
-                          ? "bg-emerald-500/[0.03]"
-                          : ""
-                      )}
-                    >
-                      <td className="px-5 py-4 align-top font-mono font-bold text-base text-fg">
-                        {b.group}
-                      </td>
-                      <td className="px-5 py-4 align-top text-xs text-fg">{b.antigens}</td>
-                      <td className="px-5 py-4 align-top text-xs text-subtle">{b.antibodies}</td>
-                      <td className="px-5 py-4 align-top text-xs font-semibold text-emerald-600 dark:text-emerald-400">
-                        {b.canGive}
-                      </td>
-                      <td className="px-5 py-4 align-top text-xs font-semibold text-sky-600 dark:text-sky-400">
-                        {b.canTake}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          {/* TABLE 2: BODY RECORDS & NORMAL NUMBERS */}
-          <div className="space-y-3 pt-4">
-            <h4 className="text-base font-bold text-fg flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-brand" /> Human Body Record Book & Standard Vitals
-            </h4>
-
-            <div className="overflow-x-auto rounded-2xl border border-line bg-card shadow-sm">
-              <table className="w-full min-w-[44rem] border-collapse text-left text-sm">
-                <thead>
-                  <tr className="border-b border-line bg-fg/[0.04]">
-                    <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-60">
-                      Body Metric / Record
-                    </th>
-                    <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-52">
-                      Standard Value / Organ
-                    </th>
-                    <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-40">
-                      Category
-                    </th>
-                    <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle">
-                      Physiological Significance
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-line/60">
-                  {BODY_RECORDS_DATA.map((rec) => (
-                    <tr key={rec.metric} className="hover:bg-fg/[0.02] transition">
-                      <td className="px-5 py-4 align-top">
-                        <div className="flex items-center gap-2.5">
-                          <span className="text-xl">{rec.icon}</span>
-                          <span className="font-bold text-fg text-base">{rec.metric}</span>
-                        </div>
-                      </td>
-                      <td className="px-5 py-4 align-top font-bold text-brand-ink">
-                        {rec.value}
-                      </td>
-                      <td className="px-5 py-4 align-top">
-                        <span className="font-mono text-[10px] font-semibold uppercase px-2 py-0.5 rounded bg-fg/[0.04] border border-line text-subtle">
-                          {rec.category}
-                        </span>
-                      </td>
-                      <td className="px-5 py-4 align-top text-xs sm:text-sm text-muted leading-relaxed">
-                        {rec.detail}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ────────────────────────────────────────────────────────────────────── */}
-      {/* CHAPTER 6: EVERYDAY SCIENCE PHENOMENA (WHY IT HAPPENS)                */}
-      {/* ────────────────────────────────────────────────────────────────────── */}
-      {chapter.id === "note-gen-6" && (
-        <div className="space-y-8">
-          <div className="space-y-3">
-            <h4 className="text-base font-bold text-fg flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-brand" /> Real-World Scientific Phenomena Explained
-            </h4>
-
-            {viewMode === "table" ? (
-              <div className="overflow-x-auto rounded-2xl border border-line bg-card shadow-sm">
-                <table className="w-full min-w-[50rem] border-collapse text-left text-sm">
-                  <thead>
-                    <tr className="border-b border-line bg-fg/[0.04]">
-                      <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-64">
-                        Daily Question & Observation
-                      </th>
-                      <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-56">
-                        Scientific Principle
-                      </th>
-                      <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle">
-                        Plain-English Scientific Explanation
-                      </th>
-                      <th className="px-5 py-4 font-mono text-xs uppercase tracking-wider text-subtle w-64">
-                        Everyday Real-Life Example
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-line/60">
-                    {filteredPhenomena.map((p) => (
-                      <tr key={p.question} className="hover:bg-fg/[0.02] transition">
-                        <td className="px-5 py-4 align-top">
-                          <div className="flex items-start gap-2.5">
-                            <span className="text-2xl shrink-0 mt-0.5">{p.icon}</span>
-                            <span className="font-bold text-fg text-base">{p.question}</span>
-                          </div>
-                        </td>
-                        <td className="px-5 py-4 align-top">
-                          <span className="font-mono text-xs font-bold px-2.5 py-1 rounded bg-brand/10 text-brand-ink border border-brand/20">
-                            {p.law}
-                          </span>
-                        </td>
-                        <td className="px-5 py-4 align-top text-xs sm:text-sm text-fg leading-relaxed">
-                          {p.fullReason}
-                        </td>
-                        <td className="px-5 py-4 align-top">
-                          <div className="rounded-xl border border-line/60 bg-fg/[0.02] p-3 text-xs text-muted leading-relaxed flex items-start gap-2">
-                            <Lightbulb className="h-3.5 w-3.5 text-amber-500 shrink-0 mt-0.5" />
-                            <span>{p.realLife}</span>
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            ) : (
-              <div className="grid gap-4 sm:grid-cols-2">
-                {filteredPhenomena.map((p) => (
+              <h4 className="text-base font-bold text-fg flex items-center gap-2 pt-4">
+                <span className="h-2 w-2 rounded-full bg-brand" /> SI Base & Derived Units
+              </h4>
+              <div className="grid gap-3 sm:grid-cols-3">
+                {SI_UNITS_DATA.map((u) => (
                   <div
-                    key={p.question}
-                    className="rounded-2xl border border-line bg-card p-5 card-shadow space-y-3.5"
+                    key={u.quantity}
+                    className="rounded-2xl border border-line bg-card p-4 card-shadow space-y-2"
                   >
-                    <div className="flex items-center gap-3">
-                      <span className="text-3xl">{p.icon}</span>
-                      <h4 className="font-bold text-fg text-base leading-snug">{p.question}</h4>
+                    <div className="flex items-center justify-between">
+                      <span className="font-bold text-fg text-sm">{u.quantity}</span>
+                      <span className="font-mono text-xs font-bold px-2 py-0.5 rounded-md bg-fg/[0.06] text-fg border border-line">
+                        {u.symbol}
+                      </span>
                     </div>
-
-                    <div className="rounded-xl border border-brand/20 bg-brand/[0.04] p-3 text-xs">
-                      <p className="font-mono text-[10px] uppercase font-bold text-brand-ink">
-                        Core Law: {p.law}
-                      </p>
-                      <p className="font-semibold text-fg mt-1">{p.shortAnswer}</p>
-                    </div>
-
-                    <p className="text-xs text-muted leading-relaxed">{p.fullReason}</p>
-
-                    <div className="rounded-xl border border-line/60 bg-fg/[0.02] p-3 text-xs text-subtle flex items-start gap-2">
-                      <Lightbulb className="h-4 w-4 text-amber-500 shrink-0 mt-0.5" />
-                      <span>{p.realLife}</span>
-                    </div>
+                    <p className="font-mono text-xs text-brand-ink font-semibold">{u.unit}</p>
+                    <p className="text-xs text-muted leading-relaxed">{u.example}</p>
                   </div>
                 ))}
               </div>
-            )}
-          </div>
-        </div>
-      )}
+            </div>
+          )}
 
-      {/* ────────────────────────────────────────────────────────────────────── */}
-      {/* PRACTICE ARENA: MCQs WITH INSTANT VALIDATION                          */}
-      {/* ────────────────────────────────────────────────────────────────────── */}
-      {viewMode === "practice" && (
-        <div className="space-y-6 animate-fade-in">
-          <div className="rounded-2xl border border-brand/30 bg-brand/[0.04] p-4 text-xs sm:text-sm text-fg flex items-center justify-between gap-3">
-            <div className="flex items-center gap-2.5">
-              <ListChecks className="h-5 w-5 text-brand-ink shrink-0" />
-              <div>
-                <p className="font-bold text-fg">Self-Assessment Arena</p>
-                <p className="text-muted text-xs">
-                  Tap an option to immediately test your retention of this chapter.
-                </p>
+          {/* Chapter 5: Blood Groups & Anatomy Cards */}
+          {chapter.id === "note-gen-5" && (
+            <div className="space-y-6">
+              {/* Interactive Blood Transfusion Card */}
+              <div className="rounded-2xl border border-line bg-card p-4 sm:p-6 card-shadow space-y-4">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                  <div>
+                    <h4 className="font-bold text-fg text-base flex items-center gap-2">
+                      <Heart className="h-5 w-5 text-rose-500" /> Interactive Blood Transfusion Checker
+                    </h4>
+                    <p className="text-xs text-muted">
+                      Select any patient blood group to instantly inspect compatible donor and recipient rules.
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {BLOOD_COMPATIBILITY_DATA.map((b) => (
+                      <button
+                        key={b.group}
+                        type="button"
+                        onClick={() => {
+                          haptic("light");
+                          setSelectedBlood(b.group.split(" ")[0]);
+                        }}
+                        className={cn(
+                          "px-2.5 py-1 rounded-lg font-mono text-xs font-bold border transition active:scale-95",
+                          selectedBlood === b.group.split(" ")[0]
+                            ? "bg-rose-500 text-white border-rose-500 shadow-sm"
+                            : "bg-fg/[0.02] border-line text-muted hover:text-fg hover:border-line-2"
+                        )}
+                      >
+                        {b.group.split(" ")[0]}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="grid gap-3 sm:grid-cols-2 pt-2">
+                  <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/[0.04] p-4 space-y-1.5">
+                    <p className="font-mono text-xs font-bold uppercase text-emerald-600 dark:text-emerald-400">
+                      Can Safely Receive Red Cells From:
+                    </p>
+                    <p className="text-sm font-bold text-fg">{activeBloodData.canTake}</p>
+                  </div>
+                  <div className="rounded-xl border border-brand/20 bg-brand/[0.04] p-4 space-y-1.5">
+                    <p className="font-mono text-xs font-bold uppercase text-brand-ink">
+                      Can Safely Donate Red Cells To:
+                    </p>
+                    <p className="text-sm font-bold text-fg">{activeBloodData.canGive}</p>
+                  </div>
+                </div>
+                <p className="text-xs text-muted italic">{activeBloodData.note}</p>
+              </div>
+
+              {/* Anatomy Records Cards */}
+              <h4 className="text-base font-bold text-fg flex items-center gap-2 pt-2">
+                <span className="h-2 w-2 rounded-full bg-brand" /> Human Body Records
+              </h4>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {BODY_RECORDS_DATA.map((rec) => (
+                  <div
+                    key={rec.metric}
+                    className="rounded-2xl border border-line bg-card p-4 sm:p-5 card-shadow space-y-2"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="text-2xl">{rec.icon}</span>
+                        <h4 className="font-bold text-fg text-sm">{rec.metric}</h4>
+                      </div>
+                      <span className="font-mono text-[10px] text-subtle uppercase">{rec.category}</span>
+                    </div>
+                    <p className="font-mono text-sm font-bold text-brand-ink">{rec.value}</p>
+                    <p className="text-xs text-muted leading-relaxed">{rec.detail}</p>
+                  </div>
+                ))}
               </div>
             </div>
-            <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded-full bg-brand/10 text-brand-ink">
-              5 Questions
-            </span>
-          </div>
+          )}
 
-          <div className="space-y-4">
-            {chapter.sections
-              .flatMap((s) => s.points || [])
-              .filter((p) => p.startsWith("**") && p.includes("\n("))
-              .map((raw, idx) => {
-                const qNum = String(idx + 1);
-                const qKey = `${chapter.id}-${qNum}`;
-                const ans = GENERAL_SCIENCE_ANSWERS[qKey];
-                return (
-                  <PracticeQuestionItem
-                    key={qKey}
-                    index={idx + 1}
-                    rawText={raw}
-                    answer={ans}
-                  />
-                );
-              })}
-          </div>
+          {/* Chapter 6: Everyday Science Phenomena Cards */}
+          {chapter.id === "note-gen-6" && (
+            <div className="grid gap-4 sm:grid-cols-2">
+              {filteredPhenomena.map((p) => (
+                <div
+                  key={p.question}
+                  className="rounded-2xl border border-line bg-card p-4 sm:p-5 card-shadow space-y-3"
+                >
+                  <div className="flex items-start gap-2.5">
+                    <span className="text-3xl shrink-0">{p.icon}</span>
+                    <div>
+                      <h4 className="font-bold text-fg text-base">{p.question}</h4>
+                      <span className="font-mono text-xs font-semibold text-brand-ink">{p.law}</span>
+                    </div>
+                  </div>
+                  <div className="rounded-xl border border-brand/20 bg-brand/[0.04] p-3 text-xs text-fg leading-relaxed">
+                    <strong>Quick Answer:</strong> {p.shortAnswer}
+                  </div>
+                  <p className="text-xs text-muted leading-relaxed">{p.fullReason}</p>
+                  <p className="text-xs text-subtle italic border-t border-line/60 pt-2">
+                    <strong>Real-world fact:</strong> {p.realLife}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Chapter 7: Space & ISRO Cards */}
+          {chapter.id === "note-gen-7" && (
+            <div className="space-y-6">
+              <h4 className="text-base font-bold text-fg flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-brand" /> Planets in the Solar System
+              </h4>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {filteredPlanets.map((pl) => (
+                  <div
+                    key={pl.name}
+                    className="rounded-2xl border border-line bg-card p-4 sm:p-5 card-shadow space-y-2.5"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="text-2xl">{pl.icon}</span>
+                        <div>
+                          <h4 className="font-bold text-fg text-base">{pl.name}</h4>
+                          <span className="font-mono text-[10px] text-subtle uppercase">{pl.category}</span>
+                        </div>
+                      </div>
+                      <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded-md bg-fg/[0.06] text-fg border border-line">
+                        Year: {pl.orbitPeriod}
+                      </span>
+                    </div>
+                    <p className="text-xs font-bold text-fg/90">{pl.recordFact}</p>
+                    <p className="text-xs text-muted leading-relaxed">{pl.significance}</p>
+                  </div>
+                ))}
+              </div>
+
+              <h4 className="text-base font-bold text-fg flex items-center gap-2 pt-4">
+                <span className="h-2 w-2 rounded-full bg-brand" /> Landmark ISRO Missions
+              </h4>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {filteredMissions.map((m) => (
+                  <div
+                    key={m.mission}
+                    className="rounded-2xl border border-line bg-card p-4 sm:p-5 card-shadow space-y-2.5"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="text-2xl">{m.icon}</span>
+                        <div>
+                          <h4 className="font-bold text-fg text-base">{m.mission}</h4>
+                          <span className="font-mono text-xs text-brand-ink font-bold">{m.year}</span>
+                        </div>
+                      </div>
+                      <span className="font-mono text-xs px-2 py-0.5 rounded-md bg-fg/[0.06] text-subtle border border-line">
+                        {m.rocket}
+                      </span>
+                    </div>
+                    <p className="text-xs font-bold text-fg/90">{m.achievement}</p>
+                    <p className="text-xs text-muted leading-relaxed">{m.significance}</p>
+                  </div>
+                ))}
+              </div>
+
+              <h4 className="text-base font-bold text-fg flex items-center gap-2 pt-4">
+                <span className="h-2 w-2 rounded-full bg-brand" /> Extreme Moons & Celestial Bodies
+              </h4>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {CELESTIAL_MOONS_DATA.map((cm) => (
+                  <div
+                    key={cm.name}
+                    className="rounded-2xl border border-line bg-card p-4 card-shadow space-y-2"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="text-2xl">{cm.icon}</span>
+                        <div>
+                          <h4 className="font-bold text-fg text-sm">{cm.name}</h4>
+                          <span className="font-mono text-[10px] text-subtle">{cm.host}</span>
+                        </div>
+                      </div>
+                      <span className="font-mono text-xs px-2 py-0.5 rounded-md bg-fg/[0.04] text-subtle border border-line">
+                        {cm.diameter}
+                      </span>
+                    </div>
+                    <p className="text-xs text-muted leading-relaxed">{cm.feature}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Chapter 8: Alloys, Ores & Polymers Cards */}
+          {chapter.id === "note-gen-8" && (
+            <div className="space-y-6">
+              <h4 className="text-base font-bold text-fg flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-brand" /> Metallic Alloys
+              </h4>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {filteredAlloys.map((al) => (
+                  <div
+                    key={al.name}
+                    className="rounded-2xl border border-line bg-card p-4 sm:p-5 card-shadow space-y-2"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="text-2xl">{al.icon}</span>
+                        <h4 className="font-bold text-fg text-base">{al.name}</h4>
+                      </div>
+                      <span className="font-mono text-xs font-bold text-brand-ink px-2 py-0.5 rounded-md bg-brand/10 border border-brand/20">
+                        {al.composition}
+                      </span>
+                    </div>
+                    <p className="text-xs text-fg/90 font-medium leading-relaxed">{al.properties}</p>
+                    <p className="text-xs text-muted leading-relaxed">{al.uses}</p>
+                  </div>
+                ))}
+              </div>
+
+              <h4 className="text-base font-bold text-fg flex items-center gap-2 pt-4">
+                <span className="h-2 w-2 rounded-full bg-brand" /> Mineral Ores
+              </h4>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {ORES_DATA.map((o) => (
+                  <div
+                    key={o.ore}
+                    className="rounded-2xl border border-line bg-card p-4 card-shadow space-y-2"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="text-2xl">{o.icon}</span>
+                        <div>
+                          <h4 className="font-bold text-fg text-sm">{o.ore}</h4>
+                          <span className="font-mono text-xs font-bold text-brand-ink">{o.formula}</span>
+                        </div>
+                      </div>
+                      <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded-md bg-fg/[0.06] text-fg border border-line">
+                        Metal: {o.metal}
+                      </span>
+                    </div>
+                    <p className="text-xs text-muted leading-relaxed">{o.importance}</p>
+                  </div>
+                ))}
+              </div>
+
+              <h4 className="text-base font-bold text-fg flex items-center gap-2 pt-4">
+                <span className="h-2 w-2 rounded-full bg-brand" /> Everyday Polymers & Plastics
+              </h4>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {filteredPolymers.map((pol) => (
+                  <div
+                    key={pol.name}
+                    className="rounded-2xl border border-line bg-card p-4 sm:p-5 card-shadow space-y-2"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="text-2xl">{pol.icon}</span>
+                        <div>
+                          <h4 className="font-bold text-fg text-sm">{pol.name}</h4>
+                          <span className="font-mono text-xs text-muted">{pol.chemicalName}</span>
+                        </div>
+                      </div>
+                      <span className="font-mono text-[10px] uppercase font-bold px-2 py-0.5 rounded-md bg-brand/10 text-brand-ink border border-brand/20">
+                        {pol.category}
+                      </span>
+                    </div>
+                    <p className="text-xs text-fg/90 font-medium">{pol.properties}</p>
+                    <p className="text-xs text-muted leading-relaxed">{pol.uses}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
-    </div>
-  );
-}
 
-/* -------------------------------------------------------------------------- */
-/*                        PRACTICE QUESTION ITEM HELPER                       */
-/* -------------------------------------------------------------------------- */
-
-function PracticeQuestionItem({
-  index,
-  rawText,
-  answer,
-}: {
-  index: number;
-  rawText: string;
-  answer?: { correctKey: string; explanation: string };
-}) {
-  const [picked, setPicked] = useState<string | null>(null);
-
-  // Parse question text and options
-  const parts = rawText.split("\n");
-  const questionTitle = parts[0].replace(/^\*\*\d+\.\s*/, "").replace(/\*\*$/, "").trim();
-  const optionsLine = parts[1] || "";
-
-  // Extract (A) ... (B) ... (C) ... (D) ...
-  const optionMatches = [...optionsLine.matchAll(/\(([A-D])\)\s*([^·()]+)/g)];
-  const options = optionMatches.map((m) => ({ key: m[1], label: m[2].trim() }));
-
-  const hasAnswered = picked !== null;
-  const isCorrect = picked === answer?.correctKey;
-
-  return (
-    <div className="rounded-2xl border border-line bg-card p-4 sm:p-5 card-shadow space-y-3.5">
-      <div className="flex items-start gap-2.5">
-        <span className="font-mono text-xs font-bold text-brand-ink bg-brand/10 px-2 py-0.5 rounded-md shrink-0 mt-0.5">
-          Q{index}
-        </span>
-        <h4 className="text-sm sm:text-base font-semibold text-fg leading-snug">{questionTitle}</h4>
-      </div>
-
-      <div className="grid gap-2 sm:grid-cols-2 pt-1">
-        {options.map((opt) => {
-          const isSelected = picked === opt.key;
-          const isActualCorrect = answer?.correctKey === opt.key;
-
-          let btnClass = "border-line bg-card text-muted hover:border-line-2 hover:text-fg";
-          if (hasAnswered) {
-            if (isActualCorrect) {
-              btnClass =
-                "border-emerald-500 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 font-bold";
-            } else if (isSelected) {
-              btnClass = "border-rose-500 bg-rose-500/10 text-rose-500";
-            } else {
-              btnClass = "border-line opacity-50 cursor-not-allowed";
-            }
-          }
-
-          return (
-            <button
-              key={opt.key}
-              type="button"
-              disabled={hasAnswered}
-              onClick={() => {
-                haptic("light");
-                setPicked(opt.key);
-              }}
-              className={cn(
-                "flex items-center gap-2.5 rounded-xl border p-3 text-left text-xs sm:text-sm transition active:scale-98",
-                btnClass
-              )}
-            >
-              <span className="font-mono text-xs font-bold shrink-0">({opt.key})</span>
-              <span className="flex-1">{opt.label}</span>
-              {hasAnswered && isActualCorrect && (
-                <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" />
-              )}
-            </button>
-          );
-        })}
-      </div>
-
-      {hasAnswered && answer && (
-        <div className="mt-3 rounded-xl border border-line-2 bg-fg/[0.03] p-3.5 text-xs animate-fade-in space-y-1.5">
-          <p className="font-bold flex items-center gap-1.5 text-fg">
-            {isCorrect ? (
-              <span className="text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
-                ✓ Correct!
-              </span>
-            ) : (
-              <span className="text-rose-500 flex items-center gap-1">
-                ✗ Incorrect. Correct answer is ({answer.correctKey})
-              </span>
-            )}
-          </p>
-          <p className="text-muted leading-relaxed">{answer.explanation}</p>
-        </div>
+      {/* ────────────────────────────────────────────────────────────────────── */}
+      {/* 3. PRACTICE ARENA VIEW (50-MCQ Self-Assessment Runner)                 */}
+      {/* ────────────────────────────────────────────────────────────────────── */}
+      {viewMode === "practice" && (
+        <GeneralSciencePracticeArena
+          chapterId={chapter.id}
+          chapterTitle={chapter.title}
+        />
       )}
     </div>
   );

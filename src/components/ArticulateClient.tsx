@@ -454,12 +454,26 @@ export default function ArticulateClient() {
     });
   }, []);
 
-  /* Reset scroll position to top whenever challenge, font size, or category changes */
+  /* Reset scroll position to top and update overflow status whenever challenge, font size, or category changes */
+  const [isOverflowing, setIsOverflowing] = useState(false);
+
   useEffect(() => {
-    if (elocutionScrollRef.current) {
+    const el = elocutionScrollRef.current;
+    if (!el) return;
+    const check = () => {
+      if (!elocutionScrollRef.current) return;
+      const hasOverflow = elocutionScrollRef.current.scrollHeight > elocutionScrollRef.current.clientHeight + 8;
+      setIsOverflowing(hasOverflow);
       elocutionScrollRef.current.scrollTop = 0;
-    }
-  }, [elocutionKey, fontScaleIndex, elocutionType, elocutionDifficulty]);
+    };
+    check();
+    const timer = setTimeout(check, 40);
+    window.addEventListener("resize", check);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("resize", check);
+    };
+  }, [elocutionKey, fontScaleIndex, elocutionType, elocutionDifficulty, currentElocutionItem.text]);
   const stopwatchStartRef = useRef(0);
 
   const resetStopwatch = useCallback(() => {
@@ -741,7 +755,7 @@ export default function ArticulateClient() {
   const activeElocutionType = ELOCUTION_TYPES.find((t) => t.id === elocutionType) ?? ELOCUTION_TYPES[0];
 
   return (
-    <div className="relative flex flex-col justify-between items-center w-full min-h-[calc(100dvh-3.5rem-7rem)] md:min-h-[calc(100dvh-4rem)] select-none px-4 sm:px-6 pt-2 sm:pt-8 pb-4 sm:pb-8">
+    <div className="relative flex flex-col justify-between items-center w-full min-h-[calc(100dvh-3.5rem-7rem)] md:min-h-[calc(100dvh-4rem)] select-none px-2 sm:px-6 pt-2 sm:pt-8 pb-4 sm:pb-8">
 
       {/* ── Atmospheric glows ── */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
@@ -749,50 +763,52 @@ export default function ArticulateClient() {
         <div className="absolute -right-24 top-0 h-[60vh] w-[50vw] rounded-full [background:radial-gradient(ellipse_at_center,rgba(217,107,67,0.12),transparent_70%)]" />
       </div>
 
-      {/* ─── Top Right Controls: Font Size Buttons (Yellow Box Spot) + Elocution Streak ─── */}
-      <div className="absolute right-3.5 top-2.5 sm:right-8 sm:top-6 md:right-10 md:top-8 z-30 flex items-center gap-1.5 sm:gap-2">
+      {/* ─── Top Utility Row: Font Size Adjuster Pill + Elocution Streak (Never overlaps title on mobile) ─── */}
+      <div className="w-full flex items-center justify-between sm:w-auto sm:absolute sm:right-8 sm:top-6 md:right-10 md:top-8 z-30 px-1 mb-2 sm:mb-0 sm:gap-2">
+        {/* Elocution Streak Indicator (Left on mobile, right on desktop if present) */}
+        {mode === "elocution" ? (
+          <div
+            key={elocutionType}
+            className="flex items-center gap-1.5 sm:gap-2 px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-amber-500/25 bg-amber-500/10 backdrop-blur-md shadow-[0_2px_12px_rgba(245,158,11,0.15)] text-amber-300 text-xs sm:text-sm font-semibold select-none animate-fade-in order-1 sm:order-2"
+            title={`${currentStreak} ${activeElocutionType.label} challenges practiced`}
+          >
+            <Flame className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 fill-amber-400/90 shrink-0 animate-pulse" />
+            <span className="tabular-nums font-bold text-amber-200">{currentStreak}</span>
+            <span className="text-[11px] sm:text-xs text-amber-300/80 font-medium">Practiced</span>
+          </div>
+        ) : (
+          <div className="sm:hidden" />
+        )}
+
         {/* Font Size Adjuster Pill */}
         <div
-          className="flex items-center gap-0.5 rounded-full border border-white/10 bg-white/[0.05] backdrop-blur-md px-1.5 py-0.5 sm:px-2 sm:py-1 shadow-[0_2px_10px_rgba(0,0,0,0.2)] text-fg/90 select-none"
+          className="flex items-center gap-1 sm:gap-1.5 rounded-full border border-white/10 bg-white/[0.05] backdrop-blur-md px-1 py-0.5 sm:px-2 sm:py-1 shadow-[0_2px_10px_rgba(0,0,0,0.2)] text-fg/90 select-none order-2 sm:order-1 ml-auto sm:ml-0"
           title="Adjust text size"
         >
           <button
             type="button"
             onClick={handleDecreaseFont}
             disabled={fontScaleIndex <= 0}
-            className="flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center rounded-full hover:bg-white/10 active:scale-90 transition disabled:opacity-30 disabled:pointer-events-none text-fg/80 hover:text-fg"
+            className="flex h-7 w-7 sm:h-7 sm:w-7 items-center justify-center rounded-full bg-white/[0.04] hover:bg-white/15 active:bg-[#d96b43]/20 active:scale-90 transition disabled:opacity-30 disabled:pointer-events-none text-fg/80 hover:text-fg touch-manipulation cursor-pointer"
             title="Decrease font size (A−)"
             aria-label="Decrease font size"
           >
             <span className="font-serif font-bold text-xs sm:text-sm">A−</span>
           </button>
-          <span className="font-mono text-[10px] sm:text-xs text-muted px-0.5 sm:px-1 min-w-[2.2rem] sm:min-w-[2.5rem] text-center font-semibold">
+          <span className="font-mono text-[11px] sm:text-xs text-muted px-1 min-w-[2.4rem] sm:min-w-[2.6rem] text-center font-semibold tabular-nums">
             {FONT_SCALE_LABELS[fontScaleIndex]}
           </span>
           <button
             type="button"
             onClick={handleIncreaseFont}
             disabled={fontScaleIndex >= FONT_SCALES.length - 1}
-            className="flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center rounded-full hover:bg-white/10 active:scale-90 transition disabled:opacity-30 disabled:pointer-events-none text-fg/80 hover:text-fg"
+            className="flex h-7 w-7 sm:h-7 sm:w-7 items-center justify-center rounded-full bg-white/[0.04] hover:bg-white/15 active:bg-[#d96b43]/20 active:scale-90 transition disabled:opacity-30 disabled:pointer-events-none text-fg/80 hover:text-fg touch-manipulation cursor-pointer"
             title="Increase font size (A+)"
             aria-label="Increase font size"
           >
             <span className="font-serif font-bold text-sm sm:text-base">A+</span>
           </button>
         </div>
-
-        {/* Elocution Streak Indicator */}
-        {mode === "elocution" && (
-          <div
-            key={elocutionType}
-            className="flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full border border-amber-500/25 bg-amber-500/10 backdrop-blur-md shadow-[0_2px_12px_rgba(245,158,11,0.15)] text-amber-300 text-xs sm:text-sm font-semibold select-none animate-fade-in"
-            title={`${currentStreak} ${activeElocutionType.label} challenges practiced`}
-          >
-            <Flame className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 fill-amber-400/90 shrink-0 animate-pulse" />
-            <span className="tabular-nums font-bold text-amber-200">{currentStreak}</span>
-            <span className="hidden xs:inline text-[11px] sm:text-xs text-amber-300/80 font-medium">Practiced</span>
-          </div>
-        )}
       </div>
 
       {/* ════════════════════════════════════════════════════════════════════════
@@ -998,31 +1014,34 @@ export default function ArticulateClient() {
           ZONE 2: CENTER STAGE (Topic Title or Elocution Sentence)
           Natural fluid vertical centering + wide reading bounds + safe scroll
          ════════════════════════════════════════════════════════════════════════ */}
-      <div className="w-full max-w-4xl lg:max-w-5xl xl:max-w-6xl flex-1 min-h-0 my-auto flex flex-col items-center justify-center px-3 sm:px-6 md:px-8 py-2 sm:py-4 text-center">
+      <div className="w-full max-w-4xl lg:max-w-5xl xl:max-w-6xl flex-1 min-h-0 my-auto flex flex-col items-center justify-center px-1 sm:px-6 md:px-8 py-1 sm:py-4 text-center">
         {mode === "elocution" ? (
           <div
             ref={elocutionScrollRef}
-            className="w-full max-h-[58vh] sm:max-h-[64vh] md:max-h-[68vh] overflow-y-auto overscroll-contain py-2 px-1 sm:px-3 animate-fade-in touch-pan-y"
+            className="w-full max-h-[46vh] xs:max-h-[50vh] sm:max-h-[60vh] md:max-h-[66vh] overflow-y-auto overscroll-contain py-2 px-1 sm:px-3 animate-fade-in touch-pan-y [webkit-overflow-scrolling:touch]"
           >
-            <div className="min-h-full flex flex-col justify-start items-center">
-              <div className="my-auto w-full flex flex-col items-center py-2">
-                <p
-                  key={elocutionKey}
-                  style={{
-                    fontSize: `calc(${
-                      currentElocutionItem.text.length > 220
-                        ? "clamp(0.95rem, 2.2vw, 1.35rem)"
-                        : currentElocutionItem.text.length > 100
-                        ? "clamp(1.05rem, 2.6vw, 1.5rem)"
-                        : "clamp(1.2rem, 3.2vw, 1.8rem)"
-                    } * ${FONT_SCALES[fontScaleIndex]})`,
-                    lineHeight: 1.65,
-                  }}
-                  className="font-serif font-normal tracking-normal text-fg select-text animate-prompt-land mx-auto text-pretty px-2 sm:px-4 w-full max-w-3xl sm:max-w-4xl lg:max-w-5xl"
-                >
-                  &ldquo;{currentElocutionItem.text}&rdquo;
-                </p>
-              </div>
+            <div
+              className={cn(
+                "min-h-full w-full flex flex-col items-center",
+                isOverflowing ? "justify-start pt-2 pb-6 sm:pt-3 sm:pb-8" : "justify-center py-2"
+              )}
+            >
+              <p
+                key={elocutionKey}
+                style={{
+                  fontSize: `calc(${
+                    currentElocutionItem.text.length > 220
+                      ? "clamp(0.95rem, 2.2vw, 1.35rem)"
+                      : currentElocutionItem.text.length > 100
+                      ? "clamp(1.05rem, 2.6vw, 1.5rem)"
+                      : "clamp(1.2rem, 3.2vw, 1.8rem)"
+                  } * ${FONT_SCALES[fontScaleIndex]})`,
+                  lineHeight: 1.65,
+                }}
+                className="font-serif font-normal tracking-normal text-fg select-text animate-prompt-land mx-auto text-pretty px-1 sm:px-4 w-full max-w-full sm:max-w-4xl lg:max-w-5xl"
+              >
+                &ldquo;{currentElocutionItem.text}&rdquo;
+              </p>
             </div>
           </div>
         ) : (
@@ -1036,7 +1055,7 @@ export default function ArticulateClient() {
                 fontSize: `calc(clamp(1.75rem, 4.5vw, 3.5rem) * ${FONT_SCALES[fontScaleIndex]})`,
               }}
               className={cn(
-                "font-serif font-normal text-fg leading-[1.15] sm:leading-[1.1] tracking-[-0.015em] max-w-[28ch] sm:max-w-[34ch] mx-auto",
+                "font-serif font-normal text-fg leading-[1.15] sm:leading-[1.1] tracking-[-0.015em] max-w-full sm:max-w-[34ch] px-2 sm:px-4 mx-auto",
                 isSpinning ? "animate-slot-in" : "animate-prompt-land"
               )}
             >

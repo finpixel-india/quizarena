@@ -826,6 +826,27 @@ export default function NotesBrowser() {
     setJumpOpen(false);
   }, [subject, classLevel]);
 
+  /* ─── Chapter Narration TTS (Must be called unconditionally at top-level) ─── */
+  const chapterSpeechText = useMemo(() => {
+    if (!selected) return "";
+    const parts = [selected.title, selected.overview];
+    if (selected.sections && selected.sections.length > 0) {
+      for (const sec of selected.sections.slice(0, 5)) {
+        if (sec.title) parts.push(sec.title);
+        if (sec.points && sec.points.length > 0) {
+          parts.push(sec.points.slice(0, 2).join(". "));
+        }
+      }
+    }
+    return parts.filter(Boolean).join(". ");
+  }, [selected]);
+
+  const tts = useCuteTTS(chapterSpeechText, selected?.id);
+  const titleWordsCount = useMemo(() => {
+    return selected?.title ? selected.title.trim().split(/\s+/).filter(Boolean).length : 0;
+  }, [selected?.title]);
+
+
   function libraryUrl(nextSubject: NotesSubjectId, nextClass: ClassLevel) {
     return `/notes?subject=${nextSubject}&class=${nextClass}`;
   }
@@ -961,23 +982,6 @@ export default function NotesBrowser() {
         { k: "Key terms", v: String(selected.keyTerms.length) },
       ];
   const subjectName = NOTES_SUBJECTS.find((s) => s.id === subject)?.name ?? subject;
-
-  const chapterSpeechText = useMemo(() => {
-    if (!selected) return "";
-    const parts = [selected.title, selected.overview];
-    if (selected.sections && selected.sections.length > 0) {
-      for (const sec of selected.sections.slice(0, 5)) {
-        if (sec.title) parts.push(sec.title);
-        if (sec.points && sec.points.length > 0) {
-          parts.push(sec.points.slice(0, 2).join(". "));
-        }
-      }
-    }
-    return parts.filter(Boolean).join(". ");
-  }, [selected]);
-
-  const tts = useCuteTTS(chapterSpeechText, selected?.id);
-  const titleWordsCount = selected?.title ? selected.title.trim().split(/\s+/).filter(Boolean).length : 0;
 
 
   return (

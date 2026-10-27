@@ -30,18 +30,18 @@ export function findCuteFemaleVoice(): SpeechSynthesisVoice | null {
   return voices[0];
 }
 
-/* ─── Estimate Word Duration (Calibrated Syllables + Punctuation) ───────────── */
+/* ─── Estimate Word Duration (Calibrated to natural ~190 WPM TTS speed) ───── */
 function estimateWordDuration(word: string, rate: number = 0.95): number {
   const clean = word.replace(/[^a-zA-Z0-9]/g, "");
   const len = Math.max(1, clean.length);
-  // Base time: ~65ms per character + 100ms word phonation
-  let ms = (len * 65 + 100) / rate;
-  if (/[,;—–-]/.test(word)) ms += 160 / rate;
-  if (/[.!?:]/.test(word)) ms += 300 / rate;
-  return Math.max(180, Math.round(ms));
+  // ~28ms per character + 70ms base phoneme onset
+  let ms = (len * 28 + 70) / rate;
+  if (/[,;—–-]/.test(word)) ms += 80 / rate;
+  if (/[.!?:]/.test(word)) ms += 150 / rate;
+  return Math.max(130, Math.round(ms));
 }
 
-interface WordToken {
+export interface WordToken {
   word: string;
   start: number;
   end: number;
@@ -49,7 +49,7 @@ interface WordToken {
   durationMs: number;
 }
 
-function tokenizeWords(fullText: string, rate: number = 0.95): WordToken[] {
+export function tokenizeWords(fullText: string, rate: number = 0.95): WordToken[] {
   const words = fullText.trim().split(/\s+/).filter(Boolean);
   let charPos = 0;
   return words.map((w, idx) => {
@@ -84,13 +84,17 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
   const currentWordIndexRef = useRef(0);
   const activeUtteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
   const tickerTimeoutRef = useRef<number | null>(null);
-  const wordStartTimeRef = useRef(0);
-  const boundaryFiredRef = useRef(false);
+  const isPlayingRef = useRef(false);
 
-  // Pre-tokenize words for timing and highlighting
+  // Pre-tokenize words for fast timing and boundary indexing
   const wordTokens = useMemo(() => {
     return tokenizeWords(text || "", 0.95);
   }, [text]);
+
+  // Keep isPlayingRef in sync for timer checks
+  useEffect(() => {
+    isPlayingRef.current = isPlaying;
+  }, [isPlaying]);
 
   // Pre-warm voices list
   useEffect(() => {
@@ -124,13 +128,13 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
     activeUtteranceRef.current = null;
     setIsPlaying(false);
     setIsPaused(false);
+    isPlayingRef.current = false;
     setActiveWordIndex(null);
     pausedWordIndexRef.current = 0;
     currentWordIndexRef.current = 0;
-    boundaryFiredRef.current = false;
   }, [clearTicker]);
 
-  // When id or text changes (challenge, question, chapter, fact change), reset cleanly
+  // Reset when id or text changes (challenge, question, chapter, or fact change)
   useEffect(() => {
     stopAll();
     return () => {
@@ -138,26 +142,24 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
     };
   }, [id, text, stopAll]);
 
-  // Ticker scheduler that moves word-by-word with natural cadence
-  const scheduleNextWord = useCallback(
-    (nextIdx: number) => {
+  // Step through words with realistic voice duration
+  const advanceTicker = useCallback(
+    (targetIndex: number) => {
       clearTicker();
 
-      if (nextIdx >= wordTokens.length) {
-        // Reached end of text
+      if (!isPlayingRef.current) return;
+      if (targetIndex >= wordTokens.length) {
         return;
       }
 
-      currentWordIndexRef.current = nextIdx;
-      setActiveWordIndex(nextIdx);
-      wordStartTimeRef.current = performance.now();
+      currentWordIndexRef.current = targetIndex;
+      setActiveWordIndex(targetIndex);
 
-      const duration = wordTokens[nextIdx]?.durationMs || 300;
+      const duration = wordTokens[targetIndex]?.durationMs || 220;
 
       tickerTimeoutRef.current = window.setTimeout(() => {
-        // If onboundary is actively driving the indices, skip timer auto-advancing
-        if (!boundaryFiredRef.current) {
-          scheduleNextWord(nextIdx + 1);
+        if (isPlayingRef.current) {
+          advanceTicker(targetIndex + 1);
         }
       }, duration);
     },
@@ -176,12 +178,13 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
       if (!wordTokens || wordTokens.length === 0 || startWordIdx >= wordTokens.length) {
         setIsPlaying(false);
         setIsPaused(false);
+        isPlayingRef.current = false;
         setActiveWordIndex(null);
         pausedWordIndexRef.current = 0;
         return;
       }
 
-      // Slice words to speak if resuming from mid-sentence
+      // Slice words to speak starting from the paused word
       const wordsToSpeak = wordTokens.slice(startWordIdx).map((w) => w.word);
       const textToSpeak = wordsToSpeak.join(" ");
       if (!textToSpeak.trim()) return;
@@ -200,14 +203,15 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
       utterance.onstart = () => {
         setIsPlaying(true);
         setIsPaused(false);
+        isPlayingRef.current = true;
         currentWordIndexRef.current = startWordIdx;
         setActiveWordIndex(startWordIdx);
-        scheduleNextWord(startWordIdx);
+        advanceTicker(startWordIdx);
       };
 
       utterance.onboundary = (e) => {
-        boundaryFiredRef.current = true;
-        // Onboundary charIndex is relative to textToSpeak
+        if (e.name && e.name !== "word") return;
+        // Map boundary charIndex to relative word in wordsToSpeak
         let charAcc = 0;
         let relativeWordIdx = 0;
         for (let i = 0; i < wordsToSpeak.length; i++) {
@@ -216,17 +220,18 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
             relativeWordIdx = i;
             break;
           }
-          charAcc += wLen + 1; // plus space
+          charAcc += wLen + 1;
         }
-        const globalWordIdx = Math.min(wordTokens.length - 1, startWordIdx + relativeWordIdx);
-        currentWordIndexRef.current = globalWordIdx;
-        setActiveWordIndex(globalWordIdx);
+        const matchedIndex = Math.min(wordTokens.length - 1, startWordIdx + relativeWordIdx);
+        currentWordIndexRef.current = matchedIndex;
+        setActiveWordIndex(matchedIndex);
       };
 
       utterance.onend = () => {
         clearTicker();
         setIsPlaying(false);
         setIsPaused(false);
+        isPlayingRef.current = false;
         setActiveWordIndex(null);
         pausedWordIndexRef.current = 0;
         currentWordIndexRef.current = 0;
@@ -237,18 +242,23 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
         clearTicker();
         setIsPlaying(false);
         setIsPaused(false);
+        isPlayingRef.current = false;
         setActiveWordIndex(null);
         activeUtteranceRef.current = null;
       };
 
       activeUtteranceRef.current = utterance;
+      // Prevent Chromium garbage collection
+      (window as unknown as { __activeUtterance?: SpeechSynthesisUtterance }).__activeUtterance = utterance;
+
       try {
         window.speechSynthesis.speak(utterance);
       } catch {
         setIsPlaying(false);
+        isPlayingRef.current = false;
       }
     },
-    [clearTicker, scheduleNextWord, wordTokens]
+    [advanceTicker, clearTicker, wordTokens]
   );
 
   const toggle = useCallback(() => {
@@ -259,14 +269,16 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
     if (isPlaying) {
       // ─── USER TAPS PAUSE ──────────────────────────────────────────────────
       clearTicker();
+      isPlayingRef.current = false;
 
-      // Pause audio stream natively
+      // Remember the exact word where user stopped
+      const pausedWord = currentWordIndexRef.current;
+      pausedWordIndexRef.current = pausedWord;
+
+      // Stop voice stream cleanly so resume is pristine
       try {
-        window.speechSynthesis.pause();
+        window.speechSynthesis.cancel();
       } catch {}
-
-      const pauseWord = currentWordIndexRef.current;
-      pausedWordIndexRef.current = pauseWord;
 
       setIsPlaying(false);
       setIsPaused(true);
@@ -277,40 +289,15 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
     if (isPaused) {
       // ─── USER TAPS RESUME ─────────────────────────────────────────────────
       const resumeIndex = pausedWordIndexRef.current;
-      setIsPlaying(true);
-      setIsPaused(false);
-      setActiveWordIndex(resumeIndex); // Highlight reappears immediately on resume!
-
-      // Try native resume first
-      let resumedNatively = false;
-      try {
-        if (window.speechSynthesis.paused) {
-          window.speechSynthesis.resume();
-          resumedNatively = true;
-        }
-      } catch {}
-
-      // If native resume didn't activate or engine canceled, speak remaining words from paused index
-      setTimeout(() => {
-        if (
-          typeof window !== "undefined" &&
-          "speechSynthesis" in window &&
-          (!window.speechSynthesis.speaking || !resumedNatively)
-        ) {
-          startFrom(resumeIndex);
-        } else {
-          scheduleNextWord(resumeIndex);
-        }
-      }, 100);
-
+      startFrom(resumeIndex);
       return;
     }
 
-    // ─── USER TAPS START (From Beginning) ───────────────────────────────────
+    // ─── USER TAPS START (From Word 0) ──────────────────────────────────────
     pausedWordIndexRef.current = 0;
     currentWordIndexRef.current = 0;
     startFrom(0);
-  }, [isPlaying, isPaused, clearTicker, scheduleNextWord, startFrom]);
+  }, [isPlaying, isPaused, clearTicker, startFrom]);
 
   return {
     isPlaying,
@@ -356,16 +343,16 @@ export function FloatingTTSButton({
             : "Listen to text"
         }
         className={cn(
-          "w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all duration-200 cursor-pointer select-none active:scale-90 touch-manipulation backdrop-blur-xl border shadow-lg",
+          "w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer select-none active:scale-90 touch-manipulation backdrop-blur-xl border shadow-lg",
           isPlaying
-            ? "bg-white/25 dark:bg-white/20 border-white/50 dark:border-white/40 text-fg dark:text-white shadow-[0_0_20px_rgba(255,255,255,0.25)]"
+            ? "bg-amber-500/20 dark:bg-amber-500/25 border-amber-400/50 dark:border-amber-400/40 text-amber-500 dark:text-amber-300 shadow-[0_0_24px_rgba(245,158,11,0.3)] animate-pulse"
             : isPaused
-            ? "bg-white/20 dark:bg-white/15 border-white/35 dark:border-white/25 text-emerald-400 dark:text-emerald-300 shadow-md"
-            : "bg-white/[0.12] dark:bg-black/35 hover:bg-white/20 dark:hover:bg-black/50 border-white/25 dark:border-white/15 text-fg/80 hover:text-fg shadow-md"
+            ? "bg-emerald-500/20 dark:bg-emerald-500/25 border-emerald-400/50 dark:border-emerald-400/40 text-emerald-500 dark:text-emerald-300 shadow-[0_0_20px_rgba(16,185,129,0.25)]"
+            : "bg-white/[0.12] dark:bg-white/[0.08] hover:bg-white/20 dark:hover:bg-white/15 border-white/25 dark:border-white/15 text-fg/80 hover:text-fg shadow-md hover:shadow-lg"
         )}
       >
         {isPlaying ? (
-          <Pause className="w-4 h-4 fill-current animate-pulse shrink-0" />
+          <Pause className="w-4 h-4 fill-current shrink-0" />
         ) : isPaused ? (
           <Play className="w-4 h-4 fill-current ml-0.5 shrink-0" />
         ) : (
@@ -376,7 +363,7 @@ export function FloatingTTSButton({
   );
 }
 
-/* ─── Word-by-Word Glassmorphic Highlighted Text Component ─────────────────── */
+/* ─── Word-by-Word Smooth Glassmorphic Highlighted Text Component ──────────── */
 export function TTSHighlightedText({
   text,
   activeWordIndex,
@@ -417,7 +404,7 @@ export function TTSHighlightedText({
           return (
             <span
               key={i}
-              className="inline-block px-1.5 -mx-0.5 py-0.5 rounded-lg bg-white/35 dark:bg-white/20 backdrop-blur-md border border-white/50 dark:border-white/30 text-fg dark:text-white shadow-[0_2px_12px_rgba(255,255,255,0.25)] ring-1 ring-white/40 dark:ring-white/20 font-semibold transition-all duration-150"
+              className="bg-amber-400/25 dark:bg-amber-300/25 text-inherit rounded px-1 -mx-0.5 transition-colors duration-100 shadow-[0_0_8px_rgba(245,158,11,0.25)]"
             >
               {part}
             </span>

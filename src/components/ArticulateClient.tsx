@@ -1089,7 +1089,7 @@ export default function ArticulateClient() {
                   }}
                   className="font-serif font-normal tracking-normal text-fg select-text animate-prompt-land mx-auto text-pretty px-1 sm:px-4 w-full max-w-full sm:max-w-4xl lg:max-w-5xl"
                 >
-                  &ldquo;<TTSHighlightedText text={currentElocutionItem.text} activeCharIndex={tts.activeCharIndex} isSpeaking={tts.isPlaying} />&rdquo;
+                  &ldquo;<TTSHighlightedText text={currentElocutionItem.text} activeWordIndex={tts.activeWordIndex} wordOffset={0} isSpeaking={tts.isPlaying} />&rdquo;
                 </p>
               </div>
             </div>
@@ -1111,7 +1111,8 @@ export default function ArticulateClient() {
             >
               <TTSHighlightedText
                 text={displayText || "\u00A0"}
-                activeCharIndex={tts.activeCharIndex}
+                activeWordIndex={tts.activeWordIndex}
+                wordOffset={0}
                 isSpeaking={tts.isPlaying}
               />
             </h2>

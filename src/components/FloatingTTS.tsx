@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Pause, Play, Volume2 } from "lucide-react";
 import { cn } from "@/lib/format";
 import { haptic } from "@/lib/haptics";
@@ -30,19 +30,47 @@ export function findCuteFemaleVoice(): SpeechSynthesisVoice | null {
   return voices[0];
 }
 
-function findWordStart(fullText: string, charIndex: number): number {
-  if (charIndex <= 0) return 0;
-  let i = Math.min(charIndex, fullText.length - 1);
-  while (i > 0 && !/\s/.test(fullText[i - 1])) {
-    i--;
-  }
-  return i;
+/* ─── Estimate Word Duration (Calibrated Syllables + Punctuation) ───────────── */
+function estimateWordDuration(word: string, rate: number = 0.95): number {
+  const clean = word.replace(/[^a-zA-Z0-9]/g, "");
+  const len = Math.max(1, clean.length);
+  // Base time: ~65ms per character + 100ms word phonation
+  let ms = (len * 65 + 100) / rate;
+  if (/[,;—–-]/.test(word)) ms += 160 / rate;
+  if (/[.!?:]/.test(word)) ms += 300 / rate;
+  return Math.max(180, Math.round(ms));
+}
+
+interface WordToken {
+  word: string;
+  start: number;
+  end: number;
+  index: number;
+  durationMs: number;
+}
+
+function tokenizeWords(fullText: string, rate: number = 0.95): WordToken[] {
+  const words = fullText.trim().split(/\s+/).filter(Boolean);
+  let charPos = 0;
+  return words.map((w, idx) => {
+    const found = fullText.indexOf(w, charPos);
+    const start = found !== -1 ? found : charPos;
+    const end = start + w.length;
+    charPos = end;
+    return {
+      word: w,
+      start,
+      end,
+      index: idx,
+      durationMs: estimateWordDuration(w, rate),
+    };
+  });
 }
 
 export interface CuteTTSState {
   isPlaying: boolean;
   isPaused: boolean;
-  activeCharIndex: number | null;
+  activeWordIndex: number | null;
   toggle: () => void;
   stop: () => void;
 }
@@ -50,13 +78,21 @@ export interface CuteTTSState {
 export function useCuteTTS(text: string, id?: string): CuteTTSState {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
-  const [activeCharIndex, setActiveCharIndex] = useState<number | null>(null);
+  const [activeWordIndex, setActiveWordIndex] = useState<number | null>(null);
 
-  const pausedCharIndexRef = useRef(0);
-  const lastCharIndexRef = useRef(0);
+  const pausedWordIndexRef = useRef(0);
+  const currentWordIndexRef = useRef(0);
   const activeUtteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
+  const tickerTimeoutRef = useRef<number | null>(null);
+  const wordStartTimeRef = useRef(0);
+  const boundaryFiredRef = useRef(false);
 
-  // Pre-warm voices for Web Speech API
+  // Pre-tokenize words for timing and highlighting
+  const wordTokens = useMemo(() => {
+    return tokenizeWords(text || "", 0.95);
+  }, [text]);
+
+  // Pre-warm voices list
   useEffect(() => {
     if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
     try {
@@ -71,7 +107,15 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
     } catch {}
   }, []);
 
-  const stop = useCallback(() => {
+  const clearTicker = useCallback(() => {
+    if (tickerTimeoutRef.current !== null) {
+      window.clearTimeout(tickerTimeoutRef.current);
+      tickerTimeoutRef.current = null;
+    }
+  }, []);
+
+  const stopAll = useCallback(() => {
+    clearTicker();
     if (typeof window !== "undefined" && "speechSynthesis" in window) {
       try {
         window.speechSynthesis.cancel();
@@ -80,70 +124,120 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
     activeUtteranceRef.current = null;
     setIsPlaying(false);
     setIsPaused(false);
-    setActiveCharIndex(null);
-    pausedCharIndexRef.current = 0;
-    lastCharIndexRef.current = 0;
-  }, []);
+    setActiveWordIndex(null);
+    pausedWordIndexRef.current = 0;
+    currentWordIndexRef.current = 0;
+    boundaryFiredRef.current = false;
+  }, [clearTicker]);
 
-  // When id or text changes (user changes page, challenge, chapter, or question), reset completely
+  // When id or text changes (challenge, question, chapter, fact change), reset cleanly
   useEffect(() => {
-    stop();
+    stopAll();
     return () => {
-      stop();
+      stopAll();
     };
-  }, [id, text, stop]);
+  }, [id, text, stopAll]);
 
-  const speakFrom = useCallback(
-    (offset: number) => {
+  // Ticker scheduler that moves word-by-word with natural cadence
+  const scheduleNextWord = useCallback(
+    (nextIdx: number) => {
+      clearTicker();
+
+      if (nextIdx >= wordTokens.length) {
+        // Reached end of text
+        return;
+      }
+
+      currentWordIndexRef.current = nextIdx;
+      setActiveWordIndex(nextIdx);
+      wordStartTimeRef.current = performance.now();
+
+      const duration = wordTokens[nextIdx]?.durationMs || 300;
+
+      tickerTimeoutRef.current = window.setTimeout(() => {
+        // If onboundary is actively driving the indices, skip timer auto-advancing
+        if (!boundaryFiredRef.current) {
+          scheduleNextWord(nextIdx + 1);
+        }
+      }, duration);
+    },
+    [clearTicker, wordTokens]
+  );
+
+  const startFrom = useCallback(
+    (startWordIdx: number) => {
       if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
 
+      clearTicker();
       try {
         window.speechSynthesis.cancel();
       } catch {}
 
-      const cleanText = text?.trim();
-      if (!cleanText || offset >= cleanText.length) {
+      if (!wordTokens || wordTokens.length === 0 || startWordIdx >= wordTokens.length) {
         setIsPlaying(false);
         setIsPaused(false);
-        setActiveCharIndex(null);
-        pausedCharIndexRef.current = 0;
+        setActiveWordIndex(null);
+        pausedWordIndexRef.current = 0;
         return;
       }
 
-      const textSlice = cleanText.slice(offset);
-      const utterance = new SpeechSynthesisUtterance(textSlice);
+      // Slice words to speak if resuming from mid-sentence
+      const wordsToSpeak = wordTokens.slice(startWordIdx).map((w) => w.word);
+      const textToSpeak = wordsToSpeak.join(" ");
+      if (!textToSpeak.trim()) return;
+
+      const utterance = new SpeechSynthesisUtterance(textToSpeak);
       utterance.lang = "en-US";
 
       const targetVoice = findCuteFemaleVoice();
       if (targetVoice) utterance.voice = targetVoice;
 
       let pitchMod = 0;
-      if (textSlice.includes("!") || textSlice.includes("?")) pitchMod = 0.04;
+      if (textToSpeak.includes("!") || textToSpeak.includes("?")) pitchMod = 0.04;
       utterance.pitch = 1.08 + pitchMod;
       utterance.rate = 0.95;
 
       utterance.onstart = () => {
         setIsPlaying(true);
         setIsPaused(false);
+        currentWordIndexRef.current = startWordIdx;
+        setActiveWordIndex(startWordIdx);
+        scheduleNextWord(startWordIdx);
       };
 
       utterance.onboundary = (e) => {
-        const globalIndex = offset + e.charIndex;
-        setActiveCharIndex(globalIndex);
-        lastCharIndexRef.current = globalIndex;
+        boundaryFiredRef.current = true;
+        // Onboundary charIndex is relative to textToSpeak
+        let charAcc = 0;
+        let relativeWordIdx = 0;
+        for (let i = 0; i < wordsToSpeak.length; i++) {
+          const wLen = wordsToSpeak[i].length;
+          if (e.charIndex >= charAcc && e.charIndex <= charAcc + wLen) {
+            relativeWordIdx = i;
+            break;
+          }
+          charAcc += wLen + 1; // plus space
+        }
+        const globalWordIdx = Math.min(wordTokens.length - 1, startWordIdx + relativeWordIdx);
+        currentWordIndexRef.current = globalWordIdx;
+        setActiveWordIndex(globalWordIdx);
       };
 
       utterance.onend = () => {
+        clearTicker();
         setIsPlaying(false);
         setIsPaused(false);
-        setActiveCharIndex(null);
-        pausedCharIndexRef.current = 0;
-        lastCharIndexRef.current = 0;
+        setActiveWordIndex(null);
+        pausedWordIndexRef.current = 0;
+        currentWordIndexRef.current = 0;
         activeUtteranceRef.current = null;
       };
 
       utterance.onerror = () => {
+        clearTicker();
         setIsPlaying(false);
+        setIsPaused(false);
+        setActiveWordIndex(null);
         activeUtteranceRef.current = null;
       };
 
@@ -154,7 +248,7 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
         setIsPlaying(false);
       }
     },
-    [text]
+    [clearTicker, scheduleNextWord, wordTokens]
   );
 
   const toggle = useCallback(() => {
@@ -163,41 +257,71 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
     if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
 
     if (isPlaying) {
-      // Pause action: stop audio, save position, clear highlight
+      // ─── USER TAPS PAUSE ──────────────────────────────────────────────────
+      clearTicker();
+
+      // Pause audio stream natively
       try {
-        window.speechSynthesis.cancel();
+        window.speechSynthesis.pause();
       } catch {}
 
-      const resumeIndex = findWordStart(text, lastCharIndexRef.current);
-      pausedCharIndexRef.current = resumeIndex;
+      const pauseWord = currentWordIndexRef.current;
+      pausedWordIndexRef.current = pauseWord;
+
       setIsPlaying(false);
       setIsPaused(true);
-      setActiveCharIndex(null); // highlight disappears when paused
+      setActiveWordIndex(null); // Highlight immediately disappears when paused!
       return;
     }
 
     if (isPaused) {
-      // Resume action: continue from pausedCharIndexRef.current
-      speakFrom(pausedCharIndexRef.current);
+      // ─── USER TAPS RESUME ─────────────────────────────────────────────────
+      const resumeIndex = pausedWordIndexRef.current;
+      setIsPlaying(true);
+      setIsPaused(false);
+      setActiveWordIndex(resumeIndex); // Highlight reappears immediately on resume!
+
+      // Try native resume first
+      let resumedNatively = false;
+      try {
+        if (window.speechSynthesis.paused) {
+          window.speechSynthesis.resume();
+          resumedNatively = true;
+        }
+      } catch {}
+
+      // If native resume didn't activate or engine canceled, speak remaining words from paused index
+      setTimeout(() => {
+        if (
+          typeof window !== "undefined" &&
+          "speechSynthesis" in window &&
+          (!window.speechSynthesis.speaking || !resumedNatively)
+        ) {
+          startFrom(resumeIndex);
+        } else {
+          scheduleNextWord(resumeIndex);
+        }
+      }, 100);
+
       return;
     }
 
-    // Start from beginning
-    pausedCharIndexRef.current = 0;
-    lastCharIndexRef.current = 0;
-    speakFrom(0);
-  }, [isPlaying, isPaused, text, speakFrom]);
+    // ─── USER TAPS START (From Beginning) ───────────────────────────────────
+    pausedWordIndexRef.current = 0;
+    currentWordIndexRef.current = 0;
+    startFrom(0);
+  }, [isPlaying, isPaused, clearTicker, scheduleNextWord, startFrom]);
 
   return {
     isPlaying,
     isPaused,
-    activeCharIndex,
+    activeWordIndex,
     toggle,
-    stop,
+    stop: stopAll,
   };
 }
 
-/* ─── Floating TTS Button (FAB) at Bottom-Right Corner ─────────────────────── */
+/* ─── Small Circular Floating TTS Button in Glassmorphism Style ────────────── */
 export function FloatingTTSButton({
   tts,
   className,
@@ -232,84 +356,68 @@ export function FloatingTTSButton({
             : "Listen to text"
         }
         className={cn(
-          "group relative flex items-center gap-2 px-3.5 py-2.5 sm:px-4 sm:py-2.5 rounded-full border shadow-xl transition-all duration-200 cursor-pointer select-none active:scale-95 touch-manipulation backdrop-blur-md",
+          "w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all duration-200 cursor-pointer select-none active:scale-90 touch-manipulation backdrop-blur-xl border shadow-lg",
           isPlaying
-            ? "bg-amber-600/95 hover:bg-amber-600 text-white border-amber-300/40 shadow-[0_0_24px_rgba(245,158,11,0.6)]"
+            ? "bg-white/25 dark:bg-white/20 border-white/50 dark:border-white/40 text-fg dark:text-white shadow-[0_0_20px_rgba(255,255,255,0.25)]"
             : isPaused
-            ? "bg-emerald-600/95 hover:bg-emerald-600 text-white border-emerald-300/40 shadow-[0_8px_24px_-4px_rgba(16,185,129,0.5)]"
-            : "bg-gradient-to-r from-orange-500/90 to-amber-500/90 hover:from-orange-500 hover:to-amber-500 text-white border-white/25 shadow-[0_8px_24px_-4px_rgba(249,115,22,0.6)] hover:brightness-105"
+            ? "bg-white/20 dark:bg-white/15 border-white/35 dark:border-white/25 text-emerald-400 dark:text-emerald-300 shadow-md"
+            : "bg-white/[0.12] dark:bg-black/35 hover:bg-white/20 dark:hover:bg-black/50 border-white/25 dark:border-white/15 text-fg/80 hover:text-fg shadow-md"
         )}
       >
         {isPlaying ? (
-          <>
-            <Pause className="w-4 h-4 text-amber-200 fill-current animate-pulse shrink-0" />
-            <span className="text-xs font-bold tracking-wide">Pause</span>
-            <span className="flex h-2 w-2 relative ml-0.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-            </span>
-          </>
+          <Pause className="w-4 h-4 fill-current animate-pulse shrink-0" />
         ) : isPaused ? (
-          <>
-            <Play className="w-4 h-4 text-emerald-200 fill-current shrink-0" />
-            <span className="text-xs font-bold tracking-wide">Resume</span>
-          </>
+          <Play className="w-4 h-4 fill-current ml-0.5 shrink-0" />
         ) : (
-          <>
-            <Volume2 className="w-4 h-4 text-white shrink-0 group-hover:scale-110 transition-transform" />
-            <span className="text-xs font-bold tracking-wide">Listen</span>
-          </>
+          <Volume2 className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 transition-transform group-hover:scale-110" />
         )}
       </button>
     </div>
   );
 }
 
-/* ─── TTS Word-by-Word Highlighted Text Component ──────────────────────────── */
+/* ─── Word-by-Word Glassmorphic Highlighted Text Component ─────────────────── */
 export function TTSHighlightedText({
   text,
-  activeCharIndex,
-  offset = 0,
+  activeWordIndex,
+  wordOffset = 0,
   isSpeaking,
   className,
 }: {
   text: string;
-  activeCharIndex: number | null;
-  offset?: number;
+  activeWordIndex: number | null;
+  wordOffset?: number;
   isSpeaking: boolean;
   className?: string;
 }) {
-  if (
-    !isSpeaking ||
-    activeCharIndex === null ||
-    activeCharIndex < offset ||
-    activeCharIndex >= offset + text.length
-  ) {
+  if (!text) return null;
+
+  // If paused or not speaking, render clean unhighlighted text immediately
+  if (!isSpeaking || activeWordIndex === null) {
     return <span className={className}>{text}</span>;
   }
 
-  const localIndex = activeCharIndex - offset;
   const parts = text.split(/(\s+)/g);
-  let charCounter = 0;
+  let wordCounter = 0;
 
   return (
     <span className={className}>
       {parts.map((part, i) => {
-        const start = charCounter;
-        const end = start + part.length;
-        charCounter = end;
-
         if (/\s+/.test(part)) {
           return <span key={i}>{part}</span>;
         }
 
-        const isWordActive = localIndex >= start && localIndex < end;
+        const currentWordIdx = wordCounter;
+        wordCounter++;
 
-        if (isWordActive) {
+        const isCurrentActive =
+          activeWordIndex === wordOffset + currentWordIdx;
+
+        if (isCurrentActive) {
           return (
             <span
               key={i}
-              className="inline-block px-1.5 -mx-0.5 py-0.5 rounded-lg bg-white/30 dark:bg-white/25 backdrop-blur-md border border-white/50 text-white shadow-[0_4px_16px_rgba(255,255,255,0.3)] ring-1 ring-white/40 font-semibold transition-all duration-150"
+              className="inline-block px-1.5 -mx-0.5 py-0.5 rounded-lg bg-white/35 dark:bg-white/20 backdrop-blur-md border border-white/50 dark:border-white/30 text-fg dark:text-white shadow-[0_2px_12px_rgba(255,255,255,0.25)] ring-1 ring-white/40 dark:ring-white/20 font-semibold transition-all duration-150"
             >
               {part}
             </span>

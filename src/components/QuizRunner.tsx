@@ -142,12 +142,15 @@ export default function QuizRunner({ topic, config, mode }: { topic: TopicInfo; 
   const { quizSpeechText, optOffsets } = useMemo(() => {
     if (!q) return { quizSpeechText: "", optOffsets: [] as number[] };
     let full = q.question + ".";
+    const qWords = q.question.trim().split(/\s+/).filter(Boolean);
+    let currentWordIdx = qWords.length;
     const offsets: number[] = [];
     q.options.forEach((opt, idx) => {
-      const prefix = ` Option ${LETTERS[idx] || idx + 1}: `;
-      full += prefix;
-      offsets.push(full.length);
-      full += opt + ".";
+      currentWordIdx += 2;
+      offsets.push(currentWordIdx);
+      const optWords = opt.trim().split(/\s+/).filter(Boolean);
+      currentWordIdx += optWords.length;
+      full += ` Option ${LETTERS[idx] || idx + 1}: ${opt}.`;
     });
     return { quizSpeechText: full, optOffsets: offsets };
   }, [q]);
@@ -582,8 +585,8 @@ export default function QuizRunner({ topic, config, mode }: { topic: TopicInfo; 
           <h2 className="mt-2.5 text-xl font-bold leading-snug tracking-tight text-fg sm:mt-3 sm:text-[28px]">
             <TTSHighlightedText
               text={q.question}
-              activeCharIndex={tts.activeCharIndex}
-              offset={0}
+              activeWordIndex={tts.activeWordIndex}
+              wordOffset={0}
               isSpeaking={tts.isPlaying}
             />
           </h2>
@@ -649,8 +652,8 @@ export default function QuizRunner({ topic, config, mode }: { topic: TopicInfo; 
                   <span className="flex-1 leading-snug">
                     <TTSHighlightedText
                       text={opt}
-                      activeCharIndex={tts.activeCharIndex}
-                      offset={optOffsets[i] ?? 0}
+                      activeWordIndex={tts.activeWordIndex}
+                      wordOffset={optOffsets[i] ?? 0}
                       isSpeaking={tts.isPlaying}
                     />
                   </span>

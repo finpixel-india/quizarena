@@ -977,7 +977,7 @@ export default function NotesBrowser() {
   }, [selected]);
 
   const tts = useCuteTTS(chapterSpeechText, selected?.id);
-  const overviewOffset = selected ? selected.title.length + 2 : 0;
+  const titleWordsCount = selected?.title ? selected.title.trim().split(/\s+/).filter(Boolean).length : 0;
 
 
   return (
@@ -1005,9 +1005,9 @@ export default function NotesBrowser() {
             {isAbhyasChapter ? <Badge tone="neutral">{selected.subject === "hindi" ? "इंटरैक्टिव अभ्यास मोड" : "Interactive Practice Mode"}</Badge> : null}
             {diagram ? <Badge><ImageIcon className="h-3.5 w-3.5 text-brand-ink" /> Labelled diagram</Badge> : null}
           </div>
-          <h1 className="mt-6 text-4xl font-extrabold leading-[1] tracking-tight text-fg sm:text-5xl lg:text-6xl"><TTSHighlightedText text={selected.title} activeCharIndex={tts.activeCharIndex} offset={0} isSpeaking={tts.isPlaying} /></h1>
+          <h1 className="mt-6 text-4xl font-extrabold leading-[1] tracking-tight text-fg sm:text-5xl lg:text-6xl"><TTSHighlightedText text={selected.title} activeWordIndex={tts.activeWordIndex} wordOffset={0} isSpeaking={tts.isPlaying} /></h1>
           <p className="mt-4 font-mono text-xs sm:text-[11px] uppercase tracking-[0.16em] text-subtle">{selected.unit}</p>
-          <p className="mt-7 max-w-3xl text-lg leading-8 text-muted sm:text-xl"><TTSHighlightedText text={selected.overview} activeCharIndex={tts.activeCharIndex} offset={overviewOffset} isSpeaking={tts.isPlaying} /></p>
+          <p className="mt-7 max-w-3xl text-lg leading-8 text-muted sm:text-xl"><TTSHighlightedText text={selected.overview} activeWordIndex={tts.activeWordIndex} wordOffset={titleWordsCount} isSpeaking={tts.isPlaying} /></p>
           <dl className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-4">{meta.map((m) => <div key={m.k} className="bg-bg px-5 py-4"><dt className="font-mono text-xs sm:text-[10px] uppercase tracking-[0.16em] text-subtle">{m.k}</dt><dd className="mt-1 font-mono text-xl font-semibold text-fg tabular-nums">{m.v}</dd></div>)}</dl>
         </header>
 

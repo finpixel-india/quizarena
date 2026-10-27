@@ -179,7 +179,9 @@ function FullPageFactView({
   }, [fact.title, fact.body]);
 
   const tts = useCuteTTS(fullFactSpeechText, fact.id);
-  const bodyOffset = fact.title.length + 2;
+  const titleWordsCount = useMemo(() => {
+    return fact.title.trim().split(/\s+/).filter(Boolean).length;
+  }, [fact.title]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -290,8 +292,8 @@ function FullPageFactView({
           <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-fg leading-tight">
             <TTSHighlightedText
               text={fact.title}
-              activeCharIndex={tts.activeCharIndex}
-              offset={0}
+              activeWordIndex={tts.activeWordIndex}
+              wordOffset={0}
               isSpeaking={tts.isPlaying}
             />
           </h1>
@@ -315,8 +317,8 @@ function FullPageFactView({
           <p className="text-base sm:text-xl leading-relaxed text-fg/90 font-normal">
             <TTSHighlightedText
               text={fact.body}
-              activeCharIndex={tts.activeCharIndex}
-              offset={bodyOffset}
+              activeWordIndex={tts.activeWordIndex}
+              wordOffset={titleWordsCount}
               isSpeaking={tts.isPlaying}
             />
           </p>

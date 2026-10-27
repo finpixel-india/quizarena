@@ -2,15 +2,16 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { ArrowUpRight, BarChart3, Bell, BellRing, Check, CircleAlert, ExternalLink, History, Loader2, Monitor, Moon, Send, Sun, Trash2, Type } from "lucide-react";
+import { ArrowUpRight, BarChart3, Bell, BellRing, Check, CircleAlert, ExternalLink, History, Loader2, Mic, Monitor, Moon, Play, Send, Sparkles, Square, Sun, Trash2, Type, Volume2 } from "lucide-react";
 import { Card, CollapsibleSection, Label, Segmented, Switch, chip, inputCls } from "@/components/ui";
 import { useAppTypography, useFullscreen, useTheme } from "@/lib/client-hooks";
 import { cn } from "@/lib/format";
 import { haptic } from "@/lib/haptics";
-import { APP_FONTS, APP_FONT_SIZES, MAX_QUESTIONS, MAX_TIME, MAX_TOTAL_TIME, MIN_TIME, MIN_TOTAL_TIME, QUESTION_PRESETS, SOURCE_META, TIME_PRESETS, TOTAL_TIME_PRESETS } from "@/lib/settings";
+import { APP_FONTS, APP_FONT_SIZES, MAX_QUESTIONS, MAX_TIME, MAX_TOTAL_TIME, MIN_TIME, MIN_TOTAL_TIME, QUESTION_PRESETS, SOURCE_META, TIME_PRESETS, TOTAL_TIME_PRESETS, TTS_VOICE_PROFILES, type TTSVoiceProfile } from "@/lib/settings";
 import { clearAttempts, loadSettings, saveSettings } from "@/lib/storage";
 import { cancelReminders, requestNotificationPermission, scheduleDailyReminders, sendTestNotification } from "@/lib/notifications";
-import type { AppFontFamily, AppFontSize, Difficulty, SourceId, ThemePref, TimerMode, UserSettings } from "@/lib/types";
+import { findVoiceForProfile } from "@/components/FloatingTTS";
+import type { AppFontFamily, AppFontSize, Difficulty, SourceId, ThemePref, TimerMode, TTSVoiceId, UserSettings } from "@/lib/types";
 import { useAttempts } from "@/lib/use-local-data";
 
 const timeLabel = (t: number) => (t === 0 ? "No limit" : `${t}s`);
@@ -33,12 +34,65 @@ export default function SettingsForm() {
   const [openGameplay, setOpenGameplay] = useState(false);
   const [openAppearance, setOpenAppearance] = useState(false);
   const [openTypography, setOpenTypography] = useState(false);
+  const [openVoice, setOpenVoice] = useState(false);
   const [openNotifications, setOpenNotifications] = useState(false);
   const [openData, setOpenData] = useState(false);
+  const [playingSampleId, setPlayingSampleId] = useState<TTSVoiceId | null>(null);
   const [testSending, setTestSending] = useState(false);
   const [testSent, setTestSent] = useState(false);
   const timer = useRef<number | undefined>(undefined);
   const hydrated = useRef(false);
+
+  // Clean up speech synthesis preview on unmount
+  useEffect(() => {
+    return () => {
+      if (typeof window !== "undefined" && "speechSynthesis" in window) {
+        try {
+          window.speechSynthesis.cancel();
+        } catch {}
+      }
+    };
+  }, []);
+
+  function handleTogglePlaySample(e: React.MouseEvent, profile: TTSVoiceProfile) {
+    e.stopPropagation();
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) {
+      alert("Speech synthesis is not supported in this browser.");
+      return;
+    }
+
+    if (playingSampleId === profile.id) {
+      try {
+        window.speechSynthesis.cancel();
+      } catch {}
+      setPlayingSampleId(null);
+      return;
+    }
+
+    try {
+      window.speechSynthesis.cancel();
+    } catch {}
+
+    setPlayingSampleId(profile.id);
+    haptic("light");
+
+    const utterance = new SpeechSynthesisUtterance(profile.sample);
+    utterance.lang = "en-US";
+    const config = findVoiceForProfile(profile.id);
+    if (config.voice) utterance.voice = config.voice;
+    utterance.pitch = config.pitch;
+    utterance.rate = config.rate;
+
+    utterance.onend = () => {
+      setPlayingSampleId(null);
+    };
+
+    utterance.onerror = () => {
+      setPlayingSampleId(null);
+    };
+
+    window.speechSynthesis.speak(utterance);
+  }
 
   useEffect(() => {
     const initial = loadSettings();
@@ -596,9 +650,145 @@ export default function SettingsForm() {
         </div>
       </CollapsibleSection>
 
-      {/* 06 Notifications & Daily Reminders (Collapsible) */}
+      {/* 06 Pronunciation & Speech Voice (Collapsible) */}
       <CollapsibleSection
         stepNumber="06"
+        title="Pronunciation & voice assistant"
+        isOpen={openVoice}
+        onToggle={() => setOpenVoice((prev) => !prev)}
+        preview={
+          <span className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-fg">
+            <span>{TTS_VOICE_PROFILES.find((v) => v.id === (s.ttsVoice || "cute"))?.avatar}</span>
+            <span>{TTS_VOICE_PROFILES.find((v) => v.id === (s.ttsVoice || "cute"))?.name}</span>
+            <span className="text-line-2">·</span>
+            <span className="text-brand-ink">{TTS_VOICE_PROFILES.find((v) => v.id === (s.ttsVoice || "cute"))?.genderBadge}</span>
+          </span>
+        }
+      >
+        <div className="space-y-6">
+          <div>
+            <div className="flex items-center justify-between mb-1.5">
+              <p className="text-sm font-semibold text-fg">AI Pronunciation Persona</p>
+              <span className="font-mono text-xs text-brand-ink font-semibold">
+                {TTS_VOICE_PROFILES.find((v) => v.id === (s.ttsVoice || "cute"))?.avatar}{" "}
+                {TTS_VOICE_PROFILES.find((v) => v.id === (s.ttsVoice || "cute"))?.name}
+              </span>
+            </div>
+            <p className="text-xs sm:text-sm text-muted mb-4 leading-relaxed">
+              Select your preferred voice for reading chapters, facts, notes, and quiz questions aloud. Tap any persona to activate it, or tap the preview button to listen to a live sample.
+            </p>
+
+            <div className="grid gap-3 sm:grid-cols-2">
+              {TTS_VOICE_PROFILES.map((vp) => {
+                const active = (s.ttsVoice || "cute") === vp.id;
+                const isPlayingThis = playingSampleId === vp.id;
+
+                return (
+                  <div
+                    key={vp.id}
+                    onClick={() => {
+                      haptic("light");
+                      update({ ttsVoice: vp.id });
+                    }}
+                    role="button"
+                    tabIndex={0}
+                    aria-pressed={active}
+                    className={cn(
+                      "group relative flex flex-col justify-between rounded-2xl border p-4 text-left transition-all duration-200 cursor-pointer active:scale-98 select-none",
+                      active
+                        ? "border-brand bg-brand/[0.08] text-fg shadow-[0_0_24px_-8px_rgba(249,115,22,0.5)]"
+                        : "border-line bg-card text-muted hover:border-line-2 hover:text-fg"
+                    )}
+                  >
+                    <div>
+                      {/* Top Row: Avatar, Name, Gender Badge, Tag */}
+                      <div className="flex items-center justify-between w-full">
+                        <div className="flex items-center gap-2.5">
+                          <span className="text-2xl">{vp.avatar}</span>
+                          <div>
+                            <div className="flex items-center gap-1.5">
+                              <span className="text-sm font-bold text-fg">{vp.name}</span>
+                              {active && (
+                                <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-brand text-white shadow-sm">
+                                  <Check className="h-2.5 w-2.5 stroke-[3]" />
+                                </span>
+                              )}
+                            </div>
+                            <span className="font-mono text-[11px] text-brand-ink font-medium">
+                              {vp.genderBadge}
+                            </span>
+                          </div>
+                        </div>
+
+                        <span
+                          className={cn(
+                            "rounded-full border px-2.5 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider",
+                            active
+                              ? "border-brand/50 bg-brand/20 text-brand-ink"
+                              : "border-line/60 bg-fg/[0.03] text-subtle"
+                          )}
+                        >
+                          {vp.tag}
+                        </span>
+                      </div>
+
+                      {/* Subtitle & Description */}
+                      <p className="mt-2 text-xs text-muted leading-relaxed">
+                        {vp.subtitle}
+                      </p>
+
+                      {/* Sample Quote Box */}
+                      <div className="mt-3 rounded-xl border border-line/60 bg-fg/[0.02] p-2.5 text-[11px] text-fg/80 italic leading-relaxed">
+                        &ldquo;{vp.sample}&rdquo;
+                      </div>
+                    </div>
+
+                    {/* Bottom Action Row: Play/Stop Sample Preview Button */}
+                    <div className="mt-4 flex items-center justify-between border-t border-line/50 pt-3">
+                      <span className="font-mono text-[10px] text-subtle">
+                        {active ? "Active Voice" : "Tap to activate"}
+                      </span>
+
+                      <button
+                        type="button"
+                        onClick={(e) => handleTogglePlaySample(e, vp)}
+                        className={cn(
+                          "inline-flex items-center gap-1.5 rounded-xl border px-3 py-1.5 text-xs font-semibold backdrop-blur-md transition active:scale-95",
+                          isPlayingThis
+                            ? "border-amber-400 bg-amber-500/20 text-amber-300 shadow-[0_0_12px_rgba(245,158,11,0.5)]"
+                            : "border-line bg-card/80 text-fg hover:border-brand/60 hover:text-brand-ink"
+                        )}
+                        title={isPlayingThis ? "Stop audio preview" : "Listen to voice sample"}
+                      >
+                        {isPlayingThis ? (
+                          <>
+                            <Square className="h-3 w-3 fill-amber-300" />
+                            <span>Stop sample</span>
+                            <span className="flex items-center gap-0.5 ml-1">
+                              <span className="h-2 w-0.5 bg-amber-400 animate-pulse" />
+                              <span className="h-3 w-0.5 bg-amber-400 animate-pulse delay-75" />
+                              <span className="h-2 w-0.5 bg-amber-400 animate-pulse delay-150" />
+                            </span>
+                          </>
+                        ) : (
+                          <>
+                            <Play className="h-3 w-3 fill-current" />
+                            <span>Preview</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </CollapsibleSection>
+
+      {/* 07 Notifications & Daily Reminders (Collapsible) */}
+      <CollapsibleSection
+        stepNumber="07"
         title="Notifications & reminders"
         isOpen={openNotifications}
         onToggle={() => setOpenNotifications((prev) => !prev)}
@@ -694,9 +884,9 @@ export default function SettingsForm() {
         </div>
       </CollapsibleSection>
 
-      {/* 07 Your data (Collapsible) */}
+      {/* 08 Your data (Collapsible) */}
       <CollapsibleSection
-        stepNumber="07"
+        stepNumber="08"
         title="Your data"
         isOpen={openData}
         onToggle={() => setOpenData((prev) => !prev)}

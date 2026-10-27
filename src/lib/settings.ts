@@ -1,4 +1,4 @@
-import type { AppFontFamily, AppFontSize, Difficulty, SourceId, TimerMode, UserSettings } from "./types";
+import type { AppFontFamily, AppFontSize, Difficulty, SourceId, TimerMode, TTSVoiceId, UserSettings } from "./types";
 
 export const DEFAULT_SETTINGS: UserSettings = {
   source: "bank",
@@ -14,6 +14,7 @@ export const DEFAULT_SETTINGS: UserSettings = {
   notificationMinute: 30,
   appFont: "geist",
   appFontSize: "default",
+  ttsVoice: "cute",
 };
 
 export const MIN_QUESTIONS = 1;
@@ -142,6 +143,114 @@ export function isAppFontSize(v: unknown): v is AppFontSize {
   return typeof v === "string" && ["small", "default", "large", "xlarge"].includes(v);
 }
 
+export const TTS_VOICE_IDS: TTSVoiceId[] = [
+  "cute",
+  "storyteller",
+  "professor",
+  "mentor",
+  "mystic",
+  "radio",
+];
+
+export interface TTSVoiceProfile {
+  id: TTSVoiceId;
+  name: string;
+  tag: string;
+  gender: "female" | "male" | "narrator";
+  genderBadge: string;
+  avatar: string;
+  subtitle: string;
+  description: string;
+  sample: string;
+  pitch: number;
+  rate: number;
+}
+
+export const TTS_VOICE_PROFILES: TTSVoiceProfile[] = [
+  {
+    id: "cute",
+    name: "Cute & Sweet",
+    tag: "Default",
+    gender: "female",
+    genderBadge: "♀ Female",
+    avatar: "🌸",
+    subtitle: "Youthful, clear and friendly tone for everyday revision",
+    description: "The classic voice of Quiz Arena. Natural, cheerful, and crisp.",
+    sample: "Welcome to Quiz Arena! Let's explore science, history, and the wonders of the universe together.",
+    pitch: 1.05,
+    rate: 1.0,
+  },
+  {
+    id: "storyteller",
+    name: "Epic Storyteller",
+    tag: "Storyteller",
+    gender: "narrator",
+    genderBadge: "🎙️ Storyteller",
+    avatar: "📜",
+    subtitle: "Deep, rich, cinematic cadence like an audiobook narrator",
+    description: "A captivating, dramatic narrator that brings historical chronicles and science discoveries to life.",
+    sample: "Deep beneath the crushed trenches of the ocean, strange bioluminescent leviathans drift through the perpetual dark.",
+    pitch: 0.88,
+    rate: 0.90,
+  },
+  {
+    id: "professor",
+    name: "Scholarly Professor",
+    tag: "Academic",
+    gender: "male",
+    genderBadge: "♂ Male",
+    avatar: "🎓",
+    subtitle: "Authoritative baritone with razor-sharp STEM clarity",
+    description: "Steady, confident academic cadence suited for formulas, physics principles, and complex questions.",
+    sample: "Notice that according to Faraday's law, a changing magnetic flux induces an electromotive force within the closed conductor.",
+    pitch: 0.96,
+    rate: 0.98,
+  },
+  {
+    id: "mentor",
+    name: "Warm Mentor",
+    tag: "Encouraging",
+    gender: "female",
+    genderBadge: "♀ Female",
+    avatar: "✨",
+    subtitle: "Calm, patient, reassuring guidance for deep focus",
+    description: "Gentle and supportive tone that keeps you relaxed, composed, and confident during difficult study sessions.",
+    sample: "Take a deep breath. Break the problem into smaller parts, and you will find the correct solution.",
+    pitch: 0.98,
+    rate: 0.95,
+  },
+  {
+    id: "mystic",
+    name: "Mystic Lore Master",
+    tag: "Enigmatic",
+    gender: "narrator",
+    genderBadge: "🔮 Storyteller",
+    avatar: "🌌",
+    subtitle: "Intriguing, mysterious wonder with atmospheric pauses",
+    description: "An enigmatic narrator that makes encyclopedic facts, cosmic anomalies, and unsolved mysteries sound thrilling.",
+    sample: "In the quiet desert of New Mexico, a phantom hum echoes from nowhere, defying all modern scientific instruments.",
+    pitch: 0.85,
+    rate: 0.88,
+  },
+  {
+    id: "radio",
+    name: "Energetic Quizmaster",
+    tag: "Lively",
+    gender: "male",
+    genderBadge: "⚡ Male",
+    avatar: "🎯",
+    subtitle: "Upbeat, punchy broadcast style with high energy",
+    description: "Dynamic game show host persona that boosts momentum and competitive adrenaline in timed quizzes.",
+    sample: "Ready for your next round? Think fast, trust your instincts, and climb to the top of the leaderboard!",
+    pitch: 1.04,
+    rate: 1.06,
+  },
+];
+
+export function isTTSVoice(v: unknown): v is TTSVoiceId {
+  return typeof v === "string" && (TTS_VOICE_IDS as string[]).includes(v);
+}
+
 export function normalizeSettings(input: unknown): UserSettings {
   const raw = (input && typeof input === "object" ? input : {}) as Record<string, unknown>;
   const total = clampInt(raw.defaultTotalTime, MIN_TOTAL_TIME, MAX_TOTAL_TIME, DEFAULT_SETTINGS.defaultTotalTime);
@@ -159,6 +268,7 @@ export function normalizeSettings(input: unknown): UserSettings {
     notificationMinute: clampInt(raw.notificationMinute, 0, 59, DEFAULT_SETTINGS.notificationMinute),
     appFont: isAppFont(raw.appFont) ? raw.appFont : DEFAULT_SETTINGS.appFont,
     appFontSize: isAppFontSize(raw.appFontSize) ? raw.appFontSize : DEFAULT_SETTINGS.appFontSize,
+    ttsVoice: isTTSVoice(raw.ttsVoice) ? raw.ttsVoice : DEFAULT_SETTINGS.ttsVoice,
   };
 }
 

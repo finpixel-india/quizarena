@@ -4,6 +4,7 @@ export type Difficulty = "any" | "easy" | "medium" | "hard";
 export type ThemePref = "system" | "light" | "dark";
 export type AppFontFamily = "geist" | "system" | "serif" | "mono" | "rounded";
 export type AppFontSize = "small" | "default" | "large" | "xlarge";
+export type TTSVoiceId = "cute" | "storyteller" | "professor" | "mentor" | "mystic" | "radio";
 export type AnswerStatus = "correct" | "wrong" | "skipped" | "timeout";
 export type QuizMode = "standard" | "mistakes";
 export type TimerMode = "per-question" | "total";
@@ -54,6 +55,7 @@ export interface UserSettings {
   notificationMinute: number;
   appFont?: AppFontFamily;
   appFontSize?: AppFontSize;
+  ttsVoice?: TTSVoiceId;
 }
 
 /** Client-safe description of a quiz topic. */

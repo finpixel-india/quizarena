@@ -4,30 +4,158 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { Pause, Play, Volume2 } from "lucide-react";
 import { cn } from "@/lib/format";
 import { haptic } from "@/lib/haptics";
+import { TTS_VOICE_PROFILES, type TTSVoiceProfile } from "@/lib/settings";
+import type { TTSVoiceId } from "@/lib/types";
+import { loadSettings, STORAGE_EVENT } from "@/lib/storage";
 
-/* ─── Cute Natural Female Voice Selection ──────────────────────────────────── */
-export function findCuteFemaleVoice(): SpeechSynthesisVoice | null {
-  if (typeof window === "undefined" || !("speechSynthesis" in window)) return null;
-  const voices = window.speechSynthesis.getVoices();
-  if (!voices || voices.length === 0) return null;
+export interface VoiceConfig {
+  voice: SpeechSynthesisVoice | null;
+  pitch: number;
+  rate: number;
+  profile: TTSVoiceProfile;
+}
 
-  const priorities = [
-    (v: SpeechSynthesisVoice) => v.name === "Google US English",
-    (v: SpeechSynthesisVoice) => v.name === "Microsoft Zira",
-    (v: SpeechSynthesisVoice) => v.name === "Samantha",
-    (v: SpeechSynthesisVoice) => v.name.includes("Google") && v.lang === "en-US",
-    (v: SpeechSynthesisVoice) => v.name.includes("Female") && v.lang === "en-US",
-    (v: SpeechSynthesisVoice) =>
-      /female|natural|jenny|aria|karen|susan|victoria/i.test(v.name) && v.lang.startsWith("en"),
-    (v: SpeechSynthesisVoice) => v.lang === "en-US",
-    (v: SpeechSynthesisVoice) => v.lang.startsWith("en"),
-  ];
-
-  for (const check of priorities) {
-    const found = voices.find(check);
-    if (found) return found;
+/* ─── Flexible Persona Voice Matching ──────────────────────────────────────── */
+export function findVoiceForProfile(profileId: TTSVoiceId = "cute"): VoiceConfig {
+  const profile = TTS_VOICE_PROFILES.find((p) => p.id === profileId) || TTS_VOICE_PROFILES[0];
+  if (typeof window === "undefined" || !("speechSynthesis" in window)) {
+    return { voice: null, pitch: profile.pitch, rate: profile.rate, profile };
   }
-  return voices[0];
+  const voices = window.speechSynthesis.getVoices();
+  if (!voices || voices.length === 0) {
+    return { voice: null, pitch: profile.pitch, rate: profile.rate, profile };
+  }
+
+  let matchedVoice: SpeechSynthesisVoice | null = null;
+
+  if (profileId === "cute") {
+    const checks = [
+      (v: SpeechSynthesisVoice) => v.name === "Google US English",
+      (v: SpeechSynthesisVoice) => v.name === "Microsoft Zira",
+      (v: SpeechSynthesisVoice) => v.name === "Samantha",
+      (v: SpeechSynthesisVoice) => v.name.includes("Google") && v.lang === "en-US",
+      (v: SpeechSynthesisVoice) => v.name.includes("Female") && v.lang === "en-US",
+      (v: SpeechSynthesisVoice) =>
+        /female|natural|jenny|aria|karen|susan|victoria/i.test(v.name) && v.lang.startsWith("en"),
+      (v: SpeechSynthesisVoice) => v.lang === "en-US",
+      (v: SpeechSynthesisVoice) => v.lang.startsWith("en"),
+    ];
+    for (const check of checks) {
+      const found = voices.find(check);
+      if (found) {
+        matchedVoice = found;
+        break;
+      }
+    }
+  } else if (profileId === "storyteller") {
+    // Rich, cinematic, dramatic British or expressive male voice
+    const checks = [
+      (v: SpeechSynthesisVoice) => v.name === "Google UK English Male",
+      (v: SpeechSynthesisVoice) => v.name === "Microsoft George",
+      (v: SpeechSynthesisVoice) => v.name === "Microsoft David",
+      (v: SpeechSynthesisVoice) => v.name === "Daniel",
+      (v: SpeechSynthesisVoice) => v.name === "Oliver",
+      (v: SpeechSynthesisVoice) =>
+        /george|david|daniel|oliver|richard|narrator|male/i.test(v.name) && v.lang.startsWith("en"),
+      (v: SpeechSynthesisVoice) => v.lang === "en-GB",
+      (v: SpeechSynthesisVoice) => v.lang.startsWith("en"),
+    ];
+    for (const check of checks) {
+      const found = voices.find(check);
+      if (found) {
+        matchedVoice = found;
+        break;
+      }
+    }
+  } else if (profileId === "professor") {
+    // Authoritative American / clear academic baritone
+    const checks = [
+      (v: SpeechSynthesisVoice) => v.name === "Google US English Male",
+      (v: SpeechSynthesisVoice) => v.name === "Microsoft Mark",
+      (v: SpeechSynthesisVoice) => v.name === "Microsoft David",
+      (v: SpeechSynthesisVoice) => v.name === "Alex",
+      (v: SpeechSynthesisVoice) => v.name === "Fred",
+      (v: SpeechSynthesisVoice) => /mark|david|alex|male/i.test(v.name) && v.lang === "en-US",
+      (v: SpeechSynthesisVoice) => v.lang === "en-US",
+      (v: SpeechSynthesisVoice) => v.lang.startsWith("en"),
+    ];
+    for (const check of checks) {
+      const found = voices.find(check);
+      if (found) {
+        matchedVoice = found;
+        break;
+      }
+    }
+  } else if (profileId === "mentor") {
+    // Warm, soothing British / American female
+    const checks = [
+      (v: SpeechSynthesisVoice) => v.name === "Google UK English Female",
+      (v: SpeechSynthesisVoice) => v.name === "Samantha",
+      (v: SpeechSynthesisVoice) => v.name === "Microsoft Zira",
+      (v: SpeechSynthesisVoice) => v.name === "Victoria",
+      (v: SpeechSynthesisVoice) => v.name === "Karen",
+      (v: SpeechSynthesisVoice) => v.name === "Moira",
+      (v: SpeechSynthesisVoice) =>
+        /samantha|victoria|karen|moira|female/i.test(v.name) && v.lang.startsWith("en"),
+      (v: SpeechSynthesisVoice) => v.lang === "en-GB",
+      (v: SpeechSynthesisVoice) => v.lang.startsWith("en"),
+    ];
+    for (const check of checks) {
+      const found = voices.find(check);
+      if (found) {
+        matchedVoice = found;
+        break;
+      }
+    }
+  } else if (profileId === "mystic") {
+    // Atmospheric, intriguing, British or international English
+    const checks = [
+      (v: SpeechSynthesisVoice) => v.name === "Google UK English Female",
+      (v: SpeechSynthesisVoice) => v.name === "Google UK English Male",
+      (v: SpeechSynthesisVoice) => v.name === "Kate",
+      (v: SpeechSynthesisVoice) => v.name === "Serena",
+      (v: SpeechSynthesisVoice) => v.name === "Oliver",
+      (v: SpeechSynthesisVoice) => v.lang === "en-GB",
+      (v: SpeechSynthesisVoice) => v.lang.startsWith("en"),
+    ];
+    for (const check of checks) {
+      const found = voices.find(check);
+      if (found) {
+        matchedVoice = found;
+        break;
+      }
+    }
+  } else if (profileId === "radio") {
+    // Punchy, upbeat male
+    const checks = [
+      (v: SpeechSynthesisVoice) => v.name === "Google US English Male",
+      (v: SpeechSynthesisVoice) => v.name === "Microsoft Mark",
+      (v: SpeechSynthesisVoice) => v.name === "Alex",
+      (v: SpeechSynthesisVoice) => v.name === "Daniel",
+      (v: SpeechSynthesisVoice) => /mark|alex|daniel|male/i.test(v.name) && v.lang.startsWith("en"),
+      (v: SpeechSynthesisVoice) => v.lang === "en-US",
+      (v: SpeechSynthesisVoice) => v.lang.startsWith("en"),
+    ];
+    for (const check of checks) {
+      const found = voices.find(check);
+      if (found) {
+        matchedVoice = found;
+        break;
+      }
+    }
+  }
+
+  return {
+    voice: matchedVoice || voices[0] || null,
+    pitch: profile.pitch,
+    rate: profile.rate,
+    profile,
+  };
+}
+
+/* ─── Backward compatibility wrapper ───────────────────────────────────────── */
+export function findCuteFemaleVoice(): SpeechSynthesisVoice | null {
+  return findVoiceForProfile("cute").voice;
 }
 
 /* ─── Clean text for natural speech (strips asterisks, bullets, markdown) ──── */
@@ -105,6 +233,7 @@ export interface CuteTTSState {
 
 export interface UseCuteTTSOptions {
   autoPlay?: boolean;
+  voiceId?: TTSVoiceId;
 }
 
 export function useCuteTTS(
@@ -115,6 +244,38 @@ export function useCuteTTS(
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [activeWordIndex, setActiveWordIndex] = useState<number | null>(null);
+
+  const [activeVoiceId, setActiveVoiceId] = useState<TTSVoiceId>(() => {
+    if (options?.voiceId) return options.voiceId;
+    if (typeof window !== "undefined") {
+      try {
+        const s = loadSettings();
+        if (s.ttsVoice) return s.ttsVoice;
+      } catch {}
+    }
+    return "cute";
+  });
+
+  // Keep active voice synchronized with global settings across the app
+  useEffect(() => {
+    if (options?.voiceId) {
+      setActiveVoiceId(options.voiceId);
+      return;
+    }
+    const updateVoice = () => {
+      try {
+        const s = loadSettings();
+        if (s.ttsVoice) setActiveVoiceId(s.ttsVoice);
+      } catch {}
+    };
+    updateVoice();
+    window.addEventListener(STORAGE_EVENT, updateVoice);
+    window.addEventListener("storage", updateVoice);
+    return () => {
+      window.removeEventListener(STORAGE_EVENT, updateVoice);
+      window.removeEventListener("storage", updateVoice);
+    };
+  }, [options?.voiceId]);
 
   const pausedWordIndexRef = useRef(0);
   const currentWordIndexRef = useRef(0);
@@ -129,10 +290,14 @@ export function useCuteTTS(
     autoPlayRef.current = autoPlay;
   }, [autoPlay]);
 
-  // Pre-tokenize words for boundary indexing and smooth duration calculation
+  const voiceConfig = useMemo(() => {
+    return findVoiceForProfile(activeVoiceId);
+  }, [activeVoiceId]);
+
+  // Pre-tokenize words for boundary indexing and smooth duration calculation matching speech rate
   const wordTokens = useMemo(() => {
-    return tokenizeWords(text || "", 1.0);
-  }, [text]);
+    return tokenizeWords(text || "", voiceConfig.rate);
+  }, [text, voiceConfig.rate]);
 
   // Keep ref flags synchronized with state
   useEffect(() => {
@@ -240,13 +405,13 @@ export function useCuteTTS(
       const utterance = new SpeechSynthesisUtterance(textToSpeak);
       utterance.lang = "en-US";
 
-      const targetVoice = findCuteFemaleVoice();
-      if (targetVoice) utterance.voice = targetVoice;
+      const currentConfig = findVoiceForProfile(activeVoiceId);
+      if (currentConfig.voice) utterance.voice = currentConfig.voice;
 
       let pitchMod = 0;
       if (textToSpeak.includes("!") || textToSpeak.includes("?")) pitchMod = 0.04;
-      utterance.pitch = 1.05 + pitchMod;
-      utterance.rate = 1.0;
+      utterance.pitch = Math.max(0.5, Math.min(2.0, currentConfig.pitch + pitchMod));
+      utterance.rate = currentConfig.rate;
 
       // Optimistically update playing state and first active word
       isPausedRef.current = false;

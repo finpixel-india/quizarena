@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import { ArrowUpRight, BarChart3, Bell, BellRing, Check, CircleAlert, ExternalLink, History, Loader2, Mic, Monitor, Moon, Play, Send, Sparkles, Square, Sun, Trash2, Type, Volume2 } from "lucide-react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import { ArrowUpRight, BarChart3, Bell, BellRing, Check, CircleAlert, ExternalLink, History, Loader2, Mic, Monitor, Moon, Pause, Play, Send, Sparkles, Square, Sun, Trash2, Type, Volume2 } from "lucide-react";
 import { Card, CollapsibleSection, Label, Segmented, Switch, chip, inputCls } from "@/components/ui";
 import { useAppTypography, useFullscreen, useTheme } from "@/lib/client-hooks";
 import { cn } from "@/lib/format";
@@ -37,13 +37,45 @@ export default function SettingsForm() {
   const [openVoice, setOpenVoice] = useState(false);
   const [openNotifications, setOpenNotifications] = useState(false);
   const [openData, setOpenData] = useState(false);
-  const [playingSampleId, setPlayingSampleId] = useState<TTSVoiceId | null>(null);
+  const [activePreviewId, setActivePreviewId] = useState<TTSVoiceId | null>(null);
+  const [isPreviewPaused, setIsPreviewPaused] = useState(false);
   const [testSending, setTestSending] = useState(false);
   const [testSent, setTestSent] = useState(false);
   const timer = useRef<number | undefined>(undefined);
   const hydrated = useRef(false);
   const previewUtteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
   const previewTimerRef = useRef<number | null>(null);
+  const previewSessionCounterRef = useRef<number>(0);
+  const previewWordIndexRef = useRef<number>(0);
+
+  // Helper to completely stop any audio preview and clear all timers
+  const stopAudioPreview = useCallback(() => {
+    previewSessionCounterRef.current += 1;
+
+    if (previewTimerRef.current) {
+      window.clearTimeout(previewTimerRef.current);
+      previewTimerRef.current = null;
+    }
+
+    if (previewUtteranceRef.current) {
+      previewUtteranceRef.current.onstart = null;
+      previewUtteranceRef.current.onboundary = null;
+      previewUtteranceRef.current.onend = null;
+      previewUtteranceRef.current.onerror = null;
+      previewUtteranceRef.current = null;
+    }
+
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      try {
+        window.speechSynthesis.cancel();
+      } catch {}
+    }
+
+    (window as unknown as { __activePreviewUtterance?: SpeechSynthesisUtterance }).__activePreviewUtterance = undefined;
+    setActivePreviewId(null);
+    setIsPreviewPaused(false);
+    previewWordIndexRef.current = 0;
+  }, []);
 
   // Pre-warm speech synthesis engine and listen for voiceschanged (Chromium loads voices asynchronously)
   useEffect(() => {
@@ -59,95 +91,167 @@ export default function SettingsForm() {
     window.speechSynthesis.addEventListener("voiceschanged", handleVoicesChanged);
     return () => {
       window.speechSynthesis.removeEventListener("voiceschanged", handleVoicesChanged);
+      stopAudioPreview();
+    };
+  }, [stopAudioPreview]);
+
+  // Core speech synthesis function for preview slices
+  const speakPreviewSlice = useCallback(
+    (profile: TTSVoiceProfile, startIndex: number) => {
+      if (typeof window === "undefined" || !("speechSynthesis" in window)) {
+        alert("Speech synthesis is not supported in this browser.");
+        return;
+      }
+
+      // Invalidate any previous utterance sessions
+      const sessionId = ++previewSessionCounterRef.current;
+
       if (previewTimerRef.current) {
         window.clearTimeout(previewTimerRef.current);
         previewTimerRef.current = null;
       }
+
+      // Detach listeners from old utterance before cancelling
+      if (previewUtteranceRef.current) {
+        previewUtteranceRef.current.onstart = null;
+        previewUtteranceRef.current.onboundary = null;
+        previewUtteranceRef.current.onend = null;
+        previewUtteranceRef.current.onerror = null;
+        previewUtteranceRef.current = null;
+      }
+
+      // Cancel any ongoing speech
       try {
         window.speechSynthesis.cancel();
+        window.speechSynthesis.resume();
       } catch {}
-      previewUtteranceRef.current = null;
-    };
-  }, []);
 
-  function handleTogglePlaySample(e: React.MouseEvent, profile: TTSVoiceProfile) {
+      const allWords = profile.sample.split(/\s+/).filter(Boolean);
+      const safeStart = Math.max(0, Math.min(startIndex, allWords.length - 1));
+      const sliceWords = allWords.slice(safeStart);
+      const textToSpeak = sliceWords.join(" ");
+
+      if (!textToSpeak.trim()) {
+        stopAudioPreview();
+        return;
+      }
+
+      // Match voice profile
+      const config = findVoiceForProfile(profile.id);
+      const utterance = new SpeechSynthesisUtterance(textToSpeak);
+      utterance.lang = "en-US";
+      if (config.voice) {
+        utterance.voice = config.voice;
+        if (config.voice.lang) utterance.lang = config.voice.lang;
+      }
+      utterance.pitch = config.pitch;
+      utterance.rate = config.rate;
+
+      // Update UI state immediately
+      setActivePreviewId(profile.id);
+      setIsPreviewPaused(false);
+      previewWordIndexRef.current = safeStart;
+
+      utterance.onstart = () => {
+        if (previewSessionCounterRef.current !== sessionId) return;
+        setActivePreviewId(profile.id);
+        setIsPreviewPaused(false);
+      };
+
+      utterance.onboundary = (e) => {
+        if (previewSessionCounterRef.current !== sessionId) return;
+        if (e.name && e.name !== "word") return;
+        const relChar = e.charIndex || 0;
+        let acc = 0;
+        let relIdx = 0;
+        for (let i = 0; i < sliceWords.length; i++) {
+          const wLen = sliceWords[i].length;
+          if (relChar >= acc && relChar <= acc + wLen) {
+            relIdx = i;
+            break;
+          }
+          acc += wLen + 1;
+        }
+        previewWordIndexRef.current = safeStart + relIdx;
+      };
+
+      utterance.onend = () => {
+        if (previewSessionCounterRef.current !== sessionId) return;
+        stopAudioPreview();
+      };
+
+      utterance.onerror = (e) => {
+        if (previewSessionCounterRef.current !== sessionId) return;
+        // Ignore expected cancellation or interruption
+        if (e && (e.error === "canceled" || e.error === "interrupted")) {
+          return;
+        }
+        stopAudioPreview();
+      };
+
+      // Keep utterance in ref and window to prevent Chromium GC premature collection
+      previewUtteranceRef.current = utterance;
+      (window as unknown as { __activePreviewUtterance?: SpeechSynthesisUtterance }).__activePreviewUtterance = utterance;
+
+      // Safety fallback timer (word count * 800ms + 3.5s buffer)
+      const estDurationMs = Math.round((sliceWords.length * 800) / Math.max(0.5, config.rate)) + 3500;
+      previewTimerRef.current = window.setTimeout(() => {
+        if (previewSessionCounterRef.current === sessionId) {
+          stopAudioPreview();
+        }
+      }, estDurationMs);
+
+      // 40ms dispatch tick ensures cancel() finishes cleanly in Chromium
+      window.setTimeout(() => {
+        if (previewSessionCounterRef.current !== sessionId) return;
+        try {
+          window.speechSynthesis.speak(utterance);
+        } catch {
+          stopAudioPreview();
+        }
+      }, 40);
+    },
+    [stopAudioPreview]
+  );
+
+  function handlePlaySample(e: React.MouseEvent, profile: TTSVoiceProfile) {
     e.stopPropagation();
-    if (typeof window === "undefined" || !("speechSynthesis" in window)) {
-      alert("Speech synthesis is not supported in this browser.");
-      return;
-    }
+    haptic("light");
+    speakPreviewSlice(profile, 0);
+  }
 
+  function handlePauseSample(e: React.MouseEvent) {
+    e.stopPropagation();
+    haptic("light");
     if (previewTimerRef.current) {
       window.clearTimeout(previewTimerRef.current);
       previewTimerRef.current = null;
     }
-
-    // If currently playing THIS sample, toggle it off
-    if (playingSampleId === profile.id) {
-      try {
-        window.speechSynthesis.cancel();
-      } catch {}
+    if (previewUtteranceRef.current) {
+      previewUtteranceRef.current.onstart = null;
+      previewUtteranceRef.current.onboundary = null;
+      previewUtteranceRef.current.onend = null;
+      previewUtteranceRef.current.onerror = null;
       previewUtteranceRef.current = null;
-      setPlayingSampleId(null);
-      return;
     }
-
-    // Cancel any previous utterance and wake up speech thread in Chromium
+    previewSessionCounterRef.current += 1;
     try {
       window.speechSynthesis.cancel();
-      window.speechSynthesis.resume();
     } catch {}
+    setIsPreviewPaused(true);
+  }
 
-    setPlayingSampleId(profile.id);
+  function handleResumeSample(e: React.MouseEvent, profile: TTSVoiceProfile) {
+    e.stopPropagation();
     haptic("light");
+    const resumeIndex = previewWordIndexRef.current || 0;
+    speakPreviewSlice(profile, resumeIndex);
+  }
 
-    // Fresh voice resolution guaranteed by strict gender & profile matching
-    const config = findVoiceForProfile(profile.id);
-    const utterance = new SpeechSynthesisUtterance(profile.sample);
-    utterance.lang = "en-US";
-    if (config.voice) {
-      utterance.voice = config.voice;
-      if (config.voice.lang) utterance.lang = config.voice.lang;
-    }
-    utterance.pitch = config.pitch;
-    utterance.rate = config.rate;
-
-    const cleanup = () => {
-      if (previewTimerRef.current) {
-        window.clearTimeout(previewTimerRef.current);
-        previewTimerRef.current = null;
-      }
-      previewUtteranceRef.current = null;
-      setPlayingSampleId(null);
-    };
-
-    utterance.onend = () => {
-      cleanup();
-    };
-
-    utterance.onerror = () => {
-      cleanup();
-    };
-
-    // Retain in React ref and on window to prevent Chromium GC from cutting off audio mid-playback
-    previewUtteranceRef.current = utterance;
-    (window as unknown as { __activePreviewUtterance?: SpeechSynthesisUtterance }).__activePreviewUtterance = utterance;
-
-    // Generous fallback safety timeout in case a browser fails to fire onend
-    const wordCount = profile.sample.split(/\s+/).length;
-    const estDurationMs = Math.round((wordCount * 650) / Math.max(0.5, config.rate)) + 2500;
-    previewTimerRef.current = window.setTimeout(() => {
-      cleanup();
-    }, estDurationMs);
-
-    // 60ms delay ensures Chromium finishes canceling previous utterance before speaking
-    window.setTimeout(() => {
-      try {
-        window.speechSynthesis.speak(utterance);
-      } catch {
-        cleanup();
-      }
-    }, 60);
+  function handleStopSample(e: React.MouseEvent) {
+    e.stopPropagation();
+    haptic("light");
+    stopAudioPreview();
   }
 
   useEffect(() => {
@@ -737,7 +841,9 @@ export default function SettingsForm() {
             <div className="grid gap-3 sm:grid-cols-2">
               {TTS_VOICE_PROFILES.map((vp) => {
                 const active = (s.ttsVoice || "cute") === vp.id;
-                const isPlayingThis = playingSampleId === vp.id;
+                const isThisActive = activePreviewId === vp.id;
+                const isThisPlaying = isThisActive && !isPreviewPaused;
+                const isThisPaused = isThisActive && isPreviewPaused;
 
                 return (
                   <div
@@ -799,40 +905,77 @@ export default function SettingsForm() {
                       </div>
                     </div>
 
-                    {/* Bottom Action Row: Play/Stop Sample Preview Button */}
+                    {/* Bottom Action Row: Play/Pause/Resume/Stop Sample Preview Controls */}
                     <div className="mt-4 flex items-center justify-between border-t border-line/50 pt-3">
                       <span className="font-mono text-[10px] text-subtle">
                         {active ? "Active Voice" : "Tap to activate"}
                       </span>
 
-                      <button
-                        type="button"
-                        onClick={(e) => handleTogglePlaySample(e, vp)}
-                        className={cn(
-                          "inline-flex items-center gap-1.5 rounded-xl border px-3 py-1.5 text-xs font-semibold backdrop-blur-md transition active:scale-95",
-                          isPlayingThis
-                            ? "border-amber-400 bg-amber-500/20 text-amber-300 shadow-[0_0_12px_rgba(245,158,11,0.5)]"
-                            : "border-line bg-card/80 text-fg hover:border-brand/60 hover:text-brand-ink"
-                        )}
-                        title={isPlayingThis ? "Stop audio preview" : "Listen to voice sample"}
-                      >
-                        {isPlayingThis ? (
-                          <>
-                            <Square className="h-3 w-3 fill-amber-300" />
-                            <span>Stop sample</span>
-                            <span className="flex items-center gap-0.5 ml-1">
-                              <span className="h-2 w-0.5 bg-amber-400 animate-pulse" />
-                              <span className="h-3 w-0.5 bg-amber-400 animate-pulse delay-75" />
-                              <span className="h-2 w-0.5 bg-amber-400 animate-pulse delay-150" />
-                            </span>
-                          </>
-                        ) : (
-                          <>
+                      {isThisPlaying ? (
+                        <div className="inline-flex items-center gap-1.5" onClick={(e) => e.stopPropagation()}>
+                          <span className="flex items-center gap-0.5 px-1 py-1 text-amber-400">
+                            <span className="h-2 w-0.5 bg-amber-400 animate-pulse" />
+                            <span className="h-3.5 w-0.5 bg-amber-400 animate-pulse delay-75" />
+                            <span className="h-2 w-0.5 bg-amber-400 animate-pulse delay-150" />
+                          </span>
+
+                          <button
+                            type="button"
+                            onClick={handlePauseSample}
+                            className="inline-flex items-center gap-1.5 rounded-xl border border-amber-400/80 bg-amber-500/20 px-2.5 py-1.5 text-xs font-semibold text-amber-300 shadow-[0_0_12px_rgba(245,158,11,0.3)] backdrop-blur-md transition hover:bg-amber-500/30 active:scale-95"
+                            title="Pause sample preview"
+                          >
+                            <Pause className="h-3 w-3 fill-current" />
+                            <span>Pause</span>
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={handleStopSample}
+                            className="inline-flex items-center gap-1 rounded-xl border border-line bg-card/80 px-2 py-1.5 text-xs font-medium text-muted hover:text-fg hover:border-line-2 transition active:scale-95"
+                            title="Stop sample"
+                          >
+                            <Square className="h-2.5 w-2.5 fill-current" />
+                            <span>Stop</span>
+                          </button>
+                        </div>
+                      ) : isThisPaused ? (
+                        <div className="inline-flex items-center gap-1.5" onClick={(e) => e.stopPropagation()}>
+                          <span className="rounded-md border border-amber-500/30 bg-amber-500/10 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-amber-400 uppercase tracking-wider">
+                            Paused
+                          </span>
+
+                          <button
+                            type="button"
+                            onClick={(e) => handleResumeSample(e, vp)}
+                            className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-500/80 bg-emerald-500/20 px-3 py-1.5 text-xs font-bold text-emerald-300 shadow-[0_0_12px_rgba(16,185,129,0.3)] backdrop-blur-md transition hover:bg-emerald-500/30 active:scale-95 animate-pulse"
+                            title="Resume sample preview"
+                          >
                             <Play className="h-3 w-3 fill-current" />
-                            <span>Preview</span>
-                          </>
-                        )}
-                      </button>
+                            <span>Resume</span>
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={handleStopSample}
+                            className="inline-flex items-center gap-1 rounded-xl border border-line bg-card/80 px-2 py-1.5 text-xs font-medium text-muted hover:text-fg hover:border-line-2 transition active:scale-95"
+                            title="Stop sample"
+                          >
+                            <Square className="h-2.5 w-2.5 fill-current" />
+                            <span>Stop</span>
+                          </button>
+                        </div>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={(e) => handlePlaySample(e, vp)}
+                          className="inline-flex items-center gap-1.5 rounded-xl border border-line bg-card/80 px-3 py-1.5 text-xs font-semibold backdrop-blur-md text-fg hover:border-brand/60 hover:text-brand-ink transition active:scale-95 shadow-sm"
+                          title="Listen to live voice sample"
+                        >
+                          <Play className="h-3 w-3 fill-current" />
+                          <span>Preview</span>
+                        </button>
+                      )}
                     </div>
                   </div>
                 );

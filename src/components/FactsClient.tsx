@@ -14,7 +14,10 @@ import {
   Filter,
   ListFilter,
   Loader2,
+  Maximize2,
+  Minimize2,
   Radio,
+  Scan,
   Share2,
   Shuffle,
   X,
@@ -24,7 +27,7 @@ import { FloatingTTSButton, TTSHighlightedText, useCuteTTS } from "@/components/
 import { cn } from "@/lib/format";
 import { haptic } from "@/lib/haptics";
 import { FACT_CATEGORIES, FACTS, type Fact } from "@/data/facts";
-import { fetchLiveBatch } from "@/data/facts/live";
+import { fetchLiveBatch, CATEGORY_FALLBACK_IMAGES } from "@/data/facts/live";
 
 /* ─── Local storage key ──────────────────────────────────────────────────── */
 const SAVED_KEY = "ql-saved-facts";
@@ -61,7 +64,12 @@ function FactCard({
   style?: React.CSSProperties;
 }) {
   const [imgLoaded, setImgLoaded] = useState(false);
+  const [imgSrc, setImgSrc] = useState(fact.image);
   const catObj = FACT_CATEGORIES.find((c) => c.id === fact.category) || FACT_CATEGORIES[0];
+
+  useEffect(() => {
+    setImgSrc(fact.image);
+  }, [fact.image]);
 
   return (
     <article
@@ -69,21 +77,27 @@ function FactCard({
       style={style}
       className="group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-line bg-card card-shadow transition-all duration-300 hover:-translate-y-1 hover:border-line-2 hover:shadow-[0_24px_48px_-16px_rgba(0,0,0,0.6)] cursor-pointer select-none"
     >
-      {/* ── Fixed aspect-ratio image container ── */}
+      {/* ── Fixed aspect-ratio image container with smart focal framing ── */}
       <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden bg-surface">
         {!imgLoaded && (
           <div className="absolute inset-0 animate-shimmer bg-gradient-to-r from-transparent via-fg/[0.06] to-transparent" />
         )}
+        {/* Ambient subtle glow */}
+        <div
+          className="absolute inset-0 bg-cover bg-center blur-md opacity-25 scale-110 pointer-events-none"
+          style={{ backgroundImage: `url(${imgSrc})` }}
+        />
         <Image
-          src={fact.image}
+          src={imgSrc}
           alt={fact.title}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className={cn(
-            "object-cover transition-transform duration-700 ease-out group-hover:scale-105",
+            "object-cover object-[center_20%] sm:object-[center_22%] transition-transform duration-700 ease-out group-hover:scale-105",
             imgLoaded ? "opacity-100" : "opacity-0",
           )}
           onLoad={() => setImgLoaded(true)}
+          onError={() => setImgSrc(CATEGORY_FALLBACK_IMAGES[fact.category] || CATEGORY_FALLBACK_IMAGES.all)}
           unoptimized
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -172,6 +186,9 @@ function FullPageFactView({
   const catObj = FACT_CATEGORIES.find((c) => c.id === fact.category) || FACT_CATEGORIES[0];
   const [copied, setCopied] = useState(false);
   const [heroLoaded, setHeroLoaded] = useState(false);
+  const [imgSrc, setImgSrc] = useState(fact.image);
+  const [imageFit, setImageFit] = useState<"smart" | "contain">("smart");
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   /* ─── Cute TTS Speech Narration inside Fact ─── */
   const fullFactSpeechText = useMemo(() => {
@@ -188,18 +205,22 @@ function FullPageFactView({
     function handleKeyDown(e: KeyboardEvent) {
       if (e.key === "ArrowLeft" && prevFact) onSelectFact(prevFact);
       if (e.key === "ArrowRight" && nextFact) onSelectFact(nextFact);
-      if (e.key === "Escape") onBack();
+      if (e.key === "Escape") {
+        if (isLightboxOpen) setIsLightboxOpen(false);
+        else onBack();
+      }
       if (e.key === "b" || e.key === "B") onToggleSave(fact.id);
     }
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [prevFact, nextFact, onSelectFact, onBack, onToggleSave, fact.id]);
+  }, [prevFact, nextFact, onSelectFact, onBack, onToggleSave, fact.id, isLightboxOpen]);
 
   // Scroll to top on fact change
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
     setHeroLoaded(false);
-  }, [fact.id]);
+    setImgSrc(fact.image);
+  }, [fact.id, fact.image]);
 
   const handleShare = () => {
     if (navigator.clipboard) {
@@ -260,30 +281,67 @@ function FullPageFactView({
 
       {/* ── Main Article Layout ── */}
       <article className="space-y-6 sm:space-y-8">
-        {/* Well-proportioned Hero Banner */}
-        <div className="relative aspect-[16/9] sm:aspect-[21/9] max-h-[420px] w-full overflow-hidden rounded-3xl border border-line bg-surface shadow-2xl">
+        {/* Well-proportioned Hero Banner with Smart Framing & Fit/Fill Controls */}
+        <div className="relative aspect-[16/10] sm:aspect-[16/9] min-h-[260px] sm:min-h-[380px] max-h-[480px] w-full overflow-hidden rounded-3xl border border-line bg-surface/90 shadow-2xl">
           {!heroLoaded && (
             <div className="absolute inset-0 animate-shimmer bg-gradient-to-r from-transparent via-fg/[0.06] to-transparent" />
           )}
+
+          {/* Ambient blurred glow backdrop matching photo colors */}
+          <div
+            className="absolute inset-0 bg-cover bg-center blur-2xl opacity-40 scale-105 pointer-events-none"
+            style={{ backgroundImage: `url(${imgSrc})` }}
+          />
+
           <Image
-            src={fact.image}
+            src={imgSrc}
             alt={fact.title}
             fill
             sizes="(max-width: 1024px) 100vw, 896px"
             className={cn(
-              "object-cover transition-opacity duration-700",
+              "transition-all duration-500",
+              imageFit === "contain"
+                ? "object-contain p-2 sm:p-4 drop-shadow-2xl"
+                : "object-cover object-[center_20%] sm:object-[center_22%]",
               heroLoaded ? "opacity-100" : "opacity-0",
             )}
             onLoad={() => setHeroLoaded(true)}
+            onError={() => setImgSrc(CATEGORY_FALLBACK_IMAGES[fact.category] || CATEGORY_FALLBACK_IMAGES.all)}
             priority
             unoptimized
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent pointer-events-none" />
 
-          <div className="absolute left-4 sm:left-6 bottom-4 sm:bottom-6 right-4 sm:right-6">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-black/60 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md">
+          {/* Category Tag on bottom left */}
+          <div className="absolute left-4 sm:left-6 bottom-4 sm:bottom-6 z-10">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-black/60 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md shadow-sm">
               {catObj.emoji} {catObj.label}
             </span>
+          </div>
+
+          {/* Smart Image Control Pills on top right */}
+          <div className="absolute right-3 sm:right-5 top-3 sm:top-5 z-10 flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setImageFit((prev) => (prev === "smart" ? "contain" : "smart"))}
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-black/60 px-3 py-1.5 text-xs font-medium text-white shadow-sm backdrop-blur-md hover:bg-black/80 transition active:scale-95"
+              title={imageFit === "contain" ? "Fill banner" : "Fit entire photo (uncut)"}
+            >
+              {imageFit === "contain" ? <Maximize2 className="h-3.5 w-3.5" /> : <Scan className="h-3.5 w-3.5" />}
+              <span className="hidden sm:inline font-mono text-[11px]">
+                {imageFit === "contain" ? "Fill Banner" : "Fit Full Photo"}
+              </span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setIsLightboxOpen(true)}
+              className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-black/60 text-white shadow-sm backdrop-blur-md hover:bg-black/80 transition active:scale-95"
+              title="View full resolution"
+              aria-label="View full resolution"
+            >
+              <Maximize2 className="h-3.5 w-3.5" />
+            </button>
           </div>
         </div>
 
@@ -384,7 +442,7 @@ function FullPageFactView({
                       src={rf.image}
                       alt={rf.title}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="object-cover object-[center_20%] group-hover:scale-105 transition-transform duration-500"
                       unoptimized
                     />
                   </div>
@@ -399,6 +457,41 @@ function FullPageFactView({
           </div>
         )}
       </article>
+
+      {/* Fullscreen High-Resolution Lightbox Modal */}
+      {isLightboxOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setIsLightboxOpen(false)}
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/95 p-4 sm:p-8 backdrop-blur-2xl animate-fade-in"
+        >
+          <button
+            type="button"
+            onClick={() => setIsLightboxOpen(false)}
+            className="fixed top-5 right-5 z-50 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-md hover:bg-white/20 transition active:scale-90"
+            aria-label="Close fullscreen view"
+          >
+            <X className="h-5 w-5" />
+          </button>
+
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative flex max-h-[85vh] max-w-[95vw] flex-col items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-black/60 shadow-2xl"
+          >
+            <img
+              src={imgSrc}
+              alt={fact.title}
+              className="max-h-[75vh] max-w-full object-contain rounded-2xl"
+            />
+            <div className="w-full bg-black/80 px-4 py-3 text-center border-t border-white/10">
+              <p className="line-clamp-2 text-xs sm:text-sm font-semibold text-white/90">
+                {fact.title}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Floating TTS Action Button */}
       <FloatingTTSButton tts={tts} />
@@ -453,15 +546,22 @@ export default function FactsClient() {
   }, [allCombinedFacts, activeCategory, saved]);
 
 
-  // Load more facts from live public sources
+  const [streamFeedback, setStreamFeedback] = useState<string | null>(null);
+
+  // Load more facts from live public sources targeting active category
   const loadMoreLiveFacts = async () => {
     setIsStreaming(true);
+    haptic("light");
     try {
-      const batch = await fetchLiveBatch(6);
+      const batch = await fetchLiveBatch(activeCategory, 6);
       if (batch.length > 0) {
         startTransition(() => {
           setLiveFacts((prev) => [...prev, ...batch]);
         });
+        haptic("medium");
+        const catLabel = activeCategory === "all" ? "Live" : activeCategoryObj.label;
+        setStreamFeedback(`+${batch.length} new ${catLabel} discoveries loaded!`);
+        setTimeout(() => setStreamFeedback(null), 3500);
       }
     } finally {
       setIsStreaming(false);
@@ -652,6 +752,12 @@ export default function FactsClient() {
 
       {/* ── Infinite Live Discovery Footer ── */}
       <section className="mt-14 flex flex-col items-center justify-center gap-4 border-t border-line/60 pt-10 text-center">
+        {streamFeedback && (
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-500/10 px-4 py-1.5 text-xs font-semibold text-emerald-300 backdrop-blur-md animate-fade-in shadow-[0_0_16px_rgba(52,211,153,0.2)]">
+            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>{streamFeedback}</span>
+          </div>
+        )}
         <p className="text-sm text-muted">
           Never hit the limits with our infinite live global feed.
         </p>

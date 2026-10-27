@@ -537,7 +537,7 @@ export const FACTS: Fact[] = [
     "category": "creatures",
     "title": "Pistol Shrimp claw snap creates heat matching the surface of the Sun",
     "body": "The pistol shrimp snaps its specialized claw at 100 km/h, generating a low-pressure cavitation bubble. When the bubble implodes, it creates temperatures exceeding 4,700°C (nearly the Sun's surface at 5,500°C), emitting a flash of light called sonoluminescence and a 218-decibel shockwave.",
-    "image": "https://images.unsplash.com/photo-1545671913-b89ac1b4ac10?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1546026423-cc4642628d2b?w=1000&q=85",
     "source": "Nature"
   },
   {
@@ -593,7 +593,7 @@ export const FACTS: Fact[] = [
     "category": "creatures",
     "title": "The Bombardier Beetle shoots boiling chemical toxic spray at 100°C",
     "body": "When threatened, the bombardier beetle combines hydroquinone and hydrogen peroxide with catalytic enzymes in an internal reaction chamber. The resulting chemical explosion reaches 100°C and is discharged through a rotating nozzle in pulsing rapid bursts.",
-    "image": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1534088568595-a066f410bcda?w=1000&q=85",
     "source": "Science"
   },
   {
@@ -609,7 +609,7 @@ export const FACTS: Fact[] = [
     "category": "creatures",
     "title": "Mantis shrimp possess 16 color cones and see circular polarized light",
     "body": "Humans navigate the visual world with 3 color-receptive cones (red, green, blue). The mantis shrimp possesses 16 photoreceptors, perceiving ultraviolet, infrared, and circular polarized light. Their club strikes accelerate at 10,000g — fast enough to smash aquarium glass.",
-    "image": "https://images.unsplash.com/photo-1545671913-b89ac1b4ac10?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1546026423-cc4642628d2b?w=1000&q=85",
     "source": "Journal of Experimental Biology"
   },
   {
@@ -625,7 +625,7 @@ export const FACTS: Fact[] = [
     "category": "creatures",
     "title": "Greenland sharks can live over 400 years and mature at age 150",
     "body": "Radiocarbon eye-lens dating revealed that the Greenland shark is the longest-living vertebrate on Earth, with lifespans exceeding 400 to 500 years. Surviving in freezing Arctic depths with an ultra-slow metabolism, females do not reach sexual maturity until age 150.",
-    "image": "https://images.unsplash.com/photo-1568430462989-44163eb1752f?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1560275619-4662e36fa65c?w=1000&q=85",
     "source": "Science Magazine"
   },
   {
@@ -633,7 +633,7 @@ export const FACTS: Fact[] = [
     "category": "creatures",
     "title": "Wood frogs freeze solid in winter with zero heartbeat, then thaw alive in spring",
     "body": "Alaskan wood frogs survive -18°C temperatures by allowing up to 70% of their body water to freeze solid into ice. Their livers produce astronomical quantities of glucose and urea acting as natural antifreeze inside cells, stopping their heart and breathing for 7 months.",
-    "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1579380656108-f98e4df8ea62?w=1000&q=85",
     "source": "Journal of Experimental Biology"
   },
   {
@@ -665,7 +665,7 @@ export const FACTS: Fact[] = [
     "category": "creatures",
     "title": "The Mimic Octopus can morph its body into 15 distinct deadly predators",
     "body": "Discovered in 1998 off Indonesia, the mimic octopus does not just change color; it physically alters its swimming posture and body shape to impersonate venomous lionfish, banded sea snakes, flatfish, jellyfish, and sea anemones depending on the specific predator pursuing it.",
-    "image": "https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1545671913-b89ac1b4ac10?w=1000&q=85",
     "source": "Proceedings of the Royal Society B"
   },
   {
@@ -681,7 +681,7 @@ export const FACTS: Fact[] = [
     "category": "creatures",
     "title": "Hairy frogs deliberately break their own toe bones to produce Wolverine-like claws",
     "body": "The horror frog (Trichobatrachus robustus) in Central Africa has sharp internal bony claws. When attacked, it flexes muscles that snap the bones in its toes, forcing the jagged sharp bone fragments directly through its skin pads to act as razor weapons.",
-    "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1502472584811-0a2f2feb8968?w=1000&q=85",
     "source": "Biology Letters"
   },
   {
@@ -689,7 +689,7 @@ export const FACTS: Fact[] = [
     "category": "creatures",
     "title": "Honey badgers can withstand lethal cobra bites and sleep off neurotoxic venom",
     "body": "The honey badger possesses specialized muscular nicotinic acetylcholine receptors that are immune to snake neurotoxins. When bitten by lethal puff adders or cobras, the badger collapses into a temporary coma for several hours, waking up completely unharmed to eat the snake.",
-    "image": "https://images.unsplash.com/photo-1545671913-b89ac1b4ac10?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?w=1000&q=85",
     "source": "Toxicon"
   },
   {
@@ -1737,7 +1737,7 @@ export const FACTS: Fact[] = [
     "category": "creatures",
     "title": "Colossal squids have swivel hooks on their tentacle suction cups",
     "body": "Unlike giant squids whose suckers have serrated teeth, colossal squids possess three-pronged razor claws on swiveling swivels that slice through whale blubber.",
-    "image": "https://images.unsplash.com/photo-1545671913-b89ac1b4ac10?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=1000&q=85",
     "source": "Verified Knowledge Bank"
   },
   {
@@ -1745,7 +1745,7 @@ export const FACTS: Fact[] = [
     "category": "creatures",
     "title": "Bar-headed geese fly over Mount Everest at 9,000 meters altitude",
     "body": "Migrating bar-headed geese cross the highest peaks of the Himalayas, flapping continuously through sub-zero air with barely a third of sea-level oxygen thanks to high-affinity hemoglobin.",
-    "image": "https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1539667468225-eebb663053e6?w=1000&q=85",
     "source": "Verified Knowledge Bank"
   },
   {
@@ -1761,7 +1761,7 @@ export const FACTS: Fact[] = [
     "category": "creatures",
     "title": "Puffins can hold up to 60 small fish in their serrated beaks at once",
     "body": "Puffins have backward-pointing spines on their palate and tongue that pin caught fish to the roof of their bill while continuing to hunt underwater for more.",
-    "image": "https://images.unsplash.com/photo-1545671913-b89ac1b4ac10?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1444464666168-49d633b86797?w=1000&q=85",
     "source": "Verified Knowledge Bank"
   },
   {
@@ -1769,7 +1769,7 @@ export const FACTS: Fact[] = [
     "category": "creatures",
     "title": "Vampire bats run on treadmills and gallop like four-legged horses",
     "body": "Unlike other bats that can only crawl awkwardly on the ground, common vampire bats have specialized pectoral muscles allowing them to sprint and hop across terrain at 2 meters per second.",
-    "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1508817628294-5a453fa0b8fb?w=1000&q=85",
     "source": "Verified Knowledge Bank"
   },
   {
@@ -1777,7 +1777,7 @@ export const FACTS: Fact[] = [
     "category": "creatures",
     "title": "Barn owls fly in absolute acoustic silence to hunt rodents beneath snow",
     "body": "Barn owl feathers have comb-like serrated leading edges and velvet down that break turbulence into micro-vortices, producing zero decibels of detectable flight noise.",
-    "image": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1543549790-8b5f4a028cfb?w=1000&q=85",
     "source": "Verified Knowledge Bank"
   },
   {
@@ -2001,7 +2001,7 @@ export const FACTS: Fact[] = [
     "category": "creatures",
     "title": "Owls have tubular eyes locked in place and must rotate their heads 270 degrees",
     "body": "Owls cannot move their eyeballs inside their sockets. To look around, their necks have 14 cervical vertebrae (double a human's) allowing them to swivel their heads 270 degrees without cutting off blood flow.",
-    "image": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1516233758813-a38d024919c5?w=1000&q=85",
     "source": "Encyclopedic Curiosities"
   },
   {
@@ -2217,7 +2217,7 @@ export const FACTS: Fact[] = [
     "category": "birds",
     "title": "The Secretarybird delivers a lethal 195-Newton head kick in 15 milliseconds",
     "body": "To hunt venomous puff adders and cobras without being bitten, the African secretarybird stomps on the reptile's skull with a bone-shattering force of 195 Newtons—roughly five times its own body weight. The lethal strike is executed in just 15 milliseconds, faster than a snake's striking reflex.",
-    "image": "https://images.unsplash.com/photo-1510853675132-58241c941e4f?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1555169062-013468b47731?w=1000&q=85",
     "source": "Current Biology"
   },
   {
@@ -2249,7 +2249,7 @@ export const FACTS: Fact[] = [
     "category": "celestials",
     "title": "Hypervelocity stars are catapulted through the Milky Way at 2,000 km per second",
     "body": "When a binary star system strays into the tidal gravitational grasp of Sagittarius A* (the supermassive black hole at the galactic center), one star is captured into an orbit while the other is slingshot outward at relativistic speeds up to 2,000 km/s—fast enough to permanently escape the Milky Way into intergalactic space.",
-    "image": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1000&q=85",
     "source": "European Southern Observatory"
   },
   {
@@ -2337,7 +2337,7 @@ export const FACTS: Fact[] = [
     "category": "ocean",
     "title": "Pistol shrimp generate 4,700°C cavitation bubbles hotter than the surface of the Sun",
     "body": "Snapping its claw shut at 100 km/h ejects a micro-jet of water that produces a low-pressure acoustic cavitation bubble. When the bubble collapses, it releases a 218 dB sonic shockwave and a flash of sonoluminescence reaching 4,700°C—hotter than the surface of red dwarf stars—stunning small fish instantly.",
-    "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1546026423-cc4642628d2b?w=1000&q=85",
     "source": "Science Magazine"
   },
   {
@@ -2369,7 +2369,7 @@ export const FACTS: Fact[] = [
     "category": "animals",
     "title": "Koalas have unique individual fingerprints virtually indistinguishable from human prints",
     "body": "Even under scanning electron microscopes, a koala's epidermal ridge whorls and loops closely mimic human friction ridges. This rare dermal adaptation evolved through convergent evolution to help them grasp smooth eucalyptus branches.",
-    "image": "https://images.unsplash.com/photo-1548247416-ec66f4900b2e?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1540573133985-87b6da6d54a9?w=1000&q=85",
     "source": "Academic Forensic Pathology / University of Adelaide"
   },
   {
@@ -2489,7 +2489,7 @@ export const FACTS: Fact[] = [
     "category": "birds",
     "title": "Woodpeckers absorb 1,400g deceleration impacts with zero brain concussions",
     "body": "Pecking wood at 20 strikes per second produces 1,400 times the force of gravity (a human suffers concussion at 80g). A spongy hyoid bone wraps completely around the woodpecker's skull like an elastic biological seatbelt, safely deflecting mechanical shockwaves away from brain tissue.",
-    "image": "https://images.unsplash.com/photo-1520808663317-647b476a81b9?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1628102491629-778571d893a3?w=1000&q=85",
     "source": "Nature / Bioinspiration & Biomimetics"
   },
   {
@@ -2497,7 +2497,7 @@ export const FACTS: Fact[] = [
     "category": "birds",
     "title": "Vultures possess car-battery-grade stomach acid that neutralizes anthrax and cholera",
     "body": "A vulture's gastric acidity approaches pH 1.0 (equivalent to pure sulfuric battery acid). This biological sterilizer dissolves bone shards and completely neutralizes botulinum toxin, anthrax, rabies, and cholera bacteria on rotten carcasses, halting devastating epidemics.",
-    "image": "https://images.unsplash.com/photo-1611689342806-0863700ce1e4?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1578326457399-3b34dbbf23b8?w=1000&q=85",
     "source": "National Geographic / University of Copenhagen"
   },
   {
@@ -2561,7 +2561,7 @@ export const FACTS: Fact[] = [
     "category": "ocean",
     "title": "Male anglerfish dissolve their own bodies into females as permanent parasitic organs",
     "body": "In the pitch-black abyss, a miniature male anglerfish bites onto a female and secretes enzymes that melt his mouth and blood vessels into hers. His digestive tract, eyes, and fins atrophy until he becomes a permanent parasitic sperm organ completely sustained by her blood.",
-    "image": "https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=1000&q=85",
     "source": "Current Biology"
   },
   {
@@ -2593,7 +2593,7 @@ export const FACTS: Fact[] = [
     "category": "ocean",
     "title": "Deep-sea glass sponges build silica fiber skeletons that outshine fiber-optic cables",
     "body": "Living up to 15,000 years in abyssal waters, Hexactinellid glass sponges weave intricate skeletal architectures from pure biosilica glass. Bell Labs researchers demonstrated their natural glass spicules conduct light with flexible fiber-optic efficiency superior to commercial telecom cables.",
-    "image": "https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?w=800&q=80",
+    "image": "https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?w=1000&q=85",
     "source": "Bell Labs / Nature Materials"
   }
 ];

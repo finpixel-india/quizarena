@@ -42,15 +42,31 @@ export default function SettingsForm() {
   const [testSent, setTestSent] = useState(false);
   const timer = useRef<number | undefined>(undefined);
   const hydrated = useRef(false);
+  const previewUtteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
+  const previewTimerRef = useRef<number | null>(null);
 
-  // Clean up speech synthesis preview on unmount
+  // Pre-warm speech synthesis engine and listen for voiceschanged (Chromium loads voices asynchronously)
   useEffect(() => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+    try {
+      window.speechSynthesis.getVoices();
+    } catch {}
+    const handleVoicesChanged = () => {
+      try {
+        window.speechSynthesis.getVoices();
+      } catch {}
+    };
+    window.speechSynthesis.addEventListener("voiceschanged", handleVoicesChanged);
     return () => {
-      if (typeof window !== "undefined" && "speechSynthesis" in window) {
-        try {
-          window.speechSynthesis.cancel();
-        } catch {}
+      window.speechSynthesis.removeEventListener("voiceschanged", handleVoicesChanged);
+      if (previewTimerRef.current) {
+        window.clearTimeout(previewTimerRef.current);
+        previewTimerRef.current = null;
       }
+      try {
+        window.speechSynthesis.cancel();
+      } catch {}
+      previewUtteranceRef.current = null;
     };
   }, []);
 
@@ -61,37 +77,77 @@ export default function SettingsForm() {
       return;
     }
 
+    if (previewTimerRef.current) {
+      window.clearTimeout(previewTimerRef.current);
+      previewTimerRef.current = null;
+    }
+
+    // If currently playing THIS sample, toggle it off
     if (playingSampleId === profile.id) {
       try {
         window.speechSynthesis.cancel();
       } catch {}
+      previewUtteranceRef.current = null;
       setPlayingSampleId(null);
       return;
     }
 
+    // Cancel any previous utterance and wake up speech thread in Chromium
     try {
       window.speechSynthesis.cancel();
+      window.speechSynthesis.resume();
     } catch {}
 
     setPlayingSampleId(profile.id);
     haptic("light");
 
+    // Fresh voice resolution guaranteed by strict gender & profile matching
+    const config = findVoiceForProfile(profile.id);
     const utterance = new SpeechSynthesisUtterance(profile.sample);
     utterance.lang = "en-US";
-    const config = findVoiceForProfile(profile.id);
-    if (config.voice) utterance.voice = config.voice;
+    if (config.voice) {
+      utterance.voice = config.voice;
+      if (config.voice.lang) utterance.lang = config.voice.lang;
+    }
     utterance.pitch = config.pitch;
     utterance.rate = config.rate;
 
-    utterance.onend = () => {
+    const cleanup = () => {
+      if (previewTimerRef.current) {
+        window.clearTimeout(previewTimerRef.current);
+        previewTimerRef.current = null;
+      }
+      previewUtteranceRef.current = null;
       setPlayingSampleId(null);
+    };
+
+    utterance.onend = () => {
+      cleanup();
     };
 
     utterance.onerror = () => {
-      setPlayingSampleId(null);
+      cleanup();
     };
 
-    window.speechSynthesis.speak(utterance);
+    // Retain in React ref and on window to prevent Chromium GC from cutting off audio mid-playback
+    previewUtteranceRef.current = utterance;
+    (window as unknown as { __activePreviewUtterance?: SpeechSynthesisUtterance }).__activePreviewUtterance = utterance;
+
+    // Generous fallback safety timeout in case a browser fails to fire onend
+    const wordCount = profile.sample.split(/\s+/).length;
+    const estDurationMs = Math.round((wordCount * 650) / Math.max(0.5, config.rate)) + 2500;
+    previewTimerRef.current = window.setTimeout(() => {
+      cleanup();
+    }, estDurationMs);
+
+    // 60ms delay ensures Chromium finishes canceling previous utterance before speaking
+    window.setTimeout(() => {
+      try {
+        window.speechSynthesis.speak(utterance);
+      } catch {
+        cleanup();
+      }
+    }, 60);
   }
 
   useEffect(() => {

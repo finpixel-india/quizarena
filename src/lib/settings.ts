@@ -169,15 +169,15 @@ export interface TTSVoiceProfile {
 export const TTS_VOICE_PROFILES: TTSVoiceProfile[] = [
   {
     id: "cute",
-    name: "Cute & Sweet",
+    name: "Sweet & Natural",
     tag: "Default",
     gender: "female",
     genderBadge: "♀ Female",
     avatar: "🌸",
-    subtitle: "Youthful, clear and friendly tone for everyday revision",
-    description: "The classic voice of Quiz Arena. Natural, cheerful, and crisp.",
+    subtitle: "Sweet, friendly, and natural companion tone without distortion",
+    description: "The classic voice of Quiz Arena. Natural, sweet, and soothing for comfortable study.",
     sample: "Welcome to Quiz Arena! Let's explore science, history, and the wonders of the universe together.",
-    pitch: 1.05,
+    pitch: 1.0,
     rate: 1.0,
   },
   {
@@ -190,7 +190,7 @@ export const TTS_VOICE_PROFILES: TTSVoiceProfile[] = [
     subtitle: "Deep, rich, cinematic cadence like an audiobook narrator",
     description: "A captivating, dramatic narrator that brings historical chronicles and science discoveries to life.",
     sample: "Deep beneath the crushed trenches of the ocean, strange bioluminescent leviathans drift through the perpetual dark.",
-    pitch: 0.88,
+    pitch: 0.90,
     rate: 0.90,
   },
   {
@@ -203,7 +203,7 @@ export const TTS_VOICE_PROFILES: TTSVoiceProfile[] = [
     subtitle: "Authoritative baritone with razor-sharp STEM clarity",
     description: "Steady, confident academic cadence suited for formulas, physics principles, and complex questions.",
     sample: "Notice that according to Faraday's law, a changing magnetic flux induces an electromotive force within the closed conductor.",
-    pitch: 0.96,
+    pitch: 0.98,
     rate: 0.98,
   },
   {
@@ -216,7 +216,7 @@ export const TTS_VOICE_PROFILES: TTSVoiceProfile[] = [
     subtitle: "Calm, patient, reassuring guidance for deep focus",
     description: "Gentle and supportive tone that keeps you relaxed, composed, and confident during difficult study sessions.",
     sample: "Take a deep breath. Break the problem into smaller parts, and you will find the correct solution.",
-    pitch: 0.98,
+    pitch: 1.0,
     rate: 0.95,
   },
   {
@@ -229,7 +229,7 @@ export const TTS_VOICE_PROFILES: TTSVoiceProfile[] = [
     subtitle: "Intriguing, mysterious wonder with atmospheric pauses",
     description: "An enigmatic narrator that makes encyclopedic facts, cosmic anomalies, and unsolved mysteries sound thrilling.",
     sample: "In the quiet desert of New Mexico, a phantom hum echoes from nowhere, defying all modern scientific instruments.",
-    pitch: 0.85,
+    pitch: 0.92,
     rate: 0.88,
   },
   {
@@ -242,8 +242,8 @@ export const TTS_VOICE_PROFILES: TTSVoiceProfile[] = [
     subtitle: "Upbeat, punchy broadcast style with high energy",
     description: "Dynamic game show host persona that boosts momentum and competitive adrenaline in timed quizzes.",
     sample: "Ready for your next round? Think fast, trust your instincts, and climb to the top of the leaderboard!",
-    pitch: 1.04,
-    rate: 1.06,
+    pitch: 1.0,
+    rate: 1.05,
   },
 ];
 

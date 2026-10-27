@@ -15,6 +15,58 @@ export interface VoiceConfig {
   profile: TTSVoiceProfile;
 }
 
+/* ─── Robust Gender & Voice Classification ──────────────────────────────────── */
+export function isFemaleVoice(v: SpeechSynthesisVoice): boolean {
+  const name = v.name.toLowerCase();
+  const uri = (v.voiceURI || "").toLowerCase();
+  const text = `${name} ${uri}`;
+
+  // Explicit female keywords
+  if (/\b(female|woman|girl)\b/.test(text)) return true;
+
+  // Known female voice names (Windows, macOS, iOS, Edge, Google)
+  if (
+    /zira|jenny|aria|samantha|karen|victoria|moira|fiona|tessa|ava|allison|susan|heera|catherine|neerja|sonia|michelle|clara|libby|mia|emma|serena|kate|veena|hazel|stephanie/i.test(
+      name
+    )
+  ) {
+    return true;
+  }
+
+  // If it's explicitly male, definitely NOT female
+  if (isMaleVoice(v)) return false;
+
+  // Google US English in Chromium is female by default
+  if (name.includes("google us english") && !name.includes("male")) {
+    return true;
+  }
+
+  return false;
+}
+
+export function isMaleVoice(v: SpeechSynthesisVoice): boolean {
+  const name = v.name.toLowerCase();
+  const uri = (v.voiceURI || "").toLowerCase();
+  const text = `${name} ${uri}`;
+
+  // If it explicitly says female, definitely NOT male
+  if (/\b(female|woman|girl)\b/.test(text)) return false;
+
+  // Explicit male keywords
+  if (/\b(male|man|boy)\b/.test(text)) return true;
+
+  // Known male voice names (Windows, macOS, iOS, Edge, Google)
+  if (
+    /david|mark|george|guy|christopher|daniel|oliver|alex|fred|tom|arthur|eric|steffan|brian|william|ryan|richard|ravi|sean|prabhat/i.test(
+      name
+    )
+  ) {
+    return true;
+  }
+
+  return false;
+}
+
 /* ─── Flexible Persona Voice Matching ──────────────────────────────────────── */
 export function findVoiceForProfile(profileId: TTSVoiceId = "cute"): VoiceConfig {
   const profile = TTS_VOICE_PROFILES.find((p) => p.id === profileId) || TTS_VOICE_PROFILES[0];
@@ -26,127 +78,141 @@ export function findVoiceForProfile(profileId: TTSVoiceId = "cute"): VoiceConfig
     return { voice: null, pitch: profile.pitch, rate: profile.rate, profile };
   }
 
+  const enVoices = voices.filter((v) => v.lang.startsWith("en"));
+  const pool = enVoices.length > 0 ? enVoices : voices;
+
   let matchedVoice: SpeechSynthesisVoice | null = null;
 
   if (profileId === "cute") {
+    // Sweet, natural female voice in English
+    const femalePool = pool.filter(isFemaleVoice);
     const checks = [
-      (v: SpeechSynthesisVoice) => v.name === "Google US English",
-      (v: SpeechSynthesisVoice) => v.name === "Microsoft Zira",
-      (v: SpeechSynthesisVoice) => v.name === "Samantha",
-      (v: SpeechSynthesisVoice) => v.name.includes("Google") && v.lang === "en-US",
-      (v: SpeechSynthesisVoice) => v.name.includes("Female") && v.lang === "en-US",
-      (v: SpeechSynthesisVoice) =>
-        /female|natural|jenny|aria|karen|susan|victoria/i.test(v.name) && v.lang.startsWith("en"),
+      (v: SpeechSynthesisVoice) => /jenny|aria/i.test(v.name),
+      (v: SpeechSynthesisVoice) => v.name.toLowerCase().includes("google us english"),
+      (v: SpeechSynthesisVoice) => /samantha|ava|victoria/i.test(v.name),
+      (v: SpeechSynthesisVoice) => v.name.toLowerCase().includes("zira"),
+      (v: SpeechSynthesisVoice) => /natural|female/i.test(v.name) && v.lang === "en-US",
       (v: SpeechSynthesisVoice) => v.lang === "en-US",
-      (v: SpeechSynthesisVoice) => v.lang.startsWith("en"),
+      (v: SpeechSynthesisVoice) => true,
     ];
     for (const check of checks) {
-      const found = voices.find(check);
+      const found = femalePool.find(check);
       if (found) {
         matchedVoice = found;
         break;
       }
+    }
+    // Only if system has zero female voices at all, fall back to safe english voice
+    if (!matchedVoice) {
+      matchedVoice = pool.find((v) => v.lang === "en-US") || pool[0];
     }
   } else if (profileId === "storyteller") {
-    // Rich, cinematic, dramatic British or expressive male voice
+    // Rich, dramatic male voice (favors British or deep narrative baritone)
+    const malePool = pool.filter(isMaleVoice);
     const checks = [
-      (v: SpeechSynthesisVoice) => v.name === "Google UK English Male",
-      (v: SpeechSynthesisVoice) => v.name === "Microsoft George",
-      (v: SpeechSynthesisVoice) => v.name === "Microsoft David",
-      (v: SpeechSynthesisVoice) => v.name === "Daniel",
-      (v: SpeechSynthesisVoice) => v.name === "Oliver",
-      (v: SpeechSynthesisVoice) =>
-        /george|david|daniel|oliver|richard|narrator|male/i.test(v.name) && v.lang.startsWith("en"),
+      (v: SpeechSynthesisVoice) => /george|daniel|oliver/i.test(v.name),
+      (v: SpeechSynthesisVoice) => v.name.toLowerCase().includes("google uk english male"),
+      (v: SpeechSynthesisVoice) => /guy|christopher|richard/i.test(v.name),
+      (v: SpeechSynthesisVoice) => v.name.toLowerCase().includes("david"),
       (v: SpeechSynthesisVoice) => v.lang === "en-GB",
-      (v: SpeechSynthesisVoice) => v.lang.startsWith("en"),
+      (v: SpeechSynthesisVoice) => true,
     ];
     for (const check of checks) {
-      const found = voices.find(check);
+      const found = malePool.find(check);
       if (found) {
         matchedVoice = found;
         break;
       }
+    }
+    if (!matchedVoice) {
+      matchedVoice = pool.find((v) => v.lang === "en-GB") || pool.find((v) => v.lang === "en-US") || pool[0];
     }
   } else if (profileId === "professor") {
-    // Authoritative American / clear academic baritone
+    // Clear, authoritative STEM male voice (favors American academic clarity)
+    const malePool = pool.filter(isMaleVoice);
     const checks = [
-      (v: SpeechSynthesisVoice) => v.name === "Google US English Male",
-      (v: SpeechSynthesisVoice) => v.name === "Microsoft Mark",
-      (v: SpeechSynthesisVoice) => v.name === "Microsoft David",
-      (v: SpeechSynthesisVoice) => v.name === "Alex",
-      (v: SpeechSynthesisVoice) => v.name === "Fred",
-      (v: SpeechSynthesisVoice) => /mark|david|alex|male/i.test(v.name) && v.lang === "en-US",
+      (v: SpeechSynthesisVoice) => /mark|guy|alex/i.test(v.name),
+      (v: SpeechSynthesisVoice) => v.name.toLowerCase().includes("google us english male"),
+      (v: SpeechSynthesisVoice) => v.name.toLowerCase().includes("david"),
+      (v: SpeechSynthesisVoice) => /christopher|daniel/i.test(v.name),
       (v: SpeechSynthesisVoice) => v.lang === "en-US",
-      (v: SpeechSynthesisVoice) => v.lang.startsWith("en"),
+      (v: SpeechSynthesisVoice) => true,
     ];
     for (const check of checks) {
-      const found = voices.find(check);
+      const found = malePool.find(check);
       if (found) {
         matchedVoice = found;
         break;
       }
     }
+    if (!matchedVoice) {
+      matchedVoice = pool.find((v) => v.lang === "en-US") || pool[0];
+    }
   } else if (profileId === "mentor") {
-    // Warm, soothing British / American female
+    // Soothing, calm, supportive tutor (female)
+    const femalePool = pool.filter(isFemaleVoice);
     const checks = [
-      (v: SpeechSynthesisVoice) => v.name === "Google UK English Female",
-      (v: SpeechSynthesisVoice) => v.name === "Samantha",
-      (v: SpeechSynthesisVoice) => v.name === "Microsoft Zira",
-      (v: SpeechSynthesisVoice) => v.name === "Victoria",
-      (v: SpeechSynthesisVoice) => v.name === "Karen",
-      (v: SpeechSynthesisVoice) => v.name === "Moira",
-      (v: SpeechSynthesisVoice) =>
-        /samantha|victoria|karen|moira|female/i.test(v.name) && v.lang.startsWith("en"),
+      (v: SpeechSynthesisVoice) => v.name.toLowerCase().includes("google uk english female"),
+      (v: SpeechSynthesisVoice) => /moira|victoria|karen|sonia/i.test(v.name),
+      (v: SpeechSynthesisVoice) => /samantha|aria|jenny/i.test(v.name),
+      (v: SpeechSynthesisVoice) => v.name.toLowerCase().includes("zira"),
       (v: SpeechSynthesisVoice) => v.lang === "en-GB",
-      (v: SpeechSynthesisVoice) => v.lang.startsWith("en"),
+      (v: SpeechSynthesisVoice) => v.lang === "en-US",
+      (v: SpeechSynthesisVoice) => true,
     ];
     for (const check of checks) {
-      const found = voices.find(check);
+      const found = femalePool.find(check);
       if (found) {
         matchedVoice = found;
         break;
       }
+    }
+    if (!matchedVoice) {
+      matchedVoice = pool.find((v) => v.lang === "en-GB") || pool.find((v) => v.lang === "en-US") || pool[0];
     }
   } else if (profileId === "mystic") {
     // Atmospheric, intriguing, British or international English
     const checks = [
-      (v: SpeechSynthesisVoice) => v.name === "Google UK English Female",
-      (v: SpeechSynthesisVoice) => v.name === "Google UK English Male",
-      (v: SpeechSynthesisVoice) => v.name === "Kate",
-      (v: SpeechSynthesisVoice) => v.name === "Serena",
-      (v: SpeechSynthesisVoice) => v.name === "Oliver",
-      (v: SpeechSynthesisVoice) => v.lang === "en-GB",
+      (v: SpeechSynthesisVoice) => /serena|kate|moira|oliver/i.test(v.name),
+      (v: SpeechSynthesisVoice) => v.name.toLowerCase().includes("google uk english"),
+      (v: SpeechSynthesisVoice) => v.lang === "en-GB" || v.lang === "en-IE",
+      (v: SpeechSynthesisVoice) => /daniel|george/i.test(v.name),
       (v: SpeechSynthesisVoice) => v.lang.startsWith("en"),
     ];
     for (const check of checks) {
-      const found = voices.find(check);
+      const found = pool.find(check);
       if (found) {
         matchedVoice = found;
         break;
       }
     }
+    if (!matchedVoice) {
+      matchedVoice = pool[0];
+    }
   } else if (profileId === "radio") {
-    // Punchy, upbeat male
+    // Punchy, upbeat, energetic broadcast host (male)
+    const malePool = pool.filter(isMaleVoice);
     const checks = [
-      (v: SpeechSynthesisVoice) => v.name === "Google US English Male",
-      (v: SpeechSynthesisVoice) => v.name === "Microsoft Mark",
-      (v: SpeechSynthesisVoice) => v.name === "Alex",
-      (v: SpeechSynthesisVoice) => v.name === "Daniel",
-      (v: SpeechSynthesisVoice) => /mark|alex|daniel|male/i.test(v.name) && v.lang.startsWith("en"),
+      (v: SpeechSynthesisVoice) => /david|mark|guy|alex/i.test(v.name),
+      (v: SpeechSynthesisVoice) => v.name.toLowerCase().includes("google us english male"),
+      (v: SpeechSynthesisVoice) => /daniel|ryan/i.test(v.name),
       (v: SpeechSynthesisVoice) => v.lang === "en-US",
-      (v: SpeechSynthesisVoice) => v.lang.startsWith("en"),
+      (v: SpeechSynthesisVoice) => true,
     ];
     for (const check of checks) {
-      const found = voices.find(check);
+      const found = malePool.find(check);
       if (found) {
         matchedVoice = found;
         break;
       }
+    }
+    if (!matchedVoice) {
+      matchedVoice = pool.find((v) => v.lang === "en-US") || pool[0];
     }
   }
 
   return {
-    voice: matchedVoice || voices[0] || null,
+    voice: matchedVoice || pool[0] || voices[0] || null,
     pitch: profile.pitch,
     rate: profile.rate,
     profile,
@@ -277,6 +343,22 @@ export function useCuteTTS(
     };
   }, [options?.voiceId]);
 
+  // Preload and observe browser voice availability (Chromium voices load asynchronously)
+  const [voicesLoaded, setVoicesLoaded] = useState(0);
+  useEffect(() => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+    try {
+      window.speechSynthesis.getVoices();
+    } catch {}
+    const onVoicesChanged = () => {
+      setVoicesLoaded((prev) => prev + 1);
+    };
+    window.speechSynthesis.addEventListener("voiceschanged", onVoicesChanged);
+    return () => {
+      window.speechSynthesis.removeEventListener("voiceschanged", onVoicesChanged);
+    };
+  }, []);
+
   const pausedWordIndexRef = useRef(0);
   const currentWordIndexRef = useRef(0);
   const activeUtteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
@@ -292,7 +374,7 @@ export function useCuteTTS(
 
   const voiceConfig = useMemo(() => {
     return findVoiceForProfile(activeVoiceId);
-  }, [activeVoiceId]);
+  }, [activeVoiceId, voicesLoaded]);
 
   // Pre-tokenize words for boundary indexing and smooth duration calculation matching speech rate
   const wordTokens = useMemo(() => {
@@ -406,11 +488,12 @@ export function useCuteTTS(
       utterance.lang = "en-US";
 
       const currentConfig = findVoiceForProfile(activeVoiceId);
-      if (currentConfig.voice) utterance.voice = currentConfig.voice;
+      if (currentConfig.voice) {
+        utterance.voice = currentConfig.voice;
+        if (currentConfig.voice.lang) utterance.lang = currentConfig.voice.lang;
+      }
 
-      let pitchMod = 0;
-      if (textToSpeak.includes("!") || textToSpeak.includes("?")) pitchMod = 0.04;
-      utterance.pitch = Math.max(0.5, Math.min(2.0, currentConfig.pitch + pitchMod));
+      utterance.pitch = currentConfig.pitch;
       utterance.rate = currentConfig.rate;
 
       // Optimistically update playing state and first active word

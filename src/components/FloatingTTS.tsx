@@ -30,6 +30,34 @@ export function findCuteFemaleVoice(): SpeechSynthesisVoice | null {
   return voices[0];
 }
 
+/* ─── Clean text for natural speech (strips asterisks, bullets, markdown) ──── */
+export function cleanForSpeech(raw: string): string {
+  if (!raw) return "";
+  return raw
+    // Strip markdown bold and italic formatting: **text** -> text, *text* -> text
+    .replace(/\*{1,3}([^*]+)\*{1,3}/g, "$1")
+    .replace(/_{1,3}([^_]+)_{1,3}/g, "$1")
+    .replace(/\*/g, "")
+    // Strip bullet points and bullet symbols
+    .replace(/[•·▪▫➢➔►▶]/g, "")
+    // Convert chemical / mathematical arrows into spoken words
+    .replace(/→/g, " yields ")
+    .replace(/↑/g, " gas ")
+    .replace(/↓/g, " precipitate ")
+    // Convert markdown links [text](url) -> text
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    // Convert bracketed labels [blue] -> (blue)
+    .replace(/\[([^\]]+)\]/g, " ($1) ")
+    // Clean up LaTeX formatting like xrightarrow{...}
+    .replace(/xrightarrow\{[^}]*\}/g, " yields ")
+    .replace(/\\[a-zA-Z]+/g, " ")
+    .replace(/[{}]/g, " ")
+    // Collapse whitespace and clean punctuation spacing
+    .replace(/\s+/g, " ")
+    .replace(/\s+([.,;:!?])/g, "$1")
+    .trim();
+}
+
 /* ─── Estimate Word Duration (Calibrated to natural ~150 WPM TTS speed) ────── */
 function estimateWordDuration(word: string, rate: number = 1.0): number {
   const clean = word.replace(/[^a-zA-Z0-9]/g, "");
@@ -72,9 +100,18 @@ export interface CuteTTSState {
   activeWordIndex: number | null;
   toggle: () => void;
   stop: () => void;
+  start: () => void;
 }
 
-export function useCuteTTS(text: string, id?: string): CuteTTSState {
+export interface UseCuteTTSOptions {
+  autoPlay?: boolean;
+}
+
+export function useCuteTTS(
+  text: string,
+  id?: string,
+  options?: UseCuteTTSOptions
+): CuteTTSState {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [activeWordIndex, setActiveWordIndex] = useState<number | null>(null);
@@ -85,6 +122,12 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
   const tickerTimeoutRef = useRef<number | null>(null);
   const isPlayingRef = useRef(false);
   const isPausedRef = useRef(false);
+  const autoPlay = options?.autoPlay ?? false;
+  const autoPlayRef = useRef(autoPlay);
+
+  useEffect(() => {
+    autoPlayRef.current = autoPlay;
+  }, [autoPlay]);
 
   // Pre-tokenize words for boundary indexing and smooth duration calculation
   const wordTokens = useMemo(() => {
@@ -138,14 +181,6 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
     pausedWordIndexRef.current = 0;
     currentWordIndexRef.current = 0;
   }, [clearTicker]);
-
-  // Reset when id or text changes (challenge, question, chapter, or fact change)
-  useEffect(() => {
-    stopAll();
-    return () => {
-      stopAll();
-    };
-  }, [id, text, stopAll]);
 
   // Step through words with calibrated speech pace (~150 WPM)
   const advanceTicker = useCallback(
@@ -294,6 +329,18 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
     [advanceTicker, clearTicker, stopAll, text, wordTokens]
   );
 
+  // Handle id/text change and auto-play across quiz questions
+  useEffect(() => {
+    if (autoPlayRef.current && text && text.trim().length > 0) {
+      startFrom(0);
+    } else {
+      stopAll();
+    }
+    return () => {
+      stopAll();
+    };
+  }, [id, text, autoPlay, startFrom, stopAll]);
+
   const toggle = useCallback(() => {
     haptic("light");
 
@@ -335,12 +382,20 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
     startFrom(0);
   }, [isPlaying, isPaused, clearTicker, startFrom]);
 
+  const start = useCallback(() => {
+    isPausedRef.current = false;
+    pausedWordIndexRef.current = 0;
+    currentWordIndexRef.current = 0;
+    startFrom(0);
+  }, [startFrom]);
+
   return {
     isPlaying,
     isPaused,
     activeWordIndex,
     toggle,
     stop: stopAll,
+    start,
   };
 }
 

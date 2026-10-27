@@ -7,7 +7,7 @@ import { DiagramFrame } from "@/components/notes/DiagramKit";
 import { getDiagram } from "@/components/notes";
 import { GeneralScienceViewer } from "@/components/notes/GeneralScienceViewer";
 import { Badge, Card, Container, Label, btn } from "@/components/ui";
-import { FloatingTTSButton, TTSHighlightedText, useCuteTTS } from "@/components/FloatingTTS";
+import { FloatingTTSButton, TTSHighlightedText, cleanForSpeech, useCuteTTS } from "@/components/FloatingTTS";
 import { haptic } from "@/lib/haptics";
 import { NOTES_COUNTS, NOTES_SUBJECTS, notesByClass, searchChapters, type ClassLevel, type NoteChapter, type NotesSubjectId } from "@/data/notes";
 import { HINDI_ANSWERS } from "@/data/notes/hindiAnswers";
@@ -41,7 +41,29 @@ function normalizeKey(k?: string): string {
 
 /* ------------------------------ text with **bold** ------------------------------ */
 
-function Rich({ text }: { text: string }) {
+function Rich({
+  text,
+  activeWordIndex = null,
+  wordOffset = 0,
+  isSpeaking = false,
+}: {
+  text: string;
+  activeWordIndex?: number | null;
+  wordOffset?: number;
+  isSpeaking?: boolean;
+}) {
+  if (!text) return null;
+  if (isSpeaking && activeWordIndex !== null) {
+    const clean = cleanForSpeech(text);
+    return (
+      <TTSHighlightedText
+        text={clean}
+        activeWordIndex={activeWordIndex}
+        wordOffset={wordOffset}
+        isSpeaking={isSpeaking}
+      />
+    );
+  }
   const parts = text.split(/\*\*(.+?)\*\*/g);
   return <>{parts.map((part, i) => (i % 2 === 1 ? <strong key={i} className="font-semibold text-fg">{part}</strong> : <span key={i}>{part}</span>))}</>;
 }
@@ -623,7 +645,19 @@ function SubjectGlyph({ id, active = false }: { id: NotesSubjectId; active?: boo
   );
 }
 
-function SectionBlock({ index, section, chapterId }: { index: number; section: NoteChapter["sections"][number]; chapterId: string }) {
+function SectionBlock({
+  index,
+  section,
+  chapterId,
+  tts,
+  segmentOffsets,
+}: {
+  index: number;
+  section: NoteChapter["sections"][number];
+  chapterId: string;
+  tts?: ReturnType<typeof useCuteTTS>;
+  segmentOffsets?: Map<string, number>;
+}) {
   const isSectionAbhyas =
     section.title.includes("अभ्यास") ||
     section.title.includes("स्व-जाँच") ||
@@ -645,7 +679,14 @@ function SectionBlock({ index, section, chapterId }: { index: number; section: N
     <section className="border-t border-line pt-8 first:border-t-0 first:pt-0 sm:pt-12">
       <div className="flex items-center gap-3 sm:gap-3.5">
         <span className="h-2 w-2 rounded-full bg-brand shrink-0" aria-hidden="true" />
-        <h3 className="text-lg font-bold tracking-tight text-fg sm:text-2xl">{section.title}</h3>
+        <h3 className="text-lg font-bold tracking-tight text-fg sm:text-2xl">
+          <TTSHighlightedText
+            text={section.title}
+            activeWordIndex={tts?.activeWordIndex ?? null}
+            wordOffset={segmentOffsets?.get(`sec-${index - 1}-title`) ?? 0}
+            isSpeaking={tts?.isPlaying ?? false}
+          />
+        </h3>
       </div>
 
       {isSectionAbhyas && parsed && hasMcqs ? (
@@ -689,7 +730,14 @@ function SectionBlock({ index, section, chapterId }: { index: number; section: N
               {section.points.map((p, i) => (
                 <li key={i} className="flex gap-2.5 sm:gap-3.5 text-[15px] leading-relaxed text-muted sm:text-[17px] sm:leading-8">
                   <span className="mt-2 sm:mt-3.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand/80" aria-hidden="true" />
-                  <span><Rich text={p} /></span>
+                  <span>
+                    <Rich
+                      text={p}
+                      activeWordIndex={tts?.activeWordIndex ?? null}
+                      wordOffset={segmentOffsets?.get(`sec-${index - 1}-p-${i}`) ?? 0}
+                      isSpeaking={tts?.isPlaying ?? false}
+                    />
+                  </span>
                 </li>
               ))}
             </ul>
@@ -718,7 +766,15 @@ function SectionBlock({ index, section, chapterId }: { index: number; section: N
           {section.tip ? (
             <div className="mt-5 flex gap-3 rounded-xl sm:rounded-2xl border border-brand/35 bg-brand/[0.07] p-4 sm:p-5">
               <Lightbulb className="mt-0.5 h-4 w-4 shrink-0 text-brand-ink" />
-              <p className="text-[15px] sm:text-[15px] leading-relaxed sm:leading-7 text-fg"><span className="font-mono text-xs sm:text-[10.5px] uppercase tracking-[0.16em] text-brand-ink">Remember · </span><Rich text={section.tip} /></p>
+              <p className="text-[15px] sm:text-[15px] leading-relaxed sm:leading-7 text-fg">
+                <span className="font-mono text-xs sm:text-[10.5px] uppercase tracking-[0.16em] text-brand-ink">Remember · </span>
+                <Rich
+                  text={section.tip}
+                  activeWordIndex={tts?.activeWordIndex ?? null}
+                  wordOffset={segmentOffsets?.get(`sec-${index - 1}-tip`) ?? 0}
+                  isSpeaking={tts?.isPlaying ?? false}
+                />
+              </p>
             </div>
           ) : null}
         </>
@@ -826,25 +882,64 @@ export default function NotesBrowser() {
     setJumpOpen(false);
   }, [subject, classLevel]);
 
-  /* ─── Chapter Narration TTS (Must be called unconditionally at top-level) ─── */
-  const chapterSpeechText = useMemo(() => {
-    if (!selected) return "";
-    const parts = [selected.title, selected.overview];
-    if (selected.sections && selected.sections.length > 0) {
-      for (const sec of selected.sections.slice(0, 5)) {
-        if (sec.title) parts.push(sec.title);
-        if (sec.points && sec.points.length > 0) {
-          parts.push(sec.points.slice(0, 2).join(". "));
-        }
-      }
+  /* ─── Chapter Narration TTS with clean speech text and offset mapping ─── */
+  const { chapterSpeechText, segmentOffsets } = useMemo(() => {
+    if (!selected) return { chapterSpeechText: "", segmentOffsets: new Map<string, number>() };
+    const offsets = new Map<string, number>();
+    const speechParts: string[] = [];
+    let currentOffset = 0;
+
+    function register(key: string, rawText: string) {
+      if (!rawText) return;
+      const cleaned = cleanForSpeech(rawText);
+      if (!cleaned) return;
+      const words = cleaned.trim().split(/\s+/).filter(Boolean);
+      offsets.set(key, currentOffset);
+      currentOffset += words.length;
+      speechParts.push(cleaned);
     }
-    return parts.filter(Boolean).join(". ");
+
+    if (selected.title) register("title", selected.title);
+    if (selected.overview) register("overview", selected.overview);
+
+    if (selected.sections && selected.sections.length > 0) {
+      selected.sections.forEach((sec, sIdx) => {
+        if (sec.title) register(`sec-${sIdx}-title`, sec.title);
+        if (sec.points && sec.points.length > 0) {
+          sec.points.forEach((p, pIdx) => {
+            register(`sec-${sIdx}-p-${pIdx}`, p);
+          });
+        }
+        if (sec.table?.rows?.length) {
+          sec.table.rows.forEach((row, ri) => {
+            row.forEach((cell, ci) => {
+              register(`sec-${sIdx}-tbl-${ri}-${ci}`, cell);
+            });
+          });
+        }
+        if (sec.tip) register(`sec-${sIdx}-tip`, "Remember. " + sec.tip);
+      });
+    }
+
+    if (selected.keyTerms && selected.keyTerms.length > 0) {
+      selected.keyTerms.forEach((t, tIdx) => {
+        register(`term-${tIdx}`, `${t.term}: ${t.meaning}`);
+      });
+    }
+
+    if (selected.examTips && selected.examTips.length > 0) {
+      selected.examTips.forEach((tip, tipIdx) => {
+        register(`exam-tip-${tipIdx}`, tip);
+      });
+    }
+
+    return {
+      chapterSpeechText: speechParts.join(". "),
+      segmentOffsets: offsets,
+    };
   }, [selected]);
 
   const tts = useCuteTTS(chapterSpeechText, selected?.id);
-  const titleWordsCount = useMemo(() => {
-    return selected?.title ? selected.title.trim().split(/\s+/).filter(Boolean).length : 0;
-  }, [selected?.title]);
 
 
   function libraryUrl(nextSubject: NotesSubjectId, nextClass: ClassLevel) {
@@ -1011,7 +1106,7 @@ export default function NotesBrowser() {
           </div>
           <h1 className="mt-6 text-4xl font-extrabold leading-[1] tracking-tight text-fg sm:text-5xl lg:text-6xl"><TTSHighlightedText text={selected.title} activeWordIndex={tts.activeWordIndex} wordOffset={0} isSpeaking={tts.isPlaying} /></h1>
           <p className="mt-4 font-mono text-xs sm:text-[11px] uppercase tracking-[0.16em] text-subtle">{selected.unit}</p>
-          <p className="mt-7 max-w-3xl text-lg leading-8 text-muted sm:text-xl"><TTSHighlightedText text={selected.overview} activeWordIndex={tts.activeWordIndex} wordOffset={titleWordsCount} isSpeaking={tts.isPlaying} /></p>
+          <p className="mt-7 max-w-3xl text-lg leading-8 text-muted sm:text-xl"><TTSHighlightedText text={selected.overview} activeWordIndex={tts.activeWordIndex} wordOffset={segmentOffsets.get("overview") ?? 0} isSpeaking={tts.isPlaying} /></p>
           <dl className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-4">{meta.map((m) => <div key={m.k} className="bg-bg px-5 py-4"><dt className="font-mono text-xs sm:text-[10px] uppercase tracking-[0.16em] text-subtle">{m.k}</dt><dd className="mt-1 font-mono text-xl font-semibold text-fg tabular-nums">{m.v}</dd></div>)}</dl>
         </header>
 
@@ -1024,15 +1119,53 @@ export default function NotesBrowser() {
             <GeneralScienceViewer chapter={selected} onSelectChapter={openChapter} />
           </div>
         ) : (
-          <div className="mt-12 space-y-10 sm:mt-16 sm:space-y-12">{selected.sections.map((s, i) => <SectionBlock key={s.title} index={i + 1} section={s} chapterId={selected.id} />)}</div>
+          <div className="mt-12 space-y-10 sm:mt-16 sm:space-y-12">{selected.sections.map((s, i) => (
+            <SectionBlock
+              key={s.title}
+              index={i + 1}
+              section={s}
+              chapterId={selected.id}
+              tts={tts}
+              segmentOffsets={segmentOffsets}
+            />
+          ))}</div>
         )}
 
         {!isAbhyasChapter && selected.classLevel !== "general" && selected.keyTerms?.length ? (
-          <Card className="mt-14 p-6 sm:p-8"><Label className="mb-6">Key terms</Label><dl className="grid gap-3 sm:grid-cols-2">{selected.keyTerms.map((t) => <div key={t.term} className="rounded-xl border border-line bg-fg/[0.02] p-4"><dt className="text-base font-semibold text-fg">{t.term}</dt><dd className="mt-1.5 text-sm leading-relaxed text-muted">{t.meaning}</dd></div>)}</dl></Card>
+          <Card className="mt-14 p-6 sm:p-8"><Label className="mb-6">Key terms</Label><dl className="grid gap-3 sm:grid-cols-2">{selected.keyTerms.map((t, tIdx) => (
+            <div key={t.term} className="rounded-xl border border-line bg-fg/[0.02] p-4">
+              <dt className="text-base font-semibold text-fg">
+                <TTSHighlightedText
+                  text={t.term}
+                  activeWordIndex={tts.activeWordIndex}
+                  wordOffset={segmentOffsets.get(`term-${tIdx}`) ?? 0}
+                  isSpeaking={tts.isPlaying}
+                />
+              </dt>
+              <dd className="mt-1.5 text-sm leading-relaxed text-muted">
+                <TTSHighlightedText
+                  text={t.meaning}
+                  activeWordIndex={tts.activeWordIndex}
+                  wordOffset={(segmentOffsets.get(`term-${tIdx}`) ?? 0) + t.term.trim().split(/\s+/).filter(Boolean).length}
+                  isSpeaking={tts.isPlaying}
+                />
+              </dd>
+            </div>
+          ))}</dl></Card>
         ) : null}
 
         {!isAbhyasChapter && selected.classLevel !== "general" && selected.examTips?.length ? (
-          <Card className="mt-6 p-6 sm:p-8"><Label className="mb-6">Exam tips</Label><ul className="space-y-4">{selected.examTips.map((tip, i) => <li key={i} className="flex gap-3.5 text-base leading-7 text-muted"><span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-brand/40 bg-brand/10 font-mono text-[11px] font-semibold text-brand-ink">{i + 1}</span><Rich text={tip} /></li>)}</ul></Card>
+          <Card className="mt-6 p-6 sm:p-8"><Label className="mb-6">Exam tips</Label><ul className="space-y-4">{selected.examTips.map((tip, i) => (
+            <li key={i} className="flex gap-3.5 text-base leading-7 text-muted">
+              <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-brand/40 bg-brand/10 font-mono text-[11px] font-semibold text-brand-ink">{i + 1}</span>
+              <Rich
+                text={tip}
+                activeWordIndex={tts.activeWordIndex}
+                wordOffset={segmentOffsets.get(`exam-tip-${i}`) ?? 0}
+                isSpeaking={tts.isPlaying}
+              />
+            </li>
+          ))}</ul></Card>
         ) : null}
 
         <nav className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">

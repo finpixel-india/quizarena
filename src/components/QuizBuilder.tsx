@@ -141,11 +141,14 @@ export default function QuizBuilder({
   const [customTopic, setCustomTopic] = useState<string>(prefs.customTopic ?? "");
   const [starting, setStarting] = useState(false);
 
+  const lastSyncedInitialRef = useRef<string | undefined>(undefined);
+
   // Sync when initialTopicId is explicitly provided or updated via external navigation
   useEffect(() => {
-    if (!initialTopicId) return;
+    if (!initialTopicId || initialTopicId === lastSyncedInitialRef.current) return;
+    lastSyncedInitialRef.current = initialTopicId;
     const target = byId.get(initialTopicId);
-    if (!target || target.id === topicId) return;
+    if (!target) return;
     setSubject(target.subject);
     const targetCls: ClassSel = target.classLevel ?? (target.kind === "general" ? "general" : 10);
     setCls(targetCls);
@@ -160,7 +163,7 @@ export default function QuizBuilder({
       });
       return next;
     });
-  }, [initialTopicId, byId, topicId]);
+  }, [initialTopicId, byId]);
 
   const topic = byId.get(topicId) ?? initTopic;
   const hasClasses = hasClassesFor(subject);
@@ -467,7 +470,10 @@ export default function QuizBuilder({
                               <button
                                 key={t.id}
                                 type="button"
-                                onClick={() => selectTopic(t.id)}
+                                onClick={() => {
+                                  selectTopic(t.id);
+                                  setOpenChapter(false);
+                                }}
                                 className={cn(
                                   "flex w-full items-center gap-2.5 rounded-xl px-3 py-2.5 text-left transition select-none cursor-pointer border",
                                   active

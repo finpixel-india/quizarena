@@ -220,9 +220,18 @@ export function useCuteTTS(
         return;
       }
 
-      // Slice text starting from the character offset of startWordIdx
-      const charOffset = wordTokens[startWordIdx].start;
-      const textToSpeak = (text || "").slice(charOffset).trim();
+      // Find safe chunk boundary for browser synthesis (~18-24 words or nearest sentence boundary)
+      let endWordIdx = Math.min(wordTokens.length, startWordIdx + 20);
+      for (let i = startWordIdx + 8; i < Math.min(wordTokens.length, startWordIdx + 28); i++) {
+        if (/[.!?:]/.test(wordTokens[i].word)) {
+          endWordIdx = i + 1;
+          break;
+        }
+      }
+
+      // Slice ONLY this chunk to prevent browser speech buffer overflow on long notes chapters
+      const chunkWords = wordTokens.slice(startWordIdx, endWordIdx);
+      const textToSpeak = chunkWords.map((w) => w.word).join(" ").trim();
       if (!textToSpeak) {
         stopAll();
         return;
@@ -261,17 +270,19 @@ export function useCuteTTS(
         if (isPausedRef.current || !isPlayingRef.current) return;
         if (e.name && e.name !== "word") return;
 
-        // Map boundary charIndex to global word token index
-        const currentAbsoluteChar = charOffset + (e.charIndex || 0);
-        let matchedIndex = startWordIdx;
-        for (let i = startWordIdx; i < wordTokens.length; i++) {
-          const nextStart = wordTokens[i + 1]?.start ?? (text?.length || 999999);
-          if (currentAbsoluteChar >= wordTokens[i].start && currentAbsoluteChar < nextStart) {
-            matchedIndex = i;
+        // Map boundary charIndex to relative word in current chunk
+        let charAcc = 0;
+        let relativeWordIdx = 0;
+        for (let i = 0; i < chunkWords.length; i++) {
+          const wLen = chunkWords[i].word.length;
+          if ((e.charIndex || 0) >= charAcc && (e.charIndex || 0) <= charAcc + wLen) {
+            relativeWordIdx = i;
             break;
           }
+          charAcc += wLen + 1;
         }
 
+        const matchedIndex = Math.min(endWordIdx - 1, startWordIdx + relativeWordIdx);
         currentWordIndexRef.current = matchedIndex;
         setActiveWordIndex(matchedIndex);
 
@@ -288,6 +299,13 @@ export function useCuteTTS(
       utterance.onend = () => {
         // If user paused, cancel() triggers onend. Do NOT wipe paused state!
         if (isPausedRef.current) return;
+
+        // If there are more words left in the text, speak next chunk seamlessly!
+        if (endWordIdx < wordTokens.length) {
+          startFrom(endWordIdx);
+          return;
+        }
+
         clearTicker();
         setIsPlaying(false);
         setIsPaused(false);

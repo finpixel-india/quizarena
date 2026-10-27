@@ -30,15 +30,15 @@ export function findCuteFemaleVoice(): SpeechSynthesisVoice | null {
   return voices[0];
 }
 
-/* ─── Estimate Word Duration (Calibrated to natural ~190 WPM TTS speed) ───── */
-function estimateWordDuration(word: string, rate: number = 0.95): number {
+/* ─── Estimate Word Duration (Calibrated to natural ~150 WPM TTS speed) ────── */
+function estimateWordDuration(word: string, rate: number = 1.0): number {
   const clean = word.replace(/[^a-zA-Z0-9]/g, "");
   const len = Math.max(1, clean.length);
-  // ~28ms per character + 70ms base phoneme onset
-  let ms = (len * 28 + 70) / rate;
-  if (/[,;—–-]/.test(word)) ms += 80 / rate;
-  if (/[.!?:]/.test(word)) ms += 150 / rate;
-  return Math.max(130, Math.round(ms));
+  // Base phoneme onset ~140ms + ~44ms per letter at rate 1.0 (~150 WPM)
+  let ms = (140 + len * 44) / Math.max(0.5, rate);
+  if (/[,;—–-]/.test(word)) ms += 180 / Math.max(0.5, rate);
+  if (/[.!?:]/.test(word)) ms += 320 / Math.max(0.5, rate);
+  return Math.max(240, Math.round(ms));
 }
 
 export interface WordToken {
@@ -49,22 +49,21 @@ export interface WordToken {
   durationMs: number;
 }
 
-export function tokenizeWords(fullText: string, rate: number = 0.95): WordToken[] {
-  const words = fullText.trim().split(/\s+/).filter(Boolean);
-  let charPos = 0;
-  return words.map((w, idx) => {
-    const found = fullText.indexOf(w, charPos);
-    const start = found !== -1 ? found : charPos;
-    const end = start + w.length;
-    charPos = end;
-    return {
-      word: w,
-      start,
-      end,
-      index: idx,
-      durationMs: estimateWordDuration(w, rate),
-    };
-  });
+export function tokenizeWords(fullText: string, rate: number = 1.0): WordToken[] {
+  if (!fullText) return [];
+  const tokens: WordToken[] = [];
+  const regex = /\S+/g;
+  let match: RegExpExecArray | null;
+  while ((match = regex.exec(fullText)) !== null) {
+    tokens.push({
+      word: match[0],
+      start: match.index,
+      end: match.index + match[0].length,
+      index: tokens.length,
+      durationMs: estimateWordDuration(match[0], rate),
+    });
+  }
+  return tokens;
 }
 
 export interface CuteTTSState {
@@ -85,18 +84,23 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
   const activeUtteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
   const tickerTimeoutRef = useRef<number | null>(null);
   const isPlayingRef = useRef(false);
+  const isPausedRef = useRef(false);
 
-  // Pre-tokenize words for fast timing and boundary indexing
+  // Pre-tokenize words for boundary indexing and smooth duration calculation
   const wordTokens = useMemo(() => {
-    return tokenizeWords(text || "", 0.95);
+    return tokenizeWords(text || "", 1.0);
   }, [text]);
 
-  // Keep isPlayingRef in sync for timer checks
+  // Keep ref flags synchronized with state
   useEffect(() => {
     isPlayingRef.current = isPlaying;
   }, [isPlaying]);
 
-  // Pre-warm voices list
+  useEffect(() => {
+    isPausedRef.current = isPaused;
+  }, [isPaused]);
+
+  // Pre-warm voices list on mount
   useEffect(() => {
     if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
     try {
@@ -120,6 +124,8 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
 
   const stopAll = useCallback(() => {
     clearTicker();
+    isPausedRef.current = false;
+    isPlayingRef.current = false;
     if (typeof window !== "undefined" && "speechSynthesis" in window) {
       try {
         window.speechSynthesis.cancel();
@@ -128,7 +134,6 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
     activeUtteranceRef.current = null;
     setIsPlaying(false);
     setIsPaused(false);
-    isPlayingRef.current = false;
     setActiveWordIndex(null);
     pausedWordIndexRef.current = 0;
     currentWordIndexRef.current = 0;
@@ -142,12 +147,12 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
     };
   }, [id, text, stopAll]);
 
-  // Step through words with realistic voice duration
+  // Step through words with calibrated speech pace (~150 WPM)
   const advanceTicker = useCallback(
     (targetIndex: number) => {
       clearTicker();
 
-      if (!isPlayingRef.current) return;
+      if (!isPlayingRef.current || isPausedRef.current) return;
       if (targetIndex >= wordTokens.length) {
         return;
       }
@@ -155,10 +160,10 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
       currentWordIndexRef.current = targetIndex;
       setActiveWordIndex(targetIndex);
 
-      const duration = wordTokens[targetIndex]?.durationMs || 220;
+      const duration = wordTokens[targetIndex]?.durationMs || 360;
 
       tickerTimeoutRef.current = window.setTimeout(() => {
-        if (isPlayingRef.current) {
+        if (isPlayingRef.current && !isPausedRef.current) {
           advanceTicker(targetIndex + 1);
         }
       }, duration);
@@ -176,18 +181,17 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
       } catch {}
 
       if (!wordTokens || wordTokens.length === 0 || startWordIdx >= wordTokens.length) {
-        setIsPlaying(false);
-        setIsPaused(false);
-        isPlayingRef.current = false;
-        setActiveWordIndex(null);
-        pausedWordIndexRef.current = 0;
+        stopAll();
         return;
       }
 
-      // Slice words to speak starting from the paused word
-      const wordsToSpeak = wordTokens.slice(startWordIdx).map((w) => w.word);
-      const textToSpeak = wordsToSpeak.join(" ");
-      if (!textToSpeak.trim()) return;
+      // Slice text starting from the character offset of startWordIdx
+      const charOffset = wordTokens[startWordIdx].start;
+      const textToSpeak = (text || "").slice(charOffset).trim();
+      if (!textToSpeak) {
+        stopAll();
+        return;
+      }
 
       const utterance = new SpeechSynthesisUtterance(textToSpeak);
       utterance.lang = "en-US";
@@ -197,10 +201,19 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
 
       let pitchMod = 0;
       if (textToSpeak.includes("!") || textToSpeak.includes("?")) pitchMod = 0.04;
-      utterance.pitch = 1.08 + pitchMod;
-      utterance.rate = 0.95;
+      utterance.pitch = 1.05 + pitchMod;
+      utterance.rate = 1.0;
+
+      // Optimistically update playing state and first active word
+      isPausedRef.current = false;
+      isPlayingRef.current = true;
+      setIsPlaying(true);
+      setIsPaused(false);
+      currentWordIndexRef.current = startWordIdx;
+      setActiveWordIndex(startWordIdx);
 
       utterance.onstart = () => {
+        if (isPausedRef.current) return;
         setIsPlaying(true);
         setIsPaused(false);
         isPlayingRef.current = true;
@@ -210,24 +223,36 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
       };
 
       utterance.onboundary = (e) => {
+        if (isPausedRef.current || !isPlayingRef.current) return;
         if (e.name && e.name !== "word") return;
-        // Map boundary charIndex to relative word in wordsToSpeak
-        let charAcc = 0;
-        let relativeWordIdx = 0;
-        for (let i = 0; i < wordsToSpeak.length; i++) {
-          const wLen = wordsToSpeak[i].length;
-          if (e.charIndex >= charAcc && e.charIndex <= charAcc + wLen) {
-            relativeWordIdx = i;
+
+        // Map boundary charIndex to global word token index
+        const currentAbsoluteChar = charOffset + (e.charIndex || 0);
+        let matchedIndex = startWordIdx;
+        for (let i = startWordIdx; i < wordTokens.length; i++) {
+          const nextStart = wordTokens[i + 1]?.start ?? (text?.length || 999999);
+          if (currentAbsoluteChar >= wordTokens[i].start && currentAbsoluteChar < nextStart) {
+            matchedIndex = i;
             break;
           }
-          charAcc += wLen + 1;
         }
-        const matchedIndex = Math.min(wordTokens.length - 1, startWordIdx + relativeWordIdx);
+
         currentWordIndexRef.current = matchedIndex;
         setActiveWordIndex(matchedIndex);
+
+        // Resync ticker to wait for the remaining duration of this matched word before stepping
+        clearTicker();
+        const duration = wordTokens[matchedIndex]?.durationMs || 360;
+        tickerTimeoutRef.current = window.setTimeout(() => {
+          if (isPlayingRef.current && !isPausedRef.current) {
+            advanceTicker(matchedIndex + 1);
+          }
+        }, duration);
       };
 
       utterance.onend = () => {
+        // If user paused, cancel() triggers onend. Do NOT wipe paused state!
+        if (isPausedRef.current) return;
         clearTicker();
         setIsPlaying(false);
         setIsPaused(false);
@@ -238,7 +263,11 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
         activeUtteranceRef.current = null;
       };
 
-      utterance.onerror = () => {
+      utterance.onerror = (e) => {
+        // Ignore expected interruption errors caused by manual pause cancel()
+        if (isPausedRef.current || (e && (e.error === "canceled" || e.error === "interrupted"))) {
+          return;
+        }
         clearTicker();
         setIsPlaying(false);
         setIsPaused(false);
@@ -248,17 +277,21 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
       };
 
       activeUtteranceRef.current = utterance;
-      // Prevent Chromium garbage collection
+      // Prevent Chromium GC bug
       (window as unknown as { __activeUtterance?: SpeechSynthesisUtterance }).__activeUtterance = utterance;
 
-      try {
-        window.speechSynthesis.speak(utterance);
-      } catch {
-        setIsPlaying(false);
-        isPlayingRef.current = false;
-      }
+      // Use a slight 25ms tick to prevent Chromium from dropping speech after cancel()
+      window.setTimeout(() => {
+        if (isPausedRef.current || !isPlayingRef.current) return;
+        try {
+          window.speechSynthesis.speak(utterance);
+        } catch {
+          setIsPlaying(false);
+          isPlayingRef.current = false;
+        }
+      }, 25);
     },
-    [advanceTicker, clearTicker, wordTokens]
+    [advanceTicker, clearTicker, stopAll, text, wordTokens]
   );
 
   const toggle = useCallback(() => {
@@ -269,13 +302,14 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
     if (isPlaying) {
       // ─── USER TAPS PAUSE ──────────────────────────────────────────────────
       clearTicker();
+      isPausedRef.current = true;
       isPlayingRef.current = false;
 
       // Remember the exact word where user stopped
       const pausedWord = currentWordIndexRef.current;
       pausedWordIndexRef.current = pausedWord;
 
-      // Stop voice stream cleanly so resume is pristine
+      // Cancel audio stream
       try {
         window.speechSynthesis.cancel();
       } catch {}
@@ -289,11 +323,13 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
     if (isPaused) {
       // ─── USER TAPS RESUME ─────────────────────────────────────────────────
       const resumeIndex = pausedWordIndexRef.current;
+      isPausedRef.current = false;
       startFrom(resumeIndex);
       return;
     }
 
     // ─── USER TAPS START (From Word 0) ──────────────────────────────────────
+    isPausedRef.current = false;
     pausedWordIndexRef.current = 0;
     currentWordIndexRef.current = 0;
     startFrom(0);
@@ -308,7 +344,7 @@ export function useCuteTTS(text: string, id?: string): CuteTTSState {
   };
 }
 
-/* ─── Small Circular Floating TTS Button in Glassmorphism Style ────────────── */
+/* ─── Circular Floating TTS Button in True Glassmorphism Style ─────────────── */
 export function FloatingTTSButton({
   tts,
   className,
@@ -342,21 +378,25 @@ export function FloatingTTSButton({
             ? "Resume speech narration"
             : "Listen to text"
         }
+        style={{
+          backdropFilter: "blur(24px)",
+          WebkitBackdropFilter: "blur(24px)",
+        }}
         className={cn(
-          "w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer select-none active:scale-90 touch-manipulation backdrop-blur-xl border shadow-lg",
+          "group relative w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer select-none active:scale-90 touch-manipulation border",
           isPlaying
-            ? "bg-amber-500/20 dark:bg-amber-500/25 border-amber-400/50 dark:border-amber-400/40 text-amber-500 dark:text-amber-300 shadow-[0_0_24px_rgba(245,158,11,0.3)] animate-pulse"
+            ? "bg-gradient-to-br from-amber-500/25 to-amber-600/20 dark:from-amber-400/25 dark:to-amber-500/15 border-amber-400/60 dark:border-amber-300/50 text-amber-500 dark:text-amber-300 shadow-[0_0_24px_rgba(245,158,11,0.38),0_8px_30px_rgba(0,0,0,0.2),inset_0_1px_2px_rgba(255,255,255,0.6)] ring-2 ring-amber-400/30 dark:ring-amber-300/30 animate-pulse"
             : isPaused
-            ? "bg-emerald-500/20 dark:bg-emerald-500/25 border-emerald-400/50 dark:border-emerald-400/40 text-emerald-500 dark:text-emerald-300 shadow-[0_0_20px_rgba(16,185,129,0.25)]"
-            : "bg-white/[0.12] dark:bg-white/[0.08] hover:bg-white/20 dark:hover:bg-white/15 border-white/25 dark:border-white/15 text-fg/80 hover:text-fg shadow-md hover:shadow-lg"
+            ? "bg-gradient-to-br from-emerald-500/25 to-teal-600/20 dark:from-emerald-400/25 dark:to-teal-500/15 border-emerald-400/60 dark:border-emerald-300/50 text-emerald-500 dark:text-emerald-300 shadow-[0_0_24px_rgba(16,185,129,0.35),0_8px_30px_rgba(0,0,0,0.2),inset_0_1px_2px_rgba(255,255,255,0.6)] ring-2 ring-emerald-400/30 dark:ring-emerald-300/30"
+            : "bg-white/[0.14] dark:bg-white/[0.08] hover:bg-white/[0.22] dark:hover:bg-white/[0.14] border-white/35 dark:border-white/20 text-fg/80 hover:text-fg shadow-[0_8px_30px_rgba(0,0,0,0.15),inset_0_1px_1px_rgba(255,255,255,0.45)] hover:shadow-lg"
         )}
       >
         {isPlaying ? (
-          <Pause className="w-4 h-4 fill-current shrink-0" />
+          <Pause className="w-4 h-4 fill-current drop-shadow-sm shrink-0" />
         ) : isPaused ? (
-          <Play className="w-4 h-4 fill-current ml-0.5 shrink-0" />
+          <Play className="w-4 h-4 fill-current ml-0.5 drop-shadow-sm shrink-0" />
         ) : (
-          <Volume2 className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 transition-transform group-hover:scale-110" />
+          <Volume2 className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 drop-shadow-sm transition-transform duration-200 group-hover:scale-110" />
         )}
       </button>
     </div>
@@ -379,39 +419,41 @@ export function TTSHighlightedText({
 }) {
   if (!text) return null;
 
-  // If paused or not speaking, render clean unhighlighted text immediately
-  if (!isSpeaking || activeWordIndex === null) {
-    return <span className={className}>{text}</span>;
-  }
+  // Split text into alternating whitespace and word tokens
+  const parts = useMemo(() => text.split(/(\s+)/), [text]);
 
-  const parts = text.split(/(\s+)/g);
   let wordCounter = 0;
 
   return (
     <span className={className}>
       {parts.map((part, i) => {
-        if (/\s+/.test(part)) {
-          return <span key={i}>{part}</span>;
+        if (!part) return null;
+
+        // Render whitespace chunks directly without word counter increment
+        if (/^\s+$/.test(part)) {
+          return <React.Fragment key={i}>{part}</React.Fragment>;
         }
 
         const currentWordIdx = wordCounter;
         wordCounter++;
 
         const isCurrentActive =
+          Boolean(isSpeaking) &&
+          activeWordIndex !== null &&
           activeWordIndex === wordOffset + currentWordIdx;
 
-        if (isCurrentActive) {
-          return (
-            <span
-              key={i}
-              className="bg-amber-400/25 dark:bg-amber-300/25 text-inherit rounded px-1 -mx-0.5 transition-colors duration-100 shadow-[0_0_8px_rgba(245,158,11,0.25)]"
-            >
-              {part}
-            </span>
-          );
-        }
-
-        return <span key={i}>{part}</span>;
+        return (
+          <span
+            key={i}
+            className={
+              isCurrentActive
+                ? "bg-amber-400/25 dark:bg-amber-300/25 text-inherit rounded-[3px] transition-colors duration-150 ease-out"
+                : "text-inherit transition-colors duration-150 ease-out"
+            }
+          >
+            {part}
+          </span>
+        );
       })}
     </span>
   );
